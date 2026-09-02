@@ -1,18 +1,15 @@
-import dotenv from "dotenv";
+import { PORT } from "./env";
 import { app } from "./app";
-
-dotenv.config();
-
-const port = process.env.PORT || 5000;
+import logger from "./logger/winston.logger";
 
 export const startServer = () => {
   try {
-    const server = app.listen(port, () => {
-      console.log(`🚀 Express server is listening at http://localhost:${port}`);
+    const server = app.listen(PORT, () => {
+      logger.info(`🚀 Express server is listening at http://localhost:${PORT}`);
     });
     return server;
   } catch (error) {
-    console.error("Failed to start server:", error);
+    logger.error(`Failed to start server: ${String(error)}`);
     process.exit(1);
   }
 };
