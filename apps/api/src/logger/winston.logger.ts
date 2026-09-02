@@ -1,3 +1,5 @@
+import fs from "fs";
+import path from "path";
 import winston from "winston";
 import { NODE_ENV } from "../env";
 
@@ -44,19 +46,38 @@ const format = winston.format.combine(
 // Configure transports
 const transports: winston.transport[] = [
   new winston.transports.Console(),
-  new winston.transports.File({
-    filename: "logs/error.log",
-    level: "error",
-  }),
-  new winston.transports.File({
-    filename: "logs/info.log",
-    level: "info",
-  }),
-  new winston.transports.File({
-    filename: "logs/http.log",
-    level: "http",
-  }),
 ];
+
+// In serverless environments like Vercel or AWS Lambda, the filesystem is read-only.
+// We only enable local file transports when running in local development outside Vercel.
+const isServerless = Boolean(process.env.VERCEL || process.env.AWS_LAMBDA_FUNCTION_NAME);
+const isDevelopment = (NODE_ENV ?? "development") === "development";
+
+if (!isServerless && isDevelopment) {
+  try {
+    const logsDir = path.join(process.cwd(), "logs");
+    if (!fs.existsSync(logsDir)) {
+      fs.mkdirSync(logsDir, { recursive: true });
+    }
+
+    transports.push(
+      new winston.transports.File({
+        filename: path.join(logsDir, "error.log"),
+        level: "error",
+      }),
+      new winston.transports.File({
+        filename: path.join(logsDir, "info.log"),
+        level: "info",
+      }),
+      new winston.transports.File({
+        filename: path.join(logsDir, "http.log"),
+        level: "http",
+      })
+    );
+  } catch (err) {
+    console.warn("Could not initialize local file loggers, falling back to console:", err);
+  }
+}
 
 // Create and export the logger
 const logger = winston.createLogger({
