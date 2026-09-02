@@ -1,27 +1,20 @@
-import express, { Request, Response } from "express";
-import cors from "cors";
 import dotenv from "dotenv";
+import { app } from "./app";
 
 dotenv.config();
 
-const app = express();
 const port = process.env.PORT || 5000;
 
-app.use(cors());
-app.use(express.json());
+export const startServer = () => {
+  try {
+    const server = app.listen(port, () => {
+      console.log(`🚀 Express server is listening at http://localhost:${port}`);
+    });
+    return server;
+  } catch (error) {
+    console.error("Failed to start server:", error);
+    process.exit(1);
+  }
+};
 
-app.get("/", (_req: Request, res: Response) => {
-  res.json({
-    message: "API server is running",
-    status: "ok",
-    timestamp: new Date().toISOString(),
-  });
-});
-
-app.get("/health", (_req: Request, res: Response) => {
-  res.status(200).json({ status: "healthy" });
-});
-
-app.listen(port, () => {
-  console.log(`🚀 Express server is listening at http://localhost:${port}`);
-});
+startServer();
