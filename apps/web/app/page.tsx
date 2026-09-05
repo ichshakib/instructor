@@ -69,29 +69,10 @@ export default function InstructorLanding() {
           {/* Brand Logo */}
           <Link
             href="/"
-            className="flex items-center gap-3 pl-8 sm:pl-16 md:pl-20 group focus:outline-none"
+            className="flex items-center pl-8 sm:pl-16 md:pl-20 group focus:outline-none"
           >
-            <div className="relative w-8 h-8 flex items-center justify-center">
-              {/* Double Circle / Eclipse Icon */}
-              <svg
-                viewBox="0 0 36 36"
-                className="w-8 h-8 transition-transform duration-300 group-hover:scale-105"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <circle cx="14" cy="18" r="12" fill="#18191E" />
-                <circle
-                  cx="22"
-                  cy="18"
-                  r="11"
-                  stroke="#18191E"
-                  strokeWidth="2.5"
-                  className="opacity-90"
-                />
-              </svg>
-            </div>
-            <span className="font-bold text-xl sm:text-2xl tracking-tight text-[#18191E]">
-              Instructor
+            <span className="font-rochester text-3xl sm:text-4xl text-[#18191E] tracking-tight transition-transform duration-300 group-hover:scale-105 select-none">
+              instructor
             </span>
           </Link>
 
@@ -759,26 +740,8 @@ export default function InstructorLanding() {
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 pb-14 border-b border-neutral-200/80">
             {/* Brand Information */}
             <div className="lg:col-span-6 space-y-4">
-              <Link href="/" className="inline-flex items-center gap-3 group focus:outline-none">
-                <div className="relative w-8 h-8 flex items-center justify-center">
-                  <svg
-                    viewBox="0 0 36 36"
-                    className="w-8 h-8 transition-transform duration-300 group-hover:scale-105"
-                    fill="none"
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
-                    <circle cx="14" cy="18" r="12" fill="#18191E" />
-                    <circle
-                      cx="22"
-                      cy="18"
-                      r="11"
-                      stroke="#18191E"
-                      strokeWidth="2.5"
-                      className="opacity-90"
-                    />
-                  </svg>
-                </div>
-                <span className="font-bold text-2xl tracking-tight text-[#18191E]">
+              <Link href="/" className="inline-flex items-center group focus:outline-none">
+                <span className="font-rochester text-3xl sm:text-4xl text-[#18191E] tracking-tight transition-transform duration-300 group-hover:scale-105 select-none">
                   Instructor
                 </span>
               </Link>
