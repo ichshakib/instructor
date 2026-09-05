@@ -9,7 +9,6 @@ import {
   Text,
   TextInput,
   useColorScheme,
-  useWindowDimensions,
   View,
 } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
@@ -22,11 +21,11 @@ interface Course {
   category: string;
   instructor: string;
   instructorAvatar: string;
-  instructorRole: string;
+  instructorRole?: string;
   thumbnail: string;
   duration: string;
   lessonsCount: number;
-  price: string;
+  price?: string;
   bookmarksCount?: number;
 }
 
@@ -36,8 +35,6 @@ const CATEGORIES = [
   'Business',
   'Development',
   'Design',
-  'Languages',
-  'Cloud Computing',
 ];
 
 const FEATURED_COURSES: Course[] = [
@@ -58,7 +55,7 @@ const FEATURED_COURSES: Course[] = [
   },
   {
     id: 'c2',
-    title: 'UX Design Fundamentals & Prototyping',
+    title: 'UX Design Fundamentals',
     category: 'Design',
     instructor: 'Fannie DuBuque',
     instructorAvatar:
@@ -68,23 +65,6 @@ const FEATURED_COURSES: Course[] = [
       'https://images.unsplash.com/photo-1531403009284-440f080d1e12?w=600&auto=format&fit=crop&q=80',
     duration: '1h 20 mins',
     lessonsCount: 30,
-    price: '$249',
-    bookmarksCount: 4120,
-  },
-  {
-    id: 'c3',
-    title: 'German A1: Foundations & Daily Dialogue',
-    category: 'Languages',
-    instructor: 'Dr. Klaus Weber',
-    instructorAvatar:
-      'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=100&auto=format&fit=crop&q=80',
-    instructorRole: 'Certified Language Coach',
-    thumbnail:
-      'https://images.unsplash.com/photo-1467269204594-9661b134dd2b?w=600&auto=format&fit=crop&q=80',
-    duration: '4h 30 mins',
-    lessonsCount: 48,
-    price: 'Enrolled',
-    bookmarksCount: 8932,
   },
 ];
 
@@ -96,7 +76,6 @@ const POPULAR_COURSES: Course[] = [
     instructor: 'Dawn Corwin',
     instructorAvatar:
       'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100&auto=format&fit=crop&q=80',
-    instructorRole: 'Lead Architect',
     thumbnail:
       'https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=300&auto=format&fit=crop&q=80',
     duration: '1h 20 mins',
@@ -110,26 +89,11 @@ const POPULAR_COURSES: Course[] = [
     instructor: 'Pat Daugherty',
     instructorAvatar:
       'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=100&auto=format&fit=crop&q=80',
-    instructorRole: 'Cloud Solutions Specialist',
     thumbnail:
       'https://images.unsplash.com/photo-1498050108023-c5249f4df085?w=300&auto=format&fit=crop&q=80',
     duration: '1h 20 mins',
     lessonsCount: 30,
     price: '$399',
-  },
-  {
-    id: 'p3',
-    title: 'German A2: Elementary Fluency & Speaking',
-    category: 'Languages',
-    instructor: 'Greta Fischer',
-    instructorAvatar:
-      'https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=100&auto=format&fit=crop&q=80',
-    instructorRole: 'German Native Tutor',
-    thumbnail:
-      'https://images.unsplash.com/photo-1528728329032-2972f65dfb3f?w=300&auto=format&fit=crop&q=80',
-    duration: '5h 15 mins',
-    lessonsCount: 60,
-    price: '$179',
   },
 ];
 
@@ -138,19 +102,18 @@ export default function HomeScreen() {
   const { userName } = useOnboarding();
   const colorScheme = useColorScheme();
   const isDark = colorScheme === 'dark';
-  const { width } = useWindowDimensions();
 
   const [selectedCategory, setSelectedCategory] = useState('All');
   const [searchQuery, setSearchQuery] = useState('');
   const [bookmarkedIds, setBookmarkedIds] = useState<Record<string, boolean>>({});
 
-  // Palette tokens
-  const bgColor = isDark ? '#090D16' : '#FAFAFC';
-  const cardBg = isDark ? '#131D2E' : '#FFFFFF';
-  const textColor = isDark ? '#F8FAFC' : '#0F172A';
-  const mutedText = isDark ? '#94A3B8' : '#64748B';
-  const borderColor = isDark ? '#24344D' : '#E2E8F0';
-  const primaryColor = '#2563EB';
+  // Clean, minimal tokens matching the reference image
+  const bgColor = isDark ? '#0F141C' : '#FAFBFD';
+  const cardBg = isDark ? '#161F2C' : '#FFFFFF';
+  const textColor = isDark ? '#F9FAFB' : '#1E2433';
+  const mutedText = isDark ? '#9CA3AF' : '#8A92A6';
+  const borderColor = isDark ? '#263345' : '#E8ECF2';
+  const primaryBlue = '#2563EB';
 
   const toggleBookmark = (id: string) => {
     setBookmarkedIds((prev) => ({ ...prev, [id]: !prev[id] }));
@@ -169,19 +132,6 @@ export default function HomeScreen() {
     });
   };
 
-  // Filter courses based on category and search
-  const filteredFeatured = FEATURED_COURSES.filter((c) => {
-    const matchesCat = selectedCategory === 'All' || c.category === selectedCategory;
-    const matchesSearch = c.title.toLowerCase().includes(searchQuery.toLowerCase());
-    return matchesCat && matchesSearch;
-  });
-
-  const filteredPopular = POPULAR_COURSES.filter((c) => {
-    const matchesCat = selectedCategory === 'All' || c.category === selectedCategory;
-    const matchesSearch = c.title.toLowerCase().includes(searchQuery.toLowerCase());
-    return matchesCat && matchesSearch;
-  });
-
   return (
     <SafeAreaView style={[styles.safeArea, { backgroundColor: bgColor }]} edges={['top']}>
       <ScrollView
@@ -189,7 +139,7 @@ export default function HomeScreen() {
         contentContainerStyle={styles.scrollContent}
         showsVerticalScrollIndicator={false}
       >
-        {/* TOP HEADER (MATCHING REFERENCE IMAGE 1) */}
+        {/* HEADER: Welcome, Maria Waelchi + Bell + Profile Avatar */}
         <View style={styles.header}>
           <View style={styles.headerLeft}>
             <Text style={[styles.welcomeLabel, { color: mutedText }]}>Welcome,</Text>
@@ -199,22 +149,28 @@ export default function HomeScreen() {
           </View>
 
           <View style={styles.headerRight}>
-            {/* Notification Bell with Red Dot */}
-            <Pressable style={({ pressed }) => [styles.iconBtn, pressed && styles.pressed]}>
-              <Ionicons name="notifications-outline" size={22} color={textColor} />
-              <View style={styles.unreadDot} />
+            {/* Notification Bell */}
+            <Pressable
+              style={({ pressed }) => [
+                styles.bellBtn,
+                { backgroundColor: isDark ? '#1F2937' : '#F3F4F6' },
+                pressed && styles.pressed,
+              ]}
+            >
+              <Ionicons name="notifications-outline" size={20} color={textColor} />
+              <View style={styles.redDot} />
             </Pressable>
 
-            {/* Circular Profile Avatar */}
+            {/* Profile Avatar */}
             <Pressable
               onPress={() => router.push('/settings')}
-              style={({ pressed }) => [styles.avatarWrap, pressed && styles.pressed]}
+              style={({ pressed }) => [styles.avatarContainer, pressed && styles.pressed]}
             >
               <Image
                 source={{
                   uri: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=120&auto=format&fit=crop&q=80',
                 }}
-                style={styles.avatarImage}
+                style={styles.avatarImg}
               />
             </Pressable>
           </View>
@@ -222,29 +178,22 @@ export default function HomeScreen() {
 
         {/* SEARCH BAR ROW */}
         <View style={styles.searchRow}>
-          <View
-            style={[
-              styles.searchBar,
-              { backgroundColor: cardBg, borderColor },
-            ]}
-          >
-            <Ionicons name="search-outline" size={20} color="#94A3B8" style={styles.searchIcon} />
+          <View style={[styles.searchBox, { backgroundColor: cardBg, borderColor }]}>
+            <Ionicons name="search-outline" size={18} color="#9CA3AF" style={styles.searchIcon} />
             <TextInput
               value={searchQuery}
               onChangeText={setSearchQuery}
               placeholder="Search For Courses"
-              placeholderTextColor="#94A3B8"
+              placeholderTextColor="#9CA3AF"
               style={[styles.searchInput, { color: textColor }]}
             />
-            <Pressable style={styles.searchArrowBtn}>
-              <Ionicons name="arrow-forward" size={18} color="#64748B" />
-            </Pressable>
+            <Ionicons name="arrow-forward" size={18} color="#9CA3AF" style={{ marginRight: 4 }} />
           </View>
 
           {/* Filter button */}
           <Pressable
             style={({ pressed }) => [
-              styles.filterButton,
+              styles.filterBtn,
               { backgroundColor: cardBg, borderColor },
               pressed && styles.pressed,
             ]}
@@ -253,11 +202,11 @@ export default function HomeScreen() {
           </Pressable>
         </View>
 
-        {/* CATEGORY FILTER CHIPS (HORIZONTAL SCROLL) */}
+        {/* CATEGORY CHIPS (HORIZONTAL SCROLL) */}
         <ScrollView
           horizontal
           showsHorizontalScrollIndicator={false}
-          contentContainerStyle={styles.categoriesScroll}
+          contentContainerStyle={styles.categoryScroll}
         >
           {CATEGORIES.map((cat) => {
             const isSelected = selectedCategory === cat;
@@ -266,19 +215,19 @@ export default function HomeScreen() {
                 key={cat}
                 onPress={() => setSelectedCategory(cat)}
                 style={({ pressed }) => [
-                  styles.categoryChip,
+                  styles.categoryPill,
                   isSelected
-                    ? [styles.selectedChip, { borderColor: primaryColor }]
-                    : [styles.unselectedChip, { borderColor }],
+                    ? [styles.selectedCategoryPill, { borderColor: primaryBlue }]
+                    : [styles.unselectedCategoryPill, { borderColor }],
                   pressed && styles.pressed,
                 ]}
               >
                 <Text
                   style={[
-                    styles.categoryText,
+                    styles.categoryPillText,
                     {
-                      color: isSelected ? primaryColor : mutedText,
-                      fontWeight: isSelected ? '700' : '500',
+                      color: isSelected ? primaryBlue : mutedText,
+                      fontWeight: isSelected ? '600' : '400',
                     },
                   ]}
                 >
@@ -289,14 +238,14 @@ export default function HomeScreen() {
           })}
         </ScrollView>
 
-        {/* FEATURED / RECOMMENDED COURSES CAROUSEL (HORIZONTAL) */}
+        {/* FEATURED COURSES CAROUSEL (HORIZONTAL SCROLL) */}
         <View style={styles.featuredSection}>
           <ScrollView
             horizontal
             showsHorizontalScrollIndicator={false}
-            contentContainerStyle={styles.featuredCarousel}
+            contentContainerStyle={styles.featuredScroll}
           >
-            {filteredFeatured.map((course) => {
+            {FEATURED_COURSES.map((course) => {
               const isBookmarked = bookmarkedIds[course.id];
               return (
                 <Pressable
@@ -308,33 +257,34 @@ export default function HomeScreen() {
                     pressed && styles.pressedCard,
                   ]}
                 >
-                  {/* Card Image Banner */}
-                  <View style={styles.thumbnailWrap}>
+                  {/* Thumbnail Image */}
+                  <View style={styles.featuredImageWrap}>
                     <Image
                       source={{ uri: course.thumbnail }}
-                      style={styles.thumbnailImage}
+                      style={styles.featuredImage}
                       resizeMode="cover"
                     />
 
-                    {/* Bookmark Badge on Image */}
+                    {/* Bookmark Badge */}
                     {course.bookmarksCount && (
-                      <View style={styles.imageBookmarkBadge}>
-                        <Ionicons name="bookmark" size={12} color="#FFFFFF" />
-                        <Text style={styles.imageBookmarkText}>{course.bookmarksCount}</Text>
+                      <View style={styles.bookmarkCountBadge}>
+                        <Ionicons name="bookmark" size={11} color="#FFFFFF" />
+                        <Text style={styles.bookmarkCountText}>{course.bookmarksCount}</Text>
                       </View>
                     )}
                   </View>
 
-                  {/* Card Body */}
-                  <View style={styles.featuredBody}>
-                    <View style={styles.cardCatRow}>
+                  {/* Card Content */}
+                  <View style={styles.featuredContent}>
+                    {/* Category Pill & Bookmark Icon */}
+                    <View style={styles.cardHeaderRow}>
                       <View
                         style={[
-                          styles.catPill,
+                          styles.catBadge,
                           { backgroundColor: isDark ? '#1E293B' : '#EFF6FF' },
                         ]}
                       >
-                        <Text style={[styles.catPillText, { color: primaryColor }]}>
+                        <Text style={[styles.catBadgeText, { color: primaryBlue }]}>
                           {course.category}
                         </Text>
                       </View>
@@ -346,30 +296,27 @@ export default function HomeScreen() {
                         <Ionicons
                           name={isBookmarked ? 'bookmark' : 'bookmark-outline'}
                           size={18}
-                          color={primaryColor}
+                          color={mutedText}
                         />
                       </Pressable>
                     </View>
 
                     {/* Course Title */}
                     <Text
-                      style={[styles.featuredTitle, { color: textColor }]}
-                      numberOfLines={2}
+                      style={[styles.featuredCourseTitle, { color: textColor }]}
+                      numberOfLines={1}
                     >
-                      {course.title}
+                      {course.title}...
                     </Text>
 
                     {/* Instructor Row */}
-                    <View style={styles.instructorRow}>
+                    <View style={styles.featuredInstructorRow}>
                       <Image
                         source={{ uri: course.instructorAvatar }}
-                        style={styles.instructorSmallAvatar}
+                        style={styles.instructorImg}
                       />
-                      <View style={styles.instructorTextWrap}>
-                        <Text
-                          style={[styles.instructorName, { color: textColor }]}
-                          numberOfLines={1}
-                        >
+                      <View>
+                        <Text style={[styles.instructorName, { color: textColor }]}>
                           {course.instructor}
                         </Text>
                         <Text style={[styles.instructorRole, { color: mutedText }]}>
@@ -378,14 +325,16 @@ export default function HomeScreen() {
                       </View>
                     </View>
 
-                    {/* Meta Stats & Price */}
-                    <View style={styles.featuredFooter}>
-                      <Text style={[styles.metaText, { color: mutedText }]}>
+                    {/* Meta Row (Duration & Price) */}
+                    <View style={styles.featuredFooterRow}>
+                      <Text style={[styles.metaDurationText, { color: mutedText }]}>
                         {course.duration} • {course.lessonsCount} lessons
                       </Text>
-                      <Text style={[styles.priceText, { color: textColor }]}>
-                        {course.price}
-                      </Text>
+                      {course.price ? (
+                        <Text style={[styles.metaPriceText, { color: textColor }]}>
+                          {course.price}
+                        </Text>
+                      ) : null}
                     </View>
                   </View>
                 </Pressable>
@@ -396,15 +345,15 @@ export default function HomeScreen() {
 
         {/* POPULAR COURSES SECTION (VERTICAL LIST) */}
         <View style={styles.popularSection}>
-          <View style={styles.sectionHeader}>
-            <Text style={[styles.sectionTitle, { color: textColor }]}>Popular Courses</Text>
+          <View style={styles.popularHeaderRow}>
+            <Text style={[styles.sectionHeading, { color: textColor }]}>Popular Courses</Text>
             <Pressable onPress={() => router.push('/courses')} hitSlop={8}>
-              <Text style={[styles.viewAllText, { color: primaryColor }]}>View All</Text>
+              <Text style={[styles.viewAllBtn, { color: primaryBlue }]}>View All</Text>
             </Pressable>
           </View>
 
           <View style={styles.popularList}>
-            {filteredPopular.map((course) => {
+            {POPULAR_COURSES.map((course) => {
               const isBookmarked = bookmarkedIds[course.id];
               return (
                 <Pressable
@@ -419,20 +368,20 @@ export default function HomeScreen() {
                   {/* Left Thumbnail */}
                   <Image
                     source={{ uri: course.thumbnail }}
-                    style={styles.popularThumbnail}
+                    style={styles.popularThumb}
                     resizeMode="cover"
                   />
 
-                  {/* Right Content */}
-                  <View style={styles.popularInfo}>
+                  {/* Right Details */}
+                  <View style={styles.popularDetails}>
                     <View style={styles.popularTopRow}>
                       <View
                         style={[
-                          styles.catPill,
+                          styles.catBadge,
                           { backgroundColor: isDark ? '#1E293B' : '#EFF6FF' },
                         ]}
                       >
-                        <Text style={[styles.catPillText, { color: primaryColor }]}>
+                        <Text style={[styles.catBadgeText, { color: primaryBlue }]}>
                           {course.category}
                         </Text>
                       </View>
@@ -443,37 +392,31 @@ export default function HomeScreen() {
                       >
                         <Ionicons
                           name={isBookmarked ? 'bookmark' : 'bookmark-outline'}
-                          size={18}
-                          color={primaryColor}
+                          size={16}
+                          color={mutedText}
                         />
                       </Pressable>
                     </View>
 
-                    <Text
-                      style={[styles.popularTitle, { color: textColor }]}
-                      numberOfLines={2}
-                    >
+                    <Text style={[styles.popularTitle, { color: textColor }]} numberOfLines={1}>
                       {course.title}
                     </Text>
 
-                    <View style={styles.popularInstructorRow}>
+                    <View style={styles.popularInstructor}>
                       <Image
                         source={{ uri: course.instructorAvatar }}
                         style={styles.popularInstructorAvatar}
                       />
-                      <Text
-                        style={[styles.popularInstructorName, { color: mutedText }]}
-                        numberOfLines={1}
-                      >
+                      <Text style={[styles.popularInstructorName, { color: mutedText }]}>
                         {course.instructor}
                       </Text>
                     </View>
 
                     <View style={styles.popularFooter}>
-                      <Text style={[styles.metaText, { color: mutedText }]}>
+                      <Text style={[styles.metaDurationText, { color: mutedText }]}>
                         {course.duration} • {course.lessonsCount} lessons
                       </Text>
-                      <Text style={[styles.popularPrice, { color: textColor }]}>
+                      <Text style={[styles.metaPriceText, { color: textColor }]}>
                         {course.price}
                       </Text>
                     </View>
@@ -484,7 +427,7 @@ export default function HomeScreen() {
           </View>
         </View>
 
-        <View style={{ height: 24 }} />
+        <View style={{ height: 28 }} />
       </ScrollView>
     </SafeAreaView>
   );
@@ -498,7 +441,7 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   scrollContent: {
-    paddingTop: 12,
+    paddingTop: 8,
     paddingBottom: 24,
   },
   header: {
@@ -513,45 +456,42 @@ const styles = StyleSheet.create({
   },
   welcomeLabel: {
     fontSize: 14,
-    fontWeight: '500',
+    marginBottom: 2,
   },
   userNameTitle: {
     fontSize: 22,
-    fontWeight: '800',
-    letterSpacing: -0.3,
-    marginTop: 2,
+    fontWeight: '700',
+    letterSpacing: -0.2,
   },
   headerRight: {
     flexDirection: 'row',
     alignItems: 'center',
     gap: 12,
   },
-  iconBtn: {
-    width: 40,
-    height: 40,
-    borderRadius: 20,
+  bellBtn: {
+    width: 38,
+    height: 38,
+    borderRadius: 19,
     alignItems: 'center',
     justifyContent: 'center',
     position: 'relative',
   },
-  unreadDot: {
+  redDot: {
     position: 'absolute',
     top: 9,
     right: 9,
-    width: 7,
-    height: 7,
-    borderRadius: 3.5,
+    width: 6,
+    height: 6,
+    borderRadius: 3,
     backgroundColor: '#EF4444',
   },
-  avatarWrap: {
-    width: 42,
-    height: 42,
-    borderRadius: 21,
+  avatarContainer: {
+    width: 40,
+    height: 40,
+    borderRadius: 20,
     overflow: 'hidden',
-    borderWidth: 1.5,
-    borderColor: '#E2E8F0',
   },
-  avatarImage: {
+  avatarImg: {
     width: '100%',
     height: '100%',
   },
@@ -562,13 +502,13 @@ const styles = StyleSheet.create({
     gap: 10,
     marginBottom: 16,
   },
-  searchBar: {
+  searchBox: {
     flex: 1,
     flexDirection: 'row',
     alignItems: 'center',
-    paddingHorizontal: 14,
-    height: 48,
-    borderRadius: 14,
+    paddingHorizontal: 12,
+    height: 46,
+    borderRadius: 12,
     borderWidth: 1,
   },
   searchIcon: {
@@ -577,164 +517,145 @@ const styles = StyleSheet.create({
   searchInput: {
     flex: 1,
     fontSize: 14,
-    fontWeight: '500',
     height: '100%',
   },
-  searchArrowBtn: {
-    padding: 4,
-  },
-  filterButton: {
-    width: 48,
-    height: 48,
-    borderRadius: 14,
+  filterBtn: {
+    width: 46,
+    height: 46,
+    borderRadius: 12,
     borderWidth: 1,
     alignItems: 'center',
     justifyContent: 'center',
   },
-  categoriesScroll: {
+  categoryScroll: {
     paddingHorizontal: 20,
     gap: 8,
     marginBottom: 18,
   },
-  categoryChip: {
+  categoryPill: {
     paddingVertical: 7,
     paddingHorizontal: 16,
     borderRadius: 20,
-    borderWidth: 1.5,
+    borderWidth: 1,
   },
-  selectedChip: {
+  selectedCategoryPill: {
     backgroundColor: 'transparent',
   },
-  unselectedChip: {
+  unselectedCategoryPill: {
     backgroundColor: 'transparent',
   },
-  categoryText: {
+  categoryPillText: {
     fontSize: 13,
   },
   featuredSection: {
-    marginBottom: 24,
+    marginBottom: 22,
   },
-  featuredCarousel: {
+  featuredScroll: {
     paddingHorizontal: 20,
     gap: 14,
   },
   featuredCard: {
-    width: 260,
-    borderRadius: 20,
+    width: 250,
+    borderRadius: 16,
     borderWidth: 1,
     overflow: 'hidden',
-    shadowColor: '#000000',
-    shadowOffset: { width: 0, height: 4 },
-    shadowOpacity: 0.05,
-    shadowRadius: 10,
-    elevation: 3,
   },
-  thumbnailWrap: {
+  featuredImageWrap: {
     position: 'relative',
     width: '100%',
-    height: 150,
+    height: 140,
     backgroundColor: '#0F172A',
   },
-  thumbnailImage: {
+  featuredImage: {
     width: '100%',
     height: '100%',
   },
-  imageBookmarkBadge: {
+  bookmarkCountBadge: {
     position: 'absolute',
-    top: 10,
-    right: 10,
+    top: 8,
+    right: 8,
     flexDirection: 'row',
     alignItems: 'center',
-    backgroundColor: 'rgba(0, 0, 0, 0.55)',
-    paddingHorizontal: 8,
-    paddingVertical: 4,
-    borderRadius: 12,
-    gap: 4,
+    backgroundColor: 'rgba(0, 0, 0, 0.5)',
+    paddingHorizontal: 7,
+    paddingVertical: 3,
+    borderRadius: 10,
+    gap: 3,
   },
-  imageBookmarkText: {
+  bookmarkCountText: {
     color: '#FFFFFF',
     fontSize: 11,
-    fontWeight: '700',
+    fontWeight: '600',
   },
-  featuredBody: {
-    padding: 14,
+  featuredContent: {
+    padding: 12,
   },
-  cardCatRow: {
+  cardHeaderRow: {
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
     marginBottom: 8,
   },
-  catPill: {
+  catBadge: {
     paddingHorizontal: 8,
     paddingVertical: 3,
     borderRadius: 6,
   },
-  catPillText: {
+  catBadgeText: {
     fontSize: 11,
-    fontWeight: '700',
+    fontWeight: '600',
   },
-  featuredTitle: {
+  featuredCourseTitle: {
     fontSize: 15,
     fontWeight: '700',
-    lineHeight: 20,
-    marginBottom: 10,
-    height: 40,
+    marginBottom: 8,
   },
-  instructorRow: {
+  featuredInstructorRow: {
     flexDirection: 'row',
     alignItems: 'center',
     marginBottom: 10,
+    gap: 8,
   },
-  instructorSmallAvatar: {
-    width: 28,
-    height: 28,
-    borderRadius: 14,
-    marginRight: 8,
-  },
-  instructorTextWrap: {
-    flex: 1,
+  instructorImg: {
+    width: 26,
+    height: 26,
+    borderRadius: 13,
   },
   instructorName: {
     fontSize: 12,
-    fontWeight: '700',
+    fontWeight: '600',
   },
   instructorRole: {
     fontSize: 10,
   },
-  featuredFooter: {
+  featuredFooterRow: {
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
-    paddingTop: 8,
-    borderTopWidth: 1,
-    borderTopColor: '#F1F5F9',
   },
-  metaText: {
+  metaDurationText: {
     fontSize: 11,
-    fontWeight: '500',
   },
-  priceText: {
+  metaPriceText: {
     fontSize: 15,
-    fontWeight: '800',
+    fontWeight: '700',
   },
   popularSection: {
     paddingHorizontal: 20,
   },
-  sectionHeader: {
+  popularHeaderRow: {
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
-    marginBottom: 14,
+    marginBottom: 12,
   },
-  sectionTitle: {
-    fontSize: 18,
-    fontWeight: '800',
-    letterSpacing: -0.2,
-  },
-  viewAllText: {
-    fontSize: 13,
+  sectionHeading: {
+    fontSize: 17,
     fontWeight: '700',
+  },
+  viewAllBtn: {
+    fontSize: 13,
+    fontWeight: '600',
   },
   popularList: {
     gap: 12,
@@ -742,22 +663,17 @@ const styles = StyleSheet.create({
   popularCard: {
     flexDirection: 'row',
     padding: 10,
-    borderRadius: 16,
+    borderRadius: 14,
     borderWidth: 1,
     gap: 12,
-    shadowColor: '#000000',
-    shadowOffset: { width: 0, height: 2 },
-    shadowOpacity: 0.04,
-    shadowRadius: 6,
-    elevation: 2,
   },
-  popularThumbnail: {
-    width: 90,
-    height: 90,
-    borderRadius: 12,
+  popularThumb: {
+    width: 80,
+    height: 80,
+    borderRadius: 10,
     backgroundColor: '#0F172A',
   },
-  popularInfo: {
+  popularDetails: {
     flex: 1,
     justifyContent: 'space-between',
   },
@@ -769,18 +685,16 @@ const styles = StyleSheet.create({
   popularTitle: {
     fontSize: 13,
     fontWeight: '700',
-    lineHeight: 18,
-    marginTop: 2,
   },
-  popularInstructorRow: {
+  popularInstructor: {
     flexDirection: 'row',
     alignItems: 'center',
     gap: 6,
   },
   popularInstructorAvatar: {
-    width: 18,
-    height: 18,
-    borderRadius: 9,
+    width: 16,
+    height: 16,
+    borderRadius: 8,
   },
   popularInstructorName: {
     fontSize: 11,
@@ -790,15 +704,10 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     alignItems: 'center',
   },
-  popularPrice: {
-    fontSize: 14,
-    fontWeight: '800',
-  },
   pressed: {
     opacity: 0.7,
   },
   pressedCard: {
     opacity: 0.95,
-    transform: [{ scale: 0.99 }],
   },
 });
