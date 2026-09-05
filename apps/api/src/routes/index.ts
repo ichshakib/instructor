@@ -1,5 +1,6 @@
 import { Router } from "express";
 import healthRouter from "./health.route";
+import coursesRouter from "./courses.route";
 
 const router = Router();
 
@@ -11,6 +12,7 @@ router.get("/", (_req, res) => {
 
 // Mount modular sub-routes
 router.use("/health", healthRouter);
+router.use("/courses", coursesRouter);
 
 export default router;
 export { router };

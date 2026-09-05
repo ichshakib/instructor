@@ -1,9 +1,10 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import Link from "next/link";
 import Navbar from "../components/Navbar";
 import CourseCard, { CourseItem } from "../components/CourseCard";
+import { fetchCourses } from "../lib/api";
 import {
   Play,
   Smile,
@@ -19,68 +20,43 @@ import {
   MapPin,
   ArrowUpRight,
   ShieldCheck,
+  RefreshCw,
+  AlertCircle,
 } from "lucide-react";
-
-const FEATURED_COURSES: CourseItem[] = [
-  {
-    id: "quiz-ux-opt",
-    title: "5 Steps Optimizing User Experience",
-    category: "Design",
-    type: "Quiz • Certified",
-    typeIcon: "quiz",
-    tag1: "UI/UX Design",
-    tag2: "Urgent",
-    badgeCount: "20 Question",
-    coverVariant: "quiz-clipboard",
-    progressStatus: {
-      type: "points",
-      points: 20,
-      subLabel: "Passing point 20 pts",
-    },
-    buttonLabel: "View",
-    description: "Learn essential usability evaluations, feedback synthesis, and quantitative heuristic testing.",
-  },
-  {
-    id: "heuristics-10-usability",
-    title: "Heuristics: 10 Usability Principles To improve UI Design",
-    category: "Design",
-    type: "Page",
-    typeIcon: "page",
-    tag1: "Learning Design",
-    tag2: "Not Urgent",
-    badgeCount: "12 Chapters",
-    coverVariant: "video-chapters",
-    progressStatus: {
-      type: "progress",
-      percentage: 40,
-    },
-    buttonLabel: "Continue",
-    description: "Deep-dive into Nielsen's usability principles and practical interface interaction guidelines.",
-  },
-  {
-    id: "general-knowledge-methodology",
-    title: "General Knowledge & Methodology - Layout & Spacing",
-    category: "Design",
-    type: "Learning Path",
-    typeIcon: "path",
-    tag1: "Consistency",
-    tag2: "Not Urgent",
-    badgeCount: "20 Path",
-    coverVariant: "layout-wireframe",
-    progressStatus: {
-      type: "status",
-      statusText: "Not Started",
-    },
-    buttonLabel: "Start",
-    description: "Master modern spatial systems, 8pt grid structures, rhythm, and typographic scales.",
-  },
-];
 
 export default function InstructorLanding() {
   // State for video modal preview
   const [isVideoModalOpen, setIsVideoModalOpen] = useState(false);
   // Optional live preview image uploaded by the user
   const [customHeroImg, setCustomHeroImg] = useState<string | null>(null);
+
+  // Dynamic state for featured courses fetched from API
+  const [featuredCourses, setFeaturedCourses] = useState<CourseItem[]>([]);
+  const [isLoadingCourses, setIsLoadingCourses] = useState<boolean>(true);
+  const [coursesError, setCoursesError] = useState<string | null>(null);
+
+  const loadFeaturedCourses = useCallback(async () => {
+    setIsLoadingCourses(true);
+    setCoursesError(null);
+    try {
+      const courses = await fetchCourses({ featured: true });
+      if (courses.length > 0) {
+        setFeaturedCourses(courses);
+      } else {
+        const all = await fetchCourses();
+        setFeaturedCourses(all.slice(0, 3));
+      }
+    } catch (err: unknown) {
+      console.error("Failed to load featured courses from API:", err);
+      setCoursesError("Could not load featured courses from the API.");
+    } finally {
+      setIsLoadingCourses(false);
+    }
+  }, []);
+
+  useEffect(() => {
+    loadFeaturedCourses();
+  }, [loadFeaturedCourses]);
 
   return (
     <div className="relative min-h-screen w-full bg-white text-[#18191E] overflow-x-hidden font-sans selection:bg-[#18191E] selection:text-white">
@@ -521,11 +497,53 @@ export default function InstructorLanding() {
               </p>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-7 sm:gap-8">
-              {FEATURED_COURSES.map((course) => (
-                <CourseCard key={course.id} course={course} />
-              ))}
-            </div>
+            {/* Dynamic Featured Courses Grid */}
+            {isLoadingCourses ? (
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-7 sm:gap-8">
+                {Array.from({ length: 3 }).map((_, i) => (
+                  <div
+                    key={`home-skeleton-${i}`}
+                    className="rounded-2xl bg-white border border-neutral-200 p-4 sm:p-5 flex flex-col justify-between overflow-hidden animate-pulse shadow-sm"
+                  >
+                    <div className="w-full h-32 sm:h-36 bg-neutral-200/70 rounded-xl mb-4" />
+                    <div className="space-y-3">
+                      <div className="w-24 h-3 bg-neutral-200/80 rounded" />
+                      <div className="w-3/4 h-5 bg-neutral-200/90 rounded" />
+                      <div className="w-full h-3 bg-neutral-200/60 rounded" />
+                      <div className="flex gap-2 pt-1">
+                        <div className="w-16 h-4 bg-neutral-200/70 rounded-full" />
+                        <div className="w-16 h-4 bg-neutral-200/70 rounded-full" />
+                      </div>
+                    </div>
+                    <div className="pt-4 mt-4 border-t border-neutral-100 flex items-center justify-between">
+                      <div className="w-20 h-3 bg-neutral-200/70 rounded" />
+                      <div className="w-14 h-7 bg-neutral-200/80 rounded-lg" />
+                    </div>
+                  </div>
+                ))}
+              </div>
+            ) : coursesError ? (
+              <div className="py-12 text-center rounded-3xl bg-neutral-50 border border-neutral-200 max-w-lg mx-auto p-6">
+                <AlertCircle className="w-10 h-10 text-rose-500 mx-auto mb-3" />
+                <h3 className="text-base font-bold text-[#18191E]">Unable to Load Featured Courses</h3>
+                <p className="text-xs text-[#706E66] mt-1.5 leading-relaxed">
+                  {coursesError}
+                </p>
+                <button
+                  onClick={loadFeaturedCourses}
+                  className="mt-4 inline-flex items-center gap-1.5 px-4 py-2 rounded-xl bg-[#18191E] text-white text-xs font-semibold hover:bg-neutral-800 transition-colors"
+                >
+                  <RefreshCw className="w-3 h-3" />
+                  <span>Retry</span>
+                </button>
+              </div>
+            ) : (
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-7 sm:gap-8">
+                {featuredCourses.map((course) => (
+                  <CourseCard key={course.id} course={course} />
+                ))}
+              </div>
+            )}
 
             {/* View Full Directory Link */}
             <div className="mt-12 text-center">

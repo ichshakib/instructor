@@ -1,8 +1,9 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import Navbar from "../../components/Navbar";
 import CourseCard, { CourseItem } from "../../components/CourseCard";
+import { fetchCourses } from "../../lib/api";
 import Link from "next/link";
 import {
   Search,
@@ -12,106 +13,55 @@ import {
   Mail,
   Phone,
   MapPin,
+  RefreshCw,
+  AlertCircle,
 } from "lucide-react";
-
-export const ALL_COURSES: CourseItem[] = [
-  {
-    id: "quiz-ux-opt",
-    title: "5 Steps Optimizing User Experience",
-    category: "Design",
-    type: "Quiz • Certified",
-    typeIcon: "quiz",
-    tag1: "UI/UX Design",
-    tag2: "Urgent",
-    badgeCount: "20 Question",
-    coverVariant: "quiz-clipboard",
-    buttonLabel: "View",
-    description: "Learn essential usability evaluations, feedback synthesis, and quantitative heuristic testing.",
-  },
-  {
-    id: "heuristics-10-usability",
-    title: "Heuristics: 10 Usability Principles To improve UI Design",
-    category: "Design",
-    type: "Page",
-    typeIcon: "page",
-    tag1: "Learning Design",
-    tag2: "Not Urgent",
-    badgeCount: "12 Chapters",
-    coverVariant: "video-chapters",
-    buttonLabel: "Continue",
-    description: "Deep-dive into Nielsen's usability principles and practical interface interaction guidelines.",
-  },
-  {
-    id: "general-knowledge-methodology",
-    title: "General Knowledge & Methodology - Layout & Spacing",
-    category: "Design",
-    type: "Learning Path",
-    typeIcon: "path",
-    tag1: "Consistency",
-    tag2: "Not Urgent",
-    badgeCount: "20 Path",
-    coverVariant: "layout-wireframe",
-    buttonLabel: "Start",
-    description: "Master modern spatial systems, 8pt grid structures, rhythm, and typographic scales.",
-  },
-  {
-    id: "nextjs-fullstack-architecture",
-    title: "Full-Stack Next.js 15 & Modern UI Architecture",
-    category: "Development",
-    type: "Masterclass • Certified",
-    typeIcon: "quiz",
-    tag1: "Fullstack",
-    tag2: "Recommended",
-    badgeCount: "24 Lessons",
-    coverVariant: "code-architecture",
-    buttonLabel: "Continue",
-    description: "Master server components, distributed pipelines, Tailwind CSS v4, and scalable monorepo tooling.",
-  },
-  {
-    id: "applied-ai-systems-agents",
-    title: "Applied AI Systems & Autonomous Intelligent Agents",
-    category: "AI & Data",
-    type: "Interactive Lab",
-    typeIcon: "lab",
-    tag1: "Artificial Intelligence",
-    tag2: "Trending",
-    badgeCount: "16 Modules",
-    coverVariant: "cloud-backend",
-    buttonLabel: "Start",
-    description: "Build production multi-agent orchestration, tool-calling pipelines, and autonomous workflows.",
-  },
-  {
-    id: "product-metrics-growth",
-    title: "Product Analytics, Conversion Metrics & SaaS Growth",
-    category: "Business",
-    type: "Learning Path",
-    typeIcon: "path",
-    tag1: "Product Growth",
-    tag2: "Not Urgent",
-    badgeCount: "18 Units",
-    coverVariant: "metrics-growth",
-    buttonLabel: "View",
-    description: "Analyze user churn cohorts, activation funnels, and design high-impact growth loops.",
-  },
-];
 
 const CATEGORIES = ["All Courses", "Design", "Development", "AI & Data", "Business"] as const;
 
 export default function CoursesPage() {
+  const [courses, setCourses] = useState<CourseItem[]>([]);
+  const [isLoading, setIsLoading] = useState<boolean>(true);
+  const [error, setError] = useState<string | null>(null);
   const [selectedCategory, setSelectedCategory] = useState<string>("All Courses");
   const [searchQuery, setSearchQuery] = useState<string>("");
   const [selectedLevel, setSelectedLevel] = useState<string>("All");
 
-  const filteredCourses = ALL_COURSES.filter((course) => {
+  const loadCourses = useCallback(async () => {
+    setIsLoading(true);
+    setError(null);
+    try {
+      const data = await fetchCourses();
+      setCourses(data);
+    } catch (err: unknown) {
+      console.error("Failed to load courses from API:", err);
+      setError(
+        "Could not load courses from the API. Please ensure the API backend is running."
+      );
+    } finally {
+      setIsLoading(false);
+    }
+  }, []);
+
+  useEffect(() => {
+    loadCourses();
+  }, [loadCourses]);
+
+  const filteredCourses = courses.filter((course) => {
     const matchesCategory =
       selectedCategory === "All Courses" || course.category === selectedCategory;
+    const matchesLevel =
+      selectedLevel === "All" ||
+      (selectedLevel === "Quizzes" && course.type.toLowerCase().includes("quiz")) ||
+      (selectedLevel === "Chapters" && (course.type.toLowerCase().includes("page") || course.type.toLowerCase().includes("chapter"))) ||
+      (selectedLevel === "Paths" && course.type.toLowerCase().includes("path"));
     const matchesSearch =
       course.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
       course.tag1.toLowerCase().includes(searchQuery.toLowerCase()) ||
       course.type.toLowerCase().includes(searchQuery.toLowerCase()) ||
       (course.description && course.description.toLowerCase().includes(searchQuery.toLowerCase()));
 
-    return matchesCategory && matchesSearch;
+    return matchesCategory && matchesLevel && matchesSearch;
   });
 
   return (
@@ -207,9 +157,15 @@ export default function CoursesPage() {
         <div className="max-w-7xl mx-auto px-6 sm:px-10 lg:px-16">
           <div className="flex items-center justify-between mb-8 pb-4 border-b border-neutral-200/70">
             <span className="text-sm font-semibold text-[#18191E]">
-              Showing <span className="font-bold">{filteredCourses.length}</span> learning modules
+              {isLoading ? (
+                "Loading courses..."
+              ) : (
+                <>
+                  Showing <span className="font-bold">{filteredCourses.length}</span> learning modules
+                </>
+              )}
             </span>
-            {(searchQuery || selectedCategory !== "All Courses") && (
+            {(searchQuery || selectedCategory !== "All Courses") && !isLoading && (
               <button
                 onClick={() => {
                   setSelectedCategory("All Courses");
@@ -222,7 +178,48 @@ export default function CoursesPage() {
             )}
           </div>
 
-          {filteredCourses.length === 0 ? (
+          {/* Loading Skeletons State */}
+          {isLoading ? (
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-6">
+              {Array.from({ length: 6 }).map((_, i) => (
+                <div
+                  key={`skeleton-${i}`}
+                  className="rounded-2xl bg-white border border-neutral-200 p-4 sm:p-5 flex flex-col justify-between overflow-hidden animate-pulse"
+                >
+                  <div className="w-full h-32 sm:h-36 bg-neutral-200/70 rounded-xl mb-4" />
+                  <div className="space-y-3">
+                    <div className="w-24 h-3 bg-neutral-200/80 rounded" />
+                    <div className="w-3/4 h-5 bg-neutral-200/90 rounded" />
+                    <div className="w-full h-3 bg-neutral-200/60 rounded" />
+                    <div className="flex gap-2 pt-1">
+                      <div className="w-16 h-4 bg-neutral-200/70 rounded-full" />
+                      <div className="w-16 h-4 bg-neutral-200/70 rounded-full" />
+                    </div>
+                  </div>
+                  <div className="pt-4 mt-4 border-t border-neutral-100 flex items-center justify-between">
+                    <div className="w-20 h-3 bg-neutral-200/70 rounded" />
+                    <div className="w-14 h-7 bg-neutral-200/80 rounded-lg" />
+                  </div>
+                </div>
+              ))}
+            </div>
+          ) : error ? (
+            /* Error State with Retry */
+            <div className="py-16 text-center rounded-3xl bg-white border border-rose-200 max-w-xl mx-auto shadow-sm p-8">
+              <AlertCircle className="w-12 h-12 text-rose-500 mx-auto mb-4" />
+              <h3 className="text-lg font-bold text-[#18191E]">Unable to Load Courses</h3>
+              <p className="text-xs text-[#706E66] mt-2 max-w-md mx-auto leading-relaxed">
+                {error}
+              </p>
+              <button
+                onClick={loadCourses}
+                className="mt-5 inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-[#18191E] text-white text-xs font-semibold hover:bg-neutral-800 transition-colors shadow-sm"
+              >
+                <RefreshCw className="w-3.5 h-3.5" />
+                <span>Try Again</span>
+              </button>
+            </div>
+          ) : filteredCourses.length === 0 ? (
             <div className="py-20 text-center rounded-3xl bg-white border border-neutral-200 max-w-xl mx-auto shadow-sm">
               <BookOpen className="w-12 h-12 text-neutral-400 mx-auto mb-4" />
               <h3 className="text-lg font-bold text-[#18191E]">No courses found</h3>

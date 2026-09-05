@@ -28,6 +28,14 @@ export interface CourseItem {
     | "metrics-growth";
   buttonLabel: "View" | "Continue" | "Start";
   description?: string;
+  featured?: boolean;
+  progressStatus?: {
+    type: "points" | "progress" | "status";
+    points?: number;
+    subLabel?: string;
+    percentage?: number;
+    statusText?: string;
+  };
 }
 
 interface CourseCardProps {
