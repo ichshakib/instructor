@@ -34,7 +34,7 @@ export function Onboarding({ onComplete, canDismiss, onDismiss }: OnboardingProp
   return (
     <View style={styles.container}>
       {/* Blue to light-blue/white gradient background */}
-      <Svg height="100%" width="100%" style={StyleSheet.absoluteFillObject}>
+      <Svg height="100%" width="100%" style={StyleSheet.absoluteFill}>
         <Defs>
           <LinearGradient id="bgGrad" x1="0%" y1="0%" x2="0%" y2="100%">
             <Stop offset="0%" stopColor="#1D4ED8" stopOpacity="1" />
