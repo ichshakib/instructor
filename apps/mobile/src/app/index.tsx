@@ -2,38 +2,185 @@ import { Ionicons } from '@expo/vector-icons';
 import { useRouter } from 'expo-router';
 import React, { useState } from 'react';
 import {
-  Platform,
+  Image,
   Pressable,
   ScrollView,
   StyleSheet,
   Text,
+  TextInput,
   useColorScheme,
+  useWindowDimensions,
   View,
 } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
+import { useOnboarding } from '@/context/onboarding-context';
+
+interface Course {
+  id: string;
+  title: string;
+  category: string;
+  instructor: string;
+  instructorAvatar: string;
+  instructorRole: string;
+  thumbnail: string;
+  duration: string;
+  lessonsCount: number;
+  price: string;
+  bookmarksCount?: number;
+}
+
+const CATEGORIES = [
+  'All',
+  'Artificial Intelligence',
+  'Business',
+  'Development',
+  'Design',
+  'Languages',
+  'Cloud Computing',
+];
+
+const FEATURED_COURSES: Course[] = [
+  {
+    id: 'c1',
+    title: 'Advanced Machine Learning Algorithms',
+    category: 'Artificial Intelligence',
+    instructor: 'Stanley Mante',
+    instructorAvatar:
+      'https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?w=100&auto=format&fit=crop&q=80',
+    instructorRole: 'Top Rated Instructor',
+    thumbnail:
+      'https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?w=600&auto=format&fit=crop&q=80',
+    duration: '1h 20 mins',
+    lessonsCount: 30,
+    price: '$299',
+    bookmarksCount: 6473,
+  },
+  {
+    id: 'c2',
+    title: 'UX Design Fundamentals & Prototyping',
+    category: 'Design',
+    instructor: 'Fannie DuBuque',
+    instructorAvatar:
+      'https://images.unsplash.com/photo-1580489944761-15a19d654956?w=100&auto=format&fit=crop&q=80',
+    instructorRole: 'Top Rated Instructor',
+    thumbnail:
+      'https://images.unsplash.com/photo-1531403009284-440f080d1e12?w=600&auto=format&fit=crop&q=80',
+    duration: '1h 20 mins',
+    lessonsCount: 30,
+    price: '$249',
+    bookmarksCount: 4120,
+  },
+  {
+    id: 'c3',
+    title: 'German A1: Foundations & Daily Dialogue',
+    category: 'Languages',
+    instructor: 'Dr. Klaus Weber',
+    instructorAvatar:
+      'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=100&auto=format&fit=crop&q=80',
+    instructorRole: 'Certified Language Coach',
+    thumbnail:
+      'https://images.unsplash.com/photo-1467269204594-9661b134dd2b?w=600&auto=format&fit=crop&q=80',
+    duration: '4h 30 mins',
+    lessonsCount: 48,
+    price: 'Enrolled',
+    bookmarksCount: 8932,
+  },
+];
+
+const POPULAR_COURSES: Course[] = [
+  {
+    id: 'p1',
+    title: 'Full Stack Web Development Bootcamp',
+    category: 'Web Development',
+    instructor: 'Dawn Corwin',
+    instructorAvatar:
+      'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100&auto=format&fit=crop&q=80',
+    instructorRole: 'Lead Architect',
+    thumbnail:
+      'https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=300&auto=format&fit=crop&q=80',
+    duration: '1h 20 mins',
+    lessonsCount: 30,
+    price: '$399',
+  },
+  {
+    id: 'p2',
+    title: 'Cloud Computing Fundamentals',
+    category: 'Cloud Computing',
+    instructor: 'Pat Daugherty',
+    instructorAvatar:
+      'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=100&auto=format&fit=crop&q=80',
+    instructorRole: 'Cloud Solutions Specialist',
+    thumbnail:
+      'https://images.unsplash.com/photo-1498050108023-c5249f4df085?w=300&auto=format&fit=crop&q=80',
+    duration: '1h 20 mins',
+    lessonsCount: 30,
+    price: '$399',
+  },
+  {
+    id: 'p3',
+    title: 'German A2: Elementary Fluency & Speaking',
+    category: 'Languages',
+    instructor: 'Greta Fischer',
+    instructorAvatar:
+      'https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=100&auto=format&fit=crop&q=80',
+    instructorRole: 'German Native Tutor',
+    thumbnail:
+      'https://images.unsplash.com/photo-1528728329032-2972f65dfb3f?w=300&auto=format&fit=crop&q=80',
+    duration: '5h 15 mins',
+    lessonsCount: 60,
+    price: '$179',
+  },
+];
+
 export default function HomeScreen() {
   const router = useRouter();
+  const { userName } = useOnboarding();
   const colorScheme = useColorScheme();
   const isDark = colorScheme === 'dark';
-  const [isPlayingWordAudio, setIsPlayingWordAudio] = useState(false);
+  const { width } = useWindowDimensions();
 
-  // Styling tokens
-  const bgColor = isDark ? '#090D16' : '#F8FAFC';
+  const [selectedCategory, setSelectedCategory] = useState('All');
+  const [searchQuery, setSearchQuery] = useState('');
+  const [bookmarkedIds, setBookmarkedIds] = useState<Record<string, boolean>>({});
+
+  // Palette tokens
+  const bgColor = isDark ? '#090D16' : '#FAFAFC';
   const cardBg = isDark ? '#131D2E' : '#FFFFFF';
-  const innerCardBg = isDark ? '#1C293D' : '#F1F5F9';
   const textColor = isDark ? '#F8FAFC' : '#0F172A';
   const mutedText = isDark ? '#94A3B8' : '#64748B';
   const borderColor = isDark ? '#24344D' : '#E2E8F0';
-  const primaryColor = '#F59E0B';
-  const primaryBadgeBg = isDark ? '#3D2808' : '#FEF3C7';
+  const primaryColor = '#2563EB';
 
-  const handleToggleWordAudio = () => {
-    setIsPlayingWordAudio(true);
-    setTimeout(() => {
-      setIsPlayingWordAudio(false);
-    }, 1500);
+  const toggleBookmark = (id: string) => {
+    setBookmarkedIds((prev) => ({ ...prev, [id]: !prev[id] }));
   };
+
+  const openCourse = (course: Course) => {
+    router.push({
+      pathname: '/course-details' as any,
+      params: {
+        id: course.id,
+        title: course.title,
+        category: course.category,
+        instructor: course.instructor,
+        image: course.thumbnail,
+      },
+    });
+  };
+
+  // Filter courses based on category and search
+  const filteredFeatured = FEATURED_COURSES.filter((c) => {
+    const matchesCat = selectedCategory === 'All' || c.category === selectedCategory;
+    const matchesSearch = c.title.toLowerCase().includes(searchQuery.toLowerCase());
+    return matchesCat && matchesSearch;
+  });
+
+  const filteredPopular = POPULAR_COURSES.filter((c) => {
+    const matchesCat = selectedCategory === 'All' || c.category === selectedCategory;
+    const matchesSearch = c.title.toLowerCase().includes(searchQuery.toLowerCase());
+    return matchesCat && matchesSearch;
+  });
 
   return (
     <SafeAreaView style={[styles.safeArea, { backgroundColor: bgColor }]} edges={['top']}>
@@ -42,244 +189,301 @@ export default function HomeScreen() {
         contentContainerStyle={styles.scrollContent}
         showsVerticalScrollIndicator={false}
       >
-        {/* Top Header Bar */}
+        {/* TOP HEADER (MATCHING REFERENCE IMAGE 1) */}
         <View style={styles.header}>
-          <View>
-            <Text style={[styles.greetingText, { color: textColor }]}>
-              Hallo, Lernende! 👋
-            </Text>
-            <Text style={[styles.subGreetingText, { color: mutedText }]}>
-              Welcome back to Instructor
+          <View style={styles.headerLeft}>
+            <Text style={[styles.welcomeLabel, { color: mutedText }]}>Welcome,</Text>
+            <Text style={[styles.userNameTitle, { color: textColor }]}>
+              {userName || 'Maria Waelchi'}
             </Text>
           </View>
 
-          <View style={[styles.streakBadge, { backgroundColor: primaryBadgeBg, borderColor }]}>
-            <Ionicons name="flame" size={18} color="#D97706" />
-            <Text style={styles.streakText}>5 Days</Text>
+          <View style={styles.headerRight}>
+            {/* Notification Bell with Red Dot */}
+            <Pressable style={({ pressed }) => [styles.iconBtn, pressed && styles.pressed]}>
+              <Ionicons name="notifications-outline" size={22} color={textColor} />
+              <View style={styles.unreadDot} />
+            </Pressable>
+
+            {/* Circular Profile Avatar */}
+            <Pressable
+              onPress={() => router.push('/settings')}
+              style={({ pressed }) => [styles.avatarWrap, pressed && styles.pressed]}
+            >
+              <Image
+                source={{
+                  uri: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=120&auto=format&fit=crop&q=80',
+                }}
+                style={styles.avatarImage}
+              />
+            </Pressable>
           </View>
         </View>
 
-        {/* Hero: Continue Learning Card */}
-        <View
-          style={[
-            styles.heroCard,
-            {
-              backgroundColor: cardBg,
-              borderColor,
-            },
-          ]}
-        >
-          <View style={styles.heroTopRow}>
-            <View style={[styles.courseTag, { backgroundColor: primaryBadgeBg }]}>
-              <Text style={styles.courseTagText}>GERMAN A1 · IN PROGRESS</Text>
-            </View>
-            <Text style={[styles.lessonCounter, { color: mutedText }]}>20 / 48 Lessons</Text>
-          </View>
-
-          <Text style={[styles.heroCourseTitle, { color: textColor }]}>
-            German A1: Foundations & Daily Dialogue
-          </Text>
-          <Text style={[styles.heroCurrentLesson, { color: mutedText }]}>
-            Chapter 3: Familie & Freunde • Lektion 3.2: Wer ist das?
-          </Text>
-
-          {/* Progress Bar */}
-          <View style={styles.progressContainer}>
-            <View style={[styles.progressTrack, { backgroundColor: innerCardBg }]}>
-              <View
-                style={[
-                  styles.progressBar,
-                  { width: '42%', backgroundColor: primaryColor },
-                ]}
-              />
-            </View>
-            <View style={styles.progressLabelRow}>
-              <Text style={[styles.progressLabel, { color: mutedText }]}>Overall Progress</Text>
-              <Text style={[styles.progressPercent, { color: primaryColor }]}>42%</Text>
-            </View>
-          </View>
-
-          {/* Action Button */}
-          <Pressable
-            onPress={() => router.push('/courses')}
-            style={({ pressed }) => [
-              styles.resumeBtn,
-              { backgroundColor: primaryColor },
-              pressed && styles.pressedBtn,
+        {/* SEARCH BAR ROW */}
+        <View style={styles.searchRow}>
+          <View
+            style={[
+              styles.searchBar,
+              { backgroundColor: cardBg, borderColor },
             ]}
           >
-            <Ionicons name="play" size={18} color="#FFFFFF" style={styles.btnIcon} />
-            <Text style={styles.resumeBtnText}>Continue Lesson</Text>
+            <Ionicons name="search-outline" size={20} color="#94A3B8" style={styles.searchIcon} />
+            <TextInput
+              value={searchQuery}
+              onChangeText={setSearchQuery}
+              placeholder="Search For Courses"
+              placeholderTextColor="#94A3B8"
+              style={[styles.searchInput, { color: textColor }]}
+            />
+            <Pressable style={styles.searchArrowBtn}>
+              <Ionicons name="arrow-forward" size={18} color="#64748B" />
+            </Pressable>
+          </View>
+
+          {/* Filter button */}
+          <Pressable
+            style={({ pressed }) => [
+              styles.filterButton,
+              { backgroundColor: cardBg, borderColor },
+              pressed && styles.pressed,
+            ]}
+          >
+            <Ionicons name="options-outline" size={20} color={textColor} />
           </Pressable>
         </View>
 
-        {/* Weekly Streak Bar */}
-        <View style={[styles.streakCard, { backgroundColor: cardBg, borderColor }]}>
-          <View style={styles.streakHeader}>
-            <Text style={[styles.sectionTitle, { color: textColor }]}>This Week's Habit</Text>
-            <Text style={[styles.sectionSubtitle, { color: mutedText }]}>5 of 7 days completed</Text>
-          </View>
-          <View style={styles.daysRow}>
-            {[
-              { day: 'Mon', done: true },
-              { day: 'Tue', done: true },
-              { day: 'Wed', done: true },
-              { day: 'Thu', done: true },
-              { day: 'Fri', done: true },
-              { day: 'Sat', done: false, today: true },
-              { day: 'Sun', done: false },
-            ].map((item, idx) => (
-              <View key={idx} style={styles.dayCol}>
-                <View
-                  style={[
-                    styles.dayCircle,
-                    item.done
-                      ? { backgroundColor: '#10B981' }
-                      : item.today
-                      ? { backgroundColor: primaryColor }
-                      : { backgroundColor: innerCardBg, borderWidth: 1, borderColor },
-                  ]}
-                >
-                  {item.done ? (
-                    <Ionicons name="checkmark" size={14} color="#FFFFFF" />
-                  ) : item.today ? (
-                    <Ionicons name="ellipse" size={10} color="#FFFFFF" />
-                  ) : null}
-                </View>
+        {/* CATEGORY FILTER CHIPS (HORIZONTAL SCROLL) */}
+        <ScrollView
+          horizontal
+          showsHorizontalScrollIndicator={false}
+          contentContainerStyle={styles.categoriesScroll}
+        >
+          {CATEGORIES.map((cat) => {
+            const isSelected = selectedCategory === cat;
+            return (
+              <Pressable
+                key={cat}
+                onPress={() => setSelectedCategory(cat)}
+                style={({ pressed }) => [
+                  styles.categoryChip,
+                  isSelected
+                    ? [styles.selectedChip, { borderColor: primaryColor }]
+                    : [styles.unselectedChip, { borderColor }],
+                  pressed && styles.pressed,
+                ]}
+              >
                 <Text
                   style={[
-                    styles.dayLabel,
+                    styles.categoryText,
                     {
-                      color: item.today ? primaryColor : mutedText,
-                      fontWeight: item.today ? '700' : '500',
+                      color: isSelected ? primaryColor : mutedText,
+                      fontWeight: isSelected ? '700' : '500',
                     },
                   ]}
                 >
-                  {item.day}
+                  {cat}
                 </Text>
-              </View>
-            ))}
+              </Pressable>
+            );
+          })}
+        </ScrollView>
+
+        {/* FEATURED / RECOMMENDED COURSES CAROUSEL (HORIZONTAL) */}
+        <View style={styles.featuredSection}>
+          <ScrollView
+            horizontal
+            showsHorizontalScrollIndicator={false}
+            contentContainerStyle={styles.featuredCarousel}
+          >
+            {filteredFeatured.map((course) => {
+              const isBookmarked = bookmarkedIds[course.id];
+              return (
+                <Pressable
+                  key={course.id}
+                  onPress={() => openCourse(course)}
+                  style={({ pressed }) => [
+                    styles.featuredCard,
+                    { backgroundColor: cardBg, borderColor },
+                    pressed && styles.pressedCard,
+                  ]}
+                >
+                  {/* Card Image Banner */}
+                  <View style={styles.thumbnailWrap}>
+                    <Image
+                      source={{ uri: course.thumbnail }}
+                      style={styles.thumbnailImage}
+                      resizeMode="cover"
+                    />
+
+                    {/* Bookmark Badge on Image */}
+                    {course.bookmarksCount && (
+                      <View style={styles.imageBookmarkBadge}>
+                        <Ionicons name="bookmark" size={12} color="#FFFFFF" />
+                        <Text style={styles.imageBookmarkText}>{course.bookmarksCount}</Text>
+                      </View>
+                    )}
+                  </View>
+
+                  {/* Card Body */}
+                  <View style={styles.featuredBody}>
+                    <View style={styles.cardCatRow}>
+                      <View
+                        style={[
+                          styles.catPill,
+                          { backgroundColor: isDark ? '#1E293B' : '#EFF6FF' },
+                        ]}
+                      >
+                        <Text style={[styles.catPillText, { color: primaryColor }]}>
+                          {course.category}
+                        </Text>
+                      </View>
+
+                      <Pressable
+                        onPress={() => toggleBookmark(course.id)}
+                        hitSlop={8}
+                      >
+                        <Ionicons
+                          name={isBookmarked ? 'bookmark' : 'bookmark-outline'}
+                          size={18}
+                          color={primaryColor}
+                        />
+                      </Pressable>
+                    </View>
+
+                    {/* Course Title */}
+                    <Text
+                      style={[styles.featuredTitle, { color: textColor }]}
+                      numberOfLines={2}
+                    >
+                      {course.title}
+                    </Text>
+
+                    {/* Instructor Row */}
+                    <View style={styles.instructorRow}>
+                      <Image
+                        source={{ uri: course.instructorAvatar }}
+                        style={styles.instructorSmallAvatar}
+                      />
+                      <View style={styles.instructorTextWrap}>
+                        <Text
+                          style={[styles.instructorName, { color: textColor }]}
+                          numberOfLines={1}
+                        >
+                          {course.instructor}
+                        </Text>
+                        <Text style={[styles.instructorRole, { color: mutedText }]}>
+                          {course.instructorRole}
+                        </Text>
+                      </View>
+                    </View>
+
+                    {/* Meta Stats & Price */}
+                    <View style={styles.featuredFooter}>
+                      <Text style={[styles.metaText, { color: mutedText }]}>
+                        {course.duration} • {course.lessonsCount} lessons
+                      </Text>
+                      <Text style={[styles.priceText, { color: textColor }]}>
+                        {course.price}
+                      </Text>
+                    </View>
+                  </View>
+                </Pressable>
+              );
+            })}
+          </ScrollView>
+        </View>
+
+        {/* POPULAR COURSES SECTION (VERTICAL LIST) */}
+        <View style={styles.popularSection}>
+          <View style={styles.sectionHeader}>
+            <Text style={[styles.sectionTitle, { color: textColor }]}>Popular Courses</Text>
+            <Pressable onPress={() => router.push('/courses')} hitSlop={8}>
+              <Text style={[styles.viewAllText, { color: primaryColor }]}>View All</Text>
+            </Pressable>
+          </View>
+
+          <View style={styles.popularList}>
+            {filteredPopular.map((course) => {
+              const isBookmarked = bookmarkedIds[course.id];
+              return (
+                <Pressable
+                  key={course.id}
+                  onPress={() => openCourse(course)}
+                  style={({ pressed }) => [
+                    styles.popularCard,
+                    { backgroundColor: cardBg, borderColor },
+                    pressed && styles.pressedCard,
+                  ]}
+                >
+                  {/* Left Thumbnail */}
+                  <Image
+                    source={{ uri: course.thumbnail }}
+                    style={styles.popularThumbnail}
+                    resizeMode="cover"
+                  />
+
+                  {/* Right Content */}
+                  <View style={styles.popularInfo}>
+                    <View style={styles.popularTopRow}>
+                      <View
+                        style={[
+                          styles.catPill,
+                          { backgroundColor: isDark ? '#1E293B' : '#EFF6FF' },
+                        ]}
+                      >
+                        <Text style={[styles.catPillText, { color: primaryColor }]}>
+                          {course.category}
+                        </Text>
+                      </View>
+
+                      <Pressable
+                        onPress={() => toggleBookmark(course.id)}
+                        hitSlop={8}
+                      >
+                        <Ionicons
+                          name={isBookmarked ? 'bookmark' : 'bookmark-outline'}
+                          size={18}
+                          color={primaryColor}
+                        />
+                      </Pressable>
+                    </View>
+
+                    <Text
+                      style={[styles.popularTitle, { color: textColor }]}
+                      numberOfLines={2}
+                    >
+                      {course.title}
+                    </Text>
+
+                    <View style={styles.popularInstructorRow}>
+                      <Image
+                        source={{ uri: course.instructorAvatar }}
+                        style={styles.popularInstructorAvatar}
+                      />
+                      <Text
+                        style={[styles.popularInstructorName, { color: mutedText }]}
+                        numberOfLines={1}
+                      >
+                        {course.instructor}
+                      </Text>
+                    </View>
+
+                    <View style={styles.popularFooter}>
+                      <Text style={[styles.metaText, { color: mutedText }]}>
+                        {course.duration} • {course.lessonsCount} lessons
+                      </Text>
+                      <Text style={[styles.popularPrice, { color: textColor }]}>
+                        {course.price}
+                      </Text>
+                    </View>
+                  </View>
+                </Pressable>
+              );
+            })}
           </View>
         </View>
 
-        {/* Word of the Day */}
-        <View style={[styles.wordCard, { backgroundColor: cardBg, borderColor }]}>
-          <View style={styles.wordHeader}>
-            <View style={[styles.wordBadge, { backgroundColor: isDark ? '#1E293B' : '#EFF6FF' }]}>
-              <Text style={[styles.wordBadgeText, { color: '#2563EB' }]}>WORT DES TAGES</Text>
-            </View>
-            <Pressable
-              onPress={handleToggleWordAudio}
-              style={({ pressed }) => [
-                styles.audioBtn,
-                { backgroundColor: innerCardBg },
-                pressed && styles.pressed,
-              ]}
-              hitSlop={8}
-            >
-              <Ionicons
-                name={isPlayingWordAudio ? 'volume-high' : 'volume-medium'}
-                size={18}
-                color={primaryColor}
-              />
-              <Text style={[styles.audioBtnText, { color: primaryColor }]}>
-                {isPlayingWordAudio ? 'Playing...' : 'Audio'}
-              </Text>
-            </Pressable>
-          </View>
-
-          <Text style={[styles.germanWord, { color: textColor }]}>die Gemütlichkeit</Text>
-          <Text style={[styles.wordPhonetic, { color: mutedText }]}>[dˈiː gəˈmyːtlɪçkaɪt] · Noun, fem.</Text>
-          <Text style={[styles.wordDefinition, { color: textColor }]}>
-            A feeling of warmth, friendliness, coziness, and good cheer.
-          </Text>
-
-          <View style={[styles.exampleBox, { backgroundColor: innerCardBg }]}>
-            <Text style={[styles.exampleDe, { color: textColor }]}>
-              „Wir trinken heißen Tee und genießen die Gemütlichkeit.“
-            </Text>
-            <Text style={[styles.exampleEn, { color: mutedText }]}>
-              “We drink hot tea and enjoy the coziness.”
-            </Text>
-          </View>
-        </View>
-
-        {/* Quick Practice Grid */}
-        <View style={styles.quickPracticeSection}>
-          <Text style={[styles.sectionTitle, { color: textColor, marginBottom: 12 }]}>
-            Quick Practice
-          </Text>
-
-          <View style={styles.gridRow}>
-            {/* Audio Drills */}
-            <Pressable
-              onPress={() => router.push('/courses')}
-              style={({ pressed }) => [
-                styles.gridCard,
-                { backgroundColor: cardBg, borderColor },
-                pressed && styles.pressed,
-              ]}
-            >
-              <View style={[styles.gridIconCircle, { backgroundColor: '#DBEAFE' }]}>
-                <Ionicons name="headset" size={24} color="#2563EB" />
-              </View>
-              <Text style={[styles.gridTitle, { color: textColor }]}>Audio Drills</Text>
-              <Text style={[styles.gridDesc, { color: mutedText }]}>Native German listening</Text>
-            </Pressable>
-
-            {/* Speaking Practice */}
-            <Pressable
-              onPress={() => router.push('/courses')}
-              style={({ pressed }) => [
-                styles.gridCard,
-                { backgroundColor: cardBg, borderColor },
-                pressed && styles.pressed,
-              ]}
-            >
-              <View style={[styles.gridIconCircle, { backgroundColor: '#DCFCE7' }]}>
-                <Ionicons name="mic" size={24} color="#16A34A" />
-              </View>
-              <Text style={[styles.gridTitle, { color: textColor }]}>Pronunciation</Text>
-              <Text style={[styles.gridDesc, { color: mutedText }]}>Accent & pitch training</Text>
-            </Pressable>
-          </View>
-
-          <View style={styles.gridRow}>
-            {/* Flashcards */}
-            <Pressable
-              onPress={() => router.push('/courses')}
-              style={({ pressed }) => [
-                styles.gridCard,
-                { backgroundColor: cardBg, borderColor },
-                pressed && styles.pressed,
-              ]}
-            >
-              <View style={[styles.gridIconCircle, { backgroundColor: '#FEF3C7' }]}>
-                <Ionicons name="albums" size={24} color="#D97706" />
-              </View>
-              <Text style={[styles.gridTitle, { color: textColor }]}>Flashcards</Text>
-              <Text style={[styles.gridDesc, { color: mutedText }]}>500+ A1 core words</Text>
-            </Pressable>
-
-            {/* Grammar */}
-            <Pressable
-              onPress={() => router.push('/courses')}
-              style={({ pressed }) => [
-                styles.gridCard,
-                { backgroundColor: cardBg, borderColor },
-                pressed && styles.pressed,
-              ]}
-            >
-              <View style={[styles.gridIconCircle, { backgroundColor: '#F3E8FF' }]}>
-                <Ionicons name="book" size={24} color="#9333EA" />
-              </View>
-              <Text style={[styles.gridTitle, { color: textColor }]}>Grammar Rules</Text>
-              <Text style={[styles.gridDesc, { color: mutedText }]}>Articles & simple cases</Text>
-            </Pressable>
-          </View>
-        </View>
-
-        {/* Bottom padding for tab bar */}
         <View style={{ height: 24 }} />
       </ScrollView>
     </SafeAreaView>
@@ -294,259 +498,307 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   scrollContent: {
-    paddingHorizontal: 20,
-    paddingTop: 16,
+    paddingTop: 12,
     paddingBottom: 24,
-    maxWidth: 600,
-    alignSelf: 'center',
-    width: '100%',
   },
   header: {
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
-    marginBottom: 20,
+    paddingHorizontal: 20,
+    marginBottom: 16,
   },
-  greetingText: {
-    fontSize: 24,
-    fontWeight: '800',
-    letterSpacing: -0.3,
+  headerLeft: {
+    flex: 1,
   },
-  subGreetingText: {
+  welcomeLabel: {
     fontSize: 14,
     fontWeight: '500',
+  },
+  userNameTitle: {
+    fontSize: 22,
+    fontWeight: '800',
+    letterSpacing: -0.3,
     marginTop: 2,
   },
-  streakBadge: {
+  headerRight: {
     flexDirection: 'row',
     alignItems: 'center',
-    paddingHorizontal: 12,
-    paddingVertical: 6,
-    borderRadius: 20,
-    borderWidth: 1,
-    gap: 5,
+    gap: 12,
   },
-  streakText: {
-    color: '#D97706',
-    fontWeight: '700',
+  iconBtn: {
+    width: 40,
+    height: 40,
+    borderRadius: 20,
+    alignItems: 'center',
+    justifyContent: 'center',
+    position: 'relative',
+  },
+  unreadDot: {
+    position: 'absolute',
+    top: 9,
+    right: 9,
+    width: 7,
+    height: 7,
+    borderRadius: 3.5,
+    backgroundColor: '#EF4444',
+  },
+  avatarWrap: {
+    width: 42,
+    height: 42,
+    borderRadius: 21,
+    overflow: 'hidden',
+    borderWidth: 1.5,
+    borderColor: '#E2E8F0',
+  },
+  avatarImage: {
+    width: '100%',
+    height: '100%',
+  },
+  searchRow: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    paddingHorizontal: 20,
+    gap: 10,
+    marginBottom: 16,
+  },
+  searchBar: {
+    flex: 1,
+    flexDirection: 'row',
+    alignItems: 'center',
+    paddingHorizontal: 14,
+    height: 48,
+    borderRadius: 14,
+    borderWidth: 1,
+  },
+  searchIcon: {
+    marginRight: 8,
+  },
+  searchInput: {
+    flex: 1,
+    fontSize: 14,
+    fontWeight: '500',
+    height: '100%',
+  },
+  searchArrowBtn: {
+    padding: 4,
+  },
+  filterButton: {
+    width: 48,
+    height: 48,
+    borderRadius: 14,
+    borderWidth: 1,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  categoriesScroll: {
+    paddingHorizontal: 20,
+    gap: 8,
+    marginBottom: 18,
+  },
+  categoryChip: {
+    paddingVertical: 7,
+    paddingHorizontal: 16,
+    borderRadius: 20,
+    borderWidth: 1.5,
+  },
+  selectedChip: {
+    backgroundColor: 'transparent',
+  },
+  unselectedChip: {
+    backgroundColor: 'transparent',
+  },
+  categoryText: {
     fontSize: 13,
   },
-  heroCard: {
+  featuredSection: {
+    marginBottom: 24,
+  },
+  featuredCarousel: {
+    paddingHorizontal: 20,
+    gap: 14,
+  },
+  featuredCard: {
+    width: 260,
     borderRadius: 20,
-    padding: 20,
     borderWidth: 1,
-    marginBottom: 16,
+    overflow: 'hidden',
     shadowColor: '#000000',
     shadowOffset: { width: 0, height: 4 },
     shadowOpacity: 0.05,
     shadowRadius: 10,
-    elevation: 2,
+    elevation: 3,
   },
-  heroTopRow: {
+  thumbnailWrap: {
+    position: 'relative',
+    width: '100%',
+    height: 150,
+    backgroundColor: '#0F172A',
+  },
+  thumbnailImage: {
+    width: '100%',
+    height: '100%',
+  },
+  imageBookmarkBadge: {
+    position: 'absolute',
+    top: 10,
+    right: 10,
+    flexDirection: 'row',
+    alignItems: 'center',
+    backgroundColor: 'rgba(0, 0, 0, 0.55)',
+    paddingHorizontal: 8,
+    paddingVertical: 4,
+    borderRadius: 12,
+    gap: 4,
+  },
+  imageBookmarkText: {
+    color: '#FFFFFF',
+    fontSize: 11,
+    fontWeight: '700',
+  },
+  featuredBody: {
+    padding: 14,
+  },
+  cardCatRow: {
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
-    marginBottom: 12,
+    marginBottom: 8,
   },
-  courseTag: {
-    paddingHorizontal: 10,
-    paddingVertical: 4,
-    borderRadius: 8,
+  catPill: {
+    paddingHorizontal: 8,
+    paddingVertical: 3,
+    borderRadius: 6,
   },
-  courseTagText: {
+  catPillText: {
     fontSize: 11,
-    fontWeight: '800',
-    color: '#D97706',
-    letterSpacing: 0.5,
-  },
-  lessonCounter: {
-    fontSize: 12,
-    fontWeight: '600',
-  },
-  heroCourseTitle: {
-    fontSize: 18,
     fontWeight: '700',
-    marginBottom: 4,
   },
-  heroCurrentLesson: {
-    fontSize: 13,
-    marginBottom: 16,
+  featuredTitle: {
+    fontSize: 15,
+    fontWeight: '700',
+    lineHeight: 20,
+    marginBottom: 10,
+    height: 40,
   },
-  progressContainer: {
-    marginBottom: 16,
+  instructorRow: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    marginBottom: 10,
   },
-  progressTrack: {
-    height: 8,
-    borderRadius: 4,
-    overflow: 'hidden',
-    marginBottom: 6,
+  instructorSmallAvatar: {
+    width: 28,
+    height: 28,
+    borderRadius: 14,
+    marginRight: 8,
   },
-  progressBar: {
-    height: '100%',
-    borderRadius: 4,
+  instructorTextWrap: {
+    flex: 1,
   },
-  progressLabelRow: {
+  instructorName: {
+    fontSize: 12,
+    fontWeight: '700',
+  },
+  instructorRole: {
+    fontSize: 10,
+  },
+  featuredFooter: {
     flexDirection: 'row',
     justifyContent: 'space-between',
+    alignItems: 'center',
+    paddingTop: 8,
+    borderTopWidth: 1,
+    borderTopColor: '#F1F5F9',
   },
-  progressLabel: {
-    fontSize: 12,
+  metaText: {
+    fontSize: 11,
     fontWeight: '500',
   },
-  progressPercent: {
-    fontSize: 12,
-    fontWeight: '700',
-  },
-  resumeBtn: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'center',
-    paddingVertical: 13,
-    borderRadius: 12,
-  },
-  btnIcon: {
-    marginRight: 6,
-  },
-  resumeBtnText: {
-    color: '#FFFFFF',
-    fontWeight: '700',
+  priceText: {
     fontSize: 15,
+    fontWeight: '800',
   },
-  streakCard: {
-    borderRadius: 18,
-    padding: 16,
-    borderWidth: 1,
-    marginBottom: 16,
+  popularSection: {
+    paddingHorizontal: 20,
   },
-  streakHeader: {
+  sectionHeader: {
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
     marginBottom: 14,
   },
   sectionTitle: {
-    fontSize: 16,
+    fontSize: 18,
+    fontWeight: '800',
+    letterSpacing: -0.2,
+  },
+  viewAllText: {
+    fontSize: 13,
     fontWeight: '700',
   },
-  sectionSubtitle: {
-    fontSize: 12,
-    fontWeight: '500',
+  popularList: {
+    gap: 12,
   },
-  daysRow: {
+  popularCard: {
     flexDirection: 'row',
+    padding: 10,
+    borderRadius: 16,
+    borderWidth: 1,
+    gap: 12,
+    shadowColor: '#000000',
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.04,
+    shadowRadius: 6,
+    elevation: 2,
+  },
+  popularThumbnail: {
+    width: 90,
+    height: 90,
+    borderRadius: 12,
+    backgroundColor: '#0F172A',
+  },
+  popularInfo: {
+    flex: 1,
     justifyContent: 'space-between',
   },
-  dayCol: {
+  popularTopRow: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+  },
+  popularTitle: {
+    fontSize: 13,
+    fontWeight: '700',
+    lineHeight: 18,
+    marginTop: 2,
+  },
+  popularInstructorRow: {
+    flexDirection: 'row',
     alignItems: 'center',
     gap: 6,
   },
-  dayCircle: {
-    width: 32,
-    height: 32,
-    borderRadius: 16,
-    alignItems: 'center',
-    justifyContent: 'center',
+  popularInstructorAvatar: {
+    width: 18,
+    height: 18,
+    borderRadius: 9,
   },
-  dayLabel: {
+  popularInstructorName: {
     fontSize: 11,
   },
-  wordCard: {
-    borderRadius: 18,
-    padding: 18,
-    borderWidth: 1,
-    marginBottom: 16,
-  },
-  wordHeader: {
+  popularFooter: {
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
-    marginBottom: 10,
   },
-  wordBadge: {
-    paddingHorizontal: 8,
-    paddingVertical: 3,
-    borderRadius: 6,
-  },
-  wordBadgeText: {
-    fontSize: 10,
-    fontWeight: '800',
-    letterSpacing: 0.6,
-  },
-  audioBtn: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    paddingHorizontal: 10,
-    paddingVertical: 4,
-    borderRadius: 12,
-    gap: 4,
-  },
-  audioBtnText: {
-    fontSize: 12,
-    fontWeight: '700',
-  },
-  germanWord: {
-    fontSize: 22,
-    fontWeight: '800',
-    marginBottom: 2,
-  },
-  wordPhonetic: {
-    fontSize: 13,
-    marginBottom: 8,
-    fontStyle: 'italic',
-  },
-  wordDefinition: {
+  popularPrice: {
     fontSize: 14,
-    lineHeight: 20,
-    marginBottom: 12,
-  },
-  exampleBox: {
-    padding: 12,
-    borderRadius: 10,
-    gap: 4,
-  },
-  exampleDe: {
-    fontSize: 13,
-    fontWeight: '600',
-    fontStyle: 'italic',
-  },
-  exampleEn: {
-    fontSize: 12,
-  },
-  quickPracticeSection: {
-    marginTop: 4,
-  },
-  gridRow: {
-    flexDirection: 'row',
-    gap: 12,
-    marginBottom: 12,
-  },
-  gridCard: {
-    flex: 1,
-    borderRadius: 16,
-    padding: 16,
-    borderWidth: 1,
-    gap: 6,
-  },
-  gridIconCircle: {
-    width: 44,
-    height: 44,
-    borderRadius: 22,
-    alignItems: 'center',
-    justifyContent: 'center',
-    marginBottom: 4,
-  },
-  gridTitle: {
-    fontSize: 15,
-    fontWeight: '700',
-  },
-  gridDesc: {
-    fontSize: 12,
+    fontWeight: '800',
   },
   pressed: {
     opacity: 0.7,
   },
-  pressedBtn: {
-    opacity: 0.9,
-    transform: [{ scale: 0.98 }],
+  pressedCard: {
+    opacity: 0.95,
+    transform: [{ scale: 0.99 }],
   },
 });

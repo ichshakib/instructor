@@ -18,7 +18,14 @@ import { useOnboarding } from '@/context/onboarding-context';
 export default function SettingsScreen() {
   const colorScheme = useColorScheme();
   const isDark = colorScheme === 'dark';
-  const { reopenOnboarding, resetOnboarding } = useOnboarding();
+  const { reopenOnboarding, resetOnboarding, userName } = useOnboarding();
+  const initials = (userName || 'Maria Waelchi')
+    .split(' ')
+    .filter(Boolean)
+    .map((p) => p[0])
+    .slice(0, 2)
+    .join('')
+    .toUpperCase();
 
   // Settings states
   const [slowAudio, setSlowAudio] = useState(false);
@@ -75,10 +82,12 @@ export default function SettingsScreen() {
         {/* Profile Card */}
         <View style={[styles.profileCard, { backgroundColor: cardBg, borderColor }]}>
           <View style={[styles.avatarCircle, { backgroundColor: '#FEF3C7' }]}>
-            <Text style={styles.avatarText}>IL</Text>
+            <Text style={styles.avatarText}>{initials}</Text>
           </View>
           <View style={styles.profileInfo}>
-            <Text style={[styles.profileName, { color: textColor }]}>Instructor Learner</Text>
+            <Text style={[styles.profileName, { color: textColor }]}>
+              {userName || 'Maria Waelchi'}
+            </Text>
             <Text style={[styles.profileSub, { color: mutedText }]}>
               Target: Goethe-Zertifikat A1
             </Text>

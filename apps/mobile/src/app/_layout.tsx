@@ -85,6 +85,13 @@ function TabsLayoutContent() {
         />
         {/* Auxiliary routes hidden from the bottom tab bar */}
         <Tabs.Screen
+          name="course-details"
+          options={{
+            href: null,
+            tabBarStyle: { display: 'none' },
+          }}
+        />
+        <Tabs.Screen
           name="onboarding"
           options={{
             href: null,
