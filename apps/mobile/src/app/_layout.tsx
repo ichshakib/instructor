@@ -3,6 +3,7 @@ import { DarkTheme, DefaultTheme, Tabs, ThemeProvider } from 'expo-router';
 import * as SplashScreen from 'expo-splash-screen';
 import React, { useEffect } from 'react';
 import { Platform, StyleSheet, useColorScheme, View } from 'react-native';
+import { KeyboardProvider } from 'react-native-keyboard-controller';
 
 import { Onboarding } from '@/components/onboarding';
 import { OnboardingProvider, useOnboarding } from '@/context/onboarding-context';
@@ -123,9 +124,11 @@ export default function TabLayout() {
 
   return (
     <ThemeProvider value={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>
-      <OnboardingProvider>
-        <TabsLayoutContent />
-      </OnboardingProvider>
+      <KeyboardProvider>
+        <OnboardingProvider>
+          <TabsLayoutContent />
+        </OnboardingProvider>
+      </KeyboardProvider>
     </ThemeProvider>
   );
 }

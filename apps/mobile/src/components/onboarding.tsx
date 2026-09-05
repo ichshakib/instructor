@@ -1,7 +1,6 @@
 import { Ionicons } from '@expo/vector-icons';
 import React, { useState } from 'react';
 import {
-  KeyboardAvoidingView,
   Platform,
   Pressable,
   StyleSheet,
@@ -10,6 +9,10 @@ import {
   useWindowDimensions,
   View,
 } from 'react-native';
+import {
+  KeyboardAwareScrollView,
+  KeyboardToolbar,
+} from 'react-native-keyboard-controller';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import Svg, {
   Circle,
@@ -168,58 +171,63 @@ export function Onboarding({ onComplete, canDismiss, onDismiss }: OnboardingProp
             </View>
           </>
         ) : (
-          /* STEP 2: NAME INPUT UI (SAVES LOCALLY & REDIRECTS TO HOME) */
-          <KeyboardAvoidingView
-            behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
-            style={[styles.nameStepContainer, { maxWidth: maxContentWidth }]}
-          >
-            <View style={styles.nameCard}>
-              <View style={styles.avatarCircle}>
-                <Ionicons name="person" size={32} color="#2563EB" />
+          /* STEP 2: NAME INPUT UI WITH REACT-NATIVE-KEYBOARD-CONTROLLER */
+          <>
+            <KeyboardAwareScrollView
+              bottomOffset={62}
+              contentContainerStyle={[styles.nameStepScroll, { maxWidth: maxContentWidth }]}
+              showsVerticalScrollIndicator={false}
+              keyboardShouldPersistTaps="handled"
+            >
+              <View style={styles.nameCard}>
+                <View style={styles.avatarCircle}>
+                  <Ionicons name="person" size={32} color="#2563EB" />
+                </View>
+
+                <Text style={styles.nameTitle}>What's your name?</Text>
+                <Text style={styles.nameSubtitle}>
+                  We will personalize your courses, roadmaps, and certificates on Instructor.
+                </Text>
+
+                <View style={styles.inputWrapper}>
+                  <Ionicons name="person-outline" size={20} color="#64748B" style={styles.inputIcon} />
+                  <TextInput
+                    value={inputName}
+                    onChangeText={setInputName}
+                    placeholder="e.g. Maria Waelchi"
+                    placeholderTextColor="#94A3B8"
+                    autoFocus
+                    style={styles.textInput}
+                    returnKeyType="done"
+                    onSubmitEditing={handleFinishName}
+                  />
+                </View>
+
+                <Pressable
+                  onPress={handleFinishName}
+                  style={({ pressed }) => [
+                    styles.ctaButton,
+                    styles.nameSubmitBtn,
+                    pressed && styles.ctaButtonPressed,
+                  ]}
+                >
+                  <Text style={styles.ctaButtonText}>Continue to Home</Text>
+                  <Ionicons name="arrow-forward" size={18} color="#FFFFFF" style={{ marginLeft: 6 }} />
+                </Pressable>
+
+                <Pressable
+                  onPress={() => {
+                    setInputName('Maria Waelchi');
+                    handleFinishName();
+                  }}
+                  style={styles.skipNameBtn}
+                >
+                  <Text style={styles.skipNameText}>Use default name (Maria Waelchi)</Text>
+                </Pressable>
               </View>
-
-              <Text style={styles.nameTitle}>What's your name?</Text>
-              <Text style={styles.nameSubtitle}>
-                We will personalize your courses, roadmaps, and certificates on Instructor.
-              </Text>
-
-              <View style={styles.inputWrapper}>
-                <Ionicons name="person-outline" size={20} color="#64748B" style={styles.inputIcon} />
-                <TextInput
-                  value={inputName}
-                  onChangeText={setInputName}
-                  placeholder="e.g. Maria Waelchi"
-                  placeholderTextColor="#94A3B8"
-                  autoFocus
-                  style={styles.textInput}
-                  returnKeyType="done"
-                  onSubmitEditing={handleFinishName}
-                />
-              </View>
-
-              <Pressable
-                onPress={handleFinishName}
-                style={({ pressed }) => [
-                  styles.ctaButton,
-                  styles.nameSubmitBtn,
-                  pressed && styles.ctaButtonPressed,
-                ]}
-              >
-                <Text style={styles.ctaButtonText}>Continue to Home</Text>
-                <Ionicons name="arrow-forward" size={18} color="#FFFFFF" style={{ marginLeft: 6 }} />
-              </Pressable>
-
-              <Pressable
-                onPress={() => {
-                  setInputName('Maria Waelchi');
-                  handleFinishName();
-                }}
-                style={styles.skipNameBtn}
-              >
-                <Text style={styles.skipNameText}>Use default name (Maria Waelchi)</Text>
-              </Pressable>
-            </View>
-          </KeyboardAvoidingView>
+            </KeyboardAwareScrollView>
+            <KeyboardToolbar />
+          </>
         )}
       </SafeAreaView>
     </View>
@@ -318,12 +326,13 @@ const styles = StyleSheet.create({
     fontWeight: '700',
     letterSpacing: 0.2,
   },
-  nameStepContainer: {
-    flex: 1,
+  nameStepScroll: {
+    flexGrow: 1,
     justifyContent: 'center',
     alignItems: 'center',
     width: '100%',
     alignSelf: 'center',
+    paddingVertical: 20,
   },
   nameCard: {
     width: '100%',
