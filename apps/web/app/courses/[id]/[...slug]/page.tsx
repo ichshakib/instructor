@@ -22,14 +22,18 @@ import {
   RefreshCw,
   AlertCircle,
   GraduationCap,
-  Target,
   Sparkles,
   CheckCircle2,
   MessageSquare,
   Eye,
   EyeOff,
+  Volume2,
+  Play,
+  Square,
 } from "lucide-react";
 import { getLessonContent } from "../../../../lib/lesson-contents";
+import { AudioButton } from "../../../../components/AudioButton";
+import { speechService } from "../../../../lib/speech";
 
 const CEFR_LEVELS: CEFRLevel[] = ["A1", "A2", "B1", "B2", "C1", "C2"];
 
@@ -65,9 +69,32 @@ export default function CourseDetailPage() {
   // Quick practice answer reveal state
   const [revealedAnswers, setRevealedAnswers] = useState<Record<number, boolean>>({});
 
+  // Full dialogue playback state
+  const [isPlayingDialogue, setIsPlayingDialogue] = useState<boolean>(false);
+
   useEffect(() => {
+    speechService.stop();
+    setIsPlayingDialogue(false);
     setRevealedAnswers({});
   }, [activeLessonId]);
+
+  const handlePlayDialogue = async (lines: { german: string }[]) => {
+    if (isPlayingDialogue) {
+      speechService.stop();
+      setIsPlayingDialogue(false);
+      return;
+    }
+    setIsPlayingDialogue(true);
+    for (const line of lines) {
+      await new Promise<void>((resolve) => {
+        speechService.speak(line.german, {
+          onEnd: () => setTimeout(resolve, 500),
+          onError: () => resolve(),
+        });
+      });
+    }
+    setIsPlayingDialogue(false);
+  };
 
   // Function to sync the browser URL without full-page reload
   const syncUrl = useCallback(
@@ -593,44 +620,70 @@ export default function CourseDetailPage() {
               {/* If currentLessonContent exists, render the comprehensive, humanized module */}
               {currentLessonContent ? (
                 <div className="max-w-4xl w-full mx-auto space-y-8 py-2 pb-10">
-                  {/* 1. Can-Do Objective & Overview */}
-                  <div className="p-6 sm:p-7 rounded-3xl bg-white border border-neutral-200/90 shadow-xs space-y-3.5">
-                    <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-50 border border-emerald-200 text-emerald-800 text-xs font-semibold">
-                      <Target className="w-3.5 h-3.5 text-emerald-600 shrink-0" />
-                      <span>CEFR Can-Do Milestone</span>
+                  {/* 1. Clean Lesson Overview & Goals (Clear, Welcoming, No Jargon) */}
+                  <div className="p-6 sm:p-7 rounded-3xl bg-white border border-neutral-200/90 shadow-xs space-y-4">
+                    <div className="flex flex-wrap items-center justify-between gap-3 border-b border-neutral-100 pb-3.5">
+                      <div className="flex items-center gap-2">
+                        <div className="w-6 h-6 rounded-lg bg-amber-500/10 text-amber-800 flex items-center justify-center font-bold text-xs">
+                          <BookOpen className="w-3.5 h-3.5" />
+                        </div>
+                        <span className="text-xs font-black uppercase tracking-wider text-amber-900">
+                          Lesson Overview
+                        </span>
+                      </div>
+
+                      <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-xl bg-amber-50/80 border border-amber-200 text-amber-900 text-xs font-semibold shadow-2xs">
+                        <Volume2 className="w-4 h-4 text-amber-700 shrink-0 animate-pulse" />
+                        <span>Audio Enabled: Click any speaker to listen</span>
+                      </div>
                     </div>
-                    <h3 className="text-base sm:text-lg font-extrabold text-[#18191E] leading-snug">
-                      {currentLessonContent.canDo}
-                    </h3>
-                    <p className="text-xs sm:text-sm text-[#5F5D54] leading-relaxed">
+
+                    <p className="text-sm sm:text-base text-neutral-700 leading-relaxed font-normal">
                       {currentLessonContent.overview}
                     </p>
+
+                    <div className="p-3.5 sm:p-4 rounded-2xl bg-neutral-50/90 border border-neutral-200/80 flex items-start gap-3">
+                      <div className="w-5 h-5 rounded-full bg-amber-600 text-white flex items-center justify-center shrink-0 mt-0.5 text-[10px] font-bold">
+                        ✓
+                      </div>
+                      <div>
+                        <span className="font-extrabold text-[#18191E] text-xs uppercase tracking-wider block">
+                          What you will learn
+                        </span>
+                        <p className="text-xs sm:text-sm text-neutral-800 mt-0.5 font-medium">
+                          {currentLessonContent.canDo.replace(/^Can\s+/i, "Learn to ")}
+                        </p>
+                      </div>
+                    </div>
                   </div>
 
-                  {/* 2. Der Lehrer erklärt (Teacher's Pedagogical Guidance) */}
+                  {/* 2. Key Concept & Practical Tip */}
                   {currentLessonContent.teacherNote && (
-                    <div className="p-6 sm:p-7 rounded-3xl bg-[#FFFBEB] border border-amber-300/80 shadow-xs flex items-start gap-4">
-                      <div className="w-10 h-10 rounded-2xl bg-amber-100 border border-amber-200 text-amber-800 flex items-center justify-center shrink-0 mt-0.5">
-                        <Sparkles className="w-5 h-5 text-amber-700" />
+                    <div className="p-5 sm:p-6 rounded-2xl bg-[#FFFDF5] border border-amber-200/90 shadow-2xs flex items-start gap-3.5">
+                      <div className="w-9 h-9 rounded-xl bg-amber-100/90 border border-amber-200 text-amber-800 flex items-center justify-center shrink-0 mt-0.5">
+                        <Sparkles className="w-4 h-4 text-amber-700" />
                       </div>
-                      <div className="space-y-1.5 flex-1">
+                      <div className="space-y-1 flex-1">
                         <span className="text-[11px] font-black uppercase tracking-wider text-amber-900 block">
-                          Der Lehrer erklärt • Instructor Guidance
+                          Key Concept &amp; Memory Tip
                         </span>
-                        <p className="text-xs sm:text-sm text-amber-950/90 leading-relaxed font-medium">
+                        <p className="text-xs sm:text-sm text-neutral-800 leading-relaxed font-medium">
                           {currentLessonContent.teacherNote}
                         </p>
                       </div>
                     </div>
                   )}
 
-                  {/* 3. Core Lesson Sections (Rules, Tables & Vocabulary) */}
+                  {/* 3. Core Lesson Sections (Rules, Tables & Vocabulary with Audio) */}
                   {currentLessonContent.sections.map((section, sIdx) => (
                     <div
                       key={sIdx}
                       className="p-6 sm:p-7 rounded-3xl bg-white border border-neutral-200/90 shadow-xs space-y-5"
                     >
                       <div className="border-b border-neutral-100 pb-3.5">
+                        <div className="text-[10px] font-bold text-amber-700 uppercase tracking-wider mb-1">
+                          Part {sIdx + 1}
+                        </div>
                         <h4 className="text-base sm:text-lg font-extrabold text-[#18191E] tracking-tight">
                           {section.title}
                         </h4>
@@ -641,12 +694,13 @@ export default function CourseDetailPage() {
                         )}
                       </div>
 
-                      {/* Section Table */}
+                      {/* Section Table with Audio Buttons */}
                       {section.table && (
                         <div className="overflow-x-auto rounded-2xl border border-neutral-200/80 shadow-2xs">
                           <table className="w-full text-left border-collapse text-xs sm:text-sm">
                             <thead>
                               <tr className="bg-neutral-50/90 border-b border-neutral-200/80 text-neutral-600 font-bold">
+                                <th className="py-3 px-3 w-10 text-center text-xs text-neutral-400">Audio</th>
                                 {section.table.headers.map((h, hIdx) => (
                                   <th key={hIdx} className="py-3 px-4 font-extrabold">
                                     {h}
@@ -655,44 +709,61 @@ export default function CourseDetailPage() {
                               </tr>
                             </thead>
                             <tbody className="divide-y divide-neutral-100">
-                              {section.table.rows.map((row, rIdx) => (
-                                <tr
-                                  key={rIdx}
-                                  className="hover:bg-amber-50/30 transition-colors"
-                                >
-                                  {row.map((cell, cIdx) => (
-                                    <td
-                                      key={cIdx}
-                                      className={`py-3 px-4 ${
-                                        cIdx === 0
-                                          ? "font-bold text-[#18191E]"
-                                          : "font-normal text-[#5F5D54]"
-                                      }`}
-                                    >
-                                      {cell}
+                              {section.table.rows.map((row, rIdx) => {
+                                const primaryWord = row[0] || "";
+                                return (
+                                  <tr
+                                    key={rIdx}
+                                    className="hover:bg-amber-50/30 transition-colors group"
+                                  >
+                                    <td className="py-2.5 px-3 text-center">
+                                      <AudioButton text={primaryWord} />
                                     </td>
-                                  ))}
-                                </tr>
-                              ))}
+                                    {row.map((cell, cIdx) => (
+                                      <td
+                                        key={cIdx}
+                                        className={`py-3 px-4 ${
+                                          cIdx === 0
+                                            ? "font-extrabold text-[#18191E]"
+                                            : "font-normal text-[#5F5D54]"
+                                        }`}
+                                      >
+                                        <div className="flex items-center justify-between gap-2">
+                                          <span>{cell}</span>
+                                          {cIdx > 0 && (cell.includes("(") || cell.includes("/") || cell.includes(",")) && (
+                                            <AudioButton
+                                              text={(cell.split("(")[0] || "").trim()}
+                                              className="shrink-0"
+                                            />
+                                          )}
+                                        </div>
+                                      </td>
+                                    ))}
+                                  </tr>
+                                );
+                              })}
                             </tbody>
                           </table>
                         </div>
                       )}
 
-                      {/* Section Items / Vocabulary */}
+                      {/* Section Items / Vocabulary with Audio */}
                       {section.items && section.items.length > 0 && (
-                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-1">
+                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5 pt-1">
                           {section.items.map((item, iIdx) => (
                             <div
                               key={iIdx}
-                              className="p-4 rounded-2xl bg-neutral-50/80 border border-neutral-200/70 hover:border-neutral-300 transition-colors space-y-1.5"
+                              className="p-4 rounded-2xl bg-neutral-50/90 border border-neutral-200/70 hover:border-amber-300 transition-all space-y-2 group"
                             >
                               <div className="flex items-center justify-between gap-2">
-                                <span className="font-extrabold text-sm text-[#18191E]">
-                                  {item.term}
-                                </span>
+                                <div className="flex items-center gap-2">
+                                  <AudioButton text={item.term.includes("=") ? (item.term.split("=")[0] || "").trim() : item.term} />
+                                  <span className="font-extrabold text-sm text-[#18191E]">
+                                    {item.term}
+                                  </span>
+                                </div>
                                 {item.pronunciation && (
-                                  <span className="text-[10px] font-mono font-semibold text-amber-800 bg-amber-50 px-2 py-0.5 rounded border border-amber-200/60">
+                                  <span className="text-[10px] font-mono font-bold text-amber-800 bg-amber-100/70 px-2 py-0.5 rounded border border-amber-200/60">
                                     [{item.pronunciation}]
                                   </span>
                                 )}
@@ -701,9 +772,12 @@ export default function CourseDetailPage() {
                                 {item.meaning}
                               </p>
                               {item.example && (
-                                <p className="text-xs italic text-neutral-500 pt-0.5">
-                                  &ldquo;{item.example}&rdquo;
-                                </p>
+                                <div className="flex items-center justify-between gap-2 pt-1 border-t border-neutral-200/50">
+                                  <p className="text-xs italic text-neutral-600">
+                                    &ldquo;{item.example}&rdquo;
+                                  </p>
+                                  <AudioButton text={item.example} className="shrink-0" />
+                                </div>
                               )}
                             </div>
                           ))}
@@ -721,18 +795,44 @@ export default function CourseDetailPage() {
                     </div>
                   ))}
 
-                  {/* 4. Authentic German Dialogue (Praxis-Dialog) */}
+                  {/* 4. Authentic German Dialogue (Praxis-Dialog with Full Audio) */}
                   {currentLessonContent.dialogue && (
                     <div className="p-6 sm:p-7 rounded-3xl bg-white border border-neutral-200/90 shadow-xs space-y-4">
-                      <div className="flex items-center gap-2 border-b border-neutral-100 pb-3.5">
-                        <MessageSquare className="w-4 h-4 text-amber-600 shrink-0" />
-                        <h4 className="text-base font-extrabold text-[#18191E]">
-                          Praxis-Dialog (Real-World Conversation)
-                        </h4>
+                      <div className="flex flex-wrap items-center justify-between gap-3 border-b border-neutral-100 pb-3.5">
+                        <div className="flex items-center gap-2">
+                          <MessageSquare className="w-4 h-4 text-amber-600 shrink-0" />
+                          <h4 className="text-base font-extrabold text-[#18191E]">
+                            Praxis-Dialog (Real-World Conversation)
+                          </h4>
+                        </div>
+
+                        <button
+                          type="button"
+                          onClick={() => handlePlayDialogue(currentLessonContent.dialogue!.lines)}
+                          className={`inline-flex items-center gap-2 px-3 py-1.5 rounded-xl text-xs font-bold transition-all cursor-pointer ${
+                            isPlayingDialogue
+                              ? "bg-amber-600 text-white shadow-xs"
+                              : "bg-neutral-100 hover:bg-amber-100 text-neutral-800 hover:text-amber-950"
+                          }`}
+                        >
+                          {isPlayingDialogue ? (
+                            <>
+                              <Square className="w-3.5 h-3.5 fill-current" />
+                              <span>Stop Audio</span>
+                            </>
+                          ) : (
+                            <>
+                              <Play className="w-3.5 h-3.5 fill-current text-amber-700" />
+                              <span>Listen to Full Dialogue</span>
+                            </>
+                          )}
+                        </button>
                       </div>
+
                       <p className="text-xs text-[#706E66] italic">
                         📍 {currentLessonContent.dialogue.context}
                       </p>
+
                       <div className="space-y-3 pt-2">
                         {currentLessonContent.dialogue.lines.map((line, lIdx) => (
                           <div
@@ -743,8 +843,11 @@ export default function CourseDetailPage() {
                                 : "bg-amber-50/40 border-amber-200/70 ml-3 sm:ml-8"
                             }`}
                           >
-                            <div className="text-[10px] font-bold text-[#7A776D] uppercase tracking-wider mb-1">
-                              {line.speaker}
+                            <div className="flex items-center justify-between gap-2 mb-1">
+                              <span className="text-[10px] font-bold text-[#7A776D] uppercase tracking-wider">
+                                {line.speaker}
+                              </span>
+                              <AudioButton text={line.german} label="Listen" />
                             </div>
                             <div className="text-sm font-bold text-[#18191E]">
                               {line.german}
@@ -758,13 +861,13 @@ export default function CourseDetailPage() {
                     </div>
                   )}
 
-                  {/* 5. Kultur-Spotlight & Fun Fact */}
+                  {/* 5. Kultur-Spotlight & Fun Fact (Did You Know?) */}
                   {currentLessonContent.funFact && (
                     <div className="p-6 sm:p-7 rounded-3xl bg-gradient-to-br from-[#FFFBF0] via-[#FFF6E5] to-[#FFECD1] border border-amber-300/90 shadow-xs space-y-3">
                       <div className="flex items-center gap-2">
                         <span className="text-lg">🇩🇪</span>
                         <span className="text-xs font-black uppercase tracking-wider text-amber-900">
-                          Kultur-Spotlight & Fun Fact
+                          Did You Know? • Culture &amp; Daily Life
                         </span>
                       </div>
                       <h4 className="text-base font-extrabold text-amber-950">
