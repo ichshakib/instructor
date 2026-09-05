@@ -13,13 +13,14 @@ import {
 export interface CourseItem {
   id: string;
   title: string;
-  category: "Development" | "AI & Data" | "Design" | "Business";
+  category: "Language" | "Development" | "AI & Data" | "Design" | "Business" | string;
   type: string;
   typeIcon: "quiz" | "page" | "path" | "lab";
   tag1: string;
   tag2: string;
   badgeCount: string;
   coverVariant:
+    | "german-language"
     | "quiz-clipboard"
     | "video-chapters"
     | "layout-wireframe"
@@ -47,6 +48,79 @@ export default function CourseCard({ course, onActionClick }: CourseCardProps) {
   // Render Cover Illustration matching the user's reference mockup
   const renderCoverIllustration = () => {
     switch (course.coverVariant) {
+      case "german-language":
+        return (
+          <svg
+            viewBox="0 0 400 180"
+            preserveAspectRatio="xMidYMid slice"
+            className="w-full h-full block"
+            fill="none"
+          >
+            <rect width="100%" height="100%" fill="url(#grad-german-bg)" />
+            <defs>
+              <linearGradient id="grad-german-bg" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" stopColor="#FFF8E7" />
+                <stop offset="100%" stopColor="#FDE68A" />
+              </linearGradient>
+            </defs>
+
+            {/* Stylized Germany Flag Ribbon Bands */}
+            <g opacity="0.85">
+              <path d="M-20 40 Q 150 15, 420 50 L420 70 Q 150 35, -20 60 Z" fill="#18191E" />
+              <path d="M-20 60 Q 150 35, 420 70 L420 90 Q 150 55, -20 80 Z" fill="#DC2626" />
+              <path d="M-20 80 Q 150 55, 420 90 L420 110 Q 150 75, -20 100 Z" fill="#FBBF24" />
+            </g>
+
+            {/* Open German Grammar Book graphic */}
+            <g transform="translate(60, 26)">
+              <rect x="0" y="8" width="130" height="135" rx="10" fill="#FFFFFF" filter="drop-shadow(0 10px 18px rgba(0,0,0,0.08))" />
+              <rect x="8" y="16" width="114" height="24" rx="6" fill="#FFFBEB" stroke="#FDE68A" strokeWidth="1" />
+              <text x="16" y="32" fontSize="12" fontWeight="800" fill="#18191E" letterSpacing="0.5">
+                DEUTSCH
+              </text>
+              <text x="78" y="32" fontSize="10" fontWeight="700" fill="#D97706">
+                A1-C2
+              </text>
+
+              {/* Grammar Lines */}
+              <rect x="12" y="52" width="70" height="6" rx="3" fill="#E5E7EB" />
+              <rect x="12" y="66" width="105" height="6" rx="3" fill="#F3F4F6" />
+              <rect x="12" y="80" width="90" height="6" rx="3" fill="#F3F4F6" />
+              <rect x="12" y="94" width="80" height="6" rx="3" fill="#F3F4F6" />
+
+              {/* CEFR Level Pill Stamp */}
+              <rect x="12" y="112" width="62" height="18" rx="5" fill="#18191E" />
+              <text x="18" y="125" fontSize="9" fontWeight="800" fill="#FBBF24">
+                GERMAN
+              </text>
+            </g>
+
+            {/* Floating Vocabulary Dialogue Card */}
+            <g transform="translate(210, 20) rotate(5)">
+              <rect x="0" y="0" width="140" height="135" rx="14" fill="#FFFFFF" filter="drop-shadow(0 12px 20px rgba(0,0,0,0.12))" stroke="#FEF3C7" strokeWidth="1.5" />
+              <circle cx="25" cy="25" r="14" fill="#EF4444" fillOpacity="0.12" />
+              <text x="18" y="29" fontSize="13" fontWeight="800" fill="#DC2626">
+                Hallo!
+              </text>
+              <rect x="48" y="16" width="75" height="6" rx="3" fill="#E5E7EB" />
+              <rect x="48" y="28" width="55" height="5" rx="2.5" fill="#F3F4F6" />
+
+              <rect x="12" y="50" width="116" height="34" rx="8" fill="#F9FAFB" />
+              <text x="20" y="65" fontSize="10" fontWeight="700" fill="#18191E">
+                Wie geht&apos;s?
+              </text>
+              <text x="20" y="77" fontSize="9" fontWeight="500" fill="#6B7280">
+                How are you doing?
+              </text>
+
+              <rect x="12" y="94" width="116" height="28" rx="8" fill="#FEF3C7" />
+              <text x="20" y="111" fontSize="10" fontWeight="700" fill="#92400E">
+                Sehr gut, danke!
+              </text>
+            </g>
+          </svg>
+        );
+
       case "quiz-clipboard":
         return (
           <svg
@@ -320,29 +394,35 @@ export default function CourseCard({ course, onActionClick }: CourseCardProps) {
   return (
     <div className="group rounded-2xl bg-white border border-neutral-200/90 shadow-sm hover:shadow-md hover:-translate-y-1 transition-all duration-300 flex flex-col justify-between overflow-hidden">
       {/* 1. TOP ILLUSTRATED COVER IMAGE CONTAINER (Reaches flush to top edges) */}
-      <div className="relative w-full h-32 sm:h-36 overflow-hidden bg-neutral-100">
+      <Link
+        href={`/courses/${course.id}`}
+        className="relative block w-full h-32 sm:h-36 overflow-hidden bg-neutral-100 cursor-pointer"
+      >
         {renderCoverIllustration()}
 
-        {/* Floating Dark Pill Badge on Top Left (e.g. "20 Question ❐") */}
+        {/* Floating Dark Pill Badge on Top Left (e.g. "6 CEFR Levels ❐") */}
         <div className="absolute top-2.5 left-2.5 flex items-center gap-1 px-2.5 py-0.5 rounded-md bg-black/75 backdrop-blur-md text-white text-[11px] font-semibold shadow-sm tracking-tight select-none">
           <span>{course.badgeCount}</span>
           <FolderOpen className="w-2.5 h-2.5 opacity-80" />
         </div>
-      </div>
+      </Link>
 
       {/* 2. CARD CONTENT BODY */}
       <div className="p-4 sm:p-5 flex flex-col flex-1 justify-between">
         <div>
-          {/* Type / Meta Header Row (e.g. "Quiz • Certified") */}
+          {/* Type / Meta Header Row (e.g. "Language Track • Certified") */}
           <div className="flex items-center gap-1.5 text-[11px] font-semibold text-[#18191E]">
             {getTypeIcon()}
             <span>{course.type}</span>
           </div>
 
-          {/* Course Title */}
-          <h3 className="text-[15px] sm:text-base font-bold text-[#18191E] mt-2 tracking-tight group-hover:text-black leading-snug line-clamp-2">
+          {/* Course Title - Clickable with underline on hover */}
+          <Link
+            href={`/courses/${course.id}`}
+            className="block text-[15px] sm:text-base font-bold text-[#18191E] mt-2 tracking-tight group-hover:text-black leading-snug line-clamp-2 hover:underline decoration-[#18191E] decoration-2 underline-offset-2 transition-all cursor-pointer"
+          >
             {course.title}
-          </h3>
+          </Link>
 
           {/* Description (if provided) */}
           {course.description && (
@@ -351,8 +431,8 @@ export default function CourseCard({ course, onActionClick }: CourseCardProps) {
             </p>
           )}
 
-          {/* Dual Tag Pills (e.g. "UI/UX Design", "Urgent" / "Not Urgent") */}
-          <div className="mt-3 flex flex-wrap items-center gap-1.5">
+          {/* Dual Tag Pills (e.g. "German (Deutsch)", "A1 - C2 CEFR") */}
+          <div className="mt-3.5 flex flex-wrap items-center gap-1.5">
             <span className="px-2.5 py-0.5 rounded-full bg-neutral-100 text-[#5F5D54] text-[11px] font-medium">
               {course.tag1}
             </span>
@@ -360,20 +440,6 @@ export default function CourseCard({ course, onActionClick }: CourseCardProps) {
               {course.tag2}
             </span>
           </div>
-        </div>
-
-        {/* 3. CARD FOOTER - CLEAN ACTION BUTTON */}
-        <div className="pt-3.5 mt-4 border-t border-neutral-100 flex items-center justify-between">
-          <span className="text-[11px] font-medium text-[#7A776D]">
-            Open Curriculum
-          </span>
-          <Link
-            href="/courses"
-            onClick={() => onActionClick?.(course)}
-            className="px-4 py-1.5 rounded-lg border border-neutral-300 hover:border-[#18191E] hover:bg-[#18191E] hover:text-white text-xs font-bold text-[#18191E] shadow-sm active:scale-95 transition-all duration-200"
-          >
-            {course.buttonLabel}
-          </Link>
         </div>
       </div>
     </div>

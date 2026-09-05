@@ -1,8 +1,14 @@
-export type CourseCategory = "Development" | "AI & Data" | "Design" | "Business";
+export type CourseCategory =
+  | "Language"
+  | "Development"
+  | "AI & Data"
+  | "Design"
+  | "Business";
 
 export type CourseTypeIcon = "quiz" | "page" | "path" | "lab";
 
 export type CourseCoverVariant =
+  | "german-language"
   | "quiz-clipboard"
   | "video-chapters"
   | "layout-wireframe"
@@ -20,6 +26,28 @@ export interface CourseProgressStatus {
   statusText?: string;
 }
 
+export interface Lesson {
+  id: string;
+  title: string;
+  duration?: string;
+  description?: string;
+}
+
+export interface Chapter {
+  id: string;
+  title: string;
+  lessons: Lesson[];
+}
+
+export type CEFRLevel = "A1" | "A2" | "B1" | "B2" | "C1" | "C2";
+
+export interface LevelCurriculum {
+  level: CEFRLevel;
+  title: string;
+  description: string;
+  chapters: Chapter[];
+}
+
 export interface Course {
   id: string;
   title: string;
@@ -34,4 +62,5 @@ export interface Course {
   description: string;
   featured?: boolean;
   progressStatus?: CourseProgressStatus;
+  curriculum?: LevelCurriculum[];
 }

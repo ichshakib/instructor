@@ -4,6 +4,32 @@ const API_BASE_URL =
   (typeof process !== "undefined" && process.env.NEXT_PUBLIC_API_URL) ||
   "http://localhost:5000";
 
+export type CEFRLevel = "A1" | "A2" | "B1" | "B2" | "C1" | "C2";
+
+export interface Lesson {
+  id: string;
+  title: string;
+  duration?: string;
+  description?: string;
+}
+
+export interface Chapter {
+  id: string;
+  title: string;
+  lessons: Lesson[];
+}
+
+export interface LevelCurriculum {
+  level: CEFRLevel;
+  title: string;
+  description: string;
+  chapters: Chapter[];
+}
+
+export interface CourseDetail extends CourseItem {
+  curriculum?: LevelCurriculum[];
+}
+
 interface FetchCoursesOptions {
   category?: string;
   featured?: boolean;
@@ -22,7 +48,7 @@ interface ApiResponse<T> {
  */
 export async function fetchCourses(
   options?: FetchCoursesOptions
-): Promise<CourseItem[]> {
+): Promise<CourseDetail[]> {
   try {
     const url = new URL("/api/v1/courses", API_BASE_URL);
 
@@ -48,7 +74,7 @@ export async function fetchCourses(
       throw new Error(`API error: ${response.status} ${response.statusText}`);
     }
 
-    const json: ApiResponse<CourseItem[]> = await response.json();
+    const json: ApiResponse<CourseDetail[]> = await response.json();
     return json.data || [];
   } catch (error) {
     console.error("Failed to fetch courses from API:", error);
@@ -59,7 +85,7 @@ export async function fetchCourses(
 /**
  * Fetches a single course by ID from the backend API.
  */
-export async function fetchCourseById(id: string): Promise<CourseItem | null> {
+export async function fetchCourseById(id: string): Promise<CourseDetail | null> {
   try {
     const url = new URL(`/api/v1/courses/${id}`, API_BASE_URL);
 
@@ -79,7 +105,7 @@ export async function fetchCourseById(id: string): Promise<CourseItem | null> {
       throw new Error(`API error: ${response.status} ${response.statusText}`);
     }
 
-    const json: ApiResponse<CourseItem> = await response.json();
+    const json: ApiResponse<CourseDetail> = await response.json();
     return json.data || null;
   } catch (error) {
     console.error(`Failed to fetch course '${id}' from API:`, error);

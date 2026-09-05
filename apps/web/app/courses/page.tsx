@@ -17,7 +17,7 @@ import {
   AlertCircle,
 } from "lucide-react";
 
-const CATEGORIES = ["All Courses", "Design", "Development", "AI & Data", "Business"] as const;
+const CATEGORIES = ["All Courses", "Language", "Design", "Development", "AI & Data", "Business"] as const;
 
 export default function CoursesPage() {
   const [courses, setCourses] = useState<CourseItem[]>([]);
