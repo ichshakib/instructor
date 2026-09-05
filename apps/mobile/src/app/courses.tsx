@@ -20,11 +20,10 @@ export default function MyLearningScreen() {
   const router = useRouter();
   const colorScheme = useColorScheme();
   const isDark = colorScheme === 'dark';
-  const { savedCourseIds, enrolledCourseIds } = useLearning();
+  const { savedCourseIds, isLoading: isStorageLoading } = useLearning();
 
   const [allCourses, setAllCourses] = useState<CourseItem[]>([]);
-  const [filter, setFilter] = useState<'all' | 'saved' | 'enrolled'>('all');
-  const [isLoading, setIsLoading] = useState(true);
+  const [isCoursesLoading, setIsCoursesLoading] = useState(true);
 
   // Pure monochromatic black and white palette (Zero blue)
   const bgColor = isDark ? '#09090B' : '#FFFFFF';
@@ -41,13 +40,13 @@ export default function MyLearningScreen() {
       .then((data) => {
         if (isMounted) {
           setAllCourses(data);
-          setIsLoading(false);
+          setIsCoursesLoading(false);
         }
       })
       .catch((e) => {
         console.warn('Error loading courses:', e);
         if (isMounted) {
-          setIsLoading(false);
+          setIsCoursesLoading(false);
         }
       });
 
@@ -56,24 +55,12 @@ export default function MyLearningScreen() {
     };
   }, []);
 
-  const savedCourses = allCourses.filter((c) => savedCourseIds.includes(c.id));
-  const enrolledCourses = allCourses.filter(
-    (c) => enrolledCourseIds.includes(c.id) || c.id === 'german-language-course'
-  );
+  // Map savedCourseIds in order (latest saved is at index 0)
+  const savedCourses: CourseItem[] = savedCourseIds
+    .map((id) => allCourses.find((c) => c.id === id))
+    .filter((c): c is CourseItem => Boolean(c));
 
-  let displayedCourses: CourseItem[] = [];
-  if (filter === 'saved') {
-    displayedCourses = savedCourses;
-  } else if (filter === 'enrolled') {
-    displayedCourses = enrolledCourses;
-  } else {
-    const set = new Set<string>();
-    displayedCourses = [...enrolledCourses, ...savedCourses].filter((c) => {
-      if (set.has(c.id)) return false;
-      set.add(c.id);
-      return true;
-    });
-  }
+  const isLoading = isStorageLoading || isCoursesLoading;
 
   return (
     <SafeAreaView style={[styles.safeArea, { backgroundColor: bgColor }]} edges={['top']}>
@@ -82,77 +69,35 @@ export default function MyLearningScreen() {
         contentContainerStyle={styles.scrollContent}
         showsVerticalScrollIndicator={false}
       >
-        {/* Header */}
+        {/* Top Header - Borderless and shadowless */}
         <View style={styles.header}>
           <Text style={[styles.headerTitle, { color: textColor }]}>My Learning</Text>
           <Text style={[styles.headerSubtitle, { color: mutedText }]}>
-            Your enrolled tracks and saved courses
+            {savedCourses.length} {savedCourses.length === 1 ? 'saved course' : 'saved courses'}
           </Text>
         </View>
 
-        {/* Filter Pills */}
-        <View style={styles.filterRow}>
-          {[
-            { id: 'all', label: `All (${savedCourses.length + enrolledCourses.length})` },
-            { id: 'saved', label: `Saved (${savedCourses.length})` },
-            { id: 'enrolled', label: `Enrolled (${enrolledCourses.length})` },
-          ].map((item) => {
-            const active = filter === item.id;
-            return (
-              <Pressable
-                key={item.id}
-                onPress={() => setFilter(item.id as any)}
-                style={({ pressed }) => [
-                  styles.filterChip,
-                  active
-                    ? [
-                        styles.activeFilterChip,
-                        { backgroundColor: activeColor },
-                      ]
-                    : [
-                        styles.inactiveFilterChip,
-                        { backgroundColor: cardBg, borderColor },
-                      ],
-                  pressed && styles.pressed,
-                ]}
-              >
-                <Text
-                  style={[
-                    styles.filterChipText,
-                    {
-                      color: active ? activeTextColor : mutedText,
-                      fontWeight: active ? '700' : '500',
-                    },
-                  ]}
-                >
-                  {item.label}
-                </Text>
-              </Pressable>
-            );
-          })}
-        </View>
-
-        {/* Courses List */}
+        {/* Saved Courses List */}
         {isLoading ? (
           <View style={styles.loadingBox}>
             <ActivityIndicator size="large" color={activeColor} />
-            <Text style={[styles.loadingText, { color: mutedText }]}>Loading your learning list...</Text>
+            <Text style={[styles.loadingText, { color: mutedText }]}>
+              Loading saved courses...
+            </Text>
           </View>
-        ) : displayedCourses.length === 0 ? (
+        ) : savedCourses.length === 0 ? (
           <View style={[styles.emptyBox, { backgroundColor: cardBg, borderColor }]}>
             <Ionicons
-              name={filter === 'saved' ? 'bookmark-outline' : 'book-outline'}
+              name="bookmark-outline"
               size={40}
               color={mutedText}
-              style={{ marginBottom: 10 }}
+              style={{ marginBottom: 12 }}
             />
             <Text style={[styles.emptyTitle, { color: textColor }]}>
-              {filter === 'saved' ? 'No saved courses yet' : 'No courses in this list'}
+              No saved courses yet
             </Text>
             <Text style={[styles.emptySub, { color: mutedText }]}>
-              {filter === 'saved'
-                ? 'Tap the bookmark icon on any course in Home to save it here for quick access.'
-                : 'Explore available courses on the Home tab to start learning.'}
+              Bookmark any course from Home to save it here for quick access.
             </Text>
 
             <Pressable
@@ -174,7 +119,7 @@ export default function MyLearningScreen() {
             </Pressable>
           </View>
         ) : (
-          displayedCourses.map((course) => (
+          savedCourses.map((course) => (
             <MobileCourseCard key={course.id} course={course} />
           ))
         )}
@@ -194,11 +139,12 @@ const styles = StyleSheet.create({
   },
   scrollContent: {
     paddingHorizontal: 20,
-    paddingTop: 16,
+    paddingTop: 12,
     paddingBottom: 24,
   },
   header: {
-    marginBottom: 16,
+    marginBottom: 20,
+    borderBottomWidth: 0, // Borderless top bar
   },
   headerTitle: {
     fontSize: 24,
@@ -208,23 +154,6 @@ const styles = StyleSheet.create({
   headerSubtitle: {
     fontSize: 13,
     marginTop: 2,
-  },
-  filterRow: {
-    flexDirection: 'row',
-    gap: 8,
-    marginBottom: 20,
-  },
-  filterChip: {
-    paddingHorizontal: 14,
-    paddingVertical: 8,
-    borderRadius: 20,
-  },
-  activeFilterChip: {},
-  inactiveFilterChip: {
-    borderWidth: 1,
-  },
-  filterChipText: {
-    fontSize: 12,
   },
   loadingBox: {
     paddingVertical: 40,
@@ -240,7 +169,7 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     alignItems: 'center',
     textAlign: 'center',
-    marginTop: 10,
+    marginTop: 20,
   },
   emptyTitle: {
     fontSize: 16,

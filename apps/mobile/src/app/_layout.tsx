@@ -2,13 +2,45 @@ import { Ionicons } from '@expo/vector-icons';
 import { DarkTheme, DefaultTheme, Tabs, ThemeProvider } from 'expo-router';
 import * as SplashScreen from 'expo-splash-screen';
 import { StatusBar } from 'expo-status-bar';
+import * as SystemUI from 'expo-system-ui';
 import React, { useEffect } from 'react';
-import { Platform, StyleSheet, useColorScheme, View } from 'react-native';
+import {
+  Platform,
+  StatusBar as RNStatusBar,
+  StyleSheet,
+  useColorScheme,
+  View,
+} from 'react-native';
 import { KeyboardProvider } from 'react-native-keyboard-controller';
+import { SafeAreaProvider } from 'react-native-safe-area-context';
 
 import { Onboarding } from '@/components/onboarding';
 import { LearningProvider } from '@/context/learning-context';
 import { OnboardingProvider, useOnboarding } from '@/context/onboarding-context';
+
+const CustomDarkTheme = {
+  ...DarkTheme,
+  colors: {
+    ...DarkTheme.colors,
+    background: '#09090B',
+    card: '#09090B',
+    border: '#27272A',
+    text: '#FFFFFF',
+    primary: '#FFFFFF',
+  },
+};
+
+const CustomLightTheme = {
+  ...DefaultTheme,
+  colors: {
+    ...DefaultTheme.colors,
+    background: '#FFFFFF',
+    card: '#FFFFFF',
+    border: '#E4E4E7',
+    text: '#09090B',
+    primary: '#09090B',
+  },
+};
 
 function TabsLayoutContent() {
   const colorScheme = useColorScheme();
@@ -21,6 +53,14 @@ function TabsLayoutContent() {
     closeOnboardingOverlay,
   } = useOnboarding();
 
+  useEffect(() => {
+    SystemUI.setBackgroundColorAsync(isDark ? '#09090B' : '#FFFFFF').catch(() => {});
+    if (Platform.OS === 'android') {
+      RNStatusBar.setTranslucent(true);
+      RNStatusBar.setBackgroundColor('transparent');
+    }
+  }, [isDark]);
+
   const showOnboarding = !hasCompletedOnboarding || isViewingOnboarding;
 
   return (
@@ -29,11 +69,12 @@ function TabsLayoutContent() {
       <Tabs
         screenOptions={{
           headerShown: false,
+          headerShadowVisible: false,
           tabBarActiveTintColor: isDark ? '#FFFFFF' : '#09090B',
           tabBarInactiveTintColor: isDark ? '#71717A' : '#A1A1AA',
           tabBarStyle: {
             backgroundColor: isDark ? '#09090B' : '#FFFFFF',
-            borderTopColor: isDark ? '#27272A' : '#E4E4E7',
+            borderTopColor: 'transparent',
             borderTopWidth: 1,
             elevation: 0,
             shadowOpacity: 0,
@@ -55,7 +96,7 @@ function TabsLayoutContent() {
             tabBarLabel: 'Home',
             tabBarIcon: ({ color, focused }) => (
               <Ionicons
-                name={focused ? 'home' : 'home-outline'}
+                name={focused ? 'compass' : 'compass-outline'}
                 size={22}
                 color={color}
               />
@@ -69,8 +110,8 @@ function TabsLayoutContent() {
             tabBarLabel: 'My Learning',
             tabBarIcon: ({ color, focused }) => (
               <Ionicons
-                name={focused ? 'book' : 'book-outline'}
-                size={22}
+                name={focused ? 'bookmark' : 'bookmark-outline'}
+                size={21}
                 color={color}
               />
             ),
@@ -90,7 +131,7 @@ function TabsLayoutContent() {
             ),
           }}
         />
-        {/* Wishlist route hidden from the bottom tab bar (saved courses are inside My Learning) */}
+        {/* Auxiliary routes hidden from the bottom tab bar */}
         <Tabs.Screen
           name="wishlist"
           options={{
@@ -98,7 +139,6 @@ function TabsLayoutContent() {
             tabBarStyle: { display: 'none' },
           }}
         />
-        {/* Auxiliary routes hidden from the bottom tab bar */}
         <Tabs.Screen
           name="course-details"
           options={{
@@ -131,6 +171,7 @@ function TabsLayoutContent() {
 
 export default function TabLayout() {
   const colorScheme = useColorScheme();
+  const isDark = colorScheme === 'dark';
 
   useEffect(() => {
     // Hide native splash screen immediately on mount
@@ -138,15 +179,17 @@ export default function TabLayout() {
   }, []);
 
   return (
-    <ThemeProvider value={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>
-      <KeyboardProvider>
-        <LearningProvider>
-          <OnboardingProvider>
-            <TabsLayoutContent />
-          </OnboardingProvider>
-        </LearningProvider>
-      </KeyboardProvider>
-    </ThemeProvider>
+    <SafeAreaProvider>
+      <ThemeProvider value={isDark ? CustomDarkTheme : CustomLightTheme}>
+        <KeyboardProvider statusBarTranslucent={true}>
+          <LearningProvider>
+            <OnboardingProvider>
+              <TabsLayoutContent />
+            </OnboardingProvider>
+          </LearningProvider>
+        </KeyboardProvider>
+      </ThemeProvider>
+    </SafeAreaProvider>
   );
 }
 

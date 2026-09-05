@@ -68,7 +68,7 @@ export function LearningProvider({ children }: { children: React.ReactNode }) {
   const toggleSaveCourse = async (courseId: string) => {
     const nextSaved = savedCourseIds.includes(courseId)
       ? savedCourseIds.filter((id) => id !== courseId)
-      : [...savedCourseIds, courseId];
+      : [courseId, ...savedCourseIds];
 
     setSavedCourseIds(nextSaved);
     try {

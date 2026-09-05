@@ -121,8 +121,8 @@ export default function CourseDetailsScreen() {
 
   return (
     <SafeAreaView style={[styles.safeArea, { backgroundColor: bgColor }]} edges={['top']}>
-      {/* Top Navigation Bar */}
-      <View style={[styles.headerBar, { borderBottomColor: borderColor }]}>
+      {/* Top Navigation Bar - Borderless and shadowless */}
+      <View style={styles.headerBar}>
         <Pressable
           onPress={() => router.back()}
           style={({ pressed }) => [styles.iconBtn, pressed && styles.pressed]}
@@ -415,7 +415,9 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     paddingHorizontal: 16,
     paddingVertical: 10,
-    borderBottomWidth: 1,
+    borderBottomWidth: 0,
+    elevation: 0,
+    shadowOpacity: 0,
   },
   iconBtn: {
     width: 40,

@@ -25,6 +25,10 @@
       },
       "predictiveBackGestureEnabled": false
     },
+    "androidStatusBar": {
+      "translucent": true,
+      "backgroundColor": "#00000000"
+    },
     "web": {
       "output": "static",
       "favicon": "./assets/app-icons/favicon.png"

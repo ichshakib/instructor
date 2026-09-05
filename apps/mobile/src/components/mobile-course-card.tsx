@@ -73,40 +73,11 @@ export function MobileCourseCard({ course }: MobileCourseCardProps) {
         pressed && styles.pressed,
       ]}
     >
-      {/* Top Banner (Monochromatic) */}
+      {/* Top Banner (No language pill, no bookmark on cover) */}
       <View style={[styles.coverContainer, { backgroundColor: bannerBg }]}>
         <View style={[styles.coverTopBar, { backgroundColor: accentColor }]} />
-        <View style={styles.coverInner}>
-          <View
-            style={[
-              styles.coverLabelPill,
-              { backgroundColor: isDark ? '#27272A' : '#E4E4E7' },
-            ]}
-          >
-            <Text style={[styles.coverLabelText, { color: textColor }]}>
-              {course.category ? course.category.toUpperCase() : 'COURSE'}
-            </Text>
-          </View>
-          <Pressable
-            onPress={(e) => {
-              e.stopPropagation();
-              toggleSaveCourse(course.id);
-            }}
-            hitSlop={12}
-            style={[
-              styles.bookmarkBtn,
-              { backgroundColor: isDark ? '#27272A' : '#FFFFFF' },
-            ]}
-          >
-            <Ionicons
-              name={saved ? 'bookmark' : 'bookmark-outline'}
-              size={18}
-              color={textColor}
-            />
-          </Pressable>
-        </View>
 
-        {/* Subtle icon graphic watermark */}
+        {/* Subtle decorative watermark icon */}
         <View style={styles.bannerGraphic}>
           <Ionicons
             name={
@@ -116,7 +87,7 @@ export function MobileCourseCard({ course }: MobileCourseCardProps) {
                 ? 'trophy-outline'
                 : 'book-outline'
             }
-            size={46}
+            size={48}
             color={textColor}
             style={{ opacity: isDark ? 0.12 : 0.08 }}
           />
@@ -125,25 +96,7 @@ export function MobileCourseCard({ course }: MobileCourseCardProps) {
 
       {/* Card Content */}
       <View style={styles.content}>
-        {/* Type Header Row */}
-        {course.type ? (
-          <View style={styles.typeRow}>
-            <Ionicons
-              name={
-                course.typeIcon === 'quiz'
-                  ? 'ribbon-outline'
-                  : course.typeIcon === 'path'
-                  ? 'layers-outline'
-                  : 'document-text-outline'
-              }
-              size={13}
-              color={mutedText}
-            />
-            <Text style={[styles.typeText, { color: mutedText }]}>{course.type}</Text>
-          </View>
-        ) : null}
-
-        {/* Title */}
+        {/* Course Title (Type/Language section above title is removed) */}
         <Text style={[styles.title, { color: textColor }]} numberOfLines={2}>
           {course.title}
         </Text>
@@ -155,29 +108,47 @@ export function MobileCourseCard({ course }: MobileCourseCardProps) {
           </Text>
         ) : null}
 
-        {/* Stats Row (Chapters & Lessons) */}
+        {/* Stats Row with Bookmark Button on the right side */}
         <View style={[styles.statsRow, { borderTopColor: isDark ? '#27272A' : '#F4F4F5' }]}>
-          {totalChapters > 0 ? (
-            <View style={styles.statItem}>
-              <Ionicons name="layers-outline" size={13} color={textColor} />
-              <Text style={[styles.statText, { color: textColor }]}>
-                {totalChapters} {totalChapters === 1 ? 'Chapter' : 'Chapters'}
-              </Text>
-            </View>
-          ) : null}
+          <View style={styles.statsLeft}>
+            {totalChapters > 0 ? (
+              <View style={styles.statItem}>
+                <Ionicons name="layers-outline" size={13} color={textColor} />
+                <Text style={[styles.statText, { color: textColor }]}>
+                  {totalChapters} {totalChapters === 1 ? 'Chapter' : 'Chapters'}
+                </Text>
+              </View>
+            ) : null}
 
-          {totalChapters > 0 && totalLessons > 0 ? (
-            <Text style={{ color: mutedText, fontSize: 10 }}>•</Text>
-          ) : null}
+            {totalChapters > 0 && totalLessons > 0 ? (
+              <Text style={{ color: mutedText, fontSize: 10 }}>•</Text>
+            ) : null}
 
-          {totalLessons > 0 ? (
-            <View style={styles.statItem}>
-              <Ionicons name="book-outline" size={13} color={textColor} />
-              <Text style={[styles.statText, { color: textColor }]}>
-                {totalLessons} Lessons
-              </Text>
-            </View>
-          ) : null}
+            {totalLessons > 0 ? (
+              <View style={styles.statItem}>
+                <Ionicons name="book-outline" size={13} color={textColor} />
+                <Text style={[styles.statText, { color: textColor }]}>
+                  {totalLessons} Lessons
+                </Text>
+              </View>
+            ) : null}
+          </View>
+
+          {/* Bookmark button on the right side of chapters/lessons */}
+          <Pressable
+            onPress={(e) => {
+              e.stopPropagation();
+              toggleSaveCourse(course.id);
+            }}
+            hitSlop={12}
+            style={({ pressed }) => [styles.inlineBookmarkBtn, pressed && styles.pressed]}
+          >
+            <Ionicons
+              name={saved ? 'bookmark' : 'bookmark-outline'}
+              size={20}
+              color={textColor}
+            />
+          </Pressable>
         </View>
 
         {/* Tags Row */}
@@ -220,9 +191,8 @@ const styles = StyleSheet.create({
     transform: [{ scale: 0.99 }],
   },
   coverContainer: {
-    height: 96,
+    height: 84,
     position: 'relative',
-    justifyContent: 'space-between',
     padding: 12,
     overflow: 'hidden',
   },
@@ -233,29 +203,6 @@ const styles = StyleSheet.create({
     right: 0,
     height: 3,
   },
-  coverInner: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-    zIndex: 2,
-  },
-  coverLabelPill: {
-    paddingHorizontal: 8,
-    paddingVertical: 3,
-    borderRadius: 6,
-  },
-  coverLabelText: {
-    fontSize: 10,
-    fontWeight: '800',
-    letterSpacing: 0.6,
-  },
-  bookmarkBtn: {
-    width: 30,
-    height: 30,
-    borderRadius: 15,
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
   bannerGraphic: {
     position: 'absolute',
     right: 14,
@@ -265,21 +212,10 @@ const styles = StyleSheet.create({
   content: {
     padding: 14,
   },
-  typeRow: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    gap: 5,
-    marginBottom: 6,
-  },
-  typeText: {
-    fontSize: 11,
-    fontWeight: '700',
-    letterSpacing: 0.3,
-  },
   title: {
-    fontSize: 15,
+    fontSize: 16,
     fontWeight: '700',
-    lineHeight: 21,
+    lineHeight: 22,
     marginBottom: 4,
   },
   description: {
@@ -290,10 +226,16 @@ const styles = StyleSheet.create({
   statsRow: {
     flexDirection: 'row',
     alignItems: 'center',
-    gap: 8,
+    justifyContent: 'space-between',
     paddingTop: 10,
     borderTopWidth: 1,
     marginBottom: 10,
+  },
+  statsLeft: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 8,
+    flex: 1,
   },
   statItem: {
     flexDirection: 'row',
@@ -303,6 +245,11 @@ const styles = StyleSheet.create({
   statText: {
     fontSize: 11,
     fontWeight: '600',
+  },
+  inlineBookmarkBtn: {
+    padding: 4,
+    alignItems: 'center',
+    justifyContent: 'center',
   },
   tagsRow: {
     flexDirection: 'row',
