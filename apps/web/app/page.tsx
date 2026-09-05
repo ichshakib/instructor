@@ -11,7 +11,6 @@ import {
   Headphones,
   X,
   Upload,
-  CheckCircle2,
   BookOpen,
   ArrowRight,
   Mail,
@@ -30,15 +29,15 @@ export default function InstructorLanding() {
   return (
     <div className="relative min-h-screen w-full bg-white text-[#18191E] overflow-x-hidden font-sans selection:bg-[#18191E] selection:text-white">
       {/* Sticky Persistent Header */}
-      <Navbar heroCornerOffset={true} />
+      <Navbar />
 
       {/* ========================================================================= */}
       {/* 1. TOP HERO SECTION (WARM CREAM PALETTE: #FFF7DF)                        */}
       {/* ========================================================================= */}
       <section className="relative w-full bg-[#FFF7DF] text-[#18191E] overflow-hidden pt-24 sm:pt-28 pb-16 sm:pb-24">
-        {/* Top Left Organic Dark Shape */}
+        {/* Top Left Organic Dark Accent (Background layer - never hides content) */}
         <div
-          className="pointer-events-none absolute top-0 left-0 w-32 h-32 sm:w-44 sm:h-44 md:w-56 md:h-56 bg-[#18191E] rounded-br-[110px] sm:rounded-br-[160px] z-10 transition-all duration-300"
+          className="pointer-events-none select-none absolute -top-3 -left-3 w-16 h-16 sm:w-20 sm:h-20 md:w-28 md:h-28 bg-[#18191E] rounded-br-[50px] sm:rounded-br-[75px] z-0 transition-all duration-300 shadow-sm"
           aria-hidden="true"
         />
 
@@ -62,18 +61,16 @@ export default function InstructorLanding() {
             <div className="lg:col-span-6 flex flex-col items-start z-10">
               {/* Main Headline */}
               <h1 className="text-4xl sm:text-5xl lg:text-[62px] font-extrabold text-[#18191E] tracking-tight leading-[1.14]">
-                Join with your
+                Learn without limits.
                 <br />
-                own <span className="inline-block">online LMS</span>
+                Master skills that
                 <br />
-                Platform
+                <span className="inline-block">shape your future.</span>
               </h1>
 
               {/* Description Subtext */}
               <p className="mt-6 sm:mt-7 text-[#6A685F] text-sm sm:text-base leading-relaxed max-w-md font-normal">
-                Fames venenatis nunc vehicula eu class duis posuere odio, massa hendrerit
-                mus lacus donec aliquam orci, bibendum euismod cursus facilisi velit
-                tristique nibh.
+                Discover interactive, expert-led courses designed to help you build in-demand skills, launch real projects, and advance your career at your own pace.
               </p>
 
               {/* CTA & Social Proof Avatars Row */}
@@ -292,7 +289,7 @@ export default function InstructorLanding() {
       {/* ========================================================================= */}
       {/* 3. WHITE BOTTOM SECTION (PURE WHITE: #FFFFFF)                            */}
       {/* ========================================================================= */}
-      <section className="relative w-full bg-white text-[#18191E] pt-14 sm:pt-18 pb-20 overflow-hidden">
+      <section className="relative w-full bg-white text-[#18191E] pt-14 sm:pt-18 pb-28 sm:pb-36 overflow-hidden">
         {/* Mid-Left Dot Grid placed on the white background beside Trusted By */}
         <div
           className="pointer-events-none absolute top-12 left-6 sm:left-10 md:left-16 z-0 grid grid-cols-5 gap-2.5 sm:gap-3.5 opacity-65"
@@ -306,9 +303,9 @@ export default function InstructorLanding() {
           ))}
         </div>
 
-        {/* Bottom Right Organic Dark Shape on the White Canvas */}
+        {/* Bottom Right Organic Dark Accent (Background layer - never hides content) */}
         <div
-          className="pointer-events-none absolute bottom-0 right-0 w-36 h-36 sm:w-52 sm:h-52 md:w-64 md:h-64 bg-[#18191E] rounded-tl-[130px] sm:rounded-tl-[180px] z-10 transition-all duration-300"
+          className="pointer-events-none select-none absolute -bottom-4 -right-4 w-24 h-24 sm:w-32 sm:h-32 md:w-40 md:h-40 bg-[#18191E] rounded-tl-[60px] sm:rounded-tl-[90px] z-0 transition-all duration-300 shadow-sm"
           aria-hidden="true"
         />
 
@@ -321,8 +318,7 @@ export default function InstructorLanding() {
                 Trusted By
               </h2>
               <p className="text-xs sm:text-sm text-[#7A776D] max-w-md font-normal leading-relaxed">
-                Fames venenatis nunc vehicula eu class duis posuere odio, massa
-                hendrerit mus lacus.
+                Empowering leading universities, high-growth startups, and over 29,000+ ambitious learners worldwide.
               </p>
             </div>
 
@@ -471,80 +467,83 @@ export default function InstructorLanding() {
 
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
               {/* Course Card 1 */}
-              <div className="p-6 rounded-3xl bg-neutral-50/80 border border-neutral-200 shadow-sm hover:shadow-lg hover:-translate-y-1 transition-all duration-300 flex flex-col justify-between">
+              <div className="p-7 rounded-3xl bg-neutral-50/80 hover:bg-white border border-neutral-200/90 shadow-sm hover:shadow-lg hover:-translate-y-1 transition-all duration-300 flex flex-col justify-between">
                 <div>
                   <div className="flex items-center justify-between mb-4">
                     <span className="px-3 py-1 rounded-xl bg-amber-100 text-amber-900 text-xs font-bold">
                       Web Development
                     </span>
-                    <span className="text-xs font-bold text-emerald-600 flex items-center gap-1">
-                      <CheckCircle2 className="w-3.5 h-3.5" /> 4.9 (1.2k)
-                    </span>
                   </div>
                   <h3 className="text-lg font-bold text-[#18191E]">
                     Full-Stack Next.js & Modern UI Architecture
                   </h3>
-                  <p className="text-xs text-[#706E66] mt-2 leading-relaxed">
+                  <p className="text-xs text-[#706E66] mt-2.5 leading-relaxed font-normal">
                     Master production Next.js apps, Tailwind CSS v4, and distributed monorepo pipelines.
                   </p>
                 </div>
-                <div className="pt-6 mt-6 border-t border-neutral-200 flex items-center justify-between">
-                  <span className="text-lg font-extrabold text-[#18191E]">$89.00</span>
-                  <button className="px-4 py-2 rounded-xl bg-[#18191E] text-white text-xs font-semibold hover:bg-[#2B2D37] transition-colors">
-                    Enroll Now
-                  </button>
+                <div className="pt-6 mt-6 border-t border-neutral-200/60 flex items-center justify-between">
+                  <span className="text-xs font-medium text-[#7A776D]">Open curriculum</span>
+                  <Link
+                    href="/courses"
+                    className="group/btn inline-flex items-center gap-1.5 px-4 py-2 rounded-xl bg-[#18191E] text-white text-xs font-semibold hover:bg-[#2B2D37] transition-colors"
+                  >
+                    <span>Start Learning</span>
+                    <ArrowRight className="w-3.5 h-3.5 transition-transform duration-200 group-hover/btn:translate-x-1" />
+                  </Link>
                 </div>
               </div>
 
               {/* Course Card 2 */}
-              <div className="p-6 rounded-3xl bg-neutral-50/80 border border-neutral-200 shadow-sm hover:shadow-lg hover:-translate-y-1 transition-all duration-300 flex flex-col justify-between">
+              <div className="p-7 rounded-3xl bg-neutral-50/80 hover:bg-white border border-neutral-200/90 shadow-sm hover:shadow-lg hover:-translate-y-1 transition-all duration-300 flex flex-col justify-between">
                 <div>
                   <div className="flex items-center justify-between mb-4">
                     <span className="px-3 py-1 rounded-xl bg-indigo-100 text-indigo-900 text-xs font-bold">
                       Data & AI
                     </span>
-                    <span className="text-xs font-bold text-emerald-600 flex items-center gap-1">
-                      <CheckCircle2 className="w-3.5 h-3.5" /> 4.8 (850)
-                    </span>
                   </div>
                   <h3 className="text-lg font-bold text-[#18191E]">
                     Applied AI Systems & Intelligent Agents
                   </h3>
-                  <p className="text-xs text-[#706E66] mt-2 leading-relaxed">
+                  <p className="text-xs text-[#706E66] mt-2.5 leading-relaxed font-normal">
                     Build production agentic workflows, memory pipelines, and autonomous tools.
                   </p>
                 </div>
-                <div className="pt-6 mt-6 border-t border-neutral-200 flex items-center justify-between">
-                  <span className="text-lg font-extrabold text-[#18191E]">$119.00</span>
-                  <button className="px-4 py-2 rounded-xl bg-[#18191E] text-white text-xs font-semibold hover:bg-[#2B2D37] transition-colors">
-                    Enroll Now
-                  </button>
+                <div className="pt-6 mt-6 border-t border-neutral-200/60 flex items-center justify-between">
+                  <span className="text-xs font-medium text-[#7A776D]">Open curriculum</span>
+                  <Link
+                    href="/courses"
+                    className="group/btn inline-flex items-center gap-1.5 px-4 py-2 rounded-xl bg-[#18191E] text-white text-xs font-semibold hover:bg-[#2B2D37] transition-colors"
+                  >
+                    <span>Start Learning</span>
+                    <ArrowRight className="w-3.5 h-3.5 transition-transform duration-200 group-hover/btn:translate-x-1" />
+                  </Link>
                 </div>
               </div>
 
               {/* Course Card 3 */}
-              <div className="p-6 rounded-3xl bg-neutral-50/80 border border-neutral-200 shadow-sm hover:shadow-lg hover:-translate-y-1 transition-all duration-300 flex flex-col justify-between">
+              <div className="p-7 rounded-3xl bg-neutral-50/80 hover:bg-white border border-neutral-200/90 shadow-sm hover:shadow-lg hover:-translate-y-1 transition-all duration-300 flex flex-col justify-between">
                 <div>
                   <div className="flex items-center justify-between mb-4">
                     <span className="px-3 py-1 rounded-xl bg-rose-100 text-rose-900 text-xs font-bold">
                       UI/UX Design
                     </span>
-                    <span className="text-xs font-bold text-emerald-600 flex items-center gap-1">
-                      <CheckCircle2 className="w-3.5 h-3.5" /> 5.0 (2.4k)
-                    </span>
                   </div>
                   <h3 className="text-lg font-bold text-[#18191E]">
                     Modern Design Systems & Glassmorphism
                   </h3>
-                  <p className="text-xs text-[#706E66] mt-2 leading-relaxed">
+                  <p className="text-xs text-[#706E66] mt-2.5 leading-relaxed font-normal">
                     Craft award-winning digital experiences, micro-interactions, and visual tokens.
                   </p>
                 </div>
-                <div className="pt-6 mt-6 border-t border-neutral-200 flex items-center justify-between">
-                  <span className="text-lg font-extrabold text-[#18191E]">$95.00</span>
-                  <button className="px-4 py-2 rounded-xl bg-[#18191E] text-white text-xs font-semibold hover:bg-[#2B2D37] transition-colors">
-                    Enroll Now
-                  </button>
+                <div className="pt-6 mt-6 border-t border-neutral-200/60 flex items-center justify-between">
+                  <span className="text-xs font-medium text-[#7A776D]">Open curriculum</span>
+                  <Link
+                    href="/courses"
+                    className="group/btn inline-flex items-center gap-1.5 px-4 py-2 rounded-xl bg-[#18191E] text-white text-xs font-semibold hover:bg-[#2B2D37] transition-colors"
+                  >
+                    <span>Start Learning</span>
+                    <ArrowRight className="w-3.5 h-3.5 transition-transform duration-200 group-hover/btn:translate-x-1" />
+                  </Link>
                 </div>
               </div>
             </div>

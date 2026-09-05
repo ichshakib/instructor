@@ -5,12 +5,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { Menu, X } from "lucide-react";
 
-interface NavbarProps {
-  /** When true, offsets logo slightly at top to avoid the hero corner shape */
-  heroCornerOffset?: boolean;
-}
-
-export default function Navbar({ heroCornerOffset = false }: NavbarProps) {
+export default function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const pathname = usePathname();

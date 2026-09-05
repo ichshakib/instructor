@@ -6,9 +6,6 @@ import Navbar from "../../components/Navbar";
 import {
   Search,
   BookOpen,
-  Clock,
-  Users,
-  Star,
   ArrowRight,
   Filter,
   Sparkles,
@@ -22,20 +19,7 @@ interface Course {
   title: string;
   category: "Development" | "AI & Data" | "Design" | "Business";
   level: "Beginner" | "Intermediate" | "Advanced";
-  rating: number;
-  reviewsCount: number;
-  studentsCount: string;
-  duration: string;
-  lessons: number;
-  price: number;
-  instructor: {
-    name: string;
-    role: string;
-    avatarBg: string;
-    initials: string;
-  };
   description: string;
-  badge?: string;
 }
 
 const COURSES_DATA: Course[] = [
@@ -44,19 +28,6 @@ const COURSES_DATA: Course[] = [
     title: "Full-Stack Next.js & Modern UI Architecture",
     category: "Development",
     level: "Advanced",
-    rating: 4.9,
-    reviewsCount: 1240,
-    studentsCount: "4.8k",
-    duration: "24 hours",
-    lessons: 48,
-    price: 89,
-    badge: "Bestseller",
-    instructor: {
-      name: "Marcus Vance",
-      role: "Lead Systems Architect",
-      avatarBg: "bg-amber-200 text-amber-900",
-      initials: "MV",
-    },
     description:
       "Master production Next.js 15, server components, Tailwind CSS v4, and distributed monorepo pipelines with Turbo.",
   },
@@ -65,19 +36,6 @@ const COURSES_DATA: Course[] = [
     title: "Applied AI Systems & Autonomous Agents",
     category: "AI & Data",
     level: "Intermediate",
-    rating: 4.8,
-    reviewsCount: 850,
-    studentsCount: "3.2k",
-    duration: "18 hours",
-    lessons: 36,
-    price: 119,
-    badge: "Trending",
-    instructor: {
-      name: "Dr. Elena Rostova",
-      role: "AI Research Fellow",
-      avatarBg: "bg-indigo-200 text-indigo-900",
-      initials: "ER",
-    },
     description:
       "Build production agentic workflows, memory pipelines, tool-calling frameworks, and autonomous multi-agent orchestration.",
   },
@@ -86,19 +44,6 @@ const COURSES_DATA: Course[] = [
     title: "Modern Design Systems & Glassmorphism UI",
     category: "Design",
     level: "Beginner",
-    rating: 5.0,
-    reviewsCount: 2420,
-    studentsCount: "8.6k",
-    duration: "15 hours",
-    lessons: 32,
-    price: 95,
-    badge: "Top Rated",
-    instructor: {
-      name: "Sophia Sterling",
-      role: "Principal Product Designer",
-      avatarBg: "bg-rose-200 text-rose-900",
-      initials: "SS",
-    },
     description:
       "Craft award-winning digital design systems, micro-interactions, responsive tokens, and aesthetic glassmorphism aesthetics.",
   },
@@ -107,18 +52,6 @@ const COURSES_DATA: Course[] = [
     title: "High-Performance Backend Engineering in Go",
     category: "Development",
     level: "Advanced",
-    rating: 4.9,
-    reviewsCount: 940,
-    studentsCount: "2.9k",
-    duration: "22 hours",
-    lessons: 42,
-    price: 99,
-    instructor: {
-      name: "Kaelen Drake",
-      role: "Senior Cloud Engineer",
-      avatarBg: "bg-sky-200 text-sky-900",
-      initials: "KD",
-    },
     description:
       "Build ultra low-latency microservices, gRPC channels, concurrency patterns, and containerized cloud deployments.",
   },
@@ -127,18 +60,6 @@ const COURSES_DATA: Course[] = [
     title: "MLOps: Deploying & Scaling Models at Scale",
     category: "AI & Data",
     level: "Advanced",
-    rating: 4.7,
-    reviewsCount: 620,
-    studentsCount: "1.9k",
-    duration: "20 hours",
-    lessons: 38,
-    price: 109,
-    instructor: {
-      name: "Amara Patel",
-      role: "ML Platform Engineer",
-      avatarBg: "bg-emerald-200 text-emerald-900",
-      initials: "AP",
-    },
     description:
       "Streamline ML lifecycle management, experiment tracking, automated model retraining, and Kubernetes model inference.",
   },
@@ -147,18 +68,6 @@ const COURSES_DATA: Course[] = [
     title: "Product Strategy, Metrics & SaaS Growth",
     category: "Business",
     level: "Intermediate",
-    rating: 4.9,
-    reviewsCount: 1100,
-    studentsCount: "5.1k",
-    duration: "14 hours",
-    lessons: 28,
-    price: 79,
-    instructor: {
-      name: "Julian Thorne",
-      role: "VP of Product Growth",
-      avatarBg: "bg-purple-200 text-purple-900",
-      initials: "JT",
-    },
     description:
       "Design growth loops, execute product-led onboarding funnels, and analyze churn cohorts for high-scale subscription platforms.",
   },
@@ -176,8 +85,7 @@ export default function CoursesPage() {
       selectedCategory === "All Courses" || course.category === selectedCategory;
     const matchesSearch =
       course.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
-      course.description.toLowerCase().includes(searchQuery.toLowerCase()) ||
-      course.instructor.name.toLowerCase().includes(searchQuery.toLowerCase());
+      course.description.toLowerCase().includes(searchQuery.toLowerCase());
     const matchesLevel =
       selectedLevel === "All" || course.level === selectedLevel;
 
@@ -207,15 +115,15 @@ export default function CoursesPage() {
           <div className="max-w-3xl">
             <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/80 backdrop-blur-md border border-neutral-200/80 text-xs font-semibold text-[#18191E] mb-5 shadow-sm">
               <Sparkles className="w-3.5 h-3.5 text-amber-600" />
-              <span>Explore Curriculum Catalog</span>
+              <span>Open Academy Curricula</span>
             </div>
 
             <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-[#18191E] tracking-tight leading-[1.12]">
-              Expand your expertise with curated LMS courses.
+              Expand your expertise with curated courses.
             </h1>
 
             <p className="mt-5 text-[#6A685F] text-base sm:text-lg leading-relaxed max-w-2xl font-normal">
-              Accelerate your engineering and design capabilities through hands-on curricula taught by world-class leaders.
+              Accelerate your skills with direct access to comprehensive learning paths and project curricula.
             </p>
           </div>
 
@@ -227,7 +135,7 @@ export default function CoursesPage() {
                 <Search className="w-5 h-5 text-[#7A776D] absolute left-4 top-1/2 -translate-y-1/2" />
                 <input
                   type="text"
-                  placeholder="Search by course title, skill, or instructor..."
+                  placeholder="Search courses or topics..."
                   value={searchQuery}
                   onChange={(e) => setSearchQuery(e.target.value)}
                   className="w-full pl-12 pr-4 py-4 rounded-2xl bg-white border border-neutral-200 shadow-sm text-sm text-[#18191E] placeholder:text-[#7A776D] focus:outline-none focus:ring-2 focus:ring-[#18191E] transition-all"
@@ -316,19 +224,17 @@ export default function CoursesPage() {
               {filteredCourses.map((course) => (
                 <div
                   key={course.id}
-                  className="group rounded-3xl bg-neutral-50/70 hover:bg-white border border-neutral-200/90 shadow-sm hover:shadow-xl hover:-translate-y-1.5 transition-all duration-300 flex flex-col justify-between overflow-hidden"
+                  className="group rounded-3xl bg-neutral-50/70 hover:bg-white border border-neutral-200/90 shadow-sm hover:shadow-xl hover:-translate-y-1.5 transition-all duration-300 flex flex-col justify-between p-7"
                 >
-                  <div className="p-7">
-                    {/* Top Badges */}
+                  <div>
+                    {/* Category & Level Badges */}
                     <div className="flex items-center justify-between mb-4">
                       <span className="px-3 py-1 rounded-xl bg-amber-100/90 text-amber-900 text-xs font-bold tracking-tight">
                         {course.category}
                       </span>
-                      {course.badge && (
-                        <span className="px-2.5 py-0.5 rounded-full bg-[#18191E] text-white text-[10px] font-bold tracking-wide uppercase">
-                          {course.badge}
-                        </span>
-                      )}
+                      <span className="text-xs font-semibold text-[#7A776D]">
+                        {course.level}
+                      </span>
                     </div>
 
                     {/* Title */}
@@ -340,54 +246,15 @@ export default function CoursesPage() {
                     <p className="text-xs text-[#706E66] mt-3 leading-relaxed font-normal">
                       {course.description}
                     </p>
-
-                    {/* Metadata Row */}
-                    <div className="mt-5 pt-4 border-t border-neutral-200/60 flex items-center justify-between text-xs text-[#706E66]">
-                      <div className="flex items-center gap-1.5">
-                        <Clock className="w-3.5 h-3.5 text-[#18191E]" />
-                        <span>{course.duration}</span>
-                      </div>
-                      <div className="flex items-center gap-1.5">
-                        <Users className="w-3.5 h-3.5 text-[#18191E]" />
-                        <span>{course.studentsCount} students</span>
-                      </div>
-                      <div className="flex items-center gap-1 font-semibold text-[#18191E]">
-                        <Star className="w-3.5 h-3.5 fill-amber-400 text-amber-400" />
-                        <span>{course.rating.toFixed(1)}</span>
-                      </div>
-                    </div>
-
-                    {/* Instructor Info */}
-                    <div className="mt-5 flex items-center gap-3">
-                      <div
-                        className={`w-9 h-9 rounded-full flex items-center justify-center text-xs font-bold shrink-0 ${course.instructor.avatarBg}`}
-                      >
-                        {course.instructor.initials}
-                      </div>
-                      <div>
-                        <div className="text-xs font-bold text-[#18191E]">
-                          {course.instructor.name}
-                        </div>
-                        <div className="text-[11px] text-[#7A776D]">
-                          {course.instructor.role}
-                        </div>
-                      </div>
-                    </div>
                   </div>
 
-                  {/* Bottom Footer with Price & Action */}
-                  <div className="px-7 py-5 bg-white/60 group-hover:bg-neutral-50/50 border-t border-neutral-200/80 flex items-center justify-between transition-colors">
-                    <div className="flex flex-col">
-                      <span className="text-[10px] text-[#7A776D] font-medium uppercase tracking-wider">
-                        Enrollment Fee
-                      </span>
-                      <span className="text-2xl font-extrabold text-[#18191E]">
-                        ${course.price.toFixed(2)}
-                      </span>
-                    </div>
-
-                    <button className="group/btn inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-[#18191E] hover:bg-[#2B2D37] text-white text-xs font-bold shadow-md shadow-neutral-900/10 active:scale-95 transition-all">
-                      <span>Enroll Now</span>
+                  {/* Bottom Action Button */}
+                  <div className="pt-6 mt-6 border-t border-neutral-200/60 flex items-center justify-between">
+                    <span className="text-xs font-medium text-[#7A776D]">
+                      Open curriculum
+                    </span>
+                    <button className="group/btn inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-[#18191E] hover:bg-[#2B2D37] text-white text-xs font-bold shadow-sm active:scale-95 transition-all">
+                      <span>Start Learning</span>
                       <ArrowRight className="w-3.5 h-3.5 transition-transform duration-200 group-hover/btn:translate-x-1" />
                     </button>
                   </div>

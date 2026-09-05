@@ -220,29 +220,18 @@
   border: 1px solid rgba(255, 255, 255, 0.75);
 }
 
-/* Minimal Custom Scrollbar */
+/* Hide scrollbar across all browsers */
 ::-webkit-scrollbar {
-  width: 6px;
-  height: 6px;
+  display: none;
+  width: 0px;
+  height: 0px;
 }
 
-::-webkit-scrollbar-track {
-  background: transparent;
-}
-
-::-webkit-scrollbar-thumb {
-  background: rgba(24, 25, 30, 0.2);
-  border-radius: 9999px;
-}
-
-::-webkit-scrollbar-thumb:hover {
-  background: rgba(24, 25, 30, 0.4);
-}
-
-/* Firefox scrollbar */
+html,
+body,
 * {
-  scrollbar-width: thin;
-  scrollbar-color: rgba(24, 25, 30, 0.2) transparent;
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
 }
 
 
