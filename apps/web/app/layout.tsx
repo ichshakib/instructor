@@ -12,10 +12,10 @@ const geistMono = localFont({
 });
 
 export const metadata: Metadata = {
-  title: "OnlineLMS — Join with your own online LMS Platform",
+  title: "Instructor — Online Learning & LMS Platform",
   description:
-    "Build, launch, and scale your own e-learning academy with OnlineLMS. Join thousands of happy learners worldwide.",
-  keywords: ["Online LMS", "Learning Management System", "E-learning", "Courses", "Education"],
+    "Empower your educational journey with Instructor. Build, launch, and scale courses with modern interactive learning management tools.",
+  keywords: ["Instructor", "Online LMS", "Learning Management System", "Education", "E-learning", "Courses"],
 };
 
 export default function RootLayout({
