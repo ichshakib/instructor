@@ -1,4 +1,4 @@
-import { Ionicons } from '@expo/vector-icons';
+import { Ionicons, MaterialCommunityIcons } from '@expo/vector-icons';
 import { DarkTheme, DefaultTheme, Tabs, ThemeProvider } from 'expo-router';
 import * as SplashScreen from 'expo-splash-screen';
 import { StatusBar } from 'expo-status-bar';
@@ -95,9 +95,9 @@ function TabsLayoutContent() {
             title: 'Home',
             tabBarLabel: 'Home',
             tabBarIcon: ({ color, focused }) => (
-              <Ionicons
-                name={focused ? 'compass' : 'compass-outline'}
-                size={22}
+              <MaterialCommunityIcons
+                name={focused ? 'home-variant' : 'home-variant-outline'}
+                size={23}
                 color={color}
               />
             ),
@@ -141,6 +141,13 @@ function TabsLayoutContent() {
         />
         <Tabs.Screen
           name="course-details"
+          options={{
+            href: null,
+            tabBarStyle: { display: 'none' },
+          }}
+        />
+        <Tabs.Screen
+          name="lesson-details"
           options={{
             href: null,
             tabBarStyle: { display: 'none' },

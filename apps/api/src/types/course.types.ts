@@ -114,5 +114,6 @@ export interface Course {
   totalChapters?: number;
   totalLessons?: number;
   progressStatus?: CourseProgressStatus;
+  imageUrl?: string;
   curriculum?: LevelCurriculum[];
 }

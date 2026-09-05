@@ -365,6 +365,7 @@ export const COURSES_DATA: Course[] = [
     tag2: "Beginner to Advanced",
     badgeCount: "",
     coverVariant: "german-language",
+    imageUrl: "/course-images/german-language-course.jpg",
     buttonLabel: "Start",
     description:
       "Comprehensive German language learning from absolute beginner to advanced fluency, with interactive chapters, practical dialogues, audio pronunciation, and real-world examples.",

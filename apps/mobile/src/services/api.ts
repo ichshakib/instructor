@@ -1,9 +1,58 @@
+export interface LessonPracticeQuestion {
+  question: string;
+  options?: string[];
+  answer: string;
+  explanation: string;
+}
+
+export interface LessonDialogueLine {
+  speaker: string;
+  german: string;
+  english: string;
+}
+
+export interface LessonSectionItem {
+  term: string;
+  pronunciation?: string;
+  meaning: string;
+  example?: string;
+}
+
+export interface LessonTable {
+  headers: string[];
+  rows: string[][];
+}
+
+export interface LessonSection {
+  title: string;
+  description?: string;
+  table?: LessonTable;
+  items?: LessonSectionItem[];
+  notes?: string[];
+}
+
+export interface LessonContent {
+  overview?: string;
+  canDo?: string;
+  teacherNote?: string;
+  sections?: LessonSection[];
+  dialogue?: {
+    context: string;
+    lines: LessonDialogueLine[];
+  };
+  funFact?: {
+    title: string;
+    content: string;
+  };
+  practice?: LessonPracticeQuestion[];
+}
+
 export interface Lesson {
   id: string;
   title: string;
   duration?: string;
   description?: string;
-  content?: any;
+  content?: LessonContent;
 }
 
 export interface Chapter {
@@ -29,6 +78,7 @@ export interface CourseItem {
   tag2: string;
   badgeCount: string;
   coverVariant: string;
+  imageUrl?: string;
   buttonLabel: string;
   description: string;
   featured?: boolean;
@@ -56,6 +106,7 @@ const FALLBACK_COURSES: CourseItem[] = [
     tag2: "Beginner to Advanced",
     badgeCount: "",
     coverVariant: "german-language",
+    imageUrl: "/course-images/german-language-course.jpg",
     buttonLabel: "Start",
     description:
       "Comprehensive German language learning from absolute beginner to advanced fluency, with interactive chapters, practical dialogues, audio pronunciation, and real-world examples.",
@@ -208,3 +259,52 @@ export async function fetchCourseById(id: string): Promise<CourseItem | null> {
     return found || FALLBACK_COURSES[0] || null;
   }
 }
+
+export async function fetchLessonById(
+  courseId: string,
+  lessonId: string
+): Promise<{ lesson: Lesson; chapter?: Chapter; course?: CourseItem } | null> {
+  try {
+    const course = await fetchCourseById(courseId);
+    if (!course) return null;
+
+    let foundLesson: Lesson | null = null;
+    let foundChapter: Chapter | undefined;
+
+    if (Array.isArray(course.curriculum)) {
+      for (const level of course.curriculum) {
+        if (Array.isArray(level.chapters)) {
+          for (const chapter of level.chapters) {
+            const match = chapter.lessons?.find((l) => l.id === lessonId);
+            if (match) {
+              foundLesson = match;
+              foundChapter = chapter;
+              break;
+            }
+          }
+        }
+        if (foundLesson) break;
+      }
+    }
+
+    if (!foundLesson && Array.isArray(course.chapters)) {
+      for (const chapter of course.chapters) {
+        const match = chapter.lessons?.find((l) => l.id === lessonId);
+        if (match) {
+          foundLesson = match;
+          foundChapter = chapter;
+          break;
+        }
+      }
+    }
+
+    if (foundLesson) {
+      return { lesson: foundLesson, chapter: foundChapter, course };
+    }
+    return null;
+  } catch (error) {
+    console.warn("Could not fetch lesson details:", error);
+    return null;
+  }
+}
+

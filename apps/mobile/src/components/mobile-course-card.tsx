@@ -2,6 +2,7 @@ import { Ionicons } from '@expo/vector-icons';
 import { useRouter } from 'expo-router';
 import React from 'react';
 import {
+  Image,
   Pressable,
   StyleSheet,
   Text,
@@ -10,7 +11,7 @@ import {
 } from 'react-native';
 
 import { useLearning } from '@/context/learning-context';
-import { CourseItem } from '@/services/api';
+import { API_BASE_URL, CourseItem } from '@/services/api';
 
 interface MobileCourseCardProps {
   course: CourseItem;
@@ -31,6 +32,12 @@ export function MobileCourseCard({ course }: MobileCourseCardProps) {
   const mutedText = isDark ? '#A1A1AA' : '#71717A';
   const accentColor = isDark ? '#FFFFFF' : '#09090B';
   const bannerBg = isDark ? '#18181B' : '#F4F4F5';
+
+  const resolvedImageUrl = course.imageUrl
+    ? course.imageUrl.startsWith('http')
+      ? course.imageUrl
+      : `${API_BASE_URL}${course.imageUrl}`
+    : null;
 
   const totalChapters =
     course.totalChapters ??
@@ -75,23 +82,31 @@ export function MobileCourseCard({ course }: MobileCourseCardProps) {
     >
       {/* Top Banner (No language pill, no bookmark on cover) */}
       <View style={[styles.coverContainer, { backgroundColor: bannerBg }]}>
-        <View style={[styles.coverTopBar, { backgroundColor: accentColor }]} />
-
-        {/* Subtle decorative watermark icon */}
-        <View style={styles.bannerGraphic}>
-          <Ionicons
-            name={
-              course.typeIcon === 'path'
-                ? 'trail-sign-outline'
-                : course.typeIcon === 'quiz'
-                ? 'trophy-outline'
-                : 'book-outline'
-            }
-            size={48}
-            color={textColor}
-            style={{ opacity: isDark ? 0.12 : 0.08 }}
+        {resolvedImageUrl ? (
+          <Image
+            source={{ uri: resolvedImageUrl }}
+            style={styles.coverImage}
+            resizeMode="cover"
           />
-        </View>
+        ) : (
+          <>
+            <View style={[styles.coverTopBar, { backgroundColor: accentColor }]} />
+            <View style={styles.bannerGraphic}>
+              <Ionicons
+                name={
+                  course.typeIcon === 'path'
+                    ? 'trail-sign-outline'
+                    : course.typeIcon === 'quiz'
+                    ? 'trophy-outline'
+                    : 'book-outline'
+                }
+                size={48}
+                color={textColor}
+                style={{ opacity: isDark ? 0.12 : 0.08 }}
+              />
+            </View>
+          </>
+        )}
       </View>
 
       {/* Card Content */}
@@ -191,10 +206,13 @@ const styles = StyleSheet.create({
     transform: [{ scale: 0.99 }],
   },
   coverContainer: {
-    height: 84,
+    height: 124,
     position: 'relative',
-    padding: 12,
     overflow: 'hidden',
+  },
+  coverImage: {
+    width: '100%',
+    height: '100%',
   },
   coverTopBar: {
     position: 'absolute',

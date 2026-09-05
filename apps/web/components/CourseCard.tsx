@@ -28,6 +28,7 @@ export interface CourseItem {
     | "metrics-growth";
   buttonLabel: "View" | "Continue" | "Start";
   description?: string;
+  imageUrl?: string;
   featured?: boolean;
   totalChapters?: number;
   totalLessons?: number;
@@ -423,7 +424,19 @@ export default function CourseCard({ course }: CourseCardProps) {
         href={`/courses/${course.id}`}
         className="relative block w-full h-32 sm:h-36 overflow-hidden bg-neutral-100 cursor-pointer"
       >
-        {renderCoverIllustration()}
+        {course.imageUrl ? (
+          <img
+            src={
+              course.imageUrl.startsWith("http")
+                ? course.imageUrl
+                : `${process.env.NEXT_PUBLIC_API_URL || "http://localhost:5000"}${course.imageUrl}`
+            }
+            alt={course.title}
+            className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+          />
+        ) : (
+          renderCoverIllustration()
+        )}
       </Link>
 
       {/* 2. CARD CONTENT BODY */}

@@ -17,7 +17,7 @@ import {
 import { SafeAreaView } from 'react-native-safe-area-context';
 
 import { useLearning } from '@/context/learning-context';
-import { Chapter, CourseItem, fetchCourseById, Lesson } from '@/services/api';
+import { Chapter, CourseItem, fetchCourseById } from '@/services/api';
 
 if (Platform.OS === 'android' && UIManager.setLayoutAnimationEnabledExperimental) {
   UIManager.setLayoutAnimationEnabledExperimental(true);
@@ -37,7 +37,6 @@ export default function CourseDetailsScreen() {
   const [isLoading, setIsLoading] = useState(true);
   const [activeLevelIndex, setActiveLevelIndex] = useState(0);
   const [expandedChapters, setExpandedChapters] = useState<Record<string, boolean>>({});
-  const [activeLesson, setActiveLesson] = useState<Lesson | null>(null);
 
   // Pure monochromatic black and white styling (Zero blue)
   const bgColor = isDark ? '#09090B' : '#FFFFFF';
@@ -128,7 +127,7 @@ export default function CourseDetailsScreen() {
           style={({ pressed }) => [styles.iconBtn, pressed && styles.pressed]}
           hitSlop={10}
         >
-          <Ionicons name="arrow-back" size={22} color={textColor} />
+          <Ionicons name="chevron-back" size={24} color={textColor} />
         </Pressable>
 
         <View style={styles.headerRightActions}>
@@ -171,23 +170,8 @@ export default function CourseDetailsScreen() {
           contentContainerStyle={styles.scrollContent}
           showsVerticalScrollIndicator={false}
         >
-          {/* Top Banner Card */}
+          {/* Top Banner Card (Language & Language Course badges removed) */}
           <View style={[styles.bannerCard, { backgroundColor: innerCardBg, borderColor }]}>
-            <View style={styles.bannerBadgeRow}>
-              {course.category ? (
-                <View style={[styles.badge, { backgroundColor: cardBg, borderColor }]}>
-                  <Text style={[styles.badgeText, { color: textColor }]}>
-                    {course.category.toUpperCase()}
-                  </Text>
-                </View>
-              ) : null}
-              {course.type ? (
-                <View style={[styles.badge, { backgroundColor: cardBg, borderColor }]}>
-                  <Text style={[styles.badgeText, { color: mutedText }]}>{course.type}</Text>
-                </View>
-              ) : null}
-            </View>
-
             <Text style={[styles.courseTitle, { color: textColor }]}>{course.title}</Text>
 
             {course.description ? (
@@ -341,56 +325,61 @@ export default function CourseDetailsScreen() {
                   {/* Lessons List inside Chapter */}
                   {isExpanded && (
                     <View style={[styles.lessonsList, { borderTopColor: borderColor }]}>
-                      {chapter.lessons.map((lesson) => {
-                        const isSelected = activeLesson?.id === lesson.id;
-                        return (
-                          <Pressable
-                            key={lesson.id}
-                            onPress={() => setActiveLesson(isSelected ? null : lesson)}
-                            style={({ pressed }) => [
-                              styles.lessonRow,
-                              isSelected && { backgroundColor: innerCardBg },
-                              pressed && styles.pressed,
-                            ]}
-                          >
-                            <View style={styles.lessonLeft}>
-                              <View
+                      {chapter.lessons.map((lesson) => (
+                        <Pressable
+                          key={lesson.id}
+                          onPress={() => {
+                            router.push({
+                              pathname: '/lesson-details' as any,
+                              params: {
+                                courseId: course?.id || courseId,
+                                courseTitle: course?.title || '',
+                                chapterId: chapter.id,
+                                chapterTitle: chapter.title,
+                                lessonId: lesson.id,
+                                lessonTitle: lesson.title,
+                                duration: lesson.duration || '',
+                                description: lesson.description || '',
+                              },
+                            });
+                          }}
+                          style={({ pressed }) => [
+                            styles.lessonRow,
+                            pressed && styles.pressed,
+                          ]}
+                        >
+                          <View style={styles.lessonLeft}>
+                            <View
+                              style={[
+                                styles.lessonPlayCircle,
+                                { backgroundColor: innerCardBg },
+                              ]}
+                            >
+                              <Ionicons
+                                name="play"
+                                size={11}
+                                color={textColor}
+                              />
+                            </View>
+                            <View style={styles.lessonInfo}>
+                              <Text
                                 style={[
-                                  styles.lessonPlayCircle,
-                                  { backgroundColor: isSelected ? activeColor : innerCardBg },
+                                  styles.lessonTitle,
+                                  { color: textColor, fontWeight: '600' },
                                 ]}
                               >
-                                <Ionicons
-                                  name="play"
-                                  size={11}
-                                  color={isSelected ? activeTextColor : textColor}
-                                />
-                              </View>
-                              <View style={styles.lessonInfo}>
-                                <Text
-                                  style={[
-                                    styles.lessonTitle,
-                                    { color: textColor, fontWeight: isSelected ? '700' : '600' },
-                                  ]}
-                                >
-                                  {lesson.title}
+                                {lesson.title}
+                              </Text>
+                              {lesson.duration ? (
+                                <Text style={[styles.lessonDuration, { color: mutedText }]}>
+                                  {lesson.duration}
                                 </Text>
-                                {lesson.duration ? (
-                                  <Text style={[styles.lessonDuration, { color: mutedText }]}>
-                                    {lesson.duration}
-                                  </Text>
-                                ) : null}
-
-                                {isSelected && lesson.description ? (
-                                  <Text style={[styles.lessonDescription, { color: mutedText }]}>
-                                    {lesson.description}
-                                  </Text>
-                                ) : null}
-                              </View>
+                              ) : null}
                             </View>
-                          </Pressable>
-                        );
-                      })}
+                          </View>
+                          <Ionicons name="chevron-forward" size={16} color={mutedText} />
+                        </Pressable>
+                      ))}
                     </View>
                   )}
                 </View>
@@ -585,13 +574,18 @@ const styles = StyleSheet.create({
     paddingVertical: 4,
   },
   lessonRow: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
     paddingHorizontal: 14,
-    paddingVertical: 10,
+    paddingVertical: 12,
   },
   lessonLeft: {
     flexDirection: 'row',
-    alignItems: 'flex-start',
+    alignItems: 'center',
+    flex: 1,
     gap: 12,
+    marginRight: 8,
   },
   lessonPlayCircle: {
     width: 24,
