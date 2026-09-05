@@ -22,7 +22,14 @@ import {
   RefreshCw,
   AlertCircle,
   GraduationCap,
+  Target,
+  Sparkles,
+  CheckCircle2,
+  MessageSquare,
+  Eye,
+  EyeOff,
 } from "lucide-react";
+import { getLessonContent } from "../../../../lib/lesson-contents";
 
 const CEFR_LEVELS: CEFRLevel[] = ["A1", "A2", "B1", "B2", "C1", "C2"];
 
@@ -54,6 +61,13 @@ export default function CourseDetailPage() {
 
   // Active Lesson ID
   const [activeLessonId, setActiveLessonId] = useState<string | null>(null);
+
+  // Quick practice answer reveal state
+  const [revealedAnswers, setRevealedAnswers] = useState<Record<number, boolean>>({});
+
+  useEffect(() => {
+    setRevealedAnswers({});
+  }, [activeLessonId]);
 
   // Function to sync the browser URL without full-page reload
   const syncUrl = useCallback(
@@ -198,6 +212,12 @@ export default function CourseDetailPage() {
     }
     return null;
   }, [currentLevelCurriculum, activeLessonId]);
+
+  // Resolve rich lesson content from API or fallback local library
+  const currentLessonContent = useMemo(() => {
+    if (!activeLessonInfo) return undefined;
+    return activeLessonInfo.lesson.content || getLessonContent(activeLessonInfo.lesson.id);
+  }, [activeLessonInfo]);
 
   // When active level changes (e.g. clicking A1, A2, B1, B2, C1, C2), update URL, select first lesson, and expand ONLY its chapter
   const handleLevelChange = (lvl: CEFRLevel) => {
@@ -570,32 +590,299 @@ export default function CourseDetailPage() {
 
             {/* 2. MAIN CONTENTS AREA */}
             <div className="flex-1 overflow-y-auto p-6 sm:p-10 flex flex-col justify-between">
-              <div className="max-w-3xl w-full mx-auto my-auto py-12 flex flex-col items-center justify-center text-center">
-                {/* Visual Icon */}
-                <div className="w-16 h-16 sm:w-20 sm:h-20 rounded-3xl bg-[#FFF7DF] border border-amber-200 flex items-center justify-center text-amber-700 shadow-sm mb-6">
-                  <FileQuestion className="w-8 h-8 sm:w-10 sm:h-10 stroke-[1.8]" />
-                </div>
-
-                {/* Primary State - "No contents available" as requested */}
-                <h3 className="text-2xl sm:text-3xl font-extrabold text-[#18191E] tracking-tight">
-                  No contents available
-                </h3>
-
-                <p className="text-sm text-[#706E66] mt-3 max-w-lg leading-relaxed">
-                  The lesson materials, vocabulary lists, and practice exercises for this module are currently being prepared. Check back soon or select another lesson from the outline on the left.
-                </p>
-
-                {activeLessonInfo.lesson.description && (
-                  <div className="mt-6 p-4 rounded-2xl bg-white border border-neutral-200/90 max-w-lg text-left shadow-xs">
-                    <span className="text-[11px] font-bold uppercase tracking-wider text-neutral-400 block mb-1">
-                      Lesson Focus
-                    </span>
-                    <p className="text-xs text-[#18191E] leading-relaxed">
-                      {activeLessonInfo.lesson.description}
+              {/* If currentLessonContent exists, render the comprehensive, humanized module */}
+              {currentLessonContent ? (
+                <div className="max-w-4xl w-full mx-auto space-y-8 py-2 pb-10">
+                  {/* 1. Can-Do Objective & Overview */}
+                  <div className="p-6 sm:p-7 rounded-3xl bg-white border border-neutral-200/90 shadow-xs space-y-3.5">
+                    <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-50 border border-emerald-200 text-emerald-800 text-xs font-semibold">
+                      <Target className="w-3.5 h-3.5 text-emerald-600 shrink-0" />
+                      <span>CEFR Can-Do Milestone</span>
+                    </div>
+                    <h3 className="text-base sm:text-lg font-extrabold text-[#18191E] leading-snug">
+                      {currentLessonContent.canDo}
+                    </h3>
+                    <p className="text-xs sm:text-sm text-[#5F5D54] leading-relaxed">
+                      {currentLessonContent.overview}
                     </p>
                   </div>
-                )}
-              </div>
+
+                  {/* 2. Der Lehrer erklärt (Teacher's Pedagogical Guidance) */}
+                  {currentLessonContent.teacherNote && (
+                    <div className="p-6 sm:p-7 rounded-3xl bg-[#FFFBEB] border border-amber-300/80 shadow-xs flex items-start gap-4">
+                      <div className="w-10 h-10 rounded-2xl bg-amber-100 border border-amber-200 text-amber-800 flex items-center justify-center shrink-0 mt-0.5">
+                        <Sparkles className="w-5 h-5 text-amber-700" />
+                      </div>
+                      <div className="space-y-1.5 flex-1">
+                        <span className="text-[11px] font-black uppercase tracking-wider text-amber-900 block">
+                          Der Lehrer erklärt • Instructor Guidance
+                        </span>
+                        <p className="text-xs sm:text-sm text-amber-950/90 leading-relaxed font-medium">
+                          {currentLessonContent.teacherNote}
+                        </p>
+                      </div>
+                    </div>
+                  )}
+
+                  {/* 3. Core Lesson Sections (Rules, Tables & Vocabulary) */}
+                  {currentLessonContent.sections.map((section, sIdx) => (
+                    <div
+                      key={sIdx}
+                      className="p-6 sm:p-7 rounded-3xl bg-white border border-neutral-200/90 shadow-xs space-y-5"
+                    >
+                      <div className="border-b border-neutral-100 pb-3.5">
+                        <h4 className="text-base sm:text-lg font-extrabold text-[#18191E] tracking-tight">
+                          {section.title}
+                        </h4>
+                        {section.description && (
+                          <p className="text-xs sm:text-sm text-[#706E66] mt-1.5 leading-relaxed">
+                            {section.description}
+                          </p>
+                        )}
+                      </div>
+
+                      {/* Section Table */}
+                      {section.table && (
+                        <div className="overflow-x-auto rounded-2xl border border-neutral-200/80 shadow-2xs">
+                          <table className="w-full text-left border-collapse text-xs sm:text-sm">
+                            <thead>
+                              <tr className="bg-neutral-50/90 border-b border-neutral-200/80 text-neutral-600 font-bold">
+                                {section.table.headers.map((h, hIdx) => (
+                                  <th key={hIdx} className="py-3 px-4 font-extrabold">
+                                    {h}
+                                  </th>
+                                ))}
+                              </tr>
+                            </thead>
+                            <tbody className="divide-y divide-neutral-100">
+                              {section.table.rows.map((row, rIdx) => (
+                                <tr
+                                  key={rIdx}
+                                  className="hover:bg-amber-50/30 transition-colors"
+                                >
+                                  {row.map((cell, cIdx) => (
+                                    <td
+                                      key={cIdx}
+                                      className={`py-3 px-4 ${
+                                        cIdx === 0
+                                          ? "font-bold text-[#18191E]"
+                                          : "font-normal text-[#5F5D54]"
+                                      }`}
+                                    >
+                                      {cell}
+                                    </td>
+                                  ))}
+                                </tr>
+                              ))}
+                            </tbody>
+                          </table>
+                        </div>
+                      )}
+
+                      {/* Section Items / Vocabulary */}
+                      {section.items && section.items.length > 0 && (
+                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-1">
+                          {section.items.map((item, iIdx) => (
+                            <div
+                              key={iIdx}
+                              className="p-4 rounded-2xl bg-neutral-50/80 border border-neutral-200/70 hover:border-neutral-300 transition-colors space-y-1.5"
+                            >
+                              <div className="flex items-center justify-between gap-2">
+                                <span className="font-extrabold text-sm text-[#18191E]">
+                                  {item.term}
+                                </span>
+                                {item.pronunciation && (
+                                  <span className="text-[10px] font-mono font-semibold text-amber-800 bg-amber-50 px-2 py-0.5 rounded border border-amber-200/60">
+                                    [{item.pronunciation}]
+                                  </span>
+                                )}
+                              </div>
+                              <p className="text-xs text-[#5F5D54] leading-relaxed">
+                                {item.meaning}
+                              </p>
+                              {item.example && (
+                                <p className="text-xs italic text-neutral-500 pt-0.5">
+                                  &ldquo;{item.example}&rdquo;
+                                </p>
+                              )}
+                            </div>
+                          ))}
+                        </div>
+                      )}
+
+                      {/* Section Notes */}
+                      {section.notes && section.notes.length > 0 && (
+                        <ul className="space-y-1.5 text-xs text-[#706E66] list-disc list-inside pt-1">
+                          {section.notes.map((n, nIdx) => (
+                            <li key={nIdx}>{n}</li>
+                          ))}
+                        </ul>
+                      )}
+                    </div>
+                  ))}
+
+                  {/* 4. Authentic German Dialogue (Praxis-Dialog) */}
+                  {currentLessonContent.dialogue && (
+                    <div className="p-6 sm:p-7 rounded-3xl bg-white border border-neutral-200/90 shadow-xs space-y-4">
+                      <div className="flex items-center gap-2 border-b border-neutral-100 pb-3.5">
+                        <MessageSquare className="w-4 h-4 text-amber-600 shrink-0" />
+                        <h4 className="text-base font-extrabold text-[#18191E]">
+                          Praxis-Dialog (Real-World Conversation)
+                        </h4>
+                      </div>
+                      <p className="text-xs text-[#706E66] italic">
+                        📍 {currentLessonContent.dialogue.context}
+                      </p>
+                      <div className="space-y-3 pt-2">
+                        {currentLessonContent.dialogue.lines.map((line, lIdx) => (
+                          <div
+                            key={lIdx}
+                            className={`p-4 rounded-2xl border transition-all ${
+                              lIdx % 2 === 0
+                                ? "bg-neutral-50 border-neutral-200/80"
+                                : "bg-amber-50/40 border-amber-200/70 ml-3 sm:ml-8"
+                            }`}
+                          >
+                            <div className="text-[10px] font-bold text-[#7A776D] uppercase tracking-wider mb-1">
+                              {line.speaker}
+                            </div>
+                            <div className="text-sm font-bold text-[#18191E]">
+                              {line.german}
+                            </div>
+                            <div className="text-xs text-[#706E66] mt-1">
+                              {line.english}
+                            </div>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                  )}
+
+                  {/* 5. Kultur-Spotlight & Fun Fact */}
+                  {currentLessonContent.funFact && (
+                    <div className="p-6 sm:p-7 rounded-3xl bg-gradient-to-br from-[#FFFBF0] via-[#FFF6E5] to-[#FFECD1] border border-amber-300/90 shadow-xs space-y-3">
+                      <div className="flex items-center gap-2">
+                        <span className="text-lg">🇩🇪</span>
+                        <span className="text-xs font-black uppercase tracking-wider text-amber-900">
+                          Kultur-Spotlight & Fun Fact
+                        </span>
+                      </div>
+                      <h4 className="text-base font-extrabold text-amber-950">
+                        {currentLessonContent.funFact.title}
+                      </h4>
+                      <p className="text-xs sm:text-sm text-amber-950/90 leading-relaxed">
+                        {currentLessonContent.funFact.content}
+                      </p>
+                    </div>
+                  )}
+
+                  {/* 6. Quick Practice / Selbsttest & Übung */}
+                  {currentLessonContent.practice &&
+                    currentLessonContent.practice.length > 0 && (
+                      <div className="p-6 sm:p-7 rounded-3xl bg-white border border-neutral-200/90 shadow-xs space-y-5">
+                        <div className="flex items-center gap-2 border-b border-neutral-100 pb-3.5">
+                          <CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0" />
+                          <h4 className="text-base font-extrabold text-[#18191E]">
+                            Selbsttest & Übung (Quick Self-Check)
+                          </h4>
+                        </div>
+                        <div className="space-y-4">
+                          {currentLessonContent.practice.map((item, qIdx) => {
+                            const isRevealed = Boolean(revealedAnswers[qIdx]);
+                            return (
+                              <div
+                                key={qIdx}
+                                className="p-4 sm:p-5 rounded-2xl bg-neutral-50 border border-neutral-200/80 space-y-3"
+                              >
+                                <div className="flex items-start gap-2.5">
+                                  <span className="w-5 h-5 rounded-full bg-[#18191E] text-white text-[10px] font-bold flex items-center justify-center shrink-0 mt-0.5">
+                                    {qIdx + 1}
+                                  </span>
+                                  <p className="text-xs sm:text-sm font-bold text-[#18191E] leading-relaxed">
+                                    {item.question}
+                                  </p>
+                                </div>
+
+                                {item.options && (
+                                  <div className="grid grid-cols-1 sm:grid-cols-3 gap-2 pl-7">
+                                    {item.options.map((opt, oIdx) => (
+                                      <div
+                                        key={oIdx}
+                                        className="px-3 py-2 rounded-xl bg-white border border-neutral-200 text-xs font-medium text-neutral-700"
+                                      >
+                                        {opt}
+                                      </div>
+                                    ))}
+                                  </div>
+                                )}
+
+                                <div className="pl-7 pt-1">
+                                  <button
+                                    onClick={() =>
+                                      setRevealedAnswers((prev) => ({
+                                        ...prev,
+                                        [qIdx]: !prev[qIdx],
+                                      }))
+                                    }
+                                    className="inline-flex items-center gap-1.5 text-xs font-bold text-amber-700 hover:text-amber-800 transition-colors cursor-pointer"
+                                  >
+                                    {isRevealed ? (
+                                      <>
+                                        <EyeOff className="w-3.5 h-3.5" />
+                                        <span>Hide Solution</span>
+                                      </>
+                                    ) : (
+                                      <>
+                                        <Eye className="w-3.5 h-3.5" />
+                                        <span>Show Solution &amp; Explanation</span>
+                                      </>
+                                    )}
+                                  </button>
+
+                                  {isRevealed && (
+                                    <div className="mt-3 p-3.5 rounded-xl bg-emerald-50 border border-emerald-200 text-xs space-y-1">
+                                      <div className="font-bold text-emerald-900">
+                                        ✓ Correct Answer: {item.answer}
+                                      </div>
+                                      <div className="text-emerald-800 leading-relaxed">
+                                        {item.explanation}
+                                      </div>
+                                    </div>
+                                  )}
+                                </div>
+                              </div>
+                            );
+                          })}
+                        </div>
+                      </div>
+                    )}
+                </div>
+              ) : (
+                <div className="max-w-3xl w-full mx-auto my-auto py-12 flex flex-col items-center justify-center text-center">
+                  <div className="w-16 h-16 sm:w-20 sm:h-20 rounded-3xl bg-[#FFF7DF] border border-amber-200 flex items-center justify-center text-amber-700 shadow-sm mb-6">
+                    <FileQuestion className="w-8 h-8 sm:w-10 sm:h-10 stroke-[1.8]" />
+                  </div>
+
+                  <h3 className="text-2xl sm:text-3xl font-extrabold text-[#18191E] tracking-tight">
+                    No contents available
+                  </h3>
+
+                  <p className="text-sm text-[#706E66] mt-3 max-w-lg leading-relaxed">
+                    The lesson materials, vocabulary lists, and practice exercises for this module are currently being prepared. Check back soon or select another lesson from the outline on the left.
+                  </p>
+
+                  {activeLessonInfo.lesson.description && (
+                    <div className="mt-6 p-4 rounded-2xl bg-white border border-neutral-200/90 max-w-lg text-left shadow-xs">
+                      <span className="text-[11px] font-bold uppercase tracking-wider text-neutral-400 block mb-1">
+                        Lesson Focus
+                      </span>
+                      <p className="text-xs text-[#18191E] leading-relaxed">
+                        {activeLessonInfo.lesson.description}
+                      </p>
+                    </div>
+                  )}
+                </div>
+              )}
 
               {/* Bottom Lesson Navigation */}
               <div className="max-w-3xl w-full mx-auto pt-6 border-t border-neutral-200/80 flex items-center justify-between gap-4">

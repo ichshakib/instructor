@@ -26,11 +26,61 @@ export interface CourseProgressStatus {
   statusText?: string;
 }
 
+export interface LessonPracticeQuestion {
+  question: string;
+  options?: string[];
+  answer: string;
+  explanation: string;
+}
+
+export interface LessonDialogueLine {
+  speaker: string;
+  german: string;
+  english: string;
+}
+
+export interface LessonSectionItem {
+  term: string;
+  pronunciation?: string;
+  meaning: string;
+  example?: string;
+}
+
+export interface LessonTable {
+  headers: string[];
+  rows: string[][];
+}
+
+export interface LessonSection {
+  title: string;
+  description?: string;
+  table?: LessonTable;
+  items?: LessonSectionItem[];
+  notes?: string[];
+}
+
+export interface LessonContent {
+  overview: string;
+  canDo: string;
+  teacherNote?: string;
+  sections: LessonSection[];
+  dialogue?: {
+    context: string;
+    lines: LessonDialogueLine[];
+  };
+  funFact?: {
+    title: string;
+    content: string;
+  };
+  practice?: LessonPracticeQuestion[];
+}
+
 export interface Lesson {
   id: string;
   title: string;
   duration?: string;
   description?: string;
+  content?: LessonContent;
 }
 
 export interface Chapter {

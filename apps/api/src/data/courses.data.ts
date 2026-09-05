@@ -1,36 +1,11 @@
-import { Course } from "../types/course.types";
+import { Course, Chapter } from "../types/course.types";
+import { ALL_A1_LESSONS_CONTENT } from "./lesson-contents";
 
-export const COURSES_DATA: Course[] = [
+const A1_RAW_CHAPTERS: Chapter[] = [
   {
-    id: "german-language-course",
-    title: "German Language Learning Course",
-    category: "Language",
-    type: "Mastery Track • Certified",
-    typeIcon: "path",
-    tag1: "German (Deutsch)",
-    tag2: "A1 - C2 CEFR",
-    badgeCount: "6 CEFR Levels",
-    coverVariant: "german-language",
-    buttonLabel: "Start",
-    description:
-      "Comprehensive German language learning from absolute beginner (A1) to native-level fluency (C2), structured according to official CEFR standards with interactive chapters, grammar mastery, and practical dialogues.",
-    featured: true,
-    totalChapters: 19,
-    totalLessons: 65,
-    progressStatus: {
-      type: "status",
-      statusText: "Enrolled",
-    },
-    curriculum: [
-      {
-        level: "A1",
-        title: "A1 • Absolute Beginner",
-        description: "Foundations of German: Alphabet, basic greetings, core grammar, sentence structure, and daily survival vocabulary.",
-        chapters: [
-          {
-            id: "a1-ch1",
-            title: "Chapter 1: Einführung, Aussprache & Grundverben (Sounds, Pronouns & Core Verbs)",
-            lessons: [
+    id: "a1-ch1",
+    title: "Chapter 1: Einführung, Aussprache & Grundverben (Sounds, Pronouns & Core Verbs)",
+    lessons: [
               {
                 id: "a1-ch1-l1",
                 title: "Lesson 1: Das Deutsche Alphabet & German Phonetics",
@@ -369,7 +344,43 @@ export const COURSES_DATA: Course[] = [
               },
             ],
           },
-        ],
+        ];
+
+const A1_CHAPTERS: Chapter[] = A1_RAW_CHAPTERS.map((chapter) => ({
+  ...chapter,
+  lessons: chapter.lessons.map((lesson) => ({
+    ...lesson,
+    content: ALL_A1_LESSONS_CONTENT[lesson.id],
+  })),
+}));
+
+export const COURSES_DATA: Course[] = [
+  {
+    id: "german-language-course",
+    title: "German Language Learning Course",
+    category: "Language",
+    type: "Mastery Track • Certified",
+    typeIcon: "path",
+    tag1: "German (Deutsch)",
+    tag2: "A1 - C2 CEFR",
+    badgeCount: "6 CEFR Levels",
+    coverVariant: "german-language",
+    buttonLabel: "Start",
+    description:
+      "Comprehensive German language learning from absolute beginner (A1) to native-level fluency (C2), structured according to official CEFR standards with interactive chapters, grammar mastery, and practical dialogues.",
+    featured: true,
+    totalChapters: 19,
+    totalLessons: 65,
+    progressStatus: {
+      type: "status",
+      statusText: "Enrolled",
+    },
+    curriculum: [
+      {
+        level: "A1",
+        title: "A1 • Absolute Beginner",
+        description: "Foundations of German: Alphabet, basic greetings, core grammar, sentence structure, and daily survival vocabulary.",
+        chapters: A1_CHAPTERS,
       },
       {
         level: "A2",
