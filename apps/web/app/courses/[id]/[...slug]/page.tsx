@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useEffect, useMemo, useCallback } from "react";
+import React, { useState, useEffect, useMemo, useCallback, useRef } from "react";
 import { useParams } from "next/navigation";
 import Link from "next/link";
 import {
@@ -96,6 +96,9 @@ export default function CourseDetailPage() {
     setIsPlayingDialogue(false);
   };
 
+  // Track whether initial level and lesson have been loaded from URL
+  const isInitializedRef = useRef<boolean>(false);
+
   // Function to sync the browser URL without full-page reload
   const syncUrl = useCallback(
     (lvl: CEFRLevel, chId?: string, lId?: string) => {
@@ -121,54 +124,67 @@ export default function CourseDetailPage() {
       const data = await fetchCourseById(courseId);
       if (!data) {
         setError(`Course '${courseId}' not found.`);
-      } else {
-        setCourse(data);
+        return;
+      }
+      setCourse(data);
 
-        // Determine initial level and lesson from slug or fallback to A1
+      // Only initialize activeLevel & activeLesson from URL on initial load
+      if (!isInitializedRef.current) {
+        isInitializedRef.current = true;
+
+        // Determine path parts directly from window.location.pathname if available, or fallback to slug
+        let parts: string[] = [];
+        if (typeof window !== "undefined") {
+          const prefix = `/courses/${courseId}/`;
+          const pIndex = window.location.pathname.indexOf(prefix);
+          if (pIndex !== -1) {
+            parts = window.location.pathname.slice(pIndex + prefix.length).split("/").filter(Boolean);
+          }
+        }
+        if (parts.length === 0 && slug) {
+          parts = slug;
+        }
+
+        // Determine initial level and lesson from parts or fallback to A1
         let targetLevel: CEFRLevel = "A1";
         let targetLessonId: string | null = null;
         let targetChapterId: string | null = null;
 
-        if (slug && slug.length > 0 && slug[0]) {
-          const rawLevel = slug[0].toUpperCase();
+        if (parts.length > 0 && parts[0]) {
+          const rawLevel = parts[0].toUpperCase();
           if (CEFR_LEVELS.includes(rawLevel as CEFRLevel)) {
             targetLevel = rawLevel as CEFRLevel;
           }
+        }
 
-          const levelData = data.curriculum?.find((c) => c.level === targetLevel);
-          if (levelData) {
-            if (slug.length >= 3 && slug[1] && slug[2]) {
-              targetChapterId = slug[1];
-              targetLessonId = slug[2];
-            } else if (slug.length === 2 && slug[1]) {
-              const part = slug[1].toLowerCase();
-              // Check if matching chapter
-              const matchCh = levelData.chapters.find((ch) => ch.id.toLowerCase() === part);
-              if (matchCh) {
-                targetChapterId = matchCh.id;
-                targetLessonId = matchCh.lessons[0]?.id ?? null;
-              } else {
-                // Check if matching lesson
-                for (const ch of levelData.chapters) {
-                  const matchL = ch.lessons.find((l) => l.id.toLowerCase() === part);
-                  if (matchL) {
-                    targetLessonId = matchL.id;
-                    targetChapterId = ch.id;
-                    break;
-                  }
+        const levelData = data.curriculum?.find((c) => c.level === targetLevel);
+        if (levelData && levelData.chapters.length > 0) {
+          if (parts.length >= 3 && parts[1] && parts[2]) {
+            targetChapterId = parts[1];
+            targetLessonId = parts[2];
+          } else if (parts.length === 2 && parts[1]) {
+            const part = parts[1].toLowerCase();
+            // Check if matching chapter
+            const matchCh = levelData.chapters.find((ch) => ch.id.toLowerCase() === part);
+            if (matchCh) {
+              targetChapterId = matchCh.id;
+              targetLessonId = matchCh.lessons[0]?.id ?? null;
+            } else {
+              // Check if matching lesson
+              for (const ch of levelData.chapters) {
+                const matchL = ch.lessons.find((l) => l.id.toLowerCase() === part);
+                if (matchL) {
+                  targetLessonId = matchL.id;
+                  targetChapterId = ch.id;
+                  break;
                 }
               }
             }
           }
-        }
 
-        setActiveLevel(targetLevel);
-
-        const currentLevelData = data.curriculum?.find((c) => c.level === targetLevel);
-        if (currentLevelData && currentLevelData.chapters.length > 0) {
           // If no specific lesson was targeted from slug, default to first lesson
           if (!targetLessonId) {
-            const firstChapter = currentLevelData.chapters[0];
+            const firstChapter = levelData.chapters[0];
             if (firstChapter && firstChapter.lessons.length > 0) {
               const firstLesson = firstChapter.lessons[0];
               if (firstLesson) {
@@ -180,7 +196,7 @@ export default function CourseDetailPage() {
 
           // If targetLessonId is identified but targetChapterId was not in slug, find which chapter it belongs to
           if (targetLessonId && !targetChapterId) {
-            for (const ch of currentLevelData.chapters) {
+            for (const ch of levelData.chapters) {
               if (ch.lessons.some((l) => l.id.toLowerCase() === targetLessonId?.toLowerCase())) {
                 targetChapterId = ch.id;
                 break;
@@ -188,12 +204,12 @@ export default function CourseDetailPage() {
             }
           }
 
+          setActiveLevel(targetLevel);
+
           // ONLY expand the chapter containing the active lesson; all other chapters remain collapsed
-          const initialExpanded: Record<string, boolean> = {};
           if (targetChapterId) {
-            initialExpanded[targetChapterId] = true;
+            setExpandedChapters({ [targetChapterId]: true });
           }
-          setExpandedChapters(initialExpanded);
 
           if (targetLessonId) {
             setActiveLessonId(targetLessonId);
@@ -212,8 +228,10 @@ export default function CourseDetailPage() {
   }, [courseId, slug, syncUrl]);
 
   useEffect(() => {
+    isInitializedRef.current = false;
     loadCourse();
-  }, [loadCourse]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [courseId]);
 
   // Current Level curriculum
   const currentLevelCurriculum: LevelCurriculum | undefined = useMemo(() => {
@@ -400,7 +418,10 @@ export default function CourseDetailPage() {
           </p>
           <div className="mt-6 flex items-center justify-center gap-3">
             <button
-              onClick={loadCourse}
+              onClick={() => {
+                isInitializedRef.current = false;
+                loadCourse();
+              }}
               className="inline-flex items-center gap-1.5 px-4 py-2 rounded-xl bg-neutral-100 text-neutral-800 text-xs font-semibold hover:bg-neutral-200 transition-colors"
             >
               <RefreshCw className="w-3.5 h-3.5" />
