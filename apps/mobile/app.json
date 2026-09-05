@@ -1,11 +1,11 @@
 {
   "expo": {
-    "name": "mobile",
-    "slug": "mobile",
+    "name": "Instructor",
+    "slug": "instructor",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/app-icons/icon.png",
-    "scheme": "mobile",
+    "scheme": "instructor",
     "userInterfaceStyle": "automatic",
     "ios": {
       "icon": {
