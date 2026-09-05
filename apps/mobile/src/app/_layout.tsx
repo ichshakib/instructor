@@ -1,10 +1,11 @@
-import { Ionicons, MaterialCommunityIcons } from '@expo/vector-icons';
+import { Ionicons } from '@expo/vector-icons';
 import { DarkTheme, DefaultTheme, Tabs, ThemeProvider } from 'expo-router';
 import * as SplashScreen from 'expo-splash-screen';
 import { StatusBar } from 'expo-status-bar';
 import * as SystemUI from 'expo-system-ui';
 import React, { useEffect } from 'react';
 import {
+  Image,
   Platform,
   StatusBar as RNStatusBar,
   StyleSheet,
@@ -94,11 +95,11 @@ function TabsLayoutContent() {
           options={{
             title: 'Home',
             tabBarLabel: 'Home',
-            tabBarIcon: ({ color, focused }) => (
-              <MaterialCommunityIcons
-                name={focused ? 'home-variant' : 'home-variant-outline'}
-                size={23}
-                color={color}
+            tabBarIcon: ({ color }) => (
+              <Image
+                source={require('@/assets/images/tabIcons/home.png')}
+                style={{ width: 22, height: 22, tintColor: color }}
+                resizeMode="contain"
               />
             ),
           }}
