@@ -284,50 +284,7 @@ export default function InstructorLanding() {
                 </svg>
               </div>
 
-              {/* 2. HAND-DRAWN DOODLE ARROW (Pointing toward Play Button) */}
-              <div
-                className="absolute -top-4 left-6 sm:left-12 z-20 pointer-events-none select-none"
-                aria-hidden="true"
-              >
-                <svg
-                  width="110"
-                  height="70"
-                  viewBox="0 0 110 70"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
-                  className="opacity-75 stroke-[#BFA97E]"
-                >
-                  {/* Curved dashed arrow path */}
-                  <path
-                    d="M10 15 C 45 5, 80 15, 95 38"
-                    strokeWidth="2.2"
-                    strokeLinecap="round"
-                    strokeDasharray="5 5"
-                  />
-                  {/* Arrowhead */}
-                  <path
-                    d="M85 35 L 96 39 L 92 28"
-                    strokeWidth="2.2"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  />
-                </svg>
-              </div>
-
-              {/* 3. FLOATING GLASS CIRCULAR PLAY BUTTON */}
-              <div className="absolute top-8 sm:top-10 left-12 sm:left-20 z-30 animate-float-slow">
-                <button
-                  onClick={() => setIsVideoModalOpen(true)}
-                  className="group relative flex items-center justify-center w-14 h-14 sm:w-16 sm:h-16 rounded-full bg-white/90 backdrop-blur-md border border-white/80 shadow-2xl hover:scale-110 active:scale-95 transition-all duration-300 focus:outline-none"
-                  aria-label="Play LMS Introduction Video"
-                >
-                  {/* Gentle pulse ring */}
-                  <span className="absolute -inset-1 rounded-full bg-amber-400/20 animate-ping opacity-75" />
-                  <Play className="w-5 h-5 sm:w-6 sm:h-6 text-[#18191E] fill-[#18191E] ml-0.5 group-hover:scale-110 transition-transform duration-200" />
-                </button>
-              </div>
-
-              {/* 4. MAIN HERO STUDENT IMAGE CONTAINER */}
+              {/* MAIN HERO STUDENT IMAGE CONTAINER */}
               <div className="relative z-10 w-full max-w-[440px] sm:max-w-[480px] lg:max-w-[520px] h-[460px] sm:h-[520px] lg:h-[560px] flex items-center justify-center">
                 {customHeroImg ? (
                   /* User previewed live uploaded image */
@@ -378,22 +335,6 @@ export default function InstructorLanding() {
                   </div>
                 )}
               </div>
-
-              {/* 5. FLOATING GLASSMORHPIC VIDEO CARD (Lower Right of Student) */}
-              <div className="absolute -bottom-2 sm:bottom-4 right-0 sm:right-4 z-30 animate-float-reverse">
-                <div className="flex items-center gap-3.5 px-4 py-3.5 rounded-2xl bg-white/70 backdrop-blur-md border border-white/80 shadow-xl shadow-amber-950/10 w-44 sm:w-52">
-                  {/* Left Mini Play Icon */}
-                  <div className="w-9 h-9 rounded-xl bg-[#18191E] flex items-center justify-center text-white shrink-0 shadow-sm">
-                    <Play className="w-4 h-4 fill-white ml-0.5" />
-                  </div>
-                  {/* Right Skeleton / Progress Preview Lines */}
-                  <div className="flex-1 space-y-1.5">
-                    <div className="h-2 rounded-full bg-white/95 w-full shadow-inner" />
-                    <div className="h-2 rounded-full bg-white/80 w-4/5" />
-                    <div className="h-2 rounded-full bg-white/65 w-3/5" />
-                  </div>
-                </div>
-              </div>
             </div>
           </div>
         </div>
@@ -403,11 +344,11 @@ export default function InstructorLanding() {
       {/* 2. FLOATING STATS BANNER (STRADDLING CREAM & WHITE BACKGROUNDS)           */}
       {/* ========================================================================= */}
       <div className="relative z-30 w-full max-w-6xl mx-auto px-4 sm:px-6 -mt-14 sm:-mt-16">
-        <div className="w-full rounded-3xl bg-white/85 backdrop-blur-xl border border-white/90 shadow-xl shadow-neutral-900/5 px-6 sm:px-12 py-7 sm:py-8">
-          <div className="grid grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-6 divide-y lg:divide-y-0 lg:divide-x divide-neutral-200/60">
+        <div className="w-full rounded-3xl bg-gradient-to-b from-white/55 via-white/35 to-white/45 backdrop-blur-2xl backdrop-saturate-150 border border-white/80 shadow-[0_20px_45px_-15px_rgba(24,25,30,0.08),inset_0_1px_2px_rgba(255,255,255,0.95)] px-6 sm:px-12 py-7 sm:py-8 transition-all duration-300">
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-6 divide-y lg:divide-y-0 lg:divide-x divide-neutral-300/40">
             {/* Stat 1: Happy Learner */}
             <div className="flex items-center gap-4 pt-4 first:pt-0 lg:pt-0 lg:px-4 first:pl-0">
-              <div className="w-12 h-12 rounded-2xl bg-[#FFF7DF] border border-amber-200/60 flex items-center justify-center text-[#18191E] shrink-0 shadow-sm">
+              <div className="w-12 h-12 rounded-2xl bg-white/70 backdrop-blur-md border border-white/90 flex items-center justify-center text-[#18191E] shrink-0 shadow-sm shadow-black/[0.04]">
                 <Smile className="w-6 h-6 stroke-[1.8]" />
               </div>
               <div>
@@ -422,7 +363,7 @@ export default function InstructorLanding() {
 
             {/* Stat 2: Winning Awards */}
             <div className="flex items-center gap-4 pt-4 lg:pt-0 lg:px-4">
-              <div className="w-12 h-12 rounded-2xl bg-[#FFF7DF] border border-amber-200/60 flex items-center justify-center text-[#18191E] shrink-0 shadow-sm">
+              <div className="w-12 h-12 rounded-2xl bg-white/70 backdrop-blur-md border border-white/90 flex items-center justify-center text-[#18191E] shrink-0 shadow-sm shadow-black/[0.04]">
                 <Award className="w-6 h-6 stroke-[1.8]" />
               </div>
               <div>
@@ -437,7 +378,7 @@ export default function InstructorLanding() {
 
             {/* Stat 3: Online Courses */}
             <div className="flex items-center gap-4 pt-4 lg:pt-0 lg:px-4">
-              <div className="w-12 h-12 rounded-2xl bg-[#FFF7DF] border border-amber-200/60 flex items-center justify-center text-[#18191E] shrink-0 shadow-sm">
+              <div className="w-12 h-12 rounded-2xl bg-white/70 backdrop-blur-md border border-white/90 flex items-center justify-center text-[#18191E] shrink-0 shadow-sm shadow-black/[0.04]">
                 <Video className="w-6 h-6 stroke-[1.8]" />
               </div>
               <div>
@@ -452,7 +393,7 @@ export default function InstructorLanding() {
 
             {/* Stat 4: Live Support */}
             <div className="flex items-center gap-4 pt-4 lg:pt-0 lg:px-4">
-              <div className="w-12 h-12 rounded-2xl bg-[#FFF7DF] border border-amber-200/60 flex items-center justify-center text-[#18191E] shrink-0 shadow-sm">
+              <div className="w-12 h-12 rounded-2xl bg-white/70 backdrop-blur-md border border-white/90 flex items-center justify-center text-[#18191E] shrink-0 shadow-sm shadow-black/[0.04]">
                 <Headphones className="w-6 h-6 stroke-[1.8]" />
               </div>
               <div>
@@ -742,7 +683,7 @@ export default function InstructorLanding() {
             <div className="lg:col-span-6 space-y-4">
               <Link href="/" className="inline-flex items-center group focus:outline-none">
                 <span className="font-rochester text-3xl sm:text-4xl text-[#18191E] tracking-tight transition-transform duration-300 group-hover:scale-105 select-none">
-                  Instructor
+                  instructor
                 </span>
               </Link>
               <p className="text-sm text-[#706E66] max-w-md leading-relaxed font-normal">
