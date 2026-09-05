@@ -7,7 +7,6 @@ import {
   Award,
   BookOpen,
   Layers,
-  FolderOpen,
 } from "lucide-react";
 
 export interface CourseItem {
@@ -78,11 +77,8 @@ export default function CourseCard({ course }: CourseCardProps) {
             <g transform="translate(60, 26)">
               <rect x="0" y="8" width="130" height="135" rx="10" fill="#FFFFFF" filter="drop-shadow(0 10px 18px rgba(0,0,0,0.08))" />
               <rect x="8" y="16" width="114" height="24" rx="6" fill="#FFFBEB" stroke="#FDE68A" strokeWidth="1" />
-              <text x="16" y="32" fontSize="12" fontWeight="800" fill="#18191E" letterSpacing="0.5">
+              <text x="24" y="32" fontSize="13" fontWeight="800" fill="#18191E" letterSpacing="0.8">
                 DEUTSCH
-              </text>
-              <text x="78" y="32" fontSize="10" fontWeight="700" fill="#D97706">
-                A1-C2
               </text>
 
               {/* Grammar Lines */}
@@ -428,38 +424,25 @@ export default function CourseCard({ course }: CourseCardProps) {
         className="relative block w-full h-32 sm:h-36 overflow-hidden bg-neutral-100 cursor-pointer"
       >
         {renderCoverIllustration()}
-
-        {/* Floating Dark Pill Badge on Top Left (e.g. "6 CEFR Levels ❐") */}
-        <div className="absolute top-2.5 left-2.5 flex items-center gap-1 px-2.5 py-0.5 rounded-md bg-black/75 backdrop-blur-md text-white text-[11px] font-semibold shadow-sm tracking-tight select-none">
-          <span>{course.badgeCount}</span>
-          <FolderOpen className="w-2.5 h-2.5 opacity-80" />
-        </div>
-
-        {/* Floating Total Chapters & Lessons Pill Badge on Top Right */}
-        {(totalChapters !== undefined || totalLessons !== undefined) && (
-          <div className="absolute top-2.5 right-2.5 flex items-center gap-1.5 px-2 py-0.5 rounded-md bg-white/95 backdrop-blur-md text-[#18191E] text-[10px] font-bold shadow-sm tracking-tight select-none border border-neutral-200/60">
-            {totalChapters !== undefined && <span>{totalChapters} Ch</span>}
-            {totalChapters !== undefined && totalLessons !== undefined && (
-              <span className="text-neutral-300">•</span>
-            )}
-            {totalLessons !== undefined && <span>{totalLessons} Lessons</span>}
-          </div>
-        )}
       </Link>
 
       {/* 2. CARD CONTENT BODY */}
       <div className="p-4 sm:p-5 flex flex-col flex-1 justify-between">
         <div>
-          {/* Type / Meta Header Row (e.g. "Language Track • Certified") */}
-          <div className="flex items-center gap-1.5 text-[11px] font-semibold text-[#18191E]">
-            {getTypeIcon()}
-            <span>{course.type}</span>
-          </div>
+          {/* Type / Meta Header Row (omitted if Mastery Track or Certified) */}
+          {course.type &&
+            !course.type.toLowerCase().includes("mastery track") &&
+            !course.type.toLowerCase().includes("certified") && (
+              <div className="flex items-center gap-1.5 text-[11px] font-semibold text-[#18191E] mb-1">
+                {getTypeIcon()}
+                <span>{course.type}</span>
+              </div>
+            )}
 
           {/* Course Title - Clickable with underline on hover */}
           <Link
             href={`/courses/${course.id}`}
-            className="block text-[15px] sm:text-base font-bold text-[#18191E] mt-2 tracking-tight group-hover:text-black leading-snug line-clamp-2 hover:underline decoration-[#18191E] decoration-2 underline-offset-2 transition-all cursor-pointer"
+            className="block text-[15px] sm:text-base font-bold text-[#18191E] tracking-tight group-hover:text-black leading-snug line-clamp-2 hover:underline decoration-[#18191E] decoration-2 underline-offset-2 transition-all cursor-pointer"
           >
             {course.title}
           </Link>
@@ -492,14 +475,20 @@ export default function CourseCard({ course }: CourseCardProps) {
             </div>
           )}
 
-          {/* Dual Tag Pills (e.g. "German (Deutsch)", "A1 - C2 CEFR") */}
+          {/* Tag Pills (No CEFR / A1-C2 tags) */}
           <div className="mt-3 flex flex-wrap items-center gap-1.5">
-            <span className="px-2.5 py-0.5 rounded-full bg-neutral-100 text-[#5F5D54] text-[11px] font-medium">
-              {course.tag1}
-            </span>
-            <span className="px-2.5 py-0.5 rounded-full bg-neutral-100 text-[#5F5D54] text-[11px] font-medium">
-              {course.tag2}
-            </span>
+            {course.tag1 && (
+              <span className="px-2.5 py-0.5 rounded-full bg-neutral-100 text-[#5F5D54] text-[11px] font-medium">
+                {course.tag1}
+              </span>
+            )}
+            {course.tag2 &&
+              !course.tag2.toUpperCase().includes("CEFR") &&
+              !course.tag2.toUpperCase().includes("C2") && (
+                <span className="px-2.5 py-0.5 rounded-full bg-neutral-100 text-[#5F5D54] text-[11px] font-medium">
+                  {course.tag2}
+                </span>
+              )}
           </div>
         </div>
       </div>

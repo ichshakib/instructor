@@ -12,7 +12,6 @@ import {
 } from "../../../../lib/api";
 import {
   BookOpen,
-  Clock,
   Layers,
   FileQuestion,
   ChevronDown,
@@ -584,12 +583,6 @@ export default function CourseDetailPage() {
                                 <p className="text-xs leading-snug line-clamp-2">
                                   {formatLessonTitle(lesson.title, continuousLessonNumber)}
                                 </p>
-                                {lesson.duration && (
-                                  <div className="flex items-center gap-1 mt-0.5 text-[10px] text-neutral-400">
-                                    <Clock className="w-2.5 h-2.5" />
-                                    <span>{lesson.duration}</span>
-                                  </div>
-                                )}
                               </div>
                             </button>
                           );
@@ -627,13 +620,6 @@ export default function CourseDetailPage() {
                     : activeLessonInfo.lesson.title}
                 </h2>
               </div>
-
-              {activeLessonInfo.lesson.duration && (
-                <div className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-neutral-100 text-neutral-700 text-xs font-medium shrink-0 self-start sm:self-center">
-                  <Clock className="w-3.5 h-3.5 text-neutral-500" />
-                  <span>{activeLessonInfo.lesson.duration}</span>
-                </div>
-              )}
             </header>
 
             {/* 2. MAIN CONTENTS AREA */}
