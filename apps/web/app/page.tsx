@@ -1,9 +1,9 @@
 "use client";
 
-import React, { useState, useRef } from "react";
+import React, { useState } from "react";
 import Link from "next/link";
+import Navbar from "../components/Navbar";
 import {
-  LogIn,
   Play,
   Smile,
   Award,
@@ -11,7 +11,6 @@ import {
   Headphones,
   X,
   Upload,
-  Menu,
   CheckCircle2,
   BookOpen,
   ArrowRight,
@@ -25,26 +24,18 @@ import {
 export default function InstructorLanding() {
   // State for video modal preview
   const [isVideoModalOpen, setIsVideoModalOpen] = useState(false);
-  // State for mobile nav menu
-  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   // Optional live preview image uploaded by the user
   const [customHeroImg, setCustomHeroImg] = useState<string | null>(null);
-  const fileInputRef = useRef<HTMLInputElement>(null);
-
-  const handleFileUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const file = e.target.files?.[0];
-    if (file) {
-      const objectUrl = URL.createObjectURL(file);
-      setCustomHeroImg(objectUrl);
-    }
-  };
 
   return (
     <div className="relative min-h-screen w-full bg-white text-[#18191E] overflow-x-hidden font-sans selection:bg-[#18191E] selection:text-white">
+      {/* Sticky Persistent Header */}
+      <Navbar heroCornerOffset={true} />
+
       {/* ========================================================================= */}
       {/* 1. TOP HERO SECTION (WARM CREAM PALETTE: #FFF7DF)                        */}
       {/* ========================================================================= */}
-      <section className="relative w-full bg-[#FFF7DF] text-[#18191E] overflow-hidden pb-16 sm:pb-24">
+      <section className="relative w-full bg-[#FFF7DF] text-[#18191E] overflow-hidden pt-24 sm:pt-28 pb-16 sm:pb-24">
         {/* Top Left Organic Dark Shape */}
         <div
           className="pointer-events-none absolute top-0 left-0 w-32 h-32 sm:w-44 sm:h-44 md:w-56 md:h-56 bg-[#18191E] rounded-br-[110px] sm:rounded-br-[160px] z-10 transition-all duration-300"
@@ -64,116 +55,8 @@ export default function InstructorLanding() {
           ))}
         </div>
 
-        {/* Header / Navigation */}
-        <header className="relative z-20 w-full max-w-7xl mx-auto px-6 sm:px-10 lg:px-16 pt-6 sm:pt-8 flex items-center justify-between">
-          {/* Brand Logo */}
-          <Link
-            href="/"
-            className="flex items-center pl-8 sm:pl-16 md:pl-20 group focus:outline-none"
-          >
-            <span className="font-rochester text-3xl sm:text-4xl text-[#18191E] tracking-tight transition-transform duration-300 group-hover:scale-105 select-none">
-              instructor
-            </span>
-          </Link>
-
-          {/* Desktop Navigation Links */}
-          <nav className="hidden md:flex items-center gap-10 text-[15px] font-medium text-[#18191E]">
-            <Link
-              href="#courses"
-              className="relative hover:text-black transition-colors after:content-[''] after:absolute after:-bottom-1 after:left-0 after:w-0 after:h-[2px] after:bg-[#18191E] hover:after:w-full after:transition-all after:duration-300"
-            >
-              Courses
-            </Link>
-            <Link
-              href="#blog"
-              className="relative hover:text-black transition-colors after:content-[''] after:absolute after:-bottom-1 after:left-0 after:w-0 after:h-[2px] after:bg-[#18191E] hover:after:w-full after:transition-all after:duration-300"
-            >
-              Blog
-            </Link>
-            <Link
-              href="#about"
-              className="relative hover:text-black transition-colors after:content-[''] after:absolute after:-bottom-1 after:left-0 after:w-0 after:h-[2px] after:bg-[#18191E] hover:after:w-full after:transition-all after:duration-300"
-            >
-              About
-            </Link>
-          </nav>
-
-          {/* Auth Action Buttons */}
-          <div className="hidden sm:flex items-center gap-6">
-            <Link
-              href="#register"
-              className="text-[15px] font-medium text-[#18191E] hover:opacity-75 transition-opacity px-2 py-1"
-            >
-              Register
-            </Link>
-
-            <Link
-              href="#login"
-              className="group flex items-center gap-2 px-5 py-2.5 rounded-xl border border-[#18191E] text-[15px] font-medium text-[#18191E] hover:bg-[#18191E] hover:text-white transition-all duration-200 shadow-sm active:scale-95"
-            >
-              <LogIn className="w-4 h-4 transition-transform duration-200 group-hover:translate-x-0.5" />
-              <span>Login</span>
-            </Link>
-          </div>
-
-          {/* Mobile Hamburger Button */}
-          <button
-            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-            className="sm:hidden p-2.5 rounded-xl bg-white/70 backdrop-blur-md border border-[#18191E]/10 text-[#18191E] shadow-sm"
-            aria-label="Toggle Navigation Menu"
-          >
-            {isMobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
-          </button>
-        </header>
-
-        {/* Mobile Drawer */}
-        {isMobileMenuOpen && (
-          <div className="sm:hidden fixed inset-x-4 top-20 z-50 bg-white/95 backdrop-blur-xl border border-[#18191E]/10 rounded-2xl p-6 shadow-2xl space-y-4">
-            <nav className="flex flex-col gap-3 text-base font-medium">
-              <Link
-                href="#courses"
-                onClick={() => setIsMobileMenuOpen(false)}
-                className="px-3 py-2 rounded-lg hover:bg-neutral-100"
-              >
-                Courses
-              </Link>
-              <Link
-                href="#blog"
-                onClick={() => setIsMobileMenuOpen(false)}
-                className="px-3 py-2 rounded-lg hover:bg-neutral-100"
-              >
-                Blog
-              </Link>
-              <Link
-                href="#about"
-                onClick={() => setIsMobileMenuOpen(false)}
-                className="px-3 py-2 rounded-lg hover:bg-neutral-100"
-              >
-                About
-              </Link>
-            </nav>
-            <div className="pt-3 border-t border-neutral-200 flex flex-col gap-2.5">
-              <Link
-                href="#register"
-                onClick={() => setIsMobileMenuOpen(false)}
-                className="w-full text-center py-2.5 font-medium hover:bg-neutral-100 rounded-xl"
-              >
-                Register
-              </Link>
-              <Link
-                href="#login"
-                onClick={() => setIsMobileMenuOpen(false)}
-                className="w-full flex items-center justify-center gap-2 py-2.5 rounded-xl bg-[#18191E] text-white font-medium"
-              >
-                <LogIn className="w-4 h-4" />
-                <span>Login</span>
-              </Link>
-            </div>
-          </div>
-        )}
-
         {/* Hero Content */}
-        <div className="relative z-10 w-full max-w-7xl mx-auto px-6 sm:px-10 lg:px-16 pt-8 sm:pt-14">
+        <div className="relative z-10 w-full max-w-7xl mx-auto px-6 sm:px-10 lg:px-16 pt-4 sm:pt-8">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-center">
             {/* ----------------- LEFT COLUMN: COPY & CTA ----------------- */}
             <div className="lg:col-span-6 flex flex-col items-start z-10">
@@ -195,17 +78,14 @@ export default function InstructorLanding() {
 
               {/* CTA & Social Proof Avatars Row */}
               <div className="mt-8 sm:mt-10 flex flex-wrap items-center gap-6 sm:gap-8">
-                {/* Primary Pill Button */}
-                <button
-                  onClick={() => {
-                    const elem = document.getElementById("courses-section");
-                    if (elem) elem.scrollIntoView({ behavior: "smooth" });
-                  }}
+                {/* Primary Pill Button - Redirects to /courses */}
+                <Link
+                  href="/courses"
                   className="group relative inline-flex items-center justify-center px-8 py-4 text-base font-semibold text-white bg-[#18191E] rounded-2xl shadow-lg shadow-neutral-900/15 hover:bg-[#2A2B33] hover:shadow-xl hover:-translate-y-0.5 active:translate-y-0 active:scale-[0.98] transition-all duration-200"
                 >
                   <span>Our Courses</span>
                   <ArrowRight className="w-4 h-4 ml-2 opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-200" />
-                </button>
+                </Link>
 
                 {/* Overlapping Avatars & 29.5k+ Counter */}
                 <div className="flex items-center">
@@ -668,6 +548,17 @@ export default function InstructorLanding() {
                 </div>
               </div>
             </div>
+
+            {/* View Full Directory Link */}
+            <div className="mt-12 text-center">
+              <Link
+                href="/courses"
+                className="inline-flex items-center gap-2 px-8 py-3.5 rounded-2xl bg-[#18191E] hover:bg-[#2B2D37] text-white text-sm font-semibold shadow-md shadow-neutral-900/10 hover:shadow-lg hover:-translate-y-0.5 active:translate-y-0 transition-all duration-200"
+              >
+                <span>Browse Full Course Catalog</span>
+                <ArrowRight className="w-4 h-4" />
+              </Link>
+            </div>
           </div>
         </div>
       </section>
@@ -748,32 +639,32 @@ export default function InstructorLanding() {
               </h4>
               <ul className="space-y-2.5 text-xs text-[#706E66]">
                 <li>
-                  <Link href="#courses" className="hover:text-[#18191E] transition-colors">
+                  <Link href="/courses" className="hover:text-[#18191E] transition-colors">
                     Full-Stack Web Development
                   </Link>
                 </li>
                 <li>
-                  <Link href="#courses" className="hover:text-[#18191E] transition-colors">
+                  <Link href="/courses" className="hover:text-[#18191E] transition-colors">
                     Artificial Intelligence & ML
                   </Link>
                 </li>
                 <li>
-                  <Link href="#courses" className="hover:text-[#18191E] transition-colors">
+                  <Link href="/courses" className="hover:text-[#18191E] transition-colors">
                     Cloud & Systems Architecture
                   </Link>
                 </li>
                 <li>
-                  <Link href="#courses" className="hover:text-[#18191E] transition-colors">
+                  <Link href="/courses" className="hover:text-[#18191E] transition-colors">
                     Modern UI/UX Design Systems
                   </Link>
                 </li>
                 <li>
-                  <Link href="#courses" className="hover:text-[#18191E] transition-colors">
+                  <Link href="/courses" className="hover:text-[#18191E] transition-colors">
                     Cybersecurity Fundamentals
                   </Link>
                 </li>
                 <li>
-                  <Link href="#courses" className="hover:text-[#18191E] transition-colors font-medium inline-flex items-center gap-1 text-[#18191E] pt-1">
+                  <Link href="/courses" className="hover:text-[#18191E] transition-colors font-medium inline-flex items-center gap-1 text-[#18191E] pt-1">
                     <span>View All 200+ Courses</span>
                     <ArrowUpRight className="w-3 h-3" />
                   </Link>
