@@ -26,19 +26,22 @@ function TabsLayoutContent() {
       <Tabs
         screenOptions={{
           headerShown: false,
-          tabBarActiveTintColor: '#F59E0B',
-          tabBarInactiveTintColor: isDark ? '#94A3B8' : '#64748B',
+          tabBarActiveTintColor: isDark ? '#F9FAFB' : '#1E2433',
+          tabBarInactiveTintColor: isDark ? '#6B7280' : '#8E95A5',
           tabBarStyle: {
-            backgroundColor: isDark ? '#090D16' : '#FFFFFF',
-            borderTopColor: isDark ? '#1E293B' : '#E2E8F0',
+            backgroundColor: isDark ? '#111827' : '#FFFFFF',
+            borderTopColor: isDark ? '#1F2937' : '#F1F3F9',
             borderTopWidth: 1,
-            height: Platform.OS === 'ios' ? 88 : 64,
-            paddingBottom: Platform.OS === 'ios' ? 28 : 10,
-            paddingTop: 8,
+            elevation: 0,
+            shadowOpacity: 0,
+            height: Platform.OS === 'ios' ? 84 : 60,
+            paddingBottom: Platform.OS === 'ios' ? 24 : 8,
+            paddingTop: 6,
           },
           tabBarLabelStyle: {
-            fontSize: 12,
-            fontWeight: '600',
+            fontSize: 11,
+            fontWeight: '500',
+            marginTop: 1,
           },
         }}
       >
@@ -59,11 +62,25 @@ function TabsLayoutContent() {
         <Tabs.Screen
           name="courses"
           options={{
-            title: 'My Courses',
-            tabBarLabel: 'My Courses',
+            title: 'My Learning',
+            tabBarLabel: 'My Learning',
             tabBarIcon: ({ color, focused }) => (
               <Ionicons
-                name={focused ? 'book' : 'book-outline'}
+                name={focused ? 'play-circle' : 'play-circle-outline'}
+                size={22}
+                color={color}
+              />
+            ),
+          }}
+        />
+        <Tabs.Screen
+          name="wishlist"
+          options={{
+            title: 'Wishlist',
+            tabBarLabel: 'Wishlist',
+            tabBarIcon: ({ color, focused }) => (
+              <Ionicons
+                name={focused ? 'heart' : 'heart-outline'}
                 size={22}
                 color={color}
               />
@@ -73,8 +90,8 @@ function TabsLayoutContent() {
         <Tabs.Screen
           name="settings"
           options={{
-            title: 'Settings',
-            tabBarLabel: 'Settings',
+            title: 'Setting',
+            tabBarLabel: 'Setting',
             tabBarIcon: ({ color, focused }) => (
               <Ionicons
                 name={focused ? 'settings' : 'settings-outline'}
