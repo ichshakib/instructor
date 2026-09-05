@@ -43,11 +43,7 @@ export default function Navbar({ heroCornerOffset = false }: NavbarProps) {
           {/* Brand Logo */}
           <Link
             href="/"
-            className={`flex items-center group focus:outline-none transition-all duration-300 ${
-              heroCornerOffset && !isScrolled
-                ? "pl-8 sm:pl-16 md:pl-20"
-                : "pl-0"
-            }`}
+            className="flex items-center group focus:outline-none transition-transform duration-200"
           >
             <span className="font-rochester text-3xl sm:text-4xl text-[#18191E] tracking-tight transition-transform duration-300 group-hover:scale-105 select-none">
               instructor
