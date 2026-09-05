@@ -30,6 +30,9 @@ export interface CourseItem {
   buttonLabel: "View" | "Continue" | "Start";
   description?: string;
   featured?: boolean;
+  totalChapters?: number;
+  totalLessons?: number;
+  curriculum?: any[];
   progressStatus?: {
     type: "points" | "progress" | "status";
     points?: number;
@@ -44,7 +47,7 @@ interface CourseCardProps {
   onActionClick?: (course: CourseItem) => void;
 }
 
-export default function CourseCard({ course, onActionClick }: CourseCardProps) {
+export default function CourseCard({ course }: CourseCardProps) {
   // Render Cover Illustration matching the user's reference mockup
   const renderCoverIllustration = () => {
     switch (course.coverVariant) {
@@ -391,6 +394,32 @@ export default function CourseCard({ course, onActionClick }: CourseCardProps) {
     }
   };
 
+  const totalChapters =
+    course.totalChapters ??
+    (Array.isArray(course.curriculum)
+      ? course.curriculum.reduce(
+          (acc: number, lvl: any) => acc + (Array.isArray(lvl.chapters) ? lvl.chapters.length : 0),
+          0
+        )
+      : undefined);
+
+  const totalLessons =
+    course.totalLessons ??
+    (Array.isArray(course.curriculum)
+      ? course.curriculum.reduce(
+          (acc: number, lvl: any) =>
+            acc +
+            (Array.isArray(lvl.chapters)
+              ? lvl.chapters.reduce(
+                  (cAcc: number, ch: any) =>
+                    cAcc + (Array.isArray(ch.lessons) ? ch.lessons.length : 0),
+                  0
+                )
+              : 0),
+          0
+        )
+      : undefined);
+
   return (
     <div className="group rounded-2xl bg-white border border-neutral-200/90 shadow-sm hover:shadow-md hover:-translate-y-1 transition-all duration-300 flex flex-col justify-between overflow-hidden">
       {/* 1. TOP ILLUSTRATED COVER IMAGE CONTAINER (Reaches flush to top edges) */}
@@ -405,6 +434,17 @@ export default function CourseCard({ course, onActionClick }: CourseCardProps) {
           <span>{course.badgeCount}</span>
           <FolderOpen className="w-2.5 h-2.5 opacity-80" />
         </div>
+
+        {/* Floating Total Chapters & Lessons Pill Badge on Top Right */}
+        {(totalChapters !== undefined || totalLessons !== undefined) && (
+          <div className="absolute top-2.5 right-2.5 flex items-center gap-1.5 px-2 py-0.5 rounded-md bg-white/95 backdrop-blur-md text-[#18191E] text-[10px] font-bold shadow-sm tracking-tight select-none border border-neutral-200/60">
+            {totalChapters !== undefined && <span>{totalChapters} Ch</span>}
+            {totalChapters !== undefined && totalLessons !== undefined && (
+              <span className="text-neutral-300">•</span>
+            )}
+            {totalLessons !== undefined && <span>{totalLessons} Lessons</span>}
+          </div>
+        )}
       </Link>
 
       {/* 2. CARD CONTENT BODY */}
@@ -431,8 +471,29 @@ export default function CourseCard({ course, onActionClick }: CourseCardProps) {
             </p>
           )}
 
+          {/* Chapters and Lessons Count Bar */}
+          {(totalChapters !== undefined || totalLessons !== undefined) && (
+            <div className="mt-3 pt-3 border-t border-neutral-100 flex items-center gap-3 text-xs text-[#5F5D54]">
+              {totalChapters !== undefined && (
+                <div className="inline-flex items-center gap-1.5 font-semibold text-[#18191E]">
+                  <Layers className="w-3.5 h-3.5 text-amber-600" />
+                  <span>{totalChapters} Chapters</span>
+                </div>
+              )}
+              {totalChapters !== undefined && totalLessons !== undefined && (
+                <span className="text-neutral-300">•</span>
+              )}
+              {totalLessons !== undefined && (
+                <div className="inline-flex items-center gap-1.5 font-semibold text-[#18191E]">
+                  <BookOpen className="w-3.5 h-3.5 text-amber-600" />
+                  <span>{totalLessons} Lessons</span>
+                </div>
+              )}
+            </div>
+          )}
+
           {/* Dual Tag Pills (e.g. "German (Deutsch)", "A1 - C2 CEFR") */}
-          <div className="mt-3.5 flex flex-wrap items-center gap-1.5">
+          <div className="mt-3 flex flex-wrap items-center gap-1.5">
             <span className="px-2.5 py-0.5 rounded-full bg-neutral-100 text-[#5F5D54] text-[11px] font-medium">
               {course.tag1}
             </span>

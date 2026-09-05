@@ -61,6 +61,8 @@ export interface Course {
   buttonLabel: CourseButtonLabel;
   description: string;
   featured?: boolean;
+  totalChapters?: number;
+  totalLessons?: number;
   progressStatus?: CourseProgressStatus;
   curriculum?: LevelCurriculum[];
 }

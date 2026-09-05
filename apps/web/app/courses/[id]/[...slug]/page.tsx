@@ -26,11 +26,21 @@ import {
 
 const CEFR_LEVELS: CEFRLevel[] = ["A1", "A2", "B1", "B2", "C1", "C2"];
 
+function formatLessonTitle(rawTitle: string, continuousNum: number): string {
+  if (/^Lesson\s+\d+:/i.test(rawTitle)) {
+    return rawTitle.replace(/^Lesson\s+\d+:/i, `Lesson ${continuousNum}:`);
+  }
+  return rawTitle;
+}
+
 export default function CourseDetailPage() {
   const params = useParams();
   const courseId = typeof params?.id === "string" ? params.id : "german-language-course";
   const rawSlug = params?.slug;
-  const slug = Array.isArray(rawSlug) ? rawSlug : typeof rawSlug === "string" ? [rawSlug] : undefined;
+  const slug = useMemo(
+    () => (Array.isArray(rawSlug) ? rawSlug : typeof rawSlug === "string" ? [rawSlug] : undefined),
+    [rawSlug]
+  );
 
   const [course, setCourse] = useState<CourseDetail | null>(null);
   const [isLoading, setIsLoading] = useState<boolean>(true);
@@ -115,13 +125,6 @@ export default function CourseDetailPage() {
 
         const currentLevelData = data.curriculum?.find((c) => c.level === targetLevel);
         if (currentLevelData && currentLevelData.chapters.length > 0) {
-          // Expand all chapters in active level
-          const initialExpanded: Record<string, boolean> = {};
-          currentLevelData.chapters.forEach((ch) => {
-            initialExpanded[ch.id] = true;
-          });
-          setExpandedChapters(initialExpanded);
-
           // If no specific lesson was targeted from slug, default to first lesson
           if (!targetLessonId) {
             const firstChapter = currentLevelData.chapters[0];
@@ -133,6 +136,23 @@ export default function CourseDetailPage() {
               }
             }
           }
+
+          // If targetLessonId is identified but targetChapterId was not in slug, find which chapter it belongs to
+          if (targetLessonId && !targetChapterId) {
+            for (const ch of currentLevelData.chapters) {
+              if (ch.lessons.some((l) => l.id.toLowerCase() === targetLessonId?.toLowerCase())) {
+                targetChapterId = ch.id;
+                break;
+              }
+            }
+          }
+
+          // ONLY expand the chapter containing the active lesson; all other chapters remain collapsed
+          const initialExpanded: Record<string, boolean> = {};
+          if (targetChapterId) {
+            initialExpanded[targetChapterId] = true;
+          }
+          setExpandedChapters(initialExpanded);
 
           if (targetLessonId) {
             setActiveLessonId(targetLessonId);
@@ -179,39 +199,38 @@ export default function CourseDetailPage() {
     return null;
   }, [currentLevelCurriculum, activeLessonId]);
 
-  // When active level changes (e.g. clicking A1, A2, B1, B2, C1, C2), update URL and select first lesson
+  // When active level changes (e.g. clicking A1, A2, B1, B2, C1, C2), update URL, select first lesson, and expand ONLY its chapter
   const handleLevelChange = (lvl: CEFRLevel) => {
     setActiveLevel(lvl);
     const targetLevel = course?.curriculum?.find((c) => c.level === lvl);
     if (targetLevel && targetLevel.chapters.length > 0) {
-      const newExpanded: Record<string, boolean> = {};
-      targetLevel.chapters.forEach((ch) => {
-        newExpanded[ch.id] = true;
-      });
-      setExpandedChapters(newExpanded);
-
       const firstChapter = targetLevel.chapters[0];
       if (firstChapter && firstChapter.lessons.length > 0) {
         const firstLesson = firstChapter.lessons[0];
         if (firstLesson) {
           setActiveLessonId(firstLesson.id);
+          // Only expand the chapter containing the newly activated lesson
+          setExpandedChapters({ [firstChapter.id]: true });
           syncUrl(lvl, firstChapter.id, firstLesson.id);
         }
       } else {
+        setExpandedChapters({});
         syncUrl(lvl);
       }
     } else {
+      setExpandedChapters({});
       syncUrl(lvl);
     }
   };
 
-  // When a lesson is clicked, update active lesson and sync URL
+  // When a lesson is clicked, activate that lesson, expand ONLY its chapter, and sync URL
   const handleSelectLesson = (chapterId: string, lessonId: string) => {
     setActiveLessonId(lessonId);
+    setExpandedChapters({ [chapterId]: true });
     syncUrl(activeLevel, chapterId, lessonId);
   };
 
-  // Toggle chapter collapse/expand
+  // Toggle chapter collapse/expand when clicking chapter heading
   const toggleChapter = (chapterId: string) => {
     setExpandedChapters((prev) => ({
       ...prev,
@@ -224,22 +243,50 @@ export default function CourseDetailPage() {
     const handlePopState = () => {
       const parts = window.location.pathname.split("/").filter(Boolean);
       // Example: ["courses", "german-language-course", "A2", "a2-ch1", "a2-ch1-l1"]
+      let newLevel: CEFRLevel | null = null;
       if (parts.length >= 3) {
         const lvlPart = parts[2]?.toUpperCase();
         if (CEFR_LEVELS.includes(lvlPart as CEFRLevel)) {
-          setActiveLevel(lvlPart as CEFRLevel);
+          newLevel = lvlPart as CEFRLevel;
+          setActiveLevel(newLevel);
         }
       }
+
+      const activeCurriculum = course?.curriculum?.find(
+        (c) => c.level === (newLevel || activeLevel)
+      );
+
+      let targetLId: string | null = null;
+      let targetCId: string | null = null;
+
       if (parts.length >= 5 && parts[4]) {
-        setActiveLessonId(parts[4]);
+        targetCId = parts[3] ?? null;
+        targetLId = parts[4] ?? null;
       } else if (parts.length === 4 && parts[3]) {
-        setActiveLessonId(parts[3]);
+        const part = parts[3].toLowerCase();
+        if (activeCurriculum) {
+          for (const ch of activeCurriculum.chapters) {
+            const m = ch.lessons.find((l) => l.id.toLowerCase() === part);
+            if (m) {
+              targetLId = m.id;
+              targetCId = ch.id;
+              break;
+            }
+          }
+        }
+      }
+
+      if (targetLId) {
+        setActiveLessonId(targetLId);
+        if (targetCId) {
+          setExpandedChapters({ [targetCId]: true });
+        }
       }
     };
 
     window.addEventListener("popstate", handlePopState);
     return () => window.removeEventListener("popstate", handlePopState);
-  }, []);
+  }, [course, activeLevel]);
 
   // Flattened list of lessons in current level for Next/Previous navigation
   const allLessonsInLevel: { lesson: Lesson; chapterId: string }[] = useMemo(() => {
@@ -403,7 +450,7 @@ export default function CourseDetailPage() {
             </div>
           ) : (
             currentLevelCurriculum.chapters.map((chapter, chIdx) => {
-              const isExpanded = expandedChapters[chapter.id] ?? true;
+              const isExpanded = Boolean(expandedChapters[chapter.id]);
 
               return (
                 <div key={chapter.id} className="transition-colors">
@@ -436,43 +483,50 @@ export default function CourseDetailPage() {
                   {/* Lessons Under this Chapter */}
                   {isExpanded && (
                     <div className="bg-neutral-50/60 pb-1">
-                      {chapter.lessons.map((lesson, lIdx) => {
-                        const isLessonActive = activeLessonId === lesson.id;
+                      {(() => {
+                        const previousLessonsCount = currentLevelCurriculum.chapters
+                          .slice(0, chIdx)
+                          .reduce((sum, ch) => sum + ch.lessons.length, 0);
 
-                        return (
-                          <button
-                            key={lesson.id}
-                            onClick={() => handleSelectLesson(chapter.id, lesson.id)}
-                            className={`w-full text-left px-4 py-2.5 flex items-start gap-2.5 transition-all duration-150 cursor-pointer ${
-                              isLessonActive
-                                ? "bg-amber-50 text-[#18191E] border-l-4 border-amber-500 font-semibold shadow-xs"
-                                : "hover:bg-neutral-100/90 text-[#5F5D54] border-l-4 border-transparent"
-                            }`}
-                          >
-                            <div className="pt-0.5 shrink-0">
-                              {isLessonActive ? (
-                                <BookOpen className="w-3.5 h-3.5 text-amber-600" />
-                              ) : (
-                                <div className="w-3.5 h-3.5 rounded-full border border-neutral-300 flex items-center justify-center text-[9px] text-neutral-400">
-                                  {lIdx + 1}
-                                </div>
-                              )}
-                            </div>
+                        return chapter.lessons.map((lesson, lIdx) => {
+                          const isLessonActive = activeLessonId === lesson.id;
+                          const continuousLessonNumber = previousLessonsCount + lIdx + 1;
 
-                            <div className="flex-1 min-w-0">
-                              <p className="text-xs leading-snug line-clamp-2">
-                                {lesson.title}
-                              </p>
-                              {lesson.duration && (
-                                <div className="flex items-center gap-1 mt-0.5 text-[10px] text-neutral-400">
-                                  <Clock className="w-2.5 h-2.5" />
-                                  <span>{lesson.duration}</span>
-                                </div>
-                              )}
-                            </div>
-                          </button>
-                        );
-                      })}
+                          return (
+                            <button
+                              key={lesson.id}
+                              onClick={() => handleSelectLesson(chapter.id, lesson.id)}
+                              className={`w-full text-left px-4 py-2.5 flex items-start gap-2.5 transition-all duration-150 cursor-pointer ${
+                                isLessonActive
+                                  ? "bg-amber-50 text-[#18191E] border-l-4 border-amber-500 font-semibold shadow-xs"
+                                  : "hover:bg-neutral-100/90 text-[#5F5D54] border-l-4 border-transparent"
+                              }`}
+                            >
+                              <div className="pt-0.5 shrink-0">
+                                {isLessonActive ? (
+                                  <BookOpen className="w-3.5 h-3.5 text-amber-600" />
+                                ) : (
+                                  <div className="min-w-4 h-4 px-1 rounded-full border border-neutral-300 flex items-center justify-center text-[9px] font-semibold text-neutral-500">
+                                    {continuousLessonNumber}
+                                  </div>
+                                )}
+                              </div>
+
+                              <div className="flex-1 min-w-0">
+                                <p className="text-xs leading-snug line-clamp-2">
+                                  {formatLessonTitle(lesson.title, continuousLessonNumber)}
+                                </p>
+                                {lesson.duration && (
+                                  <div className="flex items-center gap-1 mt-0.5 text-[10px] text-neutral-400">
+                                    <Clock className="w-2.5 h-2.5" />
+                                    <span>{lesson.duration}</span>
+                                  </div>
+                                )}
+                              </div>
+                            </button>
+                          );
+                        });
+                      })()}
                     </div>
                   )}
                 </div>
@@ -500,7 +554,9 @@ export default function CourseDetailPage() {
                 </div>
 
                 <h2 className="text-lg sm:text-2xl font-extrabold text-[#18191E] tracking-tight truncate">
-                  {activeLessonInfo.lesson.title}
+                  {currentLessonIndex >= 0
+                    ? formatLessonTitle(activeLessonInfo.lesson.title, currentLessonIndex + 1)
+                    : activeLessonInfo.lesson.title}
                 </h2>
               </div>
 

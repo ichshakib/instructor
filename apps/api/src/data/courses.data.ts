@@ -15,6 +15,8 @@ export const COURSES_DATA: Course[] = [
     description:
       "Comprehensive German language learning from absolute beginner (A1) to native-level fluency (C2), structured according to official CEFR standards with interactive chapters, grammar mastery, and practical dialogues.",
     featured: true,
+    totalChapters: 13,
+    totalLessons: 29,
     progressStatus: {
       type: "status",
       statusText: "Enrolled",
@@ -54,20 +56,20 @@ export const COURSES_DATA: Course[] = [
             title: "Chapter 2: Essential Grammar & Verb Conjugation",
             lessons: [
               {
-                id: "a1-ch2-l1",
-                title: "Lesson 1: Personal Pronouns (ich, du, er/sie/es, wir, ihr, sie/Sie)",
+                id: "a1-ch2-l4",
+                title: "Lesson 4: Personal Pronouns (ich, du, er/sie/es, wir, ihr, sie/Sie)",
                 duration: "18 mins",
                 description: "Subject pronouns and their grammatical roles in German statements.",
               },
               {
-                id: "a1-ch2-l2",
-                title: "Lesson 2: Regular Present Tense Verb Endings (-e, -st, -t, -en)",
+                id: "a1-ch2-l5",
+                title: "Lesson 5: Regular Present Tense Verb Endings (-e, -st, -t, -en)",
                 duration: "22 mins",
                 description: "Conjugating core regular verbs: kommen, wohnen, lernen, machen, heißen.",
               },
               {
-                id: "a1-ch2-l3",
-                title: "Lesson 3: The Irregular Pillar Verbs: 'sein' & 'haben'",
+                id: "a1-ch2-l6",
+                title: "Lesson 6: The Irregular Pillar Verbs: 'sein' & 'haben'",
                 duration: "20 mins",
                 description: "Full conjugations and essential usage patterns for being and having.",
               },
@@ -78,20 +80,20 @@ export const COURSES_DATA: Course[] = [
             title: "Chapter 3: Nouns, Articles & The Accusative Case",
             lessons: [
               {
-                id: "a1-ch3-l1",
-                title: "Lesson 1: Gender & Definite Articles: Der, Die, Das",
+                id: "a1-ch3-l7",
+                title: "Lesson 7: Gender & Definite Articles: Der, Die, Das",
                 duration: "25 mins",
                 description: "Recognizing masculine, feminine, and neuter nouns through typical endings.",
               },
               {
-                id: "a1-ch3-l2",
-                title: "Lesson 2: Indefinite Articles (ein, eine) & Negation (kein, nicht)",
+                id: "a1-ch3-l8",
+                title: "Lesson 8: Indefinite Articles (ein, eine) & Negation (kein, nicht)",
                 duration: "20 mins",
                 description: "Expressing 'a/an', indefinite items, and when to use kein vs. nicht.",
               },
               {
-                id: "a1-ch3-l3",
-                title: "Lesson 3: Introduction to the Accusative Case (Direct Objects)",
+                id: "a1-ch3-l9",
+                title: "Lesson 9: Introduction to the Accusative Case (Direct Objects)",
                 duration: "30 mins",
                 description: "How masculine articles change (der -> den, ein -> einen) with action verbs.",
               },
@@ -102,14 +104,14 @@ export const COURSES_DATA: Course[] = [
             title: "Chapter 4: Daily Life & Practical Situations",
             lessons: [
               {
-                id: "a1-ch4-l1",
-                title: "Lesson 1: Ordering Food & Drinks at a Café or Restaurant",
+                id: "a1-ch4-l10",
+                title: "Lesson 10: Ordering Food & Drinks at a Café or Restaurant",
                 duration: "22 mins",
                 description: "Common phrases: 'Ich möchte...', 'Die Rechnung, bitte', and polite inquiries.",
               },
               {
-                id: "a1-ch4-l2",
-                title: "Lesson 2: Asking for Directions & Navigating the City",
+                id: "a1-ch4-l11",
+                title: "Lesson 11: Asking for Directions & Navigating the City",
                 duration: "20 mins",
                 description: "Prepositions of direction: links, rechts, geradeaus, and asking 'Wo ist...?'",
               },
@@ -145,14 +147,14 @@ export const COURSES_DATA: Course[] = [
             title: "Chapter 2: Modal Verbs & Separable Verbs",
             lessons: [
               {
-                id: "a2-ch2-l1",
-                title: "Lesson 1: Modal Verbs (können, müssen, dürfen, wollen, sollen)",
+                id: "a2-ch2-l3",
+                title: "Lesson 3: Modal Verbs (können, müssen, dürfen, wollen, sollen)",
                 duration: "30 mins",
                 description: "Expressing ability, obligation, permission, and desire with bracket sentence structure.",
               },
               {
-                id: "a2-ch2-l2",
-                title: "Lesson 2: Trennbare Verben (Separable Prefix Verbs)",
+                id: "a2-ch2-l4",
+                title: "Lesson 4: Trennbare Verben (Separable Prefix Verbs)",
                 duration: "25 mins",
                 description: "Understanding separable prefixes (auf-, an-, mit-, aus-) in main clauses.",
               },
@@ -163,14 +165,14 @@ export const COURSES_DATA: Course[] = [
             title: "Chapter 3: The Dative Case & Two-Way Prepositions",
             lessons: [
               {
-                id: "a2-ch3-l1",
-                title: "Lesson 1: Indirect Objects & Dative Articles (dem, der, dem, den+n)",
+                id: "a2-ch3-l5",
+                title: "Lesson 5: Indirect Objects & Dative Articles (dem, der, dem, den+n)",
                 duration: "30 mins",
                 description: "Giving and helping: 'geben', 'helfen', 'gefallen', and personal dative pronouns.",
               },
               {
-                id: "a2-ch3-l2",
-                title: "Lesson 2: Wechselpräpositionen (Two-Way Prepositions: Wo vs. Wohin)",
+                id: "a2-ch3-l6",
+                title: "Lesson 6: Wechselpräpositionen (Two-Way Prepositions: Wo vs. Wohin)",
                 duration: "35 mins",
                 description: "Location (Dative) vs. Direction/Movement (Accusative): in, an, auf, unter, vor, hinter.",
               },
@@ -194,7 +196,7 @@ export const COURSES_DATA: Course[] = [
                 description: "Verb-final word order and expressing causes, conditions, and concessions.",
               },
               {
-                id: "b1-ch2-l2",
+                id: "b1-ch1-l2",
                 title: "Lesson 2: Relative Clauses (Relativsätze in Nominativ & Akkusativ)",
                 duration: "35 mins",
                 description: "Connecting ideas smoothly using relative pronouns and descriptive clauses.",
@@ -206,14 +208,14 @@ export const COURSES_DATA: Course[] = [
             title: "Chapter 2: The Passive Voice & Written Past (Präteritum)",
             lessons: [
               {
-                id: "b1-ch2-l1",
-                title: "Lesson 1: Das Vorgangspassiv (werden + Partizip II)",
+                id: "b1-ch2-l3",
+                title: "Lesson 3: Das Vorgangspassiv (werden + Partizip II)",
                 duration: "35 mins",
                 description: "Focusing on actions rather than agents: 'Das Auto wird repariert'.",
               },
               {
-                id: "b1-ch2-l2",
-                title: "Lesson 2: Narrative Past Tense in Formal & Written Contexts",
+                id: "b1-ch2-l4",
+                title: "Lesson 4: Narrative Past Tense in Formal & Written Contexts",
                 duration: "30 mins",
                 description: "Mastering Präteritum forms used in news, books, and professional correspondence.",
               },
@@ -249,14 +251,14 @@ export const COURSES_DATA: Course[] = [
             title: "Chapter 2: Professional & Academic German (Berufssprache)",
             lessons: [
               {
-                id: "b2-ch2-l1",
-                title: "Lesson 1: Formal Business Emails, Inquiries & Phone Etiquette",
+                id: "b2-ch2-l3",
+                title: "Lesson 3: Formal Business Emails, Inquiries & Phone Etiquette",
                 duration: "40 mins",
                 description: "Formal correspondence formulas: 'Sehr geehrte Damen und Herren', negotiations.",
               },
               {
-                id: "b2-ch2-l2",
-                title: "Lesson 2: Fixed Preposition-Verb Combinations (achten auf, abhängen von)",
+                id: "b2-ch2-l4",
+                title: "Lesson 4: Fixed Preposition-Verb Combinations (achten auf, abhängen von)",
                 duration: "45 mins",
                 description: "Mastering the 50 most critical verb-preposition pairings and pronominal adverbs.",
               },
