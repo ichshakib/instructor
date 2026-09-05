@@ -3,6 +3,7 @@
 import React, { useState } from "react";
 import Link from "next/link";
 import Navbar from "../components/Navbar";
+import CourseCard, { CourseItem } from "../components/CourseCard";
 import {
   Play,
   Smile,
@@ -19,6 +20,61 @@ import {
   ArrowUpRight,
   ShieldCheck,
 } from "lucide-react";
+
+const FEATURED_COURSES: CourseItem[] = [
+  {
+    id: "quiz-ux-opt",
+    title: "5 Steps Optimizing User Experience",
+    category: "Design",
+    type: "Quiz • Certified",
+    typeIcon: "quiz",
+    tag1: "UI/UX Design",
+    tag2: "Urgent",
+    badgeCount: "20 Question",
+    coverVariant: "quiz-clipboard",
+    progressStatus: {
+      type: "points",
+      points: 20,
+      subLabel: "Passing point 20 pts",
+    },
+    buttonLabel: "View",
+    description: "Learn essential usability evaluations, feedback synthesis, and quantitative heuristic testing.",
+  },
+  {
+    id: "heuristics-10-usability",
+    title: "Heuristics: 10 Usability Principles To improve UI Design",
+    category: "Design",
+    type: "Page",
+    typeIcon: "page",
+    tag1: "Learning Design",
+    tag2: "Not Urgent",
+    badgeCount: "12 Chapters",
+    coverVariant: "video-chapters",
+    progressStatus: {
+      type: "progress",
+      percentage: 40,
+    },
+    buttonLabel: "Continue",
+    description: "Deep-dive into Nielsen's usability principles and practical interface interaction guidelines.",
+  },
+  {
+    id: "general-knowledge-methodology",
+    title: "General Knowledge & Methodology - Layout & Spacing",
+    category: "Design",
+    type: "Learning Path",
+    typeIcon: "path",
+    tag1: "Consistency",
+    tag2: "Not Urgent",
+    badgeCount: "20 Path",
+    coverVariant: "layout-wireframe",
+    progressStatus: {
+      type: "status",
+      statusText: "Not Started",
+    },
+    buttonLabel: "Start",
+    description: "Master modern spatial systems, 8pt grid structures, rhythm, and typographic scales.",
+  },
+];
 
 export default function InstructorLanding() {
   // State for video modal preview
@@ -465,87 +521,10 @@ export default function InstructorLanding() {
               </p>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-              {/* Course Card 1 */}
-              <div className="p-7 rounded-3xl bg-neutral-50/80 hover:bg-white border border-neutral-200/90 shadow-sm hover:shadow-lg hover:-translate-y-1 transition-all duration-300 flex flex-col justify-between">
-                <div>
-                  <div className="flex items-center justify-between mb-4">
-                    <span className="px-3 py-1 rounded-xl bg-amber-100 text-amber-900 text-xs font-bold">
-                      Web Development
-                    </span>
-                  </div>
-                  <h3 className="text-lg font-bold text-[#18191E]">
-                    Full-Stack Next.js & Modern UI Architecture
-                  </h3>
-                  <p className="text-xs text-[#706E66] mt-2.5 leading-relaxed font-normal">
-                    Master production Next.js apps, Tailwind CSS v4, and distributed monorepo pipelines.
-                  </p>
-                </div>
-                <div className="pt-6 mt-6 border-t border-neutral-200/60 flex items-center justify-between">
-                  <span className="text-xs font-medium text-[#7A776D]">Open curriculum</span>
-                  <Link
-                    href="/courses"
-                    className="group/btn inline-flex items-center gap-1.5 px-4 py-2 rounded-xl bg-[#18191E] text-white text-xs font-semibold hover:bg-[#2B2D37] transition-colors"
-                  >
-                    <span>Start Learning</span>
-                    <ArrowRight className="w-3.5 h-3.5 transition-transform duration-200 group-hover/btn:translate-x-1" />
-                  </Link>
-                </div>
-              </div>
-
-              {/* Course Card 2 */}
-              <div className="p-7 rounded-3xl bg-neutral-50/80 hover:bg-white border border-neutral-200/90 shadow-sm hover:shadow-lg hover:-translate-y-1 transition-all duration-300 flex flex-col justify-between">
-                <div>
-                  <div className="flex items-center justify-between mb-4">
-                    <span className="px-3 py-1 rounded-xl bg-indigo-100 text-indigo-900 text-xs font-bold">
-                      Data & AI
-                    </span>
-                  </div>
-                  <h3 className="text-lg font-bold text-[#18191E]">
-                    Applied AI Systems & Intelligent Agents
-                  </h3>
-                  <p className="text-xs text-[#706E66] mt-2.5 leading-relaxed font-normal">
-                    Build production agentic workflows, memory pipelines, and autonomous tools.
-                  </p>
-                </div>
-                <div className="pt-6 mt-6 border-t border-neutral-200/60 flex items-center justify-between">
-                  <span className="text-xs font-medium text-[#7A776D]">Open curriculum</span>
-                  <Link
-                    href="/courses"
-                    className="group/btn inline-flex items-center gap-1.5 px-4 py-2 rounded-xl bg-[#18191E] text-white text-xs font-semibold hover:bg-[#2B2D37] transition-colors"
-                  >
-                    <span>Start Learning</span>
-                    <ArrowRight className="w-3.5 h-3.5 transition-transform duration-200 group-hover/btn:translate-x-1" />
-                  </Link>
-                </div>
-              </div>
-
-              {/* Course Card 3 */}
-              <div className="p-7 rounded-3xl bg-neutral-50/80 hover:bg-white border border-neutral-200/90 shadow-sm hover:shadow-lg hover:-translate-y-1 transition-all duration-300 flex flex-col justify-between">
-                <div>
-                  <div className="flex items-center justify-between mb-4">
-                    <span className="px-3 py-1 rounded-xl bg-rose-100 text-rose-900 text-xs font-bold">
-                      UI/UX Design
-                    </span>
-                  </div>
-                  <h3 className="text-lg font-bold text-[#18191E]">
-                    Modern Design Systems & Glassmorphism
-                  </h3>
-                  <p className="text-xs text-[#706E66] mt-2.5 leading-relaxed font-normal">
-                    Craft award-winning digital experiences, micro-interactions, and visual tokens.
-                  </p>
-                </div>
-                <div className="pt-6 mt-6 border-t border-neutral-200/60 flex items-center justify-between">
-                  <span className="text-xs font-medium text-[#7A776D]">Open curriculum</span>
-                  <Link
-                    href="/courses"
-                    className="group/btn inline-flex items-center gap-1.5 px-4 py-2 rounded-xl bg-[#18191E] text-white text-xs font-semibold hover:bg-[#2B2D37] transition-colors"
-                  >
-                    <span>Start Learning</span>
-                    <ArrowRight className="w-3.5 h-3.5 transition-transform duration-200 group-hover/btn:translate-x-1" />
-                  </Link>
-                </div>
-              </div>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-7 sm:gap-8">
+              {FEATURED_COURSES.map((course) => (
+                <CourseCard key={course.id} course={course} />
+              ))}
             </div>
 
             {/* View Full Directory Link */}

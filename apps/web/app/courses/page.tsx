@@ -1,12 +1,12 @@
 "use client";
 
 import React, { useState } from "react";
-import Link from "next/link";
 import Navbar from "../../components/Navbar";
+import CourseCard, { CourseItem } from "../../components/CourseCard";
+import Link from "next/link";
 import {
   Search,
   BookOpen,
-  ArrowRight,
   Filter,
   Sparkles,
   Mail,
@@ -14,93 +14,115 @@ import {
   MapPin,
 } from "lucide-react";
 
-interface Course {
-  id: string;
-  title: string;
-  category: "Development" | "AI & Data" | "Design" | "Business";
-  level: "Beginner" | "Intermediate" | "Advanced";
-  description: string;
-}
-
-const COURSES_DATA: Course[] = [
+export const ALL_COURSES: CourseItem[] = [
   {
-    id: "nextjs-fullstack",
-    title: "Full-Stack Next.js & Modern UI Architecture",
-    category: "Development",
-    level: "Advanced",
-    description:
-      "Master production Next.js 15, server components, Tailwind CSS v4, and distributed monorepo pipelines with Turbo.",
-  },
-  {
-    id: "applied-ai-agents",
-    title: "Applied AI Systems & Autonomous Agents",
-    category: "AI & Data",
-    level: "Intermediate",
-    description:
-      "Build production agentic workflows, memory pipelines, tool-calling frameworks, and autonomous multi-agent orchestration.",
-  },
-  {
-    id: "design-systems-glassmorphism",
-    title: "Modern Design Systems & Glassmorphism UI",
+    id: "quiz-ux-opt",
+    title: "5 Steps Optimizing User Experience",
     category: "Design",
-    level: "Beginner",
-    description:
-      "Craft award-winning digital design systems, micro-interactions, responsive tokens, and aesthetic glassmorphism aesthetics.",
+    type: "Quiz • Certified",
+    typeIcon: "quiz",
+    tag1: "UI/UX Design",
+    tag2: "Urgent",
+    badgeCount: "20 Question",
+    coverVariant: "quiz-clipboard",
+    buttonLabel: "View",
+    description: "Learn essential usability evaluations, feedback synthesis, and quantitative heuristic testing.",
   },
   {
-    id: "distributed-backend-go",
-    title: "High-Performance Backend Engineering in Go",
+    id: "heuristics-10-usability",
+    title: "Heuristics: 10 Usability Principles To improve UI Design",
+    category: "Design",
+    type: "Page",
+    typeIcon: "page",
+    tag1: "Learning Design",
+    tag2: "Not Urgent",
+    badgeCount: "12 Chapters",
+    coverVariant: "video-chapters",
+    buttonLabel: "Continue",
+    description: "Deep-dive into Nielsen's usability principles and practical interface interaction guidelines.",
+  },
+  {
+    id: "general-knowledge-methodology",
+    title: "General Knowledge & Methodology - Layout & Spacing",
+    category: "Design",
+    type: "Learning Path",
+    typeIcon: "path",
+    tag1: "Consistency",
+    tag2: "Not Urgent",
+    badgeCount: "20 Path",
+    coverVariant: "layout-wireframe",
+    buttonLabel: "Start",
+    description: "Master modern spatial systems, 8pt grid structures, rhythm, and typographic scales.",
+  },
+  {
+    id: "nextjs-fullstack-architecture",
+    title: "Full-Stack Next.js 15 & Modern UI Architecture",
     category: "Development",
-    level: "Advanced",
-    description:
-      "Build ultra low-latency microservices, gRPC channels, concurrency patterns, and containerized cloud deployments.",
+    type: "Masterclass • Certified",
+    typeIcon: "quiz",
+    tag1: "Fullstack",
+    tag2: "Recommended",
+    badgeCount: "24 Lessons",
+    coverVariant: "code-architecture",
+    buttonLabel: "Continue",
+    description: "Master server components, distributed pipelines, Tailwind CSS v4, and scalable monorepo tooling.",
   },
   {
-    id: "mlops-pipeline-production",
-    title: "MLOps: Deploying & Scaling Models at Scale",
+    id: "applied-ai-systems-agents",
+    title: "Applied AI Systems & Autonomous Intelligent Agents",
     category: "AI & Data",
-    level: "Advanced",
-    description:
-      "Streamline ML lifecycle management, experiment tracking, automated model retraining, and Kubernetes model inference.",
+    type: "Interactive Lab",
+    typeIcon: "lab",
+    tag1: "Artificial Intelligence",
+    tag2: "Trending",
+    badgeCount: "16 Modules",
+    coverVariant: "cloud-backend",
+    buttonLabel: "Start",
+    description: "Build production multi-agent orchestration, tool-calling pipelines, and autonomous workflows.",
   },
   {
-    id: "product-strategy-growth",
-    title: "Product Strategy, Metrics & SaaS Growth",
+    id: "product-metrics-growth",
+    title: "Product Analytics, Conversion Metrics & SaaS Growth",
     category: "Business",
-    level: "Intermediate",
-    description:
-      "Design growth loops, execute product-led onboarding funnels, and analyze churn cohorts for high-scale subscription platforms.",
+    type: "Learning Path",
+    typeIcon: "path",
+    tag1: "Product Growth",
+    tag2: "Not Urgent",
+    badgeCount: "18 Units",
+    coverVariant: "metrics-growth",
+    buttonLabel: "View",
+    description: "Analyze user churn cohorts, activation funnels, and design high-impact growth loops.",
   },
 ];
 
-const CATEGORIES = ["All Courses", "Development", "AI & Data", "Design", "Business"] as const;
+const CATEGORIES = ["All Courses", "Design", "Development", "AI & Data", "Business"] as const;
 
 export default function CoursesPage() {
   const [selectedCategory, setSelectedCategory] = useState<string>("All Courses");
   const [searchQuery, setSearchQuery] = useState<string>("");
   const [selectedLevel, setSelectedLevel] = useState<string>("All");
 
-  const filteredCourses = COURSES_DATA.filter((course) => {
+  const filteredCourses = ALL_COURSES.filter((course) => {
     const matchesCategory =
       selectedCategory === "All Courses" || course.category === selectedCategory;
     const matchesSearch =
       course.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
-      course.description.toLowerCase().includes(searchQuery.toLowerCase());
-    const matchesLevel =
-      selectedLevel === "All" || course.level === selectedLevel;
+      course.tag1.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      course.type.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      (course.description && course.description.toLowerCase().includes(searchQuery.toLowerCase()));
 
-    return matchesCategory && matchesSearch && matchesLevel;
+    return matchesCategory && matchesSearch;
   });
 
   return (
-    <div className="relative min-h-screen w-full bg-white text-[#18191E] overflow-x-hidden font-sans selection:bg-[#18191E] selection:text-white">
+    <div className="relative min-h-screen w-full bg-[#FAF9F5] text-[#18191E] overflow-x-hidden font-sans selection:bg-[#18191E] selection:text-white">
       {/* Sticky Persistent Navbar */}
       <Navbar />
 
       {/* ========================================================================= */}
       {/* COURSES HERO BANNER                                                       */}
       {/* ========================================================================= */}
-      <section className="relative w-full bg-[#FFF7DF] pt-32 pb-20 sm:pb-24 border-b border-amber-200/50">
+      <section className="relative w-full bg-[#FFF7DF] pt-32 pb-16 sm:pb-20 border-b border-amber-200/50">
         {/* Subtle Decorative Grid */}
         <div
           className="pointer-events-none absolute top-12 right-6 sm:top-16 sm:right-16 grid grid-cols-4 gap-3 opacity-60"
@@ -115,51 +137,51 @@ export default function CoursesPage() {
           <div className="max-w-3xl">
             <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/80 backdrop-blur-md border border-neutral-200/80 text-xs font-semibold text-[#18191E] mb-5 shadow-sm">
               <Sparkles className="w-3.5 h-3.5 text-amber-600" />
-              <span>Open Academy Curricula</span>
+              <span>Interactive Learning Modules</span>
             </div>
 
             <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-[#18191E] tracking-tight leading-[1.12]">
-              Expand your expertise with curated courses.
+              Explore All Courses & Learning Tracks
             </h1>
 
-            <p className="mt-5 text-[#6A685F] text-base sm:text-lg leading-relaxed max-w-2xl font-normal">
-              Accelerate your skills with direct access to comprehensive learning paths and project curricula.
+            <p className="mt-4 text-[#6A685F] text-base sm:text-lg leading-relaxed max-w-2xl font-normal">
+              Direct access to interactive quizzes, design heuristics, and technical curricula. Jump in anytime.
             </p>
           </div>
 
           {/* Search & Quick Filter Bar */}
-          <div className="mt-10 max-w-4xl">
+          <div className="mt-8 max-w-4xl">
             <div className="flex flex-col sm:flex-row gap-3">
               {/* Search Box */}
               <div className="relative flex-1">
                 <Search className="w-5 h-5 text-[#7A776D] absolute left-4 top-1/2 -translate-y-1/2" />
                 <input
                   type="text"
-                  placeholder="Search courses or topics..."
+                  placeholder="Search by topic, skill, or title..."
                   value={searchQuery}
                   onChange={(e) => setSearchQuery(e.target.value)}
-                  className="w-full pl-12 pr-4 py-4 rounded-2xl bg-white border border-neutral-200 shadow-sm text-sm text-[#18191E] placeholder:text-[#7A776D] focus:outline-none focus:ring-2 focus:ring-[#18191E] transition-all"
+                  className="w-full pl-12 pr-4 py-3.5 rounded-2xl bg-white border border-neutral-200/90 shadow-sm text-sm text-[#18191E] placeholder:text-[#7A776D] focus:outline-none focus:ring-2 focus:ring-[#18191E] transition-all"
                 />
               </div>
 
-              {/* Level Dropdown */}
+              {/* Status Filter Dropdown */}
               <div className="relative w-full sm:w-48">
                 <Filter className="w-4 h-4 text-[#7A776D] absolute left-4 top-1/2 -translate-y-1/2" />
                 <select
                   value={selectedLevel}
                   onChange={(e) => setSelectedLevel(e.target.value)}
-                  className="w-full pl-11 pr-8 py-4 rounded-2xl bg-white border border-neutral-200 shadow-sm text-sm font-medium text-[#18191E] focus:outline-none focus:ring-2 focus:ring-[#18191E] transition-all appearance-none cursor-pointer"
+                  className="w-full pl-11 pr-8 py-3.5 rounded-2xl bg-white border border-neutral-200/90 shadow-sm text-sm font-medium text-[#18191E] focus:outline-none focus:ring-2 focus:ring-[#18191E] transition-all appearance-none cursor-pointer"
                 >
-                  <option value="All">All Skill Levels</option>
-                  <option value="Beginner">Beginner</option>
-                  <option value="Intermediate">Intermediate</option>
-                  <option value="Advanced">Advanced</option>
+                  <option value="All">All Tracks</option>
+                  <option value="Quizzes">Quizzes & Certifications</option>
+                  <option value="Chapters">Chapters & Lessons</option>
+                  <option value="Paths">Learning Paths</option>
                 </select>
               </div>
             </div>
 
             {/* Category Pills */}
-            <div className="mt-5 flex flex-wrap items-center gap-2">
+            <div className="mt-4 flex flex-wrap items-center gap-2">
               {CATEGORIES.map((cat) => (
                 <button
                   key={cat}
@@ -179,20 +201,19 @@ export default function CoursesPage() {
       </section>
 
       {/* ========================================================================= */}
-      {/* COURSES LIST SECTION                                                      */}
+      {/* COURSES GRID SECTION                                                      */}
       {/* ========================================================================= */}
-      <section className="relative w-full py-16 sm:py-20 bg-white">
+      <section className="relative w-full py-16 sm:py-20 bg-[#FAF9F5]">
         <div className="max-w-7xl mx-auto px-6 sm:px-10 lg:px-16">
-          <div className="flex items-center justify-between mb-8 pb-4 border-b border-neutral-100">
+          <div className="flex items-center justify-between mb-8 pb-4 border-b border-neutral-200/70">
             <span className="text-sm font-semibold text-[#18191E]">
-              Showing <span className="font-bold">{filteredCourses.length}</span> courses
+              Showing <span className="font-bold">{filteredCourses.length}</span> learning modules
             </span>
-            {(searchQuery || selectedCategory !== "All Courses" || selectedLevel !== "All") && (
+            {(searchQuery || selectedCategory !== "All Courses") && (
               <button
                 onClick={() => {
                   setSelectedCategory("All Courses");
                   setSearchQuery("");
-                  setSelectedLevel("All");
                 }}
                 className="text-xs font-semibold text-rose-600 hover:underline"
               >
@@ -202,7 +223,7 @@ export default function CoursesPage() {
           </div>
 
           {filteredCourses.length === 0 ? (
-            <div className="py-20 text-center rounded-3xl bg-neutral-50 border border-neutral-200 max-w-xl mx-auto">
+            <div className="py-20 text-center rounded-3xl bg-white border border-neutral-200 max-w-xl mx-auto shadow-sm">
               <BookOpen className="w-12 h-12 text-neutral-400 mx-auto mb-4" />
               <h3 className="text-lg font-bold text-[#18191E]">No courses found</h3>
               <p className="text-xs text-[#706E66] mt-1 max-w-sm mx-auto">
@@ -212,7 +233,6 @@ export default function CoursesPage() {
                 onClick={() => {
                   setSelectedCategory("All Courses");
                   setSearchQuery("");
-                  setSelectedLevel("All");
                 }}
                 className="mt-5 px-5 py-2.5 rounded-xl bg-[#18191E] text-white text-xs font-semibold hover:bg-neutral-800 transition-colors"
               >
@@ -220,45 +240,9 @@ export default function CoursesPage() {
               </button>
             </div>
           ) : (
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-6">
               {filteredCourses.map((course) => (
-                <div
-                  key={course.id}
-                  className="group rounded-3xl bg-neutral-50/70 hover:bg-white border border-neutral-200/90 shadow-sm hover:shadow-xl hover:-translate-y-1.5 transition-all duration-300 flex flex-col justify-between p-7"
-                >
-                  <div>
-                    {/* Category & Level Badges */}
-                    <div className="flex items-center justify-between mb-4">
-                      <span className="px-3 py-1 rounded-xl bg-amber-100/90 text-amber-900 text-xs font-bold tracking-tight">
-                        {course.category}
-                      </span>
-                      <span className="text-xs font-semibold text-[#7A776D]">
-                        {course.level}
-                      </span>
-                    </div>
-
-                    {/* Title */}
-                    <h3 className="text-xl font-bold text-[#18191E] tracking-tight group-hover:text-black leading-snug">
-                      {course.title}
-                    </h3>
-
-                    {/* Description */}
-                    <p className="text-xs text-[#706E66] mt-3 leading-relaxed font-normal">
-                      {course.description}
-                    </p>
-                  </div>
-
-                  {/* Bottom Action Button */}
-                  <div className="pt-6 mt-6 border-t border-neutral-200/60 flex items-center justify-between">
-                    <span className="text-xs font-medium text-[#7A776D]">
-                      Open curriculum
-                    </span>
-                    <button className="group/btn inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-[#18191E] hover:bg-[#2B2D37] text-white text-xs font-bold shadow-sm active:scale-95 transition-all">
-                      <span>Start Learning</span>
-                      <ArrowRight className="w-3.5 h-3.5 transition-transform duration-200 group-hover/btn:translate-x-1" />
-                    </button>
-                  </div>
-                </div>
+                <CourseCard key={course.id} course={course} />
               ))}
             </div>
           )}
