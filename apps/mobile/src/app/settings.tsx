@@ -1,12 +1,11 @@
 import { Ionicons } from '@expo/vector-icons';
-import React, { useState } from 'react';
+import React from 'react';
 import {
   Alert,
   Platform,
   Pressable,
   ScrollView,
   StyleSheet,
-  Switch,
   Text,
   useColorScheme,
   View,
@@ -14,12 +13,14 @@ import {
 import { SafeAreaView } from 'react-native-safe-area-context';
 
 import { useOnboarding } from '@/context/onboarding-context';
+import { API_BASE_URL } from '@/services/api';
 
 export default function SettingsScreen() {
   const colorScheme = useColorScheme();
   const isDark = colorScheme === 'dark';
   const { reopenOnboarding, resetOnboarding, userName } = useOnboarding();
-  const initials = (userName || 'Maria Waelchi')
+
+  const initials = (userName || 'Learner')
     .split(' ')
     .filter(Boolean)
     .map((p) => p[0])
@@ -27,24 +28,16 @@ export default function SettingsScreen() {
     .join('')
     .toUpperCase();
 
-  // Settings states
-  const [slowAudio, setSlowAudio] = useState(false);
-  const [autoPlayAudio, setAutoPlayAudio] = useState(true);
-  const [showPhonetics, setShowPhonetics] = useState(true);
-  const [dailyReminders, setDailyReminders] = useState(true);
-
-  // Palette tokens
-  const bgColor = isDark ? '#090D16' : '#F8FAFC';
-  const cardBg = isDark ? '#131D2E' : '#FFFFFF';
-  const innerCardBg = isDark ? '#1C293D' : '#F1F5F9';
-  const textColor = isDark ? '#F8FAFC' : '#0F172A';
-  const mutedText = isDark ? '#94A3B8' : '#64748B';
-  const borderColor = isDark ? '#24344D' : '#E2E8F0';
-  const primaryColor = '#F59E0B';
+  // Monochromatic black and white palette (Zero blue)
+  const bgColor = isDark ? '#09090B' : '#FFFFFF';
+  const cardBg = isDark ? '#121214' : '#FFFFFF';
+  const textColor = isDark ? '#FFFFFF' : '#09090B';
+  const mutedText = isDark ? '#A1A1AA' : '#71717A';
+  const borderColor = isDark ? '#27272A' : '#E4E4E7';
 
   const handleResetConfirmation = () => {
     if (Platform.OS === 'web') {
-      if (window.confirm('Reset onboarding status and start the walkthrough from the beginning?')) {
+      if (window.confirm('Reset onboarding walkthrough and start from the beginning?')) {
         resetOnboarding();
       }
       return;
@@ -52,7 +45,7 @@ export default function SettingsScreen() {
 
     Alert.alert(
       'Reset Onboarding',
-      'This will reset your onboarding completion flag and restart the walkthrough. Continue?',
+      'This will reset your onboarding walkthrough so you can view the introductory guide again. Continue?',
       [
         { text: 'Cancel', style: 'cancel' },
         {
@@ -75,44 +68,52 @@ export default function SettingsScreen() {
         <View style={styles.header}>
           <Text style={[styles.headerTitle, { color: textColor }]}>Settings</Text>
           <Text style={[styles.headerSubtitle, { color: mutedText }]}>
-            Preferences, Audio & Onboarding
+            Account & Application Preferences
           </Text>
         </View>
 
         {/* Profile Card */}
         <View style={[styles.profileCard, { backgroundColor: cardBg, borderColor }]}>
-          <View style={[styles.avatarCircle, { backgroundColor: '#FEF3C7' }]}>
-            <Text style={styles.avatarText}>{initials}</Text>
+          <View
+            style={[
+              styles.avatarCircle,
+              { backgroundColor: isDark ? '#27272A' : '#F4F4F5' },
+            ]}
+          >
+            <Text style={[styles.avatarText, { color: textColor }]}>{initials}</Text>
           </View>
           <View style={styles.profileInfo}>
             <Text style={[styles.profileName, { color: textColor }]}>
-              {userName || 'Maria Waelchi'}
+              {userName || 'Learner'}
             </Text>
             <Text style={[styles.profileSub, { color: mutedText }]}>
-              Target: Goethe-Zertifikat A1
+              Learner Account
             </Text>
-            <View style={styles.profileBadgeRow}>
-              <View style={[styles.badge, { backgroundColor: isDark ? '#1E293B' : '#EFF6FF' }]}>
-                <Ionicons name="sparkles" size={12} color="#2563EB" />
-                <Text style={[styles.badgeText, { color: '#2563EB' }]}>Active Student</Text>
-              </View>
-              <View style={[styles.badge, { backgroundColor: isDark ? '#1E293B' : '#FEF3C7' }]}>
-                <Ionicons name="flame" size={12} color="#D97706" />
-                <Text style={[styles.badgeText, { color: '#D97706' }]}>5 Day Streak</Text>
-              </View>
-            </View>
           </View>
         </View>
 
-        {/* ONBOARDING & GUIDANCE SECTION */}
+        {/* PREFERENCES SECTION */}
         <View style={styles.sectionHeaderRow}>
-          <Ionicons name="compass-outline" size={18} color={primaryColor} />
-          <Text style={[styles.sectionTitle, { color: textColor }]}>
-            Onboarding & Walkthrough
-          </Text>
+          <Ionicons name="options-outline" size={16} color={textColor} />
+          <Text style={[styles.sectionTitle, { color: textColor }]}>Preferences</Text>
         </View>
 
         <View style={[styles.settingsCard, { backgroundColor: cardBg, borderColor }]}>
+          {/* Theme Display */}
+          <View style={[styles.infoRow, { borderBottomColor: borderColor }]}>
+            <View style={styles.settingRowLeft}>
+              <Ionicons
+                name={isDark ? 'moon-outline' : 'sunny-outline'}
+                size={18}
+                color={textColor}
+              />
+              <Text style={[styles.settingLabel, { color: textColor }]}>Theme</Text>
+            </View>
+            <Text style={[styles.infoValue, { color: mutedText }]}>
+              {isDark ? 'Dark Mode' : 'Light Mode'}
+            </Text>
+          </View>
+
           {/* Replay Onboarding Walkthrough */}
           <Pressable
             onPress={reopenOnboarding}
@@ -123,19 +124,12 @@ export default function SettingsScreen() {
             ]}
           >
             <View style={styles.settingRowLeft}>
-              <View style={[styles.settingIconWrap, { backgroundColor: '#FEF3C7' }]}>
-                <Ionicons name="play-forward" size={18} color="#D97706" />
-              </View>
-              <View style={styles.settingRowText}>
-                <Text style={[styles.settingLabel, { color: textColor }]}>
-                  Replay Onboarding Flow
-                </Text>
-                <Text style={[styles.settingSub, { color: mutedText }]}>
-                  Swipe through the intro carousel and feature guide
-                </Text>
-              </View>
+              <Ionicons name="play-outline" size={18} color={textColor} />
+              <Text style={[styles.settingLabel, { color: textColor }]}>
+                Replay Introduction Guide
+              </Text>
             </View>
-            <Ionicons name="chevron-forward" size={20} color={mutedText} />
+            <Ionicons name="chevron-forward" size={18} color={mutedText} />
           </Pressable>
 
           {/* Reset Onboarding State */}
@@ -147,151 +141,33 @@ export default function SettingsScreen() {
             ]}
           >
             <View style={styles.settingRowLeft}>
-              <View style={[styles.settingIconWrap, { backgroundColor: '#FEE2E2' }]}>
-                <Ionicons name="refresh" size={18} color="#DC2626" />
-              </View>
-              <View style={styles.settingRowText}>
-                <Text style={[styles.settingLabel, { color: '#DC2626' }]}>
-                  Reset Onboarding Cache
-                </Text>
-                <Text style={[styles.settingSub, { color: mutedText }]}>
-                  Clears saved AsyncStorage completion flag
-                </Text>
-              </View>
+              <Ionicons name="refresh-outline" size={18} color={mutedText} />
+              <Text style={[styles.settingLabel, { color: mutedText }]}>
+                Reset Onboarding Cache
+              </Text>
             </View>
-            <Ionicons name="chevron-forward" size={20} color={mutedText} />
+            <Ionicons name="chevron-forward" size={18} color={mutedText} />
           </Pressable>
-        </View>
-
-        {/* AUDIO & SPEECH PREFERENCES */}
-        <View style={styles.sectionHeaderRow}>
-          <Ionicons name="headset-outline" size={18} color="#2563EB" />
-          <Text style={[styles.sectionTitle, { color: textColor }]}>
-            German Audio & Playback
-          </Text>
-        </View>
-
-        <View style={[styles.settingsCard, { backgroundColor: cardBg, borderColor }]}>
-          {/* Slow Audio Mode */}
-          <View style={[styles.settingRow, { borderBottomColor: borderColor }]}>
-            <View style={styles.settingRowLeft}>
-              <View style={[styles.settingIconWrap, { backgroundColor: '#DBEAFE' }]}>
-                <Ionicons name="speedometer-outline" size={18} color="#2563EB" />
-              </View>
-              <View style={styles.settingRowText}>
-                <Text style={[styles.settingLabel, { color: textColor }]}>
-                  Slow Playback (0.8x)
-                </Text>
-                <Text style={[styles.settingSub, { color: mutedText }]}>
-                  Helps recognize nuances and diphthongs
-                </Text>
-              </View>
-            </View>
-            <Switch
-              value={slowAudio}
-              onValueChange={setSlowAudio}
-              trackColor={{ false: innerCardBg, true: primaryColor }}
-              thumbColor="#FFFFFF"
-            />
-          </View>
-
-          {/* Auto-Play Audio */}
-          <View style={[styles.settingRow, { borderBottomColor: borderColor }]}>
-            <View style={styles.settingRowLeft}>
-              <View style={[styles.settingIconWrap, { backgroundColor: '#DCFCE7' }]}>
-                <Ionicons name="volume-high-outline" size={18} color="#16A34A" />
-              </View>
-              <View style={styles.settingRowText}>
-                <Text style={[styles.settingLabel, { color: textColor }]}>
-                  Auto-Play Audio on Open
-                </Text>
-                <Text style={[styles.settingSub, { color: mutedText }]}>
-                  Automatically pronounce vocabulary cards
-                </Text>
-              </View>
-            </View>
-            <Switch
-              value={autoPlayAudio}
-              onValueChange={setAutoPlayAudio}
-              trackColor={{ false: innerCardBg, true: primaryColor }}
-              thumbColor="#FFFFFF"
-            />
-          </View>
-
-          {/* Phonetics & IPA */}
-          <View style={styles.settingRow}>
-            <View style={styles.settingRowLeft}>
-              <View style={[styles.settingIconWrap, { backgroundColor: '#F3E8FF' }]}>
-                <Ionicons name="text-outline" size={18} color="#9333EA" />
-              </View>
-              <View style={styles.settingRowText}>
-                <Text style={[styles.settingLabel, { color: textColor }]}>
-                  Show Phonetic Transcriptions
-                </Text>
-                <Text style={[styles.settingSub, { color: mutedText }]}>
-                  Display IPA pronunciation hints
-                </Text>
-              </View>
-            </View>
-            <Switch
-              value={showPhonetics}
-              onValueChange={setShowPhonetics}
-              trackColor={{ false: innerCardBg, true: primaryColor }}
-              thumbColor="#FFFFFF"
-            />
-          </View>
-        </View>
-
-        {/* HABIT & NOTIFICATIONS */}
-        <View style={styles.sectionHeaderRow}>
-          <Ionicons name="notifications-outline" size={18} color="#10B981" />
-          <Text style={[styles.sectionTitle, { color: textColor }]}>Study Habits</Text>
-        </View>
-
-        <View style={[styles.settingsCard, { backgroundColor: cardBg, borderColor }]}>
-          <View style={styles.settingRow}>
-            <View style={styles.settingRowLeft}>
-              <View style={[styles.settingIconWrap, { backgroundColor: '#D1FAE5' }]}>
-                <Ionicons name="alarm-outline" size={18} color="#059669" />
-              </View>
-              <View style={styles.settingRowText}>
-                <Text style={[styles.settingLabel, { color: textColor }]}>
-                  Daily Practice Reminder
-                </Text>
-                <Text style={[styles.settingSub, { color: mutedText }]}>
-                  Notification at 19:00 every evening
-                </Text>
-              </View>
-            </View>
-            <Switch
-              value={dailyReminders}
-              onValueChange={setDailyReminders}
-              trackColor={{ false: innerCardBg, true: primaryColor }}
-              thumbColor="#FFFFFF"
-            />
-          </View>
         </View>
 
         {/* ABOUT & APP INFO */}
         <View style={styles.sectionHeaderRow}>
-          <Ionicons name="information-circle-outline" size={18} color={mutedText} />
-          <Text style={[styles.sectionTitle, { color: textColor }]}>About Instructor</Text>
+          <Ionicons name="information-circle-outline" size={16} color={textColor} />
+          <Text style={[styles.sectionTitle, { color: textColor }]}>About</Text>
         </View>
 
         <View style={[styles.settingsCard, { backgroundColor: cardBg, borderColor }]}>
           <View style={[styles.infoRow, { borderBottomColor: borderColor }]}>
-            <Text style={[styles.infoLabel, { color: mutedText }]}>App Version</Text>
-            <Text style={[styles.infoValue, { color: textColor }]}>1.0.0 (Expo SDK 57)</Text>
+            <Text style={[styles.infoLabel, { color: mutedText }]}>Application</Text>
+            <Text style={[styles.infoValue, { color: textColor }]}>Instructor</Text>
           </View>
           <View style={[styles.infoRow, { borderBottomColor: borderColor }]}>
-            <Text style={[styles.infoLabel, { color: mutedText }]}>React Native</Text>
-            <Text style={[styles.infoValue, { color: textColor }]}>0.86.3</Text>
+            <Text style={[styles.infoLabel, { color: mutedText }]}>Version</Text>
+            <Text style={[styles.infoValue, { color: textColor }]}>1.0.0</Text>
           </View>
           <View style={styles.infoRow}>
-            <Text style={[styles.infoLabel, { color: mutedText }]}>Platform</Text>
-            <Text style={[styles.infoValue, { color: textColor }]}>
-              {Platform.OS.toUpperCase()}
-            </Text>
+            <Text style={[styles.infoLabel, { color: mutedText }]}>API Endpoint</Text>
+            <Text style={[styles.infoValue, { color: textColor }]}>{API_BASE_URL}</Text>
           </View>
         </View>
 
@@ -325,82 +201,55 @@ const styles = StyleSheet.create({
     letterSpacing: -0.3,
   },
   headerSubtitle: {
-    fontSize: 14,
+    fontSize: 13,
     marginTop: 2,
   },
   profileCard: {
     flexDirection: 'row',
     alignItems: 'center',
     padding: 16,
-    borderRadius: 18,
+    borderRadius: 16,
     borderWidth: 1,
-    marginBottom: 20,
+    marginBottom: 24,
     gap: 14,
   },
   avatarCircle: {
-    width: 54,
-    height: 54,
-    borderRadius: 27,
+    width: 48,
+    height: 48,
+    borderRadius: 24,
     alignItems: 'center',
     justifyContent: 'center',
   },
   avatarText: {
-    fontSize: 20,
-    fontWeight: '800',
-    color: '#D97706',
+    fontSize: 17,
+    fontWeight: '700',
   },
   profileInfo: {
     flex: 1,
   },
   profileName: {
-    fontSize: 17,
+    fontSize: 16,
     fontWeight: '700',
     marginBottom: 2,
   },
   profileSub: {
     fontSize: 13,
-    marginBottom: 8,
-  },
-  profileBadgeRow: {
-    flexDirection: 'row',
-    gap: 8,
-  },
-  badge: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    paddingHorizontal: 8,
-    paddingVertical: 3,
-    borderRadius: 6,
-    gap: 4,
-  },
-  badgeText: {
-    fontSize: 11,
-    fontWeight: '700',
   },
   sectionHeaderRow: {
     flexDirection: 'row',
     alignItems: 'center',
     gap: 8,
     marginBottom: 10,
-    marginTop: 6,
   },
   sectionTitle: {
-    fontSize: 15,
+    fontSize: 14,
     fontWeight: '700',
   },
   settingsCard: {
-    borderRadius: 16,
+    borderRadius: 14,
     borderWidth: 1,
-    marginBottom: 16,
+    marginBottom: 20,
     overflow: 'hidden',
-  },
-  settingRow: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'space-between',
-    paddingHorizontal: 16,
-    paddingVertical: 14,
-    borderBottomWidth: 1,
   },
   settingRowPressable: {
     flexDirection: 'row',
@@ -413,29 +262,15 @@ const styles = StyleSheet.create({
   settingRowLeft: {
     flexDirection: 'row',
     alignItems: 'center',
-    flex: 1,
     gap: 12,
-  },
-  settingIconWrap: {
-    width: 36,
-    height: 36,
-    borderRadius: 18,
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  settingRowText: {
-    flex: 1,
   },
   settingLabel: {
     fontSize: 14,
-    fontWeight: '600',
-    marginBottom: 2,
-  },
-  settingSub: {
-    fontSize: 12,
+    fontWeight: '500',
   },
   infoRow: {
     flexDirection: 'row',
+    alignItems: 'center',
     justifyContent: 'space-between',
     paddingHorizontal: 16,
     paddingVertical: 14,

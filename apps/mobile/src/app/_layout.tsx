@@ -1,11 +1,13 @@
 import { Ionicons } from '@expo/vector-icons';
 import { DarkTheme, DefaultTheme, Tabs, ThemeProvider } from 'expo-router';
 import * as SplashScreen from 'expo-splash-screen';
+import { StatusBar } from 'expo-status-bar';
 import React, { useEffect } from 'react';
 import { Platform, StyleSheet, useColorScheme, View } from 'react-native';
 import { KeyboardProvider } from 'react-native-keyboard-controller';
 
 import { Onboarding } from '@/components/onboarding';
+import { LearningProvider } from '@/context/learning-context';
 import { OnboardingProvider, useOnboarding } from '@/context/onboarding-context';
 
 function TabsLayoutContent() {
@@ -22,26 +24,27 @@ function TabsLayoutContent() {
   const showOnboarding = !hasCompletedOnboarding || isViewingOnboarding;
 
   return (
-    <View style={styles.container}>
+    <View style={[styles.container, { backgroundColor: isDark ? '#09090B' : '#FFFFFF' }]}>
+      <StatusBar style={isDark ? 'light' : 'dark'} />
       <Tabs
         screenOptions={{
           headerShown: false,
-          tabBarActiveTintColor: isDark ? '#F9FAFB' : '#1E2433',
-          tabBarInactiveTintColor: isDark ? '#6B7280' : '#8E95A5',
+          tabBarActiveTintColor: isDark ? '#FFFFFF' : '#09090B',
+          tabBarInactiveTintColor: isDark ? '#71717A' : '#A1A1AA',
           tabBarStyle: {
-            backgroundColor: isDark ? '#111827' : '#FFFFFF',
-            borderTopColor: isDark ? '#1F2937' : '#F1F3F9',
+            backgroundColor: isDark ? '#09090B' : '#FFFFFF',
+            borderTopColor: isDark ? '#27272A' : '#E4E4E7',
             borderTopWidth: 1,
             elevation: 0,
             shadowOpacity: 0,
-            height: Platform.OS === 'ios' ? 84 : 60,
-            paddingBottom: Platform.OS === 'ios' ? 24 : 8,
-            paddingTop: 6,
+            height: Platform.OS === 'ios' ? 84 : 64,
+            paddingBottom: Platform.OS === 'ios' ? 24 : 10,
+            paddingTop: 8,
           },
           tabBarLabelStyle: {
             fontSize: 11,
-            fontWeight: '500',
-            marginTop: 1,
+            fontWeight: '600',
+            marginTop: 2,
           },
         }}
       >
@@ -66,21 +69,7 @@ function TabsLayoutContent() {
             tabBarLabel: 'My Learning',
             tabBarIcon: ({ color, focused }) => (
               <Ionicons
-                name={focused ? 'play-circle' : 'play-circle-outline'}
-                size={22}
-                color={color}
-              />
-            ),
-          }}
-        />
-        <Tabs.Screen
-          name="wishlist"
-          options={{
-            title: 'Wishlist',
-            tabBarLabel: 'Wishlist',
-            tabBarIcon: ({ color, focused }) => (
-              <Ionicons
-                name={focused ? 'heart' : 'heart-outline'}
+                name={focused ? 'book' : 'book-outline'}
                 size={22}
                 color={color}
               />
@@ -101,6 +90,14 @@ function TabsLayoutContent() {
             ),
           }}
         />
+        {/* Wishlist route hidden from the bottom tab bar (saved courses are inside My Learning) */}
+        <Tabs.Screen
+          name="wishlist"
+          options={{
+            href: null,
+            tabBarStyle: { display: 'none' },
+          }}
+        />
         {/* Auxiliary routes hidden from the bottom tab bar */}
         <Tabs.Screen
           name="course-details"
@@ -113,6 +110,7 @@ function TabsLayoutContent() {
           name="onboarding"
           options={{
             href: null,
+            tabBarStyle: { display: 'none' },
           }}
         />
       </Tabs>
@@ -142,9 +140,11 @@ export default function TabLayout() {
   return (
     <ThemeProvider value={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>
       <KeyboardProvider>
-        <OnboardingProvider>
-          <TabsLayoutContent />
-        </OnboardingProvider>
+        <LearningProvider>
+          <OnboardingProvider>
+            <TabsLayoutContent />
+          </OnboardingProvider>
+        </LearningProvider>
       </KeyboardProvider>
     </ThemeProvider>
   );

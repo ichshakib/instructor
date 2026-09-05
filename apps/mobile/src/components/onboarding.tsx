@@ -184,7 +184,7 @@ export function Onboarding({ onComplete, canDismiss, onDismiss }: OnboardingProp
                   <Ionicons name="person" size={32} color="#2563EB" />
                 </View>
 
-                <Text style={styles.nameTitle}>What's your name?</Text>
+                <Text style={styles.nameTitle}>What&apos;s your name?</Text>
                 <Text style={styles.nameSubtitle}>
                   We will personalize your courses, roadmaps, and certificates on Instructor.
                 </Text>

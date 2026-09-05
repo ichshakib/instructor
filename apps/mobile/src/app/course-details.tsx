@@ -1,641 +1,639 @@
 import { Ionicons } from '@expo/vector-icons';
 import { useLocalSearchParams, useRouter } from 'expo-router';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import {
-  Alert,
-  Image,
+  ActivityIndicator,
+  LayoutAnimation,
   Platform,
   Pressable,
   ScrollView,
   Share,
   StyleSheet,
   Text,
+  UIManager,
   useColorScheme,
-  useWindowDimensions,
   View,
 } from 'react-native';
-import { SafeAreaView, useSafeAreaInsets } from 'react-native-safe-area-context';
+import { SafeAreaView } from 'react-native-safe-area-context';
 
-interface Lecture {
-  id: string;
-  title: string;
-  duration: string;
-  lectureNum: string;
-  isLocked: boolean;
+import { useLearning } from '@/context/learning-context';
+import { Chapter, CourseItem, fetchCourseById, Lesson } from '@/services/api';
+
+if (Platform.OS === 'android' && UIManager.setLayoutAnimationEnabledExperimental) {
+  UIManager.setLayoutAnimationEnabledExperimental(true);
 }
-
-interface Module {
-  id: string;
-  title: string;
-  lectures: Lecture[];
-}
-
-const MODULES: Module[] = [
-  {
-    id: 'mod-1',
-    title: 'Module 1: Introduction and Review',
-    lectures: [
-      {
-        id: 'lec-1',
-        title: 'Supervised vs. Unsupervised Learning',
-        duration: '08 min',
-        lectureNum: 'Lecture 01',
-        isLocked: false,
-      },
-      {
-        id: 'lec-2',
-        title: 'Common Algorithms (Linear Regression...)',
-        duration: '10 min',
-        lectureNum: 'Lecture 02',
-        isLocked: true,
-      },
-      {
-        id: 'lec-3',
-        title: 'Bias-Variance Tradeoff & Evaluation Metrics',
-        duration: '12 min',
-        lectureNum: 'Lecture 03',
-        isLocked: true,
-      },
-    ],
-  },
-  {
-    id: 'mod-2',
-    title: 'Module 2: Ensemble Methods',
-    lectures: [
-      {
-        id: 'lec-4',
-        title: 'Benefits of Ensemble Methods',
-        duration: '10 min',
-        lectureNum: 'Lecture 04',
-        isLocked: true,
-      },
-      {
-        id: 'lec-5',
-        title: 'Random Forests & Bagging Principles',
-        duration: '14 min',
-        lectureNum: 'Lecture 05',
-        isLocked: true,
-      },
-      {
-        id: 'lec-6',
-        title: 'Gradient Boosting (XGBoost & LightGBM)',
-        duration: '16 min',
-        lectureNum: 'Lecture 06',
-        isLocked: true,
-      },
-    ],
-  },
-  {
-    id: 'mod-3',
-    title: 'Module 3: Neural Networks Foundations',
-    lectures: [
-      {
-        id: 'lec-7',
-        title: 'Multi-layer Perceptrons & Activations',
-        duration: '15 min',
-        lectureNum: 'Lecture 07',
-        isLocked: true,
-      },
-      {
-        id: 'lec-8',
-        title: 'Backpropagation and Gradient Descent',
-        duration: '18 min',
-        lectureNum: 'Lecture 08',
-        isLocked: true,
-      },
-    ],
-  },
-];
 
 export default function CourseDetailsScreen() {
   const router = useRouter();
   const params = useLocalSearchParams();
-  const insets = useSafeAreaInsets();
   const colorScheme = useColorScheme();
   const isDark = colorScheme === 'dark';
-  const { width } = useWindowDimensions();
+  const { isSaved, toggleSaveCourse } = useLearning();
 
-  const [activeTab, setActiveTab] = useState<'outline' | 'reviews'>('outline');
-  const [isBookmarked, setIsBookmarked] = useState(false);
-  const [isEnrolled, setIsEnrolled] = useState(false);
-  const [currentlyPlayingLecture, setCurrentlyPlayingLecture] = useState<string | null>(null);
+  const courseId = (params.id as string) || 'german-language-course';
+  const saved = isSaved(courseId);
 
-  // Styling tokens
-  const bgColor = isDark ? '#090D16' : '#FFFFFF';
-  const cardBg = isDark ? '#131D2E' : '#F8FAFC';
-  const textColor = isDark ? '#F8FAFC' : '#0F172A';
-  const mutedText = isDark ? '#94A3B8' : '#64748B';
-  const borderColor = isDark ? '#24344D' : '#E2E8F0';
-  const primaryColor = '#2563EB';
+  const [course, setCourse] = useState<CourseItem | null>(null);
+  const [isLoading, setIsLoading] = useState(true);
+  const [activeLevelIndex, setActiveLevelIndex] = useState(0);
+  const [expandedChapters, setExpandedChapters] = useState<Record<string, boolean>>({});
+  const [activeLesson, setActiveLesson] = useState<Lesson | null>(null);
 
-  const title = (params.title as string) || 'Advanced Machine Learning Algorithms';
-  const category = (params.category as string) || 'Artificial Intelligence';
-  const instructor = (params.instructor as string) || 'Stanley Mante';
-  const bannerUrl =
-    (params.image as string) ||
-    'https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?w=800&auto=format&fit=crop&q=80';
+  // Pure monochromatic black and white styling (Zero blue)
+  const bgColor = isDark ? '#09090B' : '#FFFFFF';
+  const cardBg = isDark ? '#121214' : '#FFFFFF';
+  const innerCardBg = isDark ? '#18181B' : '#F4F4F5';
+  const textColor = isDark ? '#FFFFFF' : '#09090B';
+  const mutedText = isDark ? '#A1A1AA' : '#71717A';
+  const borderColor = isDark ? '#27272A' : '#E4E4E7';
+  const activeColor = isDark ? '#FFFFFF' : '#09090B';
+  const activeTextColor = isDark ? '#09090B' : '#FFFFFF';
+
+  useEffect(() => {
+    let isMounted = true;
+    fetchCourseById(courseId)
+      .then((data) => {
+        if (!isMounted) return;
+        setCourse(data);
+        if (data?.curriculum?.[0]?.chapters?.[0]?.id) {
+          setExpandedChapters({ [data.curriculum[0].chapters[0].id]: true });
+        } else if (data?.chapters?.[0]?.id) {
+          setExpandedChapters({ [data.chapters[0].id]: true });
+        }
+        setIsLoading(false);
+      })
+      .catch((e) => {
+        console.warn('Error loading course details:', e);
+        if (isMounted) setIsLoading(false);
+      });
+
+    return () => {
+      isMounted = false;
+    };
+  }, [courseId]);
+
+  const toggleChapter = (chapterId: string) => {
+    LayoutAnimation.configureNext(LayoutAnimation.Presets.easeInEaseOut);
+    setExpandedChapters((prev) => ({
+      ...prev,
+      [chapterId]: !prev[chapterId],
+    }));
+  };
 
   const handleShare = async () => {
+    if (!course) return;
     try {
       await Share.share({
-        message: `Check out this course: ${title} on Instructor!`,
+        message: `Check out ${course.title} on Instructor!`,
       });
-    } catch (error) {
-      console.log('Error sharing:', error);
+    } catch (e) {
+      console.warn('Share error', e);
     }
   };
 
-  const handleEnroll = () => {
-    setIsEnrolled(true);
-    if (Platform.OS === 'web') {
-      window.alert(`Congratulations! You have enrolled in "${title}".`);
-    } else {
-      Alert.alert(
-        'Enrolled Successfully! 🎉',
-        `You have enrolled in "${title}". You can now start watching all lessons.`,
-        [{ text: 'Start Learning', style: 'default' }]
-      );
-    }
-  };
+  const currentLevel = course?.curriculum?.[activeLevelIndex];
+  const chapters: Chapter[] = currentLevel?.chapters || course?.chapters || [];
 
-  const handleLecturePress = (lecture: Lecture) => {
-    if (lecture.isLocked && !isEnrolled) {
-      if (Platform.OS === 'web') {
-        window.alert('Please enroll to unlock this lecture.');
-      } else {
-        Alert.alert('Lecture Locked', 'Enroll in the course to unlock all lectures and materials.');
-      }
-      return;
-    }
-    setCurrentlyPlayingLecture(lecture.id);
-  };
+  const totalChapters =
+    course?.totalChapters ??
+    (Array.isArray(course?.curriculum)
+      ? course.curriculum.reduce(
+          (acc, lvl) => acc + (Array.isArray(lvl.chapters) ? lvl.chapters.length : 0),
+          0
+        )
+      : chapters.length);
+
+  const totalLessons =
+    course?.totalLessons ??
+    (Array.isArray(course?.curriculum)
+      ? course.curriculum.reduce(
+          (acc, lvl) =>
+            acc +
+            (Array.isArray(lvl.chapters)
+              ? lvl.chapters.reduce(
+                  (cAcc, ch) => cAcc + (Array.isArray(ch.lessons) ? ch.lessons.length : 0),
+                  0
+                )
+              : 0),
+          0
+        )
+      : 0);
 
   return (
-    <View style={[styles.container, { backgroundColor: bgColor }]}>
-      <ScrollView
-        style={styles.scrollView}
-        contentContainerStyle={[styles.scrollContent, { paddingBottom: 100 }]}
-        showsVerticalScrollIndicator={false}
-      >
-        {/* Top Hero Banner with Back and Share buttons */}
-        <View style={styles.heroContainer}>
-          <Image
-            source={{ uri: bannerUrl }}
-            style={[styles.heroImage, { width }]}
-            resizeMode="cover"
-          />
+    <SafeAreaView style={[styles.safeArea, { backgroundColor: bgColor }]} edges={['top']}>
+      {/* Top Navigation Bar */}
+      <View style={[styles.headerBar, { borderBottomColor: borderColor }]}>
+        <Pressable
+          onPress={() => router.back()}
+          style={({ pressed }) => [styles.iconBtn, pressed && styles.pressed]}
+          hitSlop={10}
+        >
+          <Ionicons name="arrow-back" size={22} color={textColor} />
+        </Pressable>
 
-          {/* Top action bar buttons */}
-          <SafeAreaView style={styles.floatingHeader} edges={['top']}>
-            <Pressable
-              onPress={() => router.back()}
-              style={({ pressed }) => [styles.glassBtn, pressed && styles.pressed]}
-              hitSlop={10}
-            >
-              <Ionicons name="arrow-back" size={20} color="#FFFFFF" />
-            </Pressable>
-
-            <Pressable
-              onPress={handleShare}
-              style={({ pressed }) => [styles.glassBtn, pressed && styles.pressed]}
-              hitSlop={10}
-            >
-              <Ionicons name="share-social" size={20} color="#FFFFFF" />
-            </Pressable>
-          </SafeAreaView>
-        </View>
-
-        {/* Course Info Card */}
-        <View style={styles.body}>
-          <View style={styles.categoryRow}>
-            <View style={[styles.categoryBadge, { backgroundColor: isDark ? '#1E293B' : '#EFF6FF' }]}>
-              <Text style={[styles.categoryBadgeText, { color: primaryColor }]}>{category}</Text>
-            </View>
-
-            <Pressable
-              onPress={() => setIsBookmarked(!isBookmarked)}
-              hitSlop={10}
-              style={({ pressed }) => pressed && styles.pressed}
-            >
-              <Ionicons
-                name={isBookmarked ? 'bookmark' : 'bookmark-outline'}
-                size={22}
-                color={primaryColor}
-              />
-            </Pressable>
-          </View>
-
-          {/* Title */}
-          <Text style={[styles.courseTitle, { color: textColor }]}>{title}</Text>
-
-          {/* Rating and Duration stats */}
-          <View style={styles.metaStatsRow}>
-            <View style={styles.starsRow}>
-              {[1, 2, 3, 4].map((star) => (
-                <Ionicons key={star} name="star" size={16} color="#FBBF24" />
-              ))}
-              <Ionicons name="star-half" size={16} color="#FBBF24" />
-              <Text style={[styles.ratingNumber, { color: textColor }]}>4.7</Text>
-              <Text style={[styles.reviewCount, { color: mutedText }]}>(3746)</Text>
-            </View>
-
-            <View style={styles.dotSeparator} />
-
-            <View style={styles.durationRow}>
-              <Ionicons name="time-outline" size={15} color={mutedText} style={{ marginRight: 4 }} />
-              <Text style={[styles.durationText, { color: mutedText }]}>1h 20 mins • 30 lessons</Text>
-            </View>
-          </View>
-
-          {/* Short Description */}
-          <Text style={[styles.description, { color: mutedText }]} numberOfLines={3}>
-            Dive deep into the world of machine learning with our comprehensive curriculum, from foundational statistics to state-of-the-art ensemble models and neural architectures.
-          </Text>
-
-          {/* Instructor Row */}
-          <View style={[styles.instructorRow, { backgroundColor: cardBg, borderColor }]}>
-            <Image
-              source={{
-                uri: 'https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?w=120&auto=format&fit=crop&q=80',
-              }}
-              style={styles.instructorAvatar}
+        <View style={styles.headerRightActions}>
+          <Pressable
+            onPress={() => toggleSaveCourse(courseId)}
+            style={({ pressed }) => [styles.iconBtn, pressed && styles.pressed]}
+            hitSlop={10}
+          >
+            <Ionicons
+              name={saved ? 'bookmark' : 'bookmark-outline'}
+              size={22}
+              color={textColor}
             />
-            <View style={styles.instructorInfo}>
-              <Text style={[styles.instructorName, { color: textColor }]}>{instructor}</Text>
-              <Text style={[styles.instructorRole, { color: mutedText }]}>Top Rated Instructor</Text>
+          </Pressable>
+
+          <Pressable
+            onPress={handleShare}
+            style={({ pressed }) => [styles.iconBtn, pressed && styles.pressed]}
+            hitSlop={10}
+          >
+            <Ionicons name="share-social-outline" size={20} color={textColor} />
+          </Pressable>
+        </View>
+      </View>
+
+      {isLoading ? (
+        <View style={styles.loadingContainer}>
+          <ActivityIndicator size="large" color={activeColor} />
+          <Text style={[styles.loadingText, { color: mutedText }]}>
+            Loading course curriculum...
+          </Text>
+        </View>
+      ) : !course ? (
+        <View style={styles.errorContainer}>
+          <Text style={[styles.errorText, { color: textColor }]}>Course not found</Text>
+        </View>
+      ) : (
+        <ScrollView
+          style={styles.scrollView}
+          contentContainerStyle={styles.scrollContent}
+          showsVerticalScrollIndicator={false}
+        >
+          {/* Top Banner Card */}
+          <View style={[styles.bannerCard, { backgroundColor: innerCardBg, borderColor }]}>
+            <View style={styles.bannerBadgeRow}>
+              {course.category ? (
+                <View style={[styles.badge, { backgroundColor: cardBg, borderColor }]}>
+                  <Text style={[styles.badgeText, { color: textColor }]}>
+                    {course.category.toUpperCase()}
+                  </Text>
+                </View>
+              ) : null}
+              {course.type ? (
+                <View style={[styles.badge, { backgroundColor: cardBg, borderColor }]}>
+                  <Text style={[styles.badgeText, { color: mutedText }]}>{course.type}</Text>
+                </View>
+              ) : null}
             </View>
-            <Pressable style={styles.instructorContactBtn}>
-              <Ionicons name="chatbubble-ellipses-outline" size={18} color={primaryColor} />
-            </Pressable>
+
+            <Text style={[styles.courseTitle, { color: textColor }]}>{course.title}</Text>
+
+            {course.description ? (
+              <Text style={[styles.courseDesc, { color: mutedText }]}>
+                {course.description}
+              </Text>
+            ) : null}
+
+            {/* Metrics Bar */}
+            <View style={[styles.metricsBar, { borderTopColor: borderColor }]}>
+              {totalChapters > 0 && (
+                <View style={styles.metricItem}>
+                  <Ionicons name="layers-outline" size={14} color={textColor} />
+                  <Text style={[styles.metricText, { color: textColor }]}>
+                    {totalChapters} Chapters
+                  </Text>
+                </View>
+              )}
+              {totalLessons > 0 && (
+                <View style={styles.metricItem}>
+                  <Ionicons name="book-outline" size={14} color={textColor} />
+                  <Text style={[styles.metricText, { color: textColor }]}>
+                    {totalLessons} Lessons
+                  </Text>
+                </View>
+              )}
+              {course.tag1 ? (
+                <View style={styles.metricItem}>
+                  <Ionicons name="pricetag-outline" size={14} color={mutedText} />
+                  <Text style={[styles.metricText, { color: mutedText }]}>{course.tag1}</Text>
+                </View>
+              ) : null}
+            </View>
           </View>
 
-          {/* Course Outline vs Reviews Tabs */}
-          <View style={styles.tabsRow}>
-            <Pressable
-              onPress={() => setActiveTab('outline')}
-              style={[
-                styles.tabPill,
-                activeTab === 'outline'
-                  ? [styles.activeTabPill, { borderColor: primaryColor }]
-                  : { borderColor: 'transparent' },
-              ]}
-            >
-              <Text
-                style={[
-                  styles.tabPillText,
-                  { color: activeTab === 'outline' ? primaryColor : mutedText },
-                  activeTab === 'outline' && { fontWeight: '700' },
-                ]}
+          {/* Level Switcher (if course has multiple levels, e.g. A1, A2, B1...) */}
+          {course.curriculum && course.curriculum.length > 1 ? (
+            <View style={styles.levelSwitcherContainer}>
+              <ScrollView
+                horizontal
+                showsHorizontalScrollIndicator={false}
+                contentContainerStyle={styles.levelScroll}
               >
-                Course Outline
+                {course.curriculum.map((lvl, idx) => {
+                  const isActive = activeLevelIndex === idx;
+                  return (
+                    <Pressable
+                      key={lvl.level || idx}
+                      onPress={() => setActiveLevelIndex(idx)}
+                      style={({ pressed }) => [
+                        styles.levelPill,
+                        isActive
+                          ? [
+                              styles.activeLevelPill,
+                              { backgroundColor: activeColor, borderColor: activeColor },
+                            ]
+                          : [
+                              styles.inactiveLevelPill,
+                              { backgroundColor: cardBg, borderColor },
+                            ],
+                        pressed && styles.pressed,
+                      ]}
+                    >
+                      <Text
+                        style={[
+                          styles.levelPillText,
+                          {
+                            color: isActive ? activeTextColor : mutedText,
+                            fontWeight: isActive ? '700' : '500',
+                          },
+                        ]}
+                      >
+                        {lvl.level}
+                      </Text>
+                    </Pressable>
+                  );
+                })}
+              </ScrollView>
+
+              {currentLevel?.title ? (
+                <View style={[styles.levelDescBox, { backgroundColor: innerCardBg, borderColor }]}>
+                  <Text style={[styles.levelTitle, { color: textColor }]}>
+                    {currentLevel.title}
+                  </Text>
+                  {currentLevel.description ? (
+                    <Text style={[styles.levelDesc, { color: mutedText }]}>
+                      {currentLevel.description}
+                    </Text>
+                  ) : null}
+                </View>
+              ) : null}
+            </View>
+          ) : null}
+
+          {/* Chapters and Lessons Accordion */}
+          <View style={styles.syllabusSection}>
+            <View style={styles.syllabusHeader}>
+              <Text style={[styles.sectionTitle, { color: textColor }]}>
+                Course Curriculum
               </Text>
-            </Pressable>
-
-            <Pressable
-              onPress={() => setActiveTab('reviews')}
-              style={[
-                styles.tabPill,
-                activeTab === 'reviews'
-                  ? [styles.activeTabPill, { borderColor: primaryColor }]
-                  : { borderColor: 'transparent' },
-              ]}
-            >
-              <Text
-                style={[
-                  styles.tabPillText,
-                  { color: activeTab === 'reviews' ? primaryColor : mutedText },
-                  activeTab === 'reviews' && { fontWeight: '700' },
-                ]}
-              >
-                Reviews (428)
+              <Text style={[styles.syllabusCount, { color: mutedText }]}>
+                {chapters.length} {chapters.length === 1 ? 'Chapter' : 'Chapters'}
               </Text>
-            </Pressable>
-          </View>
+            </View>
 
-          {/* Modules and Lectures List */}
-          {activeTab === 'outline' ? (
-            <View style={styles.modulesContainer}>
-              {MODULES.map((module) => (
-                <View key={module.id} style={styles.moduleSection}>
-                  <Text style={[styles.moduleTitle, { color: textColor }]}>{module.title}</Text>
+            {chapters.map((chapter, chIdx) => {
+              const isExpanded = !!expandedChapters[chapter.id];
+              return (
+                <View
+                  key={chapter.id}
+                  style={[
+                    styles.chapterCard,
+                    { backgroundColor: cardBg, borderColor },
+                  ]}
+                >
+                  {/* Chapter Header Toggle */}
+                  <Pressable
+                    onPress={() => toggleChapter(chapter.id)}
+                    style={({ pressed }) => [
+                      styles.chapterHeader,
+                      pressed && styles.pressed,
+                    ]}
+                  >
+                    <View style={styles.chapterHeaderLeft}>
+                      <View
+                        style={[
+                          styles.chapterIndexBadge,
+                          { backgroundColor: innerCardBg, borderColor },
+                        ]}
+                      >
+                        <Text style={[styles.chapterIndexText, { color: textColor }]}>
+                          {chIdx + 1}
+                        </Text>
+                      </View>
+                      <View style={styles.chapterHeaderTextWrap}>
+                        <Text style={[styles.chapterTitle, { color: textColor }]}>
+                          {chapter.title}
+                        </Text>
+                        <Text style={[styles.chapterLessonCount, { color: mutedText }]}>
+                          {chapter.lessons.length} {chapter.lessons.length === 1 ? 'Lesson' : 'Lessons'}
+                        </Text>
+                      </View>
+                    </View>
+                    <Ionicons
+                      name={isExpanded ? 'chevron-up' : 'chevron-down'}
+                      size={18}
+                      color={mutedText}
+                    />
+                  </Pressable>
 
-                  <View style={styles.lecturesList}>
-                    {module.lectures.map((lecture) => {
-                      const isPlaying = currentlyPlayingLecture === lecture.id;
-                      return (
-                        <Pressable
-                          key={lecture.id}
-                          onPress={() => handleLecturePress(lecture)}
-                          style={({ pressed }) => [
-                            styles.lectureCard,
-                            { backgroundColor: cardBg, borderColor },
-                            isPlaying && { borderColor: primaryColor },
-                            pressed && styles.pressed,
-                          ]}
-                        >
-                          <View
-                            style={[
-                              styles.playIconContainer,
-                              { backgroundColor: isPlaying ? primaryColor : isDark ? '#1E293B' : '#EFF6FF' },
+                  {/* Lessons List inside Chapter */}
+                  {isExpanded && (
+                    <View style={[styles.lessonsList, { borderTopColor: borderColor }]}>
+                      {chapter.lessons.map((lesson) => {
+                        const isSelected = activeLesson?.id === lesson.id;
+                        return (
+                          <Pressable
+                            key={lesson.id}
+                            onPress={() => setActiveLesson(isSelected ? null : lesson)}
+                            style={({ pressed }) => [
+                              styles.lessonRow,
+                              isSelected && { backgroundColor: innerCardBg },
+                              pressed && styles.pressed,
                             ]}
                           >
-                            <Ionicons
-                              name={isPlaying ? 'pause' : 'play'}
-                              size={16}
-                              color={isPlaying ? '#FFFFFF' : primaryColor}
-                            />
-                          </View>
+                            <View style={styles.lessonLeft}>
+                              <View
+                                style={[
+                                  styles.lessonPlayCircle,
+                                  { backgroundColor: isSelected ? activeColor : innerCardBg },
+                                ]}
+                              >
+                                <Ionicons
+                                  name="play"
+                                  size={11}
+                                  color={isSelected ? activeTextColor : textColor}
+                                />
+                              </View>
+                              <View style={styles.lessonInfo}>
+                                <Text
+                                  style={[
+                                    styles.lessonTitle,
+                                    { color: textColor, fontWeight: isSelected ? '700' : '600' },
+                                  ]}
+                                >
+                                  {lesson.title}
+                                </Text>
+                                {lesson.duration ? (
+                                  <Text style={[styles.lessonDuration, { color: mutedText }]}>
+                                    {lesson.duration}
+                                  </Text>
+                                ) : null}
 
-                          <View style={styles.lectureInfo}>
-                            <Text style={[styles.lectureTitle, { color: textColor }]} numberOfLines={1}>
-                              {lecture.title}
-                            </Text>
-                            <Text style={[styles.lectureMeta, { color: mutedText }]}>
-                              {lecture.lectureNum} • {lecture.duration}
-                            </Text>
-                          </View>
-
-                          {lecture.isLocked && !isEnrolled ? (
-                            <Ionicons name="lock-closed" size={16} color={mutedText} />
-                          ) : (
-                            <Ionicons name="checkmark-circle" size={18} color="#10B981" />
-                          )}
-                        </Pressable>
-                      );
-                    })}
-                  </View>
+                                {isSelected && lesson.description ? (
+                                  <Text style={[styles.lessonDescription, { color: mutedText }]}>
+                                    {lesson.description}
+                                  </Text>
+                                ) : null}
+                              </View>
+                            </View>
+                          </Pressable>
+                        );
+                      })}
+                    </View>
+                  )}
                 </View>
-              ))}
-            </View>
-          ) : (
-            <View style={styles.reviewsContainer}>
-              <Text style={[styles.emptyReviewsText, { color: mutedText }]}>
-                ⭐ 4.7 out of 5 based on 3,746 student reviews worldwide.
-              </Text>
-            </View>
-          )}
-        </View>
-      </ScrollView>
+              );
+            })}
+          </View>
 
-      {/* Sticky Bottom Action Bar with Enroll Button */}
-      <View
-        style={[
-          styles.stickyBottomBar,
-          {
-            backgroundColor: bgColor,
-            borderTopColor: borderColor,
-            paddingBottom: Math.max(insets.bottom, 16),
-          },
-        ]}
-      >
-        <Pressable
-          onPress={handleEnroll}
-          style={({ pressed }) => [
-            styles.enrollButton,
-            { backgroundColor: isEnrolled ? '#10B981' : primaryColor },
-            pressed && styles.pressedBtn,
-          ]}
-        >
-          <Text style={styles.enrollButtonText}>
-            {isEnrolled ? 'Enrolled • Continue Learning' : 'Enroll Now'}
-          </Text>
-        </Pressable>
-      </View>
-    </View>
+          <View style={{ height: 40 }} />
+        </ScrollView>
+      )}
+    </SafeAreaView>
   );
 }
 
 const styles = StyleSheet.create({
-  container: {
+  safeArea: {
     flex: 1,
+  },
+  headerBar: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    paddingHorizontal: 16,
+    paddingVertical: 10,
+    borderBottomWidth: 1,
+  },
+  iconBtn: {
+    width: 40,
+    height: 40,
+    borderRadius: 20,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  headerRightActions: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 4,
   },
   scrollView: {
     flex: 1,
   },
   scrollContent: {
-    paddingBottom: 40,
-  },
-  heroContainer: {
-    position: 'relative',
-    height: 240,
-    width: '100%',
-    backgroundColor: '#0F172A',
-  },
-  heroImage: {
-    height: '100%',
-  },
-  floatingHeader: {
-    position: 'absolute',
-    top: 0,
-    left: 0,
-    right: 0,
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    paddingHorizontal: 16,
-    paddingTop: 8,
-  },
-  glassBtn: {
-    width: 40,
-    height: 40,
-    borderRadius: 20,
-    backgroundColor: 'rgba(0, 0, 0, 0.45)',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  body: {
     paddingHorizontal: 20,
     paddingTop: 16,
-    maxWidth: 600,
-    alignSelf: 'center',
-    width: '100%',
+    paddingBottom: 32,
   },
-  categoryRow: {
+  bannerCard: {
+    borderRadius: 16,
+    padding: 18,
+    borderWidth: 1,
+    marginBottom: 20,
+  },
+  bannerBadgeRow: {
+    flexDirection: 'row',
+    gap: 8,
+    marginBottom: 10,
+  },
+  badge: {
+    paddingHorizontal: 8,
+    paddingVertical: 3,
+    borderRadius: 6,
+    borderWidth: 1,
+  },
+  badgeText: {
+    fontSize: 10,
+    fontWeight: '700',
+    letterSpacing: 0.5,
+  },
+  courseTitle: {
+    fontSize: 20,
+    fontWeight: '800',
+    lineHeight: 26,
+    marginBottom: 6,
+  },
+  courseDesc: {
+    fontSize: 13,
+    lineHeight: 18,
+    marginBottom: 14,
+  },
+  metricsBar: {
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+    gap: 12,
+    paddingTop: 12,
+    borderTopWidth: 1,
+  },
+  metricItem: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 5,
+  },
+  metricText: {
+    fontSize: 12,
+    fontWeight: '600',
+  },
+  levelSwitcherContainer: {
+    marginBottom: 20,
+  },
+  levelScroll: {
+    gap: 8,
+    marginBottom: 12,
+  },
+  levelPill: {
+    paddingHorizontal: 16,
+    paddingVertical: 8,
+    borderRadius: 14,
+    borderWidth: 1,
+  },
+  activeLevelPill: {},
+  inactiveLevelPill: {},
+  levelPillText: {
+    fontSize: 13,
+  },
+  levelDescBox: {
+    padding: 12,
+    borderRadius: 12,
+    borderWidth: 1,
+  },
+  levelTitle: {
+    fontSize: 14,
+    fontWeight: '700',
+    marginBottom: 2,
+  },
+  levelDesc: {
+    fontSize: 12,
+    lineHeight: 16,
+  },
+  syllabusSection: {
+    gap: 12,
+  },
+  syllabusHeader: {
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
-    marginBottom: 10,
+    marginBottom: 6,
   },
-  categoryBadge: {
-    paddingHorizontal: 10,
-    paddingVertical: 4,
-    borderRadius: 6,
-  },
-  categoryBadgeText: {
-    fontSize: 12,
-    fontWeight: '700',
-    letterSpacing: 0.3,
-  },
-  courseTitle: {
-    fontSize: 22,
+  sectionTitle: {
+    fontSize: 17,
     fontWeight: '800',
-    lineHeight: 28,
-    marginBottom: 10,
+    letterSpacing: -0.2,
   },
-  metaStatsRow: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    marginBottom: 12,
-  },
-  starsRow: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    gap: 2,
-  },
-  ratingNumber: {
-    fontSize: 13,
-    fontWeight: '700',
-    marginLeft: 4,
-  },
-  reviewCount: {
-    fontSize: 13,
-    marginLeft: 2,
-  },
-  dotSeparator: {
-    width: 4,
-    height: 4,
-    borderRadius: 2,
-    backgroundColor: '#94A3B8',
-    marginHorizontal: 10,
-  },
-  durationRow: {
-    flexDirection: 'row',
-    alignItems: 'center',
-  },
-  durationText: {
-    fontSize: 13,
-  },
-  description: {
-    fontSize: 14,
-    lineHeight: 20,
-    marginBottom: 16,
-  },
-  instructorRow: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    padding: 12,
-    borderRadius: 14,
-    borderWidth: 1,
-    marginBottom: 16,
-  },
-  instructorAvatar: {
-    width: 44,
-    height: 44,
-    borderRadius: 22,
-    marginRight: 12,
-  },
-  instructorInfo: {
-    flex: 1,
-  },
-  instructorName: {
-    fontSize: 14,
-    fontWeight: '700',
-  },
-  instructorRole: {
+  syllabusCount: {
     fontSize: 12,
-  },
-  instructorContactBtn: {
-    padding: 8,
-  },
-  tabsRow: {
-    flexDirection: 'row',
-    gap: 12,
-    marginBottom: 16,
-  },
-  tabPill: {
-    paddingVertical: 8,
-    paddingHorizontal: 18,
-    borderRadius: 20,
-    borderWidth: 1.5,
-  },
-  activeTabPill: {},
-  tabPillText: {
-    fontSize: 14,
     fontWeight: '600',
   },
-  modulesContainer: {
-    gap: 18,
-  },
-  moduleSection: {
-    gap: 10,
-  },
-  moduleTitle: {
-    fontSize: 15,
-    fontWeight: '700',
-  },
-  lecturesList: {
-    gap: 8,
-  },
-  lectureCard: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    padding: 12,
+  chapterCard: {
     borderRadius: 14,
     borderWidth: 1,
+    overflow: 'hidden',
   },
-  playIconContainer: {
-    width: 36,
-    height: 36,
-    borderRadius: 18,
+  chapterHeader: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    padding: 14,
+  },
+  chapterHeaderLeft: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    flex: 1,
+    gap: 12,
+  },
+  chapterIndexBadge: {
+    width: 30,
+    height: 30,
+    borderRadius: 15,
+    borderWidth: 1,
     alignItems: 'center',
     justifyContent: 'center',
-    marginRight: 12,
   },
-  lectureInfo: {
+  chapterIndexText: {
+    fontSize: 12,
+    fontWeight: '800',
+  },
+  chapterHeaderTextWrap: {
     flex: 1,
   },
-  lectureTitle: {
+  chapterTitle: {
     fontSize: 14,
-    fontWeight: '600',
+    fontWeight: '700',
+    lineHeight: 18,
     marginBottom: 2,
   },
-  lectureMeta: {
-    fontSize: 12,
+  chapterLessonCount: {
+    fontSize: 11,
+    fontWeight: '500',
   },
-  reviewsContainer: {
-    paddingVertical: 20,
-    alignItems: 'center',
-  },
-  emptyReviewsText: {
-    fontSize: 14,
-    textAlign: 'center',
-  },
-  stickyBottomBar: {
-    position: 'absolute',
-    bottom: 0,
-    left: 0,
-    right: 0,
-    paddingHorizontal: 20,
-    paddingTop: 12,
+  lessonsList: {
     borderTopWidth: 1,
-    shadowColor: '#000000',
-    shadowOffset: { width: 0, height: -4 },
-    shadowOpacity: 0.06,
-    shadowRadius: 10,
-    elevation: 8,
+    paddingVertical: 4,
   },
-  enrollButton: {
-    width: '100%',
-    paddingVertical: 16,
-    borderRadius: 16,
+  lessonRow: {
+    paddingHorizontal: 14,
+    paddingVertical: 10,
+  },
+  lessonLeft: {
+    flexDirection: 'row',
+    alignItems: 'flex-start',
+    gap: 12,
+  },
+  lessonPlayCircle: {
+    width: 24,
+    height: 24,
+    borderRadius: 12,
     alignItems: 'center',
     justifyContent: 'center',
-    shadowColor: '#2563EB',
-    shadowOffset: { width: 0, height: 4 },
-    shadowOpacity: 0.3,
-    shadowRadius: 8,
-    elevation: 4,
+    marginTop: 2,
   },
-  enrollButtonText: {
-    color: '#FFFFFF',
+  lessonInfo: {
+    flex: 1,
+  },
+  lessonTitle: {
+    fontSize: 13,
+    lineHeight: 18,
+    marginBottom: 2,
+  },
+  lessonDuration: {
+    fontSize: 11,
+  },
+  lessonDescription: {
+    fontSize: 11,
+    lineHeight: 16,
+    marginTop: 4,
+  },
+  loadingContainer: {
+    flex: 1,
+    alignItems: 'center',
+    justifyContent: 'center',
+    gap: 12,
+  },
+  loadingText: {
+    fontSize: 13,
+  },
+  errorContainer: {
+    flex: 1,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  errorText: {
     fontSize: 16,
-    fontWeight: '700',
-    letterSpacing: 0.2,
+    fontWeight: '600',
   },
   pressed: {
     opacity: 0.7,
-  },
-  pressedBtn: {
-    opacity: 0.9,
-    transform: [{ scale: 0.98 }],
   },
 });
