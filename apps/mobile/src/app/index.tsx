@@ -1,5 +1,4 @@
 import { Ionicons } from '@expo/vector-icons';
-import { useRouter } from 'expo-router';
 import React, { useEffect, useState } from 'react';
 import {
   ActivityIndicator,
@@ -28,7 +27,6 @@ const CATEGORIES = [
 ];
 
 export default function HomeScreen() {
-  const router = useRouter();
   const { userName } = useOnboarding();
   const colorScheme = useColorScheme();
   const isDark = colorScheme === 'dark';
@@ -126,15 +124,14 @@ export default function HomeScreen() {
 
           <View style={styles.headerRight}>
             <Pressable
-              onPress={() => router.push('/settings')}
               style={({ pressed }) => [
-                styles.settingsBtn,
+                styles.notificationBtn,
                 { backgroundColor: cardBg, borderColor },
                 pressed && styles.pressed,
               ]}
               hitSlop={8}
             >
-              <Ionicons name="person-outline" size={18} color={textColor} />
+              <Ionicons name="notifications-outline" size={19} color={textColor} />
             </Pressable>
           </View>
         </View>
@@ -275,7 +272,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     gap: 10,
   },
-  settingsBtn: {
+  notificationBtn: {
     width: 38,
     height: 38,
     borderRadius: 19,

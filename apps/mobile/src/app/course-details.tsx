@@ -3,6 +3,7 @@ import { useLocalSearchParams, useRouter } from 'expo-router';
 import React, { useEffect, useState } from 'react';
 import {
   ActivityIndicator,
+  Image,
   LayoutAnimation,
   Platform,
   Pressable,
@@ -17,7 +18,7 @@ import {
 import { SafeAreaView } from 'react-native-safe-area-context';
 
 import { useLearning } from '@/context/learning-context';
-import { Chapter, CourseItem, fetchCourseById } from '@/services/api';
+import { API_BASE_URL, Chapter, CourseItem, fetchCourseById } from '@/services/api';
 
 if (Platform.OS === 'android' && UIManager.setLayoutAnimationEnabledExperimental) {
   UIManager.setLayoutAnimationEnabledExperimental(true);
@@ -118,6 +119,12 @@ export default function CourseDetailsScreen() {
         )
       : 0);
 
+  const resolvedImageUrl = course?.imageUrl
+    ? course.imageUrl.startsWith('http')
+      ? course.imageUrl
+      : `${API_BASE_URL}${course.imageUrl}`
+    : null;
+
   return (
     <SafeAreaView style={[styles.safeArea, { backgroundColor: bgColor }]} edges={['top']}>
       {/* Top Navigation Bar - Borderless and shadowless */}
@@ -170,8 +177,19 @@ export default function CourseDetailsScreen() {
           contentContainerStyle={styles.scrollContent}
           showsVerticalScrollIndicator={false}
         >
-          {/* Top Banner Card (Language & Language Course badges removed) */}
-          <View style={[styles.bannerCard, { backgroundColor: innerCardBg, borderColor }]}>
+          {/* Top Course Cover Image */}
+          {resolvedImageUrl ? (
+            <View style={[styles.coverImageContainer, { borderColor }]}>
+              <Image
+                source={{ uri: resolvedImageUrl }}
+                style={styles.coverImage}
+                resizeMode="cover"
+              />
+            </View>
+          ) : null}
+
+          {/* Direct On-Screen Course Header (No Card) */}
+          <View style={styles.courseHeaderSection}>
             <Text style={[styles.courseTitle, { color: textColor }]}>{course.title}</Text>
 
             {course.description ? (
@@ -180,8 +198,8 @@ export default function CourseDetailsScreen() {
               </Text>
             ) : null}
 
-            {/* Metrics Bar */}
-            <View style={[styles.metricsBar, { borderTopColor: borderColor }]}>
+            {/* Metrics Row directly on screen */}
+            <View style={styles.metricsBar}>
               {totalChapters > 0 && (
                 <View style={styles.metricItem}>
                   <Ionicons name="layers-outline" size={14} color={textColor} />
@@ -428,45 +446,35 @@ const styles = StyleSheet.create({
     paddingTop: 16,
     paddingBottom: 32,
   },
-  bannerCard: {
+  coverImageContainer: {
+    height: 180,
     borderRadius: 16,
-    padding: 18,
     borderWidth: 1,
+    overflow: 'hidden',
+    marginBottom: 16,
+  },
+  coverImage: {
+    width: '100%',
+    height: '100%',
+  },
+  courseHeaderSection: {
     marginBottom: 20,
   },
-  bannerBadgeRow: {
-    flexDirection: 'row',
-    gap: 8,
-    marginBottom: 10,
-  },
-  badge: {
-    paddingHorizontal: 8,
-    paddingVertical: 3,
-    borderRadius: 6,
-    borderWidth: 1,
-  },
-  badgeText: {
-    fontSize: 10,
-    fontWeight: '700',
-    letterSpacing: 0.5,
-  },
   courseTitle: {
-    fontSize: 20,
+    fontSize: 22,
     fontWeight: '800',
-    lineHeight: 26,
-    marginBottom: 6,
+    lineHeight: 28,
+    marginBottom: 8,
   },
   courseDesc: {
     fontSize: 13,
-    lineHeight: 18,
+    lineHeight: 19,
     marginBottom: 14,
   },
   metricsBar: {
     flexDirection: 'row',
     flexWrap: 'wrap',
-    gap: 12,
-    paddingTop: 12,
-    borderTopWidth: 1,
+    gap: 16,
   },
   metricItem: {
     flexDirection: 'row',
