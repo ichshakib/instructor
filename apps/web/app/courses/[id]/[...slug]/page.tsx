@@ -27,7 +27,6 @@ import {
   Sparkles,
   Play,
 } from "lucide-react";
-import { GermanLessonExplorer } from "../../../../components/GermanLessonExplorer";
 
 const CEFR_LEVELS: CEFRLevel[] = ["A1", "A2", "B1", "B2", "C1", "C2"];
 
@@ -893,12 +892,7 @@ export default function CourseDetailPage() {
 
               {/* Main Content Area */}
               <div className="flex-1 overflow-y-auto p-6 sm:p-10 flex flex-col justify-between bg-white">
-                {/* 1. If German Lesson 1 -> Render GermanLessonExplorer interactive studio */}
-                {isGermanCourse &&
-                (activeLessonInfo.lesson.id === "a1-ch1-l1" || activeLessonInfo.lesson.id.includes("l1")) ? (
-                  <GermanLessonExplorer />
-                ) : currentLessonContent ? (
-                  /* 2. For all OTHER lessons & other technical courses (Python, JS, Java, React, etc.) -> Clean minimal content with ZERO AUDIO */
+                {currentLessonContent ? (
                   <div className="max-w-4xl w-full mx-auto space-y-8 py-2 pb-16">
                     {/* Lesson Overview & Objectives */}
                     <div className="p-6 sm:p-7 rounded-2xl bg-neutral-50 border border-neutral-200 space-y-4">
@@ -999,24 +993,38 @@ export default function CourseDetailPage() {
                           </div>
                         )}
 
-                        {/* Section Items (Code or Concept Items - ZERO AUDIO BUTTONS) */}
+                        {/* Section Items (Concept & Vocabulary Cards - ZERO AUDIO) */}
                         {section.items && section.items.length > 0 && (
                           <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-1">
                             {section.items.map((item, iIdx) => (
                               <div
                                 key={iIdx}
-                                className="p-4 rounded-xl bg-neutral-50 border border-neutral-200 space-y-1.5"
+                                className="p-4 rounded-xl bg-neutral-50 border border-neutral-200 space-y-2 flex flex-col justify-between"
                               >
-                                <span className="font-bold text-xs sm:text-sm text-[#18191E] block">
-                                  {item.term}
-                                </span>
-                                <p className="text-xs text-neutral-600 leading-relaxed">
-                                  {item.meaning}
-                                </p>
-                                {item.example && (
-                                  <p className="text-xs italic text-neutral-500 pt-1 border-t border-neutral-200/60 font-mono">
-                                    {item.example}
+                                <div className="space-y-1.5">
+                                  <div className="flex items-center justify-between gap-2 border-b border-neutral-200/70 pb-1.5">
+                                    <span className="font-bold text-xs sm:text-sm text-[#18191E]">
+                                      {item.term}
+                                    </span>
+                                    {item.pronunciation && (
+                                      <span className="text-[10px] sm:text-[11px] font-mono font-bold text-neutral-600 bg-neutral-200/70 px-2 py-0.5 rounded">
+                                        [{item.pronunciation}]
+                                      </span>
+                                    )}
+                                  </div>
+                                  <p className="text-xs text-neutral-600 leading-relaxed">
+                                    {item.meaning}
                                   </p>
+                                </div>
+                                {item.example && (
+                                  <div className="pt-2 border-t border-neutral-200/60 text-xs">
+                                    <span className="text-[10px] font-bold text-neutral-400 uppercase tracking-wider block mb-1">
+                                      Examples:
+                                    </span>
+                                    <p className="font-medium text-[#18191E] leading-relaxed">
+                                      {item.example}
+                                    </p>
+                                  </div>
                                 )}
                               </div>
                             ))}
@@ -1033,6 +1041,47 @@ export default function CourseDetailPage() {
                         )}
                       </div>
                     ))}
+
+                    {/* Conversational Dialogue Flow (Praxis-Dialog with Direct English) */}
+                    {currentLessonContent.dialogue && currentLessonContent.dialogue.lines && currentLessonContent.dialogue.lines.length > 0 && (
+                      <div className="p-5 sm:p-7 rounded-2xl bg-white border border-neutral-200 shadow-2xs space-y-4">
+                        <div className="border-b border-neutral-100 pb-3">
+                          <span className="text-[10px] font-bold text-neutral-500 uppercase tracking-wider block">
+                            Praxis-Dialog
+                          </span>
+                          <h3 className="text-base sm:text-lg font-bold text-[#18191E] mt-0.5">
+                            {currentLessonContent.dialogue.context || "Dialogue Flow • German with Direct English Translation"}
+                          </h3>
+                        </div>
+
+                        <div className="space-y-3 pt-1">
+                          {currentLessonContent.dialogue.lines.map((line, lIdx) => (
+                            <div
+                              key={lIdx}
+                              className="flex items-start gap-3.5 p-3.5 sm:p-4 rounded-xl bg-neutral-50/80 border border-neutral-200/80 transition-colors hover:bg-neutral-50"
+                            >
+                              <div className="w-10 h-10 rounded-full bg-white border border-neutral-200 flex items-center justify-center text-xs font-bold text-[#18191E] shrink-0 shadow-2xs">
+                                {line.speaker.slice(0, 2).toUpperCase()}
+                              </div>
+
+                              <div className="min-w-0 flex-1 space-y-1">
+                                <span className="text-xs font-bold text-[#18191E]">
+                                  {line.speaker}
+                                </span>
+
+                                <p className="text-sm sm:text-base font-bold text-[#18191E] leading-snug">
+                                  {line.german}
+                                </p>
+
+                                <p className="text-xs sm:text-sm text-neutral-600 leading-snug font-normal">
+                                  {line.english}
+                                </p>
+                              </div>
+                            </div>
+                          ))}
+                        </div>
+                      </div>
+                    )}
 
                     {/* Fun Fact / Cultural Spotlight */}
                     {currentLessonContent.funFact && (

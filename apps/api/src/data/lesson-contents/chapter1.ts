@@ -39,7 +39,7 @@ export const CHAPTER_1_LESSONS: Record<string, LessonContent> = {
               "D d",
               "deh",
               "like 'd' in door",
-              "der Danke (thanks)"
+              "der Dank (thanks)"
             ],
             [
               "E e",
@@ -184,25 +184,25 @@ export const CHAPTER_1_LESSONS: Record<string, LessonContent> = {
             "term": "W = [V]",
             "pronunciation": "veh",
             "meaning": "Pronounced like English 'V'. German does not have the English 'W' sound!",
-            "example": "das Wasser, Wien, wer, wie, woher"
+            "example": "das Wasser (water), Wien (Vienna), wer (who), wie (how), woher (where from)"
           },
           {
-            "term": "V = [F]",
+            "term": "V = [F] or [V]",
             "pronunciation": "fau",
-            "meaning": "Pronounced like English 'F' in native words (Vater, vier, viel, voll).",
-            "example": "der Vater, vier, vor, von"
+            "meaning": "Pronounced like English 'F' in native words (Vater, vier, viel). Pronounced like 'V' in loanwords (die Vase).",
+            "example": "der Vater (father), vier (four), viel (much/many), voll (full), die Vase (vase)"
           },
           {
             "term": "J = [Y]",
             "pronunciation": "yott",
-            "meaning": "Pronounced like English 'Y' in yes.",
-            "example": "ja, das Jahr, jetzt, jung"
+            "meaning": "Always pronounced like English consonant 'Y' as in 'yes' or 'yellow'. Never like English 'J' in judge!",
+            "example": "ja (yes), das Jahr (year), jetzt (now), jung (young)"
           },
           {
             "term": "Z = [TS]",
             "pronunciation": "tsett",
-            "meaning": "Always a sharp 'ts' sound, exactly like the end of 'cats'.",
-            "example": "zehn, die Zeit, das Zimmer, zusammen"
+            "meaning": "Always a crisp, explosive 'ts' sound, exactly like the end of 'cats'. Never pronounce with a buzzing English 'Z'!",
+            "example": "zehn (ten), die Zeit (time), das Zimmer (room), zusammen (together)"
           }
         ]
       },
@@ -827,28 +827,6 @@ export const CHAPTER_1_LESSONS: Record<string, LessonContent> = {
     "funFact": {
       "title": "Having Hunger vs. Being Hungry",
       "content": "While you can say 'Ich bin hungrig' in German, native speakers almost universally say 'Ich habe Hunger' (I have hunger) and 'Ich habe Durst' (I have thirst). It is one of the quickest ways to sound natural from day one!"
-    },
-    "practice": [
-      {
-        "question": "What is the correct form: 'Er _____ ein deutsches Lehrbuch.'",
-        "options": [
-          "habe",
-          "hast",
-          "hat"
-        ],
-        "answer": "hat",
-        "explanation": "3rd person singular (er/sie/es) takes 'hat'."
-      },
-      {
-        "question": "How do you ask: 'Do you have time?' (informal)",
-        "options": [
-          "Hast du Zeit?",
-          "Bist du Zeit?",
-          "Habt du Zeit?"
-        ],
-        "answer": "Hast du Zeit?",
-        "explanation": "'Hast du Zeit?' is the natural way to ask if someone is free."
-      }
-    ]
+    }
   }
 };
