@@ -714,6 +714,11 @@ export default function InstructorLanding() {
               </h4>
               <ul className="space-y-2.5 text-xs text-[#706E66]">
                 <li>
+                  <Link href="/blog" className="hover:text-[#18191E] transition-colors">
+                    Articles & Blog
+                  </Link>
+                </li>
+                <li>
                   <Link href="#docs" className="hover:text-[#18191E] transition-colors">
                     Documentation & Tutorials
                   </Link>
@@ -749,7 +754,7 @@ export default function InstructorLanding() {
               </h4>
               <ul className="space-y-2.5 text-xs text-[#706E66]">
                 <li>
-                  <Link href="#about" className="hover:text-[#18191E] transition-colors">
+                  <Link href="/about" className="hover:text-[#18191E] transition-colors">
                     About Instructor
                   </Link>
                 </li>

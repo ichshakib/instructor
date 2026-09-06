@@ -55,7 +55,7 @@ const isDevelopment = (NODE_ENV ?? "development") === "development";
 
 if (!isServerless && isDevelopment) {
   try {
-    const logsDir = path.join(process.cwd(), "logs");
+    const logsDir = path.resolve(__dirname, "../../logs");
     if (!fs.existsSync(logsDir)) {
       fs.mkdirSync(logsDir, { recursive: true });
     }

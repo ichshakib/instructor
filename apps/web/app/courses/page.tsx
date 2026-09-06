@@ -315,10 +315,10 @@ export default function CoursesPage() {
               <Link href="/courses" className="hover:text-black transition-colors">
                 Courses
               </Link>
-              <Link href="/#about" className="hover:text-black transition-colors">
+              <Link href="/about" className="hover:text-black transition-colors">
                 About
               </Link>
-              <Link href="/#blog" className="hover:text-black transition-colors">
+              <Link href="/blog" className="hover:text-black transition-colors">
                 Blog
               </Link>
             </div>

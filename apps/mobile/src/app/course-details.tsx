@@ -356,7 +356,6 @@ export default function CourseDetailsScreen() {
                                 chapterTitle: chapter.title,
                                 lessonId: lesson.id,
                                 lessonTitle: lesson.title,
-                                duration: lesson.duration || '',
                                 description: lesson.description || '',
                               },
                             });
@@ -388,11 +387,6 @@ export default function CourseDetailsScreen() {
                               >
                                 {lesson.title}
                               </Text>
-                              {lesson.duration ? (
-                                <Text style={[styles.lessonDuration, { color: mutedText }]}>
-                                  {lesson.duration}
-                                </Text>
-                              ) : null}
                             </View>
                           </View>
                           <Ionicons name="chevron-forward" size={16} color={mutedText} />

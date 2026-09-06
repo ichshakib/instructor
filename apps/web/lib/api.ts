@@ -162,3 +162,114 @@ export async function fetchCourseById(id: string): Promise<CourseDetail | null> 
     throw error;
   }
 }
+
+export type {
+  BlogPost,
+  BlogCategory,
+  BlogSection,
+  BlogAuthor,
+} from "./blogs-fallback";
+import { FALLBACK_BLOGS, BlogPost } from "./blogs-fallback";
+
+export interface FetchBlogsOptions {
+  category?: string;
+  search?: string;
+  tag?: string;
+}
+
+/**
+ * Fetches all blogs or filtered blogs from the backend API, falling back to local dataset if offline.
+ */
+export async function fetchBlogs(
+  options?: FetchBlogsOptions
+): Promise<BlogPost[]> {
+  try {
+    const url = new URL("/api/v1/blogs", API_BASE_URL);
+
+    if (options?.category && options.category !== "All") {
+      url.searchParams.append("category", options.category);
+    }
+    if (options?.search && options.search.trim()) {
+      url.searchParams.append("search", options.search.trim());
+    }
+    if (options?.tag && options.tag.trim()) {
+      url.searchParams.append("tag", options.tag.trim());
+    }
+
+    const response = await fetch(url.toString(), {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      cache: "no-store",
+    });
+
+    if (response.ok) {
+      const json: ApiResponse<BlogPost[]> = await response.json();
+      if (json.data && Array.isArray(json.data) && json.data.length > 0) {
+        return json.data;
+      }
+    }
+  } catch (error) {
+    console.warn("API request for blogs failed, falling back to local dataset:", error);
+  }
+
+  // Fallback filtering
+  let results: BlogPost[] = [...FALLBACK_BLOGS];
+  if (options?.category && options.category !== "All") {
+    results = results.filter(
+      (b: BlogPost) => b.category.toLowerCase() === options.category?.toLowerCase()
+    );
+  }
+  if (options?.search && options.search.trim()) {
+    const term = options.search.trim().toLowerCase();
+    results = results.filter(
+      (b: BlogPost) =>
+        b.title.toLowerCase().includes(term) ||
+        b.excerpt.toLowerCase().includes(term) ||
+        b.category.toLowerCase().includes(term) ||
+        b.tags.some((t: string) => t.toLowerCase().includes(term))
+    );
+  }
+  if (options?.tag && options.tag.trim()) {
+    const term = options.tag.trim().toLowerCase();
+    results = results.filter((b: BlogPost) =>
+      b.tags.some((t: string) => t.toLowerCase() === term)
+    );
+  }
+  return results;
+}
+
+/**
+ * Fetches a single blog by ID or slug from the backend API, with fallback.
+ */
+export async function fetchBlogById(
+  idOrSlug: string
+): Promise<BlogPost | null> {
+  try {
+    const url = new URL(`/api/v1/blogs/${idOrSlug}`, API_BASE_URL);
+
+    const response = await fetch(url.toString(), {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      cache: "no-store",
+    });
+
+    if (response.ok) {
+      const json: ApiResponse<BlogPost> = await response.json();
+      if (json.data) {
+        return json.data;
+      }
+    }
+  } catch (error) {
+    console.warn(`API request for blog '${idOrSlug}' failed, using fallback:`, error);
+  }
+
+  const fallback = FALLBACK_BLOGS.find(
+    (b: BlogPost) => b.id === idOrSlug || b.slug === idOrSlug
+  );
+  return fallback || null;
+}
+

@@ -40,7 +40,6 @@ export default function LessonDetailsScreen() {
   const chapterTitleParam = (params.chapterTitle as string) || '';
   const lessonId = (params.lessonId as string) || '';
   const initialLessonTitle = (params.lessonTitle as string) || 'Lesson Details';
-  const initialDuration = (params.duration as string) || '';
   const initialDescription = (params.description as string) || '';
 
   const [lesson, setLesson] = useState<Lesson | null>(null);
@@ -118,7 +117,6 @@ export default function LessonDetailsScreen() {
   };
 
   const currentLessonTitle = lesson?.title || initialLessonTitle;
-  const currentDuration = lesson?.duration || initialDuration;
   const currentDescription = lesson?.description || initialDescription;
   const currentChapterTitle = chapter?.title || chapterTitleParam;
   const currentCourseTitle = course?.title || courseTitleParam;
@@ -195,15 +193,6 @@ export default function LessonDetailsScreen() {
             <Text style={[styles.lessonHeading, { color: textColor }]}>
               {currentLessonTitle}
             </Text>
-
-            {currentDuration ? (
-              <View style={[styles.durationBadge, { backgroundColor: cardBg, borderColor }]}>
-                <Ionicons name="time-outline" size={13} color={textColor} />
-                <Text style={[styles.durationText, { color: textColor }]}>
-                  {currentDuration}
-                </Text>
-              </View>
-            ) : null}
 
             {currentDescription ? (
               <Text style={[styles.lessonDescriptionText, { color: mutedText }]}>
