@@ -107,11 +107,25 @@ function TabsLayoutContent() {
         <Tabs.Screen
           name="courses"
           options={{
-            title: 'My Learning',
-            tabBarLabel: 'My Learning',
+            title: 'Courses',
+            tabBarLabel: 'Courses',
             tabBarIcon: ({ color, focused }) => (
               <Ionicons
-                name={focused ? 'bookmark' : 'bookmark-outline'}
+                name={focused ? 'book' : 'book-outline'}
+                size={21}
+                color={color}
+              />
+            ),
+          }}
+        />
+        <Tabs.Screen
+          name="wishlist"
+          options={{
+            title: 'Wishlist',
+            tabBarLabel: 'Wishlist',
+            tabBarIcon: ({ color, focused }) => (
+              <Ionicons
+                name={focused ? 'heart' : 'heart-outline'}
                 size={21}
                 color={color}
               />
@@ -130,14 +144,6 @@ function TabsLayoutContent() {
                 color={color}
               />
             ),
-          }}
-        />
-        {/* Auxiliary routes hidden from the bottom tab bar */}
-        <Tabs.Screen
-          name="wishlist"
-          options={{
-            href: null,
-            tabBarStyle: { display: 'none' },
           }}
         />
         <Tabs.Screen

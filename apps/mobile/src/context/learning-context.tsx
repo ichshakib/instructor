@@ -1,14 +1,18 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import React, { createContext, useContext, useEffect, useState } from 'react';
 
+const WISHLIST_STORAGE_KEY = 'instructor_wishlist_courses_v1';
 const SAVED_COURSES_STORAGE_KEY = 'instructor_saved_courses_v1';
 const ENROLLED_COURSES_STORAGE_KEY = 'instructor_enrolled_courses_v1';
 
 interface LearningContextType {
   savedCourseIds: string[];
+  wishlistCourseIds: string[];
   enrolledCourseIds: string[];
   isSaved: (courseId: string) => boolean;
+  isWishlisted: (courseId: string) => boolean;
   toggleSaveCourse: (courseId: string) => Promise<void>;
+  toggleWishlist: (courseId: string) => Promise<void>;
   isEnrolled: (courseId: string) => boolean;
   enrollInCourse: (courseId: string) => Promise<void>;
   isLoading: boolean;
@@ -16,16 +20,19 @@ interface LearningContextType {
 
 const LearningContext = createContext<LearningContextType>({
   savedCourseIds: [],
+  wishlistCourseIds: [],
   enrolledCourseIds: ['german-language-course'],
   isSaved: () => false,
+  isWishlisted: () => false,
   toggleSaveCourse: async () => {},
+  toggleWishlist: async () => {},
   isEnrolled: () => false,
   enrollInCourse: async () => {},
   isLoading: true,
 });
 
 export function LearningProvider({ children }: { children: React.ReactNode }) {
-  const [savedCourseIds, setSavedCourseIds] = useState<string[]>([]);
+  const [wishlistCourseIds, setWishlistCourseIds] = useState<string[]>([]);
   const [enrolledCourseIds, setEnrolledCourseIds] = useState<string[]>(['german-language-course']);
   const [isLoading, setIsLoading] = useState(true);
 
@@ -33,21 +40,23 @@ export function LearningProvider({ children }: { children: React.ReactNode }) {
     let isMounted = true;
     async function loadStoredData() {
       try {
-        const [savedJson, enrolledJson] = await Promise.all([
+        const [wishlistJson, savedJson, enrolledJson] = await Promise.all([
+          AsyncStorage.getItem(WISHLIST_STORAGE_KEY),
           AsyncStorage.getItem(SAVED_COURSES_STORAGE_KEY),
           AsyncStorage.getItem(ENROLLED_COURSES_STORAGE_KEY),
         ]);
 
         if (isMounted) {
-          if (savedJson) {
-            setSavedCourseIds(JSON.parse(savedJson));
+          const loadedWishlist = wishlistJson || savedJson;
+          if (loadedWishlist) {
+            setWishlistCourseIds(JSON.parse(loadedWishlist));
           }
           if (enrolledJson) {
             setEnrolledCourseIds(JSON.parse(enrolledJson));
           }
         }
       } catch (e) {
-        console.warn('Failed to load saved learning courses from storage', e);
+        console.warn('Failed to load wishlist/courses from storage', e);
       } finally {
         if (isMounted) {
           setIsLoading(false);
@@ -61,22 +70,29 @@ export function LearningProvider({ children }: { children: React.ReactNode }) {
     };
   }, []);
 
-  const isSaved = (courseId: string) => {
-    return savedCourseIds.includes(courseId);
+  const isWishlisted = (courseId: string) => {
+    return wishlistCourseIds.includes(courseId);
   };
 
-  const toggleSaveCourse = async (courseId: string) => {
-    const nextSaved = savedCourseIds.includes(courseId)
-      ? savedCourseIds.filter((id) => id !== courseId)
-      : [courseId, ...savedCourseIds];
+  const isSaved = isWishlisted;
 
-    setSavedCourseIds(nextSaved);
+  const toggleWishlist = async (courseId: string) => {
+    const nextWishlist = wishlistCourseIds.includes(courseId)
+      ? wishlistCourseIds.filter((id) => id !== courseId)
+      : [courseId, ...wishlistCourseIds];
+
+    setWishlistCourseIds(nextWishlist);
     try {
-      await AsyncStorage.setItem(SAVED_COURSES_STORAGE_KEY, JSON.stringify(nextSaved));
+      await Promise.all([
+        AsyncStorage.setItem(WISHLIST_STORAGE_KEY, JSON.stringify(nextWishlist)),
+        AsyncStorage.setItem(SAVED_COURSES_STORAGE_KEY, JSON.stringify(nextWishlist)),
+      ]);
     } catch (e) {
-      console.warn('Failed to save course to storage', e);
+      console.warn('Failed to save wishlist to storage', e);
     }
   };
+
+  const toggleSaveCourse = toggleWishlist;
 
   const isEnrolled = (courseId: string) => {
     return enrolledCourseIds.includes(courseId);
@@ -96,10 +112,13 @@ export function LearningProvider({ children }: { children: React.ReactNode }) {
   return (
     <LearningContext.Provider
       value={{
-        savedCourseIds,
+        savedCourseIds: wishlistCourseIds,
+        wishlistCourseIds,
         enrolledCourseIds,
         isSaved,
+        isWishlisted,
         toggleSaveCourse,
+        toggleWishlist,
         isEnrolled,
         enrollInCourse,
         isLoading,

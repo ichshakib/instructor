@@ -73,7 +73,7 @@ export function MobileCourseCard({ course, variant = 'compact' }: MobileCourseCa
     });
   };
 
-  const handleToggleBookmark = (e: any) => {
+  const handleToggleWishlist = (e: any) => {
     e.stopPropagation();
     toggleSaveCourse(course.id);
   };
@@ -127,15 +127,15 @@ export function MobileCourseCard({ course, variant = 'compact' }: MobileCourseCa
             </View>
 
             <Pressable
-              onPress={handleToggleBookmark}
+              onPress={handleToggleWishlist}
               hitSlop={8}
               style={styles.bookmarkBtn}
-              accessibilityLabel="Bookmark Course"
+              accessibilityLabel="Add to Wishlist"
             >
               <Ionicons
-                name={saved ? 'bookmark' : 'bookmark-outline'}
+                name={saved ? 'heart' : 'heart-outline'}
                 size={18}
-                color={textColor}
+                color={saved ? '#EF4444' : textColor}
               />
             </Pressable>
           </View>
@@ -222,15 +222,15 @@ export function MobileCourseCard({ course, variant = 'compact' }: MobileCourseCa
             </View>
 
             <Pressable
-              onPress={handleToggleBookmark}
+              onPress={handleToggleWishlist}
               hitSlop={8}
               style={styles.bookmarkBtn}
-              accessibilityLabel="Bookmark Course"
+              accessibilityLabel="Add to Wishlist"
             >
               <Ionicons
-                name={saved ? 'bookmark' : 'bookmark-outline'}
+                name={saved ? 'heart' : 'heart-outline'}
                 size={18}
-                color={textColor}
+                color={saved ? '#EF4444' : textColor}
               />
             </Pressable>
           </View>
@@ -321,11 +321,11 @@ export function MobileCourseCard({ course, variant = 'compact' }: MobileCourseCa
               {course.category || course.tag1}
             </Text>
           </View>
-          <Pressable onPress={handleToggleBookmark} hitSlop={8}>
+          <Pressable onPress={handleToggleWishlist} hitSlop={8} accessibilityLabel="Add to Wishlist">
             <Ionicons
-              name={saved ? 'bookmark' : 'bookmark-outline'}
+              name={saved ? 'heart' : 'heart-outline'}
               size={20}
-              color={textColor}
+              color={saved ? '#EF4444' : textColor}
             />
           </Pressable>
         </View>

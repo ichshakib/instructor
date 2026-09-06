@@ -142,11 +142,12 @@ export default function CourseDetailsScreen() {
             onPress={() => toggleSaveCourse(courseId)}
             style={({ pressed }) => [styles.iconBtn, pressed && styles.pressed]}
             hitSlop={10}
+            accessibilityLabel="Add to Wishlist"
           >
             <Ionicons
-              name={saved ? 'bookmark' : 'bookmark-outline'}
+              name={saved ? 'heart' : 'heart-outline'}
               size={22}
-              color={textColor}
+              color={saved ? '#EF4444' : textColor}
             />
           </Pressable>
 
