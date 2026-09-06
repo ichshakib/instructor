@@ -352,152 +352,13 @@ const FALLBACK_COURSES: CourseItem[] = [
       },
     ],
   },
-  {
-    id: "python-complete-course",
-    title: "Python Programming: From First Steps to Advanced Engineering",
-    category: "Development",
-    type: "Full Course",
-    typeIcon: "path",
-    tag1: "Python 3.10+",
-    tag2: "Beginner to Advanced",
-    badgeCount: "",
-    coverVariant: "code-architecture",
-    imageUrl: "/course-images/python-course.jpg",
-    buttonLabel: "Start",
-    description:
-      "Master modern Python from foundational syntax to advanced software engineering, OOP, dunder protocols, and standard library powerhouses.",
-    featured: true,
-    totalChapters: 10,
-    totalLessons: 30,
-    progressStatus: {
-      type: "status",
-      statusText: "Popular",
-    },
-  },
-  {
-    id: "javascript-complete-course",
-    title: "Modern JavaScript Mastery: From Fundamentals to Advanced ESNext",
-    category: "Development",
-    type: "Full Course",
-    typeIcon: "lab",
-    tag1: "JavaScript ESNext",
-    tag2: "Web Development",
-    badgeCount: "",
-    coverVariant: "code-architecture",
-    imageUrl: "/course-images/javascript-course.jpg",
-    buttonLabel: "Start",
-    description:
-      "Comprehensive modern JavaScript covering event loops, closures, async/await, prototypes, and enterprise architecture.",
-    featured: true,
-    totalChapters: 10,
-    totalLessons: 30,
-    progressStatus: {
-      type: "status",
-      statusText: "Popular",
-    },
-  },
-  {
-    id: "react-complete-course",
-    title: "React 19 & Next.js Full Stack Architecture",
-    category: "Development",
-    type: "Full Course",
-    typeIcon: "path",
-    tag1: "React 19",
-    tag2: "Full Stack",
-    badgeCount: "",
-    coverVariant: "code-architecture",
-    imageUrl: "/course-images/react-course.jpg",
-    buttonLabel: "Start",
-    description:
-      "Modern React architecture, Server Components, server actions, hooks deep dive, and resilient UI design patterns.",
-    featured: true,
-    totalChapters: 8,
-    totalLessons: 24,
-    progressStatus: {
-      type: "status",
-      statusText: "Hot",
-    },
-  },
-  {
-    id: "prompt-engineering-course",
-    title: "Prompt Engineering & LLM Application Design",
-    category: "AI & Data",
-    type: "Full Course",
-    typeIcon: "quiz",
-    tag1: "AI & LLMs",
-    tag2: "Generative AI",
-    badgeCount: "",
-    coverVariant: "ai-systems",
-    imageUrl: "/course-images/prompt-engineering-course.jpg",
-    buttonLabel: "Start",
-    description:
-      "Master system prompts, few-shot conditioning, chain-of-thought, tool-calling agents, and enterprise AI workflows.",
-    featured: true,
-    totalChapters: 7,
-    totalLessons: 21,
-    progressStatus: {
-      type: "status",
-      statusText: "Trending",
-    },
-  },
-  {
-    id: "react-native-course",
-    title: "React Native & Expo: Cross-Platform Mobile Engineering",
-    category: "Development",
-    type: "Full Course",
-    typeIcon: "path",
-    tag1: "React Native",
-    tag2: "iOS & Android",
-    badgeCount: "",
-    coverVariant: "mobile-engineering",
-    imageUrl: "/course-images/react-native-course.jpg",
-    buttonLabel: "Start",
-    description:
-      "Build high-performance native iOS and Android applications with React Native, Expo Router, and gesture-driven animations.",
-    featured: false,
-    totalChapters: 8,
-    totalLessons: 24,
-    progressStatus: {
-      type: "status",
-      statusText: "New",
-    },
-  },
-  {
-    id: "java-programming-course",
-    title: "Java Core & Enterprise Architecture",
-    category: "Development",
-    type: "Full Course",
-    typeIcon: "path",
-    tag1: "Java 21 LTS",
-    tag2: "Enterprise Backend",
-    badgeCount: "",
-    coverVariant: "enterprise-backend",
-    imageUrl: "/course-images/java-course.jpg",
-    buttonLabel: "Start",
-    description:
-      "JVM internals, object-oriented design patterns, concurrency, Spring Boot concepts, and scalable cloud-ready backend microservices.",
-    featured: false,
-    totalChapters: 9,
-    totalLessons: 27,
-    progressStatus: {
-      type: "status",
-      statusText: "Popular",
-    },
-  },
 ];
 
-// Fast In-Memory Course & Lesson Cache for 0ms Instant Page Transitions
+// Fast In-Memory Course & Lesson Cache for Instant Page Transitions
 const COURSE_CACHE = new Map<string, CourseItem>();
 
-// Seed immediately with fallback courses so curriculum is available on frame 1
-FALLBACK_COURSES.forEach((c) => {
-  if (c.id) {
-    COURSE_CACHE.set(c.id, c);
-  }
-});
-
 export function getCachedCourse(id: string): CourseItem | null {
-  return COURSE_CACHE.get(id) || FALLBACK_COURSES.find((c) => c.id === id) || null;
+  return COURSE_CACHE.get(id) || null;
 }
 
 export function setCachedCourse(course: CourseItem) {
@@ -554,105 +415,78 @@ export async function fetchCourses(options?: {
   featured?: boolean;
   search?: string;
 }): Promise<CourseItem[]> {
-  try {
-    const params = new URLSearchParams();
-    if (options?.category && options.category !== "All" && options.category !== "All Courses") {
-      params.set("category", options.category);
-    }
-    if (options?.featured !== undefined) {
-      params.set("featured", String(options.featured));
-    }
-    if (options?.search) {
-      params.set("search", options.search);
-    }
-
-    const queryString = params.toString();
-    const url = `${API_BASE_URL}/courses${queryString ? `?${queryString}` : ""}`;
-
-    const controller = new AbortController();
-    const timeoutId = setTimeout(() => controller.abort(), 3000);
-
-    const res = await fetch(url, {
-      signal: controller.signal,
-      headers: {
-        Accept: "application/json",
-      },
-    });
-    clearTimeout(timeoutId);
-
-    if (!res.ok) {
-      throw new Error(`API error: ${res.status}`);
-    }
-
-    const json = await res.json();
-    const courses: CourseItem[] = json.data || json;
-    if (Array.isArray(courses)) {
-      courses.forEach((c) => setCachedCourse(c));
-    }
-    return courses;
-  } catch (error) {
-    console.warn("Could not fetch courses from backend API at", API_BASE_URL, error);
-    return Array.from(COURSE_CACHE.values());
+  const params = new URLSearchParams();
+  if (options?.category && options.category !== "All" && options.category !== "All Courses") {
+    params.set("category", options.category);
   }
+  if (options?.featured !== undefined) {
+    params.set("featured", String(options.featured));
+  }
+  if (options?.search) {
+    params.set("search", options.search);
+  }
+
+  const queryString = params.toString();
+  const url = `${API_BASE_URL}/courses${queryString ? `?${queryString}` : ""}`;
+
+  const res = await fetch(url, {
+    headers: {
+      Accept: "application/json",
+    },
+  });
+
+  if (!res.ok) {
+    throw new Error(`API error: ${res.status} ${res.statusText}`);
+  }
+
+  const json = await res.json();
+  const courses: CourseItem[] = json.data || json;
+  if (Array.isArray(courses)) {
+    courses.forEach((c) => setCachedCourse(c));
+  }
+  return courses;
 }
 
 export async function fetchCourseById(id: string): Promise<CourseItem | null> {
-  // Check instant memory cache first (0ms latency!)
   const cached = getCachedCourse(id);
   if (cached && (cached.curriculum?.length || cached.chapters?.length)) {
     return cached;
   }
 
-  try {
-    const url = `${API_BASE_URL}/courses/${id}`;
+  const url = `${API_BASE_URL}/courses/${id}`;
+  const res = await fetch(url, {
+    headers: {
+      Accept: "application/json",
+    },
+  });
 
-    const controller = new AbortController();
-    const timeoutId = setTimeout(() => controller.abort(), 2500);
-
-    const res = await fetch(url, {
-      signal: controller.signal,
-      headers: {
-        Accept: "application/json",
-      },
-    });
-    clearTimeout(timeoutId);
-
-    if (!res.ok) {
-      throw new Error(`API error: ${res.status}`);
-    }
-
-    const json = await res.json();
-    const course: CourseItem = json.data || json;
-    if (course && course.id) {
-      setCachedCourse(course);
-      return course;
-    }
-  } catch (error) {
-    console.warn("Could not fetch course details from backend API at", API_BASE_URL, error);
+  if (res.status === 404) {
+    return null;
   }
 
-  return cached || FALLBACK_COURSES.find((c) => c.id === id) || FALLBACK_COURSES[0] || null;
+  if (!res.ok) {
+    throw new Error(`API error: ${res.status} ${res.statusText}`);
+  }
+
+  const json = await res.json();
+  const course: CourseItem = json.data || json;
+  if (course && course.id) {
+    setCachedCourse(course);
+    return course;
+  }
+  return null;
 }
 
 export async function fetchLessonById(
   courseId: string,
   lessonId: string
 ): Promise<{ lesson: Lesson; chapter?: Chapter; course?: CourseItem } | null> {
-  // 1. Instant check from in-memory cache (0ms!)
   const cached = getCachedLesson(courseId, lessonId);
   if (cached && cached.lesson?.content) {
     return cached;
   }
 
-  // 2. If not yet fully in cache, load course and extract
-  try {
-    const course = await fetchCourseById(courseId);
-    if (!course) return cached;
-    return getCachedLesson(courseId, lessonId) || cached;
-  } catch (error) {
-    console.warn("Could not fetch lesson details:", error);
-    return cached;
-  }
-}
-
-
+  const course = await fetchCourseById(courseId);
+  if (!course) return null;
+  return getCachedLesson(courseId, lessonId);
+};
