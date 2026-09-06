@@ -906,7 +906,7 @@ export default function CourseDetailPage() {
 
               {/* Main Content Area */}
               <div className="flex-1 overflow-y-auto p-6 sm:p-10 flex flex-col justify-between bg-white">
-                {/* 1. If German Lesson 1 -> Render GermanLessonExplorer with speech & interactive studio */}
+                {/* 1. If German Lesson 1 -> Render GermanLessonExplorer interactive studio */}
                 {isGermanCourse &&
                 (activeLessonInfo.lesson.id === "a1-ch1-l1" || activeLessonInfo.lesson.id.includes("l1")) ? (
                   <GermanLessonExplorer />
