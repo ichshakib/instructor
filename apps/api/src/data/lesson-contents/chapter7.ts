@@ -2,384 +2,664 @@ import { LessonContent } from "../../types/course.types";
 
 export const CHAPTER_7_LESSONS: Record<string, LessonContent> = {
   "a1-ch7-l29": {
-    overview:
-      "The Dative case (der Dativ) introduces indirect objects—the person or recipient who benefits from an action (e.g. giving, answering, helping). It also serves as the default case for some of the most vital prepositions in everyday German.",
-    canDo:
-      "Can identify indirect objects by asking 'Wem?' (To whom?), and apply the Dative article transformations (dem, der, dem, den + n).",
-    teacherNote:
-      "Here is the musical rhyme that German schoolchildren learn to remember the Dative articles: 'Aus dem, aus der, aus dem, aus den!' Notice that masculine and neuter both change to DEM, feminine becomes DER, and plural becomes DEN with an extra 'n' added to the noun!",
-    sections: [
+    "overview": "The Dative case (der Dativ) marks the indirect object—the beneficiary or recipient of an action (answering 'Wem?' / To whom?). In this lesson, you will master the article transformations in Dativ (dem, der, dem, den + n) and learn verbs that inherently require a Dative object.",
+    "canDo": "Can identify the recipient of an action by asking 'Wem?' and apply correct Dative articles (dem, der, dem, den + n) to nouns.",
+    "teacherNote": "Remember this quick rhyme for Dative definite articles: 'DEM - DER - DEM - DEN plus N'! Notice that in the plural, you not only change the article to 'den', but you ALSO add an '-n' to the end of the noun if it doesn't already have one (den Kindern, den Freunden)!",
+    "sections": [
       {
-        title: "1. The Dative Article Transformations",
-        description: "Study how all genders transform in the Dative case:",
-        table: {
-          headers: ["Gender", "Nominativ", "Akkusativ", "DATIV (Recipient / Wem?)", "Indefinite Dativ"],
-          rows: [
-            ["Masculine (m)", "der Mann", "den Mann", "DEM Mann", "einem Mann"],
-            ["Feminine (f)", "die Frau", "die Frau", "DER Frau", "einer Frau"],
-            ["Neuter (n)", "das Kind", "das Kind", "DEM Kind", "einem Kind"],
-            ["Plural (pl)", "die Kinder", "die Kinder", "DEN Kindern (+n!)", "keinen Kindern"],
+        "title": "1. Die Artikel im Dativ (Dative Article Shifts)",
+        "description": "How articles change to mark the indirect object:",
+        "table": {
+          "headers": [
+            "Genus",
+            "Nominativ (Subjekt)",
+            "Dativ (Empfänger / Wem?)",
+            "Indefinit / Negativ im Dativ"
           ],
-        },
+          "rows": [
+            [
+              "Maskulin (m)",
+              "der Mann",
+              "DEM Mann",
+              "einem / keinem Mann"
+            ],
+            [
+              "Feminin (f)",
+              "die Frau",
+              "DER Frau",
+              "einer / keiner Frau"
+            ],
+            [
+              "Neutral (n)",
+              "das Kind",
+              "DEM Kind",
+              "einem / keinem Kind"
+            ],
+            [
+              "Plural (pl)",
+              "die Freunde",
+              "DEN FreundeN (+n)",
+              "keinen FreundeN"
+            ]
+          ]
+        }
       },
       {
-        title: "2. The Question for Dativ: 'Wem?' (To whom?)",
-        description: "Dative answers the question 'Wem?' (To whom do you give/help/show?):",
-        items: [
+        "title": "2. Verben mit Dativ (Verbs Triggering Dative)",
+        "description": "These common verbs always take a Dative partner:",
+        "items": [
           {
-            term: "geben (to give)",
-            meaning: "Ich gebe DEM Mann das Buch. (I give the man the book.)",
-            example: "Wem gebe ich das Buch? -> Dem Mann (Indirect Object).",
+            "term": "helfen (to help)",
+            "meaning": "Ich helfe + Dativ (I help someone)",
+            "example": "Ich helfe dem Mann / der Kollegin."
           },
           {
-            term: "helfen (to help)",
-            meaning: "Ich helfe DER Frau. (I help the woman.)",
-            example: "Wem helfe ich? -> Der Frau.",
+            "term": "danken (to thank)",
+            "meaning": "Ich danke + Dativ (I thank someone)",
+            "example": "Ich danke Ihnen herzlich für Ihre Unterstützung."
           },
           {
-            term: "antworten (to answer)",
-            meaning: "Er antwortet DEM Lehrer. (He answers the teacher.)",
-            example: "Wem antwortet er? -> Dem Lehrer.",
+            "term": "gefallen (to be pleasing / like)",
+            "meaning": "Das gefällt + Dativ (Someone likes that)",
+            "example": "Das Buch gefällt dem Studenten sehr."
           },
+          {
+            "term": "gehören (to belong to)",
+            "meaning": "Das gehört + Dativ (That belongs to someone)",
+            "example": "Der Stift gehört der Lehrerin."
+          }
+        ]
+      }
+    ],
+    "dialogue": {
+      "context": "Unterstützung im Sprachinstitut (Netzwerk A1 Kapitel 7):",
+      "lines": [
+        {
+          "speaker": "Gregor",
+          "german": "Hallo Paco! Kann ich dir bei der Hausaufgabe helfen?",
+          "english": "Hello Paco! Can I help you with the homework?"
+        },
+        {
+          "speaker": "Paco",
+          "german": "Ja, bitte! Ich verstehe diese Übung mit dem Dativ nicht ganz.",
+          "english": "Yes, please! I don't quite understand this exercise with the dative."
+        },
+        {
+          "speaker": "Gregor",
+          "german": "Kein Problem. Schau mal: 'Ich gebe der Lehrerin das Buch'. Die Lehrerin bekommt das Buch, also Dativ!",
+          "english": "No problem. Look: 'I give the teacher the book'. The teacher receives the book, so Dative!"
+        },
+        {
+          "speaker": "Paco",
+          "german": "Ah, jetzt verstehe ich es! Vielen Dank für deine Hilfe, Gregor.",
+          "english": "Ah, now I understand it! Thank you very much for your help, Gregor."
+        }
+      ]
+    },
+    "funFact": {
+      "title": "'Wie geht es dir?' is Literally Dative!",
+      "content": "Why do Germans ask 'Wie geht es dir?' (How goes it *to you*?) instead of 'Wie bist du?'. Because health and well-being are viewed as happening TO you! That is why the answer is 'Es geht MIR gut' (It goes well *to me*), using the Dative pronoun 'mir'!"
+    },
+    "practice": [
+      {
+        "question": "Choose the correct article: 'Ich helfe _____ (die) Frau.'",
+        "options": [
+          "die",
+          "der",
+          "dem"
         ],
+        "answer": "der",
+        "explanation": "'helfen' takes the dative case. The feminine article 'die' changes to 'der' in Dative."
       },
-    ],
-    dialogue: {
-      context: "A tourist asking for help and giving thanks in central Vienna:",
-      lines: [
-        {
-          speaker: "Tourist",
-          german: "Entschuldigung, können Sie mir helfen?",
-          english: "Excuse me, can you help me (mir - Dativ)?",
-        },
-        {
-          speaker: "Wiener",
-          german: "Ja gerne! Ich helfe Ihnen gerne. Was suchen Sie?",
-          english: "Yes gladly! I gladly help you (Ihnen - Dativ). What are you looking for?",
-        },
-        {
-          speaker: "Tourist",
-          german: "Ich gebe dem Taxifahrer diese Adresse, aber er findet sie nicht.",
-          english: "I am giving the taxi driver (dem Taxifahrer) this address, but he cannot find it.",
-        },
-      ],
-    },
-    funFact: {
-      title: "The Plural '+ n' Rule",
-      content:
-        "In the Dative plural, German not only changes the article to 'den', but also adds a final letter '-n' to the end of the noun if it doesn't already have one! For example: *die Kinder* -> *den Kindern*, *die Freunde* -> *den Freunden*. This is the famous 'Dativ-Plural-n'!",
-    },
-    practice: [
       {
-        question: "What is the Dative form of 'die Mutter'?",
-        options: ["dem Mutter", "der Mutter", "den Mutter"],
-        answer: "der Mutter",
-        explanation: "Feminine nouns shift from 'die' to 'der' in the Dative case ('Ich helfe der Mutter').",
-      },
-    ],
+        "question": "What happens to plural nouns in the Dative case?",
+        "options": [
+          "The article becomes 'den' and the noun adds '-n'",
+          "The article becomes 'die'",
+          "Nothing changes"
+        ],
+        "answer": "The article becomes 'den' and the noun adds '-n'",
+        "explanation": "Dative plural takes the article 'den' and adds an '-n' to the noun (z.B. den Kindern)."
+      }
+    ]
   },
-
   "a1-ch7-l30": {
-    overview:
-      "A select group of German prepositions ALWAYS trigger the Dative case, no matter what verb is in the sentence. Learning this fixed list is one of the highest return-on-investment topics in beginner German.",
-    canDo:
-      "Can apply the fixed Dative prepositions: aus, bei, mit, nach, seit, von, zu in everyday travel and conversational contexts.",
-    teacherNote:
-      "Sing this to the tune of 'The Blue Danube' or chant it aloud: 'Aus, bei, mit, nach, seit, von, zu — immer mit dem Dativ, du!'. The moment you see one of these seven words, the very next noun MUST be in Dativ.",
-    sections: [
+    "overview": "Certain prepositions in German are strictly linked to the Dative case, no matter what. Whenever you use one of these prepositions, the noun following it MUST be in the Dativ case. In this lesson, you will master the 7 fixed Dative prepositions: aus, bei, mit, nach, seit, von, zu.",
+    "canDo": "Can use the fixed Dative prepositions to talk about travel methods (mit dem Bus), origins (aus dem Kurs), workplace (bei Siemens), and appointments (beim Arzt, zum Kurs).",
+    "teacherNote": "Learn the musical Dative preposition rhyme: 'Aus - bei - mit - nach - seit - von - zu, immer mit dem Dativ, weißt du!'. Also memorize contractions: bei + dem = beim, zu + dem = zum, zu + der = zur, von + dem = vom!",
+    "sections": [
       {
-        title: "1. The 7 Fixed Dative Prepositions",
-        description: "Every single one of these words locks the noun into Dativ:",
-        table: {
-          headers: ["Preposition", "Primary Meaning", "Example in Dativ", "Translation"],
-          rows: [
-            ["aus", "out of / from", "Er kommt aus DEM Haus.", "He comes out of the house."],
-            ["bei", "at / with / near", "Ich wohne bei MEINEN Eltern.", "I live with my parents."],
-            ["mit", "with / by (transit)", "Wir fahren mit DEM Bus / Zug.", "We travel by bus / train."],
-            ["nach", "to (cities/countries) / after", "Nach DER Arbeit trinken wir Kaffee.", "After work we drink coffee."],
-            ["seit", "since / for (time)", "Ich lerne seit EINEM Monat Deutsch.", "I've been learning German for a month."],
-            ["von", "from / of", "Das ist ein Geschenk von MEINEM Bruder.", "That is a gift from my brother."],
-            ["zu", "to (places/people)", "Ich gehe zu DEM Arzt (zum Arzt).", "I am going to the doctor."],
+        "title": "1. Die festen Dativ-Präpositionen (Fixed Dative Prepositions)",
+        "description": "These 7 prepositions always trigger Dative:",
+        "table": {
+          "headers": [
+            "Präposition",
+            "Hauptbedeutung",
+            "Beispiel mit Dativ (Netzwerk A1)",
+            "Typische Kontraktion"
           ],
-        },
+          "rows": [
+            [
+              "aus",
+              "out of / from",
+              "Ich komme aus der Schweiz.",
+              "—"
+            ],
+            [
+              "bei",
+              "at / with (company/person)",
+              "Er arbeitet bei einer Bank / beim Arzt.",
+              "bei + dem = beim"
+            ],
+            [
+              "mit",
+              "with / by means of (transport)",
+              "Ich fahre mit dem Bus / mit der Bahn.",
+              "—"
+            ],
+            [
+              "nach",
+              "after / to (cities & countries)",
+              "Nach dem Unterricht fahre ich nach Berlin.",
+              "—"
+            ],
+            [
+              "seit",
+              "since / for (ongoing time)",
+              "Sie lernt seit einem Monat Deutsch.",
+              "—"
+            ],
+            [
+              "von",
+              "from / of",
+              "Ich komme gerade vom Bahnhof.",
+              "von + dem = vom"
+            ],
+            [
+              "zu",
+              "to (places & people)",
+              "Gehst du heute zum Deutschkurs / zur Post?",
+              "zu + dem = zum, zu + der = zur"
+            ]
+          ]
+        }
       },
       {
-        title: "2. Common Contractions with Prepositions",
-        description: "In spoken and written German, prepositions blend with the Dative article:",
-        items: [
+        "title": "2. Verkehrsmittel mit 'mit dem / mit der' (Modes of Transport)",
+        "description": "How to say how you travel in German from Netzwerk Kapitel 3:",
+        "items": [
           {
-            term: "bei + dem = BEIM",
-            meaning: "Ich bin beim Arzt. (I am at the doctor's.)",
-            example: "Beim Essen sprechen wir nicht.",
+            "term": "mit dem Bus / mit dem Zug / mit dem Auto",
+            "meaning": "By bus / by train / by car (masculine & neuter take 'dem')",
+            "example": "Ich fahre jeden Tag mit dem Bus zur Arbeit."
           },
           {
-            term: "zu + dem = ZUM",
-            meaning: "Ich gehe zum Bahnhof. (I am going to the train station.)",
-            example: "Zum Frühstück esse ich Brot.",
+            "term": "mit der U-Bahn / mit der S-Bahn / mit der Tram",
+            "meaning": "By subway / by suburban train / by tram (feminine takes 'der')",
+            "example": "Wir fahren mit der U-Bahn ins Zentrum."
           },
           {
-            term: "zu + der = ZUR",
-            meaning: "Ich gehe zur Post / Schule. (I am going to the post office / school.)",
-            example: "Zur Arbeit fahre ich mit dem Rad.",
-          },
-          {
-            term: "von + dem = VOM",
-            meaning: "Er kommt gerade vom Flughafen. (He's just coming from the airport.)",
-            example: "Vom Bahnhof sind es fünf Minuten.",
-          },
+            "term": "zu Fuß (gegangen)",
+            "meaning": "On foot (fixed expression without article)",
+            "example": "Der Marktplatz ist nah, wir gehen zu Fuß."
+          }
+        ]
+      }
+    ],
+    "dialogue": {
+      "context": "Unterwegs zur Arbeit in München (Netzwerk A1 Kapitel 3):",
+      "lines": [
+        {
+          "speaker": "Julia",
+          "german": "Guten Morgen, Gregor! Wie fährst du heute zur Arbeit?",
+          "english": "Good morning, Gregor! How are you travelling to work today?"
+        },
+        {
+          "speaker": "Gregor",
+          "german": "Ich fahre meistens mit dem Fahrrad, aber heute regnet es. Also fahre ich mit der U-Bahn.",
+          "english": "I mostly ride by bicycle, but today it is raining. So I am taking the subway."
+        },
+        {
+          "speaker": "Julia",
+          "german": "Gute Idee! Und fährst du nach der Arbeit direkt nach Hause?",
+          "english": "Good idea! And are you going directly home after work?"
+        },
+        {
+          "speaker": "Gregor",
+          "german": "Nein, um 17 Uhr gehe ich noch zum Arzt und dann zum Supermarkt.",
+          "english": "No, at 5 PM I am going to the doctor and then to the supermarket."
+        }
+      ]
+    },
+    "funFact": {
+      "title": "The Magic Contractions (beim, zum, zur, vom)",
+      "content": "Native speakers almost never say 'bei dem Arzt' or 'zu der Post'. They combine the preposition and article into smooth contractions: bei + dem = beim, zu + dem = zum, zu + der = zur, von + dem = vom. Using these contractions immediately makes you sound natural!"
+    },
+    "practice": [
+      {
+        "question": "How do you say: 'I travel by train' in German? (der Zug)",
+        "options": [
+          "Ich fahre mit den Zug.",
+          "Ich fahre mit dem Zug.",
+          "Ich fahre mit der Zug."
         ],
+        "answer": "Ich fahre mit dem Zug.",
+        "explanation": "'mit' always triggers Dative: der Zug becomes 'dem Zug'."
       },
-    ],
-    dialogue: {
-      context: "Discussing how to commute to work in Munich:",
-      lines: [
-        {
-          speaker: "Mark",
-          german: "Wie fährst du morgens zur Arbeit?",
-          english: "How do you travel to work (zur Arbeit) in the morning?",
-        },
-        {
-          speaker: "Lisa",
-          german: "Ich fahre meistens mit der U-Bahn oder mit dem Fahrrad.",
-          english: "I usually travel by subway (mit der) or by bicycle (mit dem).",
-        },
-        {
-          speaker: "Mark",
-          german: "Und wie lange brauchst du von deiner Wohnung zum Büro?",
-          english: "And how long do you need from your apartment (von deiner) to the office (zum Büro)?",
-        },
-        {
-          speaker: "Lisa",
-          german: "Etwa zwanzig Minuten.",
-          english: "About twenty minutes.",
-        },
-      ],
-    },
-    funFact: {
-      title: "'Mit dem Bus' - German Transit Etiquette",
-      content:
-        "Whenever talking about taking transit in German, you always use 'mit dem' (with the): *mit dem Bus, mit dem Zug, mit dem Auto, mit dem Flugzeug*. Only 'die Bahn' (train/subway) is feminine, so you say *mit der Bahn*!",
-    },
-    practice: [
       {
-        question: "How do you say: 'I am traveling by train' (der Zug)?",
-        options: ["Ich fahre mit den Zug.", "Ich fahre mit dem Zug.", "Ich fahre mit das Zug."],
-        answer: "Ich fahre mit dem Zug.",
-        explanation: "'mit' always takes the Dative case; masculine 'der Zug' becomes 'dem Zug'.",
-      },
-    ],
+        "question": "What is the contraction of 'zu + der'?",
+        "options": [
+          "zum",
+          "zur",
+          "zudem"
+        ],
+        "answer": "zur",
+        "explanation": "'zu + der' contracts to 'zur' (z.B. zur Schule, zur Post)."
+      }
+    ]
   },
-
   "a1-ch7-l31": {
-    overview:
-      "Answering 'Where?' (Wo?) and 'When?' (Wann?) requires location and time prepositions. In this lesson, you will master the foundational static prepositions (in, an, auf) and time markers (um, am, im).",
-    canDo:
-      "Can tell where things are located using static Dative prepositions (in, an, auf) and indicate times and dates using um, am, and im.",
-    teacherNote:
-      "Remember the time formula: **UM** for clock times (um 8 Uhr), **AM** for days and parts of the day (am Montag, am Morgen), and **IM** for months and seasons (im Juli, im Sommer).",
-    sections: [
+    "overview": "Stating when an event takes place and where you are located requires temporal and spatial prepositions. In this lesson, you will master the three temporal giants (um, am, im) and understand static location with Dative.",
+    "canDo": "Can use time prepositions (um, am, im, von... bis) to state clock times, days of the week, months, and describe static locations.",
+    "teacherNote": "Remember this formula for time: UM for exact hours (um 8 Uhr), AM for days and parts of the day (am Montag, am Abend), IM for months and seasons (im Juli, im Sommer)!",
+    "sections": [
       {
-        title: "1. The Time Prepositions Formula: UM - AM - IM",
-        description: "Never guess time prepositions again with this 3-step hierarchy:",
-        table: {
-          headers: ["Preposition", "Used for...", "Examples", "English"],
-          rows: [
-            ["UM", "Precise clock times", "um 8 Uhr / um halb drei", "at 8 o'clock / at 2:30"],
-            ["AM (an + dem)", "Days of the week, dates & day parts", "am Montag / am Wochenende / am Abend", "on Monday / on the weekend / in the evening"],
-            ["IM (in + dem)", "Months, seasons & years with 'Jahr'", "im Januar / im Sommer / im Jahr 2026", "in January / in summer / in the year 2026"],
+        "title": "1. Die Zeit-Präpositionen: UM, AM, IM (Wann?)",
+        "description": "The golden trio for answering 'Wann?' (When?):",
+        "table": {
+          "headers": [
+            "Präposition",
+            "Verwendung (Usage)",
+            "Beispiele (Netzwerk A1)",
+            "Signalwort"
           ],
-        },
+          "rows": [
+            [
+              "um",
+              "Uhrzeiten (Exact clock times)",
+              "um 9 Uhr, um 14:30 Uhr, um Viertel nach drei",
+              "Uhrzeit"
+            ],
+            [
+              "am (an + dem)",
+              "Wochentage & Tageszeiten",
+              "am Montag, am Wochenende, am Morgen, am Abend",
+              "Tage / Tageszeit"
+            ],
+            [
+              "im (in + dem)",
+              "Monate & Jahreszeiten",
+              "im Januar, im Mai, im Sommer, im Winter",
+              "Monat / Saison"
+            ],
+            [
+              "von ... bis",
+              "Zeitspanne (From ... until)",
+              "von Montag bis Freitag, von 9 bis 17 Uhr",
+              "Dauer"
+            ]
+          ]
+        }
       },
       {
-        title: "2. Static Location (Wo? + Dativ)",
-        description: "When answering 'Where?' (no movement, stationary), use Dativ:",
-        items: [
+        "title": "2. Ort-Präpositionen bei Ruhe (Wo? + Dativ)",
+        "description": "Answering 'Wo?' (Where?) when staying in one place:",
+        "items": [
           {
-            term: "in + dem = IM (inside a space/city)",
-            meaning: "Ich bin im Supermarkt / im Park / in der Stadt.",
-            example: "Er sitzt im Café.",
+            "term": "in + Dativ (in / inside)",
+            "meaning": "Inside buildings, rooms, cities, and countries",
+            "example": "in der Schule, im Kursraum, in München, in Deutschland"
           },
           {
-            term: "an + dem = AM (at the edge/wall/water)",
-            meaning: "Wir stehen am Bahnhof / am Strand / an der Wand.",
-            example: "Das Bild hängt an der Wand.",
+            "term": "an + Dativ (at / on the edge of)",
+            "meaning": "Bordering water, at the window, or on the board",
+            "example": "am Meer (at the sea), am Bahnhof, an der Haltestelle"
           },
           {
-            term: "auf + dem = AUF DEM (on a horizontal surface/square)",
-            meaning: "Das Buch liegt auf dem Tisch / auf dem Marktplatz.",
-            example: "Die Kinder spielen auf der Straße.",
-          },
+            "term": "auf + Dativ (on / on top of)",
+            "meaning": "On horizontal surfaces or open public spaces",
+            "example": "auf dem Marktplatz, auf dem Tisch, auf der Straße"
+          }
+        ]
+      }
+    ],
+    "dialogue": {
+      "context": "Termine absprechen für das Wochenende (Netzwerk A1 Kapitel 5):",
+      "lines": [
+        {
+          "speaker": "Paco",
+          "german": "Wann hast du am Wochenende Zeit, Christian?",
+          "english": "When do you have time on the weekend, Christian?"
+        },
+        {
+          "speaker": "Christian",
+          "german": "Am Samstag arbeite ich von 10 bis 14 Uhr. Aber am Abend habe ich frei!",
+          "english": "On Saturday I work from 10 to 2 PM. But in the evening I am free!"
+        },
+        {
+          "speaker": "Paco",
+          "german": "Perfekt! Treffen wir uns um 19 Uhr im Café am Marktplatz?",
+          "english": "Perfect! Shall we meet at 7 PM in the café at the marketplace?"
+        },
+        {
+          "speaker": "Christian",
+          "german": "Ja, super! Um sieben Uhr am Marktplatz. Bis Samstag!",
+          "english": "Yes, super! At seven o'clock at the marketplace. See you Saturday!"
+        }
+      ]
+    },
+    "funFact": {
+      "title": "The One Exception: In der Nacht!",
+      "content": "All parts of the day use 'am' (am Morgen, am Vormittag, am Nachmittag, am Abend)—EXCEPT night! Because 'die Nacht' is feminine, Germans say 'in der Nacht' (during the night). Always remember: 'am Abend', but 'in der Nacht'!"
+    },
+    "practice": [
+      {
+        "question": "Which preposition completes the sentence: 'Der Kurs beginnt _____ 9 Uhr.'?",
+        "options": [
+          "am",
+          "im",
+          "um"
         ],
+        "answer": "um",
+        "explanation": "Exact clock times always take 'um' (um 9 Uhr)."
       },
-    ],
-    dialogue: {
-      context: "Scheduling an appointment at a doctor's clinic in Berlin:",
-      lines: [
-        {
-          speaker: "Arzthelferin",
-          german: "Praxis Dr. Schneider, guten Tag! Wann möchten Sie kommen?",
-          english: "Dr. Schneider's clinic, good day! When would you like to come?",
-        },
-        {
-          speaker: "Patient",
-          german: "Guten Tag. Geht es am Freitag um zehn Uhr?",
-          english: "Good day. Is Friday (am Freitag) at ten o'clock (um zehn Uhr) possible?",
-        },
-        {
-          speaker: "Arzthelferin",
-          german: "Ja, am Freitag um zehn Uhr haben wir einen freien Termin für Sie.",
-          english: "Yes, on Friday at ten o'clock we have an open appointment for you.",
-        },
-      ],
-    },
-    funFact: {
-      title: "'In der Nacht' - The One Exception!",
-      content:
-        "All parts of the day in German use 'am' (*am Morgen, am Vormittag, am Nachmittag, am Abend*) because they are all grammatically masculine (der Morgen, der Abend). The only exception is night, which is feminine (die Nacht), so Germans say: **in der Nacht**!",
-    },
-    practice: [
       {
-        question: "Which preposition correctly fills the blank: 'Der Kurs beginnt _____ 19:00 Uhr.'?",
-        options: ["am", "im", "um"],
-        answer: "um",
-        explanation: "Precise clock hours always use the preposition 'um' (um 19:00 Uhr).",
-      },
-    ],
+        "question": "How do you say: 'on Friday' in German?",
+        "options": [
+          "im Freitag",
+          "am Freitag",
+          "um Freitag"
+        ],
+        "answer": "am Freitag",
+        "explanation": "Days of the week always take 'am' (am Freitag)."
+      }
+    ]
   },
-
   "a1-ch7-l32": {
-    overview:
-      "Modal verbs (Modalverben) express ability, necessity, permission, intention, and desire. German has 6 modal verbs, and they create the famous 'Satzklammer' (sentence bracket), sending the main action verb all the way to the end of the sentence in the infinitive!",
-    canDo:
-      "Can conjugate and use the 6 German modal verbs (können, müssen, wollen, möchten, dürfen, sollen) with the second verb at the end.",
-    teacherNote:
-      "The 'Sentence Bracket' (Satzklammer) is a hallmark of German: Modal verb goes in Position 2, and the second verb is kicked all the way to the VERY END of the clause in its unconjugated infinitive form! Example: *Ich MUSS heute für die Prüfung LERNEN*.",
-    sections: [
+    "overview": "Modal verbs express possibility, necessity, permission, intention, and desire. In German, modal verbs create the famous 'sentence bracket' (die Satzklammer): the conjugated modal verb stands in Position 2, while the main action verb is sent all the way to the very end of the sentence in its infinitive form!",
+    "canDo": "Can conjugate and use the 6 German modal verbs (können, müssen, wollen, möchten, dürfen, sollen) with infinitive verbs at the end of the sentence.",
+    "teacherNote": "Golden rule of modal sentences: 'Two verbs, one sentence -> Modal verb in Position 2, Infinitive verb at the Satzende (sentence end)!'. For example: 'Ich KANN sehr gut Deutsch SPRECHEN'.",
+    "sections": [
       {
-        title: "1. The 6 German Modal Verbs & Their Meanings",
-        description: "Notice that in singular (ich, du, er/sie/es), modals change their stem vowel, and 'ich' and 'er' share the exact same ending (no -t!):",
-        table: {
-          headers: ["Modal Verb", "Meaning", "ich form", "du form", "er/sie/es form", "wir / sie form"],
-          rows: [
-            ["können", "can / to be able to", "ich kann", "du kannst", "er kann", "wir können"],
-            ["müssen", "must / to have to", "ich muss", "du musst", "er muss", "wir müssen"],
-            ["wollen", "to want to (strong will)", "ich will", "du willst", "er will", "wir wollen"],
-            ["möchten", "would like to (polite wish)", "ich möchte", "du möchtest", "er möchte", "wir möchten"],
-            ["dürfen", "may / to be allowed to", "ich darf", "du darfst", "er darf", "wir dürfen"],
-            ["sollen", "should / supposed to", "ich soll", "du sollst", "er soll", "wir sollen"],
+        "title": "1. Die 6 Modalverben im Präsens (The 6 Modal Verbs)",
+        "description": "Notice that 'ich' and 'er/sie/es' have identical forms and drop endings:",
+        "table": {
+          "headers": [
+            "Pronomen",
+            "können (can/able)",
+            "müssen (must/have to)",
+            "wollen (want to)",
+            "möchten (would like)",
+            "dürfen (allowed/may)",
+            "sollen (should)"
           ],
-        },
+          "rows": [
+            [
+              "ich",
+              "kann",
+              "muss",
+              "will",
+              "möchte",
+              "darf",
+              "soll"
+            ],
+            [
+              "du",
+              "kannst",
+              "musst",
+              "willst",
+              "möchtest",
+              "darfst",
+              "sollst"
+            ],
+            [
+              "er / sie / es",
+              "kann",
+              "muss",
+              "will",
+              "möchte",
+              "darf",
+              "soll"
+            ],
+            [
+              "wir",
+              "können",
+              "müssen",
+              "wollen",
+              "möchten",
+              "dürfen",
+              "sollen"
+            ],
+            [
+              "ihr",
+              "könnt",
+              "müsst",
+              "wollt",
+              "möchtet",
+              "dürft",
+              "sollt"
+            ],
+            [
+              "sie / Sie",
+              "können",
+              "müssen",
+              "wollen",
+              "möchten",
+              "dürfen",
+              "sollen"
+            ]
+          ]
+        }
       },
       {
-        title: "2. The Sentence Bracket (Die Satzklammer)",
-        description: "The modal verb and the infinitive hug the rest of the sentence:",
-        items: [
-          {
-            term: "Position 2: Conjugated Modal",
-            meaning: "Ich KANN sehr gut Deutsch sprechen.",
-            example: "kann (Pos 2) ... sprechen (End of sentence).",
-          },
-          {
-            term: "Negation inside the bracket",
-            meaning: "Hier DARF man nicht RAUCHEN.",
-            example: "You are not allowed to smoke here.",
-          },
-          {
-            term: "Questions with modals",
-            meaning: "KÖNNEN Sie mir bitte HELFEN?",
-            example: "Modal in Pos 1, infinitive at the very end.",
-          },
+        "title": "2. Die Satzklammer (Sentence Bracket Structure)",
+        "description": "The conjugated modal in Position 2 and the infinitive at the end bracket the sentence:",
+        "table": {
+          "headers": [
+            "Position 1",
+            "Position 2 (Modalverb)",
+            "Mittelfeld (Information)",
+            "Satzende (Infinitiv)"
+          ],
+          "rows": [
+            [
+              "Ich",
+              "kann",
+              "heute leider nicht",
+              "kommen."
+            ],
+            [
+              "Wir",
+              "müssen",
+              "für die Prüfung",
+              "lernen."
+            ],
+            [
+              "Paco",
+              "möchte",
+              "einen Kaffee",
+              "trinken."
+            ],
+            [
+              "Hier",
+              "darf",
+              "man nicht",
+              "rauchen!"
+            ]
+          ]
+        }
+      }
+    ],
+    "dialogue": {
+      "context": "Absprachen am Arbeitsplatz im Büro (Netzwerk A1 Kapitel 9):",
+      "lines": [
+        {
+          "speaker": "Chef",
+          "german": "Herr Schubert, können Sie heute den Bericht fertig schreiben?",
+          "english": "Mr. Schubert, can you finish writing the report today?"
+        },
+        {
+          "speaker": "Gregor",
+          "german": "Ja, natürlich. Ich muss nur noch die Zahlen überprüfen.",
+          "english": "Yes, of course. I just have to verify the numbers."
+        },
+        {
+          "speaker": "Chef",
+          "german": "Sehr gut! Möchten Sie heute früher Feierabend machen?",
+          "english": "Very good! Would you like to finish work earlier today?"
+        },
+        {
+          "speaker": "Gregor",
+          "german": "Das wäre wunderbar! Ich will um 16 Uhr zum Sport gehen.",
+          "english": "That would be wonderful! I want to go to sports at 4 PM."
+        }
+      ]
+    },
+    "funFact": {
+      "title": "'Dürfen' vs. 'Müssen' with Negation",
+      "content": "Pay close attention to negative modals: 'Du MUSST NICHT' means 'You don't have to' (it is optional). But 'Du DARFST NICHT' means 'You are NOT allowed to / You must not!' (it is strictly forbidden by law or rule)!"
+    },
+    "practice": [
+      {
+        "question": "Where does the main verb go in a sentence with a modal verb?",
+        "options": [
+          "Immediately after the modal verb",
+          "At the very end of the sentence as an infinitive",
+          "At the beginning"
         ],
+        "answer": "At the very end of the sentence as an infinitive",
+        "explanation": "German modal sentence structure places the infinitive at the end: 'Ich möchte Deutsch lernen'."
       },
-    ],
-    dialogue: {
-      context: "A café guest ordering politely in Frankfurt:",
-      lines: [
-        {
-          speaker: "Kellner",
-          german: "Guten Tag! Was darf ich Ihnen bringen?",
-          english: "Good day! What may I bring you (dürfen)?",
-        },
-        {
-          speaker: "Gast",
-          german: "Ich möchte bitte einen Cappuccino und ein Stück Apfelkuchen haben.",
-          english: "I would like to have (möchten... haben) a cappuccino and a piece of apple cake, please.",
-        },
-        {
-          speaker: "Kellner",
-          german: "Sehr gerne! Kommt sofort.",
-          english: "Very gladly! Coming right up.",
-        },
-      ],
-    },
-    funFact: {
-      title: "'Wollen' vs. 'Möchten' in German Etiquette",
-      content:
-        "In a German bakery or restaurant, saying 'Ich will einen Kaffee' sounds blunt and demanding (like 'I demand a coffee!'). German culture highly values politeness when ordering—always use: **'Ich möchte bitte einen Kaffee'** (I would like a coffee, please) or **'Ich hätte gern einen Kaffee'**!",
-    },
-    practice: [
       {
-        question: "Where does the second verb go in a sentence with a modal verb?",
-        options: ["Immediately after the modal verb in Position 3", "At the very end of the sentence in the infinitive", "At the start of the sentence"],
-        answer: "At the very end of the sentence in the infinitive",
-        explanation: "Modal verbs create the 'Satzklammer'—the infinitive is pushed to the very end of the sentence.",
-      },
-    ],
+        "question": "What is the correct form: 'Er _____ heute lange arbeiten.' (müssen)",
+        "options": [
+          "muss",
+          "müsst",
+          "musst"
+        ],
+        "answer": "muss",
+        "explanation": "The 3rd person singular of 'müssen' is 'muss' (identical to 'ich muss')."
+      }
+    ]
   },
-
   "a1-ch7-l33": {
-    overview:
-      "Whether giving instructions, telling a friend to hurry, or asking a stranger for help, you need the Imperative mood (der Imperativ). German creates three distinct forms depending on whether you are addressing 'du', 'ihr', or formal 'Sie'.",
-    canDo:
-      "Can formulate commands, polite requests, and instructions for 'du', 'ihr', and 'Sie' using the word 'bitte'.",
-    teacherNote:
-      "The easiest imperative is the formal 'Sie': simply swap the order and add 'bitte': *Kommen Sie bitte!*, *Warten Sie bitte!* It is polite, easy, and universally safe.",
-    sections: [
+    "overview": "The Imperative form (der Imperativ) is used for giving instructions, directions, polite requests, and medical advice. In German, there are three distinct imperative forms depending on whether you are commanding one friend (du), a group of friends (ihr), or addressing someone formally (Sie).",
+    "canDo": "Can form commands and polite requests for 'du', 'ihr', and formal 'Sie', and understand instructions from doctors, teachers, and signs.",
+    "teacherNote": "For formal 'Sie', making an imperative is effortless: take the verb, add 'Sie', and add 'bitte': 'Kommen Sie bitte!', 'Lesen Sie bitte!'. It is impossible to get wrong!",
+    "sections": [
       {
-        title: "1. The 3 Imperative Forms",
-        description: "Study how imperative forms are constructed:",
-        table: {
-          headers: ["Addressee", "How to form", "Infinitive: kommen", "Infinitive: lesen", "Example Request"],
-          rows: [
-            ["du (one friend)", "Drop 'du' and the '-st' ending", "Komm!", "Lies! (keeps e->ie)", "Komm bitte hierher! (Come here please!)"],
-            ["ihr (group of friends)", "Drop 'ihr', keep regular '-t'", "Kommt!", "Lest!", "Kommt schnell! (Come quickly, guys!)"],
-            ["Sie (formal - any number)", "Verb + Sie + bitte", "Kommen Sie bitte!", "Lesen Sie bitte!", "Kommen Sie bitte herein! (Please come in!)"],
+        "title": "1. Die 3 Formen des Imperativs (The 3 Imperative Forms)",
+        "description": "How to address one friend, multiple friends, or a formal partner:",
+        "table": {
+          "headers": [
+            "Form",
+            "Bildung (Formation Rule)",
+            "Beispiel: kommen",
+            "Beispiel: lesen (e->ie)",
+            "Beispiel: sein"
           ],
-        },
+          "rows": [
+            [
+              "du (informell singular)",
+              "Verbstamm ohne '-st', kein Pronomen!",
+              "Komm!",
+              "Lies!",
+              "Sei ruhig!"
+            ],
+            [
+              "ihr (informell plural)",
+              "Gleiche Form wie 'ihr', kein Pronomen!",
+              "Kommt!",
+              "Lest!",
+              "Seid pünktlich!"
+            ],
+            [
+              "Sie (formell)",
+              "Verb an Position 1 + 'Sie' + 'bitte'",
+              "Kommen Sie bitte!",
+              "Lesen Sie bitte!",
+              "Seien Sie bitte leise!"
+            ]
+          ]
+        }
       },
-    ],
-    dialogue: {
-      context: "At a doctor's office waiting room in Berlin:",
-      lines: [
-        {
-          speaker: "Arzt",
-          german: "Herr Meyer, kommen Sie bitte herein und nehmen Sie Platz!",
-          english: "Mr. Meyer, please come in and take a seat!",
-        },
-        {
-          speaker: "Patient",
-          german: "Guten Tag, Herr Doktor. Vielen Dank.",
-          english: "Good day, doctor. Thank you very much.",
-        },
-        {
-          speaker: "Arzt",
-          german: "Bitte beschreiben Sie: Wo haben Sie Schmerzen?",
-          english: "Please describe: Where do you have pain?",
-        },
-      ],
-    },
-    funFact: {
-      title: "The Magic Power of 'Bitte' in German Commands",
-      content:
-        "Without the word 'bitte', German imperatives can sound harsh or military-like to foreign ears (*Komm!*, *Warte!*). Adding 'bitte' (*Kommen Sie bitte*, *Warte mal bitte*) immediately transforms an order into a warm, polite, and respectful German request!",
-    },
-    practice: [
       {
-        question: "How do you politely ask a stranger to wait?",
-        options: ["Warte!", "Warten Sie bitte!", "Wartet Sie bitte!"],
-        answer: "Warten Sie bitte!",
-        explanation: "The polite formal imperative is formed by: Verb + Sie + bitte -> 'Warten Sie bitte!'.",
-      },
+        "title": "2. Ratschläge beim Arzt & im Unterricht (Netzwerk A1)",
+        "description": "Everyday imperative instructions:",
+        "items": [
+          {
+            "term": "Trinken Sie viel Wasser / Tee!",
+            "meaning": "Drink plenty of water / tea! (doctor's advice)",
+            "example": "Bleiben Sie im Bett und trinken Sie viel Tee."
+          },
+          {
+            "term": "Öffnen Sie das Buch auf Seite 20!",
+            "meaning": "Open the book to page 20! (teacher instruction)",
+            "example": "Lesen Sie bitte den Text laut vor."
+          },
+          {
+            "term": "Steigen Sie hier um!",
+            "meaning": "Transfer / change trains here! (travel direction)",
+            "example": "Fahren Sie zwei Stationen und steigen Sie dann um."
+          }
+        ]
+      }
     ],
-  },
+    "dialogue": {
+      "context": "In der Praxis bei der Ärztin in München (Netzwerk A1 Kapitel 11):",
+      "lines": [
+        {
+          "speaker": "Ärztin",
+          "german": "Guten Tag, Herr Schubert. Nehmen Sie bitte Platz! Was fehlt Ihnen denn?",
+          "english": "Good day, Mr. Schubert. Please take a seat! What seems to be the problem?"
+        },
+        {
+          "speaker": "Gregor",
+          "german": "Guten Tag, Frau Doktor. Ich habe starke Halsschmerzen und Fieber.",
+          "english": "Good day, doctor. I have a severe sore throat and fever."
+        },
+        {
+          "speaker": "Ärztin",
+          "german": "Machen Sie bitte den Mund auf und sagen Sie 'Aah'. Ja, der Hals ist rot.",
+          "english": "Please open your mouth and say 'Aah'. Yes, the throat is red."
+        },
+        {
+          "speaker": "Ärztin",
+          "german": "Bleiben Sie drei Tage zu Hause im Bett und nehmen Sie diese Tabletten dreimal täglich!",
+          "english": "Stay home in bed for three days and take these tablets three times daily!"
+        },
+        {
+          "speaker": "Gregor",
+          "german": "Vielen Dank, Frau Doktor. Das mache ich.",
+          "english": "Thank you very much, doctor. I will do that."
+        }
+      ]
+    },
+    "funFact": {
+      "title": "Softening Commands with 'mal' and 'doch'",
+      "content": "A German imperative like 'Komm!' can sound very direct. To make commands sound friendly and warm, native speakers insert little particle words like 'mal' or 'doch': 'Komm mal her!' (Just come over here!), 'Schau mal!' (Take a look!), 'Hilf mir doch mal bitte!' (Could you just help me please?)."
+    },
+    "practice": [
+      {
+        "question": "How do you politely tell someone (formal) to drink more water?",
+        "options": [
+          "Trinken Sie bitte mehr Wasser!",
+          "Trinkst du bitte mehr Wasser!",
+          "Trink mehr Wasser!"
+        ],
+        "answer": "Trinken Sie bitte mehr Wasser!",
+        "explanation": "Formal imperative: Verb + Sie + bitte (Trinken Sie bitte...)."
+      },
+      {
+        "question": "What is the informal 'du' imperative of 'hören' (to listen)?",
+        "options": [
+          "Hörst!",
+          "Hör!",
+          "Hören!"
+        ],
+        "answer": "Hör!",
+        "explanation": "The 'du' imperative removes the ending '-st' and the pronoun: Hör! (Listen!)."
+      }
+    ]
+  }
 };

@@ -2,436 +2,684 @@ import { LessonContent } from "../../types/course.types";
 
 export const CHAPTER_9_LESSONS: Record<string, LessonContent> = {
   "a1-ch9-l39": {
-    overview:
-      "Shopping at a German supermarket or weekly market (Wochenmarkt) is a rich sensory and linguistic experience. You will learn food vocabulary, units of weight and volume, asking for prices, and navigating the German cash register.",
-    canDo:
-      "Can ask for food items, specify quantities (Kilo, Gramm, Flasche, Stück), ask prices ('Was kostet...?'), and handle supermarket checkout interactions.",
-    teacherNote:
-      "German cashiers are famously fast! Be prepared to pack your own bags rapidly at the register, as German supermarkets do not have baggers and bag charges apply if you don't bring your own reusable bag (*Stoffbeutel*).",
-    sections: [
+    "overview": "Shopping for food at open-air markets and supermarkets requires practical knowledge of units of measurement (Kilo, Gramm, Liter), inquiring about prices, and courteous customer interactions from Netzwerk A1 Kapitel 4.",
+    "canDo": "Can buy food items, ask for specific quantities and weights, inquire about prices, and interact politely with shopkeepers.",
+    "teacherNote": "In German food shopping, 'ein Pfund' (a pound) is exactly 500 grams (half a kilo)! Native speakers frequently say: 'Ein Pfund Tomaten, bitte' (500 grams of tomatoes).",
+    "sections": [
       {
-        title: "1. Food & Groceries (Lebensmittel)",
-        description: "Master the most common food items by category:",
-        table: {
-          headers: ["Category", "German Item (with article)", "Plural Form", "English Meaning"],
-          rows: [
-            ["Bakery", "das Brot / das Brötchen", "die Brote / die Brötchen", "bread / bread roll"],
-            ["Produce", "der Apfel / die Banane", "die Äpfel / die Bananen", "apple / banana"],
-            ["Vegetables", "die Tomate / die Kartoffel", "die Tomaten / die Kartoffeln", "tomato / potato"],
-            ["Dairy", "die Milch / der Käse / die Butter", "— / die Käsesorten / —", "milk / cheese / butter"],
-            ["Meat", "das Fleisch / das Hähnchen", "—", "meat / chicken"],
-            ["Beverages", "das Wasser / der Orangensaft", "die Wasser / die Säfte", "water / orange juice"],
+        "title": "1. Maßeinheiten beim Lebensmitteleinkauf (Units of Measurement)",
+        "description": "Standard weights and measures in German markets:",
+        "table": {
+          "headers": [
+            "Maßeinheit",
+            "Abkürzung",
+            "Bedeutung",
+            "Beispiel"
           ],
-        },
+          "rows": [
+            [
+              "das Kilo / Kilogramm",
+              "kg",
+              "1000 Gramm",
+              "ein Kilo Äpfel / zwei Kilo Kartoffeln"
+            ],
+            [
+              "das Pfund",
+              "Pfd",
+              "500 Gramm (halbes Kilo)",
+              "ein Pfund Butter / ein Pfund Erdbeeren"
+            ],
+            [
+              "das Gramm",
+              "g",
+              "Gramm",
+              "200 Gramm Käse / 150 Gramm Schinken"
+            ],
+            [
+              "der Liter",
+              "l",
+              "Flüssigkeiten",
+              "ein Liter Milch / zwei Liter Wasser"
+            ],
+            [
+              "die Flasche / die Dose",
+              "Fl. / D.",
+              "Verpackung",
+              "eine Flasche Saft / eine Dose Tomaten"
+            ],
+            [
+              "das Stück",
+              "Stk.",
+              "Einzelartikel",
+              "drei Stück Kuchen / ein Stück Käse"
+            ]
+          ]
+        }
       },
       {
-        title: "2. Quantities & Asking Prices",
-        description: "Formulas for purchasing by weight or piece:",
-        items: [
+        "title": "2. Preise nennen und verstehen (Euros & Cents)",
+        "description": "How to say prices aloud in German:",
+        "items": [
           {
-            term: "ein Kilo (1 kg) / ein halbes Kilo (500g)",
-            meaning: "Ich hätte gern ein Kilo Äpfel, bitte.",
-            example: "Hundert Gramm Käse, bitte.",
+            "term": "€ 2,50 = zwei Euro fünfzig",
+            "meaning": "Euro amount first, then 'Euro', then the cent amount",
+            "example": "Das Brot kostet zwei Euro fünfzig."
           },
           {
-            term: "eine Flasche / eine Packung / ein Stück",
-            meaning: "a bottle of / a pack of / a piece of",
-            example: "Eine Flasche Mineralwasser / ein Stück Kuchen.",
+            "term": "€ 0,89 = neunundachtzig Cent",
+            "meaning": "Cent amounts under 1 Euro simply state the number + 'Cent'",
+            "example": "Ein Brötchen kostet fünfundvierzig Cent."
           },
           {
-            term: "Was kostet...? / Wie viel kostet...?",
-            meaning: "How much does X cost?",
-            example: "Was kostet ein Kilo Tomaten? -> Das kostet zwei Euro fünfzig.",
-          },
+            "term": "Was kostet...? / Was machen...?",
+            "meaning": "How much does ... cost? / What does that come to?",
+            "example": "Was kostet das Kilo Bananen? - Ein Euro neunundsiebzig."
+          }
+        ]
+      }
+    ],
+    "dialogue": {
+      "context": "Einkaufen am Marktstand in Dresden (Netzwerk A1 Kapitel 4):",
+      "lines": [
+        {
+          "speaker": "Verkäufer",
+          "german": "Guten Tag! Der Nächste bitte! Was darf ich Ihnen geben?",
+          "english": "Good day! Next please! What can I get for you?"
+        },
+        {
+          "speaker": "Kundin",
+          "german": "Guten Tag. Ich hätte gern zwei Kilo Äpfel und ein Pfund Erdbeeren.",
+          "english": "Good day. I would like two kilos of apples and a pound of strawberries."
+        },
+        {
+          "speaker": "Verkäufer",
+          "german": "Sehr gern, die Erdbeeren sind heute besonders süß. Sonst noch etwas?",
+          "english": "Very gladly, the strawberries are especially sweet today. Anything else?"
+        },
+        {
+          "speaker": "Kundin",
+          "german": "Haben Sie auch frischen Bio-Käse?",
+          "english": "Do you also have fresh organic cheese?"
+        },
+        {
+          "speaker": "Verkäufer",
+          "german": "Ja, der Bergkäse hier ist herrlich. 200 Gramm? Das macht zusammen 8 Euro 40.",
+          "english": "Yes, this mountain cheese here is wonderful. 200 grams? That comes to 8 euros 40 altogether."
+        }
+      ]
+    },
+    "funFact": {
+      "title": "Cash is Still King (Bargeld)",
+      "content": "While card payments have grown rapidly, Germany and Austria remain famous for their love of cash ('Bargeld lacht' - cash laughs!). At bakeries, small kiosks, open-air markets, and traditional beer gardens, always carry cash, as signs often say: 'Keine Kartenzahlung' (No card payment)!"
+    },
+    "practice": [
+      {
+        "question": "How much is 'ein Pfund' in Germany?",
+        "options": [
+          "100 Gramm",
+          "500 Gramm",
+          "1000 Gramm"
         ],
+        "answer": "500 Gramm",
+        "explanation": "In German culinary and market tradition, 'ein Pfund' is exactly 500 grams."
       },
-    ],
-    dialogue: {
-      context: "At a weekly farmer's market in Freiburg buying fresh fruit and cheese:",
-      lines: [
-        {
-          speaker: "Marktfrau",
-          german: "Guten Tag! Was darf es sein?",
-          english: "Good day! What can I get for you?",
-        },
-        {
-          speaker: "Kunde",
-          german: "Guten Tag. Ich hätte gern ein Kilo Äpfel und zweihundert Gramm von dem Bergkäse.",
-          english: "Good day. I would like a kilo of apples and 200 grams of the mountain cheese.",
-        },
-        {
-          speaker: "Marktfrau",
-          german: "Gerne. Sonst noch etwas?",
-          english: "With pleasure. Anything else?",
-        },
-        {
-          speaker: "Kunde",
-          german: "Nein danke, das ist alles. Wie viel macht das zusammen?",
-          english: "No thank you, that is all. How much does that come to altogether?",
-        },
-        {
-          speaker: "Marktfrau",
-          german: "Das macht genau sechs Euro zwanzig, bitte.",
-          english: "That comes to exactly six euros twenty, please.",
-        },
-      ],
-    },
-    funFact: {
-      title: "The Legendary German Pfandsystem (Bottle Deposit)",
-      content:
-        "Never throw plastic bottles or cans into the trash in Germany! Almost all beverage containers carry a deposit (**Pfand**) between €0.08 and €0.25. When you finish your drink, take the empty bottles back to the automated reverse vending machine (*Pfandautomat*) inside any supermarket to collect your cash voucher!",
-    },
-    practice: [
       {
-        question: "How do you ask 'How much do the bananas cost?'",
-        options: ["Wie viel sind die Bananen?", "Was kosten die Bananen?", "Wo kosten die Bananen?"],
-        answer: "Was kosten die Bananen?",
-        explanation: "'Was kosten [Plural]?' or 'Wie viel kostet [Singular]?' are the standard price inquiries.",
-      },
-    ],
+        "question": "How do you pronounce € 3,80 in German?",
+        "options": [
+          "drei achtzig",
+          "drei Euro achtzig",
+          "achtzig Euro drei"
+        ],
+        "answer": "drei Euro achtzig",
+        "explanation": "Prices are pronounced: [Euro amount] + Euro + [Cent amount]."
+      }
+    ]
   },
-
   "a1-ch9-l40": {
-    overview:
-      "Dining out in a German restaurant, Biergarten, or traditional Gasthaus is an authentic cultural ritual. In this lesson, you will master polite ordering formulas, asking for recommendations, and the famous payment question.",
-    canDo:
-      "Can reserve a table, order meals and beverages politely, ask for the bill, and understand the waiter's question: 'Zusammen oder getrennt?'.",
-    teacherNote:
-      "When ordering in a restaurant, native speakers rarely use 'Ich will'. Instead, use the ultra-polite subjunctive formula: **'Ich hätte gern...'** (I would like to have...) or **'Ich möchte bitte...'**.",
-    sections: [
+    "overview": "Visiting restaurants, cafes, and beer gardens is one of the greatest pleasures in the DACH countries. In this lesson, you will master reading a German menu (die Speisekarte), ordering food and drinks, and asking for the bill using authentic etiquette.",
+    "canDo": "Can order meals and beverages politely in a restaurant, ask about menu recommendations, and settle the bill ('Zusammen oder getrennt?').",
+    "teacherNote": "When paying in Germany, the server will almost always ask: 'Zusammen oder getrennt?' (Together or separately?). Splitting the bill item-by-item is completely normal and expected in German restaurant culture!",
+    "sections": [
       {
-        title: "1. Core Phrases for Dining Out",
-        description: "Navigate the restaurant experience from start to finish:",
-        table: {
-          headers: ["Phase", "German Phrase", "English Meaning", "When to Use"],
-          rows: [
-            ["Arrival", "Einen Tisch für zwei Personen, bitte.", "A table for two people, please.", "Entering the restaurant"],
-            ["Menu", "Die Speisekarte, bitte!", "The menu, please!", "At the table"],
-            ["Ordering", "Ich hätte gern das Schnitzel mit Pommes.", "I'd like the schnitzel with fries.", "Speaking to the waiter"],
-            ["Beverage", "Für mich ein stilles Wasser, bitte.", "For me a still water, please.", "Drink orders"],
-            ["Toast", "Prost! / Zum Wohl!", "Cheers! / To your health!", "Clinking glasses (make eye contact!)"],
-            ["Compliment", "Es schmeckt sehr lecker!", "It tastes very delicious!", "During the meal"],
-            ["Bill", "Wir möchten bitte zahlen.", "We would like to pay, please.", "At the end"],
+        "title": "1. Redemittel im Restaurant (Restaurant Phrase Bank)",
+        "description": "Step-by-step phrases for dining out:",
+        "table": {
+          "headers": [
+            "Phase",
+            "Deutscher Ausdruck",
+            "Bedeutung",
+            "Antwort des Kellners"
           ],
-        },
+          "rows": [
+            [
+              "Ankunft",
+              "Einen Tisch für zwei Personen, bitte.",
+              "A table for two, please.",
+              "Sehr gern, hier entlang bitte."
+            ],
+            [
+              "Speisekarte",
+              "Die Speisekarte bitte.",
+              "The menu, please.",
+              "Hier ist die Karte."
+            ],
+            [
+              "Bestellen",
+              "Ich nehme / Ich hätte gern...",
+              "I'll take / I would like...",
+              "Und was möchten Sie trinken?"
+            ],
+            [
+              "Wohl bekomm's",
+              "Guten Appetit! / Prost! / Zum Wohl!",
+              "Enjoy your meal! / Cheers!",
+              "Danke, gleichfalls! (Same to you!)"
+            ],
+            [
+              "Rechnung",
+              "Die Rechnung bitte! / Wir möchten zahlen.",
+              "The bill, please! / We'd like to pay.",
+              "Zusammen oder getrennt?"
+            ]
+          ]
+        }
       },
       {
-        title: "2. The Magic Payment Question: 'Zusammen oder getrennt?'",
-        description:
-          "In German restaurants, servers expect table parties to split the bill individually:",
-        items: [
+        "title": "2. Trinkgeld-Kultur (Tipping in Germany)",
+        "description": "How tipping works in German-speaking countries:",
+        "items": [
           {
-            term: "Zusammen (Together)",
-            meaning: "One person pays for the entire table",
-            example: "Zusammen, bitte. Das macht fünfzig Euro.",
+            "term": "5% bis 10% Trinkgeld (Rounding Up)",
+            "meaning": "Tipping is not obligatory by law, but 5% to 10% is standard for good service",
+            "example": "If the bill is € 27,20, round up to € 29 or € 30."
           },
           {
-            term: "Getrennt (Separately)",
-            meaning: "Each guest pays only for what they ordered down to the cent!",
-            example: "Getrennt, bitte. Ich hatte das Schnitzel und ein Bier.",
-          },
-          {
-            term: "Stimmt so! (Keep the change)",
-            meaning: "Standard tipping phrase when handing cash to the server",
-            example: "Das macht 18 Euro. -> 'Hier sind 20, stimmt so!'",
-          },
+            "term": "Stimmt so! (Keep the change)",
+            "meaning": "Tell the server directly when handing over money if you don't need change",
+            "example": "Hand over a € 20 note for an € 18 bill and say: 'Stimmt so!'."
+          }
+        ]
+      }
+    ],
+    "dialogue": {
+      "context": "Abendessen im traditionellen Gasthaus in Nürnberg (Netzwerk A1):",
+      "lines": [
+        {
+          "speaker": "Kellner",
+          "german": "Guten Abend! Haben Sie schon gewählt?",
+          "english": "Good evening! Have you made your choices?"
+        },
+        {
+          "speaker": "Paco",
+          "german": "Ja, ich hätte gern die Bratwürste mit Sauerkraut und Kartoffelsalat.",
+          "english": "Yes, I would like the sausages with sauerkraut and potato salad."
+        },
+        {
+          "speaker": "Sarah",
+          "german": "Und für mich bitte den vegetarischen Flammkuchen und ein Mineralwasser.",
+          "english": "And for me please the vegetarian tarte flambée and a mineral water."
+        },
+        {
+          "speaker": "Kellner",
+          "german": "Sehr gern! War alles zu Ihrer Zufriedenheit?",
+          "english": "Very gladly! Was everything to your satisfaction?"
+        },
+        {
+          "speaker": "Paco",
+          "german": "Ja, ausgezeichnet! Wir möchten bitte zahlen, getrennt.",
+          "english": "Yes, excellent! We would like to pay please, separately."
+        },
+        {
+          "speaker": "Kellner",
+          "german": "Für Sie macht das 14 Euro 20.",
+          "english": "For you that comes to 14 euros 20."
+        },
+        {
+          "speaker": "Paco",
+          "german": "Machen Sie 16 Euro. Stimmt so!",
+          "english": "Make it 16 euros. Keep the change!"
+        }
+      ]
+    },
+    "funFact": {
+      "title": "Never Leave Tips on the Table!",
+      "content": "In the US and UK, people often leave cash tips on the table when leaving. In Germany, you ALWAYS state the tip directly to the server when paying! If the bill is € 18 and you want to tip € 2, hand over € 20 and say: 'Machen Sie 20' (Make it 20) or 'Stimmt so!'."
+    },
+    "practice": [
+      {
+        "question": "What does a server mean when asking: 'Zusammen oder getrennt?'",
+        "options": [
+          "Do you want indoor or outdoor seating?",
+          "Paying together or separately on split bills?",
+          "Cash or card?"
         ],
+        "answer": "Paying together or separately on split bills?",
+        "explanation": "'Zusammen oder getrennt' asks whether the party wants one combined bill or separate individual bills."
       },
-    ],
-    dialogue: {
-      context: "Paying the bill at a traditional Brauhaus in Cologne:",
-      lines: [
-        {
-          speaker: "Gast",
-          german: "Entschuldigung, wir möchten bitte zahlen!",
-          english: "Excuse me, we would like to pay, please!",
-        },
-        {
-          speaker: "Kellner",
-          german: "Sehr gerne! Zusammen oder getrennt?",
-          english: "Very gladly! Together or separately?",
-        },
-        {
-          speaker: "Gast 1",
-          german: "Getrennt, bitte. Ich hatte den Salat und eine Apfelschorle.",
-          english: "Separately, please. I had the salad and an apple spritzer.",
-        },
-        {
-          speaker: "Kellner",
-          german: "Das macht elf Euro fünfzig.",
-          english: "That comes to eleven euros fifty.",
-        },
-        {
-          speaker: "Gast 1",
-          german: "Hier sind dreizehn Euro, stimmt so!",
-          english: "Here is thirteen euros, keep the change (stimmt so)!",
-        },
-      ],
-    },
-    funFact: {
-      title: "UNESCO Intangible Cultural Heritage: German Bread Culture",
-      content:
-        "Germany has over 3,000 officially registered specialty breads, recognized by UNESCO! A traditional German evening meal is known as **'Abendbrot'** (literally: evening bread), where families gather around a cutting board of hearty dark sourdough bread, butter, cold meats, cheeses, and pickles rather than cooking a warm dinner.",
-    },
-    practice: [
       {
-        question: "What does 'Stimmt so!' mean when paying in a German restaurant?",
-        options: ["Is that correct?", "Keep the change (tip included).", "Please bring the receipt."],
-        answer: "Keep the change (tip included).",
-        explanation: "'Stimmt so!' is the idiomatic way to tell the server to keep the difference as a tip.",
-      },
-    ],
+        "question": "What phrase tells the server to keep the change as a tip?",
+        "options": [
+          "Danke schön!",
+          "Stimmt so!",
+          "Auf Wiedersehen!"
+        ],
+        "answer": "Stimmt so!",
+        "explanation": "'Stimmt so!' literally means 'It is correct like that' (keep the change)."
+      }
+    ]
   },
-
   "a1-ch9-l41": {
-    overview:
-      "Discussing the weather, seasons, and clothing choices is the universal small-talk skill. In this lesson, you will learn weather expressions using the dummy subject 'es' (es regnet, es schneit) and key clothing items.",
-    canDo:
-      "Can describe the day's weather, name essential clothing items and colors, and express personal physical comfort ('Mir ist kalt / warm').",
-    teacherNote:
-      "⚠️ A famous cultural false friend: In German, NEVER say 'Ich bin heiß' or 'Ich bin kalt'—that has sexual connotations! Always use the Dative phrase: **'Mir ist warm'** (I feel warm) or **'Mir ist kalt'** (I feel cold)!",
-    sections: [
+    "overview": "Knowing how to describe symptoms, visit a doctor's practice (die Arztpraxis), and obtain medication at a pharmacy (die Apotheke) is vital survival German. In this lesson, you will master body parts, common illnesses, and medical advice from Netzwerk Kapitel 11 ('Gesund und munter').",
+    "canDo": "Can name core body parts, express physical symptoms ('Ich habe Kopfschmerzen / Fieber'), and understand medical recommendations.",
+    "teacherNote": "In German, to say something hurts, you use the verb 'wehtun' (separable): 'Mein Kopf TUT WEH' (My head hurts), 'Meine Beine TUN WEH' (My legs hurt). Or simply use the compound with '-schmerzen': Kopfschmerzen, Halsschmerzen, Bauchschmerzen!",
+    "sections": [
       {
-        title: "1. Weather Expressions with 'Es'",
-        description: "German uses the impersonal pronoun 'es' for atmospheric conditions:",
-        table: {
-          headers: ["German Weather Phrase", "Literal Meaning", "English Meaning", "Icon / Context"],
-          rows: [
-            ["Die Sonne scheint.", "The sun shines.", "It is sunny.", "☀️ Sunny"],
-            ["Es regnet.", "It rains.", "It is raining.", "🌧️ Rain"],
-            ["Es schneit.", "It snows.", "It is snowing.", "❄️ Snow"],
-            ["Es ist windig.", "It is windy.", "It is windy.", "💨 Wind"],
-            ["Es ist bewölkt.", "It is clouded.", "It is cloudy / overcast.", "☁️ Clouds"],
-            ["Es ist warm / kalt.", "It is warm / cold.", "The temperature is warm / cold.", "🌡️ Temperature"],
-            ["Wie ist das Wetter heute?", "How is the weather today?", "What is the weather like today?", "Question"],
+        "title": "1. Die Körperteile (Body Parts)",
+        "description": "Essential body parts from Netzwerk Kapitel 11:",
+        "table": {
+          "headers": [
+            "Körperteil",
+            "Artikel & Singular",
+            "Plural",
+            "Typisches Symptom"
           ],
-        },
+          "rows": [
+            [
+              "Head",
+              "der Kopf",
+              "die Köpfe",
+              "Kopfschmerzen (headache)"
+            ],
+            [
+              "Throat / Neck",
+              "der Hals",
+              "die Hälse",
+              "Halsschmerzen (sore throat)"
+            ],
+            [
+              "Stomach",
+              "der Bauch / der Magen",
+              "die Bäuche",
+              "Bauchschmerzen (stomach ache)"
+            ],
+            [
+              "Back",
+              "der Rücken",
+              "die Rücken",
+              "Rückenschmerzen (back pain)"
+            ],
+            [
+              "Eye",
+              "das Auge",
+              "die Augen",
+              "brennende Augen"
+            ],
+            [
+              "Ear",
+              "das Ohr",
+              "die Ohren",
+              "Ohrenschmerzen"
+            ],
+            [
+              "Tooth",
+              "der Zahn",
+              "die Zähne",
+              "Zahnschmerzen (toothache)"
+            ],
+            [
+              "Hand / Arm",
+              "die Hand / der Arm",
+              "die Hände / die Arme",
+              "Mein Arm tut weh."
+            ],
+            [
+              "Foot / Leg",
+              "der Fuß / das Bein",
+              "die Füße / die Beine",
+              "Mein Fuß tut weh."
+            ]
+          ]
+        }
       },
       {
-        title: "2. Clothes & Colors (Kleidung und Farben)",
-        description: "Master everyday garments and color descriptions:",
-        items: [
+        "title": "2. Krankheiten & Ratschläge mit 'sollen'",
+        "description": "Using modal verb 'sollen' (should) for doctor's instructions:",
+        "items": [
           {
-            term: "die Jacke / der Mantel / der Pullover",
-            meaning: "jacket (f) / coat (m) / sweater (m)",
-            example: "Ich ziehe eine warme Jacke an.",
+            "term": "Ich habe die Grippe / eine Erkältung",
+            "meaning": "I have the flu / a cold",
+            "example": "Ich fühle mich schwach und habe Fieber."
           },
           {
-            term: "die Hose / das T-Shirt / die Schuhe",
-            meaning: "pants/trousers (f) / T-shirt (n) / shoes (pl)",
-            example: "Die Schuhe sind schwarz.",
+            "term": "Sie sollen im Bett bleiben",
+            "meaning": "You should stay in bed (doctor's orders)",
+            "example": "Die Ärztin sagt, ich soll viel schlafen."
           },
           {
-            term: "Farben: rot, blau, grün, gelb, schwarz, weiß, grau",
-            meaning: "red, blue, green, yellow, black, white, gray",
-            example: "Mein Pullover ist blau.",
-          },
+            "term": "das Rezept / die Apotheke",
+            "meaning": "Prescription / pharmacy (marked with a large red 'A')",
+            "example": "Hier ist Ihr Rezept für die Apotheke."
+          }
+        ]
+      }
+    ],
+    "dialogue": {
+      "context": "Telefonat mit der Arztpraxis zur Terminvereinbarung (Netzwerk A1 Kapitel 11):",
+      "lines": [
+        {
+          "speaker": "Arzthelferin",
+          "german": "Praxis Dr. Schreyer, guten Tag! Was kann ich für Sie tun?",
+          "english": "Dr. Schreyer's practice, good day! What can I do for you?"
+        },
+        {
+          "speaker": "Gregor",
+          "german": "Guten Tag, hier spricht Gregor Schubert. Ich brauche dringend einen Termin, ich bin krank.",
+          "english": "Good day, this is Gregor Schubert speaking. I urgently need an appointment, I am sick."
+        },
+        {
+          "speaker": "Arzthelferin",
+          "german": "Was fehlt Ihnen denn, Herr Schubert?",
+          "english": "What symptoms do you have, Mr. Schubert?"
+        },
+        {
+          "speaker": "Gregor",
+          "german": "Ich habe hohes Fieber, starken Husten und mein Hals tut sehr weh.",
+          "english": "I have a high fever, severe cough, and my throat hurts very much."
+        },
+        {
+          "speaker": "Arzthelferin",
+          "german": "Kommen Sie bitte heute Vormittag um 11:30 Uhr vorbei. Bringen Sie Ihre Versichertenkarte mit!",
+          "english": "Please come by this morning at 11:30 AM. Bring your health insurance card with you!"
+        }
+      ]
+    },
+    "funFact": {
+      "title": "Apotheke vs. Drogerie",
+      "content": "Germany strictly separates 'die Apotheke' (Pharmacy) from 'die Drogerie' (Drugstore like dm or Rossmann). In a Drogerie, you can buy shampoo, toothpaste, and vitamins, but ZERO medications—not even aspirin! All medicine must be bought at an Apotheke with a licensed pharmacist!"
+    },
+    "practice": [
+      {
+        "question": "How do you say: 'My head hurts' in German?",
+        "options": [
+          "Mein Kopf tut weh.",
+          "Mein Kopf macht weh.",
+          "Mein Kopf ist weh."
         ],
+        "answer": "Mein Kopf tut weh.",
+        "explanation": "'wehtun' is the verb for hurting: Mein Kopf tut weh."
       },
-    ],
-    dialogue: {
-      context: "Checking the morning forecast before going for a walk in Hamburg:",
-      lines: [
-        {
-          speaker: "Jannik",
-          german: "Wie ist das Wetter draußen?",
-          english: "What is the weather like outside?",
-        },
-        {
-          speaker: "Nele",
-          german: "Es ist ziemlich kalt und es regnet ein bisschen.",
-          english: "It is quite cold and it is raining a bit.",
-        },
-        {
-          speaker: "Jannik",
-          german: "Dann ziehe ich meinen dicken Mantel und feste Schuhe an!",
-          english: "Then I'll put on my thick coat and sturdy shoes!",
-        },
-      ],
-    },
-    funFact: {
-      title: "'Es gibt kein schlechtes Wetter...'",
-      content:
-        "There is a famous German saying known to every child: *'Es gibt kein schlechtes Wetter, es gibt nur falsche Kleidung!'* (There is no bad weather, only wrong clothing!). Germans love outdoor activities regardless of rain or snow—as long as you have a proper weatherproof jacket (*Regenjacke*)!",
-    },
-    practice: [
       {
-        question: "How do you correctly say 'I am feeling cold' in German?",
-        options: ["Ich bin kalt.", "Mir ist kalt.", "Ich habe kalt."],
-        answer: "Mir ist kalt.",
-        explanation: "Physical sensation takes the Dative personal pronoun: 'Mir ist kalt' (literally: to me it is cold).",
-      },
-    ],
+        "question": "Where in Germany can you buy headache tablets like Ibuprofen?",
+        "options": [
+          "In the supermarket",
+          "In a Drogerie (dm)",
+          "Only in an Apotheke"
+        ],
+        "answer": "Only in an Apotheke",
+        "explanation": "All medicinal pain relievers are strictly pharmacy-only (apothekenpflichtig) in Germany."
+      }
+    ]
   },
-
   "a1-ch9-l42": {
-    overview:
-      "When you fall ill or need medical care while living or traveling in Germany, knowing how to describe symptoms and book an appointment (Termin) at a clinic is crucial.",
-    canDo:
-      "Can name core body parts, express aches and pains using 'wehtun' and 'Schmerzen haben', and schedule a doctor's appointment.",
-    teacherNote:
-      "In Germany, you cannot simply walk into most specialist doctors without a prior scheduled time: you must always make an appointment (**einen Termin vereinbaren**) with the medical receptionist (*Arzthelferin*).",
-    sections: [
+    "overview": "Shopping for clothes (Kleidung) involves asking for sizes, colors, trying items on in the fitting room, and expressing opinions. In this lesson, you will master wardrobe vocabulary, colors, and demonstrative pronouns (dieser, dieses, diese) from Netzwerk Kapitel 10 ('Kleidung und Mode').",
+    "canDo": "Can name everyday clothing items, specify colors and sizes, ask for fitting rooms, and express whether clothes fit well.",
+    "teacherNote": "To ask which item someone prefers, use 'Welcher? / Welches? / Welche?'. To point out a specific item, use 'Dieser / Dieses / Diese' (This one): 'Welche Jacke gefällt dir?' - 'Diese Jacke hier!'",
+    "sections": [
       {
-        title: "1. Core Body Parts (Körperteile)",
-        description: "Learn body parts with their articles:",
-        table: {
-          headers: ["Body Part", "German (with article)", "Plural Form", "English Meaning"],
-          rows: [
-            ["Head", "der Kopf", "die Köpfe", "head"],
-            ["Throat / Neck", "der Hals", "die Hälse", "throat / neck"],
-            ["Stomach / Belly", "der Bauch", "die Bäuche", "stomach"],
-            ["Back", "der Rücken", "die Rücken", "back"],
-            ["Eye", "das Auge", "die Augen", "eye"],
-            ["Ear", "das Ohr", "die Ohren", "ear"],
-            ["Arm / Leg / Foot", "der Arm / das Bein / der Fuß", "die Arme / Beine / Füße", "arm / leg / foot"],
-            ["Hand", "die Hand", "die Hände", "hand"],
+        "title": "1. Kleidungsstücke & Farben (Clothing & Colors)",
+        "description": "Wardrobe vocabulary from Netzwerk Kapitel 10:",
+        "table": {
+          "headers": [
+            "Kleidungsstück",
+            "Artikel & Genus",
+            "Plural",
+            "Farbe (Color)"
           ],
-        },
+          "rows": [
+            [
+              "die Hose (pants/trousers)",
+              "feminin",
+              "die Hosen",
+              "schwarz / blau"
+            ],
+            [
+              "die Jacke / der Mantel (jacket / coat)",
+              "feminin / maskulin",
+              "die Jacken / die Mäntel",
+              "braun / grau"
+            ],
+            [
+              "das Hemd / die Bluse (shirt / blouse)",
+              "neutral / feminin",
+              "die Hemden / die Blusen",
+              "weiß / hellblau"
+            ],
+            [
+              "das T-Shirt / das Kleid (t-shirt / dress)",
+              "neutral",
+              "die T-Shirts / die Kleider",
+              "rot / grün"
+            ],
+            [
+              "der Pullover (sweater)",
+              "maskulin",
+              "die Pullover",
+              "gelb / dunkelblau"
+            ],
+            [
+              "die Schuhe / die Stiefel (shoes / boots)",
+              "plural",
+              "die Schuhe",
+              "schwarz / leder"
+            ]
+          ]
+        }
       },
       {
-        title: "2. Two Ways to Express Pain",
-        description: "Both formulas are natural and common:",
-        items: [
+        "title": "2. Redemittel beim Kleiderkauf (Shopping Phrases)",
+        "description": "Phrases for trying on clothes in department stores:",
+        "items": [
           {
-            term: "1. [Body Part] + Schmerzen haben",
-            meaning: "Ich habe Kopfschmerzen / Halsschmerzen / Bauchschmerzen.",
-            example: "Hast du Rückenschmerzen? (Do you have back pain?)",
+            "term": "Welche Größe haben Sie? / Ich trage Größe M (38)",
+            "meaning": "What size are you? / I wear size M (38)",
+            "example": "Haben Sie diese Hose in Größe 40?"
           },
           {
-            term: "2. [Body Part] tut weh (wehtun)",
-            meaning: "Mein Kopf tut weh. (My head hurts.) / Meine Augen tun weh (plural).",
-            example: "Der Fuß tut mir weh.",
+            "term": "Wo sind die Umkleidekabinen?",
+            "meaning": "Where are the fitting / changing rooms?",
+            "example": "Die Umkleidekabinen sind dort hinten links."
           },
+          {
+            "term": "Das passt mir gut / Das steht dir gut!",
+            "meaning": "That fits me well (size) / That suits you well (appearance)!",
+            "example": "Die Farbe steht dir fantastisch!"
+          }
+        ]
+      }
+    ],
+    "dialogue": {
+      "context": "Im Modegeschäft am Kudamm in Berlin (Netzwerk A1 Kapitel 10):",
+      "lines": [
+        {
+          "speaker": "Verkäuferin",
+          "german": "Guten Tag! Kann ich Ihnen helfen?",
+          "english": "Good day! Can I help you?"
+        },
+        {
+          "speaker": "Sarah",
+          "german": "Ja gern. Ich suche eine warme Jacke für den Winter.",
+          "english": "Yes gladly. I am looking for a warm jacket for the winter."
+        },
+        {
+          "speaker": "Verkäuferin",
+          "german": "Wie gefällt Ihnen diese blaue Jacke hier? Welche Größe tragen Sie?",
+          "english": "How do you like this blue jacket here? What size do you wear?"
+        },
+        {
+          "speaker": "Sarah",
+          "german": "Die Farbe ist sehr schön! Ich trage Größe 38. Kann ich sie anprobieren?",
+          "english": "The color is very nice! I wear size 38. Can I try it on?"
+        },
+        {
+          "speaker": "Verkäuferin",
+          "german": "Natürlich! Die Umkleidekabinen sind gleich da drüben.",
+          "english": "Of course! The fitting rooms are right over there."
+        }
+      ]
+    },
+    "funFact": {
+      "title": "Passen vs. Stehen",
+      "content": "German makes an elegant distinction: 'Die Hose PASST mir' means the physical size fits your body. 'Die Hose STEHT mir' means the style and color look great on you! If a friend tries on a coat, say: 'Das steht dir super!'."
+    },
+    "practice": [
+      {
+        "question": "What does 'Wo ist die Umkleidekabine?' mean?",
+        "options": [
+          "Where is the cash register?",
+          "Where is the fitting room?",
+          "Where is the exit?"
         ],
+        "answer": "Where is the fitting room?",
+        "explanation": "'die Umkleidekabine' is the changing/fitting room in a store."
       },
-    ],
-    dialogue: {
-      context: "Calling a general practitioner's office (Hausarzt) in Munich to schedule an appointment:",
-      lines: [
-        {
-          speaker: "Praxis",
-          german: "Praxis Dr. Bergmann, guten Tag!",
-          english: "Dr. Bergmann's practice, good day!",
-        },
-        {
-          speaker: "Patient",
-          german: "Guten Tag. Ich brauche bitte einen Termin. Ich bin krank.",
-          english: "Good day. I need an appointment, please. I am sick.",
-        },
-        {
-          speaker: "Praxis",
-          german: "Was fehlt Ihnen denn?",
-          english: "What is ailing you? (What are your symptoms?)",
-        },
-        {
-          speaker: "Patient",
-          german: "Ich habe seit gestern hohes Fieber und starke Halsschmerzen.",
-          english: "Since yesterday I have a high fever and severe sore throat.",
-        },
-        {
-          speaker: "Praxis",
-          german: "Kommen Sie heute um elf Uhr vorbei und bringen Sie Ihre Versichertenkarte mit.",
-          english: "Come by today at eleven o'clock and bring your health insurance card along.",
-        },
-      ],
-    },
-    funFact: {
-      title: "The Golden Apotheke Sign",
-      content:
-        "In Germany, you cannot buy basic pain medications (like aspirin or ibuprofen) at a grocery store or gas station. All medications must be purchased at a licensed **Apotheke** (pharmacy), easily recognized across every German city by a giant red gothic letter 'A' with a bowl of Hygieia!",
-    },
-    practice: [
       {
-        question: "How do you say 'My head hurts' using 'wehtun'?",
-        options: ["Mein Kopf tut weh.", "Mein Kopf hat weh.", "Mein Kopf ist weh."],
-        answer: "Mein Kopf tut weh.",
-        explanation: "The separable verb 'wehtun' conjugates with the body part: 'Mein Kopf tut weh'.",
-      },
-    ],
+        "question": "How do you tell a friend that a jacket suits their appearance?",
+        "options": [
+          "Die Jacke passt dir.",
+          "Die Jacke steht dir gut!",
+          "Die Jacke ist teuer."
+        ],
+        "answer": "Die Jacke steht dir gut!",
+        "explanation": "'stehen' (+ Dativ) means to look good / suit someone."
+      }
+    ]
   },
-
   "a1-ch9-l43": {
-    overview:
-      "Navigating German cities by foot, tram, U-Bahn, and S-Bahn requires asking for directions, understanding landmarks, and buying transit tickets at automated ticket kiosks.",
-    canDo:
-      "Can ask for and give walking directions (straight ahead, left, right), identify city landmarks, and purchase public transport tickets.",
-    teacherNote:
-      "Notice how German direction words are crisp: **geradeaus** (straight ahead), **nach links** (to the left), **nach rechts** (to the right). When asking where something is, always start with 'Entschuldigung, wo ist...?'",
-    sections: [
+    "overview": "Public transportation (der öffentliche Nahverkehr - ÖPNV) in the DACH region is famous for its efficiency and punctuality. In this lesson, you will master navigating trains, subways, buying tickets at the automated machine (der Fahrkartenautomat), and finding your track (das Gleis).",
+    "canDo": "Can buy transit tickets at machines or counters, understand platform announcements, and inquire about connections and delays.",
+    "teacherNote": "Notice the difference: 'der Bahnsteig' is the physical platform you stand on, but 'das Gleis' is the track number printed on your ticket: 'Der Zug fährt von Gleis 7 ab'!",
+    "sections": [
       {
-        title: "1. Giving & Following Directions",
-        description: "Key spatial directions in city navigation:",
-        table: {
-          headers: ["Direction", "German Phrase", "English Meaning", "Example in Context"],
-          rows: [
-            ["Straight ahead", "immer geradeaus", "straight ahead", "Gehen Sie immer geradeaus."],
-            ["Turn left", "nach links / links abbiegen", "to the left / turn left", "Biegen Sie an der Kreuzung nach links ab."],
-            ["Turn right", "nach rechts / rechts abbiegen", "to the right / turn right", "Die Apotheke ist gleich rechts."],
-            ["Around the corner", "um die Ecke", "around the corner", "Der Bäcker ist direkt um die Ecke."],
-            ["At the traffic light", "an der Ampel", "at the traffic light", "An der Ampel gehen Sie nach rechts."],
+        "title": "1. Verkehrsmittel im Nah- und Fernverkehr",
+        "description": "Transit types from Netzwerk Kapitel 3 & 12:",
+        "table": {
+          "headers": [
+            "Abkürzung / Begriff",
+            "Voller Name",
+            "Bedeutung",
+            "Netz-Typ"
           ],
-        },
+          "rows": [
+            [
+              "ICE",
+              "Intercity Express",
+              "High-speed German long-distance train",
+              "Fernverkehr"
+            ],
+            [
+              "RE / RB",
+              "Regional-Express / Regionalbahn",
+              "Regional commuter train between cities",
+              "Regionalverkehr"
+            ],
+            [
+              "S-Bahn",
+              "Stadtschnellbahn",
+              "Suburban above-ground transit train",
+              "Stadtverkehr"
+            ],
+            [
+              "U-Bahn",
+              "Untergrundbahn",
+              "Metro / subway network",
+              "Stadtverkehr"
+            ],
+            [
+              "Tram / Straßenbahn",
+              "Straßenbahn",
+              "Street-level light rail / tram",
+              "Stadtverkehr"
+            ]
+          ]
+        }
       },
       {
-        title: "2. City Landmarks & Public Transit (ÖPNV)",
-        description: "Essential locations in every German town:",
-        items: [
+        "title": "2. Am Bahnhof: Anzeigen & Durchsagen verstehen",
+        "description": "Key terms heard and read at train stations:",
+        "items": [
           {
-            term: "der Hauptbahnhof (Hbf)",
-            meaning: "Central train station (hub of city transit)",
-            example: "Der ICE fährt vom Hauptbahnhof ab.",
+            "term": "die Abfahrt / die Ankunft",
+            "meaning": "Departure / Arrival",
+            "example": "Abfahrt: 14:12 Uhr von Gleis 5."
           },
           {
-            term: "die U-Bahn / die S-Bahn / die Straßenbahn",
-            meaning: "Subway (underground) / Suburban commuter rail / Tram",
-            example: "Wir nehmen die U2 Richtung Alexanderplatz.",
+            "term": "die Verspätung",
+            "meaning": "Delay (in minutes)",
+            "example": "Heute circa 15 Minuten Verspätung."
           },
           {
-            term: "eine Fahrkarte / ein Ticket entwerten",
-            meaning: "To validate/stamp a ticket in the little stamping box before boarding!",
-            example: "Vergessen Sie nicht, das Ticket zu entwerten!",
-          },
+            "term": "Einsteigen bitte! / Zurückbleiben bitte!",
+            "meaning": "All aboard please! / Please stand back from the doors!",
+            "example": "Vorsicht bei der Abfahrt des Zuges!"
+          }
+        ]
+      }
+    ],
+    "dialogue": {
+      "context": "Fahrkartenkauf am Schalter im Berliner Hauptbahnhof (Netzwerk A1):",
+      "lines": [
+        {
+          "speaker": "Bahn-Mitarbeiter",
+          "german": "Guten Tag! Wie kann ich Ihnen helfen?",
+          "english": "Good day! How can I help you?"
+        },
+        {
+          "speaker": "Paco",
+          "german": "Guten Tag. Ich möchte eine Fahrkarte nach Dresden, bitte.",
+          "english": "Good day. I would like a train ticket to Dresden, please."
+        },
+        {
+          "speaker": "Bahn-Mitarbeiter",
+          "german": "Einfache Fahrt oder hin und zurück?",
+          "english": "Single journey or round-trip?"
+        },
+        {
+          "speaker": "Paco",
+          "german": "Hin und zurück, bitte. Der nächste Zug um 11 Uhr.",
+          "english": "Round-trip, please. The next train at 11 o'clock."
+        },
+        {
+          "speaker": "Bahn-Mitarbeiter",
+          "german": "Der ICE fährt um 11:05 Uhr von Gleis 3 ab. Hier ist Ihre Fahrkarte!",
+          "english": "The ICE departs at 11:05 AM from track 3. Here is your ticket!"
+        }
+      ]
+    },
+    "funFact": {
+      "title": "Validating Tickets (Entwerten)",
+      "content": "In many German cities (like Berlin and Munich), buying a single transit ticket is not enough—you must validate it in a little stamping box ('entwerten') before boarding! If ticket controllers ('Fahrkartenkontrolle') catch you with an unstamped ticket, there is an immediate € 60 fine ('erhöhtes Beförderungsentgelt')!"
+    },
+    "practice": [
+      {
+        "question": "What does 'Gleis 4' mean on a German train ticket?",
+        "options": [
+          "Carriage 4",
+          "Track / Platform 4",
+          "Seat 4"
         ],
+        "answer": "Track / Platform 4",
+        "explanation": "'das Gleis' indicates the track number where your train arrives and departs."
       },
-    ],
-    dialogue: {
-      context: "A tourist asking a pedestrian for directions to the museum in Dresden:",
-      lines: [
-        {
-          speaker: "Tourist",
-          german: "Entschuldigung, wie komme ich zum Kunstmuseum?",
-          english: "Excuse me, how do I get to the art museum?",
-        },
-        {
-          speaker: "Passant",
-          german: "Gehen Sie diese Straße geradeaus bis zur Ampel, dann nach links.",
-          english: "Go straight ahead down this street until the traffic light, then to the left.",
-        },
-        {
-          speaker: "Tourist",
-          german: "Ist es weit von hier?",
-          english: "Is it far from here?",
-        },
-        {
-          speaker: "Passant",
-          german: "Nein, überhaupt nicht—nur etwa fünf Minuten zu Fuß.",
-          english: "No, not at all—only about five minutes on foot.",
-        },
-      ],
-    },
-    funFact: {
-      title: "No Ticket Turnstiles in Germany: Validate Your Ticket!",
-      content:
-        "Unlike the London Tube or New York Subway, German train and subway stations do not have physical barrier turnstiles! You can walk straight onto the train platform. However, you MUST buy a ticket and punch it in the little red or yellow stamping machine (**entwerten**) before boarding. Plainclothes inspectors (*Fahrkartenkontrolleure*) conduct random checks, and traveling without a validated ticket carries a hefty €60 fine (*Schwarzfahren*)!",
-    },
-    practice: [
       {
-        question: "What does 'Gehen Sie geradeaus' mean?",
-        options: ["Turn left", "Turn right", "Go straight ahead"],
-        answer: "Go straight ahead",
-        explanation: "'geradeaus' means 'straight ahead'.",
-      },
-    ],
-  },
+        "question": "What is the German term for a 'round-trip ticket'?",
+        "options": [
+          "Einfache Fahrt",
+          "Hin und zurück",
+          "Tageskarte"
+        ],
+        "answer": "Hin und zurück",
+        "explanation": "'hin und zurück' literally means 'there and back' (round-trip)."
+      }
+    ]
+  }
 };

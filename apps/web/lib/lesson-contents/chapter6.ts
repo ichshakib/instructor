@@ -2,381 +2,636 @@ import { LessonContent } from "../api";
 
 export const CHAPTER_6_LESSONS: Record<string, LessonContent> = {
   "a1-ch6-l24": {
-    overview:
-      "Knowing how to say 'no' accurately is vital. German has two main tools for negation: 'kein' and 'nicht'. Mixing them up is one of the most common beginner errors, but the rule distinguishing them is crystal clear.",
-    canDo:
-      "Can negate nouns using 'kein/keine' and negate verbs, adjectives, proper names, and whole sentences using 'nicht'.",
-    teacherNote:
-      "Here is the golden rule: If a noun in the positive sentence takes 'ein/eine' or has NO article at all, negate it with **kein/keine**! For everything else (verbs, adjectives, adverbs, definite articles like 'der/die/das', names), use **nicht**.",
-    sections: [
+    "overview": "Negation is essential for expressing what you don't have, what you don't do, or what isn't true. In German, there are two distinct words for 'not': 'nicht' and 'kein'. In this lesson, you will master the simple rule to always choose the right one.",
+    "canDo": "Can reliably decide between 'nicht' and 'kein' to negate verbs, adjectives, specific nouns, and indefinite nouns.",
+    "teacherNote": "Here is the golden rule in one sentence: Use 'kein' whenever you would say 'a / an' or 'no' in English (nouns with ein- or zero article). Use 'nicht' for everything else (verbs, adjectives, proper names, and definite nouns with der/die/das)!",
+    "sections": [
       {
-        title: "1. The Clear Divide: 'kein' vs. 'nicht'",
-        description: "Study how the positive sentence determines the negation tool:",
-        table: {
-          headers: ["Category", "Positive Statement", "Negated Statement", "Rule applied"],
-          rows: [
-            ["Noun with indefinite article", "Ich habe ein Auto.", "Ich habe KEIN Auto.", "ein -> kein"],
-            ["Noun with no article (zero article)", "Ich trinke Milch.", "Ich trinke KEINE Milch.", "zero article -> kein/keine"],
-            ["Noun with definite article (der/die/das)", "Ich kenne den Mann.", "Ich kenne den Mann NICHT.", "Definite article -> nicht"],
-            ["Verb / Action", "Er arbeitet heute.", "Er arbeitet heute NICHT.", "Action negated -> nicht"],
-            ["Adjective / Description", "Das Zimmer ist groß.", "Das Zimmer ist NICHT groß.", "Adjective negated -> nicht"],
-            ["Proper names & Places", "Das ist Peter.", "Das ist NICHT Peter.", "Proper name -> nicht"],
+        "title": "1. Die Entscheidungsregel: 'kein' vs. 'nicht'",
+        "description": "Simple flowchart for choosing negation:",
+        "table": {
+          "headers": [
+            "Was wird verneint?",
+            "Regel",
+            "Beispiel: Positiv",
+            "Beispiel: Verneint"
           ],
-        },
+          "rows": [
+            [
+              "Nomen mit 'ein-' oder ohne Artikel",
+              "Verwende KEIN- (dekliniert wie ein-)",
+              "Das ist ein Hotel.",
+              "Das ist KEIN Hotel."
+            ],
+            [
+              "Nomen im Plural ohne Artikel",
+              "Verwende KEINE",
+              "Ich habe Geschwister.",
+              "Ich habe KEINE Geschwister."
+            ],
+            [
+              "Verben (Handlung)",
+              "Verwende NICHT (meist am Satzende)",
+              "Ich rauche.",
+              "Ich rauche NICHT."
+            ],
+            [
+              "Adjektive & Adverbien",
+              "Verwende NICHT vor dem Adjektiv",
+              "Das Zimmer ist groß.",
+              "Das Zimmer ist NICHT groß."
+            ],
+            [
+              "Nomen mit bestimmtem Artikel (der/die/das)",
+              "Verwende NICHT vor dem Nomen",
+              "Das ist der Schlüssel.",
+              "Das ist NICHT der Schlüssel."
+            ],
+            [
+              "Eigennamen & Städte",
+              "Verwende NICHT vor dem Namen",
+              "Er heißt Gregor.",
+              "Er heißt NICHT Gregor."
+            ]
+          ]
+        }
       },
       {
-        title: "2. The Forms of 'kein' (Declined like 'ein')",
-        description: "Notice how 'kein' has the exact same endings as 'ein':",
-        table: {
-          headers: ["Case", "Masculine", "Feminine", "Neuter", "Plural"],
-          rows: [
-            ["Nominativ", "kein Hund", "keine Katze", "kein Kind", "keine Kinder"],
-            ["Akkusativ", "KEINEN Hund", "keine Katze", "kein Kind", "keine Kinder"],
+        "title": "2. Deklination von 'kein' (Declension of kein)",
+        "description": "'kein' declines exactly like 'ein', but also has a plural form ('keine'):",
+        "table": {
+          "headers": [
+            "Fall / Genus",
+            "Maskulin (m)",
+            "Feminin (f)",
+            "Neutral (n)",
+            "Plural (pl)"
           ],
-        },
-      },
+          "rows": [
+            [
+              "Nominativ (Subjekt)",
+              "kein Tisch",
+              "keine Lampe",
+              "kein Buch",
+              "keine Bücher"
+            ],
+            [
+              "Akkusativ (Objekt)",
+              "keinen Tisch",
+              "keine Lampe",
+              "kein Buch",
+              "keine Bücher"
+            ]
+          ]
+        }
+      }
     ],
-    dialogue: {
-      context: "At a coffee shop counter in Zurich:",
-      lines: [
+    "dialogue": {
+      "context": "Zimmerbesichtigung im Wohnheim (Netzwerk A1 Kapitel 8):",
+      "lines": [
         {
-          speaker: "Barista",
-          german: "Möchten Sie Zucker oder Milch in Ihren Kaffee?",
-          english: "Would you like sugar or milk in your coffee?",
+          "speaker": "Mieter",
+          "german": "Ist hier in der Küche ein Kühlschrank?",
+          "english": "Is there a refrigerator here in the kitchen?"
         },
         {
-          speaker: "Gast",
-          german: "Nein danke, ich nehme keinen Zucker und keine Milch.",
-          english: "No thank you, I take no sugar and no milk (kein/keine for nouns).",
+          "speaker": "Vermieter",
+          "german": "Nein, hier ist leider kein Kühlschrank. Den müssen Sie selbst kaufen.",
+          "english": "No, there is unfortunately no refrigerator here. You have to buy that yourself."
         },
         {
-          speaker: "Barista",
-          german: "Alles klar! Ist der Kuchen hier auch für Sie?",
-          english: "All right! Is the cake here also for you?",
+          "speaker": "Mieter",
+          "german": "Schade. Und funktioniert das WLAN im Zimmer gut?",
+          "english": "Pity. And does the Wi-Fi work well in the room?"
         },
         {
-          speaker: "Gast",
-          german: "Nein, das ist nicht mein Kuchen!",
-          english: "No, that is not my cake (nicht for possessives)!",
-        },
-      ],
+          "speaker": "Vermieter",
+          "german": "Das WLAN ist schnell und kostet nicht extra.",
+          "english": "The Wi-Fi is fast and does not cost extra."
+        }
+      ]
     },
-    funFact: {
-      title: "German Directness & Precision",
-      content:
-        "German speakers place immense value on precision. The distinction between 'kein' (none of something) and 'nicht' (not doing something) reflects this mindset. Saying 'Ich trinke nicht Kaffee' sounds like an unfinished thought to a native speaker—they immediately expect: 'Ich trinke keinen Kaffee!'",
+    "funFact": {
+      "title": "Why 'Ich habe nicht Auto' is Incorrect",
+      "content": "English speakers often say 'I do not have a car' and literally translate it as 'Ich habe nicht ein Auto'. In German, 'nicht + ein' merges into the single word 'KEIN': 'Ich habe kein Auto'. Saying 'nicht ein' is only used for extreme dramatic emphasis ('Not a single car!')!"
     },
-    practice: [
+    "practice": [
       {
-        question: "How do you negate: 'Ich habe Zeit' (I have time)?",
-        options: ["Ich habe nicht Zeit.", "Ich habe keine Zeit.", "Ich habe kein Zeit."],
-        answer: "Ich habe keine Zeit.",
-        explanation: "'die Zeit' has no article in the positive statement, so it takes feminine 'keine': 'Ich habe keine Zeit'.",
+        "question": "How do you say: 'I have no time' in German?",
+        "options": [
+          "Ich habe nicht Zeit.",
+          "Ich habe keine Zeit.",
+          "Ich bin nicht Zeit."
+        ],
+        "answer": "Ich habe keine Zeit.",
+        "explanation": "'Zeit' is a noun without an article (feminine die Zeit), so it is negated with 'keine'."
       },
       {
-        question: "How do you negate: 'Das Auto ist teuer' (The car is expensive)?",
-        options: ["Das Auto ist kein teuer.", "Das Auto ist nicht teuer.", "Das Auto ist keine teuer."],
-        answer: "Das Auto ist nicht teuer.",
-        explanation: "Adjectives (teuer) are always negated using 'nicht'.",
-      },
-    ],
+        "question": "How do you negate the sentence: 'Ich verstehe das' (I understand that)?",
+        "options": [
+          "Ich verstehe kein das.",
+          "Ich verstehe das nicht.",
+          "Ich nicht verstehe das."
+        ],
+        "answer": "Ich verstehe das nicht.",
+        "explanation": "To negate a verb, place 'nicht' towards the end of the clause."
+      }
+    ]
   },
-
   "a1-ch6-l25": {
-    overview:
-      "Expressing relationships, belonging, and ownership (my car, your dog, her mother) requires possessive articles. In German, possessives match both the owner (who possesses) and the gender/case of the noun being possessed!",
-    canDo:
-      "Can use possessive articles (mein, dein, sein, ihr, unser, euer, ihr/Ihr) in both Nominative and Accusative cases.",
-    teacherNote:
-      "Think of possessive articles as having two sides: the ROOT shows who owns it (mein = my, dein = your, sein = his, ihr = her), while the ENDING matches the noun (just like ein/eine/einen)!",
-    sections: [
+    "overview": "Possessive articles express ownership ('my book', 'your friend', 'our apartment'). In German, possessive articles match both the person possessing (mein, dein, sein, ihr) and the grammatical gender/case of the noun possessed.",
+    "canDo": "Can use possessive articles (mein, dein, sein, ihr) in Nominative and Accusative to talk about family members, possessions, and colleagues.",
+    "teacherNote": "Think of possessive articles as 'chameleons': the root word tells you WHO owns it (mein = my, dein = your, sein = his, ihr = her), and the ending tells you the GENDER and CASE of the thing owned (meine Mutter, meinen Bruder, mein Kind)!",
+    "sections": [
       {
-        title: "1. The Possessive Stems by Person",
-        description: "These stems correspond to the subject pronouns:",
-        table: {
-          headers: ["Owner", "German Stem", "English Meaning", "Example in Nominative"],
-          rows: [
-            ["ich (I)", "mein-", "my", "mein Vater / meine Mutter / mein Kind"],
-            ["du (you - informal)", "dein-", "your", "dein Bruder / deine Schwester / dein Buch"],
-            ["er (he)", "sein-", "his", "sein Handy / seine Tasche"],
-            ["es (it)", "sein-", "its", "seine Farbe (its color)"],
-            ["sie (she)", "ihr-", "her", "ihr Auto / ihre Freundin"],
-            ["wir (we)", "unser-", "our", "unser Haus / unsere Familie"],
-            ["ihr (you all)", "euer- / eure", "your (plural)", "euer Zimmer / eure Freunde"],
-            ["sie (they)", "ihr-", "their", "ihr Garten / ihre Wohnung"],
-            ["Sie (you - formal)", "Ihr- (capitalized!)", "your (formal)", "Ihr Pass / Ihre Adresse"],
+        "title": "1. Die Possessiv-Stämme (Possessive Roots)",
+        "description": "Who owns the object:",
+        "table": {
+          "headers": [
+            "Person",
+            "Besitzer (Owner)",
+            "Possessiv-Stamm",
+            "Beispiel"
           ],
-        },
+          "rows": [
+            [
+              "ich (I)",
+              "my",
+              "mein-",
+              "mein Name, meine Stadt"
+            ],
+            [
+              "du (you informal)",
+              "your",
+              "dein-",
+              "dein Freund, deine Telefonnummer"
+            ],
+            [
+              "er / es (he / it)",
+              "his / its",
+              "sein-",
+              "sein Auto, seine Kollegin"
+            ],
+            [
+              "sie (she)",
+              "her",
+              "ihr-",
+              "ihr Kurs, ihre Tasche"
+            ],
+            [
+              "wir (we)",
+              "our",
+              "unser-",
+              "unser Lehrer, unsere Schule"
+            ],
+            [
+              "ihr (you all)",
+              "your (plural)",
+              "euer / eure-",
+              "euer Zimmer, eure Freunde"
+            ],
+            [
+              "sie / Sie (they / You formal)",
+              "their / Your (formal)",
+              "ihr- / Ihr- (groß)",
+              "ihr Haus / Ihr Name"
+            ]
+          ]
+        }
       },
       {
-        title: "2. Possessives in the Accusative Case",
-        description: "Just like 'ein' becomes 'einen', masculine possessives take '-en' in Accusative:",
-        items: [
-          {
-            term: "Masculine (Changes to -en!)",
-            meaning: "Ich besuche meinEN Bruder. / Suchst du deinEN Schlüssel?",
-            example: "Masculine direct objects always take -en!",
-          },
-          {
-            term: "Feminine (Takes -e)",
-            meaning: "Ich liebe meinE Familie. / Er ruft seinE Mutter an.",
-            example: "Identical to Nominative.",
-          },
-          {
-            term: "Neuter (No ending)",
-            meaning: "Wir verkaufen unser Haus. / Sie sucht ihr Buch.",
-            example: "Identical to Nominative.",
-          },
+        "title": "2. Endungen im Nominativ & Akkusativ",
+        "description": "Possessives decline exactly like 'ein' and 'kein':",
+        "table": {
+          "headers": [
+            "Fall",
+            "Maskulin (m)",
+            "Feminin (f)",
+            "Neutral (n)",
+            "Plural (pl)"
+          ],
+          "rows": [
+            [
+              "Nominativ (Subjekt)",
+              "mein Vater",
+              "meine Mutter",
+              "mein Kind",
+              "meine Eltern"
+            ],
+            [
+              "Akkusativ (Objekt)",
+              "meinen Vater (-en!)",
+              "meine Mutter",
+              "mein Kind",
+              "meine Eltern"
+            ]
+          ]
+        }
+      }
+    ],
+    "dialogue": {
+      "context": "Fotos zeigen im Café (Netzwerk A1 Kapitel 2):",
+      "lines": [
+        {
+          "speaker": "Paco",
+          "german": "Schau mal, Julia! Das ist ein Foto von meiner Familie.",
+          "english": "Look, Julia! That is a photo of my family."
+        },
+        {
+          "speaker": "Julia",
+          "german": "Oh, wie schön! Wer ist das? Ist das dein Bruder?",
+          "english": "Oh, how nice! Who is that? Is that your brother?"
+        },
+        {
+          "speaker": "Paco",
+          "german": "Ja, das ist mein Bruder Carlos und das ist seine Freundin Sofia.",
+          "english": "Yes, that is my brother Carlos and that is his girlfriend Sofia."
+        },
+        {
+          "speaker": "Julia",
+          "german": "Und die Kinder dort drüben?",
+          "english": "And the children over there?"
+        },
+        {
+          "speaker": "Paco",
+          "german": "Das sind meine Nichten. Ich besuche meine Familie im Sommer.",
+          "english": "Those are my nieces. I am visiting my family in the summer."
+        }
+      ]
+    },
+    "funFact": {
+      "title": "'euer' drops an 'e' before endings!",
+      "content": "Notice this spelling quirk with 'euer' (your plural): without ending it is 'euer' ('Euer Zimmer ist schön'), but when you add the feminine/plural ending '-e', the middle 'e' drops out: 'eure Freunde' and 'eure Mutter' (not 'euere')!"
+    },
+    "practice": [
+      {
+        "question": "Choose the correct possessive for 'my brother' as direct object: 'Ich rufe _____ Bruder an.'",
+        "options": [
+          "mein",
+          "meine",
+          "meinen"
         ],
+        "answer": "meinen",
+        "explanation": "'Bruder' is masculine accusative, so the possessive takes '-en': meinen Bruder."
       },
-    ],
-    dialogue: {
-      context: "At a family gathering in Vienna, looking at family photographs:",
-      lines: [
-        {
-          speaker: "Jonas",
-          german: "Ist das dein Hund auf dem Foto?",
-          english: "Is that your dog in the photo?",
-        },
-        {
-          speaker: "Eva",
-          german: "Ja, das ist mein Hund Bello. Und hier siehst du meine Eltern und meinen Bruder.",
-          english: "Yes, that is my dog Bello. And here you see my parents and my brother (meinen Bruder).",
-        },
-        {
-          speaker: "Jonas",
-          german: "Eine schöne Familie! Wo wohnt dein Bruder?",
-          english: "A lovely family! Where does your brother live?",
-        },
-      ],
-    },
-    funFact: {
-      title: "Watch Out for 'sein' vs. 'ihr'!",
-      content:
-        "In English, we say 'his mother' and 'her mother'. In German, 'his' is 'sein-' and 'her' is 'ihr-'. But beginners sometimes get confused because 'sein' is also the verb 'to be'! Context always makes it obvious: 'Er ist hier' (He is here) vs 'Das ist sein Hund' (That is his dog).",
-    },
-    practice: [
       {
-        question: "How do you say 'I am looking for my key' (der Schlüssel)?",
-        options: ["Ich suche mein Schlüssel.", "Ich suche meinen Schlüssel.", "Ich suche meine Schlüssel."],
-        answer: "Ich suche meinen Schlüssel.",
-        explanation: "'der Schlüssel' is masculine and an Accusative direct object, so 'mein' becomes 'meinen'.",
-      },
-    ],
+        "question": "How does Nina say: 'Her name is Julia'?",
+        "options": [
+          "Sein Name ist Julia.",
+          "Ihr Name ist Julia.",
+          "Dein Name ist Julia."
+        ],
+        "answer": "Ihr Name ist Julia.",
+        "explanation": "'ihr' is the possessive article for feminine 3rd person singular (her)."
+      }
+    ]
   },
-
   "a1-ch6-l26": {
-    overview:
-      "Describing what exists in a room, a city, or an area is essential. German uses the universal phrase 'es gibt' (there is / there are). Crucially, 'es gibt' ALWAYS requires the Accusative case for the noun that follows!",
-    canDo:
-      "Can describe availability, amenities, and surroundings using 'es gibt' followed by Accusative nouns.",
-    teacherNote:
-      "'Es gibt' works for both singular AND plural! Unlike English, where you must switch between 'there is' and 'there are', German stays 'es gibt' for everything: *Es gibt einen Park* (There is a park) and *Es gibt viele Parks* (There are many parks).",
-    sections: [
+    "overview": "Describing whether things exist or are available in an area is one of the most common communicative tasks. In German, 'there is / there are' is expressed by the fixed idiom 'es gibt'. In this lesson, you will master using 'es gibt' with the Accusative case.",
+    "canDo": "Can describe cities, neighborhoods, and facilities using 'es gibt' followed by accusative nouns.",
+    "teacherNote": "'Es gibt' is a fixed idiom where 'es' is the subject and 'gibt' is the verb. Therefore, whatever exists is the DIRECT OBJECT and MUST be in the Akkusativ case! Masculine nouns take 'einen': 'Es gibt einen Supermarkt'.",
+    "sections": [
       {
-        title: "1. 'Es gibt' + Akkusativ",
-        description: "Study how masculine nouns change after 'es gibt':",
-        table: {
-          headers: ["Gender", "Pattern after 'es gibt'", "German Example", "English Meaning"],
-          rows: [
-            ["Masculine (m)", "es gibt einen / keinen", "In der Stadt gibt es EINEN Bahnhof.", "In the city there is a train station."],
-            ["Feminine (f)", "es gibt eine / keine", "Hier gibt es EINE Bäckerei.", "Here there is a bakery."],
-            ["Neuter (n)", "es gibt ein / kein", "In der Nähe gibt es EIN Kino.", "Nearby there is a cinema."],
-            ["Plural (pl)", "es gibt viele / keine", "Es gibt hier VIELE Restaurants.", "There are many restaurants here."],
+        "title": "1. Die Struktur: 'Es gibt' + Akkusativ",
+        "description": "No matter if singular or plural, 'es gibt' stays identical:",
+        "table": {
+          "headers": [
+            "Genus",
+            "Akkusativ nach 'es gibt'",
+            "Beispielsatz (Netzwerk A1)",
+            "Bedeutung"
           ],
-        },
+          "rows": [
+            [
+              "Maskulin (m)",
+              "einen / keinen",
+              "In der Nähe gibt es einen Park.",
+              "There is a park nearby."
+            ],
+            [
+              "Feminin (f)",
+              "eine / keine",
+              "Hier gibt es eine U-Bahn-Station.",
+              "There is a subway station here."
+            ],
+            [
+              "Neutral (n)",
+              "ein / kein",
+              "In Leipzig gibt es ein schönes Museum.",
+              "There is a nice museum in Leipzig."
+            ],
+            [
+              "Plural (pl)",
+              "viele / keine",
+              "In Berlin gibt es viele Theater.",
+              "There are many theaters in Berlin."
+            ]
+          ]
+        }
       },
       {
-        title: "2. Questions with 'Gibt es...?'",
-        description: "To ask if something exists, invert to Position 1: 'Gibt es...?'",
-        items: [
+        "title": "2. Fragen mit 'Gibt es...?' (Is there...? / Are there...?)",
+        "description": "To ask whether something exists, place 'Gibt' first:",
+        "items": [
           {
-            term: "Gibt es hier WLAN?",
-            meaning: "Is there Wi-Fi here?",
-            example: "Ja, es gibt kostenloses WLAN.",
+            "term": "Gibt es hier ein Café?",
+            "meaning": "Is there a café around here?",
+            "example": "Ja, gleich an der Ecke gibt es ein schönes Café."
           },
           {
-            term: "Gibt es einen Supermarkt in der Nähe?",
-            meaning: "Is there a supermarket nearby?",
-            example: "Ja, an der Ecke gibt es einen.",
+            "term": "Gibt es hier einen Geldautomaten?",
+            "meaning": "Is there an ATM around here?",
+            "example": "Ja, in der Sparkasse da drüben."
           },
+          {
+            "term": "Gibt es noch Fragen?",
+            "meaning": "Are there any more questions? (teacher / presenter phrase)",
+            "example": "Gibt es noch Fragen zum Kurs?"
+          }
+        ]
+      }
+    ],
+    "dialogue": {
+      "context": "Neu in der Stadt – Erkundung des Viertels (Netzwerk A1 Kapitel 3):",
+      "lines": [
+        {
+          "speaker": "Paco",
+          "german": "Entschuldigung, gibt es hier in der Nähe einen Supermarkt?",
+          "english": "Excuse me, is there a supermarket nearby?"
+        },
+        {
+          "speaker": "Nachbarin",
+          "german": "Ja, in der Goethestraße gibt es einen großen Edeka und eine Bäckerei.",
+          "english": "Yes, on Goethe Street there is a large Edeka and a bakery."
+        },
+        {
+          "speaker": "Paco",
+          "german": "Toll! Und gibt es auch eine Apotheke?",
+          "english": "Great! And is there also a pharmacy?"
+        },
+        {
+          "speaker": "Nachbarin",
+          "german": "Ja, direkt neben der Bäckerei gibt es eine Apotheke. Alles ganz nah!",
+          "english": "Yes, right next to the bakery there is a pharmacy. Everything very close!"
+        }
+      ]
+    },
+    "funFact": {
+      "title": "'Es gibt' Never Takes Plural Verbs!",
+      "content": "In English, you must distinguish: 'There IS a park' (singular) vs. 'There ARE ten parks' (plural). In German, 'es gibt' NEVER changes to 'es geben'! You say 'Es gibt ein Museum' AND 'Es gibt zehn Museen'. The verb remains locked in 'gibt'!"
+    },
+    "practice": [
+      {
+        "question": "Complete the sentence: 'Gibt es hier in der Nähe _____ (der) Park?'",
+        "options": [
+          "ein Park",
+          "einen Park",
+          "einem Park"
         ],
+        "answer": "einen Park",
+        "explanation": "'es gibt' triggers the accusative case. 'Park' is masculine, so it takes 'einen Park'."
       },
-    ],
-    dialogue: {
-      context: "Checking into an Airbnb apartment in Munich and asking about the neighborhood:",
-      lines: [
-        {
-          speaker: "Gast",
-          german: "Entschuldigung, gibt es hier in der Nähe einen Supermarkt?",
-          english: "Excuse me, is there a supermarket nearby (der Supermarkt -> einen)?",
-        },
-        {
-          speaker: "Vermieter",
-          german: "Ja, direkt um die Ecke gibt es einen Edeka und eine Apotheke.",
-          english: "Yes, right around the corner there is an Edeka and a pharmacy.",
-        },
-        {
-          speaker: "Gast",
-          german: "Wunderbar! Und gibt es auch eine U-Bahn-Station?",
-          english: "Wonderful! And is there also a subway station?",
-        },
-        {
-          speaker: "Vermieter",
-          german: "Ja, nur fünf Minuten zu Fuß.",
-          english: "Yes, only five minutes on foot.",
-        },
-      ],
-    },
-    funFact: {
-      title: "Literal Meaning of 'Es gibt'",
-      content:
-        "Linguistically, 'es gibt' literally translates to 'it gives'! When you say 'Es gibt einen Supermarkt', old Germanic phrasing is essentially saying: 'Nature / the world gives a supermarket'. Today, it simply means 'there is / there exists'.",
-    },
-    practice: [
       {
-        question: "Complete the question: 'Gibt es hier _____ Geldautomaten?' (der Geldautomat - ATM)",
-        options: ["ein", "einen", "eine"],
-        answer: "einen",
-        explanation: "'der Geldautomat' is masculine and follows 'es gibt' (Accusative), so it becomes 'einen'.",
-      },
-    ],
+        "question": "How do you ask: 'Are there any questions?' in German?",
+        "options": [
+          "Geben es Fragen?",
+          "Gibt es Fragen?",
+          "Sind es Fragen?"
+        ],
+        "answer": "Gibt es Fragen?",
+        "explanation": "'Gibt es Fragen?' is the standard idiom, keeping 'gibt' singular."
+      }
+    ]
   },
-
   "a1-ch6-l27": {
-    overview:
-      "To connect two thoughts together smoothly without repeating sentences, you need coordinating conjunctions. In German, the three most important connectors are 'und' (and), 'aber' (but), and 'oder' (or).",
-    canDo:
-      "Can link two main clauses using coordinating conjunctions (und, aber, oder) without changing verb position (Position 0).",
-    teacherNote:
-      "These connectors are called 'Position 0 Conjunctions' because they do NOT count as a position in the sentence! The sentence after 'und' or 'aber' starts fresh: Subject in Position 1, Verb in Position 2.",
-    sections: [
+    "overview": "Coordinating conjunctions connect two sentences without altering the normal word order. In German, the most important conjunctions are 'und' (and), 'aber' (but), and 'oder' (or). They are known as 'Position 0' connectors.",
+    "canDo": "Can connect simple main clauses smoothly using 'und', 'aber', and 'oder' while preserving Position 2 verb placement.",
+    "teacherNote": "Remember: 'und', 'aber', and 'oder' sit at 'Position 0'! They act like a bridge between sentences, so the sentence that follows starts counting fresh: Position 1 (Subject) + Position 2 (Verb)!",
+    "sections": [
       {
-        title: "1. The Position 0 Rule (ADUSO Connectors)",
-        description: "Connectors link clauses while keeping both verbs in Position 2:",
-        table: {
-          headers: ["Clause 1", "Connector (Pos 0)", "Subject (Pos 1)", "Verb (Pos 2)", "Rest of Clause 2"],
-          rows: [
-            ["Ich lerne Deutsch", "und", "ich", "wohne", "in Berlin."],
-            ["Er möchte kommen,", "aber", "er", "hat", "heute keine Zeit."],
-            ["Trinken wir Tee", "oder", "gehen", "wir", "in ein Café?"],
-            ["Ich esse gerne Pizza,", "aber", "meine Schwester", "mag", "Salat."],
+        "title": "1. Die Position 0 Konnektoren (und, aber, oder)",
+        "description": "Connecting two complete independent clauses:",
+        "table": {
+          "headers": [
+            "Konnektor",
+            "Bedeutung",
+            "Erster Satz",
+            "Konnektor (Pos 0)",
+            "Zweiter Satz (Pos 1 + Pos 2)"
           ],
-        },
+          "rows": [
+            [
+              "und",
+              "and",
+              "Ich lerne Deutsch",
+              ", und",
+              "ich wohne in München."
+            ],
+            [
+              "aber",
+              "but (contrast)",
+              "Paco lernt fleißig",
+              ", aber",
+              "er spricht noch nicht perfekt."
+            ],
+            [
+              "oder",
+              "or (alternative)",
+              "Trinkst du einen Kaffee",
+              ", oder",
+              "möchtest du einen Tee?"
+            ]
+          ]
+        }
       },
+      {
+        "title": "2. Kommasetzung bei Konnektoren",
+        "description": "Punctuation rules in German writing:",
+        "items": [
+          {
+            "term": "aber (immer mit Komma!)",
+            "meaning": "Always place a comma before 'aber' when linking two clauses",
+            "example": "Die Wohnung ist schön, aber sie ist teuer."
+          },
+          {
+            "term": "und / oder (meist ohne Komma bei kurzem Subjekt)",
+            "meaning": "When subjects are identical, you can omit the repeated subject",
+            "example": "Ich heiße Paco und komme aus Spanien."
+          }
+        ]
+      }
     ],
-    dialogue: {
-      context: "Two friends deciding on evening plans in Hamburg:",
-      lines: [
+    "dialogue": {
+      "context": "Freizeitplanung am Wochenende (Netzwerk A1 Kapitel 2):",
+      "lines": [
         {
-          speaker: "Daniel",
-          german: "Gehen wir heute Abend ins Kino oder bleiben wir zu Hause?",
-          english: "Are we going to the movies tonight or staying at home?",
+          "speaker": "Nina",
+          "german": "Gregor, gehen wir am Samstag ins Kino oder hast du schon etwas vor?",
+          "english": "Gregor, are we going to the cinema on Saturday or do you already have plans?"
         },
         {
-          speaker: "Sophie",
-          german: "Ich bin müde, aber ich möchte trotzdem rausgehen!",
-          english: "I am tired, but I want to go out anyway!",
+          "speaker": "Gregor",
+          "german": "Ich habe Zeit, aber der Film beginnt erst um 20 Uhr.",
+          "english": "I have time, but the movie doesn't start until 8 PM."
         },
         {
-          speaker: "Daniel",
-          german: "Toll, dann essen wir eine Pizza und sehen danach den neuen Film.",
-          english: "Great, then we'll eat a pizza and watch the new movie afterwards.",
+          "speaker": "Nina",
+          "german": "Kein Problem! Wir können vorher etwas essen und dann gehen wir zusammen ins Kino.",
+          "english": "No problem! We can eat something beforehand and then we'll go to the cinema together."
         },
-      ],
+        {
+          "speaker": "Gregor",
+          "german": "Super Idee, so machen wir das!",
+          "english": "Super idea, that's what we'll do!"
+        }
+      ]
     },
-    funFact: {
-      title: "The Comma Before 'Aber' is Mandatory!",
-      content:
-        "German punctuation is governed by strict grammatical rules. Unlike in English where a comma before 'but' is often optional, in German you **must always place a comma** before 'aber' and 'denn' when linking two full sentences!",
+    "funFact": {
+      "title": "The Acronym ADUSO",
+      "content": "German teachers teach the acronym ADUSO for the five Position 0 conjunctions: Aber (but), Denn (because), Und (and), Sondern (but rather), Oder (or). None of these five change the word order of the following clause!"
     },
-    practice: [
+    "practice": [
       {
-        question: "Which connector means 'but' and requires a comma before it?",
-        options: ["und", "aber", "oder"],
-        answer: "aber",
-        explanation: "'aber' means 'but' and connects contrasting statements, always preceded by a comma.",
-      },
-    ],
-  },
-
-  "a1-ch6-l28": {
-    overview:
-      "Talking about what you love doing, what you like, and what you prefer is the heart of casual conversation. German makes a clear grammatical distinction between liking nouns (verb 'mögen') and liking actions (adverb 'gern').",
-    canDo:
-      "Can express likes using 'mögen' for things and 'gern' for activities, and express preferences using 'lieber'.",
-    teacherNote:
-      "Remember this split: To like a THING (coffee, pizza, music), use the verb **mögen** (*Ich mag Kaffee*). To like an ACTION (reading, traveling, cooking), use the verb + **gern** (*Ich reise gern / Ich koche gern*)!",
-    sections: [
-      {
-        title: "1. The Verb 'mögen' (To like things/nouns)",
-        description: "Conjugation of 'mögen' in present tense (stem changes to mag- in singular):",
-        table: {
-          headers: ["Pronoun", "Form of mögen", "Example Sentence", "Meaning"],
-          rows: [
-            ["ich", "mag", "Ich mag deutsche Musik.", "I like German music."],
-            ["du", "magst", "Magst du Schokolade?", "Do you like chocolate?"],
-            ["er / sie / es", "mag", "Er mag keinen Fisch.", "He doesn't like fish."],
-            ["wir", "mögen", "Wir mögen Berlin sehr.", "We like Berlin very much."],
-            ["ihr", "mögt", "Mögt ihr Fußball?", "Do you all like soccer?"],
-            ["sie / Sie", "mögen", "Mögen Sie Kaffee?", "Do you like coffee (formal)?"],
-          ],
-        },
-      },
-      {
-        title: "2. The Magic Adverb: 'gern' & 'lieber' (For Actions)",
-        description: "Place 'gern' after the verb to mean 'I like doing X':",
-        items: [
-          {
-            term: "gern / gerne (gladly / like doing)",
-            meaning: "Ich lese gern. (I like reading.) / Ich koche gern. (I like cooking.)",
-            example: "Wir reisen gern nach Österreich.",
-          },
-          {
-            term: "lieber (rather / prefer doing)",
-            meaning: "Trinkst du Tee? -> Nein, ich trinke lieber Kaffee. (I prefer drinking coffee.)",
-            example: "Ich fahre lieber mit dem Zug als mit dem Bus.",
-          },
-          {
-            term: "am liebsten (most of all / favorite)",
-            meaning: "Am liebsten esse ich Pizza. (Most of all, I love eating pizza.)",
-            example: "Superlative preference.",
-          },
+        "question": "Which sentence is grammatically correct with 'aber'?",
+        "options": [
+          "Ich habe Zeit, aber ich lerne heute.",
+          "Ich habe Zeit, aber lerne ich heute.",
+          "Ich habe Zeit, aber heute ich lerne."
         ],
+        "answer": "Ich habe Zeit, aber ich lerne heute.",
+        "explanation": "'aber' is Position 0. The next clause follows normal word order: 'ich' (Pos 1) + 'lerne' (Pos 2)."
       },
-    ],
-    dialogue: {
-      context: "Discussing hobbies and free time in an evening German course:",
-      lines: [
-        {
-          speaker: "Tom",
-          german: "Was machst du am Wochenende gern?",
-          english: "What do you like doing on the weekend?",
-        },
-        {
-          speaker: "Maja",
-          german: "Ich koche gern mit Freunden. Und du? Magst du Sport?",
-          english: "I like cooking with friends. And you? Do you like sports?",
-        },
-        {
-          speaker: "Tom",
-          german: "Ja, ich spiele gern Fußball, aber ich fahre lieber Fahrrad!",
-          english: "Yes, I like playing soccer, but I prefer riding my bicycle!",
-        },
-      ],
-    },
-    funFact: {
-      title: "The Concept of 'Feierabend'",
-      content:
-        "When Germans finish work and transition to doing what they like (gern machen), they announce: 'Ich mache jetzt Feierabend!'. *Feierabend* literally translates to 'celebration evening'. It signifies the sacred boundary where all work stops, and personal relaxation, hobbies, and family time begin!",
-    },
-    practice: [
       {
-        question: "How do you say 'I like traveling'?",
-        options: ["Ich mag reisen.", "Ich reise gern.", "Ich bin gern reisen."],
-        answer: "Ich reise gern.",
-        explanation: "For activities and actions, pair the conjugated verb with the adverb 'gern' (Ich reise gern).",
-      },
-    ],
+        "question": "What is the meaning of 'oder'?",
+        "options": [
+          "and",
+          "or",
+          "but"
+        ],
+        "answer": "or",
+        "explanation": "'oder' means 'or'."
+      }
+    ]
   },
+  "a1-ch6-l28": {
+    "overview": "Expressing what you like, what you enjoy doing, and what you prefer is the key to engaging conversations about hobbies, food, and travel. In German, there is a clear distinction between 'mögen' (verb used with nouns) and 'gern / lieber / am liebsten' (adverbs used with verbs).",
+    "canDo": "Can state likes with 'mögen', express enjoyment of activities with 'gern', and make comparisons with 'lieber' (prefer) and 'am liebsten' (favorite).",
+    "teacherNote": "English uses 'to like' for both nouns ('I like pizza') and verbs ('I like swimming'). German uses TWO different tools: For nouns, use the verb MÖGEN ('Ich mag Pizza'). For activities/verbs, use the adverb GERN ('Ich schwimme gern')!",
+    "sections": [
+      {
+        "title": "1. Der Vergleich: 'mögen' vs. 'gern'",
+        "description": "When to use the verb vs. the adverb:",
+        "table": {
+          "headers": [
+            "Werkzeug (Tool)",
+            "Wann benutzt man es?",
+            "Konstruktion",
+            "Beispiel (Netzwerk A1)"
+          ],
+          "rows": [
+            [
+              "mögen (Verb)",
+              "Mit Nomen (Sachen, Personen, Essen)",
+              "Subjekt + mag / magst... + Nomen",
+              "Ich mag Musik. / Magst du Pizza?"
+            ],
+            [
+              "gern (Adverb)",
+              "Mit Verben (Aktivitäten, Hobbys)",
+              "Subjekt + Verb + GERN",
+              "Ich höre gern Musik. / Ich koche gern."
+            ]
+          ]
+        }
+      },
+      {
+        "title": "2. Die Steigerung: gern -> lieber -> am liebsten",
+        "description": "Expressing preferences and favorites from Netzwerk Kapitel 2 & 4:",
+        "table": {
+          "headers": [
+            "Stufe (Degree)",
+            "Wort",
+            "Bedeutung",
+            "Beispielsatz"
+          ],
+          "rows": [
+            [
+              "Grundstufe (Positive)",
+              "gern",
+              "like doing (gladly)",
+              "Ich trinke gern Tee."
+            ],
+            [
+              "Vergleichsstufe (Comparative)",
+              "lieber",
+              "prefer doing (rather)",
+              "Aber ich trinke lieber Kaffee."
+            ],
+            [
+              "Höchststufe (Superlative)",
+              "am liebsten",
+              "like doing most (favorite)",
+              "Am liebsten trinke ich Orangensaft!"
+            ]
+          ]
+        }
+      }
+    ],
+    "dialogue": {
+      "context": "Über Hobbys und Freizeit sprechen (Netzwerk A1 Kapitel 2):",
+      "lines": [
+        {
+          "speaker": "Julia",
+          "german": "Gregor, was machst du gern in deiner Freizeit?",
+          "english": "Gregor, what do you like doing in your free time?"
+        },
+        {
+          "speaker": "Gregor",
+          "german": "Ich spiele gern Fußball und lese gern Romane. Und du?",
+          "english": "I like playing football and enjoy reading novels. And you?"
+        },
+        {
+          "speaker": "Julia",
+          "german": "Ich reise sehr gern! Aber am liebsten koche ich mit Freunden.",
+          "english": "I really like travelling! But most of all I love cooking with friends."
+        },
+        {
+          "speaker": "Gregor",
+          "german": "Toll! Kochst du lieber italienisch oder asiatisch?",
+          "english": "Great! Do you prefer cooking Italian or Asian food?"
+        },
+        {
+          "speaker": "Julia",
+          "german": "Lieber italienisch, Pasta ist mein Lieblingsessen.",
+          "english": "Preferably Italian, pasta is my favorite food."
+        }
+      ]
+    },
+    "funFact": {
+      "title": "'Lieblings-' as a Prefix",
+      "content": "To say 'my favorite X' in German, attach the word 'Lieblings-' directly to the front of any noun: das Lieblingsessen (favorite food), das Lieblingsbuch (favorite book), die Lieblingsfarbe (favorite color), der Lieblingsfilm (favorite movie)!"
+    },
+    "practice": [
+      {
+        "question": "How do you say: 'I like swimming' in natural German?",
+        "options": [
+          "Ich mag schwimmen.",
+          "Ich schwimme gern.",
+          "Ich liebe schwimmen."
+        ],
+        "answer": "Ich schwimme gern.",
+        "explanation": "To express enjoying an activity, German places the adverb 'gern' after the conjugated verb: Ich schwimme gern."
+      },
+      {
+        "question": "What is the comparative form of 'gern' meaning 'prefer'?",
+        "options": [
+          "gerner",
+          "lieber",
+          "besser"
+        ],
+        "answer": "lieber",
+        "explanation": "The comparative form of 'gern' is 'lieber' (prefer / would rather)."
+      }
+    ]
+  }
 };

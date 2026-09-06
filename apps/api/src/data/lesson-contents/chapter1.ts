@@ -2,483 +2,951 @@ import { LessonContent } from "../../types/course.types";
 
 export const CHAPTER_1_LESSONS: Record<string, LessonContent> = {
   "a1-ch1-l1": {
-    overview:
-      "Welcome to your first step into German! German pronunciation is famously logical and consistent. Unlike English, where the same letter can be pronounced in five different ways, German letters almost always correspond to the exact same sound once you learn their core rules.",
-    canDo:
-      "Can spell your own name using the German alphabet, recognize key consonant sounds (W, V, J, Z), and pronounce simple German words letter-by-letter.",
-    teacherNote:
-      "Herzlich willkommen! When reading German, never guess—trust the letters. Once you remember that 'W' sounds like English 'V', 'V' often sounds like 'F', and 'Z' sounds like 'ts', you can already read hundreds of street signs, brand names, and menu items across Germany, Austria, and Switzerland.",
-    sections: [
+    "overview": "Welcome to German! German pronunciation is remarkably logical and phonetic. Unlike English, where vowels and consonants shift unpredictably, German letters correspond reliably to consistent sounds. In this lesson, you will master the 26 letters of the German alphabet, crucial consonant shifts (W, V, J, Z), and the official German spelling alphabet (Buchstabier-Alphabet).",
+    "canDo": "Can spell your first and last name aloud in German, recognize essential consonant sounds (W, V, J, Z), and understand spelling in official contexts like hotel check-in or course registration.",
+    "teacherNote": "Herzlich willkommen! When reading German, never guess—trust the letters. Remember that 'W' always sounds like English 'V' (das Wasser), 'V' in native words sounds like 'F' (der Vater, vier), 'J' sounds like 'Y' in yes (ja, das Jahr), and 'Z' is always a sharp 'ts' (zehn, die Zeit).",
+    "sections": [
       {
-        title: "1. The German Alphabet (Das Deutsche Alphabet)",
-        description:
-          "The German alphabet contains the standard 26 Latin letters plus special characters. Practice saying them aloud with the phonetic guides below:",
-        table: {
-          headers: ["Letter", "German Name", "English Sound Equivalent", "Word Example"],
-          rows: [
-            ["A a", "aah", "like 'a' in father", "der Abend (evening)"],
-            ["B b", "beh", "like 'b' in bed", "das Buch (book)"],
-            ["C c", "tseh", "like 'ts' in cats before e/i", "das Café (café)"],
-            ["D d", "deh", "like 'd' in door", "der Danke (thanks)"],
-            ["E e", "eeh", "like 'e' in pet or 'ay' in say", "das Essen (food)"],
-            ["F f", "eff", "like 'f' in find", "der Freund (friend)"],
-            ["G g", "geh", "always hard like 'g' in go", "gut (good)"],
-            ["H h", "hah", "breathed 'h' at start; silent after vowel", "Hallo (hello)"],
-            ["I i", "iih", "like 'ee' in see", "die Idee (idea)"],
-            ["J j", "yott", "sounds like English 'y' in yes!", "ja (yes)"],
-            ["K k", "kah", "like 'k' in kite", "der Kaffee (coffee)"],
-            ["L l", "ell", "clear European 'l' on upper gums", "die Lampe (lamp)"],
-            ["M m", "emm", "like 'm' in mother", "die Musik (music)"],
-            ["N n", "enn", "like 'n' in no", "der Name (name)"],
-            ["O o", "ohh", "pure round 'o' like in so", "die Oper (opera)"],
-            ["P p", "peh", "crisp 'p' like in park", "die Post (post office)"],
-            ["Q q", "kuh", "always followed by u: sounds like 'kv'", "bequem (comfortable)"],
-            ["R r", "err", "throat-trilled or softly tapped", "das Radio (radio)"],
-            ["S s", "ess", "voiced like 'z' before vowels; 's' at end", "die Sonne (sun) / das Glas (glass)"],
-            ["T t", "teh", "sharp 't' like in tea", "der Tag (day)"],
-            ["U u", "uuh", "like 'oo' in moon", "die Uhr (clock)"],
-            ["V v", "fau", "mostly sounds like 'f' in father!", "der Vater (father)"],
-            ["W w", "veh", "sounds like English 'v' in victory!", "das Wasser (water)"],
-            ["X x", "iks", "like 'ks' in taxi", "das Taxi (taxi)"],
-            ["Y y", "üpsilon", "sounds like 'ü' or 'y'", "das Yoga (yoga)"],
-            ["Z z", "tsett", "always sharp 'ts' like in cats!", "die Zeit (time)"],
+        "title": "1. Das Deutsche Alphabet (A bis Z)",
+        "description": "Listen to and pronounce each letter with its authentic German name:",
+        "table": {
+          "headers": [
+            "Buchstabe",
+            "Name",
+            "Lautwert (Sound)",
+            "Beispiel (Example)"
           ],
-        },
+          "rows": [
+            [
+              "A a",
+              "aah",
+              "open 'a' like in father",
+              "der Abend (evening)"
+            ],
+            [
+              "B b",
+              "beh",
+              "like 'b' in bed",
+              "das Buch (book)"
+            ],
+            [
+              "C c",
+              "tseh",
+              "crisp 'ts' before e/i",
+              "das Café (café)"
+            ],
+            [
+              "D d",
+              "deh",
+              "like 'd' in door",
+              "der Danke (thanks)"
+            ],
+            [
+              "E e",
+              "eeh",
+              "open like 'e' in pet or long like 'ay'",
+              "das Essen (food)"
+            ],
+            [
+              "F f",
+              "eff",
+              "like 'f' in find",
+              "der Freund (friend)"
+            ],
+            [
+              "G g",
+              "geh",
+              "always hard like 'g' in go",
+              "gut (good)"
+            ],
+            [
+              "H h",
+              "hah",
+              "breathed 'h' at start; silent lengthener after vowel",
+              "Hallo (hello)"
+            ],
+            [
+              "I i",
+              "iih",
+              "like 'ee' in see",
+              "die Idee (idea)"
+            ],
+            [
+              "J j",
+              "yott",
+              "sounds like English 'y' in yes!",
+              "ja (yes)"
+            ],
+            [
+              "K k",
+              "kah",
+              "crisp 'k' like in kite",
+              "der Kaffee (coffee)"
+            ],
+            [
+              "L l",
+              "ell",
+              "clear European 'l' on upper gums",
+              "die Lampe (lamp)"
+            ],
+            [
+              "M m",
+              "emm",
+              "like 'm' in mother",
+              "die Musik (music)"
+            ],
+            [
+              "N n",
+              "enn",
+              "like 'n' in no",
+              "der Name (name)"
+            ],
+            [
+              "O o",
+              "ohh",
+              "pure round 'o' like in so",
+              "die Oper (opera)"
+            ],
+            [
+              "P p",
+              "peh",
+              "crisp 'p' like in park",
+              "die Post (post office)"
+            ],
+            [
+              "Q q",
+              "kuh",
+              "always followed by u: sounds like 'kv'",
+              "bequem (comfortable)"
+            ],
+            [
+              "R r",
+              "err",
+              "throat-trilled or softly tapped",
+              "das Radio (radio)"
+            ],
+            [
+              "S s",
+              "ess",
+              "voiced like 'z' before vowels; unvoiced at end",
+              "die Sonne (sun) / das Glas"
+            ],
+            [
+              "T t",
+              "teh",
+              "sharp 't' like in tea",
+              "der Tag (day)"
+            ],
+            [
+              "U u",
+              "uuh",
+              "deep 'oo' like in moon",
+              "die Uhr (clock)"
+            ],
+            [
+              "V v",
+              "fau",
+              "mostly sounds like 'f' in father!",
+              "der Vater (father)"
+            ],
+            [
+              "W w",
+              "veh",
+              "sounds like English 'v' in victory!",
+              "das Wasser (water)"
+            ],
+            [
+              "X x",
+              "iks",
+              "like 'ks' in taxi",
+              "das Taxi (taxi)"
+            ],
+            [
+              "Y y",
+              "üpsilon",
+              "sounds like 'ü' or 'y'",
+              "das Yoga (yoga)"
+            ],
+            [
+              "Z z",
+              "tsett",
+              "always sharp 'ts' like in cats!",
+              "die Zeit (time)"
+            ]
+          ]
+        }
       },
       {
-        title: "2. The 4 Essential Consonant Shifts to Remember",
-        description:
-          "Keep these four mental anchors in mind whenever you see a new German word:",
-        items: [
+        "title": "2. The 4 Essential Consonant Shifts",
+        "description": "These four mental anchors will prevent 90% of pronunciation errors for beginners:",
+        "items": [
           {
-            term: "W = [V]",
-            pronunciation: "veh",
-            meaning: "Pronounced like English 'V'. German does not have the English 'W' sound!",
-            example: "das Wasser (water), Wien (Vienna)",
+            "term": "W = [V]",
+            "pronunciation": "veh",
+            "meaning": "Pronounced like English 'V'. German does not have the English 'W' sound!",
+            "example": "das Wasser, Wien, wer, wie, woher"
           },
           {
-            term: "V = [F]",
-            pronunciation: "fau",
-            meaning: "Pronounced like English 'F' in native German words.",
-            example: "der Vater (father), vier (four)",
+            "term": "V = [F]",
+            "pronunciation": "fau",
+            "meaning": "Pronounced like English 'F' in native words (Vater, vier, viel, voll).",
+            "example": "der Vater, vier, vor, von"
           },
           {
-            term: "J = [Y]",
-            pronunciation: "yott",
-            meaning: "Pronounced like English 'Y' in yes.",
-            example: "ja (yes), das Jahr (year)",
+            "term": "J = [Y]",
+            "pronunciation": "yott",
+            "meaning": "Pronounced like English 'Y' in yes.",
+            "example": "ja, das Jahr, jetzt, jung"
           },
           {
-            term: "Z = [TS]",
-            pronunciation: "tsett",
-            meaning: "Pronounced like a sharp 'ts' in cats. Never soft like the English Z!",
-            example: "die Zeit (time), zehn (ten)",
-          },
+            "term": "Z = [TS]",
+            "pronunciation": "tsett",
+            "meaning": "Always a sharp 'ts' sound, exactly like the end of 'cats'.",
+            "example": "zehn, die Zeit, das Zimmer, zusammen"
+          }
+        ]
+      },
+      {
+        "title": "3. Buchstabieren (Spelling Names Aloud)",
+        "description": "In official registration and phone calls, you will frequently be asked: 'Wie schreibt man das?' (How do you spell that?). The standard German spelling alphabet pairs letters with well-known names:",
+        "table": {
+          "headers": [
+            "Buchstabe",
+            "Buchstabier-Name (DIN 5009)",
+            "Beispiel im Alltag"
+          ],
+          "rows": [
+            [
+              "A wie Anton",
+              "Anton",
+              "A wie Anton"
+            ],
+            [
+              "B wie Berta",
+              "Berta",
+              "B wie Berta"
+            ],
+            [
+              "C wie Cäsar",
+              "Cäsar",
+              "C wie Cäsar"
+            ],
+            [
+              "D wie Dora",
+              "Dora",
+              "D wie Dora"
+            ],
+            [
+              "E wie Emil",
+              "Emil",
+              "E wie Emil"
+            ],
+            [
+              "F wie Friedrich",
+              "Friedrich",
+              "F wie Friedrich"
+            ],
+            [
+              "G wie Gustav",
+              "Gustav",
+              "G wie Gustav"
+            ],
+            [
+              "H wie Heinrich",
+              "Heinrich",
+              "H wie Heinrich"
+            ],
+            [
+              "I wie Ida",
+              "Ida",
+              "I wie Ida"
+            ],
+            [
+              "J wie Julius",
+              "Julius",
+              "J wie Julius"
+            ],
+            [
+              "K wie Kaufmann",
+              "Kaufmann",
+              "K wie Kaufmann"
+            ],
+            [
+              "L wie Ludwig",
+              "Ludwig",
+              "L wie Ludwig"
+            ],
+            [
+              "M wie Martha",
+              "Martha",
+              "M wie Martha"
+            ],
+            [
+              "N wie Nordpol",
+              "Nordpol",
+              "N wie Nordpol"
+            ],
+            [
+              "O wie Otto",
+              "Otto",
+              "O wie Otto"
+            ],
+            [
+              "P wie Paula",
+              "Paula",
+              "P wie Paula"
+            ],
+            [
+              "S wie Samuel",
+              "Samuel",
+              "S wie Samuel"
+            ],
+            [
+              "T wie Theodor",
+              "Theodor",
+              "T wie Theodor"
+            ],
+            [
+              "U wie Ulrich",
+              "Ulrich",
+              "U wie Ulrich"
+            ],
+            [
+              "V wie Viktor",
+              "Viktor",
+              "V wie Viktor"
+            ],
+            [
+              "W wie Wilhelm",
+              "Wilhelm",
+              "W wie Wilhelm"
+            ],
+            [
+              "Z wie Zacharias",
+              "Zacharias",
+              "Z wie Zacharias"
+            ]
+          ]
+        }
+      }
+    ],
+    "dialogue": {
+      "context": "Anmeldung am Empfang der Sprachschule in München (Netzwerk A1):",
+      "lines": [
+        {
+          "speaker": "Nina Weber",
+          "german": "Guten Tag! Herzlich willkommen. Wie heißen Sie bitte?",
+          "english": "Good day! Welcome. What is your name, please?"
+        },
+        {
+          "speaker": "Gregor",
+          "german": "Guten Tag. Ich heiße Gregor Schubert.",
+          "english": "Good day. My name is Gregor Schubert."
+        },
+        {
+          "speaker": "Nina Weber",
+          "german": "Entschuldigung, wie schreibt man den Nachnamen? Können Sie bitte buchstabieren?",
+          "english": "Excuse me, how do you spell the last name? Could you please spell it?"
+        },
+        {
+          "speaker": "Gregor",
+          "german": "Ja, natürlich: S - C - H - U - B - E - R - T.",
+          "english": "Yes, of course: S - C - H - U - B - E - R - T."
+        },
+        {
+          "speaker": "Nina Weber",
+          "german": "Vielen Dank, Herr Schubert! Ihr Kursraum ist Nummer 12 im ersten Stock.",
+          "english": "Thank you very much, Mr. Schubert! Your classroom is number 12 on the first floor."
+        }
+      ]
+    },
+    "funFact": {
+      "title": "Universal Noun Capitalization in German",
+      "content": "German is the only major world language where every single noun is capitalized! Whether it is 'der Name' (name), 'das Buch' (book), or 'die Musik' (music), capitalizing nouns was standardized in the 17th century to help readers instantly distinguish subjects and objects in long philosophical and literary texts."
+    },
+    "practice": [
+      {
+        "question": "How is the German letter 'W' in 'Wasser' (water) pronounced?",
+        "options": [
+          "Like English 'W' in 'water'",
+          "Like English 'V' in 'vase'",
+          "Silent"
         ],
-      },
-    ],
-    dialogue: {
-      context: "At a hotel reception desk in Frankfurt, checking in and spelling a name aloud:",
-      lines: [
-        {
-          speaker: "Rezeptionist",
-          german: "Guten Tag! Wie heißen Sie bitte?",
-          english: "Good day! What is your name, please?",
-        },
-        {
-          speaker: "Gast",
-          german: "Guten Tag. Mein Name ist David Müller.",
-          english: "Good day. My name is David Müller.",
-        },
-        {
-          speaker: "Rezeptionist",
-          german: "Können Sie den Nachnamen bitte buchstabieren?",
-          english: "Can you please spell the last name?",
-        },
-        {
-          speaker: "Gast",
-          german: "Ja, natürlich: M - Ü - L - L - E - R.",
-          english: "Yes, of course: M - Ü - L - L - E - R.",
-        },
-      ],
-    },
-    funFact: {
-      title: "The DACH Region & Universal Capitalization",
-      content:
-        "German is spoken by over 100 million native speakers across the DACH countries: Deutschland (D), Österreich / Austria (A), and die Schweiz / Switzerland (CH). Notice how in German every single noun begins with a capital letter (der Name, das Hotel, der Abend). This unique rule was standardized to make reading faster and sentences clearer!",
-    },
-    practice: [
-      {
-        question: "How is the German word 'Wasser' (water) pronounced in its initial letter?",
-        options: ["With an English 'W' sound like 'wash'", "With an English 'V' sound like 'vase'", "With a silent 'W'"],
-        answer: "With an English 'V' sound like 'vase'",
-        explanation: "In German, the letter 'W' is always pronounced like the English 'V'.",
+        "answer": "Like English 'V' in 'vase'",
+        "explanation": "In German, the letter 'W' is consistently pronounced like the English 'V'."
       },
       {
-        question: "How do you pronounce the number 'zehn' (ten) in German?",
-        options: ["Like English 'zen'", "Like 'tsehn' with a sharp 'ts'", "Like 'kehn'"],
-        answer: "Like 'tsehn' with a sharp 'ts'",
-        explanation: "The German letter 'Z' always produces a crisp 'ts' sound, exactly like the end of the word 'cats'.",
+        "question": "How do you pronounce the number 'zehn' (ten)?",
+        "options": [
+          "Like English 'zen'",
+          "Like 'tsehn' with a sharp 'ts'",
+          "Like 'kehn'"
+        ],
+        "answer": "Like 'tsehn' with a sharp 'ts'",
+        "explanation": "The letter 'Z' in German always makes a crisp 'ts' sound, exactly as in 'cats'."
       },
-    ],
+      {
+        "question": "Which question asks someone to spell their name?",
+        "options": [
+          "Wie heißen Sie?",
+          "Woher kommen Sie?",
+          "Wie schreibt man das?"
+        ],
+        "answer": "Wie schreibt man das?",
+        "explanation": "'Wie schreibt man das?' means 'How do you spell/write that?' in German."
+      }
+    ]
   },
-
   "a1-ch1-l2": {
-    overview:
-      "German features four characters you won't find in the standard English alphabet: the three Umlauts (ä, ö, ü) and the unique ligature Eszett (ß). In this lesson, we demystify how your lips and tongue produce these authentic sounds.",
-    canDo:
-      "Can articulate ä, ö, ü accurately, pronounce diphthongs (ei, ie, eu), and distinguish between hard and soft 'ch'.",
-    teacherNote:
-      "The two dots above ä, ö, and ü aren't decorations—they are historical shorthand for a tiny letter 'e' placed above the vowel! If you ever don't have a German keyboard, you can write 'ae', 'oe', and 'ue' instead.",
-    sections: [
+    "overview": "German features four characters you won't find in the standard English alphabet: the three Umlauts (ä, ö, ü) and the unique ligature Eszett (ß). In this lesson, you will master mouth positioning for these authentic sounds, learn the golden rule for diphthongs (ei vs. ie), and master hard vs. soft 'ch'.",
+    "canDo": "Can articulate ä, ö, ü with accurate lip positioning, avoid the #1 beginner trap between 'ei' and 'ie', and distinguish the soft 'ich'-sound from the hard 'ach'-sound.",
+    "teacherNote": "The two dots above ä, ö, and ü aren't decorations—they represent a historical shorthand for a tiny letter 'e' placed above the vowel! If you don't have a German keyboard, write 'ae', 'oe', and 'ue'.",
+    "sections": [
       {
-        title: "1. The 3 Umlauts (Die Umlaute)",
-        description:
-          "Position your mouth to say one sound, then adjust your lips to form the Umlaut:",
-        table: {
-          headers: ["Umlaut", "How to Shape Your Mouth", "Key Example", "Meaning"],
-          rows: [
-            ["Ä ä", "Open mouth wide, say 'eh' like in 'air'", "das Mädchen / der Bär", "girl / bear"],
-            ["Ö ö", "Shape lips to say 'oh', then try to say 'ay'", "schön / das Öl / Köln", "beautiful / oil / Cologne"],
-            ["Ü ü", "Pucker lips as if to whistle, then say 'ee'", "die Tür / fünf / über", "door / five / over"],
+        "title": "1. The 3 Umlauts (Die Umlaute: Ä, Ö, Ü)",
+        "description": "Train your facial muscles with these precise mouth shapes:",
+        "table": {
+          "headers": [
+            "Umlaut",
+            "Mundstellung (Mouth Shape)",
+            "Minimal Pair (Contrast)",
+            "Bedeutung (Meaning)"
           ],
-        },
+          "rows": [
+            [
+              "Ä ä",
+              "Open mouth wide, pronounce 'eh' like in air",
+              "der Apfel / die Äpfel",
+              "the apple / the apples"
+            ],
+            [
+              "Ö ö",
+              "Shape lips into an 'O', then try to say 'ee'",
+              "schon / schön",
+              "already / beautiful"
+            ],
+            [
+              "Ü ü",
+              "Pucker lips as if to whistle, then say 'ee'",
+              "die Mutter / die Mütter",
+              "the mother / the mothers"
+            ]
+          ]
+        }
       },
       {
-        title: "2. The Golden Pair: 'ei' vs. 'ie'",
-        description:
-          "This is the #1 vowel trap for beginners. Remember the golden memory rule: pronounce the SECOND letter!",
-        items: [
+        "title": "2. The Golden Rule of Diphthongs: 'ei' vs. 'ie'",
+        "description": "This is the most common beginner error. Always pronounce the SECOND letter:",
+        "items": [
           {
-            term: "ei = [eye]",
-            pronunciation: "ay",
-            meaning: "Sounds like English 'eye' or 'pie'",
-            example: "mein (my), das Eis (ice cream), eins (one).",
+            "term": "ei = [eye]",
+            "pronunciation": "ay",
+            "meaning": "Pronounce the second letter (i sounds like eye): mein, nein, das Eis, eins, der Wein (wine).",
+            "example": "Wein (wine) sounds like 'Vine'."
           },
           {
-            term: "ie = [ee]",
-            pronunciation: "ee",
-            meaning: "Sounds like English 'ee' in see or cheese",
-            example: "die Liebe (love), sieben (seven), hier (here).",
+            "term": "ie = [ee]",
+            "pronunciation": "ee",
+            "meaning": "Pronounce the second letter (e sounds like ee in see): Wien (Vienna), sieben, hier, wie, sie.",
+            "example": "Wien (Vienna) sounds like 'Veen'."
           },
           {
-            term: "eu / äu = [oy]",
-            pronunciation: "oy",
-            meaning: "Both sound like English 'oy' in boy",
-            example: "neu (new), heute (today), die Häuser (houses).",
-          },
+            "term": "eu / äu = [oy]",
+            "pronunciation": "oy",
+            "meaning": "Both sound like 'oy' in boy: neu (new), heute (today), Europa, die Häuser (houses).",
+            "example": "Neu in Deutschland? (New in Germany?)"
+          }
+        ]
+      },
+      {
+        "title": "3. The Eszett (ß) & The Two Faces of 'ch'",
+        "description": "Understanding when 'ch' is whispered versus cleared in the throat:",
+        "table": {
+          "headers": [
+            "Laut",
+            "Regel (Phonetic Rule)",
+            "Beispiele (Examples)"
+          ],
+          "rows": [
+            [
+              "ß (Eszett)",
+              "Sharp unvoiced double-s after long vowels and diphthongs.",
+              "die Straße (street), groß (big), heiß (hot), heißen"
+            ],
+            [
+              "Ich-Laut (soft ch)",
+              "Whispered hiss against palate after e, i, ä, ö, ü, l, n, r.",
+              "ich (I), nicht (not), sprechen (to speak), das Mädchen"
+            ],
+            [
+              "Ach-Laut (hard ch)",
+              "Deep friction in throat after a, o, u, au.",
+              "das Buch (book), die Nacht (night), die Woche, auch (also)"
+            ]
+          ]
+        }
+      }
+    ],
+    "dialogue": {
+      "context": "In einem Wiener Kaffeehaus – Aussprache beim Bestellen (Netzwerk A1):",
+      "lines": [
+        {
+          "speaker": "Gast",
+          "german": "Entschuldigung, ist dieser Platz noch frei?",
+          "english": "Excuse me, is this seat still free?"
+        },
+        {
+          "speaker": "Kellner",
+          "german": "Ja, bitte nehmen Sie Platz! Ein schöner Tag heute in Wien.",
+          "english": "Yes, please have a seat! A beautiful day today in Vienna."
+        },
+        {
+          "speaker": "Gast",
+          "german": "Vielen Dank. Ich möchte bitte einen Kaffee und ein Stück Apfelstrudel.",
+          "english": "Thank you very much. I would like a coffee and a piece of apple strudel, please."
+        },
+        {
+          "speaker": "Kellner",
+          "german": "Sehr gern! Kommt sofort.",
+          "english": "Very gladly! Coming right up."
+        }
+      ]
+    },
+    "funFact": {
+      "title": "The Swiss 'ß' Rule",
+      "content": "In Switzerland and Liechtenstein, the letter 'ß' does not exist! They replaced it entirely with 'ss' (Strasse, gross, heissen). However, in Germany and Austria, 'ß' is strictly necessary because it shows the preceding vowel is long (die Maße = dimensions) versus short (die Masse = mass)!"
+    },
+    "practice": [
+      {
+        "question": "How do you distinguish the pronunciation of 'Wein' (wine) and 'Wien' (Vienna)?",
+        "options": [
+          "Wein sounds like 'Vine', Wien sounds like 'Veen'",
+          "Wein sounds like 'Veen', Wien sounds like 'Vine'",
+          "They sound identical"
         ],
+        "answer": "Wein sounds like 'Vine', Wien sounds like 'Veen'",
+        "explanation": "Pronounce the second vowel: in 'Wein', i sounds like 'eye'; in 'Wien', e sounds like 'ee'."
       },
       {
-        title: "3. The Eszett (ß) & The Two Faces of 'ch'",
-        description:
-          "The ligature ß represents an unvoiced double-s. Meanwhile, 'ch' has a soft whisper and a throat scratch:",
-        table: {
-          headers: ["Sound", "Rule", "Examples"],
-          rows: [
-            ["ß (Eszett)", "Pronounced as a sharp, unvoiced 's' after long vowels & diphthongs.", "die Straße (street), groß (big), heiß (hot)"],
-            ["Soft 'ch' (Ich-Laut)", "Whispered tongue hiss against roof of mouth after e, i, ä, ö, ü, l, n, r.", "ich (I), nicht (not), das Mädchen (girl)"],
-            ["Hard 'ch' (Ach-Laut)", "Gently cleared throat sound in back of throat after a, o, u, au.", "das Buch (book), die Nacht (night), auch (also)"],
-          ],
-        },
-      },
-    ],
-    dialogue: {
-      context: "Ordering ice cream and asking for directions on a warm afternoon in Vienna:",
-      lines: [
-        {
-          speaker: "Anna",
-          german: "Entschuldigung, gibt es hier in der Straße ein Café mit Eis?",
-          english: "Excuse me, is there a café with ice cream here on the street?",
-        },
-        {
-          speaker: "Passant",
-          german: "Ja, geradeaus! Das Café heißt 'Schöne Zeit'. Sehr lecker!",
-          english: "Yes, straight ahead! The café is called 'Schöne Zeit' (Beautiful Time). Very delicious!",
-        },
-      ],
-    },
-    funFact: {
-      title: "The Swiss 'ß' Mystery",
-      content:
-        "Did you know? Switzerland and Liechtenstein completely stopped using the letter 'ß' back in the 1930s! Swiss newspapers and street signs write 'Strasse' and 'gross' with double 'ss'. However, in Germany and Austria, 'ß' remains standard after long vowels (Straße) to distinguish it from short vowels (Masse).",
-    },
-    practice: [
-      {
-        question: "How do you pronounce the word 'Wein' (wine) compared to 'Wien' (Vienna)?",
-        options: ["Wein sounds like 'Veen', Wien sounds like 'Vine'", "Wein sounds like 'Vine', Wien sounds like 'Veen'", "Both sound identical"],
-        answer: "Wein sounds like 'Vine', Wien sounds like 'Veen'",
-        explanation: "Remember: pronounce the second letter! In 'ei' the second letter is i (sounds like eye). In 'ie' the second letter is e (sounds like ee).",
-      },
-      {
-        question: "Which of the following contains the soft 'ch' (whispered hiss)?",
-        options: ["das Buch", "die Nacht", "ich"],
-        answer: "ich",
-        explanation: "After 'i' and 'e', 'ch' produces the soft whispered hiss (Ich-Laut), whereas after 'a', 'o', 'u' it makes the throat sound.",
-      },
-    ],
+        "question": "Which of these words contains the soft 'Ich-Laut' whispered sound?",
+        "options": [
+          "das Buch",
+          "die Nacht",
+          "nicht"
+        ],
+        "answer": "nicht",
+        "explanation": "Following the vowel 'i', 'ch' always forms the soft whispered Ich-Laut."
+      }
+    ]
   },
-
   "a1-ch1-l3": {
-    overview:
-      "To communicate naturally, you need subject pronouns to refer to yourself, friends, and colleagues. In German, there is a crucial social distinction between the informal 'du' and the formal 'Sie'.",
-    canDo:
-      "Can list all 9 German personal pronouns and know precisely when to use informal 'du' versus respectful formal 'Sie'.",
-    teacherNote:
-      "Pay special attention to 'Sie' with a capital 'S'. Whenever you see 'Sie' capitalized, it means formal 'you' (whether talking to one person or twenty). Lowercase 'sie' means 'she' or 'they', depending on the verb!",
-    sections: [
+    "overview": "To converse naturally, you need subject pronouns. In German, there is a fundamental social division between informal 'du' (friends, family, peers) and formal 'Sie' (adult strangers, colleagues, professionals).",
+    "canDo": "Can use all 9 personal pronouns accurately and choose appropriately between 'du' and capitalized 'Sie' in everyday social situations.",
+    "teacherNote": "Look at the capitalization! Capitalized 'Sie' always means formal 'you' (singular or plural). Lowercase 'sie' means 'she' or 'they', which you can identify from the verb ending.",
+    "sections": [
       {
-        title: "1. The 9 German Subject Pronouns",
-        description: "These are the subjects that drive all German sentences:",
-        table: {
-          headers: ["Pronoun", "Meaning", "Grammatical Person", "Pronunciation Tip"],
-          rows: [
-            ["ich", "I", "1st person singular", "Soft ch sound (whisper)"],
-            ["du", "you (informal singular)", "2nd person singular", "Sounds like 'doo'"],
-            ["er", "he", "3rd person singular masculine", "Short crisp vowel"],
-            ["sie", "she", "3rd person singular feminine", "Sounds like 'zee'"],
-            ["es", "it", "3rd person singular neuter", "Sounds like 'ess'"],
-            ["wir", "we", "1st person plural", "Sounds like 'veer'"],
-            ["ihr", "you all (informal plural)", "2nd person plural", "Sounds like 'eer'"],
-            ["sie", "they", "3rd person plural", "Sounds like 'zee'"],
-            ["Sie", "you (formal singular & plural)", "Polite address", "Always capitalized! Sounds like 'zee'"],
+        "title": "1. Die 9 Personalpronomen (Subject Pronouns)",
+        "description": "The fundamental building blocks of German sentences:",
+        "table": {
+          "headers": [
+            "Pronomen",
+            "Bedeutung",
+            "Person",
+            "Beispielsatz"
           ],
-        },
+          "rows": [
+            [
+              "ich",
+              "I",
+              "1. Person Singular",
+              "Ich lerne Deutsch."
+            ],
+            [
+              "du",
+              "you (informal singular)",
+              "2. Person Singular",
+              "Wie heißt du?"
+            ],
+            [
+              "er",
+              "he",
+              "3. Person Singular maskulin",
+              "Er kommt aus Spanien."
+            ],
+            [
+              "sie",
+              "she",
+              "3. Person Singular feminin",
+              "Sie wohnt in Berlin."
+            ],
+            [
+              "es",
+              "it",
+              "3. Person Singular neutral",
+              "Es ist warm heute."
+            ],
+            [
+              "wir",
+              "we",
+              "1. Person Plural",
+              "Wir sind im Deutschkurs."
+            ],
+            [
+              "ihr",
+              "you all (informal plural)",
+              "2. Person Plural",
+              "Woher kommt ihr?"
+            ],
+            [
+              "sie",
+              "they",
+              "3. Person Plural",
+              "Sie sprechen Englisch."
+            ],
+            [
+              "Sie",
+              "you (formal singular & plural)",
+              "Höflichkeitsform",
+              "Wie heißen Sie?"
+            ]
+          ]
+        }
       },
       {
-        title: "2. The Cultural Etiquette: 'du' vs. 'Sie'",
-        description:
-          "Choosing the right pronoun shows respect and understanding of cultural boundaries in the German-speaking world:",
-        items: [
+        "title": "2. Soziale Etikette: 'du' oder 'Sie'?",
+        "description": "Rules of respect and familiarity in the DACH countries:",
+        "items": [
           {
-            term: "du (Informal You)",
-            meaning: "Family, close friends, fellow university students, children under 15, and pets.",
-            example: "Wie heißt du? (What's your name? - casual)",
+            "term": "du (informell)",
+            "meaning": "Used with friends, family, fellow university students, children under 16, and pets.",
+            "example": "Hallo Julia, wie geht's dir?"
           },
           {
-            term: "Sie (Formal You - Capitalized)",
-            meaning: "Adult strangers, shopkeepers, doctors, business partners, professors, and government officials.",
-            example: "Wie heißen Sie? (What is your name? - polite/formal)",
+            "term": "Sie (formell & großgeschrieben)",
+            "meaning": "Used with adult strangers, doctors, officials, shop assistants, and professional business partners.",
+            "example": "Guten Tag, Frau Müller! Wie geht es Ihnen?"
           },
           {
-            term: "ihr (Informal Group You)",
-            meaning: "Addressing a group of friends, classmates, or children.",
-            example: "Wo seid ihr? (Where are you guys?)",
-          },
+            "term": "ihr (Gruppe informell)",
+            "meaning": "Addressing multiple friends, family members, or classmates.",
+            "example": "Kommt ihr heute zum Deutschkurs?"
+          }
+        ]
+      }
+    ],
+    "dialogue": {
+      "context": "Begegnungen im Sprachinstitut – Höflich vs. Vertraut (Netzwerk A1):",
+      "lines": [
+        {
+          "speaker": "Gregor",
+          "german": "Hallo Nina! Wie geht's?",
+          "english": "Hello Nina! How are you?"
+        },
+        {
+          "speaker": "Nina",
+          "german": "Danke, sehr gut! Und dir?",
+          "english": "Thanks, very well! And you?"
+        },
+        {
+          "speaker": "Gregor",
+          "german": "Es geht, danke. Oh, guten Morgen, Herr Kaiser!",
+          "english": "Not bad, thanks. Oh, good morning, Mr. Kaiser!"
+        },
+        {
+          "speaker": "Herr Kaiser",
+          "german": "Guten Morgen, Herr Schubert! Wie geht es Ihnen heute?",
+          "english": "Good morning, Mr. Schubert! How are you doing today?"
+        },
+        {
+          "speaker": "Gregor",
+          "german": "Sehr gut, danke! Wir freuen uns auf den Unterricht.",
+          "english": "Very well, thank you! We are looking forward to class."
+        }
+      ]
+    },
+    "funFact": {
+      "title": "Das 'Du' anbieten (Offering the Informal 'Du')",
+      "content": "In German corporate culture, colleagues often work alongside each other for years using formal 'Sie' and last names (Herr Schmidt, Frau Weber). It is a major social milestone when the senior or older colleague says: 'Wir können uns gern duzen!' (We can gladly use 'du'). Once accepted, you switch to first names!"
+    },
+    "practice": [
+      {
+        "question": "You enter a doctor's office in Frankfurt. Which greeting and pronoun do you use?",
+        "options": [
+          "Hallo, wie heißt du?",
+          "Guten Tag! Wie geht es Ihnen?",
+          "Hi, wer seid ihr?"
         ],
-      },
-    ],
-    dialogue: {
-      context: "A young professional meeting a senior manager at an office in Hamburg:",
-      lines: [
-        {
-          speaker: "Herr Hoffmann",
-          german: "Guten Tag, Frau Weber! Wie geht es Ihnen?",
-          english: "Good day, Ms. Weber! How are you doing?",
-        },
-        {
-          speaker: "Frau Weber",
-          german: "Guten Tag, Herr Hoffmann. Sehr gut, danke! Und wie geht es Ihnen?",
-          english: "Good day, Mr. Hoffmann. Very well, thank you! And how are you?",
-        },
-      ],
-    },
-    funFact: {
-      title: "Das 'Du' Anbieten (Offering the Informal 'Du')",
-      content:
-        "In Germany, colleagues often work alongside each other for years using formal 'Sie' and last names (*Herr Schmidt, Frau Wagner*). It is a cherished milestone when the older or higher-ranking person formally says: 'Wir können uns gerne duzen!' (We can gladly use 'du'). Once offered, you transition to first names and informal conversation!",
-    },
-    practice: [
-      {
-        question: "You are speaking to a police officer or doctor in Munich. Which pronoun do you use?",
-        options: ["du", "ihr", "Sie (capitalized)"],
-        answer: "Sie (capitalized)",
-        explanation: "Always use formal 'Sie' when addressing adult strangers, officials, or professionals in Germany.",
+        "answer": "Guten Tag! Wie geht es Ihnen?",
+        "explanation": "In professional healthcare settings, formal 'Sie' / 'Ihnen' is always required."
       },
       {
-        question: "What does lowercase 'wir' mean?",
-        options: ["You all", "We", "They"],
-        answer: "We",
-        explanation: "'wir' is the first person plural pronoun meaning 'we'.",
-      },
-    ],
+        "question": "What is the meaning of 'ihr'?",
+        "options": [
+          "She",
+          "We",
+          "You all (informal plural)"
+        ],
+        "answer": "You all (informal plural)",
+        "explanation": "'ihr' is the informal plural pronoun used when talking to two or more friends."
+      }
+    ]
   },
-
   "a1-ch1-l4": {
-    overview:
-      "The verb 'sein' (to be) is the foundational cornerstone of the German language. Just like in English (am, is, are), it is irregular, so mastering its conjugation opens the door to expressing who you are, your nationality, and your feelings.",
-    canDo:
-      "Can conjugate 'sein' across all persons and form simple identity, origin, and condition statements.",
-    teacherNote:
-      "Because 'sein' is irregular, memorize it rhythmically: ich bin, du bist, er ist, wir sind, ihr seid, sie sind. Say it aloud five times in a row!",
-    sections: [
+    "overview": "The verb 'sein' (to be) is the single most essential verb in German. Just like English 'to be' (am, is, are), it is irregular, and mastering its conjugation allows you to state your identity, nationality, profession, and status.",
+    "canDo": "Can conjugate 'sein' across all 6 grammatical persons and formulate self-introduction statements (name, role, origin).",
+    "teacherNote": "Learn 'sein' as a rhythmic chant: ich bin, du bist, er/sie/es ist, wir sind, ihr seid, sie/Sie sind. Say it aloud three times every morning!",
+    "sections": [
       {
-        title: "1. Conjugation Table of 'sein' (to be)",
-        description: "Present tense (Präsens) forms of 'sein':",
-        table: {
-          headers: ["Pronoun", "Form of 'sein'", "English", "Example Sentence"],
-          rows: [
-            ["ich", "bin", "I am", "Ich bin Maria. (I am Maria.)"],
-            ["du", "bist", "you are (informal)", "Du bist sehr nett. (You are very kind.)"],
-            ["er / sie / es", "ist", "he / she / it is", "Er ist Student. / Das Wetter ist gut."],
-            ["wir", "sind", "we are", "Wir sind hier in Berlin. (We are here in Berlin.)"],
-            ["ihr", "seid", "you all are", "Seid ihr bereit? (Are you all ready?)"],
-            ["sie / Sie", "sind", "they are / You are (formal)", "Sie sind sehr freundlich. (You are very friendly.)"],
+        "title": "1. Konjugation von 'sein' (to be)",
+        "description": "Full present tense conjugation table of 'sein':",
+        "table": {
+          "headers": [
+            "Pronomen",
+            "Form von 'sein'",
+            "Englisch",
+            "Beispielsatz (Netzwerk A1)"
           ],
-        },
+          "rows": [
+            [
+              "ich",
+              "bin",
+              "I am",
+              "Ich bin Paco aus Spanien."
+            ],
+            [
+              "du",
+              "bist",
+              "you are (informal)",
+              "Du bist sehr freundlich."
+            ],
+            [
+              "er / sie / es",
+              "ist",
+              "he / she / it is",
+              "Das ist Frau Weber. Sie ist Lehrerin."
+            ],
+            [
+              "wir",
+              "sind",
+              "we are",
+              "Wir sind hier im Deutschkurs."
+            ],
+            [
+              "ihr",
+              "seid",
+              "you all are",
+              "Seid ihr fertig mit Aufgabe 3?"
+            ],
+            [
+              "sie / Sie",
+              "sind",
+              "they / You (formal) are",
+              "Sie sind Herr Schubert, richtig?"
+            ]
+          ]
+        }
       },
       {
-        title: "2. Key Sentence Patterns with 'sein'",
-        description: "You can use 'sein' to state three core things:",
-        items: [
+        "title": "2. Three Core Uses of 'sein'",
+        "description": "Stating identity, origin, and conditions:",
+        "items": [
           {
-            term: "Identity & Profession",
-            meaning: "State who you are or your occupation (no 'a' needed before jobs!)",
-            example: "Ich bin Arzt. (I am a doctor.) / Sie ist Lehrerin. (She is a teacher.)",
+            "term": "Identität & Beruf",
+            "meaning": "Stating your name or profession (no indefinite article needed before professions!)",
+            "example": "Ich bin Nina. / Er ist Ingenieur. / Sie ist Studentin."
           },
           {
-            term: "Condition & Mood",
-            meaning: "Describe how things are with adjectives",
-            example: "Der Kaffee ist warm. (The coffee is warm.) / Wir sind müde. (We are tired.)",
+            "term": "Eigenschaft & Zustand",
+            "meaning": "Describing qualities with adjectives",
+            "example": "Der Kurs ist interessant. / Das Wetter ist schön."
           },
           {
-            term: "Origin & Location",
-            meaning: "State where you are right now",
-            example: "Ich bin in Deutschland. (I am in Germany.)",
-          },
+            "term": "Ort & Herkunft",
+            "meaning": "Stating current location or location of items",
+            "example": "Wir sind in München. / Das Buch ist hier."
+          }
+        ]
+      }
+    ],
+    "dialogue": {
+      "context": "Im Deutschkurs A1 – Kennenlernen der neuen Teilnehmer (Netzwerk A1):",
+      "lines": [
+        {
+          "speaker": "Julia",
+          "german": "Hallo! Ich bin Julia. Wer bist du?",
+          "english": "Hello! I am Julia. Who are you?"
+        },
+        {
+          "speaker": "Paco",
+          "german": "Hallo Julia! Ich bin Paco. Ich komme aus Spanien.",
+          "english": "Hello Julia! I am Paco. I come from Spain."
+        },
+        {
+          "speaker": "Julia",
+          "german": "Bist du auch neu in Deutschland?",
+          "english": "Are you also new in Germany?"
+        },
+        {
+          "speaker": "Paco",
+          "german": "Ja, ich bin seit drei Wochen in Berlin. Wir sind in der gleichen Gruppe!",
+          "english": "Yes, I have been in Berlin for three weeks. We are in the same group!"
+        }
+      ]
+    },
+    "funFact": {
+      "title": "No 'A/An' before Professions in German!",
+      "content": "In English, you say 'I am a teacher' or 'He is an architect'. In German, saying 'Ich bin ein Lehrer' sounds foreign! Germans drop the article completely: 'Ich bin Lehrer' or 'Ich bin Ingenieurin'."
+    },
+    "practice": [
+      {
+        "question": "Choose the correct form: 'Wir _____ heute in Berlin.'",
+        "options": [
+          "seid",
+          "sind",
+          "ist"
         ],
-      },
-    ],
-    dialogue: {
-      context: "Two new students meeting in the lecture hall at Humboldt University in Berlin:",
-      lines: [
-        {
-          speaker: "Felix",
-          german: "Hallo! Ich bin Felix. Bist du auch neu hier?",
-          english: "Hello! I am Felix. Are you also new here?",
-        },
-        {
-          speaker: "Elena",
-          german: "Ja, ich bin Elena. Wir sind in derselben Gruppe!",
-          english: "Yes, I am Elena. We are in the same group!",
-        },
-        {
-          speaker: "Felix",
-          german: "Super! Das ist fantastisch.",
-          english: "Great! That is fantastic.",
-        },
-      ],
-    },
-    funFact: {
-      title: "No Articles with Professions!",
-      content:
-        "In English, we say 'I am *a* doctor' or 'She is *an* architect'. In German, saying 'Ich bin ein Arzt' sounds unnatural! Germans drop the article when stating professions: simply say 'Ich bin Arzt' or 'Ich bin Studentin'.",
-    },
-    practice: [
-      {
-        question: "Complete the sentence: 'Wir _____ heute in München.'",
-        options: ["seid", "sind", "ist"],
-        answer: "sind",
-        explanation: "The correct form of 'sein' for 'wir' (we) is 'sind'.",
+        "answer": "sind",
+        "explanation": "The correct conjugation of 'sein' for 'wir' is 'sind'."
       },
       {
-        question: "How do you ask a friend: 'Are you ready?'",
-        options: ["Bist du bereit?", "Ist du bereit?", "Seid du bereit?"],
-        answer: "Bist du bereit?",
-        explanation: "'du' always pairs with 'bist' (Du bist -> Bist du?).",
-      },
-    ],
+        "question": "How do you say: 'Who are you?' (informal)",
+        "options": [
+          "Wer bist du?",
+          "Wer ist du?",
+          "Wer seid du?"
+        ],
+        "answer": "Wer bist du?",
+        "explanation": "'du' always pairs with 'bist' (Wer bist du?)."
+      }
+    ]
   },
-
   "a1-ch1-l5": {
-    overview:
-      "Alongside 'sein', the verb 'haben' (to have) is the second powerhouse verb in German. It allows you to express possession, physical needs (hunger, thirst), and will later serve as the auxiliary verb for the past tense.",
-    canDo:
-      "Can conjugate 'haben' fluently and use it to express possession, age inquiries, and basic physical sensations.",
-    teacherNote:
-      "Notice the stem change in 'du hast' and 'er/sie/es hat'—the letter 'b' disappears! This slight shortening makes spoken German faster and more melodic.",
-    sections: [
+    "overview": "Together with 'sein', the verb 'haben' (to have) is one of the two pillar verbs of German. It expresses possession, physical feelings, schedule availability, and forms the past tense (Perfekt).",
+    "canDo": "Can conjugate 'haben' fluently, express possession, and discuss schedule availability ('Ich habe Zeit / keine Zeit').",
+    "teacherNote": "Notice the small stem shift: in 'du hast' and 'er/sie/es hat', the letter 'b' drops out for smoother, faster pronunciation!",
+    "sections": [
       {
-        title: "1. Conjugation Table of 'haben' (to have)",
-        description: "Present tense forms of 'haben':",
-        table: {
-          headers: ["Pronoun", "Form of 'haben'", "English", "Example Sentence"],
-          rows: [
-            ["ich", "habe", "I have", "Ich habe ein Buch. (I have a book.)"],
-            ["du", "hast", "you have (informal)", "Hast du Zeit? (Do you have time?)"],
-            ["er / sie / es", "hat", "he / she / it has", "Er hat eine Frage. (He has a question.)"],
-            ["wir", "haben", "we have", "Wir haben Glück! (We are lucky! / We have luck!)"],
-            ["ihr", "habt", "you all have", "Habt ihr Hunger? (Are you all hungry?)"],
-            ["sie / Sie", "haben", "they have / You have (formal)", "Haben Sie ein Ticket? (Do you have a ticket?)"],
+        "title": "1. Konjugation von 'haben' (to have)",
+        "description": "Present tense forms of 'haben':",
+        "table": {
+          "headers": [
+            "Pronomen",
+            "Form von 'haben'",
+            "Englisch",
+            "Beispielsatz (Netzwerk A1)"
           ],
-        },
+          "rows": [
+            [
+              "ich",
+              "habe",
+              "I have",
+              "Ich habe eine Frage."
+            ],
+            [
+              "du",
+              "hast",
+              "you have (informal)",
+              "Hast du heute Zeit?"
+            ],
+            [
+              "er / sie / es",
+              "hat",
+              "he / she / it has",
+              "Er hat ein Wörterbuch."
+            ],
+            [
+              "wir",
+              "haben",
+              "we have",
+              "Wir haben um zehn Uhr Pause."
+            ],
+            [
+              "ihr",
+              "habt",
+              "you all have",
+              "Habt ihr einen Stift?"
+            ],
+            [
+              "sie / Sie",
+              "haben",
+              "they / You (formal) have",
+              "Haben Sie ein Zimmer frei?"
+            ]
+          ]
+        }
       },
       {
-        title: "2. Common German Expressions with 'haben'",
-        description:
-          "Where English uses 'to be', German often uses 'haben' (to have):",
-        items: [
+        "title": "2. High-Frequency Idiomatic Expressions with 'haben'",
+        "description": "Everyday German expressions that use 'haben' where English uses 'to be':",
+        "items": [
           {
-            term: "Hunger haben",
-            meaning: "To be hungry (literally: to have hunger)",
-            example: "Ich habe Hunger. (I am hungry.)",
+            "term": "Zeit haben / keine Zeit haben",
+            "meaning": "To have time / to have no time",
+            "example": "Hast du am Samstag Zeit? - Nein, ich habe leider keine Zeit."
           },
           {
-            term: "Durst haben",
-            meaning: "To be thirsty (literally: to have thirst)",
-            example: "Hast du Durst? (Are you thirsty?)",
+            "term": "Hunger / Durst haben",
+            "meaning": "To be hungry / to be thirsty (lit. 'to have hunger/thirst')",
+            "example": "Ich habe großen Hunger! Gehen wir essen?"
           },
           {
-            term: "Zeit haben",
-            meaning: "To have time / to be free",
-            example: "Wir haben morgen Zeit. (We have time tomorrow.)",
-          },
-          {
-            term: "Recht haben",
-            meaning: "To be right (literally: to have right)",
-            example: "Du hast absolut recht! (You are absolutely right!)",
-          },
+            "term": "eine Frage haben",
+            "meaning": "To have a question in class or at work",
+            "example": "Entschuldigung, ich habe eine kurze Frage."
+          }
+        ]
+      }
+    ],
+    "dialogue": {
+      "context": "Nach dem Deutschkurs – Pläne für den Nachmittag (Netzwerk A1):",
+      "lines": [
+        {
+          "speaker": "Gregor",
+          "german": "Hallo Paco! Hast du heute Nachmittag Zeit für einen Kaffee?",
+          "english": "Hello Paco! Do you have time for a coffee this afternoon?"
+        },
+        {
+          "speaker": "Paco",
+          "german": "Um wie viel Uhr? Um vier Uhr habe ich einen Termin bei der Bank.",
+          "english": "At what time? At four o'clock I have an appointment at the bank."
+        },
+        {
+          "speaker": "Gregor",
+          "german": "Kein Problem, um fünf Uhr? Ich habe großen Durst!",
+          "english": "No problem, at five o'clock? I am very thirsty!"
+        },
+        {
+          "speaker": "Paco",
+          "german": "Ja super, um fünf Uhr habe ich Zeit. Bis später!",
+          "english": "Yes great, at five o'clock I have time. See you later!"
+        }
+      ]
+    },
+    "funFact": {
+      "title": "Having Hunger vs. Being Hungry",
+      "content": "While you can say 'Ich bin hungrig' in German, native speakers almost universally say 'Ich habe Hunger' (I have hunger) and 'Ich habe Durst' (I have thirst). It is one of the quickest ways to sound natural from day one!"
+    },
+    "practice": [
+      {
+        "question": "What is the correct form: 'Er _____ ein deutsches Lehrbuch.'",
+        "options": [
+          "habe",
+          "hast",
+          "hat"
         ],
-      },
-    ],
-    dialogue: {
-      context: "Two friends taking a break in a university cafeteria in Zurich:",
-      lines: [
-        {
-          speaker: "Jonas",
-          german: "Hast du Hunger oder Durst?",
-          english: "Are you hungry or thirsty?",
-        },
-        {
-          speaker: "Sophie",
-          german: "Ja, ich habe großen Hunger! Hast du etwas Geld dabei?",
-          english: "Yes, I am very hungry! Do you have some cash on you?",
-        },
-        {
-          speaker: "Jonas",
-          german: "Kein Problem, ich habe zwanzig Euro.",
-          english: "No problem, I have twenty euros.",
-        },
-      ],
-    },
-    funFact: {
-      title: "German Has Hunger, But Age Takes 'sein'!",
-      content:
-        "While Romance languages like French or Spanish say 'I have 20 years', German uses 'sein' for age: 'Ich bin zwanzig Jahre alt' (I *am* 20 years old). But when it comes to hunger, thirst, or luck, Germans say 'Ich habe Hunger' and 'Ich habe Glück'!",
-    },
-    practice: [
-      {
-        question: "Which form completes: 'Herr Becker, _____ Sie heute Zeit?'",
-        options: ["hast", "habt", "haben"],
-        answer: "haben",
-        explanation: "Formal 'Sie' always takes the infinitive-like form 'haben'.",
+        "answer": "hat",
+        "explanation": "3rd person singular (er/sie/es) takes 'hat'."
       },
       {
-        question: "How do you say 'I am thirsty' in natural German?",
-        options: ["Ich bin Durst.", "Ich habe Durst.", "Ich bist Durst."],
-        answer: "Ich habe Durst.",
-        explanation: "In German, hunger and thirst are treated as things you 'have' (Ich habe Durst).",
-      },
-    ],
-  },
+        "question": "How do you ask: 'Do you have time?' (informal)",
+        "options": [
+          "Hast du Zeit?",
+          "Bist du Zeit?",
+          "Habt du Zeit?"
+        ],
+        "answer": "Hast du Zeit?",
+        "explanation": "'Hast du Zeit?' is the natural way to ask if someone is free."
+      }
+    ]
+  }
 };

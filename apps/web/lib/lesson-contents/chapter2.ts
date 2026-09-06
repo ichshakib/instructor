@@ -2,438 +2,696 @@ import { LessonContent } from "../api";
 
 export const CHAPTER_2_LESSONS: Record<string, LessonContent> = {
   "a1-ch2-l6": {
-    overview:
-      "German regular verbs follow a beautifully predictable pattern. Every regular verb in German consists of a root (stem) and an ending (-en). Once you master the 4 core personal endings, you can instantly conjugate over 80% of all German verbs.",
-    canDo:
-      "Can strip a verb to its stem and attach correct present-tense personal endings (-e, -st, -t, -en, -t, -en) for any regular verb.",
-    teacherNote:
-      "Here is the secret mnemonic acronym: E - ST - T - EN - T - EN. Think of it like a rhythmic chant: ich -e, du -st, er -t, wir -en, ihr -t, sie -en. Notice that 'wir' and 'sie/Sie' always look identical to the dictionary infinitive!",
-    sections: [
+    "overview": "German regular verbs follow a beautifully predictable pattern. Every regular verb consists of a root (stem) and an ending (-en). Once you master the 4 core personal endings, you can instantly conjugate over 80% of all German verbs.",
+    "canDo": "Can identify the verb stem and attach the correct personal endings (-e, -st, -t, -en, -t, -en) for any regular German verb.",
+    "teacherNote": "Remember the rhythmic chant: E - ST - T - EN - T - EN! (ich -e, du -st, er/sie/es -t, wir -en, ihr -t, sie/Sie -en). Notice that 'wir' and 'sie/Sie' always look identical to the dictionary infinitive!",
+    "sections": [
       {
-        title: "1. The Anatomy of a German Verb",
-        description:
-          "Take the verb 'lernen' (to learn). Strip off the infinitive ending '-en' to find the stem: lern-. Now add the personal endings:",
-        table: {
-          headers: ["Subject Pronoun", "Personal Ending", "Conjugated Form (lernen)", "Meaning"],
-          rows: [
-            ["ich", "-e", "ich lerne", "I learn / I am learning"],
-            ["du", "-st", "du lernst", "you learn (informal)"],
-            ["er / sie / es", "-t", "er / sie / es lernt", "he / she / it learns"],
-            ["wir", "-en", "wir lernen", "we learn"],
-            ["ihr", "-t", "ihr lernt", "you all learn"],
-            ["sie / Sie", "-en", "sie / Sie lernen", "they learn / You learn (formal)"],
+        "title": "1. Regelmäßige Verben im Präsens (Regular Verbs)",
+        "description": "Take the verb 'kommen' (to come). Remove '-en' to find the stem: 'komm-'. Add personal endings:",
+        "table": {
+          "headers": [
+            "Pronomen",
+            "Endung",
+            "Beispiel: kommen",
+            "Beispiel: lernen",
+            "Beispiel: wohnen"
           ],
-        },
+          "rows": [
+            [
+              "ich",
+              "-e",
+              "ich komme",
+              "ich lerne",
+              "ich wohne"
+            ],
+            [
+              "du",
+              "-st",
+              "du kommst",
+              "du lernst",
+              "du wohnst"
+            ],
+            [
+              "er / sie / es",
+              "-t",
+              "er kommt",
+              "sie lernt",
+              "es wohnt"
+            ],
+            [
+              "wir",
+              "-en",
+              "wir kommen",
+              "wir lernen",
+              "wir wohnen"
+            ],
+            [
+              "ihr",
+              "-t",
+              "ihr kommt",
+              "ihr lernt",
+              "ihr wohnt"
+            ],
+            [
+              "sie / Sie",
+              "-en",
+              "sie kommen",
+              "sie lernen",
+              "Sie wohnen"
+            ]
+          ]
+        }
       },
       {
-        title: "2. The Most Useful Regular Verbs in A1",
-        description: "These work exactly like 'lernen':",
-        items: [
+        "title": "2. Special Stem Endings: -t / -d and -s / -ß / -z",
+        "description": "Two phonetic adjustments make pronunciation comfortable:",
+        "items": [
           {
-            term: "machen (to make / do)",
-            meaning: "ich mache, du machst, er macht, wir machen, ihr macht, sie machen",
-            example: "Was machst du heute? (What are you doing today?)",
+            "term": "Stems in -t / -d (arbeiten, finden)",
+            "meaning": "Insert an extra '-e-' before -st and -t so consonants don't clump together.",
+            "example": "du arbeitest, er arbeitet, ihr arbeitet (not 'arbeitst'!)"
           },
           {
-            term: "wohnen (to reside / live)",
-            meaning: "ich wohne, du wohnst, er wohnt, wir wohnen, ihr wohnt, sie wohnen",
-            example: "Ich wohne in Köln. (I live in Cologne.)",
-          },
-          {
-            term: "arbeiten (to work)",
-            meaning: "Stem ends in -t! Insert extra '-e-' for pronunciation: du arbeitest, er arbeitet",
-            example: "Er arbeitet bei Siemens. (He works at Siemens.)",
-          },
-          {
-            term: "trinken (to drink)",
-            meaning: "ich trinke, du trinkst, er trinkt, wir trinken",
-            example: "Wir trinken Mineralwasser. (We drink mineral water.)",
-          },
+            "term": "Stems in -s / -ß / -z (heißen, reisen)",
+            "meaning": "The 'du' form drops the 's' and just adds '-t', since the sound is already a sibilant.",
+            "example": "du heißt (not 'heißst'!), du reist"
+          }
+        ]
+      }
+    ],
+    "dialogue": {
+      "context": "Zwei Kursteilnehmer im Café nach dem Unterricht (Netzwerk A1):",
+      "lines": [
+        {
+          "speaker": "Christian",
+          "german": "Hallo Sarah! Was trinkst du?",
+          "english": "Hello Sarah! What are you drinking?"
+        },
+        {
+          "speaker": "Sarah",
+          "german": "Ich trinke einen Orangensaft. Und was trinkst du?",
+          "english": "I am drinking an orange juice. And what are you drinking?"
+        },
+        {
+          "speaker": "Christian",
+          "german": "Ich trinke einen Kaffee. Lernst du heute noch für den Test?",
+          "english": "I am drinking a coffee. Are you still studying for the test today?"
+        },
+        {
+          "speaker": "Sarah",
+          "german": "Ja, wir lernen am Nachmittag zusammen in der Bibliothek.",
+          "english": "Yes, we are studying together in the library this afternoon."
+        }
+      ]
+    },
+    "funFact": {
+      "title": "No Present Continuous in German!",
+      "content": "English has two present tenses: 'I learn' and 'I am learning'. German has only ONE: 'Ich lerne' means both! To express that an action is happening right this second, simply add the word 'gerade': 'Ich lerne gerade Deutsch' (I am learning German right now)."
+    },
+    "practice": [
+      {
+        "question": "What is the correct conjugation: 'Woher _____ du?' (kommen)",
+        "options": [
+          "kommst",
+          "kommt",
+          "kommen"
         ],
-      },
-    ],
-    dialogue: {
-      context: "Two new acquaintances chatting at a language café in Munich:",
-      lines: [
-        {
-          speaker: "Lukas",
-          german: "Hallo! Was machst du beruflich?",
-          english: "Hello! What do you do for a living?",
-        },
-        {
-          speaker: "Sarah",
-          german: "Ich arbeite als Designerin und lerne jetzt Deutsch.",
-          english: "I work as a designer and am now learning German.",
-        },
-        {
-          speaker: "Lukas",
-          german: "Toll! Ich wohne hier in München und studiere Informatik.",
-          english: "Great! I live here in Munich and study computer science.",
-        },
-      ],
-    },
-    funFact: {
-      title: "No Continuous Tense in German!",
-      content:
-        "English speakers often struggle trying to translate 'I am learning' vs 'I learn'. Good news: German does NOT have continuous '-ing' forms! 'Ich lerne' covers both 'I learn' and 'I am learning'. To say you are doing it right now, simply add the word 'gerade' (*Ich lerne gerade Deutsch*).",
-    },
-    practice: [
-      {
-        question: "How do you conjugate 'wohnen' for 'du'?",
-        options: ["du wohnt", "du wohnst", "du wohne"],
-        answer: "du wohnst",
-        explanation: "The personal ending for 'du' is always '-st', making it 'wohnst'.",
+        "answer": "kommst",
+        "explanation": "'du' always takes the ending '-st' (Woher kommst du?)."
       },
       {
-        question: "Why does 'du arbeitest' have an extra 'e'?",
-        options: ["It is an irregular verb", "Because stems ending in -d or -t need an 'e' to be pronounceable", "It is an older dialect"],
-        answer: "Because stems ending in -d or -t need an 'e' to be pronounceable",
-        explanation: "Trying to say 'arbeitst' with three consonants in a row is too difficult, so German phonetically inserts an 'e': arbeitest.",
-      },
-    ],
+        "question": "Conjugate 'arbeiten' for 'er': 'Er _____ bei BMW.'",
+        "options": [
+          "arbeitt",
+          "arbeitet",
+          "arbeiten"
+        ],
+        "answer": "arbeitet",
+        "explanation": "Stems ending in -t add '-et' for ease of pronunciation: er arbeitet."
+      }
+    ]
   },
-
   "a1-ch2-l7": {
-    overview:
-      "While most German verbs are regular, a small group of extremely frequent everyday verbs experience a vowel change in the 2nd and 3rd person singular (du and er/sie/es). Once you spot this pattern, irregular verbs become intuitive.",
-    canDo:
-      "Can recognize stem-changing patterns (e -> i/ie and a -> ä) in high-frequency verbs like sprechen, sehen, lesen, essen, and fahren.",
-    teacherNote:
-      "Crucial rule: Stem vowel changes ONLY occur in 'du' and 'er/sie/es'! The forms for 'ich', 'wir', 'ihr', and 'sie/Sie' stay completely regular with the original vowel.",
-    sections: [
+    "overview": "Several high-frequency German verbs undergo a vowel shift in the 2nd (du) and 3rd (er/sie/es) person singular. In this lesson, you will master the two major shift categories: 'e -> i/ie' and 'a -> ä'.",
+    "canDo": "Can recognize and correctly conjugate key stem-changing verbs: sprechen, lesen, sehen, essen, and fahren.",
+    "teacherNote": "Golden rule of stem-changing verbs: the vowel shift ONLY affects 'du' and 'er/sie/es'! All plural forms (wir, ihr, sie/Sie) remain completely regular!",
+    "sections": [
       {
-        title: "1. The Two Main Vowel Shift Patterns",
-        description: "Focus on these two shifts in 2nd/3rd person singular:",
-        table: {
-          headers: ["Pattern", "Infinitive", "ich form", "du form (shifted!)", "er/sie/es (shifted!)"],
-          rows: [
-            ["e -> i", "sprechen (to speak)", "ich spreche", "du sprichst", "er spricht"],
-            ["e -> i", "essen (to eat)", "ich esse", "du isst", "sie isst"],
-            ["e -> i", "helfen (to help)", "ich helfe", "du hilfst", "er hilft"],
-            ["e -> ie", "sehen (to see)", "ich sehe", "du siehst", "er sieht"],
-            ["e -> ie", "lesen (to read)", "ich lese", "du liest", "er liest"],
-            ["a -> ä", "fahren (to drive/travel)", "ich fahre", "du fährst", "er fährt"],
-            ["a -> ä", "schlafen (to sleep)", "ich schlafe", "du schläfst", "er schläft"],
+        "title": "1. Vowel Shift: e -> i / ie (sprechen, lesen, sehen, essen)",
+        "description": "Watch how the stem vowel changes in singular forms:",
+        "table": {
+          "headers": [
+            "Pronomen",
+            "sprechen (to speak)",
+            "lesen (to read)",
+            "sehen (to see)",
+            "essen (to eat)"
           ],
-        },
+          "rows": [
+            [
+              "ich",
+              "spreche",
+              "lese",
+              "sehe",
+              "esse"
+            ],
+            [
+              "du",
+              "sprichst (e->i)",
+              "liest (e->ie)",
+              "siehst (e->ie)",
+              "isst (e->i)"
+            ],
+            [
+              "er / sie / es",
+              "spricht (e->i)",
+              "liest (e->ie)",
+              "sieht (e->ie)",
+              "isst (e->i)"
+            ],
+            [
+              "wir",
+              "sprechen",
+              "lesen",
+              "sehen",
+              "essen"
+            ],
+            [
+              "ihr",
+              "sprecht",
+              "lest",
+              "seht",
+              "esst"
+            ],
+            [
+              "sie / Sie",
+              "sprechen",
+              "lesen",
+              "sehen",
+              "essen"
+            ]
+          ]
+        }
       },
       {
-        title: "2. Plural Forms Stay Regular!",
-        description: "Notice how the plural forms never take the vowel change:",
-        items: [
-          {
-            term: "wir sprechen",
-            meaning: "we speak (regular 'e')",
-            example: "Wir sprechen Deutsch und Englisch.",
-          },
-          {
-            term: "ihr sprecht",
-            meaning: "you all speak (regular 'e', ending -t)",
-            example: "Sprecht ihr Deutsch?",
-          },
-          {
-            term: "sie / Sie sprechen",
-            meaning: "they / You speak (regular 'e', ending -en)",
-            example: "Sprechen Sie Deutsch?",
-          },
+        "title": "2. Vowel Shift: a -> ä (fahren, schlafen, tragen)",
+        "description": "The vowel 'a' receives an Umlaut ('ä') in 'du' and 'er/sie/es':",
+        "table": {
+          "headers": [
+            "Pronomen",
+            "fahren (to travel/drive)",
+            "schlafen (to sleep)",
+            "tragen (to wear/carry)"
+          ],
+          "rows": [
+            [
+              "ich",
+              "fahre",
+              "schlafe",
+              "trage"
+            ],
+            [
+              "du",
+              "fährst (a->ä)",
+              "schläfst (a->ä)",
+              "trägst (a->ä)"
+            ],
+            [
+              "er / sie / es",
+              "fährt (a->ä)",
+              "schläft (a->ä)",
+              "trägt (a->ä)"
+            ],
+            [
+              "wir",
+              "fahren",
+              "schlafen",
+              "tragen"
+            ],
+            [
+              "ihr",
+              "fahrt",
+              "schlaft",
+              "tragt"
+            ],
+            [
+              "sie / Sie",
+              "fahren",
+              "schlafen",
+              "tragen"
+            ]
+          ]
+        }
+      }
+    ],
+    "dialogue": {
+      "context": "Im Buchladen am Marienplatz in München (Netzwerk A1):",
+      "lines": [
+        {
+          "speaker": "Kunde",
+          "german": "Guten Tag! Sprechen Sie auch Englisch?",
+          "english": "Good day! Do you also speak English?"
+        },
+        {
+          "speaker": "Buchhändlerin",
+          "german": "Ja, ein bisschen. Welche Bücher lesen Sie gern?",
+          "english": "Yes, a little. What books do you like to read?"
+        },
+        {
+          "speaker": "Kunde",
+          "german": "Ich lerne Deutsch und lese gern einfache Kurzgeschichten.",
+          "english": "I am learning German and like reading simple short stories."
+        },
+        {
+          "speaker": "Buchhändlerin",
+          "german": "Da haben wir ein tolles Buch! Mein Kollege liest das auch sehr gern.",
+          "english": "We have a great book right there! My colleague also loves reading it."
+        }
+      ]
+    },
+    "funFact": {
+      "title": "The 'essen' & 'sein' Identity",
+      "content": "Notice that 'er isst' (he eats) and 'er ist' (he is) sound 100% identical in spoken German! Context always makes the meaning crystal clear: 'Er ist im Café' (He is in the café) vs. 'Er isst ein Brötchen' (He is eating a bread roll)."
+    },
+    "practice": [
+      {
+        "question": "Complete the question: 'Welche Sprachen _____ du?' (sprechen)",
+        "options": [
+          "sprichst",
+          "sprechst",
+          "sprecht"
         ],
-      },
-    ],
-    dialogue: {
-      context: "At a breakfast table in a hotel in Salzburg:",
-      lines: [
-        {
-          speaker: "Klaus",
-          german: "Guten Morgen! Was isst du zum Frühstück?",
-          english: "Good morning! What are you eating for breakfast?",
-        },
-        {
-          speaker: "Mia",
-          german: "Ich esse ein Brötchen mit Käse. Liest du die Zeitung?",
-          english: "I am eating a bread roll with cheese. Are you reading the newspaper?",
-        },
-        {
-          speaker: "Klaus",
-          german: "Ja, ich lese die Nachrichten aus Österreich.",
-          english: "Yes, I am reading the news from Austria.",
-        },
-      ],
-    },
-    funFact: {
-      title: "Stem Changes Are Universal Germanic Heritage",
-      content:
-        "Did you know that English has the same stem changes from our shared Germanic ancestry? Think of English 'speak' -> 'spoke', 'see' -> 'saw', or 'eat' -> 'ate'. German kept vowel changes active in the present tense, making it vibrant and expressive!",
-    },
-    practice: [
-      {
-        question: "Fill in the blank: 'Er _____ sehr gut Deutsch.' (sprechen)",
-        options: ["sprecht", "spricht", "spreche"],
-        answer: "spricht",
-        explanation: "'sprechen' has an e -> i vowel change for er/sie/es, resulting in 'er spricht'.",
+        "answer": "sprichst",
+        "explanation": "'sprechen' shifts e -> i for 'du': du sprichst."
       },
       {
-        question: "Which form is correct for 'du' with the verb 'fahren'?",
-        options: ["du fahrst", "du fährst", "du fährt"],
-        answer: "du fährst",
-        explanation: "'fahren' undergoes an a -> ä vowel change and takes the '-st' ending: 'du fährst'.",
-      },
-    ],
+        "question": "Choose the correct form: 'Am Wochenende _____ sie nach Hamburg.' (fahren - singular she)",
+        "options": [
+          "fährt",
+          "fahrt",
+          "fahren"
+        ],
+        "answer": "fährt",
+        "explanation": "'sie' (3rd person singular) shifts a -> ä: sie fährt."
+      }
+    ]
   },
-
   "a1-ch2-l8": {
-    overview:
-      "If you learn only one rule about German syntax, make it this one: **The conjugated verb is always in Position 2 in main clauses**. Mastering this rule unlocks the entire architecture of German sentences.",
-    canDo:
-      "Can construct sentences with the verb securely in Position 2, whether beginning with the subject or an element of time/location (inversion).",
-    teacherNote:
-      "Position 2 does NOT mean the second *word*; it means the second *grammatical unit*! For example, 'Heute Nachmittag' (this afternoon) is two words, but it counts as Position 1. The verb immediately takes Position 2.",
-    sections: [
+    "overview": "German sentence structure revolves around one unbreakable golden rule: in a standard statement, the conjugated verb ALWAYS occupies Position 2. In this lesson, you will master normal word order and inverted word order.",
+    "canDo": "Can position verbs accurately in Position 2 and create varied sentences starting with time, place, or objects.",
+    "teacherNote": "Position 2 does NOT mean 'second word'—it means second grammatical element! A time phrase like 'Heute Nachmittag' (this afternoon) is two words, but it counts as ONE element in Position 1. The verb immediately follows in Position 2.",
+    "sections": [
       {
-        title: "1. The Golden Rule: Verb in Position 2",
-        description: "Study how the verb stays anchored while other pieces swap around it:",
-        table: {
-          headers: ["Position 1 (Subject or Time)", "Position 2 (Conjugated Verb!)", "Position 3", "Rest of Sentence"],
-          rows: [
-            ["Ich", "lerne", "heute", "Deutsch in Berlin."],
-            ["Heute", "lerne", "ich", "Deutsch in Berlin. (Inversion!)"],
-            ["In Berlin", "lerne", "ich", "heute Deutsch."],
-            ["Wir", "trinken", "jetzt", "einen Kaffee."],
-            ["Jetzt", "trinken", "wir", "einen Kaffee."],
+        "title": "1. Die goldene Regel: Verb an Position 2",
+        "description": "Observe how the verb stays locked in Position 2 while other elements move around it:",
+        "table": {
+          "headers": [
+            "Position 1 (Vorfeld)",
+            "Position 2 (Verb)",
+            "Mittelfeld (Subjekt / Zeit / Ort)",
+            "Satzende"
           ],
-        },
+          "rows": [
+            [
+              "Ich",
+              "lerne",
+              "heute Deutsch in Berlin",
+              "."
+            ],
+            [
+              "Heute",
+              "lerne",
+              "ich Deutsch in Berlin",
+              "."
+            ],
+            [
+              "In Berlin",
+              "lerne",
+              "ich heute Deutsch",
+              "."
+            ],
+            [
+              "Gregor",
+              "trinkt",
+              "am Morgen immer Kaffee",
+              "."
+            ],
+            [
+              "Am Morgen",
+              "trinkt",
+              "Gregor immer Kaffee",
+              "."
+            ]
+          ]
+        }
       },
       {
-        title: "2. Subject-Verb Inversion",
-        description:
-          "In English, starting with time sounds like: 'Today I learn German.' In German, the moment you put something other than the subject first, the subject jumps to Position 3 behind the verb:",
-        items: [
+        "title": "2. Inversion (Umkehrung der Wortstellung)",
+        "description": "When you put something other than the subject in Position 1, the subject flips to Position 3:",
+        "items": [
           {
-            term: "Normal Word Order",
-            meaning: "Subject (Pos 1) + Verb (Pos 2)",
-            example: "Ich komme morgen. (I am coming tomorrow.)",
+            "term": "Subject First",
+            "meaning": "Standard neutral order: Subject + Verb + Information",
+            "example": "Nina wohnt in Frankfurt."
           },
           {
-            term: "Inverted Word Order",
-            meaning: "Time / Place (Pos 1) + Verb (Pos 2) + Subject (Pos 3)",
-            example: "Morgen komme ich. (Tomorrow I am coming.)",
+            "term": "Time First (Emphasis on Time)",
+            "meaning": "Time + Verb + Subject + Information",
+            "example": "Jetzt wohnt Nina in Frankfurt."
           },
+          {
+            "term": "Place First (Emphasis on Location)",
+            "meaning": "Location + Verb + Subject + Information",
+            "example": "In Frankfurt wohnt Nina schon zwei Jahre."
+          }
+        ]
+      }
+    ],
+    "dialogue": {
+      "context": "Zwei Freunde planen ihren Tag in Zürich (Netzwerk A1):",
+      "lines": [
+        {
+          "speaker": "Marco",
+          "german": "Wann fährst du heute nach Zürich?",
+          "english": "When are you driving to Zurich today?"
+        },
+        {
+          "speaker": "Anna",
+          "german": "Um zehn Uhr fahre ich mit der Bahn. Und was machst du?",
+          "english": "At ten o'clock I travel by train. And what are you doing?"
+        },
+        {
+          "speaker": "Marco",
+          "german": "Heute arbeite ich bis 16 Uhr. Am Abend treffe ich Lukas.",
+          "english": "Today I work until 4 PM. In the evening I am meeting Lukas."
+        },
+        {
+          "speaker": "Anna",
+          "german": "Perfekt, dann sehen wir uns um sieben Uhr!",
+          "english": "Perfect, then we will see each other at seven o'clock!"
+        }
+      ]
+    },
+    "funFact": {
+      "title": "German is a 'Verb-Second' (V2) Language",
+      "content": "Linguists call German a V2 language. Unlike English, where you can say 'Yesterday I went to the store' (Yesterday = 1, I = 2, went = 3), in German the verb DEMANDS Position 2: 'Gestern bin ich...' (Yesterday = 1, bin = 2, ich = 3)."
+    },
+    "practice": [
+      {
+        "question": "Which sentence follows correct German word order?",
+        "options": [
+          "Morgen ich fahre nach Berlin.",
+          "Morgen fahre ich nach Berlin.",
+          "Ich morgen fahre nach Berlin."
         ],
+        "answer": "Morgen fahre ich nach Berlin.",
+        "explanation": "Because 'Morgen' occupies Position 1, the verb 'fahre' MUST be in Position 2, followed by the subject 'ich'."
       },
-    ],
-    dialogue: {
-      context: "Two colleagues planning their work schedule in Stuttgart:",
-      lines: [
-        {
-          speaker: "Leon",
-          german: "Wann arbeitest du morgen?",
-          english: "When are you working tomorrow?",
-        },
-        {
-          speaker: "Jan",
-          german: "Morgen arbeite ich von acht bis fünf Uhr.",
-          english: "Tomorrow I work from eight to five o'clock.",
-        },
-        {
-          speaker: "Leon",
-          german: "Perfekt, dann trinken wir um sechs Uhr einen Kaffee zusammen!",
-          english: "Perfect, then we'll drink a coffee together at six o'clock!",
-        },
-      ],
-    },
-    funFact: {
-      title: "German's Lego-like Sentence Architecture",
-      content:
-        "Because German fixes the verb in Position 2, speakers have immense freedom to highlight what's important! If the day is important, start with 'Morgen' (Tomorrow). If the city is key, start with 'In Berlin'. The verb acts as the steady pillar holding the sentence together.",
-    },
-    practice: [
       {
-        question: "Which of the following sentences has the correct German word order?",
-        options: ["Heute ich spiele Fußball.", "Heute spiele ich Fußball.", "Spiele heute ich Fußball."],
-        answer: "Heute spiele ich Fußball.",
-        explanation: "When 'Heute' occupies Position 1, the verb 'spiele' must immediately take Position 2, followed by the subject 'ich' in Position 3.",
-      },
-    ],
+        "question": "Where does the conjugated verb go in a standard German statement?",
+        "options": [
+          "At the very end",
+          "Always in Position 2",
+          "Always in Position 1"
+        ],
+        "answer": "Always in Position 2",
+        "explanation": "The core rule of German main clauses is that the conjugated verb stands in Position 2."
+      }
+    ]
   },
-
   "a1-ch2-l9": {
-    overview:
-      "In daily German life, you need to ask straightforward yes/no questions and answer them clearly. German handles this with verb-first syntax, and introduces a linguistic superpower word: 'Doch'.",
-    canDo:
-      "Can form yes/no questions by placing the verb in Position 1, and reply using Ja, Nein, and Doch.",
-    teacherNote:
-      "Pay special attention to 'Doch'! It contradicts a negative question. If someone asks: 'Kommst du nicht?' (Aren't you coming?), answering 'Ja' causes confusion. Answering 'Doch!' means 'Yes, I AM coming!'",
-    sections: [
+    "overview": "Questions are essential for everyday conversation. In this lesson, you will master yes/no questions (Ja/Nein-Fragen) where the verb jumps to Position 1, and learn the famous German answer word 'Doch!', which has no direct one-word English equivalent.",
+    "canDo": "Can construct yes/no questions by placing the verb in Position 1, and answer accurately using 'Ja', 'Nein', and 'Doch!'.",
+    "teacherNote": "Mastering 'Doch' is the ultimate German superpower! When someone asks a negative question ('Kommst du nicht mit?'), English speakers struggle with whether 'yes' means you are coming or not. German solves this instantly: 'Doch!' means 'Yes, on the contrary, I AM coming!'.",
+    "sections": [
       {
-        title: "1. Forming Ja/Nein Questions (Verb in Position 1)",
-        description: "Simply move the conjugated verb to the very front of the sentence:",
-        table: {
-          headers: ["Statement (Verb in Pos 2)", "Ja/Nein Question (Verb in Pos 1)", "English Question"],
-          rows: [
-            ["Du kommst aus Deutschland.", "Kommst du aus Deutschland?", "Do you come from Germany?"],
-            ["Sie trinken Kaffee.", "Trinken Sie Kaffee?", "Do you drink coffee?"],
-            ["Er wohnt in Wien.", "Wohnt er in Wien?", "Does he live in Vienna?"],
-            ["Ihr habt Zeit.", "Habt ihr Zeit?", "Do you all have time?"],
+        "title": "1. Ja/Nein-Fragen (Verb in Position 1)",
+        "description": "To turn any statement into a yes/no question, simply move the conjugated verb to the very front:",
+        "table": {
+          "headers": [
+            "Aussage (Statement)",
+            "Ja/Nein-Frage (Question)",
+            "Mögliche Antwort"
           ],
-        },
+          "rows": [
+            [
+              "Du sprichst Deutsch.",
+              "Sprichst du Deutsch?",
+              "Ja, ein bisschen."
+            ],
+            [
+              "Herr Schubert kommt heute.",
+              "Kommt Herr Schubert heute?",
+              "Nein, leider nicht."
+            ],
+            [
+              "Sie wohnen in Wien.",
+              "Wohnen Sie in Wien?",
+              "Ja, in der Innenstadt."
+            ],
+            [
+              "Ihr trinkt Kaffee.",
+              "Trinkt ihr Kaffee?",
+              "Ja, gern!"
+            ]
+          ]
+        }
       },
       {
-        title: "2. The Three Answers: Ja, Nein, and DOCH!",
-        description: "German has three distinct ways to respond:",
-        items: [
-          {
-            term: "Ja (Yes)",
-            meaning: "Agrees with a positive question",
-            example: "Lernst du Deutsch? -> Ja, ich lerne Deutsch.",
-          },
-          {
-            term: "Nein (No)",
-            meaning: "Negates or denies any question",
-            example: "Kommst du aus Spanien? -> Nein, aus Italien.",
-          },
-          {
-            term: "Doch! (On the contrary! Yes, I do!)",
-            meaning: "Contradicts a question containing 'nicht' or 'kein'",
-            example: "Hast du keinen Hunger? -> Doch! (Yes, I *do* have hunger!)",
-          },
+        "title": "2. The Triangle of Answers: Ja, Nein & DOCH!",
+        "description": "How to respond to positive vs. negative questions:",
+        "table": {
+          "headers": [
+            "Fragentyp",
+            "Fragebeispiel",
+            "Antwort: Ja / Nein",
+            "Antwort: Doch!"
+          ],
+          "rows": [
+            [
+              "Positive Frage",
+              "Kommst du heute zum Kurs?",
+              "Ja, ich komme. / Nein, ich habe keine Zeit.",
+              "— (nicht verwendet)"
+            ],
+            [
+              "Negative Frage",
+              "Kommst du heute NICHT?",
+              "Nein, ich komme nicht.",
+              "DOCH! (Ich komme natürlich!)"
+            ],
+            [
+              "Negative Frage",
+              "Trinkst du KEINEN Kaffee?",
+              "Nein, ich trinke keinen.",
+              "DOCH! (Ich trinke sehr gern Kaffee!)"
+            ]
+          ]
+        }
+      }
+    ],
+    "dialogue": {
+      "context": "In der Pause vor dem Seminarraum (Netzwerk A1):",
+      "lines": [
+        {
+          "speaker": "Julia",
+          "german": "Hast du keine Pause, Gregor?",
+          "english": "Don't you have a break, Gregor?"
+        },
+        {
+          "speaker": "Gregor",
+          "german": "Doch! Ich habe 20 Minuten Pause. Gehst du in die Cafeteria?",
+          "english": "Yes I do! (On the contrary!) I have a 20-minute break. Are you going to the cafeteria?"
+        },
+        {
+          "speaker": "Julia",
+          "german": "Ja, kommst du mit?",
+          "english": "Yes, are you coming along?"
+        },
+        {
+          "speaker": "Gregor",
+          "german": "Ja gern, ich brauche einen Espresso!",
+          "english": "Yes gladly, I need an espresso!"
+        }
+      ]
+    },
+    "funFact": {
+      "title": "The Untranslatable 'Doch'",
+      "content": "'Doch' is one of the most useful words in the German language. French has 'si' and Scandinavian languages have 'jo', but English lost its equivalent word ('yea'). Using 'Doch' naturally will instantly make your German sound authentic and fluent!"
+    },
+    "practice": [
+      {
+        "question": "Someone asks you: 'Lernst du nicht Deutsch?' (Don't you learn German?). You DO learn German. How do you answer?",
+        "options": [
+          "Ja!",
+          "Nein!",
+          "Doch!"
         ],
-      },
-    ],
-    dialogue: {
-      context: "At an office lunch break discussing lunch plans:",
-      lines: [
-        {
-          speaker: "Markus",
-          german: "Kommst du nicht mit zum Restaurant?",
-          english: "Aren't you coming along to the restaurant?",
-        },
-        {
-          speaker: "Julia",
-          german: "Doch! Ich hole nur schnell meine Jacke.",
-          english: "Yes, I am! I'm just quickly grabbing my jacket.",
-        },
-        {
-          speaker: "Markus",
-          german: "Super, hast du schon einen Tisch reserviert?",
-          english: "Super, have you already reserved a table?",
-        },
-        {
-          speaker: "Julia",
-          german: "Ja, für vier Personen.",
-          english: "Yes, for four people.",
-        },
-      ],
-    },
-    funFact: {
-      title: "The Superpower Word 'Doch'",
-      content:
-        "Linguists often call 'doch' one of the most untranslatable words in the world! While English needs an awkward multi-word phrase ('Yes, I actually do!' or 'On the contrary!'), German expresses pure confident contradiction in a single crisp syllable: Doch!",
-    },
-    practice: [
-      {
-        question: "Someone asks you: 'Trinkst du keinen Kaffee?' (Don't you drink coffee?), but you DO drink coffee. What do you reply?",
-        options: ["Ja!", "Nein!", "Doch!"],
-        answer: "Doch!",
-        explanation: "'Doch' is specifically used to contradict a negative question and affirm the action.",
+        "answer": "Doch!",
+        "explanation": "'Doch!' contradicts a negative question and confirms that the positive statement is true."
       },
       {
-        question: "How do you turn 'Sie arbeiten hier' into a question?",
-        options: ["Hier arbeiten Sie?", "Arbeiten Sie hier?", "Sie arbeiten hier?"],
-        answer: "Arbeiten Sie hier?",
-        explanation: "Yes/No questions place the conjugated verb in Position 1: 'Arbeiten Sie hier?'.",
-      },
-    ],
+        "question": "Which sentence is a correct Ja/Nein question?",
+        "options": [
+          "Wohnst du in München?",
+          "Wo wohnst du in München?",
+          "Du wohnst in München?"
+        ],
+        "answer": "Wohnst du in München?",
+        "explanation": "A yes/no question begins with the conjugated verb in Position 1: 'Wohnst du in München?'."
+      }
+    ]
   },
-
   "a1-ch2-l10": {
-    overview:
-      "When you need specific information—names, locations, times, or reasons—you use German question words, known as 'W-Fragen' because almost all of them start with the letter W.",
-    canDo:
-      "Can recognize and ask questions using all 8 core question words: Wer, Was, Wo, Woher, Wohin, Wie, Wann, and Warum.",
-    teacherNote:
-      "In W-questions, the question word is in Position 1, and the conjugated verb is immediately in Position 2! (e.g. Wo [1] wohnst [2] du?).",
-    sections: [
+    "overview": "W-Questions (W-Fragen) are open-ended questions that ask for specific information. In German, every single question word begins with the letter 'W'. In this lesson, you will master the 8 core W-words and their sentence structure.",
+    "canDo": "Can formulate open questions using all 8 German W-question words and understand questions asked during conversations or official inquiries.",
+    "teacherNote": "Notice the structure: W-Word (Position 1) + Conjugated Verb (Position 2) + Subject (Position 3) + Rest of Sentence. The verb stays right in Position 2, just like in a statement!",
+    "sections": [
       {
-        title: "1. The 8 Core German Question Words",
-        description: "Master this table of essential interrogative pronouns:",
-        table: {
-          headers: ["German Word", "English Meaning", "Example Question", "Translation"],
-          rows: [
-            ["Wer?", "Who?", "Wer ist das?", "Who is that?"],
-            ["Was?", "What?", "Was machst du?", "What are you doing?"],
-            ["Wo?", "Where? (location)", "Wo wohnst du?", "Where do you live?"],
-            ["Woher?", "Where from? (origin)", "Woher kommst du?", "Where do you come from?"],
-            ["Wohin?", "Where to? (direction)", "Wohin fährst du?", "Where are you traveling to?"],
-            ["Wie?", "How? / What? (name)", "Wie heißen Sie?", "What is your name? (How are you called?)"],
-            ["Wann?", "When?", "Wann beginnt der Kurs?", "When does the course begin?"],
-            ["Warum?", "Why?", "Warum lernst du Deutsch?", "Why are you learning German?"],
+        "title": "1. Die 8 wichtigsten W-Fragen (The 8 Key W-Words)",
+        "description": "Essential interrogative pronouns from Netzwerk A1:",
+        "table": {
+          "headers": [
+            "W-Wort",
+            "Bedeutung",
+            "Beispielfrage (Netzwerk A1)",
+            "Typische Antwort"
           ],
-        },
+          "rows": [
+            [
+              "Wer?",
+              "Who?",
+              "Wer ist das?",
+              "Das ist mein Kollege Paco."
+            ],
+            [
+              "Was?",
+              "What?",
+              "Was machen Sie beruflich?",
+              "Ich bin Ingenieur."
+            ],
+            [
+              "Wo?",
+              "Where? (Location)",
+              "Wo wohnen Sie?",
+              "In München."
+            ],
+            [
+              "Woher?",
+              "Where from? (Origin)",
+              "Woher kommen Sie?",
+              "Aus Österreich."
+            ],
+            [
+              "Wohin?",
+              "Where to? (Destination)",
+              "Wohin fährst du?",
+              "Nach Berlin."
+            ],
+            [
+              "Wie?",
+              "How?",
+              "Wie heißen Sie?",
+              "Ich heiße Julia."
+            ],
+            [
+              "Wann?",
+              "When?",
+              "Wann beginnt der Kurs?",
+              "Um neun Uhr."
+            ],
+            [
+              "Warum?",
+              "Why?",
+              "Warum lernst du Deutsch?",
+              "Für meinen Beruf."
+            ]
+          ]
+        }
       },
       {
-        title: "2. The Location Trio: Wo, Woher, and Wohin",
-        description: "Keep these clear in your mind:",
-        items: [
+        "title": "2. Wo vs. Woher vs. Wohin",
+        "description": "German clearly separates location, origin, and destination:",
+        "items": [
           {
-            term: "Wo (Static Location)",
-            meaning: "Asking where something is right now (no movement)",
-            example: "Wo ist der Bahnhof? (Where is the train station?)",
+            "term": "Wo? (Static Location)",
+            "meaning": "Asking where someone or something is stationary (paired with 'in', 'bei')",
+            "example": "Wo bist du? - Ich bin im Sprachinstitut."
           },
           {
-            term: "Woher (Source / Origin)",
-            meaning: "Asking where someone or something comes from",
-            example: "Woher kommst du? -> Aus Deutschland.",
+            "term": "Woher? (Origin)",
+            "meaning": "Asking where someone or something comes from (paired with 'aus')",
+            "example": "Woher kommst du? - Aus der Schweiz."
           },
           {
-            term: "Wohin (Destination / Movement)",
-            meaning: "Asking where someone is going to",
-            example: "Wohin gehst du? -> Nach Hause.",
-          },
+            "term": "Wohin? (Destination)",
+            "meaning": "Asking where someone is going (paired with 'nach', 'in')",
+            "example": "Wohin gehst du? - In die Mensa."
+          }
+        ]
+      }
+    ],
+    "dialogue": {
+      "context": "Interview am Goethe-Institut am ersten Unterrichtstag (Netzwerk A1):",
+      "lines": [
+        {
+          "speaker": "Lehrerin",
+          "german": "Guten Morgen! Wie heißen Sie und woher kommen Sie?",
+          "english": "Good morning! What is your name and where do you come from?"
+        },
+        {
+          "speaker": "Paco",
+          "german": "Ich heiße Paco und komme aus Spanien.",
+          "english": "My name is Paco and I come from Spain."
+        },
+        {
+          "speaker": "Lehrerin",
+          "german": "Und wo wohnen Sie hier in München?",
+          "english": "And where do you live here in Munich?"
+        },
+        {
+          "speaker": "Paco",
+          "german": "Ich wohne in Schwabing, nahe der Universität.",
+          "english": "I live in Schwabing, close to the university."
+        },
+        {
+          "speaker": "Lehrerin",
+          "german": "Sehr schön! Wann haben Sie Zeit für die Einstufung?",
+          "english": "Very nice! When do you have time for the placement test?"
+        },
+        {
+          "speaker": "Paco",
+          "german": "Heute um elf Uhr.",
+          "english": "Today at eleven o'clock."
+        }
+      ]
+    },
+    "funFact": {
+      "title": "'Wie' is used for Names and Phone Numbers!",
+      "content": "In English, you ask: '*What* is your name?' and '*What* is your phone number?'. But in German, you use 'Wie' (How): 'Wie heißen Sie?' (How are you called?) and 'Wie ist Ihre Telefonnummer?' (How is your phone number?). Asking 'Was ist Ihr Name?' sounds unidiomatic to native speakers!"
+    },
+    "practice": [
+      {
+        "question": "Which question word asks for someone's country of origin?",
+        "options": [
+          "Wo?",
+          "Wohin?",
+          "Woher?"
         ],
-      },
-    ],
-    dialogue: {
-      context: "A newcomer asking questions at the citizen registration office in Berlin:",
-      lines: [
-        {
-          speaker: "Beamter",
-          german: "Guten Tag. Wie ist Ihr Name und woher kommen Sie?",
-          english: "Good day. What is your name and where do you come from?",
-        },
-        {
-          speaker: "Bürger",
-          german: "Mein Name ist Alex Chen und ich komme aus Kanada.",
-          english: "My name is Alex Chen and I come from Canada.",
-        },
-        {
-          speaker: "Beamter",
-          german: "Wo wohnen Sie jetzt in Berlin?",
-          english: "Where do you live now in Berlin?",
-        },
-        {
-          speaker: "Bürger",
-          german: "Ich wohne in der Kantstraße 12.",
-          english: "I live at Kantstraße 12.",
-        },
-      ],
-    },
-    funFact: {
-      title: "'Wie' Means 'How', But Asks for Names!",
-      content:
-        "English speakers often expect 'What is your name?' to start with 'Was'. In German, we ask: 'Wie heißen Sie?' (literally: *How are you called?*) and 'Wie ist Ihre Adresse?' (literally: *How is your address?*). Whenever asking about personal data, 'Wie' is your best friend!",
-    },
-    practice: [
-      {
-        question: "You want to ask where someone is traveling to. Which word do you choose?",
-        options: ["Wo?", "Wohin?", "Woher?"],
-        answer: "Wohin?",
-        explanation: "'Wohin' specifically asks for destination or direction of travel ('Where to?').",
+        "answer": "Woher?",
+        "explanation": "'Woher' specifically means 'where from'."
       },
       {
-        question: "What does 'Wann beginnt der Film?' mean?",
-        options: ["Where does the film start?", "When does the film begin?", "Why does the film start?"],
-        answer: "When does the film begin?",
-        explanation: "'Wann' translates to 'When'.",
-      },
-    ],
-  },
+        "question": "How do you ask: 'What is your telephone number?' in idiomatic German?",
+        "options": [
+          "Was ist Ihre Telefonnummer?",
+          "Wie ist Ihre Telefonnummer?",
+          "Wo ist Ihre Telefonnummer?"
+        ],
+        "answer": "Wie ist Ihre Telefonnummer?",
+        "explanation": "German uses 'Wie' (How) when asking for numbers, addresses, and names."
+      }
+    ]
+  }
 };

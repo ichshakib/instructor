@@ -2,400 +2,729 @@ import { LessonContent } from "../api";
 
 export const CHAPTER_8_LESSONS: Record<string, LessonContent> = {
   "a1-ch8-l34": {
-    overview:
-      "Telling time accurately in German is an essential daily skill. German has two systems: official 24-hour time (used on train boards, TV schedules, and official appointments) and conversational 12-hour time (used with friends and family).",
-    canDo:
-      "Can ask for and tell the time in both official 24-hour format and colloquial 12-hour format, avoiding the famous 'halb' trap.",
-    teacherNote:
-      "⚠️ DANGER ZONE: The word **'halb'**! In German, 'halb drei' does NOT mean 3:30. It means 'halfway to three'—which is **2:30**! Always remember: 'halb' looks forward to the next hour!",
-    sections: [
+    "overview": "Telling the time (Die Uhrzeit) is essential for catching trains, scheduling meetings, and planning your day. German has two systems: the official 24-hour time used in announcements and work, and the conversational 12-hour phrasing used among friends and family.",
+    "canDo": "Can ask for the time ('Wie spät ist es?'), understand official train and flight announcements, and use colloquial 12-hour phrasing (halb, Viertel vor, Viertel nach).",
+    "teacherNote": "Beware of 'halb'! In English, 'half three' (British) means 3:30. In German, 'halb drei' means half-way TO three, which is 2:30! Think of it as: 'the clock is half-full on its way to hour 3'!",
+    "sections": [
       {
-        title: "1. Official 24-Hour Time vs. Casual 12-Hour Time",
-        description: "Compare how the two systems describe the exact same hour:",
-        table: {
-          headers: ["Time", "Official 24-Hour Format", "Casual 12-Hour Format", "Literal Meaning of Casual"],
-          rows: [
-            ["08:00", "acht Uhr", "acht Uhr", "eight o'clock"],
-            ["08:15", "acht Uhr fünfzehn", "Viertel nach acht", "quarter past eight"],
-            ["08:30", "acht Uhr dreißig", "HALB NEUN! (Watch out!)", "halfway to nine!"],
-            ["08:45", "acht Uhr fünfundvierzig", "Viertel vor neun", "quarter to nine"],
-            ["14:20", "vierzehn Uhr zwanzig", "zwanzig nach zwei", "twenty past two"],
-            ["17:50", "siebzehn Uhr fünfzig", "zehn vor sechs", "ten to six"],
+        "title": "1. Offizielle Uhrzeit (24-Stunden-System)",
+        "description": "Used at train stations, airports, news, and business appointments:",
+        "table": {
+          "headers": [
+            "Uhrzeit",
+            "Offizielle Aussprache",
+            "Englische Bedeutung"
           ],
-        },
+          "rows": [
+            [
+              "08:00 Uhr",
+              "acht Uhr",
+              "8:00 AM"
+            ],
+            [
+              "14:15 Uhr",
+              "vierzehn Uhr fünfzehn",
+              "2:15 PM"
+            ],
+            [
+              "17:30 Uhr",
+              "siebzehn Uhr dreißig",
+              "5:30 PM"
+            ],
+            [
+              "20:45 Uhr",
+              "zwanzig Uhr fünfundvierzig",
+              "8:45 PM"
+            ],
+            [
+              "22:10 Uhr",
+              "zweiundzwanzig Uhr zehn",
+              "10:10 PM"
+            ]
+          ]
+        }
       },
       {
-        title: "2. How to Ask the Time",
-        description: "Two equivalent ways to ask 'What time is it?' in German:",
-        items: [
+        "title": "2. Umgangssprachliche Uhrzeit (12-Stunden-System)",
+        "description": "Conversational phrasing among friends and colleagues from Netzwerk Kapitel 5:",
+        "table": {
+          "headers": [
+            "Uhrzeit",
+            "Umgangssprachlich",
+            "Wort-für-Wort Logik"
+          ],
+          "rows": [
+            [
+              "08:15",
+              "Viertel nach acht",
+              "Quarter past eight"
+            ],
+            [
+              "08:30",
+              "HALB NEUN (not half eight!)",
+              "Half-way TO nine"
+            ],
+            [
+              "08:45",
+              "Viertel vor neun",
+              "Quarter to nine"
+            ],
+            [
+              "08:20",
+              "zehn vor halb neun / zwanzig nach acht",
+              "Ten before half nine"
+            ],
+            [
+              "08:40",
+              "zehn nach halb neun / zwanzig vor neun",
+              "Ten after half nine"
+            ]
+          ]
+        }
+      },
+      {
+        "title": "3. Fragen nach der Uhrzeit (Asking the Time)",
+        "description": "Two identical ways to ask what time it is:",
+        "items": [
           {
-            term: "Wie spät ist es?",
-            meaning: "Literally: 'How late is it?' (Most common)",
-            example: "Entschuldigung, wie spät ist es? -> Es ist halb vier.",
+            "term": "Wie spät ist es? / Wie viel Uhr ist es?",
+            "meaning": "How late is it? / How much o'clock is it? (both mean 'What time is it?')",
+            "example": "Entschuldigung, wie spät ist es bitte? - Es ist Viertel vor fünf."
           },
           {
-            term: "Wie viel Uhr ist es?",
-            meaning: "Literally: 'How much clock is it?'",
-            example: "Wie viel Uhr ist es bitte? -> Es ist genau zehn Uhr.",
-          },
+            "term": "Um wie viel Uhr...? / Wann...?",
+            "meaning": "At what time...? / When...?",
+            "example": "Um wie viel Uhr beginnt der Film? - Um acht Uhr."
+          }
+        ]
+      }
+    ],
+    "dialogue": {
+      "context": "Verabredung am Hauptbahnhof in Hannover (Netzwerk A1 Kapitel 5):",
+      "lines": [
+        {
+          "speaker": "Paco",
+          "german": "Entschuldigung, Gregor, wie spät ist es jetzt?",
+          "english": "Excuse me, Gregor, what time is it now?"
+        },
+        {
+          "speaker": "Gregor",
+          "german": "Es ist genau halb drei. Unser Zug fährt um Viertel nach drei ab.",
+          "english": "It is exactly half-past two (2:30). Our train departs at a quarter past three (3:15)."
+        },
+        {
+          "speaker": "Paco",
+          "german": "Super, dann haben wir noch eine Dreiviertelstunde Zeit. Trinken wir einen Kaffee?",
+          "english": "Great, then we still have 45 minutes. Shall we drink a coffee?"
+        },
+        {
+          "speaker": "Gregor",
+          "german": "Gute Idee! Da drüben ist ein schönes Café an Gleis 2.",
+          "english": "Good idea! Over there is a nice café at platform 2."
+        }
+      ]
+    },
+    "funFact": {
+      "title": "Punctuality (Pünktlichkeit) in Germany",
+      "content": "Punctuality is a deeply ingrained cultural value in the DACH countries. Arriving 5 minutes early is considered on time. If you have an appointment at 15:00, arriving at 15:05 without sending a message is viewed as inconsiderate. When in doubt, always aim to arrive 5–10 minutes early!"
+    },
+    "practice": [
+      {
+        "question": "What time does 'halb sechs' mean in German?",
+        "options": [
+          "6:30",
+          "5:30",
+          "6:15"
         ],
+        "answer": "5:30",
+        "explanation": "'halb sechs' means half-way TO six o'clock, which is 5:30."
       },
-    ],
-    dialogue: {
-      context: "At the central train station in Nuremberg waiting for the ICE to Munich:",
-      lines: [
-        {
-          speaker: "Reisender",
-          german: "Entschuldigung, wie viel Uhr ist es jetzt?",
-          english: "Excuse me, what time is it right now?",
-        },
-        {
-          speaker: "Bahnbeamter",
-          german: "Es ist genau Viertel vor drei.",
-          english: "It is exactly a quarter to three (2:45).",
-        },
-        {
-          speaker: "Reisender",
-          german: "Danke! Wann fährt der Zug nach München ab?",
-          english: "Thank you! When does the train to Munich depart?",
-        },
-        {
-          speaker: "Bahnbeamter",
-          german: "Um vierzehn Uhr fünfzig von Gleis sieben.",
-          english: "At 14:50 from platform seven.",
-        },
-      ],
-    },
-    funFact: {
-      title: "German Pünktlichkeit (Punctuality)",
-      content:
-        "The German proverb states: *'Fünf Minuten vor der Zeit ist des Deutschen Pünktlichkeit'* (Five minutes before time is the German's punctuality). Arriving late to a professional or personal meeting without calling ahead is seen as deeply inconsiderate. Always aim to be 5 minutes early!",
-    },
-    practice: [
       {
-        question: "If someone says 'Es ist halb sechs', what time is it?",
-        options: ["6:30", "5:30", "4:30"],
-        answer: "5:30",
-        explanation: "'halb sechs' means halfway to six, which is 5:30!",
-      },
-    ],
+        "question": "How do you ask: 'At what time does the course start?'",
+        "options": [
+          "Um wie viel Uhr beginnt der Kurs?",
+          "Wie spät beginnt der Kurs?",
+          "Wo beginnt der Kurs?"
+        ],
+        "answer": "Um wie viel Uhr beginnt der Kurs?",
+        "explanation": "'Um wie viel Uhr beginnt...?' means 'At what time does ... start?'."
+      }
+    ]
   },
-
   "a1-ch8-l35": {
-    overview:
-      "Planning appointments, celebrating birthdays, and understanding store opening hours requires the days of the week, months of the year, seasons, and calendar dates.",
-    canDo:
-      "Can name all 7 days of the week, 12 months, 4 seasons, and express dates using ordinal numbers (am ersten Mai).",
-    teacherNote:
-      "All 7 days of the week and all 12 months in German are **DER** (masculine)! That means they all take the preposition **AM** for days (*am Montag*) and **IM** for months (*im Januar*).",
-    sections: [
+    "overview": "Days of the week, months, seasons, and calendar dates structure all personal and professional planning. In this lesson, you will master the 7 days of the week, the 12 months, the 4 seasons, and how to write and speak dates using ordinal numbers ('am ersten Mai').",
+    "canDo": "Can state days of the week, months, seasons, and formulate appointment dates and birthdays using ordinal numbers.",
+    "teacherNote": "All days of the week, months, and seasons are MASCULINE (der Montag, der Januar, der Sommer)! That is why they all take 'am' (an dem Montag) and 'im' (in dem Sommer)!",
+    "sections": [
       {
-        title: "1. The 7 Days of the Week (Die Wochentage)",
-        description: "Monday through Sunday in German-speaking countries:",
-        table: {
-          headers: ["Day", "German Word", "Preposition with Days", "English"],
-          rows: [
-            ["Monday", "der Montag", "am Montag", "on Monday"],
-            ["Tuesday", "der Dienstag", "am Dienstag", "on Tuesday"],
-            ["Wednesday", "der Mittwoch", "am Mittwoch", "on Wednesday (literally: mid-week!)"],
-            ["Thursday", "der Donnerstag", "am Donnerstag", "on Thursday"],
-            ["Friday", "der Freitag", "am Freitag", "on Friday"],
-            ["Saturday", "der Samstag / Sonnabend", "am Samstag", "on Saturday"],
-            ["Sunday", "der Sonntag", "am Sonntag", "on Sunday"],
-            ["Weekend", "das Wochenende", "am Wochenende", "on the weekend"],
+        "title": "1. Die Wochentage (Days of the Week)",
+        "description": "Always paired with 'am' (on):",
+        "table": {
+          "headers": [
+            "Wochentag",
+            "Abkürzung",
+            "Bedeutung",
+            "Beispiel"
           ],
-        },
+          "rows": [
+            [
+              "Montag",
+              "Mo",
+              "Monday",
+              "am Montag"
+            ],
+            [
+              "Dienstag",
+              "Di",
+              "Tuesday",
+              "am Dienstag"
+            ],
+            [
+              "Mittwoch",
+              "Mi",
+              "Wednesday (Mid-week)",
+              "am Mittwoch"
+            ],
+            [
+              "Donnerstag",
+              "Do",
+              "Thursday (Thor's day)",
+              "am Donnerstag"
+            ],
+            [
+              "Freitag",
+              "Fr",
+              "Friday",
+              "am Freitag"
+            ],
+            [
+              "Samstag / Sonnabend",
+              "Sa",
+              "Saturday",
+              "am Samstag"
+            ],
+            [
+              "Sonntag",
+              "So",
+              "Sunday",
+              "am Sonntag"
+            ],
+            [
+              "das Wochenende",
+              "WE",
+              "the weekend",
+              "am Wochenende"
+            ]
+          ]
+        }
       },
       {
-        title: "2. The 12 Months & 4 Seasons",
-        description: "Months take 'im' (im Januar, im Juli):",
-        table: {
-          headers: ["Season", "German Season", "Months in German"],
-          rows: [
-            ["Spring", "der Frühling (im Frühling)", "März, April, Mai"],
-            ["Summer", "der Sommer (im Sommer)", "Juni, Juli, August"],
-            ["Autumn", "der Herbst (im Herbst)", "September, Oktober, November"],
-            ["Winter", "der Winter (im Winter)", "Dezember, Januar, Februar"],
+        "title": "2. Die 4 Jahreszeiten & 12 Monate",
+        "description": "Always paired with 'im' (in):",
+        "table": {
+          "headers": [
+            "Jahreszeit (im...)",
+            "Monate 1",
+            "Monate 2",
+            "Monate 3"
           ],
-        },
+          "rows": [
+            [
+              "der Frühling (Spring)",
+              "März",
+              "April",
+              "Mai"
+            ],
+            [
+              "der Sommer (Summer)",
+              "Juni",
+              "Juli",
+              "August"
+            ],
+            [
+              "der Herbst (Autumn)",
+              "September",
+              "Oktober",
+              "November"
+            ],
+            [
+              "der Winter (Winter)",
+              "Dezember",
+              "Januar",
+              "Februar"
+            ]
+          ]
+        }
       },
       {
-        title: "3. Calendar Dates with Ordinal Numbers",
-        description: "For dates, add '-ten' after 'am':",
-        items: [
+        "title": "3. Datum & Ordnungszahlen (Calendar Dates)",
+        "description": "How to say dates aloud in German:",
+        "items": [
           {
-            term: "am ersten (1st)",
-            meaning: "am ersten Mai (on the first of May)",
-            example: "Heute ist der erste Mai.",
+            "term": "Numbers 1–19: add '-ten'",
+            "meaning": "am ersten (1st), am zweiten (2nd), am dritten (3rd), am siebten (7th)",
+            "example": "Mein Geburtstag ist am vierten Mai."
           },
           {
-            term: "am dritten (3rd)",
-            meaning: "am dritten Oktober (German Unity Day)",
-            example: "Mein Geburtstag ist am dritten Oktober.",
-          },
+            "term": "Numbers 20–31: add '-sten'",
+            "meaning": "am zwanzigsten (20th), am einunddreißigsten (31st)",
+            "example": "Der Kurs endet am dreißigsten Juni."
+          }
+        ]
+      }
+    ],
+    "dialogue": {
+      "context": "Geburtstagskalender im Büro (Netzwerk A1 Kapitel 5):",
+      "lines": [
+        {
+          "speaker": "Nina",
+          "german": "Paco, wann hast du eigentlich Geburtstag?",
+          "english": "Paco, when is your birthday actually?"
+        },
+        {
+          "speaker": "Paco",
+          "german": "Ich habe am fünfzehnten Oktober Geburtstag, im Herbst. Und du?",
+          "english": "My birthday is on the fifteenth of October, in autumn. And you?"
+        },
+        {
+          "speaker": "Nina",
+          "german": "Mein Geburtstag ist am dritten August, mitten im Sommer!",
+          "english": "My birthday is on the third of August, right in the middle of summer!"
+        },
+        {
+          "speaker": "Paco",
+          "german": "Toll, da können wir eine Gartenparty feiern!",
+          "english": "Great, then we can celebrate a garden party!"
+        }
+      ]
+    },
+    "funFact": {
+      "title": "'Mittwoch' Has No 'Tag'!",
+      "content": "Notice how all days of the week end in '-tag' (Montag, Dienstag, Donnerstag, Freitag, Samstag, Sonntag)—except Wednesday! In German, Wednesday is called 'Mittwoch', literally meaning 'mid-week' (Mitte der Woche). In ancient German, it was named after the god Wodan (like English Wednesday), but church reformers replaced it with 'Mittwoch' to remove the pagan reference!"
+    },
+    "practice": [
+      {
+        "question": "Which preposition do you use with months and seasons?",
+        "options": [
+          "am",
+          "im",
+          "um"
         ],
+        "answer": "im",
+        "explanation": "Months and seasons take 'im' (im Juli, im Sommer)."
       },
-    ],
-    dialogue: {
-      context: "Checking a friend's birthday and weekend plans in Basel:",
-      lines: [
-        {
-          speaker: "Hannah",
-          german: "Wann hast du Geburtstag, Lukas?",
-          english: "When is your birthday, Lukas?",
-        },
-        {
-          speaker: "Lukas",
-          german: "Am zwanzigsten Juli, also im Sommer! Feiern wir am Samstag?",
-          english: "On the twentieth of July (am zwanzigsten), so in the summer! Shall we celebrate on Saturday?",
-        },
-        {
-          speaker: "Hannah",
-          german: "Ja gerne! Am Wochenende habe ich Zeit.",
-          english: "Yes gladly! On the weekend I have time.",
-        },
-      ],
-    },
-    funFact: {
-      title: "Sonntagsruhe: Quiet Sundays by Law",
-      content:
-        "In Germany, Austria, and Switzerland, Sunday is protected by the constitution as a day of rest (*Sonntagsruhe*). Almost all supermarkets, clothing stores, and offices are completely closed. Vacuuming, mowing the lawn, or drilling holes in your apartment on Sunday can lead to a formal complaint from neighbors!",
-    },
-    practice: [
       {
-        question: "Which preposition is used with days of the week (e.g. Monday)?",
-        options: ["im", "am", "um"],
-        answer: "am",
-        explanation: "Days of the week always take 'am' (am Montag, am Dienstag).",
-      },
-    ],
+        "question": "How do you pronounce the date 'am 1. Mai' aloud?",
+        "options": [
+          "am eins Mai",
+          "am ersten Mai",
+          "am erst Mai"
+        ],
+        "answer": "am ersten Mai",
+        "explanation": "Dates after 'am' take ordinal endings: am ersten Mai."
+      }
+    ]
   },
-
   "a1-ch8-l36": {
-    overview:
-      "Separable prefix verbs (trennbare Verben) are one of German's most exciting characteristics. A tiny prefix snaps off the verb and flies all the way to the end of the sentence!",
-    canDo:
-      "Can recognize separable prefixes (auf-, an-, ein-, aus-, mit-, fern-) and split the verb cleanly in main clauses.",
-    teacherNote:
-      "Think of separable verbs as a pair of magnets: the main verb stem conjugates normally in Position 2, while the prefix snaps off and lands at the very end of the sentence! Example: *Ich STEHE um sieben Uhr AUF*.",
-    sections: [
+    "overview": "Separable verbs (trennbare Verben) are one of the most distinctive features of the German language. In these verbs, a prefix detaches from the stem in the present tense and flies all the way to the very end of the clause. In this lesson, you will master daily routine timelines using separable verbs from Netzwerk Kapitel 5.",
+    "canDo": "Can identify separable prefixes, conjugate separable verbs, and place the prefix accurately at the end of main clauses to describe daily routines.",
+    "teacherNote": "Think of separable verbs as a rocket: the verb stem stays in Position 2, and the prefix detaches like a booster rocket and lands at the very END of the sentence! For example: 'aufstehen' -> 'Ich STEHE um 6 Uhr AUF.'",
+    "sections": [
       {
-        title: "1. High-Frequency Separable Verbs for Daily Routine",
-        description: "Notice how the prefix separates in the present tense:",
-        table: {
-          headers: ["Infinitive", "Meaning", "Prefix", "Example Sentence with Split!"],
-          rows: [
-            ["aufstehen", "to get up / wake up", "auf-", "Ich STEHE um 7:00 Uhr AUF."],
-            ["einkaufen", "to go grocery shopping", "ein-", "Wir KAUFEN am Samstag im Supermarkt EIN."],
-            ["anrufen", "to call on phone", "an-", "Er RUFT seine Mutter AN."],
-            ["fernsehen", "to watch TV", "fern-", "Sie SIEHT am Abend FERN."],
-            ["mitkommen", "to come along", "mit-", "KOMMST du heute Abend MIT?"],
-            ["vorbereiten", "to prepare", "vor-", "Ich BEREITE das Abendessen VOR."],
-            ["einschlafen", "to fall asleep", "ein-", "Das Kind SCHLÄFT um 20:00 Uhr EIN."],
+        "title": "1. Typische trennbare Präfixe (Separable Prefixes)",
+        "description": "Common separable prefixes from Netzwerk A1:",
+        "table": {
+          "headers": [
+            "Präfix",
+            "Infinitiv",
+            "Bedeutung",
+            "Beispielsatz im Präsens"
           ],
-        },
+          "rows": [
+            [
+              "auf-",
+              "aufstehen",
+              "to get up / stand up",
+              "Ich stehe jeden Tag um 7 Uhr AUF."
+            ],
+            [
+              "an-",
+              "anrufen",
+              "to call on the phone",
+              "Gregor ruft seine Mutter AN."
+            ],
+            [
+              "ein-",
+              "einkaufen",
+              "to go grocery shopping",
+              "Wir kaufen am Nachmittag EIN."
+            ],
+            [
+              "fern-",
+              "fernsehen",
+              "to watch TV",
+              "Er sieht am Abend gern FERN."
+            ],
+            [
+              "aus-",
+              "aussteigen",
+              "to get off / disembark",
+              "Wir steigen am Hauptbahnhof AUS."
+            ],
+            [
+              "mit-",
+              "mitbringen",
+              "to bring along",
+              "Paco bringt einen Kuchen MIT."
+            ],
+            [
+              "vor-",
+              "vorbereiten",
+              "to prepare",
+              "Sie bereitet die Präsentation VOR."
+            ]
+          ]
+        }
       },
-    ],
-    dialogue: {
-      context: "Describing a typical workday to a classmate in Berlin:",
-      lines: [
-        {
-          speaker: "Simon",
-          german: "Wie sieht dein normaler Tag aus?",
-          english: "What does your normal day look like?",
-        },
-        {
-          speaker: "Marie",
-          german: "Ich stehe um halb sieben auf, trinke Kaffee und fahre zur Arbeit.",
-          english: "I get up at 6:30 (stehe... auf), drink coffee, and travel to work.",
-        },
-        {
-          speaker: "Simon",
-          german: "Und was machst du am Abend?",
-          english: "And what do you do in the evening?",
-        },
-        {
-          speaker: "Marie",
-          german: "Ich kaufe schnell ein, koche etwas und sehe ein bisschen fern.",
-          english: "I shop quickly (kaufe... ein), cook something, and watch a bit of TV (sehe... fern).",
-        },
-      ],
-    },
-    funFact: {
-      title: "Listen for the Stress!",
-      content:
-        "How can you tell if a German prefix is separable? Listen to where the voice emphasizes the word! In separable verbs, the prefix is ALWAYS stressed heavily: **AUF**stehen, **EIN**kaufen, **AN**rufen. If the prefix is stressed, it separates!",
-    },
-    practice: [
       {
-        question: "How do you say: 'I am calling my friend' (anrufen)?",
-        options: ["Ich anrufe meinen Freund.", "Ich rufe meinen Freund an.", "Ich rufe an meinen Freund."],
-        answer: "Ich rufe meinen Freund an.",
-        explanation: "In main clauses, the prefix 'an-' must move to the very end: 'Ich rufe meinen Freund an'.",
-      },
+        "title": "2. Der typische Tagesablauf (A Typical Daily Routine)",
+        "description": "A timeline of daily activities using separable verbs:",
+        "items": [
+          {
+            "term": "06:30 – aufstehen (to get up)",
+            "meaning": "Ich stehe um halb sieben auf.",
+            "example": "Wann stehst du morgens auf?"
+          },
+          {
+            "term": "07:30 – losfahren (to depart / leave)",
+            "meaning": "Ich fahre um halb acht los.",
+            "example": "Er fährt mit dem Bus los."
+          },
+          {
+            "term": "18:00 – einkaufen (to shop)",
+            "meaning": "Ich kaufe im Supermarkt ein.",
+            "example": "Wir kaufen für das Abendessen ein."
+          },
+          {
+            "term": "23:00 – einschlafen (to fall asleep)",
+            "meaning": "Ich schlafe um elf Uhr ein.",
+            "example": "Sie schläft schnell ein."
+          }
+        ]
+      }
     ],
+    "dialogue": {
+      "context": "Ein ganz normaler Arbeitstag – Interview (Netzwerk A1 Kapitel 5):",
+      "lines": [
+        {
+          "speaker": "Julia",
+          "german": "Paco, wie sieht ein typischer Tag bei dir aus?",
+          "english": "Paco, what does a typical day look like for you?"
+        },
+        {
+          "speaker": "Paco",
+          "german": "Ich stehe um sieben Uhr auf und frühstücke gemütlich. Um acht Uhr fahre ich zum Deutschkurs.",
+          "english": "I get up at seven o'clock and eat breakfast comfortably. At eight o'clock I leave for German class."
+        },
+        {
+          "speaker": "Julia",
+          "german": "Und was machst du am Nachmittag nach dem Kurs?",
+          "english": "And what do you do in the afternoon after class?"
+        },
+        {
+          "speaker": "Paco",
+          "german": "Ich kaufe im Supermarkt ein, koche etwas und am Abend sehe ich gern mit Freunden fern.",
+          "english": "I shop at the supermarket, cook something, and in the evening I like watching TV with friends."
+        }
+      ]
+    },
+    "funFact": {
+      "title": "Stressed Prefixes are ALWAYS Separable!",
+      "content": "How do you know if a verb is separable? Listen to the stress! If the prefix is STRESSED (louder), it is separable: ÁUFstehen, ÉINkaufen, ÁNrufen. If the prefix is unstressed (be-, ver-, zer-, ent-, ge-), it NEVER separates: verstehen, bezahlen, bekommen!"
+    },
+    "practice": [
+      {
+        "question": "Where does the prefix 'auf-' go in the sentence: 'Ich _____ jeden Morgen um 6 Uhr _____.'?",
+        "options": [
+          "stehe auf / —",
+          "stehe / auf",
+          "aufstehe / —"
+        ],
+        "answer": "stehe / auf",
+        "explanation": "In main clauses, the conjugated verb stem goes in Position 2 and the separable prefix goes to the very end: 'Ich stehe ... auf'."
+      },
+      {
+        "question": "Which of these verbs is separable?",
+        "options": [
+          "bezahlen",
+          "einkaufen",
+          "verstehen"
+        ],
+        "answer": "einkaufen",
+        "explanation": "'ein-' is a separable prefix (Ich kaufe ein)."
+      }
+    ]
   },
-
   "a1-ch8-l37": {
-    overview:
-      "Family and relationships are frequent conversation topics in A1 exams and social introductions. In this lesson, you will learn the names of family members, how to state age, and how to describe character and appearance.",
-    canDo:
-      "Can talk about family relationships, describe physical appearance (hair, height) and traits, and ask about others' families.",
-    teacherNote:
-      "Notice the German collective words: 'die Eltern' (the parents) and 'die Geschwister' (the siblings). English doesn't use the word 'siblings' nearly as casually as German uses 'Geschwister'!",
-    sections: [
+    "overview": "Describing family members, relationships, and personal qualities is a central theme of A1 conversation. In this lesson, you will master German family vocabulary, learn terms for extended family, and practice describing appearance and character traits.",
+    "canDo": "Can name family members, talk about your relatives and marital status, and describe people's appearance and character.",
+    "teacherNote": "German has a wonderful collective word for siblings: 'die Geschwister' (meaning brothers and sisters together). If someone asks: 'Hast du Geschwister?', you can simply answer: 'Ja, einen Bruder und zwei Schwestern'!",
+    "sections": [
       {
-        title: "1. The Family Tree (Der Stammbaum)",
-        description: "Master the members of the family:",
-        table: {
-          headers: ["Family Member", "German (with article)", "Plural Form", "English Meaning"],
-          rows: [
-            ["Parents", "die Eltern", "— (plural only)", "parents"],
-            ["Father / Mother", "der Vater / die Mutter", "die Väter / die Mütter", "father / mother"],
-            ["Siblings", "die Geschwister", "— (plural only)", "siblings (brothers & sisters)"],
-            ["Brother / Sister", "der Bruder / die Schwester", "die Brüder / die Schwestern", "brother / sister"],
-            ["Son / Daughter", "der Sohn / die Tochter", "die Söhne / die Töchter", "son / daughter"],
-            ["Grandparents", "die Großeltern", "— (plural only)", "grandparents"],
-            ["Grandfather / Grandmother", "der Großvater (Opa) / die Großmutter (Oma)", "die Großväter / Großmütter", "grandpa / grandma"],
-            ["Husband / Wife", "der Ehemann / die Ehefrau", "die Ehemänner / Ehefrauen", "husband / wife"],
+        "title": "1. Die Familie & Verwandtschaft (Family & Relatives)",
+        "description": "Core family vocabulary from Netzwerk Kapitel 2:",
+        "table": {
+          "headers": [
+            "Familienmitglied",
+            "Maskulin (der)",
+            "Feminin (die)",
+            "Plural (die)"
           ],
-        },
+          "rows": [
+            [
+              "Parents / Grandparents",
+              "der Vater / der Großvater (Opa)",
+              "die Mutter / die Großmutter (Oma)",
+              "die Eltern / die Großeltern"
+            ],
+            [
+              "Children / Grandchildren",
+              "der Sohn / der Enkel",
+              "die Tochter / die Enkelin",
+              "die Kinder / die Enkelkinder"
+            ],
+            [
+              "Siblings",
+              "der Bruder",
+              "die Schwester",
+              "die Geschwister (siblings)"
+            ],
+            [
+              "Spouses / Partners",
+              "der Ehemann / der Partner",
+              "die Ehefrau / die Partnerin",
+              "die Eheleute / die Paare"
+            ],
+            [
+              "Extended Family",
+              "der Onkel / der Cousin",
+              "die Tante / die Cousine",
+              "die Onkel / die Tanten"
+            ]
+          ]
+        }
       },
       {
-        title: "2. Describing Appearance & Age",
-        description: "Formulas for describing people:",
-        items: [
+        "title": "2. Familienstand & Eigenschaften (Marital Status & Traits)",
+        "description": "Describing status and character:",
+        "items": [
           {
-            term: "Stating Age (with 'sein')",
-            meaning: "Mein Bruder ist 25 Jahre alt. (My brother is 25 years old.)",
-            example: "Wie alt ist dein Kind? -> Er ist drei Jahre alt.",
+            "term": "ledig / verheiratet / geschieden",
+            "meaning": "single / married / divorced",
+            "example": "Ich bin ledig, aber mein Bruder ist verheiratet."
           },
           {
-            term: "Hair & Eyes (with 'haben')",
-            meaning: "Er hat blaue Augen und kurze, blonde Haare.",
-            example: "Sie hat lange braune Haare.",
+            "term": "sympathisch / freundlich / nett",
+            "meaning": "likeable / friendly / kind",
+            "example": "Meine Kollegen sind sehr sympathisch."
           },
+          {
+            "term": "groß / klein / sportlich",
+            "meaning": "tall / short / athletic",
+            "example": "Mein Vater ist groß und sehr sportlich."
+          }
+        ]
+      }
+    ],
+    "dialogue": {
+      "context": "Familienfotos ansehen (Netzwerk A1 Kapitel 2):",
+      "lines": [
+        {
+          "speaker": "Gregor",
+          "german": "Das ist ein schönes Foto, Nina! Wer sind die Personen?",
+          "english": "That is a nice photo, Nina! Who are the people?"
+        },
+        {
+          "speaker": "Nina",
+          "german": "Das sind meine Eltern und meine beiden Geschwister. Mein Bruder heißt Lukas.",
+          "english": "Those are my parents and my two siblings. My brother is called Lukas."
+        },
+        {
+          "speaker": "Gregor",
+          "german": "Und wie alt ist deine Schwester?",
+          "english": "And how old is your sister?"
+        },
+        {
+          "speaker": "Nina",
+          "german": "Sie ist 22 Jahre alt und studiert Medizin in Freiburg.",
+          "english": "She is 22 years old and is studying medicine in Freiburg."
+        }
+      ]
+    },
+    "funFact": {
+      "title": "'Opa' and 'Oma' are Universal",
+      "content": "While the formal words are 'der Großvater' and 'die Großmutter', in actual German families practically everyone affectionately says 'der Opa' (Grandpa) and 'die Oma' (Grandma)!"
+    },
+    "practice": [
+      {
+        "question": "What does the German word 'Geschwister' mean?",
+        "options": [
+          "Grandparents",
+          "Siblings (brothers & sisters)",
+          "Cousins"
         ],
+        "answer": "Siblings (brothers & sisters)",
+        "explanation": "'Geschwister' is the collective plural noun for brothers and sisters."
       },
-    ],
-    dialogue: {
-      context: "Two friends sharing family updates over coffee in Vienna:",
-      lines: [
-        {
-          speaker: "Paul",
-          german: "Hast du Geschwister, Claudia?",
-          english: "Do you have siblings, Claudia?",
-        },
-        {
-          speaker: "Claudia",
-          german: "Ja, ich habe einen älteren Bruder und eine jüngere Schwester.",
-          english: "Yes, I have an older brother and a younger sister.",
-        },
-        {
-          speaker: "Paul",
-          german: "Und wie alt sind deine Geschwister?",
-          english: "And how old are your siblings?",
-        },
-        {
-          speaker: "Claudia",
-          german: "Mein Bruder ist achtundzwanzig und meine Schwester ist einundzwanzig.",
-          english: "My brother is twenty-eight and my sister is twenty-one.",
-        },
-      ],
-    },
-    funFact: {
-      title: "'Oma' & 'Opa' Are Universally Cherished",
-      content:
-        "While 'Großvater' and 'Großmutter' are the official dictionary words, almost nobody in Germany addresses their grandparents that formally. Nearly everyone affectionately says 'Oma' and 'Opa', even in formal books and television!",
-    },
-    practice: [
       {
-        question: "What does 'Ich habe keine Geschwister' mean?",
-        options: ["I have no children.", "I have no siblings (I am an only child).", "I have no parents."],
-        answer: "I have no siblings (I am an only child).",
-        explanation: "'Geschwister' refers to brothers and sisters (siblings).",
-      },
-    ],
+        "question": "How do you say: 'I am married' in German?",
+        "options": [
+          "Ich bin ledig.",
+          "Ich bin verheiratet.",
+          "Ich bin geschieden."
+        ],
+        "answer": "Ich bin verheiratet.",
+        "explanation": "'verheiratet' means married."
+      }
+    ]
   },
-
   "a1-ch8-l38": {
-    overview:
-      "Whether hunting for a flat in Berlin, describing your home, or shopping for furniture, housing vocabulary is critical. German housing ads use specific abbreviations that you will decipher in this lesson.",
-    canDo:
-      "Can name rooms in a house, identify key pieces of furniture with their genders, and describe your living situation.",
-    teacherNote:
-      "Notice that most rooms in German are NEUTER (das Zimmer): *das Wohnzimmer* (living room), *das Schlafzimmer* (bedroom), *das Badezimmer* (bathroom). The two main exceptions are *die Küche* (kitchen - feminine) and *der Flur* (hallway - masculine)!",
-    sections: [
+    "overview": "Finding an apartment, describing rooms, and discussing furniture are key communicative tasks in Germany. In this lesson, you will master housing vocabulary, rooms, furniture items, and understand rental ads (Kaltmiete vs. Warmmiete) from Netzwerk Kapitel 8 ('Meine Wohnung').",
+    "canDo": "Can describe your home and rooms, name common furniture pieces, and understand German apartment rental terms (Zimmer, Küche, Bad, Balkon, Warmmiete).",
+    "teacherNote": "German apartment listings count the TOTAL number of rooms, not just bedrooms! A '3-Zimmer-Wohnung' means: living room + bedroom + study/second bedroom (kitchen and bathroom are listed separately: '3 Zimmer, Küche, Bad')!",
+    "sections": [
       {
-        title: "1. The Rooms in a Home (Die Räume)",
-        description: "Learn the parts of a German flat (die Wohnung):",
-        table: {
-          headers: ["Room", "German Word", "Gender", "English Meaning"],
-          rows: [
-            ["Living Room", "das Wohnzimmer", "Neuter (das)", "living room"],
-            ["Bedroom", "das Schlafzimmer", "Neuter (das)", "bedroom"],
-            ["Kitchen", "die Küche", "Feminine (die)", "kitchen"],
-            ["Bathroom", "das Badezimmer / das Bad", "Neuter (das)", "bathroom"],
-            ["Hallway", "der Flur", "Masculine (der)", "hallway / corridor"],
-            ["Balcony", "der Balkon", "Masculine (der)", "balcony"],
-            ["Garden", "der Garten", "Masculine (der)", "garden"],
+        "title": "1. Die Räume im Haus (Rooms in the House)",
+        "description": "Core room vocabulary from Netzwerk Kapitel 8:",
+        "table": {
+          "headers": [
+            "Zimmer (Room)",
+            "Genus & Artikel",
+            "Typische Möbel / Ausstattung",
+            "Bedeutung"
           ],
-        },
+          "rows": [
+            [
+              "Wohnzimmer",
+              "das Wohnzimmer",
+              "das Sofa, der Sessel, der Fernseher",
+              "Living room"
+            ],
+            [
+              "Schlafzimmer",
+              "das Schlafzimmer",
+              "das Bett, der Kleiderschrank",
+              "Bedroom"
+            ],
+            [
+              "Küche",
+              "die Küche",
+              "der Herd, der Kühlschrank, der Tisch",
+              "Kitchen"
+            ],
+            [
+              "Badezimmer",
+              "das Badezimmer / das Bad",
+              "die Dusche, die Badewanne, die Toilette",
+              "Bathroom"
+            ],
+            [
+              "Flur / Diele",
+              "der Flur",
+              "die Garderobe, der Spiegel",
+              "Hallway / corridor"
+            ],
+            [
+              "Balkon / Garten",
+              "der Balkon / der Garten",
+              "die Pflanzen, die Gartenstühle",
+              "Balcony / garden"
+            ]
+          ]
+        }
       },
       {
-        title: "2. Essential Furniture (Die Möbel)",
-        description: "Master furniture items and their colors:",
-        items: [
+        "title": "2. Wichtige Mietbegriffe (Rental Vocabulary)",
+        "description": "Essential terms on German housing portals (ImmoScout24, WG-Gesucht):",
+        "items": [
           {
-            term: "der Tisch / der Stuhl / der Schrank / das Bett",
-            meaning: "table (m) / chair (m) / wardrobe (m) / bed (n)",
-            example: "Der Schrank steht im Schlafzimmer.",
+            "term": "die Kaltmiete (Net Rent)",
+            "meaning": "Base rent for the apartment space alone (without heating and utilities)",
+            "example": "Die Kaltmiete beträgt 650 Euro pro Monat."
           },
           {
-            term: "das Sofa / der Schreibtisch / die Lampe",
-            meaning: "sofa (n) / desk (m) / lamp (f)",
-            example: "Auf dem Tisch steht eine schöne Lampe.",
+            "term": "die Nebenkosten (Utilities)",
+            "meaning": "Heating, water, trash collection, and building maintenance",
+            "example": "Nebenkosten: ca. 150 Euro."
           },
+          {
+            "term": "die Warmmiete (Gross Rent)",
+            "meaning": "Total monthly rent including utilities (Kaltmiete + Nebenkosten)",
+            "example": "Die Warmmiete ist 800 Euro."
+          },
+          {
+            "term": "die WG (Wohngemeinschaft)",
+            "meaning": "Shared apartment popular with students and young professionals",
+            "example": "Ich wohne in einer 3er-WG in Berlin-Mitte."
+          }
+        ]
+      }
+    ],
+    "dialogue": {
+      "context": "Wohnungsbesichtigung in München (Netzwerk A1 Kapitel 8):",
+      "lines": [
+        {
+          "speaker": "Vermieterin",
+          "german": "Guten Tag, Herr Garcia! Kommen Sie bitte herein. Das ist die Wohnung.",
+          "english": "Good day, Mr. Garcia! Please come in. This is the apartment."
+        },
+        {
+          "speaker": "Paco",
+          "german": "Guten Tag! Die Wohnung ist wirklich sehr hell und modern. Wie groß ist sie?",
+          "english": "Good day! The apartment is really very bright and modern. How big is it?"
+        },
+        {
+          "speaker": "Vermieterin",
+          "german": "Sie hat 65 Quadratmeter: zwei Zimmer, eine Einbauküche, ein Bad und einen großen Balkon.",
+          "english": "It has 65 square meters: two rooms, a fitted kitchen, a bathroom, and a large balcony."
+        },
+        {
+          "speaker": "Paco",
+          "german": "Sehr schön! Wie hoch ist die Warmmiete?",
+          "english": "Very nice! How high is the total rent including heating?"
+        },
+        {
+          "speaker": "Vermieterin",
+          "german": "Die Kaltmiete ist 750 Euro plus 150 Euro Nebenkosten, also 900 Euro warm.",
+          "english": "The base rent is 750 euros plus 150 euros utilities, so 900 euros total."
+        }
+      ]
+    },
+    "funFact": {
+      "title": "Kitchens Don't Always Come with Apartments!",
+      "content": "In Germany, many unfurnished apartments are rented out completely bare—without a stove, sink, or kitchen cabinets! Renters either buy and install their own kitchen ('Einbauküche' / EBK) or purchase it from the previous tenant ('die Ablöse'). Always check if the listing says 'mit Einbauküche'!"
+    },
+    "practice": [
+      {
+        "question": "What does a '3-Zimmer-Wohnung' mean in a German rental ad?",
+        "options": [
+          "An apartment with 3 bedrooms",
+          "An apartment with 3 total living rooms/bedrooms plus kitchen and bath",
+          "An apartment for 3 people"
         ],
+        "answer": "An apartment with 3 total living rooms/bedrooms plus kitchen and bath",
+        "explanation": "German apartment sizes count total living rooms and bedrooms (kitchen and bath are separate)."
       },
-    ],
-    dialogue: {
-      context: "A tenant showing their new apartment in Munich to a visiting friend:",
-      lines: [
-        {
-          speaker: "Besucher",
-          german: "Gratuliere zur neuen Wohnung! Wie viele Zimmer hat sie?",
-          english: "Congratulations on the new apartment! How many rooms does it have?",
-        },
-        {
-          speaker: "Mieter",
-          german: "Sie hat drei Zimmer: ein Wohnzimmer, ein Schlafzimmer und ein Arbeitszimmer.",
-          english: "It has three rooms: a living room, a bedroom, and a study.",
-        },
-        {
-          speaker: "Besucher",
-          german: "Und gibt es auch einen Balkon?",
-          english: "And is there also a balcony?",
-        },
-        {
-          speaker: "Mieter",
-          german: "Ja, vom Wohnzimmer aus kommt man direkt auf den Balkon.",
-          english: "Yes, from the living room you go directly out onto the balcony.",
-        },
-      ],
-    },
-    funFact: {
-      title: "Warmmiete vs. Kaltmiete in German Housing",
-      content:
-        "When renting an apartment in Germany, you will always encounter two prices: **Kaltmiete** (cold rent = basic rent for the space only) and **Warmmiete** (warm rent = includes heating, water, and building maintenance). Always check the Warmmiete before signing a contract!",
-    },
-    practice: [
       {
-        question: "What is the gender of 'Küche' (kitchen)?",
-        options: ["der", "die", "das"],
-        answer: "die",
-        explanation: "'Küche' is feminine: die Küche.",
-      },
-    ],
-  },
+        "question": "What is 'die Warmmiete'?",
+        "options": [
+          "The base rent without heating",
+          "The total monthly rent including heating and utilities",
+          "The deposit"
+        ],
+        "answer": "The total monthly rent including heating and utilities",
+        "explanation": "Warmmiete = Kaltmiete + Nebenkosten (utilities/heating)."
+      }
+    ]
+  }
 };

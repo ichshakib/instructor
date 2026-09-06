@@ -38,25 +38,25 @@ export const FALLBACK_COURSES: CourseDetail[] = [
                 "title": "Lesson 1: Das Deutsche Alphabet & German Phonetics",
                 "description": "Alphabet letters A–Z, letter-by-letter phonetic reading, letters with German-specific sounds (W, V, J, Z).",
                 "content": {
-                  "overview": "Welcome to your first step into German! German pronunciation is famously logical and consistent. Unlike English, where the same letter can be pronounced in five different ways, German letters almost always correspond to the exact same sound once you learn their core rules.",
-                  "canDo": "Can spell your own name using the German alphabet, recognize key consonant sounds (W, V, J, Z), and pronounce simple German words letter-by-letter.",
-                  "teacherNote": "Herzlich willkommen! When reading German, never guess—trust the letters. Once you remember that 'W' sounds like English 'V', 'V' often sounds like 'F', and 'Z' sounds like 'ts', you can already read hundreds of street signs, brand names, and menu items across Germany, Austria, and Switzerland.",
+                  "overview": "Welcome to German! German pronunciation is remarkably logical and phonetic. Unlike English, where vowels and consonants shift unpredictably, German letters correspond reliably to consistent sounds. In this lesson, you will master the 26 letters of the German alphabet, crucial consonant shifts (W, V, J, Z), and the official German spelling alphabet (Buchstabier-Alphabet).",
+                  "canDo": "Can spell your first and last name aloud in German, recognize essential consonant sounds (W, V, J, Z), and understand spelling in official contexts like hotel check-in or course registration.",
+                  "teacherNote": "Herzlich willkommen! When reading German, never guess—trust the letters. Remember that 'W' always sounds like English 'V' (das Wasser), 'V' in native words sounds like 'F' (der Vater, vier), 'J' sounds like 'Y' in yes (ja, das Jahr), and 'Z' is always a sharp 'ts' (zehn, die Zeit).",
                   "sections": [
                     {
-                      "title": "1. The German Alphabet (Das Deutsche Alphabet)",
-                      "description": "The German alphabet contains the standard 26 Latin letters plus special characters. Practice saying them aloud with the phonetic guides below:",
+                      "title": "1. Das Deutsche Alphabet (A bis Z)",
+                      "description": "Listen to and pronounce each letter with its authentic German name:",
                       "table": {
                         "headers": [
-                          "Letter",
-                          "German Name",
-                          "English Sound Equivalent",
-                          "Word Example"
+                          "Buchstabe",
+                          "Name",
+                          "Lautwert (Sound)",
+                          "Beispiel (Example)"
                         ],
                         "rows": [
                           [
                             "A a",
                             "aah",
-                            "like 'a' in father",
+                            "open 'a' like in father",
                             "der Abend (evening)"
                           ],
                           [
@@ -68,7 +68,7 @@ export const FALLBACK_COURSES: CourseDetail[] = [
                           [
                             "C c",
                             "tseh",
-                            "like 'ts' in cats before e/i",
+                            "crisp 'ts' before e/i",
                             "das Café (café)"
                           ],
                           [
@@ -80,7 +80,7 @@ export const FALLBACK_COURSES: CourseDetail[] = [
                           [
                             "E e",
                             "eeh",
-                            "like 'e' in pet or 'ay' in say",
+                            "open like 'e' in pet or long like 'ay'",
                             "das Essen (food)"
                           ],
                           [
@@ -98,7 +98,7 @@ export const FALLBACK_COURSES: CourseDetail[] = [
                           [
                             "H h",
                             "hah",
-                            "breathed 'h' at start; silent after vowel",
+                            "breathed 'h' at start; silent lengthener after vowel",
                             "Hallo (hello)"
                           ],
                           [
@@ -116,7 +116,7 @@ export const FALLBACK_COURSES: CourseDetail[] = [
                           [
                             "K k",
                             "kah",
-                            "like 'k' in kite",
+                            "crisp 'k' like in kite",
                             "der Kaffee (coffee)"
                           ],
                           [
@@ -164,8 +164,8 @@ export const FALLBACK_COURSES: CourseDetail[] = [
                           [
                             "S s",
                             "ess",
-                            "voiced like 'z' before vowels; 's' at end",
-                            "die Sonne (sun) / das Glas (glass)"
+                            "voiced like 'z' before vowels; unvoiced at end",
+                            "die Sonne (sun) / das Glas"
                           ],
                           [
                             "T t",
@@ -176,7 +176,7 @@ export const FALLBACK_COURSES: CourseDetail[] = [
                           [
                             "U u",
                             "uuh",
-                            "like 'oo' in moon",
+                            "deep 'oo' like in moon",
                             "die Uhr (clock)"
                           ],
                           [
@@ -213,85 +213,223 @@ export const FALLBACK_COURSES: CourseDetail[] = [
                       }
                     },
                     {
-                      "title": "2. The 4 Essential Consonant Shifts to Remember",
-                      "description": "Keep these four mental anchors in mind whenever you see a new German word:",
+                      "title": "2. The 4 Essential Consonant Shifts",
+                      "description": "These four mental anchors will prevent 90% of pronunciation errors for beginners:",
                       "items": [
                         {
                           "term": "W = [V]",
                           "pronunciation": "veh",
                           "meaning": "Pronounced like English 'V'. German does not have the English 'W' sound!",
-                          "example": "das Wasser (water), Wien (Vienna)"
+                          "example": "das Wasser, Wien, wer, wie, woher"
                         },
                         {
                           "term": "V = [F]",
                           "pronunciation": "fau",
-                          "meaning": "Pronounced like English 'F' in native German words.",
-                          "example": "der Vater (father), vier (four)"
+                          "meaning": "Pronounced like English 'F' in native words (Vater, vier, viel, voll).",
+                          "example": "der Vater, vier, vor, von"
                         },
                         {
                           "term": "J = [Y]",
                           "pronunciation": "yott",
                           "meaning": "Pronounced like English 'Y' in yes.",
-                          "example": "ja (yes), das Jahr (year)"
+                          "example": "ja, das Jahr, jetzt, jung"
                         },
                         {
                           "term": "Z = [TS]",
                           "pronunciation": "tsett",
-                          "meaning": "Pronounced like a sharp 'ts' in cats. Never soft like the English Z!",
-                          "example": "die Zeit (time), zehn (ten)"
+                          "meaning": "Always a sharp 'ts' sound, exactly like the end of 'cats'.",
+                          "example": "zehn, die Zeit, das Zimmer, zusammen"
                         }
                       ]
+                    },
+                    {
+                      "title": "3. Buchstabieren (Spelling Names Aloud)",
+                      "description": "In official registration and phone calls, you will frequently be asked: 'Wie schreibt man das?' (How do you spell that?). The standard German spelling alphabet pairs letters with well-known names:",
+                      "table": {
+                        "headers": [
+                          "Buchstabe",
+                          "Buchstabier-Name (DIN 5009)",
+                          "Beispiel im Alltag"
+                        ],
+                        "rows": [
+                          [
+                            "A wie Anton",
+                            "Anton",
+                            "A wie Anton"
+                          ],
+                          [
+                            "B wie Berta",
+                            "Berta",
+                            "B wie Berta"
+                          ],
+                          [
+                            "C wie Cäsar",
+                            "Cäsar",
+                            "C wie Cäsar"
+                          ],
+                          [
+                            "D wie Dora",
+                            "Dora",
+                            "D wie Dora"
+                          ],
+                          [
+                            "E wie Emil",
+                            "Emil",
+                            "E wie Emil"
+                          ],
+                          [
+                            "F wie Friedrich",
+                            "Friedrich",
+                            "F wie Friedrich"
+                          ],
+                          [
+                            "G wie Gustav",
+                            "Gustav",
+                            "G wie Gustav"
+                          ],
+                          [
+                            "H wie Heinrich",
+                            "Heinrich",
+                            "H wie Heinrich"
+                          ],
+                          [
+                            "I wie Ida",
+                            "Ida",
+                            "I wie Ida"
+                          ],
+                          [
+                            "J wie Julius",
+                            "Julius",
+                            "J wie Julius"
+                          ],
+                          [
+                            "K wie Kaufmann",
+                            "Kaufmann",
+                            "K wie Kaufmann"
+                          ],
+                          [
+                            "L wie Ludwig",
+                            "Ludwig",
+                            "L wie Ludwig"
+                          ],
+                          [
+                            "M wie Martha",
+                            "Martha",
+                            "M wie Martha"
+                          ],
+                          [
+                            "N wie Nordpol",
+                            "Nordpol",
+                            "N wie Nordpol"
+                          ],
+                          [
+                            "O wie Otto",
+                            "Otto",
+                            "O wie Otto"
+                          ],
+                          [
+                            "P wie Paula",
+                            "Paula",
+                            "P wie Paula"
+                          ],
+                          [
+                            "S wie Samuel",
+                            "Samuel",
+                            "S wie Samuel"
+                          ],
+                          [
+                            "T wie Theodor",
+                            "Theodor",
+                            "T wie Theodor"
+                          ],
+                          [
+                            "U wie Ulrich",
+                            "Ulrich",
+                            "U wie Ulrich"
+                          ],
+                          [
+                            "V wie Viktor",
+                            "Viktor",
+                            "V wie Viktor"
+                          ],
+                          [
+                            "W wie Wilhelm",
+                            "Wilhelm",
+                            "W wie Wilhelm"
+                          ],
+                          [
+                            "Z wie Zacharias",
+                            "Zacharias",
+                            "Z wie Zacharias"
+                          ]
+                        ]
+                      }
                     }
                   ],
                   "dialogue": {
-                    "context": "At a hotel reception desk in Frankfurt, checking in and spelling a name aloud:",
+                    "context": "Anmeldung am Empfang der Sprachschule in München (Netzwerk A1):",
                     "lines": [
                       {
-                        "speaker": "Rezeptionist",
-                        "german": "Guten Tag! Wie heißen Sie bitte?",
-                        "english": "Good day! What is your name, please?"
+                        "speaker": "Nina Weber",
+                        "german": "Guten Tag! Herzlich willkommen. Wie heißen Sie bitte?",
+                        "english": "Good day! Welcome. What is your name, please?"
                       },
                       {
-                        "speaker": "Gast",
-                        "german": "Guten Tag. Mein Name ist David Müller.",
-                        "english": "Good day. My name is David Müller."
+                        "speaker": "Gregor",
+                        "german": "Guten Tag. Ich heiße Gregor Schubert.",
+                        "english": "Good day. My name is Gregor Schubert."
                       },
                       {
-                        "speaker": "Rezeptionist",
-                        "german": "Können Sie den Nachnamen bitte buchstabieren?",
-                        "english": "Can you please spell the last name?"
+                        "speaker": "Nina Weber",
+                        "german": "Entschuldigung, wie schreibt man den Nachnamen? Können Sie bitte buchstabieren?",
+                        "english": "Excuse me, how do you spell the last name? Could you please spell it?"
                       },
                       {
-                        "speaker": "Gast",
-                        "german": "Ja, natürlich: M - Ü - L - L - E - R.",
-                        "english": "Yes, of course: M - Ü - L - L - E - R."
+                        "speaker": "Gregor",
+                        "german": "Ja, natürlich: S - C - H - U - B - E - R - T.",
+                        "english": "Yes, of course: S - C - H - U - B - E - R - T."
+                      },
+                      {
+                        "speaker": "Nina Weber",
+                        "german": "Vielen Dank, Herr Schubert! Ihr Kursraum ist Nummer 12 im ersten Stock.",
+                        "english": "Thank you very much, Mr. Schubert! Your classroom is number 12 on the first floor."
                       }
                     ]
                   },
                   "funFact": {
-                    "title": "The DACH Region & Universal Capitalization",
-                    "content": "German is spoken by over 100 million native speakers across the DACH countries: Deutschland (D), Österreich / Austria (A), and die Schweiz / Switzerland (CH). Notice how in German every single noun begins with a capital letter (der Name, das Hotel, der Abend). This unique rule was standardized to make reading faster and sentences clearer!"
+                    "title": "Universal Noun Capitalization in German",
+                    "content": "German is the only major world language where every single noun is capitalized! Whether it is 'der Name' (name), 'das Buch' (book), or 'die Musik' (music), capitalizing nouns was standardized in the 17th century to help readers instantly distinguish subjects and objects in long philosophical and literary texts."
                   },
                   "practice": [
                     {
-                      "question": "How is the German word 'Wasser' (water) pronounced in its initial letter?",
+                      "question": "How is the German letter 'W' in 'Wasser' (water) pronounced?",
                       "options": [
-                        "With an English 'W' sound like 'wash'",
-                        "With an English 'V' sound like 'vase'",
-                        "With a silent 'W'"
+                        "Like English 'W' in 'water'",
+                        "Like English 'V' in 'vase'",
+                        "Silent"
                       ],
-                      "answer": "With an English 'V' sound like 'vase'",
-                      "explanation": "In German, the letter 'W' is always pronounced like the English 'V'."
+                      "answer": "Like English 'V' in 'vase'",
+                      "explanation": "In German, the letter 'W' is consistently pronounced like the English 'V'."
                     },
                     {
-                      "question": "How do you pronounce the number 'zehn' (ten) in German?",
+                      "question": "How do you pronounce the number 'zehn' (ten)?",
                       "options": [
                         "Like English 'zen'",
                         "Like 'tsehn' with a sharp 'ts'",
                         "Like 'kehn'"
                       ],
                       "answer": "Like 'tsehn' with a sharp 'ts'",
-                      "explanation": "The German letter 'Z' always produces a crisp 'ts' sound, exactly like the end of the word 'cats'."
+                      "explanation": "The letter 'Z' in German always makes a crisp 'ts' sound, exactly as in 'cats'."
+                    },
+                    {
+                      "question": "Which question asks someone to spell their name?",
+                      "options": [
+                        "Wie heißen Sie?",
+                        "Woher kommen Sie?",
+                        "Wie schreibt man das?"
+                      ],
+                      "answer": "Wie schreibt man das?",
+                      "explanation": "'Wie schreibt man das?' means 'How do you spell/write that?' in German."
                     }
                   ]
                 }
@@ -301,134 +439,144 @@ export const FALLBACK_COURSES: CourseDetail[] = [
                 "title": "Lesson 2: The Umlauts (ä, ö, ü), Diphthongs & Special Consonants (ß, ch, sch)",
                 "description": "Pronouncing umlauts (ä, ö, ü), diphthongs (ei, ie, eu, äu), the Eszett (ß), and hard vs. soft ch.",
                 "content": {
-                  "overview": "German features four characters you won't find in the standard English alphabet: the three Umlauts (ä, ö, ü) and the unique ligature Eszett (ß). In this lesson, we demystify how your lips and tongue produce these authentic sounds.",
-                  "canDo": "Can articulate ä, ö, ü accurately, pronounce diphthongs (ei, ie, eu), and distinguish between hard and soft 'ch'.",
-                  "teacherNote": "The two dots above ä, ö, and ü aren't decorations—they are historical shorthand for a tiny letter 'e' placed above the vowel! If you ever don't have a German keyboard, you can write 'ae', 'oe', and 'ue' instead.",
+                  "overview": "German features four characters you won't find in the standard English alphabet: the three Umlauts (ä, ö, ü) and the unique ligature Eszett (ß). In this lesson, you will master mouth positioning for these authentic sounds, learn the golden rule for diphthongs (ei vs. ie), and master hard vs. soft 'ch'.",
+                  "canDo": "Can articulate ä, ö, ü with accurate lip positioning, avoid the #1 beginner trap between 'ei' and 'ie', and distinguish the soft 'ich'-sound from the hard 'ach'-sound.",
+                  "teacherNote": "The two dots above ä, ö, and ü aren't decorations—they represent a historical shorthand for a tiny letter 'e' placed above the vowel! If you don't have a German keyboard, write 'ae', 'oe', and 'ue'.",
                   "sections": [
                     {
-                      "title": "1. The 3 Umlauts (Die Umlaute)",
-                      "description": "Position your mouth to say one sound, then adjust your lips to form the Umlaut:",
+                      "title": "1. The 3 Umlauts (Die Umlaute: Ä, Ö, Ü)",
+                      "description": "Train your facial muscles with these precise mouth shapes:",
                       "table": {
                         "headers": [
                           "Umlaut",
-                          "How to Shape Your Mouth",
-                          "Key Example",
-                          "Meaning"
+                          "Mundstellung (Mouth Shape)",
+                          "Minimal Pair (Contrast)",
+                          "Bedeutung (Meaning)"
                         ],
                         "rows": [
                           [
                             "Ä ä",
-                            "Open mouth wide, say 'eh' like in 'air'",
-                            "das Mädchen / der Bär",
-                            "girl / bear"
+                            "Open mouth wide, pronounce 'eh' like in air",
+                            "der Apfel / die Äpfel",
+                            "the apple / the apples"
                           ],
                           [
                             "Ö ö",
-                            "Shape lips to say 'oh', then try to say 'ay'",
-                            "schön / das Öl / Köln",
-                            "beautiful / oil / Cologne"
+                            "Shape lips into an 'O', then try to say 'ee'",
+                            "schon / schön",
+                            "already / beautiful"
                           ],
                           [
                             "Ü ü",
                             "Pucker lips as if to whistle, then say 'ee'",
-                            "die Tür / fünf / über",
-                            "door / five / over"
+                            "die Mutter / die Mütter",
+                            "the mother / the mothers"
                           ]
                         ]
                       }
                     },
                     {
-                      "title": "2. The Golden Pair: 'ei' vs. 'ie'",
-                      "description": "This is the #1 vowel trap for beginners. Remember the golden memory rule: pronounce the SECOND letter!",
+                      "title": "2. The Golden Rule of Diphthongs: 'ei' vs. 'ie'",
+                      "description": "This is the most common beginner error. Always pronounce the SECOND letter:",
                       "items": [
                         {
                           "term": "ei = [eye]",
                           "pronunciation": "ay",
-                          "meaning": "Sounds like English 'eye' or 'pie'",
-                          "example": "mein (my), das Eis (ice cream), eins (one)."
+                          "meaning": "Pronounce the second letter (i sounds like eye): mein, nein, das Eis, eins, der Wein (wine).",
+                          "example": "Wein (wine) sounds like 'Vine'."
                         },
                         {
                           "term": "ie = [ee]",
                           "pronunciation": "ee",
-                          "meaning": "Sounds like English 'ee' in see or cheese",
-                          "example": "die Liebe (love), sieben (seven), hier (here)."
+                          "meaning": "Pronounce the second letter (e sounds like ee in see): Wien (Vienna), sieben, hier, wie, sie.",
+                          "example": "Wien (Vienna) sounds like 'Veen'."
                         },
                         {
                           "term": "eu / äu = [oy]",
                           "pronunciation": "oy",
-                          "meaning": "Both sound like English 'oy' in boy",
-                          "example": "neu (new), heute (today), die Häuser (houses)."
+                          "meaning": "Both sound like 'oy' in boy: neu (new), heute (today), Europa, die Häuser (houses).",
+                          "example": "Neu in Deutschland? (New in Germany?)"
                         }
                       ]
                     },
                     {
                       "title": "3. The Eszett (ß) & The Two Faces of 'ch'",
-                      "description": "The ligature ß represents an unvoiced double-s. Meanwhile, 'ch' has a soft whisper and a throat scratch:",
+                      "description": "Understanding when 'ch' is whispered versus cleared in the throat:",
                       "table": {
                         "headers": [
-                          "Sound",
-                          "Rule",
-                          "Examples"
+                          "Laut",
+                          "Regel (Phonetic Rule)",
+                          "Beispiele (Examples)"
                         ],
                         "rows": [
                           [
                             "ß (Eszett)",
-                            "Pronounced as a sharp, unvoiced 's' after long vowels & diphthongs.",
-                            "die Straße (street), groß (big), heiß (hot)"
+                            "Sharp unvoiced double-s after long vowels and diphthongs.",
+                            "die Straße (street), groß (big), heiß (hot), heißen"
                           ],
                           [
-                            "Soft 'ch' (Ich-Laut)",
-                            "Whispered tongue hiss against roof of mouth after e, i, ä, ö, ü, l, n, r.",
-                            "ich (I), nicht (not), das Mädchen (girl)"
+                            "Ich-Laut (soft ch)",
+                            "Whispered hiss against palate after e, i, ä, ö, ü, l, n, r.",
+                            "ich (I), nicht (not), sprechen (to speak), das Mädchen"
                           ],
                           [
-                            "Hard 'ch' (Ach-Laut)",
-                            "Gently cleared throat sound in back of throat after a, o, u, au.",
-                            "das Buch (book), die Nacht (night), auch (also)"
+                            "Ach-Laut (hard ch)",
+                            "Deep friction in throat after a, o, u, au.",
+                            "das Buch (book), die Nacht (night), die Woche, auch (also)"
                           ]
                         ]
                       }
                     }
                   ],
                   "dialogue": {
-                    "context": "Ordering ice cream and asking for directions on a warm afternoon in Vienna:",
+                    "context": "In einem Wiener Kaffeehaus – Aussprache beim Bestellen (Netzwerk A1):",
                     "lines": [
                       {
-                        "speaker": "Anna",
-                        "german": "Entschuldigung, gibt es hier in der Straße ein Café mit Eis?",
-                        "english": "Excuse me, is there a café with ice cream here on the street?"
+                        "speaker": "Gast",
+                        "german": "Entschuldigung, ist dieser Platz noch frei?",
+                        "english": "Excuse me, is this seat still free?"
                       },
                       {
-                        "speaker": "Passant",
-                        "german": "Ja, geradeaus! Das Café heißt 'Schöne Zeit'. Sehr lecker!",
-                        "english": "Yes, straight ahead! The café is called 'Schöne Zeit' (Beautiful Time). Very delicious!"
+                        "speaker": "Kellner",
+                        "german": "Ja, bitte nehmen Sie Platz! Ein schöner Tag heute in Wien.",
+                        "english": "Yes, please have a seat! A beautiful day today in Vienna."
+                      },
+                      {
+                        "speaker": "Gast",
+                        "german": "Vielen Dank. Ich möchte bitte einen Kaffee und ein Stück Apfelstrudel.",
+                        "english": "Thank you very much. I would like a coffee and a piece of apple strudel, please."
+                      },
+                      {
+                        "speaker": "Kellner",
+                        "german": "Sehr gern! Kommt sofort.",
+                        "english": "Very gladly! Coming right up."
                       }
                     ]
                   },
                   "funFact": {
-                    "title": "The Swiss 'ß' Mystery",
-                    "content": "Did you know? Switzerland and Liechtenstein completely stopped using the letter 'ß' back in the 1930s! Swiss newspapers and street signs write 'Strasse' and 'gross' with double 'ss'. However, in Germany and Austria, 'ß' remains standard after long vowels (Straße) to distinguish it from short vowels (Masse)."
+                    "title": "The Swiss 'ß' Rule",
+                    "content": "In Switzerland and Liechtenstein, the letter 'ß' does not exist! They replaced it entirely with 'ss' (Strasse, gross, heissen). However, in Germany and Austria, 'ß' is strictly necessary because it shows the preceding vowel is long (die Maße = dimensions) versus short (die Masse = mass)!"
                   },
                   "practice": [
                     {
-                      "question": "How do you pronounce the word 'Wein' (wine) compared to 'Wien' (Vienna)?",
+                      "question": "How do you distinguish the pronunciation of 'Wein' (wine) and 'Wien' (Vienna)?",
                       "options": [
-                        "Wein sounds like 'Veen', Wien sounds like 'Vine'",
                         "Wein sounds like 'Vine', Wien sounds like 'Veen'",
-                        "Both sound identical"
+                        "Wein sounds like 'Veen', Wien sounds like 'Vine'",
+                        "They sound identical"
                       ],
                       "answer": "Wein sounds like 'Vine', Wien sounds like 'Veen'",
-                      "explanation": "Remember: pronounce the second letter! In 'ei' the second letter is i (sounds like eye). In 'ie' the second letter is e (sounds like ee)."
+                      "explanation": "Pronounce the second vowel: in 'Wein', i sounds like 'eye'; in 'Wien', e sounds like 'ee'."
                     },
                     {
-                      "question": "Which of the following contains the soft 'ch' (whispered hiss)?",
+                      "question": "Which of these words contains the soft 'Ich-Laut' whispered sound?",
                       "options": [
                         "das Buch",
                         "die Nacht",
-                        "ich"
+                        "nicht"
                       ],
-                      "answer": "ich",
-                      "explanation": "After 'i' and 'e', 'ch' produces the soft whispered hiss (Ich-Laut), whereas after 'a', 'o', 'u' it makes the throat sound."
+                      "answer": "nicht",
+                      "explanation": "Following the vowel 'i', 'ch' always forms the soft whispered Ich-Laut."
                     }
                   ]
                 }
@@ -438,139 +586,154 @@ export const FALLBACK_COURSES: CourseDetail[] = [
                 "title": "Lesson 3: Personal Pronouns & Formality (du vs. Sie)",
                 "description": "Subject pronouns (ich, du, er, sie, es, wir, ihr, sie, Sie) and formal vs. informal etiquette.",
                 "content": {
-                  "overview": "To communicate naturally, you need subject pronouns to refer to yourself, friends, and colleagues. In German, there is a crucial social distinction between the informal 'du' and the formal 'Sie'.",
-                  "canDo": "Can list all 9 German personal pronouns and know precisely when to use informal 'du' versus respectful formal 'Sie'.",
-                  "teacherNote": "Pay special attention to 'Sie' with a capital 'S'. Whenever you see 'Sie' capitalized, it means formal 'you' (whether talking to one person or twenty). Lowercase 'sie' means 'she' or 'they', depending on the verb!",
+                  "overview": "To converse naturally, you need subject pronouns. In German, there is a fundamental social division between informal 'du' (friends, family, peers) and formal 'Sie' (adult strangers, colleagues, professionals).",
+                  "canDo": "Can use all 9 personal pronouns accurately and choose appropriately between 'du' and capitalized 'Sie' in everyday social situations.",
+                  "teacherNote": "Look at the capitalization! Capitalized 'Sie' always means formal 'you' (singular or plural). Lowercase 'sie' means 'she' or 'they', which you can identify from the verb ending.",
                   "sections": [
                     {
-                      "title": "1. The 9 German Subject Pronouns",
-                      "description": "These are the subjects that drive all German sentences:",
+                      "title": "1. Die 9 Personalpronomen (Subject Pronouns)",
+                      "description": "The fundamental building blocks of German sentences:",
                       "table": {
                         "headers": [
-                          "Pronoun",
-                          "Meaning",
-                          "Grammatical Person",
-                          "Pronunciation Tip"
+                          "Pronomen",
+                          "Bedeutung",
+                          "Person",
+                          "Beispielsatz"
                         ],
                         "rows": [
                           [
                             "ich",
                             "I",
-                            "1st person singular",
-                            "Soft ch sound (whisper)"
+                            "1. Person Singular",
+                            "Ich lerne Deutsch."
                           ],
                           [
                             "du",
                             "you (informal singular)",
-                            "2nd person singular",
-                            "Sounds like 'doo'"
+                            "2. Person Singular",
+                            "Wie heißt du?"
                           ],
                           [
                             "er",
                             "he",
-                            "3rd person singular masculine",
-                            "Short crisp vowel"
+                            "3. Person Singular maskulin",
+                            "Er kommt aus Spanien."
                           ],
                           [
                             "sie",
                             "she",
-                            "3rd person singular feminine",
-                            "Sounds like 'zee'"
+                            "3. Person Singular feminin",
+                            "Sie wohnt in Berlin."
                           ],
                           [
                             "es",
                             "it",
-                            "3rd person singular neuter",
-                            "Sounds like 'ess'"
+                            "3. Person Singular neutral",
+                            "Es ist warm heute."
                           ],
                           [
                             "wir",
                             "we",
-                            "1st person plural",
-                            "Sounds like 'veer'"
+                            "1. Person Plural",
+                            "Wir sind im Deutschkurs."
                           ],
                           [
                             "ihr",
                             "you all (informal plural)",
-                            "2nd person plural",
-                            "Sounds like 'eer'"
+                            "2. Person Plural",
+                            "Woher kommt ihr?"
                           ],
                           [
                             "sie",
                             "they",
-                            "3rd person plural",
-                            "Sounds like 'zee'"
+                            "3. Person Plural",
+                            "Sie sprechen Englisch."
                           ],
                           [
                             "Sie",
                             "you (formal singular & plural)",
-                            "Polite address",
-                            "Always capitalized! Sounds like 'zee'"
+                            "Höflichkeitsform",
+                            "Wie heißen Sie?"
                           ]
                         ]
                       }
                     },
                     {
-                      "title": "2. The Cultural Etiquette: 'du' vs. 'Sie'",
-                      "description": "Choosing the right pronoun shows respect and understanding of cultural boundaries in the German-speaking world:",
+                      "title": "2. Soziale Etikette: 'du' oder 'Sie'?",
+                      "description": "Rules of respect and familiarity in the DACH countries:",
                       "items": [
                         {
-                          "term": "du (Informal You)",
-                          "meaning": "Family, close friends, fellow university students, children under 15, and pets.",
-                          "example": "Wie heißt du? (What's your name? - casual)"
+                          "term": "du (informell)",
+                          "meaning": "Used with friends, family, fellow university students, children under 16, and pets.",
+                          "example": "Hallo Julia, wie geht's dir?"
                         },
                         {
-                          "term": "Sie (Formal You - Capitalized)",
-                          "meaning": "Adult strangers, shopkeepers, doctors, business partners, professors, and government officials.",
-                          "example": "Wie heißen Sie? (What is your name? - polite/formal)"
+                          "term": "Sie (formell & großgeschrieben)",
+                          "meaning": "Used with adult strangers, doctors, officials, shop assistants, and professional business partners.",
+                          "example": "Guten Tag, Frau Müller! Wie geht es Ihnen?"
                         },
                         {
-                          "term": "ihr (Informal Group You)",
-                          "meaning": "Addressing a group of friends, classmates, or children.",
-                          "example": "Wo seid ihr? (Where are you guys?)"
+                          "term": "ihr (Gruppe informell)",
+                          "meaning": "Addressing multiple friends, family members, or classmates.",
+                          "example": "Kommt ihr heute zum Deutschkurs?"
                         }
                       ]
                     }
                   ],
                   "dialogue": {
-                    "context": "A young professional meeting a senior manager at an office in Hamburg:",
+                    "context": "Begegnungen im Sprachinstitut – Höflich vs. Vertraut (Netzwerk A1):",
                     "lines": [
                       {
-                        "speaker": "Herr Hoffmann",
-                        "german": "Guten Tag, Frau Weber! Wie geht es Ihnen?",
-                        "english": "Good day, Ms. Weber! How are you doing?"
+                        "speaker": "Gregor",
+                        "german": "Hallo Nina! Wie geht's?",
+                        "english": "Hello Nina! How are you?"
                       },
                       {
-                        "speaker": "Frau Weber",
-                        "german": "Guten Tag, Herr Hoffmann. Sehr gut, danke! Und wie geht es Ihnen?",
-                        "english": "Good day, Mr. Hoffmann. Very well, thank you! And how are you?"
+                        "speaker": "Nina",
+                        "german": "Danke, sehr gut! Und dir?",
+                        "english": "Thanks, very well! And you?"
+                      },
+                      {
+                        "speaker": "Gregor",
+                        "german": "Es geht, danke. Oh, guten Morgen, Herr Kaiser!",
+                        "english": "Not bad, thanks. Oh, good morning, Mr. Kaiser!"
+                      },
+                      {
+                        "speaker": "Herr Kaiser",
+                        "german": "Guten Morgen, Herr Schubert! Wie geht es Ihnen heute?",
+                        "english": "Good morning, Mr. Schubert! How are you doing today?"
+                      },
+                      {
+                        "speaker": "Gregor",
+                        "german": "Sehr gut, danke! Wir freuen uns auf den Unterricht.",
+                        "english": "Very well, thank you! We are looking forward to class."
                       }
                     ]
                   },
                   "funFact": {
-                    "title": "Das 'Du' Anbieten (Offering the Informal 'Du')",
-                    "content": "In Germany, colleagues often work alongside each other for years using formal 'Sie' and last names (*Herr Schmidt, Frau Wagner*). It is a cherished milestone when the older or higher-ranking person formally says: 'Wir können uns gerne duzen!' (We can gladly use 'du'). Once offered, you transition to first names and informal conversation!"
+                    "title": "Das 'Du' anbieten (Offering the Informal 'Du')",
+                    "content": "In German corporate culture, colleagues often work alongside each other for years using formal 'Sie' and last names (Herr Schmidt, Frau Weber). It is a major social milestone when the senior or older colleague says: 'Wir können uns gern duzen!' (We can gladly use 'du'). Once accepted, you switch to first names!"
                   },
                   "practice": [
                     {
-                      "question": "You are speaking to a police officer or doctor in Munich. Which pronoun do you use?",
+                      "question": "You enter a doctor's office in Frankfurt. Which greeting and pronoun do you use?",
                       "options": [
-                        "du",
-                        "ihr",
-                        "Sie (capitalized)"
+                        "Hallo, wie heißt du?",
+                        "Guten Tag! Wie geht es Ihnen?",
+                        "Hi, wer seid ihr?"
                       ],
-                      "answer": "Sie (capitalized)",
-                      "explanation": "Always use formal 'Sie' when addressing adult strangers, officials, or professionals in Germany."
+                      "answer": "Guten Tag! Wie geht es Ihnen?",
+                      "explanation": "In professional healthcare settings, formal 'Sie' / 'Ihnen' is always required."
                     },
                     {
-                      "question": "What does lowercase 'wir' mean?",
+                      "question": "What is the meaning of 'ihr'?",
                       "options": [
-                        "You all",
+                        "She",
                         "We",
-                        "They"
+                        "You all (informal plural)"
                       ],
-                      "answer": "We",
-                      "explanation": "'wir' is the first person plural pronoun meaning 'we'."
+                      "answer": "You all (informal plural)",
+                      "explanation": "'ihr' is the informal plural pronoun used when talking to two or more friends."
                     }
                   ]
                 }
@@ -580,126 +743,131 @@ export const FALLBACK_COURSES: CourseDetail[] = [
                 "title": "Lesson 4: The Pillar Verb 'sein' (to be)",
                 "description": "Full present tense conjugation of sein (bin, bist, ist, sind, seid, sind) and identity statements.",
                 "content": {
-                  "overview": "The verb 'sein' (to be) is the foundational cornerstone of the German language. Just like in English (am, is, are), it is irregular, so mastering its conjugation opens the door to expressing who you are, your nationality, and your feelings.",
-                  "canDo": "Can conjugate 'sein' across all persons and form simple identity, origin, and condition statements.",
-                  "teacherNote": "Because 'sein' is irregular, memorize it rhythmically: ich bin, du bist, er ist, wir sind, ihr seid, sie sind. Say it aloud five times in a row!",
+                  "overview": "The verb 'sein' (to be) is the single most essential verb in German. Just like English 'to be' (am, is, are), it is irregular, and mastering its conjugation allows you to state your identity, nationality, profession, and status.",
+                  "canDo": "Can conjugate 'sein' across all 6 grammatical persons and formulate self-introduction statements (name, role, origin).",
+                  "teacherNote": "Learn 'sein' as a rhythmic chant: ich bin, du bist, er/sie/es ist, wir sind, ihr seid, sie/Sie sind. Say it aloud three times every morning!",
                   "sections": [
                     {
-                      "title": "1. Conjugation Table of 'sein' (to be)",
-                      "description": "Present tense (Präsens) forms of 'sein':",
+                      "title": "1. Konjugation von 'sein' (to be)",
+                      "description": "Full present tense conjugation table of 'sein':",
                       "table": {
                         "headers": [
-                          "Pronoun",
-                          "Form of 'sein'",
-                          "English",
-                          "Example Sentence"
+                          "Pronomen",
+                          "Form von 'sein'",
+                          "Englisch",
+                          "Beispielsatz (Netzwerk A1)"
                         ],
                         "rows": [
                           [
                             "ich",
                             "bin",
                             "I am",
-                            "Ich bin Maria. (I am Maria.)"
+                            "Ich bin Paco aus Spanien."
                           ],
                           [
                             "du",
                             "bist",
                             "you are (informal)",
-                            "Du bist sehr nett. (You are very kind.)"
+                            "Du bist sehr freundlich."
                           ],
                           [
                             "er / sie / es",
                             "ist",
                             "he / she / it is",
-                            "Er ist Student. / Das Wetter ist gut."
+                            "Das ist Frau Weber. Sie ist Lehrerin."
                           ],
                           [
                             "wir",
                             "sind",
                             "we are",
-                            "Wir sind hier in Berlin. (We are here in Berlin.)"
+                            "Wir sind hier im Deutschkurs."
                           ],
                           [
                             "ihr",
                             "seid",
                             "you all are",
-                            "Seid ihr bereit? (Are you all ready?)"
+                            "Seid ihr fertig mit Aufgabe 3?"
                           ],
                           [
                             "sie / Sie",
                             "sind",
-                            "they are / You are (formal)",
-                            "Sie sind sehr freundlich. (You are very friendly.)"
+                            "they / You (formal) are",
+                            "Sie sind Herr Schubert, richtig?"
                           ]
                         ]
                       }
                     },
                     {
-                      "title": "2. Key Sentence Patterns with 'sein'",
-                      "description": "You can use 'sein' to state three core things:",
+                      "title": "2. Three Core Uses of 'sein'",
+                      "description": "Stating identity, origin, and conditions:",
                       "items": [
                         {
-                          "term": "Identity & Profession",
-                          "meaning": "State who you are or your occupation (no 'a' needed before jobs!)",
-                          "example": "Ich bin Arzt. (I am a doctor.) / Sie ist Lehrerin. (She is a teacher.)"
+                          "term": "Identität & Beruf",
+                          "meaning": "Stating your name or profession (no indefinite article needed before professions!)",
+                          "example": "Ich bin Nina. / Er ist Ingenieur. / Sie ist Studentin."
                         },
                         {
-                          "term": "Condition & Mood",
-                          "meaning": "Describe how things are with adjectives",
-                          "example": "Der Kaffee ist warm. (The coffee is warm.) / Wir sind müde. (We are tired.)"
+                          "term": "Eigenschaft & Zustand",
+                          "meaning": "Describing qualities with adjectives",
+                          "example": "Der Kurs ist interessant. / Das Wetter ist schön."
                         },
                         {
-                          "term": "Origin & Location",
-                          "meaning": "State where you are right now",
-                          "example": "Ich bin in Deutschland. (I am in Germany.)"
+                          "term": "Ort & Herkunft",
+                          "meaning": "Stating current location or location of items",
+                          "example": "Wir sind in München. / Das Buch ist hier."
                         }
                       ]
                     }
                   ],
                   "dialogue": {
-                    "context": "Two new students meeting in the lecture hall at Humboldt University in Berlin:",
+                    "context": "Im Deutschkurs A1 – Kennenlernen der neuen Teilnehmer (Netzwerk A1):",
                     "lines": [
                       {
-                        "speaker": "Felix",
-                        "german": "Hallo! Ich bin Felix. Bist du auch neu hier?",
-                        "english": "Hello! I am Felix. Are you also new here?"
+                        "speaker": "Julia",
+                        "german": "Hallo! Ich bin Julia. Wer bist du?",
+                        "english": "Hello! I am Julia. Who are you?"
                       },
                       {
-                        "speaker": "Elena",
-                        "german": "Ja, ich bin Elena. Wir sind in derselben Gruppe!",
-                        "english": "Yes, I am Elena. We are in the same group!"
+                        "speaker": "Paco",
+                        "german": "Hallo Julia! Ich bin Paco. Ich komme aus Spanien.",
+                        "english": "Hello Julia! I am Paco. I come from Spain."
                       },
                       {
-                        "speaker": "Felix",
-                        "german": "Super! Das ist fantastisch.",
-                        "english": "Great! That is fantastic."
+                        "speaker": "Julia",
+                        "german": "Bist du auch neu in Deutschland?",
+                        "english": "Are you also new in Germany?"
+                      },
+                      {
+                        "speaker": "Paco",
+                        "german": "Ja, ich bin seit drei Wochen in Berlin. Wir sind in der gleichen Gruppe!",
+                        "english": "Yes, I have been in Berlin for three weeks. We are in the same group!"
                       }
                     ]
                   },
                   "funFact": {
-                    "title": "No Articles with Professions!",
-                    "content": "In English, we say 'I am *a* doctor' or 'She is *an* architect'. In German, saying 'Ich bin ein Arzt' sounds unnatural! Germans drop the article when stating professions: simply say 'Ich bin Arzt' or 'Ich bin Studentin'."
+                    "title": "No 'A/An' before Professions in German!",
+                    "content": "In English, you say 'I am a teacher' or 'He is an architect'. In German, saying 'Ich bin ein Lehrer' sounds foreign! Germans drop the article completely: 'Ich bin Lehrer' or 'Ich bin Ingenieurin'."
                   },
                   "practice": [
                     {
-                      "question": "Complete the sentence: 'Wir _____ heute in München.'",
+                      "question": "Choose the correct form: 'Wir _____ heute in Berlin.'",
                       "options": [
                         "seid",
                         "sind",
                         "ist"
                       ],
                       "answer": "sind",
-                      "explanation": "The correct form of 'sein' for 'wir' (we) is 'sind'."
+                      "explanation": "The correct conjugation of 'sein' for 'wir' is 'sind'."
                     },
                     {
-                      "question": "How do you ask a friend: 'Are you ready?'",
+                      "question": "How do you say: 'Who are you?' (informal)",
                       "options": [
-                        "Bist du bereit?",
-                        "Ist du bereit?",
-                        "Seid du bereit?"
+                        "Wer bist du?",
+                        "Wer ist du?",
+                        "Wer seid du?"
                       ],
-                      "answer": "Bist du bereit?",
-                      "explanation": "'du' always pairs with 'bist' (Du bist -> Bist du?)."
+                      "answer": "Wer bist du?",
+                      "explanation": "'du' always pairs with 'bist' (Wer bist du?)."
                     }
                   ]
                 }
@@ -709,131 +877,131 @@ export const FALLBACK_COURSES: CourseDetail[] = [
                 "title": "Lesson 5: The Pillar Verb 'haben' (to have)",
                 "description": "Full conjugation of haben (habe, hast, hat, haben, habt, haben) and expressing possession.",
                 "content": {
-                  "overview": "Alongside 'sein', the verb 'haben' (to have) is the second powerhouse verb in German. It allows you to express possession, physical needs (hunger, thirst), and will later serve as the auxiliary verb for the past tense.",
-                  "canDo": "Can conjugate 'haben' fluently and use it to express possession, age inquiries, and basic physical sensations.",
-                  "teacherNote": "Notice the stem change in 'du hast' and 'er/sie/es hat'—the letter 'b' disappears! This slight shortening makes spoken German faster and more melodic.",
+                  "overview": "Together with 'sein', the verb 'haben' (to have) is one of the two pillar verbs of German. It expresses possession, physical feelings, schedule availability, and forms the past tense (Perfekt).",
+                  "canDo": "Can conjugate 'haben' fluently, express possession, and discuss schedule availability ('Ich habe Zeit / keine Zeit').",
+                  "teacherNote": "Notice the small stem shift: in 'du hast' and 'er/sie/es hat', the letter 'b' drops out for smoother, faster pronunciation!",
                   "sections": [
                     {
-                      "title": "1. Conjugation Table of 'haben' (to have)",
+                      "title": "1. Konjugation von 'haben' (to have)",
                       "description": "Present tense forms of 'haben':",
                       "table": {
                         "headers": [
-                          "Pronoun",
-                          "Form of 'haben'",
-                          "English",
-                          "Example Sentence"
+                          "Pronomen",
+                          "Form von 'haben'",
+                          "Englisch",
+                          "Beispielsatz (Netzwerk A1)"
                         ],
                         "rows": [
                           [
                             "ich",
                             "habe",
                             "I have",
-                            "Ich habe ein Buch. (I have a book.)"
+                            "Ich habe eine Frage."
                           ],
                           [
                             "du",
                             "hast",
                             "you have (informal)",
-                            "Hast du Zeit? (Do you have time?)"
+                            "Hast du heute Zeit?"
                           ],
                           [
                             "er / sie / es",
                             "hat",
                             "he / she / it has",
-                            "Er hat eine Frage. (He has a question.)"
+                            "Er hat ein Wörterbuch."
                           ],
                           [
                             "wir",
                             "haben",
                             "we have",
-                            "Wir haben Glück! (We are lucky! / We have luck!)"
+                            "Wir haben um zehn Uhr Pause."
                           ],
                           [
                             "ihr",
                             "habt",
                             "you all have",
-                            "Habt ihr Hunger? (Are you all hungry?)"
+                            "Habt ihr einen Stift?"
                           ],
                           [
                             "sie / Sie",
                             "haben",
-                            "they have / You have (formal)",
-                            "Haben Sie ein Ticket? (Do you have a ticket?)"
+                            "they / You (formal) have",
+                            "Haben Sie ein Zimmer frei?"
                           ]
                         ]
                       }
                     },
                     {
-                      "title": "2. Common German Expressions with 'haben'",
-                      "description": "Where English uses 'to be', German often uses 'haben' (to have):",
+                      "title": "2. High-Frequency Idiomatic Expressions with 'haben'",
+                      "description": "Everyday German expressions that use 'haben' where English uses 'to be':",
                       "items": [
                         {
-                          "term": "Hunger haben",
-                          "meaning": "To be hungry (literally: to have hunger)",
-                          "example": "Ich habe Hunger. (I am hungry.)"
+                          "term": "Zeit haben / keine Zeit haben",
+                          "meaning": "To have time / to have no time",
+                          "example": "Hast du am Samstag Zeit? - Nein, ich habe leider keine Zeit."
                         },
                         {
-                          "term": "Durst haben",
-                          "meaning": "To be thirsty (literally: to have thirst)",
-                          "example": "Hast du Durst? (Are you thirsty?)"
+                          "term": "Hunger / Durst haben",
+                          "meaning": "To be hungry / to be thirsty (lit. 'to have hunger/thirst')",
+                          "example": "Ich habe großen Hunger! Gehen wir essen?"
                         },
                         {
-                          "term": "Zeit haben",
-                          "meaning": "To have time / to be free",
-                          "example": "Wir haben morgen Zeit. (We have time tomorrow.)"
-                        },
-                        {
-                          "term": "Recht haben",
-                          "meaning": "To be right (literally: to have right)",
-                          "example": "Du hast absolut recht! (You are absolutely right!)"
+                          "term": "eine Frage haben",
+                          "meaning": "To have a question in class or at work",
+                          "example": "Entschuldigung, ich habe eine kurze Frage."
                         }
                       ]
                     }
                   ],
                   "dialogue": {
-                    "context": "Two friends taking a break in a university cafeteria in Zurich:",
+                    "context": "Nach dem Deutschkurs – Pläne für den Nachmittag (Netzwerk A1):",
                     "lines": [
                       {
-                        "speaker": "Jonas",
-                        "german": "Hast du Hunger oder Durst?",
-                        "english": "Are you hungry or thirsty?"
+                        "speaker": "Gregor",
+                        "german": "Hallo Paco! Hast du heute Nachmittag Zeit für einen Kaffee?",
+                        "english": "Hello Paco! Do you have time for a coffee this afternoon?"
                       },
                       {
-                        "speaker": "Sophie",
-                        "german": "Ja, ich habe großen Hunger! Hast du etwas Geld dabei?",
-                        "english": "Yes, I am very hungry! Do you have some cash on you?"
+                        "speaker": "Paco",
+                        "german": "Um wie viel Uhr? Um vier Uhr habe ich einen Termin bei der Bank.",
+                        "english": "At what time? At four o'clock I have an appointment at the bank."
                       },
                       {
-                        "speaker": "Jonas",
-                        "german": "Kein Problem, ich habe zwanzig Euro.",
-                        "english": "No problem, I have twenty euros."
+                        "speaker": "Gregor",
+                        "german": "Kein Problem, um fünf Uhr? Ich habe großen Durst!",
+                        "english": "No problem, at five o'clock? I am very thirsty!"
+                      },
+                      {
+                        "speaker": "Paco",
+                        "german": "Ja super, um fünf Uhr habe ich Zeit. Bis später!",
+                        "english": "Yes great, at five o'clock I have time. See you later!"
                       }
                     ]
                   },
                   "funFact": {
-                    "title": "German Has Hunger, But Age Takes 'sein'!",
-                    "content": "While Romance languages like French or Spanish say 'I have 20 years', German uses 'sein' for age: 'Ich bin zwanzig Jahre alt' (I *am* 20 years old). But when it comes to hunger, thirst, or luck, Germans say 'Ich habe Hunger' and 'Ich habe Glück'!"
+                    "title": "Having Hunger vs. Being Hungry",
+                    "content": "While you can say 'Ich bin hungrig' in German, native speakers almost universally say 'Ich habe Hunger' (I have hunger) and 'Ich habe Durst' (I have thirst). It is one of the quickest ways to sound natural from day one!"
                   },
                   "practice": [
                     {
-                      "question": "Which form completes: 'Herr Becker, _____ Sie heute Zeit?'",
+                      "question": "What is the correct form: 'Er _____ ein deutsches Lehrbuch.'",
                       "options": [
+                        "habe",
                         "hast",
-                        "habt",
-                        "haben"
+                        "hat"
                       ],
-                      "answer": "haben",
-                      "explanation": "Formal 'Sie' always takes the infinitive-like form 'haben'."
+                      "answer": "hat",
+                      "explanation": "3rd person singular (er/sie/es) takes 'hat'."
                     },
                     {
-                      "question": "How do you say 'I am thirsty' in natural German?",
+                      "question": "How do you ask: 'Do you have time?' (informal)",
                       "options": [
-                        "Ich bin Durst.",
-                        "Ich habe Durst.",
-                        "Ich bist Durst."
+                        "Hast du Zeit?",
+                        "Bist du Zeit?",
+                        "Habt du Zeit?"
                       ],
-                      "answer": "Ich habe Durst.",
-                      "explanation": "In German, hunger and thirst are treated as things you 'have' (Ich habe Durst)."
+                      "answer": "Hast du Zeit?",
+                      "explanation": "'Hast du Zeit?' is the natural way to ask if someone is free."
                     }
                   ]
                 }
@@ -849,131 +1017,133 @@ export const FALLBACK_COURSES: CourseDetail[] = [
                 "title": "Lesson 6: Regular Verb Conjugation in Präsens",
                 "description": "Standard personal endings (-e, -st, -t, -en) with verbs: lernen, machen, wohnen, arbeiten.",
                 "content": {
-                  "overview": "German regular verbs follow a beautifully predictable pattern. Every regular verb in German consists of a root (stem) and an ending (-en). Once you master the 4 core personal endings, you can instantly conjugate over 80% of all German verbs.",
-                  "canDo": "Can strip a verb to its stem and attach correct present-tense personal endings (-e, -st, -t, -en, -t, -en) for any regular verb.",
-                  "teacherNote": "Here is the secret mnemonic acronym: E - ST - T - EN - T - EN. Think of it like a rhythmic chant: ich -e, du -st, er -t, wir -en, ihr -t, sie -en. Notice that 'wir' and 'sie/Sie' always look identical to the dictionary infinitive!",
+                  "overview": "German regular verbs follow a beautifully predictable pattern. Every regular verb consists of a root (stem) and an ending (-en). Once you master the 4 core personal endings, you can instantly conjugate over 80% of all German verbs.",
+                  "canDo": "Can identify the verb stem and attach the correct personal endings (-e, -st, -t, -en, -t, -en) for any regular German verb.",
+                  "teacherNote": "Remember the rhythmic chant: E - ST - T - EN - T - EN! (ich -e, du -st, er/sie/es -t, wir -en, ihr -t, sie/Sie -en). Notice that 'wir' and 'sie/Sie' always look identical to the dictionary infinitive!",
                   "sections": [
                     {
-                      "title": "1. The Anatomy of a German Verb",
-                      "description": "Take the verb 'lernen' (to learn). Strip off the infinitive ending '-en' to find the stem: lern-. Now add the personal endings:",
+                      "title": "1. Regelmäßige Verben im Präsens (Regular Verbs)",
+                      "description": "Take the verb 'kommen' (to come). Remove '-en' to find the stem: 'komm-'. Add personal endings:",
                       "table": {
                         "headers": [
-                          "Subject Pronoun",
-                          "Personal Ending",
-                          "Conjugated Form (lernen)",
-                          "Meaning"
+                          "Pronomen",
+                          "Endung",
+                          "Beispiel: kommen",
+                          "Beispiel: lernen",
+                          "Beispiel: wohnen"
                         ],
                         "rows": [
                           [
                             "ich",
                             "-e",
+                            "ich komme",
                             "ich lerne",
-                            "I learn / I am learning"
+                            "ich wohne"
                           ],
                           [
                             "du",
                             "-st",
+                            "du kommst",
                             "du lernst",
-                            "you learn (informal)"
+                            "du wohnst"
                           ],
                           [
                             "er / sie / es",
                             "-t",
-                            "er / sie / es lernt",
-                            "he / she / it learns"
+                            "er kommt",
+                            "sie lernt",
+                            "es wohnt"
                           ],
                           [
                             "wir",
                             "-en",
+                            "wir kommen",
                             "wir lernen",
-                            "we learn"
+                            "wir wohnen"
                           ],
                           [
                             "ihr",
                             "-t",
+                            "ihr kommt",
                             "ihr lernt",
-                            "you all learn"
+                            "ihr wohnt"
                           ],
                           [
                             "sie / Sie",
                             "-en",
-                            "sie / Sie lernen",
-                            "they learn / You learn (formal)"
+                            "sie kommen",
+                            "sie lernen",
+                            "Sie wohnen"
                           ]
                         ]
                       }
                     },
                     {
-                      "title": "2. The Most Useful Regular Verbs in A1",
-                      "description": "These work exactly like 'lernen':",
+                      "title": "2. Special Stem Endings: -t / -d and -s / -ß / -z",
+                      "description": "Two phonetic adjustments make pronunciation comfortable:",
                       "items": [
                         {
-                          "term": "machen (to make / do)",
-                          "meaning": "ich mache, du machst, er macht, wir machen, ihr macht, sie machen",
-                          "example": "Was machst du heute? (What are you doing today?)"
+                          "term": "Stems in -t / -d (arbeiten, finden)",
+                          "meaning": "Insert an extra '-e-' before -st and -t so consonants don't clump together.",
+                          "example": "du arbeitest, er arbeitet, ihr arbeitet (not 'arbeitst'!)"
                         },
                         {
-                          "term": "wohnen (to reside / live)",
-                          "meaning": "ich wohne, du wohnst, er wohnt, wir wohnen, ihr wohnt, sie wohnen",
-                          "example": "Ich wohne in Köln. (I live in Cologne.)"
-                        },
-                        {
-                          "term": "arbeiten (to work)",
-                          "meaning": "Stem ends in -t! Insert extra '-e-' for pronunciation: du arbeitest, er arbeitet",
-                          "example": "Er arbeitet bei Siemens. (He works at Siemens.)"
-                        },
-                        {
-                          "term": "trinken (to drink)",
-                          "meaning": "ich trinke, du trinkst, er trinkt, wir trinken",
-                          "example": "Wir trinken Mineralwasser. (We drink mineral water.)"
+                          "term": "Stems in -s / -ß / -z (heißen, reisen)",
+                          "meaning": "The 'du' form drops the 's' and just adds '-t', since the sound is already a sibilant.",
+                          "example": "du heißt (not 'heißst'!), du reist"
                         }
                       ]
                     }
                   ],
                   "dialogue": {
-                    "context": "Two new acquaintances chatting at a language café in Munich:",
+                    "context": "Zwei Kursteilnehmer im Café nach dem Unterricht (Netzwerk A1):",
                     "lines": [
                       {
-                        "speaker": "Lukas",
-                        "german": "Hallo! Was machst du beruflich?",
-                        "english": "Hello! What do you do for a living?"
+                        "speaker": "Christian",
+                        "german": "Hallo Sarah! Was trinkst du?",
+                        "english": "Hello Sarah! What are you drinking?"
                       },
                       {
                         "speaker": "Sarah",
-                        "german": "Ich arbeite als Designerin und lerne jetzt Deutsch.",
-                        "english": "I work as a designer and am now learning German."
+                        "german": "Ich trinke einen Orangensaft. Und was trinkst du?",
+                        "english": "I am drinking an orange juice. And what are you drinking?"
                       },
                       {
-                        "speaker": "Lukas",
-                        "german": "Toll! Ich wohne hier in München und studiere Informatik.",
-                        "english": "Great! I live here in Munich and study computer science."
+                        "speaker": "Christian",
+                        "german": "Ich trinke einen Kaffee. Lernst du heute noch für den Test?",
+                        "english": "I am drinking a coffee. Are you still studying for the test today?"
+                      },
+                      {
+                        "speaker": "Sarah",
+                        "german": "Ja, wir lernen am Nachmittag zusammen in der Bibliothek.",
+                        "english": "Yes, we are studying together in the library this afternoon."
                       }
                     ]
                   },
                   "funFact": {
-                    "title": "No Continuous Tense in German!",
-                    "content": "English speakers often struggle trying to translate 'I am learning' vs 'I learn'. Good news: German does NOT have continuous '-ing' forms! 'Ich lerne' covers both 'I learn' and 'I am learning'. To say you are doing it right now, simply add the word 'gerade' (*Ich lerne gerade Deutsch*)."
+                    "title": "No Present Continuous in German!",
+                    "content": "English has two present tenses: 'I learn' and 'I am learning'. German has only ONE: 'Ich lerne' means both! To express that an action is happening right this second, simply add the word 'gerade': 'Ich lerne gerade Deutsch' (I am learning German right now)."
                   },
                   "practice": [
                     {
-                      "question": "How do you conjugate 'wohnen' for 'du'?",
+                      "question": "What is the correct conjugation: 'Woher _____ du?' (kommen)",
                       "options": [
-                        "du wohnt",
-                        "du wohnst",
-                        "du wohne"
+                        "kommst",
+                        "kommt",
+                        "kommen"
                       ],
-                      "answer": "du wohnst",
-                      "explanation": "The personal ending for 'du' is always '-st', making it 'wohnst'."
+                      "answer": "kommst",
+                      "explanation": "'du' always takes the ending '-st' (Woher kommst du?)."
                     },
                     {
-                      "question": "Why does 'du arbeitest' have an extra 'e'?",
+                      "question": "Conjugate 'arbeiten' for 'er': 'Er _____ bei BMW.'",
                       "options": [
-                        "It is an irregular verb",
-                        "Because stems ending in -d or -t need an 'e' to be pronounceable",
-                        "It is an older dialect"
+                        "arbeitt",
+                        "arbeitet",
+                        "arbeiten"
                       ],
-                      "answer": "Because stems ending in -d or -t need an 'e' to be pronounceable",
-                      "explanation": "Trying to say 'arbeitst' with three consonants in a row is too difficult, so German phonetically inserts an 'e': arbeitest."
+                      "answer": "arbeitet",
+                      "explanation": "Stems ending in -t add '-et' for ease of pronunciation: er arbeitet."
                     }
                   ]
                 }
@@ -983,140 +1153,167 @@ export const FALLBACK_COURSES: CourseDetail[] = [
                 "title": "Lesson 7: Essential Stem-Changing / Irregular Verbs",
                 "description": "Vowel shifts in 2nd/3rd person: e -> i/ie (sehen, lesen, sprechen, essen, nehmen) and a -> ä (fahren).",
                 "content": {
-                  "overview": "While most German verbs are regular, a small group of extremely frequent everyday verbs experience a vowel change in the 2nd and 3rd person singular (du and er/sie/es). Once you spot this pattern, irregular verbs become intuitive.",
-                  "canDo": "Can recognize stem-changing patterns (e -> i/ie and a -> ä) in high-frequency verbs like sprechen, sehen, lesen, essen, and fahren.",
-                  "teacherNote": "Crucial rule: Stem vowel changes ONLY occur in 'du' and 'er/sie/es'! The forms for 'ich', 'wir', 'ihr', and 'sie/Sie' stay completely regular with the original vowel.",
+                  "overview": "Several high-frequency German verbs undergo a vowel shift in the 2nd (du) and 3rd (er/sie/es) person singular. In this lesson, you will master the two major shift categories: 'e -> i/ie' and 'a -> ä'.",
+                  "canDo": "Can recognize and correctly conjugate key stem-changing verbs: sprechen, lesen, sehen, essen, and fahren.",
+                  "teacherNote": "Golden rule of stem-changing verbs: the vowel shift ONLY affects 'du' and 'er/sie/es'! All plural forms (wir, ihr, sie/Sie) remain completely regular!",
                   "sections": [
                     {
-                      "title": "1. The Two Main Vowel Shift Patterns",
-                      "description": "Focus on these two shifts in 2nd/3rd person singular:",
+                      "title": "1. Vowel Shift: e -> i / ie (sprechen, lesen, sehen, essen)",
+                      "description": "Watch how the stem vowel changes in singular forms:",
                       "table": {
                         "headers": [
-                          "Pattern",
-                          "Infinitive",
-                          "ich form",
-                          "du form (shifted!)",
-                          "er/sie/es (shifted!)"
+                          "Pronomen",
+                          "sprechen (to speak)",
+                          "lesen (to read)",
+                          "sehen (to see)",
+                          "essen (to eat)"
                         ],
                         "rows": [
                           [
-                            "e -> i",
-                            "sprechen (to speak)",
-                            "ich spreche",
-                            "du sprichst",
-                            "er spricht"
+                            "ich",
+                            "spreche",
+                            "lese",
+                            "sehe",
+                            "esse"
                           ],
                           [
-                            "e -> i",
-                            "essen (to eat)",
-                            "ich esse",
-                            "du isst",
-                            "sie isst"
+                            "du",
+                            "sprichst (e->i)",
+                            "liest (e->ie)",
+                            "siehst (e->ie)",
+                            "isst (e->i)"
                           ],
                           [
-                            "e -> i",
-                            "helfen (to help)",
-                            "ich helfe",
-                            "du hilfst",
-                            "er hilft"
+                            "er / sie / es",
+                            "spricht (e->i)",
+                            "liest (e->ie)",
+                            "sieht (e->ie)",
+                            "isst (e->i)"
                           ],
                           [
-                            "e -> ie",
-                            "sehen (to see)",
-                            "ich sehe",
-                            "du siehst",
-                            "er sieht"
+                            "wir",
+                            "sprechen",
+                            "lesen",
+                            "sehen",
+                            "essen"
                           ],
                           [
-                            "e -> ie",
-                            "lesen (to read)",
-                            "ich lese",
-                            "du liest",
-                            "er liest"
+                            "ihr",
+                            "sprecht",
+                            "lest",
+                            "seht",
+                            "esst"
                           ],
                           [
-                            "a -> ä",
-                            "fahren (to drive/travel)",
-                            "ich fahre",
-                            "du fährst",
-                            "er fährt"
-                          ],
-                          [
-                            "a -> ä",
-                            "schlafen (to sleep)",
-                            "ich schlafe",
-                            "du schläfst",
-                            "er schläft"
+                            "sie / Sie",
+                            "sprechen",
+                            "lesen",
+                            "sehen",
+                            "essen"
                           ]
                         ]
                       }
                     },
                     {
-                      "title": "2. Plural Forms Stay Regular!",
-                      "description": "Notice how the plural forms never take the vowel change:",
-                      "items": [
-                        {
-                          "term": "wir sprechen",
-                          "meaning": "we speak (regular 'e')",
-                          "example": "Wir sprechen Deutsch und Englisch."
-                        },
-                        {
-                          "term": "ihr sprecht",
-                          "meaning": "you all speak (regular 'e', ending -t)",
-                          "example": "Sprecht ihr Deutsch?"
-                        },
-                        {
-                          "term": "sie / Sie sprechen",
-                          "meaning": "they / You speak (regular 'e', ending -en)",
-                          "example": "Sprechen Sie Deutsch?"
-                        }
-                      ]
+                      "title": "2. Vowel Shift: a -> ä (fahren, schlafen, tragen)",
+                      "description": "The vowel 'a' receives an Umlaut ('ä') in 'du' and 'er/sie/es':",
+                      "table": {
+                        "headers": [
+                          "Pronomen",
+                          "fahren (to travel/drive)",
+                          "schlafen (to sleep)",
+                          "tragen (to wear/carry)"
+                        ],
+                        "rows": [
+                          [
+                            "ich",
+                            "fahre",
+                            "schlafe",
+                            "trage"
+                          ],
+                          [
+                            "du",
+                            "fährst (a->ä)",
+                            "schläfst (a->ä)",
+                            "trägst (a->ä)"
+                          ],
+                          [
+                            "er / sie / es",
+                            "fährt (a->ä)",
+                            "schläft (a->ä)",
+                            "trägt (a->ä)"
+                          ],
+                          [
+                            "wir",
+                            "fahren",
+                            "schlafen",
+                            "tragen"
+                          ],
+                          [
+                            "ihr",
+                            "fahrt",
+                            "schlaft",
+                            "tragt"
+                          ],
+                          [
+                            "sie / Sie",
+                            "fahren",
+                            "schlafen",
+                            "tragen"
+                          ]
+                        ]
+                      }
                     }
                   ],
                   "dialogue": {
-                    "context": "At a breakfast table in a hotel in Salzburg:",
+                    "context": "Im Buchladen am Marienplatz in München (Netzwerk A1):",
                     "lines": [
                       {
-                        "speaker": "Klaus",
-                        "german": "Guten Morgen! Was isst du zum Frühstück?",
-                        "english": "Good morning! What are you eating for breakfast?"
+                        "speaker": "Kunde",
+                        "german": "Guten Tag! Sprechen Sie auch Englisch?",
+                        "english": "Good day! Do you also speak English?"
                       },
                       {
-                        "speaker": "Mia",
-                        "german": "Ich esse ein Brötchen mit Käse. Liest du die Zeitung?",
-                        "english": "I am eating a bread roll with cheese. Are you reading the newspaper?"
+                        "speaker": "Buchhändlerin",
+                        "german": "Ja, ein bisschen. Welche Bücher lesen Sie gern?",
+                        "english": "Yes, a little. What books do you like to read?"
                       },
                       {
-                        "speaker": "Klaus",
-                        "german": "Ja, ich lese die Nachrichten aus Österreich.",
-                        "english": "Yes, I am reading the news from Austria."
+                        "speaker": "Kunde",
+                        "german": "Ich lerne Deutsch und lese gern einfache Kurzgeschichten.",
+                        "english": "I am learning German and like reading simple short stories."
+                      },
+                      {
+                        "speaker": "Buchhändlerin",
+                        "german": "Da haben wir ein tolles Buch! Mein Kollege liest das auch sehr gern.",
+                        "english": "We have a great book right there! My colleague also loves reading it."
                       }
                     ]
                   },
                   "funFact": {
-                    "title": "Stem Changes Are Universal Germanic Heritage",
-                    "content": "Did you know that English has the same stem changes from our shared Germanic ancestry? Think of English 'speak' -> 'spoke', 'see' -> 'saw', or 'eat' -> 'ate'. German kept vowel changes active in the present tense, making it vibrant and expressive!"
+                    "title": "The 'essen' & 'sein' Identity",
+                    "content": "Notice that 'er isst' (he eats) and 'er ist' (he is) sound 100% identical in spoken German! Context always makes the meaning crystal clear: 'Er ist im Café' (He is in the café) vs. 'Er isst ein Brötchen' (He is eating a bread roll)."
                   },
                   "practice": [
                     {
-                      "question": "Fill in the blank: 'Er _____ sehr gut Deutsch.' (sprechen)",
+                      "question": "Complete the question: 'Welche Sprachen _____ du?' (sprechen)",
                       "options": [
-                        "sprecht",
-                        "spricht",
-                        "spreche"
+                        "sprichst",
+                        "sprechst",
+                        "sprecht"
                       ],
-                      "answer": "spricht",
-                      "explanation": "'sprechen' has an e -> i vowel change for er/sie/es, resulting in 'er spricht'."
+                      "answer": "sprichst",
+                      "explanation": "'sprechen' shifts e -> i for 'du': du sprichst."
                     },
                     {
-                      "question": "Which form is correct for 'du' with the verb 'fahren'?",
+                      "question": "Choose the correct form: 'Am Wochenende _____ sie nach Hamburg.' (fahren - singular she)",
                       "options": [
-                        "du fahrst",
-                        "du fährst",
-                        "du fährt"
+                        "fährt",
+                        "fahrt",
+                        "fahren"
                       ],
-                      "answer": "du fährst",
-                      "explanation": "'fahren' undergoes an a -> ä vowel change and takes the '-st' ending: 'du fährst'."
+                      "answer": "fährt",
+                      "explanation": "'sie' (3rd person singular) shifts a -> ä: sie fährt."
                     }
                   ]
                 }
@@ -1126,105 +1323,125 @@ export const FALLBACK_COURSES: CourseDetail[] = [
                 "title": "Lesson 8: German Word Order & Verb Position",
                 "description": "The golden rule: Verb always in Position 2; subject-first statements vs. element-first inversion.",
                 "content": {
-                  "overview": "If you learn only one rule about German syntax, make it this one: **The conjugated verb is always in Position 2 in main clauses**. Mastering this rule unlocks the entire architecture of German sentences.",
-                  "canDo": "Can construct sentences with the verb securely in Position 2, whether beginning with the subject or an element of time/location (inversion).",
-                  "teacherNote": "Position 2 does NOT mean the second *word*; it means the second *grammatical unit*! For example, 'Heute Nachmittag' (this afternoon) is two words, but it counts as Position 1. The verb immediately takes Position 2.",
+                  "overview": "German sentence structure revolves around one unbreakable golden rule: in a standard statement, the conjugated verb ALWAYS occupies Position 2. In this lesson, you will master normal word order and inverted word order.",
+                  "canDo": "Can position verbs accurately in Position 2 and create varied sentences starting with time, place, or objects.",
+                  "teacherNote": "Position 2 does NOT mean 'second word'—it means second grammatical element! A time phrase like 'Heute Nachmittag' (this afternoon) is two words, but it counts as ONE element in Position 1. The verb immediately follows in Position 2.",
                   "sections": [
                     {
-                      "title": "1. The Golden Rule: Verb in Position 2",
-                      "description": "Study how the verb stays anchored while other pieces swap around it:",
+                      "title": "1. Die goldene Regel: Verb an Position 2",
+                      "description": "Observe how the verb stays locked in Position 2 while other elements move around it:",
                       "table": {
                         "headers": [
-                          "Position 1 (Subject or Time)",
-                          "Position 2 (Conjugated Verb!)",
-                          "Position 3",
-                          "Rest of Sentence"
+                          "Position 1 (Vorfeld)",
+                          "Position 2 (Verb)",
+                          "Mittelfeld (Subjekt / Zeit / Ort)",
+                          "Satzende"
                         ],
                         "rows": [
                           [
                             "Ich",
                             "lerne",
-                            "heute",
-                            "Deutsch in Berlin."
+                            "heute Deutsch in Berlin",
+                            "."
                           ],
                           [
                             "Heute",
                             "lerne",
-                            "ich",
-                            "Deutsch in Berlin. (Inversion!)"
+                            "ich Deutsch in Berlin",
+                            "."
                           ],
                           [
                             "In Berlin",
                             "lerne",
-                            "ich",
-                            "heute Deutsch."
+                            "ich heute Deutsch",
+                            "."
                           ],
                           [
-                            "Wir",
-                            "trinken",
-                            "jetzt",
-                            "einen Kaffee."
+                            "Gregor",
+                            "trinkt",
+                            "am Morgen immer Kaffee",
+                            "."
                           ],
                           [
-                            "Jetzt",
-                            "trinken",
-                            "wir",
-                            "einen Kaffee."
+                            "Am Morgen",
+                            "trinkt",
+                            "Gregor immer Kaffee",
+                            "."
                           ]
                         ]
                       }
                     },
                     {
-                      "title": "2. Subject-Verb Inversion",
-                      "description": "In English, starting with time sounds like: 'Today I learn German.' In German, the moment you put something other than the subject first, the subject jumps to Position 3 behind the verb:",
+                      "title": "2. Inversion (Umkehrung der Wortstellung)",
+                      "description": "When you put something other than the subject in Position 1, the subject flips to Position 3:",
                       "items": [
                         {
-                          "term": "Normal Word Order",
-                          "meaning": "Subject (Pos 1) + Verb (Pos 2)",
-                          "example": "Ich komme morgen. (I am coming tomorrow.)"
+                          "term": "Subject First",
+                          "meaning": "Standard neutral order: Subject + Verb + Information",
+                          "example": "Nina wohnt in Frankfurt."
                         },
                         {
-                          "term": "Inverted Word Order",
-                          "meaning": "Time / Place (Pos 1) + Verb (Pos 2) + Subject (Pos 3)",
-                          "example": "Morgen komme ich. (Tomorrow I am coming.)"
+                          "term": "Time First (Emphasis on Time)",
+                          "meaning": "Time + Verb + Subject + Information",
+                          "example": "Jetzt wohnt Nina in Frankfurt."
+                        },
+                        {
+                          "term": "Place First (Emphasis on Location)",
+                          "meaning": "Location + Verb + Subject + Information",
+                          "example": "In Frankfurt wohnt Nina schon zwei Jahre."
                         }
                       ]
                     }
                   ],
                   "dialogue": {
-                    "context": "Two colleagues planning their work schedule in Stuttgart:",
+                    "context": "Zwei Freunde planen ihren Tag in Zürich (Netzwerk A1):",
                     "lines": [
                       {
-                        "speaker": "Leon",
-                        "german": "Wann arbeitest du morgen?",
-                        "english": "When are you working tomorrow?"
+                        "speaker": "Marco",
+                        "german": "Wann fährst du heute nach Zürich?",
+                        "english": "When are you driving to Zurich today?"
                       },
                       {
-                        "speaker": "Jan",
-                        "german": "Morgen arbeite ich von acht bis fünf Uhr.",
-                        "english": "Tomorrow I work from eight to five o'clock."
+                        "speaker": "Anna",
+                        "german": "Um zehn Uhr fahre ich mit der Bahn. Und was machst du?",
+                        "english": "At ten o'clock I travel by train. And what are you doing?"
                       },
                       {
-                        "speaker": "Leon",
-                        "german": "Perfekt, dann trinken wir um sechs Uhr einen Kaffee zusammen!",
-                        "english": "Perfect, then we'll drink a coffee together at six o'clock!"
+                        "speaker": "Marco",
+                        "german": "Heute arbeite ich bis 16 Uhr. Am Abend treffe ich Lukas.",
+                        "english": "Today I work until 4 PM. In the evening I am meeting Lukas."
+                      },
+                      {
+                        "speaker": "Anna",
+                        "german": "Perfekt, dann sehen wir uns um sieben Uhr!",
+                        "english": "Perfect, then we will see each other at seven o'clock!"
                       }
                     ]
                   },
                   "funFact": {
-                    "title": "German's Lego-like Sentence Architecture",
-                    "content": "Because German fixes the verb in Position 2, speakers have immense freedom to highlight what's important! If the day is important, start with 'Morgen' (Tomorrow). If the city is key, start with 'In Berlin'. The verb acts as the steady pillar holding the sentence together."
+                    "title": "German is a 'Verb-Second' (V2) Language",
+                    "content": "Linguists call German a V2 language. Unlike English, where you can say 'Yesterday I went to the store' (Yesterday = 1, I = 2, went = 3), in German the verb DEMANDS Position 2: 'Gestern bin ich...' (Yesterday = 1, bin = 2, ich = 3)."
                   },
                   "practice": [
                     {
-                      "question": "Which of the following sentences has the correct German word order?",
+                      "question": "Which sentence follows correct German word order?",
                       "options": [
-                        "Heute ich spiele Fußball.",
-                        "Heute spiele ich Fußball.",
-                        "Spiele heute ich Fußball."
+                        "Morgen ich fahre nach Berlin.",
+                        "Morgen fahre ich nach Berlin.",
+                        "Ich morgen fahre nach Berlin."
                       ],
-                      "answer": "Heute spiele ich Fußball.",
-                      "explanation": "When 'Heute' occupies Position 1, the verb 'spiele' must immediately take Position 2, followed by the subject 'ich' in Position 3."
+                      "answer": "Morgen fahre ich nach Berlin.",
+                      "explanation": "Because 'Morgen' occupies Position 1, the verb 'fahre' MUST be in Position 2, followed by the subject 'ich'."
+                    },
+                    {
+                      "question": "Where does the conjugated verb go in a standard German statement?",
+                      "options": [
+                        "At the very end",
+                        "Always in Position 2",
+                        "Always in Position 1"
+                      ],
+                      "answer": "Always in Position 2",
+                      "explanation": "The core rule of German main clauses is that the conjugated verb stands in Position 2."
                     }
                   ]
                 }
@@ -1234,114 +1451,125 @@ export const FALLBACK_COURSES: CourseDetail[] = [
                 "title": "Lesson 9: Ja/Nein Questions & Negation Answers",
                 "description": "Verb-first questions ('Kommst du aus Deutschland?'), answering with Ja, Nein, and Doch.",
                 "content": {
-                  "overview": "In daily German life, you need to ask straightforward yes/no questions and answer them clearly. German handles this with verb-first syntax, and introduces a linguistic superpower word: 'Doch'.",
-                  "canDo": "Can form yes/no questions by placing the verb in Position 1, and reply using Ja, Nein, and Doch.",
-                  "teacherNote": "Pay special attention to 'Doch'! It contradicts a negative question. If someone asks: 'Kommst du nicht?' (Aren't you coming?), answering 'Ja' causes confusion. Answering 'Doch!' means 'Yes, I AM coming!'",
+                  "overview": "Questions are essential for everyday conversation. In this lesson, you will master yes/no questions (Ja/Nein-Fragen) where the verb jumps to Position 1, and learn the famous German answer word 'Doch!', which has no direct one-word English equivalent.",
+                  "canDo": "Can construct yes/no questions by placing the verb in Position 1, and answer accurately using 'Ja', 'Nein', and 'Doch!'.",
+                  "teacherNote": "Mastering 'Doch' is the ultimate German superpower! When someone asks a negative question ('Kommst du nicht mit?'), English speakers struggle with whether 'yes' means you are coming or not. German solves this instantly: 'Doch!' means 'Yes, on the contrary, I AM coming!'.",
                   "sections": [
                     {
-                      "title": "1. Forming Ja/Nein Questions (Verb in Position 1)",
-                      "description": "Simply move the conjugated verb to the very front of the sentence:",
+                      "title": "1. Ja/Nein-Fragen (Verb in Position 1)",
+                      "description": "To turn any statement into a yes/no question, simply move the conjugated verb to the very front:",
                       "table": {
                         "headers": [
-                          "Statement (Verb in Pos 2)",
-                          "Ja/Nein Question (Verb in Pos 1)",
-                          "English Question"
+                          "Aussage (Statement)",
+                          "Ja/Nein-Frage (Question)",
+                          "Mögliche Antwort"
                         ],
                         "rows": [
                           [
-                            "Du kommst aus Deutschland.",
-                            "Kommst du aus Deutschland?",
-                            "Do you come from Germany?"
+                            "Du sprichst Deutsch.",
+                            "Sprichst du Deutsch?",
+                            "Ja, ein bisschen."
                           ],
                           [
-                            "Sie trinken Kaffee.",
-                            "Trinken Sie Kaffee?",
-                            "Do you drink coffee?"
+                            "Herr Schubert kommt heute.",
+                            "Kommt Herr Schubert heute?",
+                            "Nein, leider nicht."
                           ],
                           [
-                            "Er wohnt in Wien.",
-                            "Wohnt er in Wien?",
-                            "Does he live in Vienna?"
+                            "Sie wohnen in Wien.",
+                            "Wohnen Sie in Wien?",
+                            "Ja, in der Innenstadt."
                           ],
                           [
-                            "Ihr habt Zeit.",
-                            "Habt ihr Zeit?",
-                            "Do you all have time?"
+                            "Ihr trinkt Kaffee.",
+                            "Trinkt ihr Kaffee?",
+                            "Ja, gern!"
                           ]
                         ]
                       }
                     },
                     {
-                      "title": "2. The Three Answers: Ja, Nein, and DOCH!",
-                      "description": "German has three distinct ways to respond:",
-                      "items": [
-                        {
-                          "term": "Ja (Yes)",
-                          "meaning": "Agrees with a positive question",
-                          "example": "Lernst du Deutsch? -> Ja, ich lerne Deutsch."
-                        },
-                        {
-                          "term": "Nein (No)",
-                          "meaning": "Negates or denies any question",
-                          "example": "Kommst du aus Spanien? -> Nein, aus Italien."
-                        },
-                        {
-                          "term": "Doch! (On the contrary! Yes, I do!)",
-                          "meaning": "Contradicts a question containing 'nicht' or 'kein'",
-                          "example": "Hast du keinen Hunger? -> Doch! (Yes, I *do* have hunger!)"
-                        }
-                      ]
+                      "title": "2. The Triangle of Answers: Ja, Nein & DOCH!",
+                      "description": "How to respond to positive vs. negative questions:",
+                      "table": {
+                        "headers": [
+                          "Fragentyp",
+                          "Fragebeispiel",
+                          "Antwort: Ja / Nein",
+                          "Antwort: Doch!"
+                        ],
+                        "rows": [
+                          [
+                            "Positive Frage",
+                            "Kommst du heute zum Kurs?",
+                            "Ja, ich komme. / Nein, ich habe keine Zeit.",
+                            "— (nicht verwendet)"
+                          ],
+                          [
+                            "Negative Frage",
+                            "Kommst du heute NICHT?",
+                            "Nein, ich komme nicht.",
+                            "DOCH! (Ich komme natürlich!)"
+                          ],
+                          [
+                            "Negative Frage",
+                            "Trinkst du KEINEN Kaffee?",
+                            "Nein, ich trinke keinen.",
+                            "DOCH! (Ich trinke sehr gern Kaffee!)"
+                          ]
+                        ]
+                      }
                     }
                   ],
                   "dialogue": {
-                    "context": "At an office lunch break discussing lunch plans:",
+                    "context": "In der Pause vor dem Seminarraum (Netzwerk A1):",
                     "lines": [
                       {
-                        "speaker": "Markus",
-                        "german": "Kommst du nicht mit zum Restaurant?",
-                        "english": "Aren't you coming along to the restaurant?"
+                        "speaker": "Julia",
+                        "german": "Hast du keine Pause, Gregor?",
+                        "english": "Don't you have a break, Gregor?"
+                      },
+                      {
+                        "speaker": "Gregor",
+                        "german": "Doch! Ich habe 20 Minuten Pause. Gehst du in die Cafeteria?",
+                        "english": "Yes I do! (On the contrary!) I have a 20-minute break. Are you going to the cafeteria?"
                       },
                       {
                         "speaker": "Julia",
-                        "german": "Doch! Ich hole nur schnell meine Jacke.",
-                        "english": "Yes, I am! I'm just quickly grabbing my jacket."
+                        "german": "Ja, kommst du mit?",
+                        "english": "Yes, are you coming along?"
                       },
                       {
-                        "speaker": "Markus",
-                        "german": "Super, hast du schon einen Tisch reserviert?",
-                        "english": "Super, have you already reserved a table?"
-                      },
-                      {
-                        "speaker": "Julia",
-                        "german": "Ja, für vier Personen.",
-                        "english": "Yes, for four people."
+                        "speaker": "Gregor",
+                        "german": "Ja gern, ich brauche einen Espresso!",
+                        "english": "Yes gladly, I need an espresso!"
                       }
                     ]
                   },
                   "funFact": {
-                    "title": "The Superpower Word 'Doch'",
-                    "content": "Linguists often call 'doch' one of the most untranslatable words in the world! While English needs an awkward multi-word phrase ('Yes, I actually do!' or 'On the contrary!'), German expresses pure confident contradiction in a single crisp syllable: Doch!"
+                    "title": "The Untranslatable 'Doch'",
+                    "content": "'Doch' is one of the most useful words in the German language. French has 'si' and Scandinavian languages have 'jo', but English lost its equivalent word ('yea'). Using 'Doch' naturally will instantly make your German sound authentic and fluent!"
                   },
                   "practice": [
                     {
-                      "question": "Someone asks you: 'Trinkst du keinen Kaffee?' (Don't you drink coffee?), but you DO drink coffee. What do you reply?",
+                      "question": "Someone asks you: 'Lernst du nicht Deutsch?' (Don't you learn German?). You DO learn German. How do you answer?",
                       "options": [
                         "Ja!",
                         "Nein!",
                         "Doch!"
                       ],
                       "answer": "Doch!",
-                      "explanation": "'Doch' is specifically used to contradict a negative question and affirm the action."
+                      "explanation": "'Doch!' contradicts a negative question and confirms that the positive statement is true."
                     },
                     {
-                      "question": "How do you turn 'Sie arbeiten hier' into a question?",
+                      "question": "Which sentence is a correct Ja/Nein question?",
                       "options": [
-                        "Hier arbeiten Sie?",
-                        "Arbeiten Sie hier?",
-                        "Sie arbeiten hier?"
+                        "Wohnst du in München?",
+                        "Wo wohnst du in München?",
+                        "Du wohnst in München?"
                       ],
-                      "answer": "Arbeiten Sie hier?",
-                      "explanation": "Yes/No questions place the conjugated verb in Position 1: 'Arbeiten Sie hier?'."
+                      "answer": "Wohnst du in München?",
+                      "explanation": "A yes/no question begins with the conjugated verb in Position 1: 'Wohnst du in München?'."
                     }
                   ]
                 }
@@ -1351,143 +1579,153 @@ export const FALLBACK_COURSES: CourseDetail[] = [
                 "title": "Lesson 10: W-Questions (W-Fragen)",
                 "description": "Interrogative pronouns: Wer?, Was?, Wo?, Woher?, Wohin?, Wie?, Wann?, Warum?.",
                 "content": {
-                  "overview": "When you need specific information—names, locations, times, or reasons—you use German question words, known as 'W-Fragen' because almost all of them start with the letter W.",
-                  "canDo": "Can recognize and ask questions using all 8 core question words: Wer, Was, Wo, Woher, Wohin, Wie, Wann, and Warum.",
-                  "teacherNote": "In W-questions, the question word is in Position 1, and the conjugated verb is immediately in Position 2! (e.g. Wo [1] wohnst [2] du?).",
+                  "overview": "W-Questions (W-Fragen) are open-ended questions that ask for specific information. In German, every single question word begins with the letter 'W'. In this lesson, you will master the 8 core W-words and their sentence structure.",
+                  "canDo": "Can formulate open questions using all 8 German W-question words and understand questions asked during conversations or official inquiries.",
+                  "teacherNote": "Notice the structure: W-Word (Position 1) + Conjugated Verb (Position 2) + Subject (Position 3) + Rest of Sentence. The verb stays right in Position 2, just like in a statement!",
                   "sections": [
                     {
-                      "title": "1. The 8 Core German Question Words",
-                      "description": "Master this table of essential interrogative pronouns:",
+                      "title": "1. Die 8 wichtigsten W-Fragen (The 8 Key W-Words)",
+                      "description": "Essential interrogative pronouns from Netzwerk A1:",
                       "table": {
                         "headers": [
-                          "German Word",
-                          "English Meaning",
-                          "Example Question",
-                          "Translation"
+                          "W-Wort",
+                          "Bedeutung",
+                          "Beispielfrage (Netzwerk A1)",
+                          "Typische Antwort"
                         ],
                         "rows": [
                           [
                             "Wer?",
                             "Who?",
                             "Wer ist das?",
-                            "Who is that?"
+                            "Das ist mein Kollege Paco."
                           ],
                           [
                             "Was?",
                             "What?",
-                            "Was machst du?",
-                            "What are you doing?"
+                            "Was machen Sie beruflich?",
+                            "Ich bin Ingenieur."
                           ],
                           [
                             "Wo?",
-                            "Where? (location)",
-                            "Wo wohnst du?",
-                            "Where do you live?"
+                            "Where? (Location)",
+                            "Wo wohnen Sie?",
+                            "In München."
                           ],
                           [
                             "Woher?",
-                            "Where from? (origin)",
-                            "Woher kommst du?",
-                            "Where do you come from?"
+                            "Where from? (Origin)",
+                            "Woher kommen Sie?",
+                            "Aus Österreich."
                           ],
                           [
                             "Wohin?",
-                            "Where to? (direction)",
+                            "Where to? (Destination)",
                             "Wohin fährst du?",
-                            "Where are you traveling to?"
+                            "Nach Berlin."
                           ],
                           [
                             "Wie?",
-                            "How? / What? (name)",
+                            "How?",
                             "Wie heißen Sie?",
-                            "What is your name? (How are you called?)"
+                            "Ich heiße Julia."
                           ],
                           [
                             "Wann?",
                             "When?",
                             "Wann beginnt der Kurs?",
-                            "When does the course begin?"
+                            "Um neun Uhr."
                           ],
                           [
                             "Warum?",
                             "Why?",
                             "Warum lernst du Deutsch?",
-                            "Why are you learning German?"
+                            "Für meinen Beruf."
                           ]
                         ]
                       }
                     },
                     {
-                      "title": "2. The Location Trio: Wo, Woher, and Wohin",
-                      "description": "Keep these clear in your mind:",
+                      "title": "2. Wo vs. Woher vs. Wohin",
+                      "description": "German clearly separates location, origin, and destination:",
                       "items": [
                         {
-                          "term": "Wo (Static Location)",
-                          "meaning": "Asking where something is right now (no movement)",
-                          "example": "Wo ist der Bahnhof? (Where is the train station?)"
+                          "term": "Wo? (Static Location)",
+                          "meaning": "Asking where someone or something is stationary (paired with 'in', 'bei')",
+                          "example": "Wo bist du? - Ich bin im Sprachinstitut."
                         },
                         {
-                          "term": "Woher (Source / Origin)",
-                          "meaning": "Asking where someone or something comes from",
-                          "example": "Woher kommst du? -> Aus Deutschland."
+                          "term": "Woher? (Origin)",
+                          "meaning": "Asking where someone or something comes from (paired with 'aus')",
+                          "example": "Woher kommst du? - Aus der Schweiz."
                         },
                         {
-                          "term": "Wohin (Destination / Movement)",
-                          "meaning": "Asking where someone is going to",
-                          "example": "Wohin gehst du? -> Nach Hause."
+                          "term": "Wohin? (Destination)",
+                          "meaning": "Asking where someone is going (paired with 'nach', 'in')",
+                          "example": "Wohin gehst du? - In die Mensa."
                         }
                       ]
                     }
                   ],
                   "dialogue": {
-                    "context": "A newcomer asking questions at the citizen registration office in Berlin:",
+                    "context": "Interview am Goethe-Institut am ersten Unterrichtstag (Netzwerk A1):",
                     "lines": [
                       {
-                        "speaker": "Beamter",
-                        "german": "Guten Tag. Wie ist Ihr Name und woher kommen Sie?",
-                        "english": "Good day. What is your name and where do you come from?"
+                        "speaker": "Lehrerin",
+                        "german": "Guten Morgen! Wie heißen Sie und woher kommen Sie?",
+                        "english": "Good morning! What is your name and where do you come from?"
                       },
                       {
-                        "speaker": "Bürger",
-                        "german": "Mein Name ist Alex Chen und ich komme aus Kanada.",
-                        "english": "My name is Alex Chen and I come from Canada."
+                        "speaker": "Paco",
+                        "german": "Ich heiße Paco und komme aus Spanien.",
+                        "english": "My name is Paco and I come from Spain."
                       },
                       {
-                        "speaker": "Beamter",
-                        "german": "Wo wohnen Sie jetzt in Berlin?",
-                        "english": "Where do you live now in Berlin?"
+                        "speaker": "Lehrerin",
+                        "german": "Und wo wohnen Sie hier in München?",
+                        "english": "And where do you live here in Munich?"
                       },
                       {
-                        "speaker": "Bürger",
-                        "german": "Ich wohne in der Kantstraße 12.",
-                        "english": "I live at Kantstraße 12."
+                        "speaker": "Paco",
+                        "german": "Ich wohne in Schwabing, nahe der Universität.",
+                        "english": "I live in Schwabing, close to the university."
+                      },
+                      {
+                        "speaker": "Lehrerin",
+                        "german": "Sehr schön! Wann haben Sie Zeit für die Einstufung?",
+                        "english": "Very nice! When do you have time for the placement test?"
+                      },
+                      {
+                        "speaker": "Paco",
+                        "german": "Heute um elf Uhr.",
+                        "english": "Today at eleven o'clock."
                       }
                     ]
                   },
                   "funFact": {
-                    "title": "'Wie' Means 'How', But Asks for Names!",
-                    "content": "English speakers often expect 'What is your name?' to start with 'Was'. In German, we ask: 'Wie heißen Sie?' (literally: *How are you called?*) and 'Wie ist Ihre Adresse?' (literally: *How is your address?*). Whenever asking about personal data, 'Wie' is your best friend!"
+                    "title": "'Wie' is used for Names and Phone Numbers!",
+                    "content": "In English, you ask: '*What* is your name?' and '*What* is your phone number?'. But in German, you use 'Wie' (How): 'Wie heißen Sie?' (How are you called?) and 'Wie ist Ihre Telefonnummer?' (How is your phone number?). Asking 'Was ist Ihr Name?' sounds unidiomatic to native speakers!"
                   },
                   "practice": [
                     {
-                      "question": "You want to ask where someone is traveling to. Which word do you choose?",
+                      "question": "Which question word asks for someone's country of origin?",
                       "options": [
                         "Wo?",
                         "Wohin?",
                         "Woher?"
                       ],
-                      "answer": "Wohin?",
-                      "explanation": "'Wohin' specifically asks for destination or direction of travel ('Where to?')."
+                      "answer": "Woher?",
+                      "explanation": "'Woher' specifically means 'where from'."
                     },
                     {
-                      "question": "What does 'Wann beginnt der Film?' mean?",
+                      "question": "How do you ask: 'What is your telephone number?' in idiomatic German?",
                       "options": [
-                        "Where does the film start?",
-                        "When does the film begin?",
-                        "Why does the film start?"
+                        "Was ist Ihre Telefonnummer?",
+                        "Wie ist Ihre Telefonnummer?",
+                        "Wo ist Ihre Telefonnummer?"
                       ],
-                      "answer": "When does the film begin?",
-                      "explanation": "'Wann' translates to 'When'."
+                      "answer": "Wie ist Ihre Telefonnummer?",
+                      "explanation": "German uses 'Wie' (How) when asking for numbers, addresses, and names."
                     }
                   ]
                 }
@@ -1503,138 +1741,149 @@ export const FALLBACK_COURSES: CourseDetail[] = [
                 "title": "Lesson 11: Greetings, Goodbyes & Daily Politeness",
                 "description": "Essential greetings: Hallo, Guten Morgen, Guten Tag, Auf Wiedersehen, Tschüss, Bitte, Danke, Entschuldigung.",
                 "content": {
-                  "overview": "Politeness and friendly greetings form the backbone of daily social life in German-speaking countries. In this lesson, you will learn the essential time-of-day greetings, parting phrases, and the essential magic words: 'Bitte' and 'Danke'.",
-                  "canDo": "Can greet people appropriately at any time of day, bid farewell formally and informally, and navigate basic polite interactions with 'Bitte', 'Danke', and 'Entschuldigung'.",
-                  "teacherNote": "Notice regional variations! In Southern Germany and Austria, you will hear 'Grüß Gott' or 'Servus'. In Northern Germany, people greet each other with 'Moin' at any hour of the day or night.",
+                  "overview": "Greetings and courteous farewells form the foundation of social life across Germany, Austria, and Switzerland. In this lesson, you will master the official Netzwerk A1 'Redemittel' for greetings, time-of-day etiquette, parting phrases, and the essential politeness trio: 'Bitte', 'Danke', and 'Entschuldigung'.",
+                  "canDo": "Can greet people appropriately according to time of day and formality, bid polite farewells face-to-face and on the telephone, and use courtesy phrases naturally.",
+                  "teacherNote": "Regional greetings add authentic charm: In Southern Germany and Austria, you will often hear 'Grüß Gott' or 'Servus'. In Northern Germany, 'Moin' is used warmly at all hours of the day or night!",
                   "sections": [
                     {
-                      "title": "1. Time-of-Day Greetings & Goodbyes",
-                      "description": "Choose the appropriate phrase depending on time and formality:",
+                      "title": "1. Redemittel: Begrüßen & Verabschieden (Netzwerk A1)",
+                      "description": "Standard phrases for greetings and farewells according to context:",
                       "table": {
                         "headers": [
-                          "German Phrase",
-                          "Meaning",
-                          "Time / Context",
-                          "Register"
+                          "Redemittel (Ausdruck)",
+                          "Bedeutung (Meaning)",
+                          "Tageszeit / Situation",
+                          "Stil (Register)"
                         ],
                         "rows": [
                           [
-                            "Guten Morgen",
+                            "Guten Morgen!",
                             "Good morning",
-                            "Until approx. 11:00 AM",
-                            "Formal & Neutral"
+                            "Bis ca. 11:00 Uhr",
+                            "Formell & Neutral"
                           ],
                           [
-                            "Guten Tag",
+                            "Guten Tag!",
                             "Good day / Hello",
-                            "11:00 AM until approx. 6:00 PM",
-                            "Formal & Standard"
+                            "11:00 Uhr bis ca. 18:00 Uhr",
+                            "Formell & Standard"
                           ],
                           [
-                            "Guten Abend",
+                            "Guten Abend!",
                             "Good evening",
-                            "From 6:00 PM onwards",
-                            "Formal & Standard"
+                            "Ab ca. 18:00 Uhr",
+                            "Formell & Standard"
                           ],
                           [
-                            "Hallo",
+                            "Hallo!",
                             "Hello / Hi",
-                            "Anytime",
-                            "Informal & Friendly"
+                            "Jederzeit",
+                            "Informell & Freundlich"
                           ],
                           [
-                            "Gute Nacht",
+                            "Gute Nacht!",
                             "Good night",
-                            "When going to sleep / late parting",
-                            "Informal & Neutral"
+                            "Beim Schlafengehen / Später Abschied",
+                            "Beim Zubettgehen"
                           ],
                           [
-                            "Auf Wiedersehen",
+                            "Auf Wiedersehen!",
                             "Goodbye",
-                            "Formal face-to-face farewell",
-                            "Formal"
+                            "Persönlicher Abschied",
+                            "Formell"
                           ],
                           [
-                            "Auf Wiederhören",
-                            "Goodbye (on the phone)",
-                            "Used strictly on telephone calls",
-                            "Formal Phone"
+                            "Auf Wiederhören!",
+                            "Goodbye (am Telefon)",
+                            "Nur am Telefon!",
+                            "Formell am Telefon"
                           ],
                           [
-                            "Tschüss / Ciao",
+                            "Tschüs! / Ciao!",
                             "Bye!",
-                            "Casual farewell with friends & family",
-                            "Informal"
+                            "Freunde, Kollegen, Familie",
+                            "Informell"
+                          ],
+                          [
+                            "Bis bald! / Bis morgen!",
+                            "See you soon! / See you tomorrow!",
+                            "Häufige Verabschiedung",
+                            "Sehr verbreitet"
                           ]
                         ]
                       }
                     },
                     {
-                      "title": "2. The Magic Politeness Words",
-                      "description": "These three words will make you beloved across Germany:",
+                      "title": "2. Die 3 Zauberwörter (Bitte, Danke, Entschuldigung)",
+                      "description": "The golden trio of everyday courtesy in the DACH countries:",
                       "items": [
                         {
-                          "term": "Bitte (Please / You're welcome)",
-                          "meaning": "Used when making a request ('Ein Wasser, bitte') AND when answering 'Danke' ('Gern geschehen' or simply 'Bitte!').",
-                          "example": "Einen Kaffee, bitte! -> Bitte schön!"
+                          "term": "Bitte / Bitte schön / Gern geschehen",
+                          "meaning": "Used when requesting something ('Einen Kaffee, bitte') AND when replying to 'Danke' (You're welcome!).",
+                          "example": "Danke schön! - Bitte sehr! / Gern geschehen!"
                         },
                         {
-                          "term": "Danke / Vielen Dank (Thank you / Many thanks)",
-                          "meaning": "Expressing genuine gratitude. Adding 'sehr' (Danke sehr) or 'vielmals' elevates politeness.",
-                          "example": "Vielen Dank für Ihre Hilfe!"
+                          "term": "Danke / Vielen Dank / Herzlichen Dank",
+                          "meaning": "Expressing gratitude. Adding 'vielen' or 'sehr' elevates warmth and professionalism.",
+                          "example": "Vielen Dank für Ihre Hilfe, Herr Müller!"
                         },
                         {
-                          "term": "Entschuldigung (Excuse me / Sorry)",
-                          "meaning": "Used to get someone's attention or apologize for bumping into someone.",
-                          "example": "Entschuldigung, wo ist die U-Bahn?"
+                          "term": "Entschuldigung / Verzeihung",
+                          "meaning": "Used to get someone's attention on the street or apologize for minor inconveniences.",
+                          "example": "Entschuldigung, wo ist die U-Bahn-Station?"
                         }
                       ]
                     }
                   ],
                   "dialogue": {
-                    "context": "Stepping into a local bakery (Bäckerei) in Dresden in the morning:",
+                    "context": "Vor der Sprachschule am Nachmittag (Netzwerk A1):",
                     "lines": [
                       {
-                        "speaker": "Bäckerin",
-                        "german": "Guten Morgen! Was darf es sein?",
-                        "english": "Good morning! What can I get for you?"
+                        "speaker": "Gregor",
+                        "german": "Hallo Julia! Wie geht's dir?",
+                        "english": "Hello Julia! How are you doing?"
                       },
                       {
-                        "speaker": "Kunde",
-                        "german": "Guten Morgen! Zwei Brötchen, bitte.",
-                        "english": "Good morning! Two bread rolls, please."
+                        "speaker": "Julia",
+                        "german": "Danke, sehr gut! Und dir?",
+                        "english": "Thanks, very well! And you?"
                       },
                       {
-                        "speaker": "Bäckerin",
-                        "german": "Gerne. Das macht einen Euro achtzig.",
-                        "english": "With pleasure. That comes to one euro eighty."
+                        "speaker": "Gregor",
+                        "german": "Auch gut, danke. Bis morgen im Unterricht!",
+                        "english": "Also good, thanks. See you tomorrow in class!"
                       },
                       {
-                        "speaker": "Kunde",
-                        "german": "Hier bitte. Vielen Dank und einen schönen Tag!",
-                        "english": "Here you go. Thank you very much and have a nice day!"
-                      },
-                      {
-                        "speaker": "Bäckerin",
-                        "german": "Danke ebenfalls, auf Wiedersehen!",
-                        "english": "Thank you as well, goodbye!"
+                        "speaker": "Julia",
+                        "german": "Tschüs Gregor! Bis morgen!",
+                        "english": "Bye Gregor! Until tomorrow!"
                       }
                     ]
                   },
                   "funFact": {
-                    "title": "The Handshake & Direct Eye Contact",
-                    "content": "When greeting someone in person in Germany, a firm handshake accompanied by direct eye contact is expected business and social etiquette. A weak handshake or looking away can be perceived as insincere. Casual air-kisses or hugs are reserved solely for very close friends."
+                    "title": "'Auf Wiederhören' is Exclusively for the Phone!",
+                    "content": "Notice the difference: 'Auf Wiedersehen' literally means 'until we *see* each other again' (sehen = to see). Because you cannot see the other person over a telephone call, Germans say 'Auf Wiederhören' (hören = to hear)! Saying 'Auf Wiedersehen' on the phone immediately marks you as a beginner."
                   },
                   "practice": [
                     {
-                      "question": "You are ending a formal phone call with a German client. Which goodbye should you say?",
+                      "question": "You are ending a phone call with a business partner in Munich. How do you say goodbye?",
                       "options": [
-                        "Auf Wiedersehen",
-                        "Auf Wiederhören",
-                        "Tschüss"
+                        "Auf Wiedersehen!",
+                        "Auf Wiederhören!",
+                        "Tschüs!"
                       ],
-                      "answer": "Auf Wiederhören",
-                      "explanation": "'Auf Wiederhören' specifically translates to 'until we hear each other again' and is the standard formal telephone farewell."
+                      "answer": "Auf Wiederhören!",
+                      "explanation": "'Auf Wiederhören' is the polite, standard farewell specifically used when speaking on the phone."
+                    },
+                    {
+                      "question": "Someone hands you a document and says: 'Danke schön!'. What is the most natural reply?",
+                      "options": [
+                        "Bitte sehr!",
+                        "Guten Tag!",
+                        "Entschuldigung!"
+                      ],
+                      "answer": "Bitte sehr!",
+                      "explanation": "'Bitte sehr' or 'Gern geschehen' means 'You're very welcome'."
                     }
                   ]
                 }
@@ -1644,120 +1893,134 @@ export const FALLBACK_COURSES: CourseDetail[] = [
                 "title": "Lesson 12: Self-Introduction: Name, Origin & Residence",
                 "description": "'Ich heiße...', 'Ich komme aus...', 'Ich wohne in...', and asking others for their information.",
                 "content": {
-                  "overview": "Introducing yourself with confidence is the core goal of CEFR A1 Speaking Part 1. In this lesson, you will master the three foundational self-introduction questions: your name, where you are from, and where you live.",
-                  "canDo": "Can introduce yourself, state your full name, country of origin, current city of residence, and ask conversation partners for their personal details.",
-                  "teacherNote": "Pay attention to the prepositions: 'aus' (from) is used for your country/city of origin (*Ich komme aus...*), while 'in' is used for your current residence (*Ich wohne in...*).",
+                  "overview": "Introducing yourself smoothly is the first major conversational milestone in A1. In this lesson, you will master the official Netzwerk A1 'Redemittel' for stating your name, place of residence, origin, language skills, and occupation.",
+                  "canDo": "Can introduce yourself and others, ask conversation partners for their personal information, and fill in basic registration forms.",
+                  "teacherNote": "Learn the 4 questions that every German native speaker will ask when meeting you: 1. Wie heißen Sie? 2. Woher kommen Sie? 3. Wo wohnen Sie? 4. Was machen Sie beruflich?",
                   "sections": [
                     {
-                      "title": "1. Three Ways to State Your Name",
-                      "description": "All three are natural and widely used:",
+                      "title": "1. Redemittel: Sich und andere vorstellen (Netzwerk A1)",
+                      "description": "Essential question-and-answer pairs for introducing yourself:",
                       "table": {
                         "headers": [
-                          "Pattern",
-                          "German",
-                          "English",
-                          "Register"
+                          "Thema (Topic)",
+                          "Frage (Informell / Formell)",
+                          "Antwort (Redemittel)"
                         ],
                         "rows": [
                           [
-                            "heißen",
-                            "Ich heiße Michael Bauer.",
-                            "I am called Michael Bauer.",
-                            "Universal & Standard"
+                            "Name",
+                            "Wie heißt du? / Wie heißen Sie?",
+                            "Ich heiße Paco. / Mein Name ist Nina Weber."
                           ],
                           [
-                            "sein",
-                            "Ich bin Michael.",
-                            "I am Michael.",
-                            "Friendly & Direct"
+                            "Identität",
+                            "Wer bist du? / Wer sind Sie?",
+                            "Ich bin Gregor Schubert."
                           ],
                           [
-                            "mein Name",
-                            "Mein Name ist Michael Bauer.",
-                            "My name is Michael Bauer.",
-                            "Polite & Professional"
+                            "Herkunft (Origin)",
+                            "Woher kommst du? / Woher kommen Sie?",
+                            "Ich komme aus Spanien / aus Deutschland."
+                          ],
+                          [
+                            "Wohnort (Residence)",
+                            "Wo wohnst du? / Wo wohnen Sie?",
+                            "Ich wohne in Leipzig / in Berlin."
+                          ],
+                          [
+                            "Sprachen (Languages)",
+                            "Welche Sprachen sprichst du / sprechen Sie?",
+                            "Ich spreche Spanisch und lerne Deutsch."
+                          ],
+                          [
+                            "Beruf (Profession)",
+                            "Was bist du / sind Sie von Beruf?",
+                            "Ich bin Ingenieur. / Ich arbeite als Lehrerin."
+                          ],
+                          [
+                            "Andere vorstellen",
+                            "Wer ist das?",
+                            "Das ist mein Kollege Paco. / Das ist Frau Müller."
                           ]
                         ]
                       }
                     },
                     {
-                      "title": "2. Asking & Answering Origin and Residence",
-                      "description": "Master these paired questions and answers:",
-                      "table": {
-                        "headers": [
-                          "Topic",
-                          "Informal (du)",
-                          "Formal (Sie)",
-                          "Your Answer"
-                        ],
-                        "rows": [
-                          [
-                            "Name",
-                            "Wie heißt du?",
-                            "Wie heißen Sie?",
-                            "Ich heiße [Name]. / Mein Name ist [Name]."
-                          ],
-                          [
-                            "Origin",
-                            "Woher kommst du?",
-                            "Woher kommen Sie?",
-                            "Ich komme aus [Land/Stadt]."
-                          ],
-                          [
-                            "Residence",
-                            "Wo wohnst du?",
-                            "Wo wohnen Sie?",
-                            "Ich wohne in [Stadt]."
-                          ],
-                          [
-                            "Profession",
-                            "Was bist du von Beruf?",
-                            "Was sind Sie von Beruf?",
-                            "Ich bin Ingenieur / Lehrerin."
-                          ]
-                        ]
-                      }
+                      "title": "2. Stating Your Profession: 'als' vs. Direct Noun",
+                      "description": "Two elegant ways to talk about your job in German:",
+                      "items": [
+                        {
+                          "term": "Ich bin + Beruf (m/f)",
+                          "meaning": "Direct statement without article: male ends standard, female adds '-in'",
+                          "example": "Ich bin Student (m) / Studentin (f). Ich bin Arzt / Ärztin."
+                        },
+                        {
+                          "term": "Ich arbeite als + Beruf",
+                          "meaning": "Expressing your current employment role with 'als' (as)",
+                          "example": "Ich arbeite als Designerin bei Siemens."
+                        },
+                        {
+                          "term": "Ich studiere / Ich mache eine Ausbildung",
+                          "meaning": "Studying at university or doing a vocational apprenticeship",
+                          "example": "Ich studiere Informatik an der TU München."
+                        }
+                      ]
                     }
                   ],
                   "dialogue": {
-                    "context": "First day of German language class in Frankfurt, meeting your desk partner:",
+                    "context": "Vorstellungsrunde im Deutschkurs A1 (Netzwerk A1):",
                     "lines": [
                       {
-                        "speaker": "Lina",
-                        "german": "Hallo, ich bin Lina! Und wie heißt du?",
-                        "english": "Hello, I am Lina! And what is your name?"
+                        "speaker": "Lehrerin",
+                        "german": "Guten Morgen zusammen! Stellen wir uns kurz vor. Nina, fängst du an?",
+                        "english": "Good morning everyone! Let's briefly introduce ourselves. Nina, will you start?"
                       },
                       {
-                        "speaker": "Tariq",
-                        "german": "Hallo Lina. Ich heiße Tariq. Woher kommst du?",
-                        "english": "Hello Lina. I am called Tariq. Where are you from?"
+                        "speaker": "Nina",
+                        "german": "Gern! Mein Name ist Nina Weber. Ich komme aus Deutschland und wohne in München.",
+                        "english": "Gladly! My name is Nina Weber. I come from Germany and live in Munich."
                       },
                       {
-                        "speaker": "Lina",
-                        "german": "Ich komme aus Spanien, aber ich wohne jetzt hier in Frankfurt.",
-                        "english": "I come from Spain, but I live here in Frankfurt now."
+                        "speaker": "Paco",
+                        "german": "Hallo, ich bin Paco. Ich komme aus Valencia in Spanien, aber jetzt wohne ich auch in München.",
+                        "english": "Hello, I am Paco. I come from Valencia in Spain, but now I also live in Munich."
                       },
                       {
-                        "speaker": "Tariq",
-                        "german": "Schön! Ich komme aus Marokko und wohne auch in Frankfurt.",
-                        "english": "Nice! I come from Morocco and also live in Frankfurt."
+                        "speaker": "Lehrerin",
+                        "german": "Willkommen, Paco! Welche Sprachen sprechen Sie?",
+                        "english": "Welcome, Paco! What languages do you speak?"
+                      },
+                      {
+                        "speaker": "Paco",
+                        "german": "Ich spreche Spanisch, Englisch und ein bisschen Deutsch.",
+                        "english": "I speak Spanish, English, and a little German."
                       }
                     ]
                   },
                   "funFact": {
-                    "title": "Goethe A1 Exam Speaking Part 1",
-                    "content": "In the official Goethe-Zertifikat A1 exam, Part 1 of the speaking test requires you to introduce yourself using seven prompt cards: Name, Alter (Age), Land (Country), Wohnort (Residence), Sprachen (Languages), Beruf (Job), and Hobby. Practicing this dialogue prepares you for 100% of that exam station!"
+                    "title": "The Female Professional Suffix '-in'",
+                    "content": "In German, almost every profession has a masculine and a feminine form created by adding '-in': der Lehrer -> die Lehrerin, der Student -> die Studentin, der Arzt -> die Ärztin (often adding an Umlaut!). When talking about a group of mixed genders, traditionally the plural 'die Studenten' or modern gender-neutral forms like 'die Studierenden' are used."
                   },
                   "practice": [
                     {
-                      "question": "How do you ask a new neighbor politely (formal) where they live?",
+                      "question": "How does a female software engineer say: 'I am a software engineer'?",
                       "options": [
-                        "Wo wohnst du?",
-                        "Wo wohnen Sie?",
-                        "Woher wohnen Sie?"
+                        "Ich bin Software-Ingenieur.",
+                        "Ich bin Software-Ingenieurin.",
+                        "Ich bin eine Software-Ingenieur."
                       ],
-                      "answer": "Wo wohnen Sie?",
-                      "explanation": "Formal address uses 'Sie' with the verb 'wohnen': 'Wo wohnen Sie?'."
+                      "answer": "Ich bin Software-Ingenieurin.",
+                      "explanation": "Female professions in German take the suffix '-in', with no indefinite article."
+                    },
+                    {
+                      "question": "How do you ask someone for their origin politely (formal)?",
+                      "options": [
+                        "Woher kommst du?",
+                        "Wo wohnen Sie?",
+                        "Woher kommen Sie?"
+                      ],
+                      "answer": "Woher kommen Sie?",
+                      "explanation": "'Woher kommen Sie?' is the formal, polite way to ask where someone is from."
                     }
                   ]
                 }
@@ -1767,123 +2030,178 @@ export const FALLBACK_COURSES: CourseDetail[] = [
                 "title": "Lesson 13: Countries, Languages & Nationalities",
                 "description": "Country names with/without articles, languages (Deutsch, Englisch), and nationality suffixes.",
                 "content": {
-                  "overview": "Discussing geography, what languages you speak, and where people originate expands your horizons. Most countries in German have no grammatical article, but a few famous exceptions require one!",
-                  "canDo": "Can name major world countries and languages in German, state nationalities, and correctly use the countries that require articles (die Schweiz, die Türkei, die USA).",
-                  "teacherNote": "Notice the pattern for languages: almost all languages end in '-isch' (Deutsch, Englisch, Spanisch, Französisch, Arabisch). And remember that when you speak a language, no article is used: *Ich spreche Deutsch*.",
+                  "overview": "Talking about where you come from and what languages you speak is central to beginner German. In this lesson, you will learn the names of major world countries, their associated languages, and the crucial grammar rule for countries that require definite articles.",
+                  "canDo": "Can state your country of origin and languages spoken, and correctly use prepositions with countries that have articles (die Schweiz, die Türkei, die USA).",
+                  "teacherNote": "95% of countries in German have NO article: 'Ich komme aus Deutschland', 'Ich fliege nach Italien'. However, a handful of famous exceptions DO take an article: 'die Schweiz', 'die Türkei', 'die USA'. Learn these exceptions early to impress native speakers!",
                   "sections": [
                     {
-                      "title": "1. Countries Without Articles (The Standard Rule)",
-                      "description": "Over 90% of countries take no article after 'aus':",
+                      "title": "1. Länder und Sprachen (Countries & Languages)",
+                      "description": "Standard countries without articles (use 'aus' for origin, 'in' for location):",
                       "table": {
                         "headers": [
-                          "Country",
-                          "Coming from... (aus)",
-                          "Language",
-                          "Language in German"
+                          "Land (Country)",
+                          "Hauptstadt (Capital)",
+                          "Sprache (Language)",
+                          "Herkunft (Origin)"
                         ],
                         "rows": [
                           [
                             "Deutschland",
-                            "aus Deutschland",
-                            "German",
-                            "Deutsch"
+                            "Berlin",
+                            "Deutsch",
+                            "aus Deutschland"
                           ],
                           [
                             "Österreich",
-                            "aus Österreich",
-                            "German",
-                            "Deutsch"
+                            "Wien",
+                            "Deutsch",
+                            "aus Österreich"
                           ],
                           [
                             "Spanien",
-                            "aus Spanien",
-                            "Spanish",
-                            "Spanisch"
+                            "Madrid",
+                            "Spanisch",
+                            "aus Spanien"
                           ],
                           [
                             "Frankreich",
-                            "aus Frankreich",
-                            "French",
-                            "Französisch"
+                            "Paris",
+                            "Französisch",
+                            "aus Frankreich"
                           ],
                           [
                             "Italien",
-                            "aus Italien",
-                            "Italian",
-                            "Italienisch"
+                            "Rom",
+                            "Italienisch",
+                            "aus Italien"
                           ],
                           [
                             "Polen",
-                            "aus Polen",
-                            "Polish",
-                            "Polnisch"
+                            "Warschau",
+                            "Polnisch",
+                            "aus Polen"
+                          ],
+                          [
+                            "Großbritannien",
+                            "London",
+                            "Englisch",
+                            "aus Großbritannien"
+                          ],
+                          [
+                            "China",
+                            "Peking",
+                            "Chinesisch",
+                            "aus China"
                           ],
                           [
                             "Japan",
-                            "aus Japan",
-                            "Japanese",
-                            "Japanisch"
-                          ],
-                          [
-                            "Kanada",
-                            "aus Kanada",
-                            "English/French",
-                            "Englisch / Französisch"
+                            "Tokio",
+                            "Japanisch",
+                            "aus Japan"
                           ]
                         ]
                       }
                     },
                     {
-                      "title": "2. The Crucial Exceptions: Countries with Articles!",
-                      "description": "These few countries have grammatical gender. After 'aus', feminine countries become 'der', and plurals become 'den':",
-                      "items": [
-                        {
-                          "term": "die Schweiz (Switzerland - Feminine)",
-                          "meaning": "Ich komme aus DER Schweiz. (I come from Switzerland.)",
-                          "example": "Sie wohnt in der Schweiz."
-                        },
-                        {
-                          "term": "die Türkei (Turkey - Feminine)",
-                          "meaning": "Ich komme aus DER Türkei. (I come from Turkey.)",
-                          "example": "Er spricht Türkisch und Deutsch."
-                        },
-                        {
-                          "term": "die USA (United States - Plural)",
-                          "meaning": "Ich komme aus DEN USA. (I come from the USA.)",
-                          "example": "Wir reisen in die USA."
-                        }
-                      ]
+                      "title": "2. Die Ausnahmen: Länder mit Artikel (Countries with Articles)",
+                      "description": "These countries require articles when stating origin ('aus der...') or location ('in der...'):",
+                      "table": {
+                        "headers": [
+                          "Land mit Artikel",
+                          "Geschlecht",
+                          "Herkunft ('from')",
+                          "Aufenthalt ('in')"
+                        ],
+                        "rows": [
+                          [
+                            "die Schweiz (Switzerland)",
+                            "feminin",
+                            "aus der Schweiz",
+                            "in der Schweiz"
+                          ],
+                          [
+                            "die Türkei (Turkey)",
+                            "feminin",
+                            "aus der Türkei",
+                            "in der Türkei"
+                          ],
+                          [
+                            "die Slowakei (Slovakia)",
+                            "feminin",
+                            "aus der Slowakei",
+                            "in der Slowakei"
+                          ],
+                          [
+                            "die Ukraine (Ukraine)",
+                            "feminin",
+                            "aus der Ukraine",
+                            "in der Ukraine"
+                          ],
+                          [
+                            "die USA (United States)",
+                            "plural",
+                            "aus den USA",
+                            "in den USA"
+                          ],
+                          [
+                            "die Niederlande (Netherlands)",
+                            "plural",
+                            "aus den Niederlanden",
+                            "in den Niederlanden"
+                          ]
+                        ]
+                      }
                     }
                   ],
                   "dialogue": {
-                    "context": "International student orientation dinner in Heidelberg:",
+                    "context": "Internationaler Abend im Studentenwohnheim in München (Netzwerk A1):",
                     "lines": [
                       {
-                        "speaker": "Moderator",
-                        "german": "Guten Abend zusammen! Welche Sprachen sprechen Sie?",
-                        "english": "Good evening everyone! Which languages do you speak?"
+                        "speaker": "Christian",
+                        "german": "Hallo! Bist du auch neu im Wohnheim?",
+                        "english": "Hello! Are you also new in the dormitory?"
                       },
                       {
-                        "speaker": "Studentin",
-                        "german": "Ich komme aus der Schweiz. Ich spreche Deutsch, Französisch und ein bisschen Italienisch.",
-                        "english": "I come from Switzerland. I speak German, French, and a bit of Italian."
+                        "speaker": "Elif",
+                        "german": "Ja, ich bin Elif. Ich komme aus der Türkei, aus Istanbul.",
+                        "english": "Yes, I am Elif. I come from Turkey, from Istanbul."
+                      },
+                      {
+                        "speaker": "Christian",
+                        "german": "Schön dich kennenzulernen! Und welche Sprachen sprichst du?",
+                        "english": "Nice to meet you! And what languages do you speak?"
+                      },
+                      {
+                        "speaker": "Elif",
+                        "german": "Ich spreche Türkisch, fließend Englisch und lerne jetzt fleißig Deutsch.",
+                        "english": "I speak Turkish, fluent English, and am now diligently learning German."
                       }
                     ]
                   },
                   "funFact": {
-                    "title": "Switzerland's Four National Languages",
-                    "content": "Switzerland (die Schweiz) officially has four national languages: German (Deutsch, spoken by ~62%), French (Französisch, ~23%), Italian (Italienisch, ~8%), and Romansh (Rätoromanisch, <1%). The Swiss German dialect is called 'Schwiizerdütsch'!"
+                    "title": "German in Switzerland & Austria",
+                    "content": "German is pluricentric: Austrian German (Österreichisches Deutsch) and Swiss Standard German (Schweizer Hochdeutsch) are official national standards with distinct vocabulary! For example, in Austria, potatoes are called 'Erdäpfel' (not 'Kartoffeln'), and in Switzerland, a parking ticket is 'die Parkbusse'."
                   },
                   "practice": [
                     {
-                      "question": "How do you say 'I come from Switzerland'?",
+                      "question": "How do you say: 'I come from Switzerland'?",
                       "options": [
                         "Ich komme aus Schweiz.",
                         "Ich komme aus der Schweiz.",
-                        "Ich komme in Schweiz."
+                        "Ich komme in die Schweiz."
                       ],
                       "answer": "Ich komme aus der Schweiz.",
-                      "explanation": "'Schweiz' is a feminine noun and requires the dative article 'der' after the preposition 'aus'."
+                      "explanation": "'die Schweiz' is feminine and changes to Dative 'der' after 'aus': aus der Schweiz."
+                    },
+                    {
+                      "question": "What preposition is used for origin with standard countries (e.g. Germany, Spain)?",
+                      "options": [
+                        "in",
+                        "nach",
+                        "aus"
+                      ],
+                      "answer": "aus",
+                      "explanation": "'aus' means 'out of / from' and indicates country of origin."
                     }
                   ]
                 }
@@ -1893,194 +2211,228 @@ export const FALLBACK_COURSES: CourseDetail[] = [
                 "title": "Lesson 14: Numbers (0–100), Phone Numbers & Email Addresses",
                 "description": "Counting 0–100, spelling names aloud (Buchstabieren), phone numbers, email syntax (@, .).",
                 "content": {
-                  "overview": "Whether buying groceries, giving your phone number, or checking train departure times, numbers are indispensable. German numbers from 21 to 99 follow an inverted pattern that is famous worldwide: you say the ones before the tens!",
-                  "canDo": "Can count from 0 to 100, exchange telephone numbers digit by digit, and dictate email addresses in German.",
-                  "teacherNote": "For numbers 21–99, German says: 'one-and-twenty' (einundzwanzig), 'two-and-twenty' (zweiundzwanzig). Think of it like reading the last digit first, then adding 'und' and the tens!",
+                  "overview": "Numbers are the heartbeat of practical communication: shopping, booking tickets, exchanging phone numbers, and noting addresses. In this lesson, you will master counting from 0 to 100, understanding German's inverted tens-and-ones logic (e.g. 21 = 'one-and-twenty'), and reciting phone numbers and emails aloud.",
+                  "canDo": "Can count from 0 to 100 in German, state prices, exchange telephone numbers, and dictate email addresses using correct symbols (@, ., -).",
+                  "teacherNote": "German flips numbers between 21 and 99: you say the ones digit FIRST, then 'und', then the tens digit! 21 = einundzwanzig (one-and-twenty), 35 = fünfunddreißig (five-and-thirty). English did the exact same thing in the days of Shakespeare ('four and twenty blackbirds')!",
                   "sections": [
                     {
-                      "title": "1. Numbers 0 to 20 (Die Grundzahlen)",
-                      "description": "Master these foundational building blocks:",
+                      "title": "1. Die Zahlen von 0 bis 20 (Numbers 0–20)",
+                      "description": "The foundation of all counting:",
                       "table": {
                         "headers": [
-                          "0–5",
-                          "6–10",
-                          "11–15",
-                          "16–20"
+                          "Zahl",
+                          "Wort",
+                          "Zahl",
+                          "Wort"
                         ],
                         "rows": [
                           [
-                            "0 null",
-                            "6 sechs",
-                            "11 elf",
-                            "16 sechzehn (drops 's')"
+                            "0",
+                            "null",
+                            "11",
+                            "elf"
                           ],
                           [
-                            "1 eins",
-                            "7 sieben",
-                            "12 zwölf",
-                            "17 siebzehn (drops 'en')"
+                            "1",
+                            "eins",
+                            "12",
+                            "zwölf"
                           ],
                           [
-                            "2 zwei",
-                            "8 acht",
-                            "13 dreizehn",
-                            "18 achtzehn"
+                            "2",
+                            "zwei",
+                            "13",
+                            "dreizehn"
                           ],
                           [
-                            "3 drei",
-                            "9 neun",
-                            "14 vierzehn",
-                            "19 neunzehn"
+                            "3",
+                            "drei",
+                            "14",
+                            "vierzehn"
                           ],
                           [
-                            "4 vier",
-                            "10 zehn",
-                            "15 fünfzehn",
-                            "20 zwanzig"
+                            "4",
+                            "vier",
+                            "15",
+                            "fünfzehn"
                           ],
                           [
-                            "5 fünf",
-                            "",
-                            "",
-                            ""
-                          ]
-                        ]
-                      }
-                    },
-                    {
-                      "title": "2. The Tens & The 'Ones-First' Rule (21–99)",
-                      "description": "Notice how the tens end in '-zig' (except dreißig with ß):",
-                      "table": {
-                        "headers": [
-                          "The Tens",
-                          "Example Combo",
-                          "Literal Breakdown",
-                          "English"
-                        ],
-                        "rows": [
-                          [
-                            "20 zwanzig",
-                            "21 einundzwanzig",
-                            "one-and-twenty",
-                            "twenty-one"
+                            "5",
+                            "fünf",
+                            "16",
+                            "sechzehn (drops 's')"
                           ],
                           [
-                            "30 dreißig",
-                            "35 fünfunddreißig",
-                            "five-and-thirty",
-                            "thirty-five"
+                            "6",
+                            "sechs",
+                            "17",
+                            "siebzehn (drops 'en')"
                           ],
                           [
-                            "40 vierzig",
-                            "48 achtundvierzig",
-                            "eight-and-forty",
-                            "forty-eight"
+                            "7",
+                            "sieben",
+                            "18",
+                            "achtzehn"
                           ],
                           [
-                            "50 fünfzig",
-                            "59 neunundfünfzig",
-                            "nine-and-fifty",
-                            "fifty-nine"
+                            "8",
+                            "acht",
+                            "19",
+                            "neunzehn"
                           ],
                           [
-                            "60 sechzig",
-                            "64 vierundsechzig",
-                            "four-and-sixty",
-                            "sixty-four"
+                            "9",
+                            "neun",
+                            "20",
+                            "zwanzig"
                           ],
                           [
-                            "70 siebzig",
-                            "77 siebenundsiebzig",
-                            "seven-and-seventy",
-                            "seventy-seven"
-                          ],
-                          [
-                            "80 achtzig",
-                            "82 zweiundachtzig",
-                            "two-and-eighty",
-                            "eighty-two"
-                          ],
-                          [
-                            "90 neunzig",
-                            "99 neunundneunzig",
-                            "nine-and-ninety",
-                            "ninety-nine"
-                          ],
-                          [
-                            "100 (ein)hundert",
+                            "10",
+                            "zehn",
                             "100",
-                            "one hundred",
-                            "one hundred"
+                            "hundert / einhundert"
                           ]
                         ]
                       }
                     },
                     {
-                      "title": "3. Email & Phone Symbols",
-                      "description": "How to read symbols aloud when giving contact info:",
+                      "title": "2. Die Zehnerzahlen ab 20 (Tens & Combined Numbers)",
+                      "description": "Remember the inverted pattern: [Ones] + und + [Tens]:",
+                      "table": {
+                        "headers": [
+                          "Zehnerzahl",
+                          "Deutsches Wort",
+                          "Zusammensetzung (Beispiel)",
+                          "Aussprache"
+                        ],
+                        "rows": [
+                          [
+                            "20",
+                            "zwanzig",
+                            "21 = einundzwanzig",
+                            "eye-n-oond-tsvan-tsig"
+                          ],
+                          [
+                            "30",
+                            "dreißig (note 'ß'!)",
+                            "32 = zweiunddreißig",
+                            "tsvy-oond-dry-sig"
+                          ],
+                          [
+                            "40",
+                            "vierzig",
+                            "45 = fünfundvierzig",
+                            "fünf-oond-feer-tsig"
+                          ],
+                          [
+                            "50",
+                            "fünfzig",
+                            "58 = achtundfünfzig",
+                            "acht-oond-fünf-tsig"
+                          ],
+                          [
+                            "60",
+                            "sechzig (drops 's')",
+                            "64 = vierundsechzig",
+                            "vier-oond-sech-tsig"
+                          ],
+                          [
+                            "70",
+                            "siebzig (drops 'en')",
+                            "77 = siebenundsiebzig",
+                            "sieben-oond-sieb-tsig"
+                          ],
+                          [
+                            "80",
+                            "achtzig",
+                            "89 = neunundachtzig",
+                            "neun-oond-acht-tsig"
+                          ],
+                          [
+                            "90",
+                            "neunzig",
+                            "93 = dreiundneunzig",
+                            "drei-oond-neun-tsig"
+                          ]
+                        ]
+                      }
+                    },
+                    {
+                      "title": "3. Telefonnummern & E-Mail-Adressen diktieren",
+                      "description": "Essential syntax symbols when exchanging contact information:",
                       "items": [
                         {
-                          "term": "@ (At symbol)",
-                          "meaning": "Pronounced 'ät' (like English at)",
-                          "example": "info@beispiel.de -> info ät beispiel punkt de"
+                          "term": "@ (At-Zeichen)",
+                          "pronunciation": "ät / at-zeichen",
+                          "meaning": "Used in email addresses: name@gmx.de = 'name ät gmx punkt de'"
                         },
                         {
-                          "term": ". (Dot / Period)",
-                          "meaning": "Pronounced 'Punkt'",
-                          "example": "lernen.de -> lernen punkt de"
+                          "term": ". (Punkt)",
+                          "pronunciation": "punkt",
+                          "meaning": "Dot/period in web URLs and emails"
                         },
                         {
-                          "term": "- (Hyphen / Dash)",
-                          "meaning": "Pronounced 'Bindestrich'",
-                          "example": "anna-meier -> anna bindestrich meier"
+                          "term": "- (Bindestrich / Minus)",
+                          "pronunciation": "bindestrich",
+                          "meaning": "Hyphen or dash in phone numbers and emails"
                         },
                         {
-                          "term": "_ (Underscore)",
-                          "meaning": "Pronounced 'Unterstrich'",
-                          "example": "max_berlin -> max unterstrich berlin"
+                          "term": "_ (Unterstrich)",
+                          "pronunciation": "unterstrich",
+                          "meaning": "Underscore symbol"
                         }
                       ]
                     }
                   ],
                   "dialogue": {
-                    "context": "Exchanging phone numbers and email after class in Berlin:",
+                    "context": "Telefonnummern austauschen am Ende des Deutschkurses (Netzwerk A1):",
                     "lines": [
                       {
-                        "speaker": "Sven",
-                        "german": "Wie ist deine Handynummer?",
-                        "english": "What is your mobile number?"
+                        "speaker": "Julia",
+                        "german": "Paco, wie ist deine Handynummer? Wir haben eine WhatsApp-Gruppe.",
+                        "english": "Paco, what is your mobile number? We have a WhatsApp group."
                       },
                       {
-                        "speaker": "Sara",
-                        "german": "Meine Nummer ist 0176 - 45 82 91 30.",
-                        "english": "My number is 0176 - 45 82 91 30."
+                        "speaker": "Paco",
+                        "german": "Meine Nummer ist 0176 - 45 82 91 03.",
+                        "english": "My number is 0176 - 45 82 91 03."
                       },
                       {
-                        "speaker": "Sven",
-                        "german": "Und deine E-Mail-Adresse?",
-                        "english": "And your email address?"
+                        "speaker": "Julia",
+                        "german": "Super, danke! Und wie ist deine E-Mail-Adresse?",
+                        "english": "Great, thanks! And what is your email address?"
                       },
                       {
-                        "speaker": "Sara",
-                        "german": "sara punkt meier ät web punkt de.",
-                        "english": "sara dot meier at web dot de."
+                        "speaker": "Paco",
+                        "german": "paco.garcia@web.de – also paco punkt garcia ät web punkt de.",
+                        "english": "paco.garcia@web.de – so paco dot garcia at web dot de."
                       }
                     ]
                   },
                   "funFact": {
-                    "title": "Counting Starts on the Thumb!",
-                    "content": "If you want to blend in with locals in a German café or beer garden, always indicate the number one with your **thumb**, not your index finger! Showing the index finger is interpreted as the number two (thumb + index). This famously served as a major plot point in the movie *Inglourious Basterds*!"
+                    "title": "'Zwo' Instead of 'Zwei' on the Phone",
+                    "content": "On telephone lines or radio calls, the numbers 'zwei' (2) and 'drei' (3) sound very similar. To avoid confusion, Germans frequently say 'zwo' instead of 'zwei' when reading numbers aloud!"
                   },
                   "practice": [
                     {
-                      "question": "How is the number 54 constructed in German?",
+                      "question": "How do you say the number 54 in German?",
                       "options": [
                         "fünfzigvier",
                         "vierundfünfzig",
                         "fünfundvierzig"
                       ],
                       "answer": "vierundfünfzig",
-                      "explanation": "German says ones first: vier (4) + und + fünfzig (50) = vierundfünfzig."
+                      "explanation": "German says the ones first, then 'und', then tens: 4 (vier) + und + 50 (fünfzig) = vierundfünfzig."
+                    },
+                    {
+                      "question": "How is the symbol '@' pronounced in a German email address?",
+                      "options": [
+                        "ät (or At-Zeichen)",
+                        "Klammeraffe",
+                        "und"
+                      ],
+                      "answer": "ät (or At-Zeichen)",
+                      "explanation": "'@' is pronounced 'ät' or 'At-Zeichen' in German."
                     }
                   ]
                 }
@@ -2090,106 +2442,149 @@ export const FALLBACK_COURSES: CourseDetail[] = [
                 "title": "Lesson 15: Classroom German & Survival Phrases",
                 "description": "Classroom interaction: 'Wie bitte?', 'Ich verstehe nicht', 'Langsam, bitte', 'Was bedeutet das?'.",
                 "content": {
-                  "overview": "When learning German, you don't need to understand every word immediately. Having a toolkit of survival phrases empowers you to ask people to slow down, repeat, or clarify without feeling lost.",
-                  "canDo": "Can navigate a German language classroom, ask someone to repeat or speak slowly, and express that you don't understand something.",
-                  "teacherNote": "Never be shy to say 'Wie bitte?' (Pardon / What did you say?). It is the most polite and natural way to ask someone to repeat themselves in German.",
+                  "overview": "When learning a new language, the ability to ask for clarification, request someone to speak slower, or find the page in the textbook is your primary survival kit. In this lesson, you will master authentic classroom German phrases from Netzwerk A1.",
+                  "canDo": "Can ask the teacher or conversation partner for clarification ('Wie bitte?'), request repetitions, ask what words mean, and navigate learning activities smoothly in German.",
+                  "teacherNote": "'Wie bitte?' (Pardon / Come again?) is one of the most polite and natural phrases you can learn. Never shout 'Was?!' when you don't understand someone—always say 'Wie bitte?'.",
                   "sections": [
                     {
-                      "title": "1. The Essential Survival Expressions",
-                      "description": "Keep these phrases ready whenever you need clarification:",
+                      "title": "1. Redemittel: Im Kursraum (Classroom German)",
+                      "description": "Essential survival phrases for language learners from Netzwerk A1:",
                       "table": {
                         "headers": [
-                          "German Phrase",
-                          "Literal Meaning",
-                          "English Function",
-                          "Usage Tip"
+                          "Deutscher Ausdruck",
+                          "Bedeutung",
+                          "Wann man es benutzt (Context)"
                         ],
                         "rows": [
                           [
                             "Wie bitte?",
-                            "How please?",
-                            "Pardon? Could you repeat that?",
-                            "Infinitely more polite than saying 'Was?'"
+                            "Pardon? / Excuse me?",
+                            "Wenn man etwas akustisch nicht verstanden hat"
                           ],
                           [
-                            "Ich verstehe nicht.",
-                            "I understand not.",
-                            "I don't understand.",
-                            "Clear and direct"
+                            "Ich verstehe das nicht.",
+                            "I don't understand that.",
+                            "Wenn die Erklärung unklar ist"
                           ],
                           [
-                            "Sprechen Sie bitte langsamer.",
-                            "Speak you please slower.",
-                            "Please speak more slowly.",
-                            "Essential with native speakers"
+                            "Können Sie das bitte wiederholen?",
+                            "Could you please repeat that?",
+                            "Bitte um Wiederholung (formell)"
                           ],
                           [
-                            "Können Sie das wiederholen?",
-                            "Can you that repeat?",
-                            "Could you repeat that?",
-                            "Polite request"
+                            "Sprechen Sie bitte etwas langsamer!",
+                            "Please speak a little slower!",
+                            "Wenn der Partner zu schnell spricht"
                           ],
                           [
                             "Wie heißt das auf Deutsch?",
-                            "How is called that in German?",
                             "What is that called in German?",
-                            "Great for expanding vocabulary"
+                            "Nach Vokabeln fragen"
                           ],
                           [
-                            "Was bedeutet das?",
-                            "What means that?",
-                            "What does that mean?",
-                            "Asking for explanations"
+                            "Wie schreibt man das?",
+                            "How do you spell that?",
+                            "Nach der Rechtschreibung fragen"
                           ],
                           [
-                            "Können Sie das bitte anschreiben?",
-                            "Can you that please write down?",
-                            "Could you please write that down?",
-                            "Great in classrooms & shops"
+                            "Was bedeutet dieses Wort?",
+                            "What does this word mean?",
+                            "Nach der Bedeutung fragen"
+                          ],
+                          [
+                            "Auf welcher Seite sind wir bitte?",
+                            "Which page are we on, please?",
+                            "Orientierung im Kursbuch"
+                          ],
+                          [
+                            "Ich habe eine Frage.",
+                            "I have a question.",
+                            "Vor einer Frage im Unterricht"
                           ]
                         ]
                       }
+                    },
+                    {
+                      "title": "2. Arbeitsanweisungen im Lehrwerk (Textbook Instructions)",
+                      "description": "Key action verbs you will see in every exercise of Netzwerk A1:",
+                      "items": [
+                        {
+                          "term": "Hören Sie! / Lesen Sie!",
+                          "meaning": "Listen! / Read!",
+                          "example": "Hören Sie das Gespräch und kreuzen Sie an."
+                        },
+                        {
+                          "term": "Kreuzen Sie an! (ankreuzen)",
+                          "meaning": "Tick / check the correct box (a, b, or c)",
+                          "example": "Was ist richtig? Kreuzen Sie an: [X]"
+                        },
+                        {
+                          "term": "Ergänzen Sie! (ergänzen)",
+                          "meaning": "Fill in the blank with the missing word",
+                          "example": "Ergänzen Sie die Verben in der richtigen Form."
+                        },
+                        {
+                          "term": "Ordnen Sie zu! (zuordnen)",
+                          "meaning": "Match items together (e.g. photos with vocabulary)",
+                          "example": "Ordnen Sie die Bilder den Wörtern zu."
+                        }
+                      ]
                     }
                   ],
                   "dialogue": {
-                    "context": "In a German language class with an instructor in Leipzig:",
+                    "context": "Im Deutschunterricht – Eine Übung im Kursbuch (Netzwerk A1):",
                     "lines": [
                       {
-                        "speaker": "Lehrer",
-                        "german": "Bitte schlagen Sie das Kursbuch auf Seite 24 auf!",
-                        "english": "Please open the coursebook to page 24!"
+                        "speaker": "Lehrerin",
+                        "german": "Schlagen Sie bitte das Kursbuch auf Seite 16 auf!",
+                        "english": "Please open the coursebook to page 16!"
                       },
                       {
-                        "speaker": "Schüler",
-                        "german": "Entschuldigung, wie bitte? Welche Seite?",
-                        "english": "Excuse me, pardon? Which page?"
+                        "speaker": "Paco",
+                        "german": "Entschuldigung, welche Seite bitte? Können Sie das wiederholen?",
+                        "english": "Excuse me, which page please? Could you repeat that?"
                       },
                       {
-                        "speaker": "Lehrer",
-                        "german": "Seite vierundzwanzig, bitte.",
-                        "english": "Page twenty-four, please."
+                        "speaker": "Lehrerin",
+                        "german": "Seite sechzehn, Paco. Wir machen Aufgabe 3: Hören und ankreuzen.",
+                        "english": "Page sixteen, Paco. We are doing exercise 3: Listen and check the box."
                       },
                       {
-                        "speaker": "Schüler",
-                        "german": "Vielen Dank!",
-                        "english": "Thank you very much!"
+                        "speaker": "Paco",
+                        "german": "Vielen Dank! Und was bedeutet 'Buchstabieren'?",
+                        "english": "Thank you very much! And what does 'Buchstabieren' mean?"
+                      },
+                      {
+                        "speaker": "Lehrerin",
+                        "german": "'Buchstabieren' bedeutet: die Buchstaben einzeln sprechen, wie A - B - C.",
+                        "english": "'Buchstabieren' means: saying the letters individually, like A - B - C."
                       }
                     ]
                   },
                   "funFact": {
-                    "title": "'Wie bitte?' vs. 'Was?'",
-                    "content": "In English, answering 'What?' when you didn't hear someone can sound slightly curt. In German, saying just 'Was?' to a teacher, elder, or customer is considered quite rude! Always use the gentle, courteous phrase: **'Wie bitte?'**."
+                    "title": "The Politeness of 'Wie bitte?'",
+                    "content": "In German culture, saying 'Was?' (What?) when you didn't hear someone can sound abrupt or even rude to older speakers. Using 'Wie bitte?' or 'Entschuldigung?' is universally regarded as polite and refined."
                   },
                   "practice": [
                     {
-                      "question": "You didn't catch what a train conductor said. What is the most polite phrase to use?",
+                      "question": "What is the most polite way to ask someone to repeat what they said?",
                       "options": [
-                        "Was?",
-                        "Hä?",
-                        "Wie bitte?"
+                        "Was?!",
+                        "Wie bitte? Können Sie das wiederholen?",
+                        "Sprich lauter!"
                       ],
-                      "answer": "Wie bitte?",
-                      "explanation": "'Wie bitte?' is the polite, standard German equivalent of 'Pardon me?'."
+                      "answer": "Wie bitte? Können Sie das wiederholen?",
+                      "explanation": "'Wie bitte? Können Sie das wiederholen?' is the polite standard phrasing."
+                    },
+                    {
+                      "question": "What does the textbook instruction 'Ordnen Sie zu!' mean?",
+                      "options": [
+                        "Read aloud!",
+                        "Match / assign the items!",
+                        "Write an essay!"
+                      ],
+                      "answer": "Match / assign the items!",
+                      "explanation": "'zuordnen' means to match or assign corresponding items together."
                     }
                   ]
                 }
@@ -2205,114 +2600,124 @@ export const FALLBACK_COURSES: CourseDetail[] = [
                 "title": "Lesson 16: Definite Articles (der, die, das) & Indefinite Articles (ein, eine)",
                 "description": "Recognizing masculine (der/ein), feminine (die/eine), and neuter (das/ein) noun categories.",
                 "content": {
-                  "overview": "Every German noun has one of three grammatical genders: masculine (der), feminine (die), or neuter (das). While gender often feels arbitrary to English speakers, learning the article with the noun from day one turns this challenge into second nature.",
-                  "canDo": "Can identify the three definite articles (der, die, das) and indefinite articles (ein, eine, ein), and apply common gender ending clues.",
-                  "teacherNote": "Never memorize a German noun by itself! Always learn the article attached like a prefix: don't memorize 'Tisch' (table), memorize 'der Tisch'. Don't memorize 'Lampe', memorize 'die Lampe'. Blue for der, red for die, green for das!",
+                  "overview": "Every German noun carries one of three grammatical genders: masculine (der), feminine (die), or neuter (das). In this lesson, you will master definite articles ('the'), indefinite articles ('a/an'), and negative articles ('no/not any') using city and everyday objects from Netzwerk Kapitel 3 ('In der Stadt').",
+                  "canDo": "Can identify the three definite articles (der, die, das), use indefinite articles (ein, eine) and negative articles (kein, keine) in the nominative case.",
+                  "teacherNote": "Never learn a German noun by itself! Always learn the article attached: don't memorize 'Bahnhof' (station), memorize 'der Bahnhof'. Blue for der (maskulin), red for die (feminin), green for das (neutral)!",
                   "sections": [
                     {
-                      "title": "1. The Three Genders & Articles in Nominative",
-                      "description": "German has definite articles ('the') and indefinite articles ('a/an'):",
+                      "title": "1. Die drei Artikel im Nominativ (Definit, Indefinit & Negativ)",
+                      "description": "Notice how the endings correspond across article types:",
                       "table": {
                         "headers": [
-                          "Gender",
-                          "Definite Article ('the')",
-                          "Indefinite Article ('a/an')",
-                          "Negative Article ('no/none')",
-                          "Example"
+                          "Genus (Gender)",
+                          "Bestimmter Artikel ('the')",
+                          "Unbestimmter Artikel ('a/an')",
+                          "Negativartikel ('no/none')",
+                          "Beispiel (Netzwerk A1)"
                         ],
                         "rows": [
                           [
-                            "Masculine (m)",
+                            "Maskulin (m)",
                             "der",
                             "ein",
                             "kein",
-                            "der Tisch / ein Tisch (the/a table)"
+                            "der Bahnhof / ein Bahnhof (station)"
                           ],
                           [
-                            "Feminine (f)",
+                            "Feminin (f)",
                             "die",
                             "eine",
                             "keine",
-                            "die Lampe / eine Lampe (the/a lamp)"
+                            "die Kirche / eine Kirche (church)"
                           ],
                           [
-                            "Neuter (n)",
+                            "Neutral (n)",
                             "das",
                             "ein",
                             "kein",
-                            "das Buch / ein Buch (the/a book)"
+                            "das Hotel / ein Hotel (hotel)"
                           ],
                           [
                             "Plural (pl)",
                             "die",
-                            "— (no indefinite plural)",
+                            "— (kein Plural)",
                             "keine",
-                            "die Bücher / keine Bücher (the/no books)"
+                            "die Museen / keine Museen (museums)"
                           ]
                         ]
                       }
                     },
                     {
-                      "title": "2. Reliable Gender Clues (Suffix Rules)",
-                      "description": "You don't have to guess blind! Look at the ending of the noun:",
+                      "title": "2. Typische Endungen für die Geschlechter (Suffix Rules)",
+                      "description": "Look at the ending of the noun for reliable clues:",
                       "items": [
                         {
-                          "term": "Feminine (-ung, -heit, -keit, -schaft, -tion, -e)",
-                          "meaning": "99% of nouns with these endings are DIE (feminine)",
-                          "example": "die Wohnung (apartment), die Freiheit (freedom), die Nation, die Lampe."
+                          "term": "Feminin (die) – 99% verlässlich",
+                          "meaning": "Endings: -ung, -heit, -keit, -schaft, -tion, -tät, -e",
+                          "example": "die Wohnung, die Universität, die Information, die Straße"
                         },
                         {
-                          "term": "Masculine (-er, -ling, -or, -ist, days & months)",
-                          "meaning": "Most masculine nouns refer to male agents or end in -er/-or",
-                          "example": "der Lehrer (teacher), der Motor (engine), der Montag (Monday)."
+                          "term": "Maskulin (der) – Personen & Endungen",
+                          "meaning": "Endings: -er, -ling, -or, -ist, as well as days, months, and compass directions",
+                          "example": "der Lehrer, der Motor, der Montag, der Norden"
                         },
                         {
-                          "term": "Neuter (-chen, -lein, -ment, -um, infinitives as nouns)",
-                          "meaning": "Diminutives and foreign roots are DAS (neuter)",
-                          "example": "das Mädchen (girl), das Instrument, das Museum, das Essen (food/eating)."
+                          "term": "Neutral (das) – Verkleinerungen & Fremdwörter",
+                          "meaning": "Endings: -chen, -lein, -ment, -um, and nominalized verbs (infinitives as nouns)",
+                          "example": "das Mädchen, das Zentrum, das Dokument, das Essen"
                         }
                       ]
                     }
                   ],
                   "dialogue": {
-                    "context": "Browsing furniture at an IKEA store in Cologne:",
+                    "context": "Stadtrundgang in Hamburg – Orientierung (Netzwerk A1 Kapitel 3):",
                     "lines": [
                       {
-                        "speaker": "Tim",
-                        "german": "Schau mal, ist das ein Tisch oder ein Schreibtisch?",
-                        "english": "Look, is that a table or a desk?"
+                        "speaker": "Tourist",
+                        "german": "Entschuldigung, was ist das für ein Gebäude dort drüben? Ist das ein Hotel?",
+                        "english": "Excuse me, what kind of building is that over there? Is that a hotel?"
                       },
                       {
-                        "speaker": "Laura",
-                        "german": "Das ist ein Schreibtisch. Der Tisch hier drüben ist viel größer.",
-                        "english": "That is a desk. The table over here is much bigger."
+                        "speaker": "Hamburger",
+                        "german": "Nein, das ist kein Hotel. Das ist das Rathaus von Hamburg!",
+                        "english": "No, that is not a hotel. That is the Town Hall of Hamburg!"
                       },
                       {
-                        "speaker": "Tim",
-                        "german": "Und wie findest du die Lampe?",
-                        "english": "And what do you think of the lamp?"
+                        "speaker": "Tourist",
+                        "german": "Und die große Kirche daneben? Wie heißt die?",
+                        "english": "And the big church next to it? What is it called?"
                       },
                       {
-                        "speaker": "Laura",
-                        "german": "Die Lampe ist super. Das ist eine schöne Farbe!",
-                        "english": "The lamp is great. That is a beautiful color!"
+                        "speaker": "Hamburger",
+                        "german": "Das ist die St. Michaelskirche, wir nennen sie einfach 'den Michel'.",
+                        "english": "That is St. Michael's Church, we simply call it 'the Michel'."
                       }
                     ]
                   },
                   "funFact": {
-                    "title": "Why 'Das Mädchen' is Neuter!",
-                    "content": "Beginners are often shocked that 'das Mädchen' (the girl) is grammatically neuter rather than feminine! The reason is purely grammatical: the suffix '-chen' is a diminutive meaning 'little' (originally 'little maid'). In German grammar, *all* words ending in '-chen' or '-lein' become automatically neuter (das Brötchen, das Hündchen, das Mädchen)!"
+                    "title": "The Reason for 'Das Mädchen'",
+                    "content": "Why is 'das Mädchen' (girl) grammatically neuter when girls are clearly female? Because in German, the diminutive suffix '-chen' (meaning 'little') AUTOMATICALLY forces every noun to become neuter 'das'! Historically, 'die Magd' (maiden) + '-chen' became 'das Mädchen'."
                   },
                   "practice": [
                     {
-                      "question": "What is the indefinite article for a feminine noun like 'Zeitung' (newspaper)?",
+                      "question": "Which article belongs with the noun 'Wohnung' (apartment)?",
                       "options": [
-                        "ein",
-                        "eine",
-                        "einer"
+                        "der",
+                        "die",
+                        "das"
                       ],
-                      "answer": "eine",
-                      "explanation": "Feminine nouns take 'eine' (die Zeitung -> eine Zeitung)."
+                      "answer": "die",
+                      "explanation": "Nouns ending in '-ung' are always feminine (die Wohnung)."
+                    },
+                    {
+                      "question": "Complete the negative sentence: 'Das ist _____ Hotel, das ist ein Museum.'",
+                      "options": [
+                        "keine",
+                        "kein",
+                        "nicht"
+                      ],
+                      "answer": "kein",
+                      "explanation": "'Hotel' is neuter (das Hotel), so the negative article in nominative is 'kein'."
                     }
                   ]
                 }
@@ -2322,110 +2727,125 @@ export const FALLBACK_COURSES: CourseDetail[] = [
                 "title": "Lesson 17: German Noun Rules: Capitalization & Plural Forms",
                 "description": "Universal noun capitalization; common plural endings (-e, -er, -en, -s, Umlaut).",
                 "content": {
-                  "overview": "Unlike English, where making plurals is almost always adding '-s' (book -> books), German has several plural patterns. In this lesson, we break down the 5 primary plural groups and explore the joy of German compound nouns.",
-                  "canDo": "Can recognize the 5 main plural patterns, apply the universal plural article 'die', and deconstruct German compound words.",
-                  "teacherNote": "Here is the best rule of all: In the Nominative case, ALL plurals take the exact same definite article: **DIE**! Whether masculine, feminine, or neuter in singular, in plural they all share 'die'.",
+                  "overview": "Unlike English, which almost always adds '-s' to form plurals (cat -> cats), German has five distinct plural patterns. In this lesson, you will master the 5 core plural categories and understand how vowels often take an Umlaut.",
+                  "canDo": "Can form the plural of common A1 nouns and identify the 5 standard German plural endings (-e, -er, -en/-n, -s, no ending).",
+                  "teacherNote": "In dictionaries, plural forms are listed immediately after the gender: 'der Tisch, -e' means plural is 'die Tische'. 'das Buch, -\"er' means plural adds an Umlaut and -er: 'die Bücher'. Crucial rule: ALL German plurals use the definite article 'die'!",
                   "sections": [
                     {
-                      "title": "1. The 5 German Plural Groups",
-                      "description": "Most German nouns form their plural in one of these five ways:",
+                      "title": "1. Die 5 Pluralmuster im Deutschen (The 5 Plural Patterns)",
+                      "description": "Essential plural patterns with authentic A1 vocabulary from Netzwerk:",
                       "table": {
                         "headers": [
-                          "Pattern",
+                          "Muster (Pattern)",
                           "Singular",
-                          "Plural (all take 'die'!)",
-                          "Meaning"
+                          "Plural (immer 'die')",
+                          "Bedeutung"
                         ],
                         "rows": [
                           [
-                            "Group 1: -e (often with Umlaut)",
-                            "der Tag / der Stuhl",
-                            "die Tage / die Stühle",
-                            "days / chairs"
+                            "1. Endung -e (oft mit Umlaut)",
+                            "der Tisch / die Stadt",
+                            "die Tische / die Städte",
+                            "tables / cities"
                           ],
                           [
-                            "Group 2: -(e)n (most feminine nouns)",
-                            "die Frau / die Lampe",
-                            "die Frauen / die Lampen",
-                            "women / lamps"
+                            "2. Endung -(e)n (häufig bei feminin)",
+                            "die Lampe / die Frau",
+                            "die Lampen / die Frauen",
+                            "lamps / women"
                           ],
                           [
-                            "Group 3: -er (often with Umlaut)",
-                            "das Kind / das Buch",
-                            "die Kinder / die Bücher",
-                            "children / books"
+                            "3. Endung -er (meist mit Umlaut)",
+                            "das Buch / das Kind",
+                            "die Bücher / die Kinder",
+                            "books / children"
                           ],
                           [
-                            "Group 4: No ending (sound changes or unchanged)",
-                            "der Apfel / der Lehrer",
-                            "die Äpfel / die Lehrer",
-                            "apples / teachers"
+                            "4. Endung -s (Fremdwörter & Abkürzungen)",
+                            "das Auto / das Hotel",
+                            "die Autos / die Hotels",
+                            "cars / hotels"
                           ],
                           [
-                            "Group 5: -s (loanwords & abbreviations)",
-                            "das Auto / das Handy",
-                            "die Autos / die Handys",
-                            "cars / cell phones"
+                            "5. Keine Endung (nur Umlaut möglich)",
+                            "der Lehrer / der Apfel",
+                            "die Lehrer / die Äpfel",
+                            "teachers / apples"
                           ]
                         ]
                       }
                     },
                     {
-                      "title": "2. Compound Nouns (Komposita)",
-                      "description": "German loves snapping nouns together like Lego bricks. The gender of the entire word is ALWAYS decided by the very last component:",
+                      "title": "2. Plural-Regeln nach Geschlecht (Gender Tendencies)",
+                      "description": "Predictable patterns to help you guess accurately:",
                       "items": [
                         {
-                          "term": "das Haus + die Tür = DIE Haustür",
-                          "meaning": "house + door = front door (takes 'die' from die Tür)",
-                          "example": "Die Haustür ist neu."
+                          "term": "Feminine Nouns (die)",
+                          "meaning": "Over 90% of feminine nouns form their plural with -(e)n (never with -er!)",
+                          "example": "die Straße -> die Straßen, die Sprache -> die Sprachen"
                         },
                         {
-                          "term": "kühl + der Schrank = DER Kühlschrank",
-                          "meaning": "cool + cupboard = refrigerator (takes 'der' from der Schrank)",
-                          "example": "Der Kühlschrank ist voll."
+                          "term": "Neuter Nouns (das)",
+                          "meaning": "Very frequently take -er with an Umlaut, or simply -e",
+                          "example": "das Bild -> die Bilder, das Haus -> die Häuser"
                         },
                         {
-                          "term": "die Hand + der Schuh = DER Handschuh",
-                          "meaning": "hand + shoe = glove (takes 'der' from der Schuh)",
-                          "example": "Ich brauche meine Handschuhe."
+                          "term": "Masculine Nouns (der)",
+                          "meaning": "Most commonly take -e (often with an Umlaut), or end in -er with no change",
+                          "example": "der Tag -> die Tage, der Computer -> die Computer"
                         }
                       ]
                     }
                   ],
                   "dialogue": {
-                    "context": "Ordering at a bakery in Nuremberg:",
+                    "context": "Vorbereitung für den Unterricht im Seminarraum (Netzwerk A1):",
                     "lines": [
                       {
-                        "speaker": "Kunde",
-                        "german": "Guten Tag, ich möchte bitte drei Brötchen und zwei Äpfel.",
-                        "english": "Good day, I would like three rolls and two apples, please."
+                        "speaker": "Lehrerin",
+                        "german": "Guten Morgen! Haben alle Teilnehmer ihre Bücher und Stifte dabei?",
+                        "english": "Good morning! Does all participants have their books and pens with them?"
                       },
                       {
-                        "speaker": "Verkäufer",
-                        "german": "Gerne! Möchten Sie auch die Zeitungen hier?",
-                        "english": "With pleasure! Would you also like the newspapers here?"
+                        "speaker": "Paco",
+                        "german": "Ja, hier sind meine Kursbücher. Aber ich brauche noch zwei Hefte.",
+                        "english": "Yes, here are my coursebooks. But I still need two notebooks."
                       },
                       {
-                        "speaker": "Kunde",
-                        "german": "Nein danke, nur die Brötchen und die Äpfel.",
-                        "english": "No thank you, just the rolls and the apples."
+                        "speaker": "Nina",
+                        "german": "Ich habe hier drei Hefte und viele Stifte. Nimm einfach eins!",
+                        "english": "I have three notebooks and many pens here. Just take one!"
+                      },
+                      {
+                        "speaker": "Paco",
+                        "german": "Vielen Dank, Nina! Das hilft mir sehr.",
+                        "english": "Thank you very much, Nina! That helps me a lot."
                       }
                     ]
                   },
                   "funFact": {
-                    "title": "The Longest German Word",
-                    "content": "German compound nouns can theoretically go on forever! One famous official legal term was: *Rindfleischetikettierungsüberwachungsaufgabenübertragungsgesetz* (63 letters!), referring to the law on beef labeling duties. Notice how even with 63 letters, its gender is simply 'das Gesetz' (the law)!"
+                    "title": "Universal 'Die' in the Plural",
+                    "content": "No matter whether a noun was originally 'der', 'die', or 'das' in the singular, in the plural EVERY noun takes the article 'die'! For example: der Mann -> die Männer, die Frau -> die Frauen, das Kind -> die Kinder. This simplifies plural nominative and accusative greatly!"
                   },
                   "practice": [
                     {
-                      "question": "What is the gender of 'das Wörterbuch' (dictionary)?",
+                      "question": "What is the plural of 'das Buch' (the book)?",
                       "options": [
-                        "Masculine (der)",
-                        "Feminine (die)",
-                        "Neuter (das)"
+                        "die Buche",
+                        "die Bücher",
+                        "die Büchen"
                       ],
-                      "answer": "Neuter (das)",
-                      "explanation": "Compound nouns always take the gender of the last word: 'das Buch' -> 'das Wörterbuch'."
+                      "answer": "die Bücher",
+                      "explanation": "Neuter noun 'Buch' takes an Umlaut and -er: die Bücher."
+                    },
+                    {
+                      "question": "What is the plural article for all German nouns in the nominative?",
+                      "options": [
+                        "der",
+                        "die",
+                        "das"
+                      ],
+                      "answer": "die",
+                      "explanation": "All plural nouns take the definite article 'die' in the nominative case."
                     }
                   ]
                 }
@@ -2435,126 +2855,124 @@ export const FALLBACK_COURSES: CourseDetail[] = [
                 "title": "Lesson 18: The Nominative Case (Nominativ: The Subject)",
                 "description": "Identifying the sentence subject (Wer oder was?), subject-verb agreement in statements.",
                 "content": {
-                  "overview": "The Nominative case (der Nominativ) is the starting point of German grammar. It identifies the grammatical subject—the person or thing that is performing the action or being described.",
-                  "canDo": "Can identify the subject of any sentence by asking 'Wer oder was?' (Who or what?), and maintain correct subject-verb agreement.",
-                  "teacherNote": "Whenever you use the verb 'sein' (to be) or 'werden' (to become), both sides of the sentence stay in the Nominative case! Example: *Der Mann ist ein Lehrer* (both are Nominative).",
+                  "overview": "The Nominative case (der Nominativ) is the subject of the sentence—the person or thing performing the action. In this lesson, you will practice identifying the subject by asking 'Wer oder was?' (Who or what?), and master city orientation questions from Netzwerk Kapitel 3.",
+                  "canDo": "Can identify the subject of any sentence, use correct nominative articles, and ask for and give simple directions in a German-speaking city.",
+                  "teacherNote": "Whenever you see the verbs 'sein' (to be) or 'werden' (to become), BOTH sides of the sentence are in the Nominative case: 'Das ist der Bahnhof' (both 'das' and 'der Bahnhof' are Nominativ!).",
                   "sections": [
                     {
-                      "title": "1. The Question for Nominativ: 'Wer oder was?'",
-                      "description": "Ask 'Who or what is doing the action?' to reveal the subject:",
+                      "title": "1. Der Nominativ: Die Frage 'Wer oder was?'",
+                      "description": "The subject determines the conjugation of the verb:",
                       "table": {
                         "headers": [
-                          "Sentence",
-                          "Question to ask",
-                          "Identified Subject",
-                          "Case"
+                          "Beispielsatz (Netzwerk A1)",
+                          "Frage nach dem Subjekt",
+                          "Subjekt (Nominativ)"
                         ],
                         "rows": [
                           [
-                            "Der Hund schläft.",
-                            "Wer oder was schläft?",
-                            "Der Hund",
-                            "Nominativ Masculine"
+                            "Der Zug kommt um 10 Uhr an.",
+                            "Wer oder was kommt an?",
+                            "Der Zug (maskulin)"
                           ],
                           [
-                            "Die Studentin lernt viel.",
-                            "Wer oder was lernt?",
-                            "Die Studentin",
-                            "Nominativ Feminine"
+                            "Die Kirche ist sehr alt.",
+                            "Wer oder was ist alt?",
+                            "Die Kirche (feminin)"
                           ],
                           [
-                            "Das Kind spielt im Garten.",
-                            "Wer oder was spielt?",
-                            "Das Kind",
-                            "Nominativ Neuter"
+                            "Das Museum öffnet am Samstag.",
+                            "Wer oder was öffnet?",
+                            "Das Museum (neutral)"
                           ],
                           [
-                            "Die Bücher sind interessant.",
-                            "Wer oder was ist interessant?",
-                            "Die Bücher",
-                            "Nominativ Plural"
+                            "Die Touristen machen Fotos.",
+                            "Wer oder was macht Fotos?",
+                            "Die Touristen (plural)"
                           ]
                         ]
                       }
                     },
                     {
-                      "title": "2. Full Nominative Article Chart",
-                      "description": "Review your baseline reference chart for the Nominative case:",
-                      "table": {
-                        "headers": [
-                          "Category",
-                          "Masculine",
-                          "Feminine",
-                          "Neuter",
-                          "Plural"
-                        ],
-                        "rows": [
-                          [
-                            "Definite ('the')",
-                            "der",
-                            "die",
-                            "das",
-                            "die"
-                          ],
-                          [
-                            "Indefinite ('a/an')",
-                            "ein",
-                            "eine",
-                            "ein",
-                            "—"
-                          ],
-                          [
-                            "Negative ('no/none')",
-                            "kein",
-                            "keine",
-                            "kein",
-                            "keine"
-                          ],
-                          [
-                            "Possessive ('my')",
-                            "mein",
-                            "meine",
-                            "mein",
-                            "meine"
-                          ]
-                        ]
-                      }
+                      "title": "2. Redemittel: Nach dem Weg fragen (Asking Directions)",
+                      "description": "Essential phrases from Netzwerk Kapitel 3 for finding your way around town:",
+                      "items": [
+                        {
+                          "term": "Entschuldigung, wo ist...?",
+                          "meaning": "Excuse me, where is...?",
+                          "example": "Entschuldigung, wo ist der Hauptbahnhof?"
+                        },
+                        {
+                          "term": "Gehen Sie geradeaus!",
+                          "meaning": "Go straight ahead!",
+                          "example": "Gehen Sie immer geradeaus bis zur Kreuzung."
+                        },
+                        {
+                          "term": "Biegen Sie rechts / links ab!",
+                          "meaning": "Turn right / turn left!",
+                          "example": "Biegen Sie an der Ampel links ab."
+                        },
+                        {
+                          "term": "Da drüben / auf der rechten Seite",
+                          "meaning": "Over there / on the right-hand side",
+                          "example": "Da drüben ist die Post, gleich an der Ecke."
+                        }
+                      ]
                     }
                   ],
                   "dialogue": {
-                    "context": "A student introducing friends in a university cafeteria in Bonn:",
+                    "context": "Nach dem Weg fragen in Leipzig (Netzwerk A1 Kapitel 3):",
                     "lines": [
                       {
-                        "speaker": "Nico",
-                        "german": "Das ist Jan. Der Junge dort ist sein Bruder.",
-                        "english": "That is Jan. The boy over there is his brother."
+                        "speaker": "Paco",
+                        "german": "Entschuldigung, ich habe eine Frage: Wo ist hier die Touristen-Information?",
+                        "english": "Excuse me, I have a question: Where is the tourist information around here?"
                       },
                       {
-                        "speaker": "Sarah",
-                        "german": "Und wer ist das Mädchen neben ihm?",
-                        "english": "And who is the girl next to him?"
+                        "speaker": "Passantin",
+                        "german": "Das ist ganz einfach! Gehen Sie hier geradeaus und dann die zweite Straße rechts.",
+                        "english": "That is very simple! Go straight ahead here and then take the second street on the right."
                       },
                       {
-                        "speaker": "Nico",
-                        "german": "Das ist Lisa. Sie ist eine Freundin von uns.",
-                        "english": "That is Lisa. She is a friend of ours."
+                        "speaker": "Paco",
+                        "german": "Also hier geradeaus und dann rechts? Ist das weit?",
+                        "english": "So straight ahead here and then right? Is it far?"
+                      },
+                      {
+                        "speaker": "Passantin",
+                        "german": "Nein, nur zwei Minuten zu Fuß. Das Büro ist direkt am Marktplatz.",
+                        "english": "No, only two minutes on foot. The office is right on the marketplace."
+                      },
+                      {
+                        "speaker": "Paco",
+                        "german": "Vielen Dank und einen schönen Tag noch!",
+                        "english": "Thank you very much and have a nice day!"
                       }
                     ]
                   },
                   "funFact": {
-                    "title": "Why German Keeps the Nominativ Pure",
-                    "content": "The word 'Nominativ' comes from Latin 'nomen' (name). It simply names the subject. In ancient Germanic tribes, the subject was viewed as the master of the action. Even today, the subject is the only element in the sentence that dictates how the verb must conjugate!"
+                    "title": "German Street Names (Straße & Platz)",
+                    "content": "In German cities, you will see 'Straße' (street), 'Gasse' (alley), 'Weg' (way), and 'Platz' (square). Notice how street names are often compounded into a single word: 'Goethestraße', 'Marienplatz', or 'Bahnhofstraße'!"
                   },
                   "practice": [
                     {
-                      "question": "In the sentence 'Morgen kommt der Arzt', who or what is the subject in Nominativ?",
+                      "question": "In the sentence 'Der Zug fährt nach Hamburg', what is the subject?",
                       "options": [
-                        "Morgen",
-                        "kommt",
-                        "der Arzt"
+                        "nach Hamburg",
+                        "fährt",
+                        "Der Zug"
                       ],
-                      "answer": "der Arzt",
-                      "explanation": "Ask: 'Wer oder was kommt?' -> 'Der Arzt kommt'. Therefore, 'der Arzt' is the subject in Nominativ."
+                      "answer": "Der Zug",
+                      "explanation": "'Der Zug' performs the action of travelling (Wer fährt? -> Der Zug)."
+                    },
+                    {
+                      "question": "How do you tell someone in German to 'go straight ahead'?",
+                      "options": [
+                        "Gehen Sie geradeaus!",
+                        "Biegen Sie links ab!",
+                        "Kommen Sie hier!"
+                      ],
+                      "answer": "Gehen Sie geradeaus!",
+                      "explanation": "'geradeaus' means straight ahead."
                     }
                   ]
                 }
@@ -2564,107 +2982,142 @@ export const FALLBACK_COURSES: CourseDetail[] = [
                 "title": "Lesson 19: Descriptive Adjectives & Common Opposites (with sein)",
                 "description": "Predicative adjectives: groß/klein, alt/neu, gut/schlecht, billig/teuer, schön/hässlich.",
                 "content": {
-                  "overview": "Describing things, people, and places makes your German rich and vivid. When adjectives follow the verb 'sein' (predicative adjectives), they are wonderfully easy: they take ZERO extra endings!",
-                  "canDo": "Can describe people, places, and objects using common adjectives and their opposites after the verb 'sein'.",
-                  "teacherNote": "Good news: When an adjective comes *after* 'sein' (e.g., Das Haus ist groß / Der Kaffee ist heiß), you don't add any endings! It stays in its basic dictionary form. You only add adjective endings when the adjective sits directly in front of the noun.",
+                  "overview": "Descriptive adjectives bring sentences to life. When adjectives are used after 'sein' (predicative adjectives), they take NO endings at all in German! In this lesson, you will master essential adjective pairs and opposites to describe cities, buildings, weather, and feelings.",
+                  "canDo": "Can describe objects, places, and people using predicative adjectives and their common opposites without grammatical endings.",
+                  "teacherNote": "Great news: When an adjective comes after 'sein' ('Das Hotel ist modern', 'Die Stadt ist schön'), the adjective does NOT change! You never need to add -e, -en, or -es in this position!",
                   "sections": [
                     {
-                      "title": "1. Core Adjectives & Opposites (Gegenteile)",
-                      "description": "Master these high-frequency descriptive pairs:",
+                      "title": "1. Wichtige Adjektiv-Gegenteile (Essential Opposites)",
+                      "description": "High-frequency descriptive pairs from Netzwerk A1:",
                       "table": {
                         "headers": [
-                          "Adjective",
-                          "Opposite",
-                          "Meaning Pair",
-                          "Example Sentence"
+                          "Adjektiv (Positiv)",
+                          "Gegenteil (Opposite)",
+                          "Beispielsatz",
+                          "Bedeutung"
                         ],
                         "rows": [
                           [
-                            "groß",
-                            "klein",
-                            "big / small",
-                            "Die Wohnung ist groß, aber das Zimmer ist klein."
+                            "groß (big)",
+                            "klein (small)",
+                            "Das Zimmer ist groß, aber das Bad ist klein.",
+                            "big / small"
                           ],
                           [
-                            "alt",
-                            "neu / jung",
-                            "old / new / young",
-                            "Das Auto ist alt, aber das Handy ist neu."
+                            "alt (old)",
+                            "neu / modern (new / modern)",
+                            "Das Rathaus ist alt, das Hotel ist modern.",
+                            "old / modern"
                           ],
                           [
-                            "gut",
-                            "schlecht",
-                            "good / bad",
-                            "Das Wetter ist gut, aber der Film ist schlecht."
+                            "schön (beautiful)",
+                            "hässlich (ugly)",
+                            "Der Park ist sehr schön.",
+                            "beautiful / ugly"
                           ],
                           [
-                            "billig",
-                            "teuer",
-                            "cheap / expensive",
-                            "Der Kaffee ist billig, aber der Wein ist teuer."
+                            "billig / günstig (cheap)",
+                            "teuer (expensive)",
+                            "Das Café ist günstig, das Restaurant ist teuer.",
+                            "cheap / expensive"
                           ],
                           [
-                            "schön",
-                            "hässlich",
-                            "beautiful / ugly",
-                            "Die Stadt ist sehr schön."
+                            "laut (noisy)",
+                            "ruhig (quiet)",
+                            "Die Straße ist laut, der Garten ist ruhig.",
+                            "noisy / quiet"
                           ],
                           [
-                            "schnell",
-                            "langsam",
-                            "fast / slow",
-                            "Der Zug ist schnell, der Bus ist langsam."
+                            "gut (good)",
+                            "schlecht (bad)",
+                            "Das Wetter ist heute gut.",
+                            "good / bad"
                           ],
                           [
-                            "warm / heiß",
-                            "kalt",
-                            "warm / hot / cold",
-                            "Der Tee ist heiß."
-                          ],
-                          [
-                            "hell",
-                            "dunkel",
-                            "bright / dark",
-                            "Das Zimmer ist sehr hell."
+                            "hell (bright)",
+                            "dunkel (dark)",
+                            "Die Wohnung ist hell und sonnig.",
+                            "bright / dark"
                           ]
                         ]
                       }
+                    },
+                    {
+                      "title": "2. Verstärkungswörter (very, quite, too)",
+                      "description": "Nuance your descriptions with these modifier adverbs:",
+                      "items": [
+                        {
+                          "term": "sehr (very)",
+                          "meaning": "Enhances the intensity of the adjective",
+                          "example": "Die Stadt ist sehr lebendig und sehr grün."
+                        },
+                        {
+                          "term": "ziemlich / ganz (quite / fairly)",
+                          "meaning": "Moderate degree",
+                          "example": "Der Kurs ist ziemlich interessant."
+                        },
+                        {
+                          "term": "zu (too / excessively)",
+                          "meaning": "Expresses an undesirable excess",
+                          "example": "Der Kaffee ist zu heiß! / Die Wohnung ist zu teuer."
+                        },
+                        {
+                          "term": "nicht so (not so / not very)",
+                          "meaning": "Polite negation",
+                          "example": "Das Restaurant ist nicht so gut."
+                        }
+                      ]
                     }
                   ],
                   "dialogue": {
-                    "context": "Viewing an apartment for rent in Leipzig:",
+                    "context": "Zwei Freunde vergleichen Städte in Deutschland (Netzwerk A1):",
                     "lines": [
                       {
-                        "speaker": "Interessent",
-                        "german": "Die Wohnung ist wirklich sehr schön und hell!",
-                        "english": "The apartment is really very beautiful and bright!"
+                        "speaker": "Gregor",
+                        "german": "Wie findest du eigentlich München, Paco?",
+                        "english": "What do you actually think of Munich, Paco?"
                       },
                       {
-                        "speaker": "Vermieter",
-                        "german": "Ja, und die Miete ist nicht teuer. Die Küche ist neu.",
-                        "english": "Yes, and the rent is not expensive. The kitchen is new."
+                        "speaker": "Paco",
+                        "german": "Ich finde München wunderschön! Die Parks sind groß und sehr sauber.",
+                        "english": "I find Munich wonderful! The parks are big and very clean."
                       },
                       {
-                        "speaker": "Interessent",
-                        "german": "Perfekt! Das Badezimmer ist zwar klein, aber sehr sauber.",
-                        "english": "Perfect! The bathroom is indeed small, but very clean."
+                        "speaker": "Gregor",
+                        "german": "Ja, das stimmt. Aber die Mieten sind leider sehr teuer!",
+                        "english": "Yes, that's true. But the rents are unfortunately very expensive!"
+                      },
+                      {
+                        "speaker": "Paco",
+                        "german": "Das ist wahr. Aber die Lebensqualität ist fantastisch.",
+                        "english": "That is true. But the quality of life is fantastic."
                       }
                     ]
                   },
                   "funFact": {
-                    "title": "The Super-Useful Word 'Sehr' & 'Ziemlich'",
-                    "content": "To modulate your descriptions in German, use 'sehr' (very) or 'ziemlich' (quite/rather): *Das ist sehr schön* (That is very beautiful) or *Der Zug ist ziemlich schnell* (The train is quite fast). Adding 'nicht' simply negates it: *Das ist nicht teuer*!"
+                    "title": "'Günstig' vs. 'Billig'",
+                    "content": "While both words mean 'cheap', 'billig' can sometimes carry a negative connotation of 'cheaply made / low quality'. In modern German, native speakers prefer the positive word 'günstig' (favorable / good value for money)!"
                   },
                   "practice": [
                     {
                       "question": "What is the opposite of 'teuer' (expensive)?",
                       "options": [
                         "groß",
-                        "billig",
-                        "schön"
+                        "billig / günstig",
+                        "laut"
                       ],
-                      "answer": "billig",
-                      "explanation": "'billig' (or 'günstig') means cheap / affordable."
+                      "answer": "billig / günstig",
+                      "explanation": "'billig' or 'günstig' means cheap or good value."
+                    },
+                    {
+                      "question": "How do you say: 'The apartment is too small'?",
+                      "options": [
+                        "Die Wohnung ist sehr klein.",
+                        "Die Wohnung ist zu klein.",
+                        "Die Wohnung ist ganz klein."
+                      ],
+                      "answer": "Die Wohnung ist zu klein.",
+                      "explanation": "'zu' means 'too' (excessively)."
                     }
                   ]
                 }
@@ -2680,110 +3133,136 @@ export const FALLBACK_COURSES: CourseDetail[] = [
                 "title": "Lesson 20: Akkusativ Introduction & Masculine Article Shifts",
                 "description": "Direct objects (Wen oder was?); key masculine shift: der -> den, ein -> einen, kein -> keinen.",
                 "content": {
-                  "overview": "The Accusative case (der Akkusativ) is where German becomes active! Whenever a verb acts upon a direct object—what you buy, what you eat, who you see, or what you need—that object is placed into the Accusative case.",
-                  "canDo": "Can identify direct objects by asking 'Wen oder was?' (Whom or what?), and execute the famous masculine article shift (der -> den, ein -> einen).",
-                  "teacherNote": "Here is the great secret of the Accusative case: **ONLY the masculine gender changes!** Feminine (die/eine), neuter (das/ein), and plural (die/keine) stay 100% identical to Nominative. Only masculine shifts from -r to -n: *der -> den*, *ein -> einen*, *kein -> keinen*, *mein -> meinen*.",
+                  "overview": "The Accusative case (der Akkusativ) marks the direct object of an action—the person or thing directly affected by the verb. In this lesson, you will master the fundamental rule of Akkusativ: ONLY masculine articles change! Feminine, neuter, and plural stay completely unchanged.",
+                  "canDo": "Can identify direct objects by asking 'Wen oder was?' (Whom or what?), and apply the masculine article shifts (der -> den, ein -> einen, kein -> keinen).",
+                  "teacherNote": "Remember this golden rule: Masculine is the ONLY rebel in Akkusativ! Feminine remains 'die / eine', neuter remains 'das / ein', and plural remains 'die / keine'. Only masculine changes: der becomes DEN, ein becomes EINEN, kein becomes KEINEN!",
                   "sections": [
                     {
-                      "title": "1. The Accusative Article Shift",
-                      "description": "Notice how only the masculine column transforms:",
+                      "title": "1. Der Akkusativ-Artikelwechsel (The Masculine Shift)",
+                      "description": "Compare Nominative (Subject) and Accusative (Direct Object):",
                       "table": {
                         "headers": [
-                          "Case",
-                          "Masculine (The only one that changes!)",
-                          "Feminine (No change)",
-                          "Neuter (No change)",
-                          "Plural (No change)"
+                          "Genus (Gender)",
+                          "Nominativ (Subjekt)",
+                          "Akkusativ (Objekt)",
+                          "Signal-Endung"
                         ],
                         "rows": [
                           [
-                            "Nominativ (Subject)",
-                            "der / ein / kein / mein",
-                            "die / eine / keine / meine",
-                            "das / ein / kein / mein",
-                            "die / — / keine / meine"
+                            "Maskulin (m)",
+                            "der / ein / kein",
+                            "DEN / EINEN / KEINEN",
+                            "-en (Masculine Shift!)"
                           ],
                           [
-                            "Akkusativ (Direct Object)",
-                            "DEN / EINEN / KEINEN / MEINEN",
-                            "die / eine / keine / meine",
-                            "das / ein / kein / mein",
-                            "die / — / keine / meine"
+                            "Feminin (f)",
+                            "die / eine / keine",
+                            "die / eine / keine",
+                            "-e (Unverändert / No change)"
+                          ],
+                          [
+                            "Neutral (n)",
+                            "das / ein / kein",
+                            "das / ein / kein",
+                            "- (Unverändert / No change)"
+                          ],
+                          [
+                            "Plural (pl)",
+                            "die / — / keine",
+                            "die / — / keine",
+                            "-e (Unverändert / No change)"
                           ]
                         ]
                       }
                     },
                     {
-                      "title": "2. The Question for Akkusativ: 'Wen oder was?'",
-                      "description": "Ask: 'Whom or what is the subject acting upon?'",
-                      "items": [
-                        {
-                          "term": "Masculine Example (Changes!)",
-                          "meaning": "Ich habe EINEN Hund. (der Hund -> einen Hund)",
-                          "example": "Wen oder was habe ich? -> Einen Hund (Direct Object)."
-                        },
-                        {
-                          "term": "Feminine Example (Stays identical)",
-                          "meaning": "Ich trinke EINE Limonade. (die Limonade -> eine Limonade)",
-                          "example": "Wen oder was trinke ich? -> Eine Limonade."
-                        },
-                        {
-                          "term": "Neuter Example (Stays identical)",
-                          "meaning": "Er kauft EIN Buch. (das Buch -> ein Buch)",
-                          "example": "Wen oder was kauft er? -> Ein Buch."
-                        }
-                      ]
+                      "title": "2. Die Frage nach dem Akkusativ: 'Wen oder was?'",
+                      "description": "Test any sentence to see which item is the direct object:",
+                      "table": {
+                        "headers": [
+                          "Satz (Netzwerk A1)",
+                          "Akkusativ-Frage",
+                          "Akkusativ-Objekt"
+                        ],
+                        "rows": [
+                          [
+                            "Ich trinke den Kaffee.",
+                            "Wen oder was trinke ich?",
+                            "den Kaffee (maskulin)"
+                          ],
+                          [
+                            "Gregor kauft einen Apfel.",
+                            "Wen oder was kauft Gregor?",
+                            "einen Apfel (maskulin)"
+                          ],
+                          [
+                            "Julia isst eine Pizza.",
+                            "Wen oder was isst Julia?",
+                            "eine Pizza (feminin)"
+                          ],
+                          [
+                            "Wir bestellen das Wasser.",
+                            "Wen oder was bestellen wir?",
+                            "das Wasser (neutral)"
+                          ]
+                        ]
+                      }
                     }
                   ],
                   "dialogue": {
-                    "context": "Ordering at a traditional German Imbiss (snack stand) in Berlin:",
+                    "context": "Einkaufen auf dem Wochenmarkt in München (Netzwerk A1 Kapitel 4):",
                     "lines": [
                       {
-                        "speaker": "Verkäufer",
-                        "german": "Guten Tag! Was möchten Sie bestellen?",
-                        "english": "Good day! What would you like to order?"
+                        "speaker": "Marktfrau",
+                        "german": "Guten Morgen! Was darf es sein?",
+                        "english": "Good morning! What can I get for you?"
                       },
                       {
                         "speaker": "Kunde",
-                        "german": "Ich nehme einen Kaffee und eine Currywurst, bitte.",
-                        "english": "I'll take a coffee (der Kaffee -> einen) and a currywurst (die), please."
+                        "german": "Guten Morgen. Ich nehme bitte einen Apfel und einen Salat.",
+                        "english": "Good morning. I'll take an apple and a salad, please."
                       },
                       {
-                        "speaker": "Verkäufer",
-                        "german": "Möchten Sie auch ein Brötchen dazu?",
-                        "english": "Would you also like a bread roll (das) with that?"
+                        "speaker": "Marktfrau",
+                        "german": "Sehr gern. Möchten Sie auch diesen Käse probieren?",
+                        "english": "Very gladly. Would you also like to try this cheese?"
                       },
                       {
                         "speaker": "Kunde",
-                        "german": "Ja gerne, ein Brötchen nehme ich auch!",
-                        "english": "Yes please, I'll take a roll too!"
+                        "german": "Ja, gern! Ich kaufe auch den Käse. Was kostet das zusammen?",
+                        "english": "Yes, gladly! I will also buy the cheese. How much is that together?"
+                      },
+                      {
+                        "speaker": "Marktfrau",
+                        "german": "Das macht genau vier Euro fünfzig, bitte.",
+                        "english": "That comes to exactly four euros fifty, please."
                       }
                     ]
                   },
                   "funFact": {
-                    "title": "Why Cases Make German Word Order Free",
-                    "content": "Because masculine nouns change to 'den' in Akkusativ, German can invert the sentence completely for stylistic punch: 'Den Kaffee trinkt der Mann!' In English, saying 'The coffee drinks the man' would mean a mutant coffee drank a human. In German, 'den' tells your brain with 100% mathematical certainty that the coffee is the object being drank!"
+                    "title": "Why Only Masculine Changes",
+                    "content": "In Proto-Indo-European (the ancient ancestor of English and German), masculine and feminine nouns marked objects with '-m' or '-n' (like English 'who -> whom' and 'he -> him'). German preserved this accusative '-n' ending specifically in masculine forms ('den', 'einen', 'ihn', 'meinen')!"
                   },
                   "practice": [
                     {
-                      "question": "How do you say 'I need a table' (der Tisch)?",
+                      "question": "Fill in the blank: 'Ich kaufe _____ (der) Computer.'",
                       "options": [
-                        "Ich brauche ein Tisch.",
-                        "Ich brauche einen Tisch.",
-                        "Ich brauche der Tisch."
+                        "der",
+                        "den",
+                        "dem"
                       ],
-                      "answer": "Ich brauche einen Tisch.",
-                      "explanation": "'der Tisch' is masculine and the direct object of 'brauchen', so 'ein' shifts to 'einen'."
+                      "answer": "den",
+                      "explanation": "'Computer' is masculine, and because it is the direct object of 'kaufen', 'der' changes to 'den'."
                     },
                     {
-                      "question": "How do you say 'She is reading the newspaper' (die Zeitung)?",
+                      "question": "What is the accusative form of 'ein Apfel' (masculine)?",
                       "options": [
-                        "Sie liest den Zeitung.",
-                        "Sie liest die Zeitung.",
-                        "Sie liest das Zeitung."
+                        "ein Apfel",
+                        "einen Apfel",
+                        "einem Apfel"
                       ],
-                      "answer": "Sie liest die Zeitung.",
-                      "explanation": "Feminine nouns do NOT change in the Accusative case; 'die Zeitung' remains 'die Zeitung'."
+                      "answer": "einen Apfel",
+                      "explanation": "Masculine indefinite article 'ein' becomes 'einen' in the accusative case."
                     }
                   ]
                 }
@@ -2793,119 +3272,143 @@ export const FALLBACK_COURSES: CourseDetail[] = [
                 "title": "Lesson 21: High-Frequency Akkusativ Verbs",
                 "description": "Verbs triggering direct objects: haben, brauchen, suchen, sehen, kaufen, nehmen, besuchen.",
                 "content": {
-                  "overview": "Almost all standard transitive action verbs in German require the Accusative case for their direct object. In this lesson, we memorize the top 10 most common Akkusativ verbs that you will use in every conversation.",
-                  "canDo": "Can apply the Accusative case automatically with high-frequency verbs: haben, brauchen, suchen, kaufen, sehen, essen, trinken, nehmen, and finden.",
-                  "teacherNote": "A classic beginner mistake is saying 'Ich habe ein Bruder'. Remember: 'der Bruder' is masculine! Because you 'have' him, he is an Accusative direct object: *Ich habe einen Bruder*.",
+                  "overview": "Certain verbs naturally require a direct object to complete their meaning. In this lesson, you will master the most common high-frequency Akkusativ verbs used in shopping, eating, and daily tasks from Netzwerk A1 Kapitel 4 ('Guten Appetit!').",
+                  "canDo": "Can use high-frequency accusative verbs (haben, brauchen, kaufen, suchen, nehmen, essen, trinken) correctly with direct objects.",
+                  "teacherNote": "Whenever you use 'haben' (to have) or 'brauchen' (to need), mentally trigger the accusative masculine shift: 'Ich habe einen...', 'Ich brauche einen...'. This single habit will make you sound 10x more fluent!",
                   "sections": [
                     {
-                      "title": "1. The Top 10 Akkusativ Verbs",
-                      "description": "These verbs trigger an immediate direct object in Akkusativ:",
+                      "title": "1. Typische Verben mit Akkusativ (Akkusativ-Verben)",
+                      "description": "Essential verbs that always take a direct object:",
                       "table": {
                         "headers": [
                           "Verb",
-                          "Meaning",
-                          "Example with Masculine Noun",
-                          "Translation"
+                          "Bedeutung",
+                          "Beispielsatz mit Maskulin (Akkusativ)",
+                          "Beispiel mit Feminin / Neutral"
                         ],
                         "rows": [
                           [
                             "haben",
                             "to have",
-                            "Ich habe einen Computer.",
-                            "I have a computer (der Computer)."
+                            "Ich habe einen Bruder.",
+                            "Ich habe eine Schwester / ein Auto."
                           ],
                           [
                             "brauchen",
                             "to need",
-                            "Wir brauchen einen Schlüssel.",
-                            "We need a key (der Schlüssel)."
-                          ],
-                          [
-                            "suchen",
-                            "to search / look for",
-                            "Suchst du den Bahnhof?",
-                            "Are you looking for the station (der Bahnhof)?"
+                            "Brauchst du einen Stift?",
+                            "Wir brauchen eine Lampe / ein Buch."
                           ],
                           [
                             "kaufen",
                             "to buy",
                             "Er kauft einen Pullover.",
-                            "He buys a sweater (der Pullover)."
+                            "Sie kauft eine Jacke / ein Brot."
                           ],
                           [
-                            "sehen",
-                            "to see",
-                            "Ich sehe den Bus.",
-                            "I see the bus (der Bus)."
+                            "suchen",
+                            "to look for",
+                            "Ich suche den Bahnhof.",
+                            "Suchst du die Post / das Café?"
                           ],
                           [
                             "nehmen",
-                            "to take",
-                            "Ich nehme den Tee.",
-                            "I take the tea (der Tee)."
-                          ],
-                          [
-                            "finden",
-                            "to find / think of",
-                            "Wie findest du den Film?",
-                            "How do you find/like the movie (der Film)?"
+                            "to take / order",
+                            "Ich nehme einen Kaffee.",
+                            "Ich nehme eine Suppe / ein Wasser."
                           ],
                           [
                             "essen",
                             "to eat",
-                            "Sie isst einen Apfel.",
-                            "She eats an apple (der Apfel)."
+                            "Er isst einen Apfel.",
+                            "Er isst eine Banane / ein Brötchen."
                           ],
                           [
                             "trinken",
                             "to drink",
-                            "Er trinkt einen Saft.",
-                            "He drinks a juice (der Saft)."
+                            "Wir trinken einen Tee.",
+                            "Wir trinken eine Limonade / ein Bier."
                           ],
                           [
-                            "besuchen",
-                            "to visit",
-                            "Wir besuchen den Zoo.",
-                            "We visit the zoo (der Zoo)."
+                            "sehen",
+                            "to see",
+                            "Siehst du den Mann dort?",
+                            "Siehst du die Frau / das Schild?"
                           ]
                         ]
                       }
+                    },
+                    {
+                      "title": "2. Redemittel beim Einkaufen & Bestellen (Netzwerk A1)",
+                      "description": "Phrases for ordering food and buying groceries:",
+                      "items": [
+                        {
+                          "term": "Ich hätte gern... (+ Akkusativ)",
+                          "meaning": "I would like to have... (polite ordering phrase)",
+                          "example": "Ich hätte gern einen Cappuccino und ein Stück Kuchen."
+                        },
+                        {
+                          "term": "Was kostet...? / Was kosten...?",
+                          "meaning": "How much does ... cost? (singular vs. plural)",
+                          "example": "Was kostet der Orangensaft? / Was kosten die Tomaten?"
+                        },
+                        {
+                          "term": "Sonst noch etwas?",
+                          "meaning": "Anything else? (standard shopkeeper question)",
+                          "example": "Sonst noch etwas? - Nein danke, das ist alles."
+                        }
+                      ]
                     }
                   ],
                   "dialogue": {
-                    "context": "Packing a suitcase before a flight from Vienna Airport:",
+                    "context": "Im Supermarkt an der Kasse (Netzwerk A1 Kapitel 4):",
                     "lines": [
                       {
-                        "speaker": "Moritz",
-                        "german": "Hast du deinen Reisepass?",
-                        "english": "Do you have your passport (der Pass -> deinen)?"
+                        "speaker": "Kassiererin",
+                        "german": "Guten Tag! Haben Sie eine Kundenkarte?",
+                        "english": "Good day! Do you have a loyalty card?"
                       },
                       {
-                        "speaker": "Anna",
-                        "german": "Ja, ich habe den Pass in meiner Tasche. Aber ich suche meinen Koffer!",
-                        "english": "Yes, I have the passport in my bag. But I am looking for my suitcase (der Koffer -> meinen)!"
+                        "speaker": "Paco",
+                        "german": "Nein, leider nicht. Ich brauche noch eine Tüte bitte.",
+                        "english": "No, unfortunately not. I still need a bag, please."
                       },
                       {
-                        "speaker": "Moritz",
-                        "german": "Dort drüben steht er! Wir nehmen jetzt ein Taxi.",
-                        "english": "There it is over there! We'll take a taxi (das Taxi) now."
+                        "speaker": "Kassiererin",
+                        "german": "Hier ist eine Papiertüte. Möchten Sie den Beleg mitnehmen?",
+                        "english": "Here is a paper bag. Would you like to take the receipt?"
+                      },
+                      {
+                        "speaker": "Paco",
+                        "german": "Ja, bitte. Vielen Dank und einen schönen Feierabend!",
+                        "english": "Yes, please. Thank you very much and have a nice evening!"
                       }
                     ]
                   },
                   "funFact": {
-                    "title": "'Finden' Means Both 'To Find' and 'To Have an Opinion'!",
-                    "content": "In German, the verb 'finden' means both physically finding something (*Ich finde meinen Schlüssel* - I find my key) and expressing an opinion (*Ich finde den Film super!* - I think the movie is great!). It's the most common way Germans ask for feedback: *Wie findest du das?*"
+                    "title": "German Grocery Bag Etiquette",
+                    "content": "In German supermarkets, cashiers scan items at lightning speed, and bags are never given out for free! Shoppers always bring their own cloth bags ('der Stoffbeutel') and pack their groceries themselves. Be ready to pack quickly!"
                   },
                   "practice": [
                     {
-                      "question": "Which sentence correctly says 'I need a pen' (der Stift)?",
+                      "question": "Complete the sentence: 'Wir brauchen noch _____ (der) Schlüssel.'",
                       "options": [
-                        "Ich brauche ein Stift.",
-                        "Ich brauche einen Stift.",
-                        "Ich brauche eine Stift."
+                        "der",
+                        "den",
+                        "dem"
                       ],
-                      "answer": "Ich brauche einen Stift.",
-                      "explanation": "'der Stift' is masculine and becomes 'einen Stift' in the Accusative with 'brauchen'."
+                      "answer": "den",
+                      "explanation": "'brauchen' requires an accusative direct object: der Schlüssel -> den Schlüssel."
+                    },
+                    {
+                      "question": "What is the polite phrase for 'I would like to have...' in German?",
+                      "options": [
+                        "Ich will...",
+                        "Ich hätte gern...",
+                        "Ich habe..."
+                      ],
+                      "answer": "Ich hätte gern...",
+                      "explanation": "'Ich hätte gern...' is the standard, courteous phrase used when ordering food or goods."
                     }
                   ]
                 }
@@ -2915,113 +3418,149 @@ export const FALLBACK_COURSES: CourseDetail[] = [
                 "title": "Lesson 22: Akkusativ Personal Pronouns",
                 "description": "Object pronouns: mich, dich, ihn, sie, es, uns, euch, sie/Sie ('Liebst du mich?', 'Ich sehe ihn').",
                 "content": {
-                  "overview": "Just as nouns change into direct objects, personal pronouns have distinct direct object forms in German. Saying 'Do you love me?' or 'I see him' requires Accusative personal pronouns.",
-                  "canDo": "Can replace nouns with Accusative pronouns (mich, dich, ihn, sie, es, uns, euch, sie/Sie) in spoken and written German.",
-                  "teacherNote": "Notice the exact parallel: in English 'he' becomes 'him', and in German 'er' becomes 'ihn'! 'ich' becomes 'mich', and 'du' becomes 'dich'.",
+                  "overview": "Just as nouns change in the Accusative case, subject pronouns have corresponding object forms. In English, 'I' becomes 'me' and 'he' becomes 'him'. In this lesson, you will master all 9 German accusative pronouns (mich, dich, ihn, sie, es, uns, euch, sie, Sie).",
+                  "canDo": "Can use accusative personal pronouns in conversation to refer to people and objects without repeating nouns.",
+                  "teacherNote": "Notice the direct parallels with the articles: 'der' becomes 'den' -> 'er' becomes 'ihn'. 'das' stays 'das' -> 'es' stays 'es'. 'die' stays 'die' -> 'sie' stays 'sie'!",
                   "sections": [
                     {
-                      "title": "1. Nominative vs. Accusative Pronouns",
-                      "description": "Compare the subject form with the direct object form:",
+                      "title": "1. Die Personalpronomen im Akkusativ (Accusative Pronouns)",
+                      "description": "Object pronouns answering 'Wen?' (Whom?):",
                       "table": {
                         "headers": [
-                          "Nominativ (Subject)",
-                          "Akkusativ (Object)",
-                          "English Meaning",
-                          "Example in Context"
+                          "Nominativ (Subjekt)",
+                          "Akkusativ (Objekt)",
+                          "Englisch",
+                          "Beispielsatz (Netzwerk A1)"
                         ],
                         "rows": [
                           [
-                            "ich",
+                            "ich (I)",
                             "mich",
                             "me",
-                            "Hörst du mich? (Do you hear me?)"
+                            "Liebst du mich? / Hörst du mich?"
                           ],
                           [
-                            "du",
+                            "du (you informal)",
                             "dich",
-                            "you (informal)",
-                            "Ich liebe dich. (I love you.)"
+                            "you",
+                            "Ich rufe dich heute Abend an."
                           ],
                           [
-                            "er",
+                            "er (he)",
                             "ihn",
-                            "him",
-                            "Ich kenne ihn gut. (I know him well.)"
+                            "him / it (m)",
+                            "Ich kenne Herrn Schubert. Kennst du ihn auch?"
                           ],
                           [
+                            "sie (she)",
                             "sie",
-                            "sie",
-                            "her",
-                            "Wir besuchen sie morgen. (We visit her tomorrow.)"
+                            "her / it (f)",
+                            "Wo ist Julia? Ich sehe sie dort drüben."
                           ],
                           [
+                            "es (it)",
                             "es",
-                            "es",
-                            "it",
-                            "Ich sehe es nicht. (I don't see it.)"
+                            "it (n)",
+                            "Das Buch ist super. Ich lese es gerade."
                           ],
                           [
-                            "wir",
+                            "wir (we)",
                             "uns",
                             "us",
-                            "Er ruft uns an. (He calls us.)"
+                            "Der Lehrer fragt uns."
                           ],
                           [
-                            "ihr",
+                            "ihr (you all)",
                             "euch",
                             "you all",
-                            "Ich vermisse euch. (I miss you all.)"
+                            "Ich lade euch zur Party ein!"
                           ],
                           [
-                            "sie",
+                            "sie (they)",
                             "sie",
                             "them",
-                            "Ich frage sie. (I ask them.)"
+                            "Paco und Christian kommen. Siehst du sie?"
                           ],
                           [
-                            "Sie",
+                            "Sie (you formal)",
                             "Sie",
                             "you (formal)",
-                            "Ich verstehe Sie sehr gut. (I understand you very well.)"
+                            "Herr Kaiser, ich informiere Sie morgen."
                           ]
                         ]
                       }
+                    },
+                    {
+                      "title": "2. Pronouns Replacing Things (ihn, sie, es)",
+                      "description": "In German, 'it' is not always 'es'! The pronoun must match the noun's gender:",
+                      "items": [
+                        {
+                          "term": "ihn (for masculine objects)",
+                          "meaning": "Replaces masculine nouns in accusative",
+                          "example": "Kaufst du den Pullover? - Ja, ich kaufe ihn."
+                        },
+                        {
+                          "term": "sie (for feminine objects)",
+                          "meaning": "Replaces feminine nouns in accusative",
+                          "example": "Magst du die Suppe? - Ja, ich mag sie sehr."
+                        },
+                        {
+                          "term": "es (for neuter objects)",
+                          "meaning": "Replaces neuter nouns in accusative",
+                          "example": "Trinkst du das Bier? - Nein, ich trinke es nicht."
+                        }
+                      ]
                     }
                   ],
                   "dialogue": {
-                    "context": "Two friends trying to spot each other in a crowded train station in Munich:",
+                    "context": "Suche nach Freunden am Bahnhof in Frankfurt (Netzwerk A1):",
                     "lines": [
                       {
-                        "speaker": "Fabian (am Telefon)",
-                        "german": "Hallo Clara! Wo bist du? Siehst du mich?",
-                        "english": "Hello Clara! Where are you? Do you see me (mich)?"
+                        "speaker": "Julia",
+                        "german": "Hallo Gregor! Wo bist du? Ich sehe dich nicht.",
+                        "english": "Hello Gregor! Where are you? I don't see you."
                       },
                       {
-                        "speaker": "Clara",
-                        "german": "Nein, ich sehe dich noch nicht. Ich stehe vor dem Info-Point.",
-                        "english": "No, I don't see you (dich) yet. I am standing in front of the info point."
+                        "speaker": "Gregor",
+                        "german": "Ich stehe an Gleis 4. Siehst du mich jetzt?",
+                        "english": "I am standing at platform 4. Do you see me now?"
                       },
                       {
-                        "speaker": "Fabian",
-                        "german": "Ah, jetzt sehe ich dich! Ich komme zu dir.",
-                        "english": "Ah, now I see you! I'm coming to you."
+                        "speaker": "Julia",
+                        "german": "Ah ja, jetzt sehe ich dich! Und wo ist Paco? Hast du ihn gesehen?",
+                        "english": "Ah yes, now I see you! And where is Paco? Have you seen him?"
+                      },
+                      {
+                        "speaker": "Gregor",
+                        "german": "Paco kommt gleich. Er holt noch einen Kaffee.",
+                        "english": "Paco is coming right away. He is getting a coffee."
                       }
                     ]
                   },
                   "funFact": {
-                    "title": "'Ich liebe dich' - The Famous Cultural Line",
-                    "content": "The globally famous phrase 'Ich liebe dich' (I love you) is a pure textbook demonstration of the Accusative case: 'Ich' (Subject/Nominativ) + 'liebe' (Verb in Pos 2) + 'dich' (Direct Object/Akkusativ). Germans reserve this phrase for serious romantic relationships, preferring 'Ich hab dich lieb' for family and close friends!"
+                    "title": "German Objects Have Personalities",
+                    "content": "Because German objects carry gender, native speakers naturally refer to objects as 'he' or 'she'! For example: 'Wo ist der Schlüssel?' - 'Ich habe IHN!' (Where is the key? - I have HIM!). It takes a little practice, but soon it becomes second nature."
                   },
                   "practice": [
                     {
-                      "question": "How do you translate: 'We know him'?",
+                      "question": "Which pronoun replaces 'den Kuchen' (masculine cake) in the sentence: 'Ich esse _____ gern.'?",
                       "options": [
-                        "Wir kennen er.",
-                        "Wir kennen ihn.",
-                        "Wir kennen ihm."
+                        "es",
+                        "ihn",
+                        "sie"
                       ],
-                      "answer": "Wir kennen ihn.",
-                      "explanation": "'er' becomes 'ihn' in the Accusative direct object position."
+                      "answer": "ihn",
+                      "explanation": "'der Kuchen' is masculine, so its accusative pronoun is 'ihn'."
+                    },
+                    {
+                      "question": "How do you say to a friend: 'I will call you today'?",
+                      "options": [
+                        "Ich rufe du heute an.",
+                        "Ich rufe dich heute an.",
+                        "Ich rufe dir heute an."
+                      ],
+                      "answer": "Ich rufe dich heute an.",
+                      "explanation": "'anrufen' takes the accusative pronoun: du -> dich."
                     }
                   ]
                 }
@@ -3031,83 +3570,119 @@ export const FALLBACK_COURSES: CourseDetail[] = [
                 "title": "Lesson 23: Basic Adjective Endings before Nouns in Akkusativ",
                 "description": "Attribute adjectives before direct objects ('Ich kaufe einen neuen Tisch', 'Sie trinkt kalte Milch').",
                 "content": {
-                  "overview": "When adjectives stand directly in front of a noun (attributive adjectives), they take specific grammatical endings to show case and gender. At Level A1, the most critical pattern to master is the masculine Accusative ending '-en'.",
-                  "canDo": "Can add correct basic adjective endings in the Accusative case, especially the universal masculine '-en' ending (einen neuen Tisch, einen kalten Saft).",
-                  "teacherNote": "The 'Akkusativ Masculine Rule' is bulletproof: in the Accusative case with masculine nouns, EVERYTHING ends in -en! *den neuEN Tisch*, *einen kaltEN Kaffee*, *meinen gutEN Freund*.",
+                  "overview": "When you describe an object directly before the noun (e.g. 'a hot coffee', 'a cold beer'), the adjective takes an ending. In this lesson, you will learn the most practical A1 adjective endings in the Accusative case.",
+                  "canDo": "Can apply basic adjective endings in the accusative case when ordering food, shopping, or describing everyday items.",
+                  "teacherNote": "Focus on the masculine shift: whenever you describe a masculine noun with 'einen' or 'den' in accusative, the adjective ALWAYS ends in '-en'! (einen heißEN Kaffee, einen frischEN Salat).",
                   "sections": [
                     {
-                      "title": "1. Adjectives in the Accusative Case",
-                      "description": "Notice how masculine adjectives consistently adopt the '-en' ending:",
+                      "title": "1. Adjektivendungen nach unbestimmtem Artikel (ein / eine / ein)",
+                      "description": "Adjective endings when describing new items with 'ein-':",
                       "table": {
                         "headers": [
-                          "Gender",
-                          "With Indefinite Article (ein/eine)",
-                          "Example",
-                          "Meaning"
+                          "Genus",
+                          "Akkusativ-Muster",
+                          "Beispiel (Netzwerk A1)",
+                          "Bedeutung"
                         ],
                         "rows": [
                           [
-                            "Masculine (m)",
-                            "einen + [Adjective]-EN",
-                            "Ich kaufe einen neuen Schrank.",
-                            "I buy a new cupboard."
+                            "Maskulin (m)",
+                            "einen + [Adjektiv]-EN",
+                            "Ich trinke einen heißEN Tee.",
+                            "a hot tea"
                           ],
                           [
-                            "Feminine (f)",
-                            "eine + [Adjective]-E",
-                            "Ich trinke eine heiße Schokolade.",
-                            "I drink a hot chocolate."
+                            "Feminin (f)",
+                            "eine + [Adjektiv]-E",
+                            "Ich esse eine frischE Pizza.",
+                            "a fresh pizza"
                           ],
                           [
-                            "Neuter (n)",
-                            "ein + [Adjective]-ES",
-                            "Er liest ein interessantes Buch.",
-                            "He reads an interesting book."
+                            "Neutral (n)",
+                            "ein + [Adjektiv]-ES",
+                            "Ich nehme ein kaltES Mineralwasser.",
+                            "a cold mineral water"
                           ],
                           [
                             "Plural (pl)",
-                            "keine / viele + [Adjective]-EN",
-                            "Wir haben viele gute Freunde.",
-                            "We have many good friends."
+                            "keine / viele + [Adjektiv]-EN",
+                            "Wir kaufen frischE Brötchen.",
+                            "fresh rolls"
                           ]
                         ]
                       }
+                    },
+                    {
+                      "title": "2. Adjektivendungen nach bestimmtem Artikel (den / die / das)",
+                      "description": "When referring to a specific item with 'der / die / das':",
+                      "items": [
+                        {
+                          "term": "den + Adjektiv-en (m)",
+                          "meaning": "Masculine specific direct object",
+                          "example": "Ich nehme den großen Tisch."
+                        },
+                        {
+                          "term": "die + Adjektiv-e (f)",
+                          "meaning": "Feminine specific direct object",
+                          "example": "Gefällt dir die rote Jacke?"
+                        },
+                        {
+                          "term": "das + Adjektiv-e (n)",
+                          "meaning": "Neuter specific direct object",
+                          "example": "Wir buchen das moderne Zimmer."
+                        }
+                      ]
                     }
                   ],
                   "dialogue": {
-                    "context": "Shopping for electronics in a department store in Berlin:",
+                    "context": "Bestellung im Café in Köln (Netzwerk A1 Kapitel 4):",
                     "lines": [
                       {
-                        "speaker": "Kunde",
-                        "german": "Guten Tag, ich suche einen schnellen Laptop für die Universität.",
-                        "english": "Good day, I am looking for a fast laptop (der Laptop -> einen schnellen) for university."
+                        "speaker": "Kellnerin",
+                        "german": "Guten Tag! Was darf ich Ihnen bringen?",
+                        "english": "Good day! What may I bring you?"
                       },
                       {
-                        "speaker": "Verkäufer",
-                        "german": "Wir haben hier ein sehr gutes Modell mit einem großen Bildschirm.",
-                        "english": "We have a very good model (das Modell -> ein gutes) here with a large screen."
+                        "speaker": "Sarah",
+                        "german": "Ich hätte gern einen großen Cappuccino und ein leckeres Stück Käsekuchen.",
+                        "english": "I would like a large cappuccino and a delicious piece of cheesecake."
                       },
                       {
-                        "speaker": "Kunde",
-                        "german": "Das sieht super aus. Ich nehme ihn!",
-                        "english": "That looks super. I'll take it!"
+                        "speaker": "Kellnerin",
+                        "german": "Sehr gern. Möchten Sie auch ein kaltes Wasser dazu?",
+                        "english": "Very gladly. Would you also like a cold water with that?"
+                      },
+                      {
+                        "speaker": "Sarah",
+                        "german": "Ja, bitte ein kleines Mineralwasser mit Kohlensäure.",
+                        "english": "Yes, please a small sparkling mineral water."
                       }
                     ]
                   },
                   "funFact": {
-                    "title": "Mark Twain's Battle with German Adjective Endings",
-                    "content": "In his famous 1880 essay *The Awful German Language*, Mark Twain wrote: 'When a German gets his hands on an adjective, he declines it, and inflects it, until all its common sense is completely gone.' Fortunately, at A1, remembering that masculine direct objects take '-en' solves 90% of all practical situations!"
+                    "title": "'Mit oder ohne Kohlensäure?'",
+                    "content": "When you order 'Wasser' in Germany, you will almost always be asked: 'Mit oder ohne Kohlensäure?' (Sparkling or still?). By default, Germans love sparkling water ('Sprudel' / 'Medium'). If you prefer flat tap-style water, ask specifically for 'Stilles Wasser'!"
                   },
                   "practice": [
                     {
-                      "question": "Complete the sentence: 'Er trinkt einen _____ Kaffee.' (kalt)",
+                      "question": "Which ending is correct: 'Ich trinke einen stark_____ Espresso.' (der Espresso)",
                       "options": [
-                        "kalte",
-                        "kaltes",
-                        "kalten"
+                        "-e",
+                        "-en",
+                        "-es"
                       ],
-                      "answer": "kalten",
-                      "explanation": "Because 'Kaffee' is masculine and in the Accusative case ('einen'), the adjective takes '-en': 'kalten'."
+                      "answer": "-en",
+                      "explanation": "Masculine accusative after 'einen' always takes '-en': einen starken Espresso."
+                    },
+                    {
+                      "question": "Choose the correct phrase: 'Sie möchte ein _____ (kalt) Bier.'",
+                      "options": [
+                        "kaltes",
+                        "kalten",
+                        "kalte"
+                      ],
+                      "answer": "kaltes",
+                      "explanation": "'das Bier' is neuter, so after 'ein' in accusative it takes '-es': ein kaltes Bier."
                     }
                   ]
                 }
@@ -3123,139 +3698,139 @@ export const FALLBACK_COURSES: CourseDetail[] = [
                 "title": "Lesson 24: Negation in German: 'nicht' vs. 'kein'",
                 "description": "Rules of negation: kein/keine for nouns with indefinite/zero articles; nicht for verbs & adjectives.",
                 "content": {
-                  "overview": "Knowing how to say 'no' accurately is vital. German has two main tools for negation: 'kein' and 'nicht'. Mixing them up is one of the most common beginner errors, but the rule distinguishing them is crystal clear.",
-                  "canDo": "Can negate nouns using 'kein/keine' and negate verbs, adjectives, proper names, and whole sentences using 'nicht'.",
-                  "teacherNote": "Here is the golden rule: If a noun in the positive sentence takes 'ein/eine' or has NO article at all, negate it with **kein/keine**! For everything else (verbs, adjectives, adverbs, definite articles like 'der/die/das', names), use **nicht**.",
+                  "overview": "Negation is essential for expressing what you don't have, what you don't do, or what isn't true. In German, there are two distinct words for 'not': 'nicht' and 'kein'. In this lesson, you will master the simple rule to always choose the right one.",
+                  "canDo": "Can reliably decide between 'nicht' and 'kein' to negate verbs, adjectives, specific nouns, and indefinite nouns.",
+                  "teacherNote": "Here is the golden rule in one sentence: Use 'kein' whenever you would say 'a / an' or 'no' in English (nouns with ein- or zero article). Use 'nicht' for everything else (verbs, adjectives, proper names, and definite nouns with der/die/das)!",
                   "sections": [
                     {
-                      "title": "1. The Clear Divide: 'kein' vs. 'nicht'",
-                      "description": "Study how the positive sentence determines the negation tool:",
+                      "title": "1. Die Entscheidungsregel: 'kein' vs. 'nicht'",
+                      "description": "Simple flowchart for choosing negation:",
                       "table": {
                         "headers": [
-                          "Category",
-                          "Positive Statement",
-                          "Negated Statement",
-                          "Rule applied"
+                          "Was wird verneint?",
+                          "Regel",
+                          "Beispiel: Positiv",
+                          "Beispiel: Verneint"
                         ],
                         "rows": [
                           [
-                            "Noun with indefinite article",
-                            "Ich habe ein Auto.",
-                            "Ich habe KEIN Auto.",
-                            "ein -> kein"
+                            "Nomen mit 'ein-' oder ohne Artikel",
+                            "Verwende KEIN- (dekliniert wie ein-)",
+                            "Das ist ein Hotel.",
+                            "Das ist KEIN Hotel."
                           ],
                           [
-                            "Noun with no article (zero article)",
-                            "Ich trinke Milch.",
-                            "Ich trinke KEINE Milch.",
-                            "zero article -> kein/keine"
+                            "Nomen im Plural ohne Artikel",
+                            "Verwende KEINE",
+                            "Ich habe Geschwister.",
+                            "Ich habe KEINE Geschwister."
                           ],
                           [
-                            "Noun with definite article (der/die/das)",
-                            "Ich kenne den Mann.",
-                            "Ich kenne den Mann NICHT.",
-                            "Definite article -> nicht"
+                            "Verben (Handlung)",
+                            "Verwende NICHT (meist am Satzende)",
+                            "Ich rauche.",
+                            "Ich rauche NICHT."
                           ],
                           [
-                            "Verb / Action",
-                            "Er arbeitet heute.",
-                            "Er arbeitet heute NICHT.",
-                            "Action negated -> nicht"
-                          ],
-                          [
-                            "Adjective / Description",
+                            "Adjektive & Adverbien",
+                            "Verwende NICHT vor dem Adjektiv",
                             "Das Zimmer ist groß.",
-                            "Das Zimmer ist NICHT groß.",
-                            "Adjective negated -> nicht"
+                            "Das Zimmer ist NICHT groß."
                           ],
                           [
-                            "Proper names & Places",
-                            "Das ist Peter.",
-                            "Das ist NICHT Peter.",
-                            "Proper name -> nicht"
+                            "Nomen mit bestimmtem Artikel (der/die/das)",
+                            "Verwende NICHT vor dem Nomen",
+                            "Das ist der Schlüssel.",
+                            "Das ist NICHT der Schlüssel."
+                          ],
+                          [
+                            "Eigennamen & Städte",
+                            "Verwende NICHT vor dem Namen",
+                            "Er heißt Gregor.",
+                            "Er heißt NICHT Gregor."
                           ]
                         ]
                       }
                     },
                     {
-                      "title": "2. The Forms of 'kein' (Declined like 'ein')",
-                      "description": "Notice how 'kein' has the exact same endings as 'ein':",
+                      "title": "2. Deklination von 'kein' (Declension of kein)",
+                      "description": "'kein' declines exactly like 'ein', but also has a plural form ('keine'):",
                       "table": {
                         "headers": [
-                          "Case",
-                          "Masculine",
-                          "Feminine",
-                          "Neuter",
-                          "Plural"
+                          "Fall / Genus",
+                          "Maskulin (m)",
+                          "Feminin (f)",
+                          "Neutral (n)",
+                          "Plural (pl)"
                         ],
                         "rows": [
                           [
-                            "Nominativ",
-                            "kein Hund",
-                            "keine Katze",
-                            "kein Kind",
-                            "keine Kinder"
+                            "Nominativ (Subjekt)",
+                            "kein Tisch",
+                            "keine Lampe",
+                            "kein Buch",
+                            "keine Bücher"
                           ],
                           [
-                            "Akkusativ",
-                            "KEINEN Hund",
-                            "keine Katze",
-                            "kein Kind",
-                            "keine Kinder"
+                            "Akkusativ (Objekt)",
+                            "keinen Tisch",
+                            "keine Lampe",
+                            "kein Buch",
+                            "keine Bücher"
                           ]
                         ]
                       }
                     }
                   ],
                   "dialogue": {
-                    "context": "At a coffee shop counter in Zurich:",
+                    "context": "Zimmerbesichtigung im Wohnheim (Netzwerk A1 Kapitel 8):",
                     "lines": [
                       {
-                        "speaker": "Barista",
-                        "german": "Möchten Sie Zucker oder Milch in Ihren Kaffee?",
-                        "english": "Would you like sugar or milk in your coffee?"
+                        "speaker": "Mieter",
+                        "german": "Ist hier in der Küche ein Kühlschrank?",
+                        "english": "Is there a refrigerator here in the kitchen?"
                       },
                       {
-                        "speaker": "Gast",
-                        "german": "Nein danke, ich nehme keinen Zucker und keine Milch.",
-                        "english": "No thank you, I take no sugar and no milk (kein/keine for nouns)."
+                        "speaker": "Vermieter",
+                        "german": "Nein, hier ist leider kein Kühlschrank. Den müssen Sie selbst kaufen.",
+                        "english": "No, there is unfortunately no refrigerator here. You have to buy that yourself."
                       },
                       {
-                        "speaker": "Barista",
-                        "german": "Alles klar! Ist der Kuchen hier auch für Sie?",
-                        "english": "All right! Is the cake here also for you?"
+                        "speaker": "Mieter",
+                        "german": "Schade. Und funktioniert das WLAN im Zimmer gut?",
+                        "english": "Pity. And does the Wi-Fi work well in the room?"
                       },
                       {
-                        "speaker": "Gast",
-                        "german": "Nein, das ist nicht mein Kuchen!",
-                        "english": "No, that is not my cake (nicht for possessives)!"
+                        "speaker": "Vermieter",
+                        "german": "Das WLAN ist schnell und kostet nicht extra.",
+                        "english": "The Wi-Fi is fast and does not cost extra."
                       }
                     ]
                   },
                   "funFact": {
-                    "title": "German Directness & Precision",
-                    "content": "German speakers place immense value on precision. The distinction between 'kein' (none of something) and 'nicht' (not doing something) reflects this mindset. Saying 'Ich trinke nicht Kaffee' sounds like an unfinished thought to a native speaker—they immediately expect: 'Ich trinke keinen Kaffee!'"
+                    "title": "Why 'Ich habe nicht Auto' is Incorrect",
+                    "content": "English speakers often say 'I do not have a car' and literally translate it as 'Ich habe nicht ein Auto'. In German, 'nicht + ein' merges into the single word 'KEIN': 'Ich habe kein Auto'. Saying 'nicht ein' is only used for extreme dramatic emphasis ('Not a single car!')!"
                   },
                   "practice": [
                     {
-                      "question": "How do you negate: 'Ich habe Zeit' (I have time)?",
+                      "question": "How do you say: 'I have no time' in German?",
                       "options": [
                         "Ich habe nicht Zeit.",
                         "Ich habe keine Zeit.",
-                        "Ich habe kein Zeit."
+                        "Ich bin nicht Zeit."
                       ],
                       "answer": "Ich habe keine Zeit.",
-                      "explanation": "'die Zeit' has no article in the positive statement, so it takes feminine 'keine': 'Ich habe keine Zeit'."
+                      "explanation": "'Zeit' is a noun without an article (feminine die Zeit), so it is negated with 'keine'."
                     },
                     {
-                      "question": "How do you negate: 'Das Auto ist teuer' (The car is expensive)?",
+                      "question": "How do you negate the sentence: 'Ich verstehe das' (I understand that)?",
                       "options": [
-                        "Das Auto ist kein teuer.",
-                        "Das Auto ist nicht teuer.",
-                        "Das Auto ist keine teuer."
+                        "Ich verstehe kein das.",
+                        "Ich verstehe das nicht.",
+                        "Ich nicht verstehe das."
                       ],
-                      "answer": "Das Auto ist nicht teuer.",
-                      "explanation": "Adjectives (teuer) are always negated using 'nicht'."
+                      "answer": "Ich verstehe das nicht.",
+                      "explanation": "To negate a verb, place 'nicht' towards the end of the clause."
                     }
                   ]
                 }
@@ -3265,134 +3840,150 @@ export const FALLBACK_COURSES: CourseDetail[] = [
                 "title": "Lesson 25: Possessive Articles in Nominativ & Akkusativ (mein, dein, sein, ihr)",
                 "description": "Expressing 'my, your, his, her' (mein Buch, meine Mutter, meinen Bruder).",
                 "content": {
-                  "overview": "Expressing relationships, belonging, and ownership (my car, your dog, her mother) requires possessive articles. In German, possessives match both the owner (who possesses) and the gender/case of the noun being possessed!",
-                  "canDo": "Can use possessive articles (mein, dein, sein, ihr, unser, euer, ihr/Ihr) in both Nominative and Accusative cases.",
-                  "teacherNote": "Think of possessive articles as having two sides: the ROOT shows who owns it (mein = my, dein = your, sein = his, ihr = her), while the ENDING matches the noun (just like ein/eine/einen)!",
+                  "overview": "Possessive articles express ownership ('my book', 'your friend', 'our apartment'). In German, possessive articles match both the person possessing (mein, dein, sein, ihr) and the grammatical gender/case of the noun possessed.",
+                  "canDo": "Can use possessive articles (mein, dein, sein, ihr) in Nominative and Accusative to talk about family members, possessions, and colleagues.",
+                  "teacherNote": "Think of possessive articles as 'chameleons': the root word tells you WHO owns it (mein = my, dein = your, sein = his, ihr = her), and the ending tells you the GENDER and CASE of the thing owned (meine Mutter, meinen Bruder, mein Kind)!",
                   "sections": [
                     {
-                      "title": "1. The Possessive Stems by Person",
-                      "description": "These stems correspond to the subject pronouns:",
+                      "title": "1. Die Possessiv-Stämme (Possessive Roots)",
+                      "description": "Who owns the object:",
                       "table": {
                         "headers": [
-                          "Owner",
-                          "German Stem",
-                          "English Meaning",
-                          "Example in Nominative"
+                          "Person",
+                          "Besitzer (Owner)",
+                          "Possessiv-Stamm",
+                          "Beispiel"
                         ],
                         "rows": [
                           [
                             "ich (I)",
-                            "mein-",
                             "my",
-                            "mein Vater / meine Mutter / mein Kind"
+                            "mein-",
+                            "mein Name, meine Stadt"
                           ],
                           [
-                            "du (you - informal)",
-                            "dein-",
+                            "du (you informal)",
                             "your",
-                            "dein Bruder / deine Schwester / dein Buch"
+                            "dein-",
+                            "dein Freund, deine Telefonnummer"
                           ],
                           [
-                            "er (he)",
+                            "er / es (he / it)",
+                            "his / its",
                             "sein-",
-                            "his",
-                            "sein Handy / seine Tasche"
-                          ],
-                          [
-                            "es (it)",
-                            "sein-",
-                            "its",
-                            "seine Farbe (its color)"
+                            "sein Auto, seine Kollegin"
                           ],
                           [
                             "sie (she)",
-                            "ihr-",
                             "her",
-                            "ihr Auto / ihre Freundin"
+                            "ihr-",
+                            "ihr Kurs, ihre Tasche"
                           ],
                           [
                             "wir (we)",
-                            "unser-",
                             "our",
-                            "unser Haus / unsere Familie"
+                            "unser-",
+                            "unser Lehrer, unsere Schule"
                           ],
                           [
                             "ihr (you all)",
-                            "euer- / eure",
                             "your (plural)",
-                            "euer Zimmer / eure Freunde"
+                            "euer / eure-",
+                            "euer Zimmer, eure Freunde"
                           ],
                           [
-                            "sie (they)",
-                            "ihr-",
-                            "their",
-                            "ihr Garten / ihre Wohnung"
-                          ],
-                          [
-                            "Sie (you - formal)",
-                            "Ihr- (capitalized!)",
-                            "your (formal)",
-                            "Ihr Pass / Ihre Adresse"
+                            "sie / Sie (they / You formal)",
+                            "their / Your (formal)",
+                            "ihr- / Ihr- (groß)",
+                            "ihr Haus / Ihr Name"
                           ]
                         ]
                       }
                     },
                     {
-                      "title": "2. Possessives in the Accusative Case",
-                      "description": "Just like 'ein' becomes 'einen', masculine possessives take '-en' in Accusative:",
-                      "items": [
-                        {
-                          "term": "Masculine (Changes to -en!)",
-                          "meaning": "Ich besuche meinEN Bruder. / Suchst du deinEN Schlüssel?",
-                          "example": "Masculine direct objects always take -en!"
-                        },
-                        {
-                          "term": "Feminine (Takes -e)",
-                          "meaning": "Ich liebe meinE Familie. / Er ruft seinE Mutter an.",
-                          "example": "Identical to Nominative."
-                        },
-                        {
-                          "term": "Neuter (No ending)",
-                          "meaning": "Wir verkaufen unser Haus. / Sie sucht ihr Buch.",
-                          "example": "Identical to Nominative."
-                        }
-                      ]
+                      "title": "2. Endungen im Nominativ & Akkusativ",
+                      "description": "Possessives decline exactly like 'ein' and 'kein':",
+                      "table": {
+                        "headers": [
+                          "Fall",
+                          "Maskulin (m)",
+                          "Feminin (f)",
+                          "Neutral (n)",
+                          "Plural (pl)"
+                        ],
+                        "rows": [
+                          [
+                            "Nominativ (Subjekt)",
+                            "mein Vater",
+                            "meine Mutter",
+                            "mein Kind",
+                            "meine Eltern"
+                          ],
+                          [
+                            "Akkusativ (Objekt)",
+                            "meinen Vater (-en!)",
+                            "meine Mutter",
+                            "mein Kind",
+                            "meine Eltern"
+                          ]
+                        ]
+                      }
                     }
                   ],
                   "dialogue": {
-                    "context": "At a family gathering in Vienna, looking at family photographs:",
+                    "context": "Fotos zeigen im Café (Netzwerk A1 Kapitel 2):",
                     "lines": [
                       {
-                        "speaker": "Jonas",
-                        "german": "Ist das dein Hund auf dem Foto?",
-                        "english": "Is that your dog in the photo?"
+                        "speaker": "Paco",
+                        "german": "Schau mal, Julia! Das ist ein Foto von meiner Familie.",
+                        "english": "Look, Julia! That is a photo of my family."
                       },
                       {
-                        "speaker": "Eva",
-                        "german": "Ja, das ist mein Hund Bello. Und hier siehst du meine Eltern und meinen Bruder.",
-                        "english": "Yes, that is my dog Bello. And here you see my parents and my brother (meinen Bruder)."
+                        "speaker": "Julia",
+                        "german": "Oh, wie schön! Wer ist das? Ist das dein Bruder?",
+                        "english": "Oh, how nice! Who is that? Is that your brother?"
                       },
                       {
-                        "speaker": "Jonas",
-                        "german": "Eine schöne Familie! Wo wohnt dein Bruder?",
-                        "english": "A lovely family! Where does your brother live?"
+                        "speaker": "Paco",
+                        "german": "Ja, das ist mein Bruder Carlos und das ist seine Freundin Sofia.",
+                        "english": "Yes, that is my brother Carlos and that is his girlfriend Sofia."
+                      },
+                      {
+                        "speaker": "Julia",
+                        "german": "Und die Kinder dort drüben?",
+                        "english": "And the children over there?"
+                      },
+                      {
+                        "speaker": "Paco",
+                        "german": "Das sind meine Nichten. Ich besuche meine Familie im Sommer.",
+                        "english": "Those are my nieces. I am visiting my family in the summer."
                       }
                     ]
                   },
                   "funFact": {
-                    "title": "Watch Out for 'sein' vs. 'ihr'!",
-                    "content": "In English, we say 'his mother' and 'her mother'. In German, 'his' is 'sein-' and 'her' is 'ihr-'. But beginners sometimes get confused because 'sein' is also the verb 'to be'! Context always makes it obvious: 'Er ist hier' (He is here) vs 'Das ist sein Hund' (That is his dog)."
+                    "title": "'euer' drops an 'e' before endings!",
+                    "content": "Notice this spelling quirk with 'euer' (your plural): without ending it is 'euer' ('Euer Zimmer ist schön'), but when you add the feminine/plural ending '-e', the middle 'e' drops out: 'eure Freunde' and 'eure Mutter' (not 'euere')!"
                   },
                   "practice": [
                     {
-                      "question": "How do you say 'I am looking for my key' (der Schlüssel)?",
+                      "question": "Choose the correct possessive for 'my brother' as direct object: 'Ich rufe _____ Bruder an.'",
                       "options": [
-                        "Ich suche mein Schlüssel.",
-                        "Ich suche meinen Schlüssel.",
-                        "Ich suche meine Schlüssel."
+                        "mein",
+                        "meine",
+                        "meinen"
                       ],
-                      "answer": "Ich suche meinen Schlüssel.",
-                      "explanation": "'der Schlüssel' is masculine and an Accusative direct object, so 'mein' becomes 'meinen'."
+                      "answer": "meinen",
+                      "explanation": "'Bruder' is masculine accusative, so the possessive takes '-en': meinen Bruder."
+                    },
+                    {
+                      "question": "How does Nina say: 'Her name is Julia'?",
+                      "options": [
+                        "Sein Name ist Julia.",
+                        "Ihr Name ist Julia.",
+                        "Dein Name ist Julia."
+                      ],
+                      "answer": "Ihr Name ist Julia.",
+                      "explanation": "'ihr' is the possessive article for feminine 3rd person singular (her)."
                     }
                   ]
                 }
@@ -3402,104 +3993,119 @@ export const FALLBACK_COURSES: CourseDetail[] = [
                 "title": "Lesson 26: Expressing Existence with 'es gibt' (+ Akkusativ)",
                 "description": "Describing availability: 'Es gibt einen Supermarkt', 'Hier gibt es viele Bücher'.",
                 "content": {
-                  "overview": "Describing what exists in a room, a city, or an area is essential. German uses the universal phrase 'es gibt' (there is / there are). Crucially, 'es gibt' ALWAYS requires the Accusative case for the noun that follows!",
-                  "canDo": "Can describe availability, amenities, and surroundings using 'es gibt' followed by Accusative nouns.",
-                  "teacherNote": "'Es gibt' works for both singular AND plural! Unlike English, where you must switch between 'there is' and 'there are', German stays 'es gibt' for everything: *Es gibt einen Park* (There is a park) and *Es gibt viele Parks* (There are many parks).",
+                  "overview": "Describing whether things exist or are available in an area is one of the most common communicative tasks. In German, 'there is / there are' is expressed by the fixed idiom 'es gibt'. In this lesson, you will master using 'es gibt' with the Accusative case.",
+                  "canDo": "Can describe cities, neighborhoods, and facilities using 'es gibt' followed by accusative nouns.",
+                  "teacherNote": "'Es gibt' is a fixed idiom where 'es' is the subject and 'gibt' is the verb. Therefore, whatever exists is the DIRECT OBJECT and MUST be in the Akkusativ case! Masculine nouns take 'einen': 'Es gibt einen Supermarkt'.",
                   "sections": [
                     {
-                      "title": "1. 'Es gibt' + Akkusativ",
-                      "description": "Study how masculine nouns change after 'es gibt':",
+                      "title": "1. Die Struktur: 'Es gibt' + Akkusativ",
+                      "description": "No matter if singular or plural, 'es gibt' stays identical:",
                       "table": {
                         "headers": [
-                          "Gender",
-                          "Pattern after 'es gibt'",
-                          "German Example",
-                          "English Meaning"
+                          "Genus",
+                          "Akkusativ nach 'es gibt'",
+                          "Beispielsatz (Netzwerk A1)",
+                          "Bedeutung"
                         ],
                         "rows": [
                           [
-                            "Masculine (m)",
-                            "es gibt einen / keinen",
-                            "In der Stadt gibt es EINEN Bahnhof.",
-                            "In the city there is a train station."
+                            "Maskulin (m)",
+                            "einen / keinen",
+                            "In der Nähe gibt es einen Park.",
+                            "There is a park nearby."
                           ],
                           [
-                            "Feminine (f)",
-                            "es gibt eine / keine",
-                            "Hier gibt es EINE Bäckerei.",
-                            "Here there is a bakery."
+                            "Feminin (f)",
+                            "eine / keine",
+                            "Hier gibt es eine U-Bahn-Station.",
+                            "There is a subway station here."
                           ],
                           [
-                            "Neuter (n)",
-                            "es gibt ein / kein",
-                            "In der Nähe gibt es EIN Kino.",
-                            "Nearby there is a cinema."
+                            "Neutral (n)",
+                            "ein / kein",
+                            "In Leipzig gibt es ein schönes Museum.",
+                            "There is a nice museum in Leipzig."
                           ],
                           [
                             "Plural (pl)",
-                            "es gibt viele / keine",
-                            "Es gibt hier VIELE Restaurants.",
-                            "There are many restaurants here."
+                            "viele / keine",
+                            "In Berlin gibt es viele Theater.",
+                            "There are many theaters in Berlin."
                           ]
                         ]
                       }
                     },
                     {
-                      "title": "2. Questions with 'Gibt es...?'",
-                      "description": "To ask if something exists, invert to Position 1: 'Gibt es...?'",
+                      "title": "2. Fragen mit 'Gibt es...?' (Is there...? / Are there...?)",
+                      "description": "To ask whether something exists, place 'Gibt' first:",
                       "items": [
                         {
-                          "term": "Gibt es hier WLAN?",
-                          "meaning": "Is there Wi-Fi here?",
-                          "example": "Ja, es gibt kostenloses WLAN."
+                          "term": "Gibt es hier ein Café?",
+                          "meaning": "Is there a café around here?",
+                          "example": "Ja, gleich an der Ecke gibt es ein schönes Café."
                         },
                         {
-                          "term": "Gibt es einen Supermarkt in der Nähe?",
-                          "meaning": "Is there a supermarket nearby?",
-                          "example": "Ja, an der Ecke gibt es einen."
+                          "term": "Gibt es hier einen Geldautomaten?",
+                          "meaning": "Is there an ATM around here?",
+                          "example": "Ja, in der Sparkasse da drüben."
+                        },
+                        {
+                          "term": "Gibt es noch Fragen?",
+                          "meaning": "Are there any more questions? (teacher / presenter phrase)",
+                          "example": "Gibt es noch Fragen zum Kurs?"
                         }
                       ]
                     }
                   ],
                   "dialogue": {
-                    "context": "Checking into an Airbnb apartment in Munich and asking about the neighborhood:",
+                    "context": "Neu in der Stadt – Erkundung des Viertels (Netzwerk A1 Kapitel 3):",
                     "lines": [
                       {
-                        "speaker": "Gast",
+                        "speaker": "Paco",
                         "german": "Entschuldigung, gibt es hier in der Nähe einen Supermarkt?",
-                        "english": "Excuse me, is there a supermarket nearby (der Supermarkt -> einen)?"
+                        "english": "Excuse me, is there a supermarket nearby?"
                       },
                       {
-                        "speaker": "Vermieter",
-                        "german": "Ja, direkt um die Ecke gibt es einen Edeka und eine Apotheke.",
-                        "english": "Yes, right around the corner there is an Edeka and a pharmacy."
+                        "speaker": "Nachbarin",
+                        "german": "Ja, in der Goethestraße gibt es einen großen Edeka und eine Bäckerei.",
+                        "english": "Yes, on Goethe Street there is a large Edeka and a bakery."
                       },
                       {
-                        "speaker": "Gast",
-                        "german": "Wunderbar! Und gibt es auch eine U-Bahn-Station?",
-                        "english": "Wonderful! And is there also a subway station?"
+                        "speaker": "Paco",
+                        "german": "Toll! Und gibt es auch eine Apotheke?",
+                        "english": "Great! And is there also a pharmacy?"
                       },
                       {
-                        "speaker": "Vermieter",
-                        "german": "Ja, nur fünf Minuten zu Fuß.",
-                        "english": "Yes, only five minutes on foot."
+                        "speaker": "Nachbarin",
+                        "german": "Ja, direkt neben der Bäckerei gibt es eine Apotheke. Alles ganz nah!",
+                        "english": "Yes, right next to the bakery there is a pharmacy. Everything very close!"
                       }
                     ]
                   },
                   "funFact": {
-                    "title": "Literal Meaning of 'Es gibt'",
-                    "content": "Linguistically, 'es gibt' literally translates to 'it gives'! When you say 'Es gibt einen Supermarkt', old Germanic phrasing is essentially saying: 'Nature / the world gives a supermarket'. Today, it simply means 'there is / there exists'."
+                    "title": "'Es gibt' Never Takes Plural Verbs!",
+                    "content": "In English, you must distinguish: 'There IS a park' (singular) vs. 'There ARE ten parks' (plural). In German, 'es gibt' NEVER changes to 'es geben'! You say 'Es gibt ein Museum' AND 'Es gibt zehn Museen'. The verb remains locked in 'gibt'!"
                   },
                   "practice": [
                     {
-                      "question": "Complete the question: 'Gibt es hier _____ Geldautomaten?' (der Geldautomat - ATM)",
+                      "question": "Complete the sentence: 'Gibt es hier in der Nähe _____ (der) Park?'",
                       "options": [
-                        "ein",
-                        "einen",
-                        "eine"
+                        "ein Park",
+                        "einen Park",
+                        "einem Park"
                       ],
-                      "answer": "einen",
-                      "explanation": "'der Geldautomat' is masculine and follows 'es gibt' (Accusative), so it becomes 'einen'."
+                      "answer": "einen Park",
+                      "explanation": "'es gibt' triggers the accusative case. 'Park' is masculine, so it takes 'einen Park'."
+                    },
+                    {
+                      "question": "How do you ask: 'Are there any questions?' in German?",
+                      "options": [
+                        "Geben es Fragen?",
+                        "Gibt es Fragen?",
+                        "Sind es Fragen?"
+                      ],
+                      "answer": "Gibt es Fragen?",
+                      "explanation": "'Gibt es Fragen?' is the standard idiom, keeping 'gibt' singular."
                     }
                   ]
                 }
@@ -3509,88 +4115,112 @@ export const FALLBACK_COURSES: CourseDetail[] = [
                 "title": "Lesson 27: Sentence Connectors: und, aber, oder",
                 "description": "Position 0 coordinating conjunctions linking two independent clauses without verb shift.",
                 "content": {
-                  "overview": "To connect two thoughts together smoothly without repeating sentences, you need coordinating conjunctions. In German, the three most important connectors are 'und' (and), 'aber' (but), and 'oder' (or).",
-                  "canDo": "Can link two main clauses using coordinating conjunctions (und, aber, oder) without changing verb position (Position 0).",
-                  "teacherNote": "These connectors are called 'Position 0 Conjunctions' because they do NOT count as a position in the sentence! The sentence after 'und' or 'aber' starts fresh: Subject in Position 1, Verb in Position 2.",
+                  "overview": "Coordinating conjunctions connect two sentences without altering the normal word order. In German, the most important conjunctions are 'und' (and), 'aber' (but), and 'oder' (or). They are known as 'Position 0' connectors.",
+                  "canDo": "Can connect simple main clauses smoothly using 'und', 'aber', and 'oder' while preserving Position 2 verb placement.",
+                  "teacherNote": "Remember: 'und', 'aber', and 'oder' sit at 'Position 0'! They act like a bridge between sentences, so the sentence that follows starts counting fresh: Position 1 (Subject) + Position 2 (Verb)!",
                   "sections": [
                     {
-                      "title": "1. The Position 0 Rule (ADUSO Connectors)",
-                      "description": "Connectors link clauses while keeping both verbs in Position 2:",
+                      "title": "1. Die Position 0 Konnektoren (und, aber, oder)",
+                      "description": "Connecting two complete independent clauses:",
                       "table": {
                         "headers": [
-                          "Clause 1",
-                          "Connector (Pos 0)",
-                          "Subject (Pos 1)",
-                          "Verb (Pos 2)",
-                          "Rest of Clause 2"
+                          "Konnektor",
+                          "Bedeutung",
+                          "Erster Satz",
+                          "Konnektor (Pos 0)",
+                          "Zweiter Satz (Pos 1 + Pos 2)"
                         ],
                         "rows": [
                           [
-                            "Ich lerne Deutsch",
                             "und",
-                            "ich",
-                            "wohne",
-                            "in Berlin."
+                            "and",
+                            "Ich lerne Deutsch",
+                            ", und",
+                            "ich wohne in München."
                           ],
                           [
-                            "Er möchte kommen,",
                             "aber",
-                            "er",
-                            "hat",
-                            "heute keine Zeit."
+                            "but (contrast)",
+                            "Paco lernt fleißig",
+                            ", aber",
+                            "er spricht noch nicht perfekt."
                           ],
                           [
-                            "Trinken wir Tee",
                             "oder",
-                            "gehen",
-                            "wir",
-                            "in ein Café?"
-                          ],
-                          [
-                            "Ich esse gerne Pizza,",
-                            "aber",
-                            "meine Schwester",
-                            "mag",
-                            "Salat."
+                            "or (alternative)",
+                            "Trinkst du einen Kaffee",
+                            ", oder",
+                            "möchtest du einen Tee?"
                           ]
                         ]
                       }
+                    },
+                    {
+                      "title": "2. Kommasetzung bei Konnektoren",
+                      "description": "Punctuation rules in German writing:",
+                      "items": [
+                        {
+                          "term": "aber (immer mit Komma!)",
+                          "meaning": "Always place a comma before 'aber' when linking two clauses",
+                          "example": "Die Wohnung ist schön, aber sie ist teuer."
+                        },
+                        {
+                          "term": "und / oder (meist ohne Komma bei kurzem Subjekt)",
+                          "meaning": "When subjects are identical, you can omit the repeated subject",
+                          "example": "Ich heiße Paco und komme aus Spanien."
+                        }
+                      ]
                     }
                   ],
                   "dialogue": {
-                    "context": "Two friends deciding on evening plans in Hamburg:",
+                    "context": "Freizeitplanung am Wochenende (Netzwerk A1 Kapitel 2):",
                     "lines": [
                       {
-                        "speaker": "Daniel",
-                        "german": "Gehen wir heute Abend ins Kino oder bleiben wir zu Hause?",
-                        "english": "Are we going to the movies tonight or staying at home?"
+                        "speaker": "Nina",
+                        "german": "Gregor, gehen wir am Samstag ins Kino oder hast du schon etwas vor?",
+                        "english": "Gregor, are we going to the cinema on Saturday or do you already have plans?"
                       },
                       {
-                        "speaker": "Sophie",
-                        "german": "Ich bin müde, aber ich möchte trotzdem rausgehen!",
-                        "english": "I am tired, but I want to go out anyway!"
+                        "speaker": "Gregor",
+                        "german": "Ich habe Zeit, aber der Film beginnt erst um 20 Uhr.",
+                        "english": "I have time, but the movie doesn't start until 8 PM."
                       },
                       {
-                        "speaker": "Daniel",
-                        "german": "Toll, dann essen wir eine Pizza und sehen danach den neuen Film.",
-                        "english": "Great, then we'll eat a pizza and watch the new movie afterwards."
+                        "speaker": "Nina",
+                        "german": "Kein Problem! Wir können vorher etwas essen und dann gehen wir zusammen ins Kino.",
+                        "english": "No problem! We can eat something beforehand and then we'll go to the cinema together."
+                      },
+                      {
+                        "speaker": "Gregor",
+                        "german": "Super Idee, so machen wir das!",
+                        "english": "Super idea, that's what we'll do!"
                       }
                     ]
                   },
                   "funFact": {
-                    "title": "The Comma Before 'Aber' is Mandatory!",
-                    "content": "German punctuation is governed by strict grammatical rules. Unlike in English where a comma before 'but' is often optional, in German you **must always place a comma** before 'aber' and 'denn' when linking two full sentences!"
+                    "title": "The Acronym ADUSO",
+                    "content": "German teachers teach the acronym ADUSO for the five Position 0 conjunctions: Aber (but), Denn (because), Und (and), Sondern (but rather), Oder (or). None of these five change the word order of the following clause!"
                   },
                   "practice": [
                     {
-                      "question": "Which connector means 'but' and requires a comma before it?",
+                      "question": "Which sentence is grammatically correct with 'aber'?",
                       "options": [
-                        "und",
-                        "aber",
-                        "oder"
+                        "Ich habe Zeit, aber ich lerne heute.",
+                        "Ich habe Zeit, aber lerne ich heute.",
+                        "Ich habe Zeit, aber heute ich lerne."
                       ],
-                      "answer": "aber",
-                      "explanation": "'aber' means 'but' and connects contrasting statements, always preceded by a comma."
+                      "answer": "Ich habe Zeit, aber ich lerne heute.",
+                      "explanation": "'aber' is Position 0. The next clause follows normal word order: 'ich' (Pos 1) + 'lerne' (Pos 2)."
+                    },
+                    {
+                      "question": "What is the meaning of 'oder'?",
+                      "options": [
+                        "and",
+                        "or",
+                        "but"
+                      ],
+                      "answer": "or",
+                      "explanation": "'oder' means 'or'."
                     }
                   ]
                 }
@@ -3600,116 +4230,123 @@ export const FALLBACK_COURSES: CourseDetail[] = [
                 "title": "Lesson 28: Expressing Likes & Preferences: mögen, gern, lieber",
                 "description": "Differences between liking nouns (mögen), doing actions (gern), and preferring (lieber).",
                 "content": {
-                  "overview": "Talking about what you love doing, what you like, and what you prefer is the heart of casual conversation. German makes a clear grammatical distinction between liking nouns (verb 'mögen') and liking actions (adverb 'gern').",
-                  "canDo": "Can express likes using 'mögen' for things and 'gern' for activities, and express preferences using 'lieber'.",
-                  "teacherNote": "Remember this split: To like a THING (coffee, pizza, music), use the verb **mögen** (*Ich mag Kaffee*). To like an ACTION (reading, traveling, cooking), use the verb + **gern** (*Ich reise gern / Ich koche gern*)!",
+                  "overview": "Expressing what you like, what you enjoy doing, and what you prefer is the key to engaging conversations about hobbies, food, and travel. In German, there is a clear distinction between 'mögen' (verb used with nouns) and 'gern / lieber / am liebsten' (adverbs used with verbs).",
+                  "canDo": "Can state likes with 'mögen', express enjoyment of activities with 'gern', and make comparisons with 'lieber' (prefer) and 'am liebsten' (favorite).",
+                  "teacherNote": "English uses 'to like' for both nouns ('I like pizza') and verbs ('I like swimming'). German uses TWO different tools: For nouns, use the verb MÖGEN ('Ich mag Pizza'). For activities/verbs, use the adverb GERN ('Ich schwimme gern')!",
                   "sections": [
                     {
-                      "title": "1. The Verb 'mögen' (To like things/nouns)",
-                      "description": "Conjugation of 'mögen' in present tense (stem changes to mag- in singular):",
+                      "title": "1. Der Vergleich: 'mögen' vs. 'gern'",
+                      "description": "When to use the verb vs. the adverb:",
                       "table": {
                         "headers": [
-                          "Pronoun",
-                          "Form of mögen",
-                          "Example Sentence",
-                          "Meaning"
+                          "Werkzeug (Tool)",
+                          "Wann benutzt man es?",
+                          "Konstruktion",
+                          "Beispiel (Netzwerk A1)"
                         ],
                         "rows": [
                           [
-                            "ich",
-                            "mag",
-                            "Ich mag deutsche Musik.",
-                            "I like German music."
+                            "mögen (Verb)",
+                            "Mit Nomen (Sachen, Personen, Essen)",
+                            "Subjekt + mag / magst... + Nomen",
+                            "Ich mag Musik. / Magst du Pizza?"
                           ],
                           [
-                            "du",
-                            "magst",
-                            "Magst du Schokolade?",
-                            "Do you like chocolate?"
-                          ],
-                          [
-                            "er / sie / es",
-                            "mag",
-                            "Er mag keinen Fisch.",
-                            "He doesn't like fish."
-                          ],
-                          [
-                            "wir",
-                            "mögen",
-                            "Wir mögen Berlin sehr.",
-                            "We like Berlin very much."
-                          ],
-                          [
-                            "ihr",
-                            "mögt",
-                            "Mögt ihr Fußball?",
-                            "Do you all like soccer?"
-                          ],
-                          [
-                            "sie / Sie",
-                            "mögen",
-                            "Mögen Sie Kaffee?",
-                            "Do you like coffee (formal)?"
+                            "gern (Adverb)",
+                            "Mit Verben (Aktivitäten, Hobbys)",
+                            "Subjekt + Verb + GERN",
+                            "Ich höre gern Musik. / Ich koche gern."
                           ]
                         ]
                       }
                     },
                     {
-                      "title": "2. The Magic Adverb: 'gern' & 'lieber' (For Actions)",
-                      "description": "Place 'gern' after the verb to mean 'I like doing X':",
-                      "items": [
-                        {
-                          "term": "gern / gerne (gladly / like doing)",
-                          "meaning": "Ich lese gern. (I like reading.) / Ich koche gern. (I like cooking.)",
-                          "example": "Wir reisen gern nach Österreich."
-                        },
-                        {
-                          "term": "lieber (rather / prefer doing)",
-                          "meaning": "Trinkst du Tee? -> Nein, ich trinke lieber Kaffee. (I prefer drinking coffee.)",
-                          "example": "Ich fahre lieber mit dem Zug als mit dem Bus."
-                        },
-                        {
-                          "term": "am liebsten (most of all / favorite)",
-                          "meaning": "Am liebsten esse ich Pizza. (Most of all, I love eating pizza.)",
-                          "example": "Superlative preference."
-                        }
-                      ]
+                      "title": "2. Die Steigerung: gern -> lieber -> am liebsten",
+                      "description": "Expressing preferences and favorites from Netzwerk Kapitel 2 & 4:",
+                      "table": {
+                        "headers": [
+                          "Stufe (Degree)",
+                          "Wort",
+                          "Bedeutung",
+                          "Beispielsatz"
+                        ],
+                        "rows": [
+                          [
+                            "Grundstufe (Positive)",
+                            "gern",
+                            "like doing (gladly)",
+                            "Ich trinke gern Tee."
+                          ],
+                          [
+                            "Vergleichsstufe (Comparative)",
+                            "lieber",
+                            "prefer doing (rather)",
+                            "Aber ich trinke lieber Kaffee."
+                          ],
+                          [
+                            "Höchststufe (Superlative)",
+                            "am liebsten",
+                            "like doing most (favorite)",
+                            "Am liebsten trinke ich Orangensaft!"
+                          ]
+                        ]
+                      }
                     }
                   ],
                   "dialogue": {
-                    "context": "Discussing hobbies and free time in an evening German course:",
+                    "context": "Über Hobbys und Freizeit sprechen (Netzwerk A1 Kapitel 2):",
                     "lines": [
                       {
-                        "speaker": "Tom",
-                        "german": "Was machst du am Wochenende gern?",
-                        "english": "What do you like doing on the weekend?"
+                        "speaker": "Julia",
+                        "german": "Gregor, was machst du gern in deiner Freizeit?",
+                        "english": "Gregor, what do you like doing in your free time?"
                       },
                       {
-                        "speaker": "Maja",
-                        "german": "Ich koche gern mit Freunden. Und du? Magst du Sport?",
-                        "english": "I like cooking with friends. And you? Do you like sports?"
+                        "speaker": "Gregor",
+                        "german": "Ich spiele gern Fußball und lese gern Romane. Und du?",
+                        "english": "I like playing football and enjoy reading novels. And you?"
                       },
                       {
-                        "speaker": "Tom",
-                        "german": "Ja, ich spiele gern Fußball, aber ich fahre lieber Fahrrad!",
-                        "english": "Yes, I like playing soccer, but I prefer riding my bicycle!"
+                        "speaker": "Julia",
+                        "german": "Ich reise sehr gern! Aber am liebsten koche ich mit Freunden.",
+                        "english": "I really like travelling! But most of all I love cooking with friends."
+                      },
+                      {
+                        "speaker": "Gregor",
+                        "german": "Toll! Kochst du lieber italienisch oder asiatisch?",
+                        "english": "Great! Do you prefer cooking Italian or Asian food?"
+                      },
+                      {
+                        "speaker": "Julia",
+                        "german": "Lieber italienisch, Pasta ist mein Lieblingsessen.",
+                        "english": "Preferably Italian, pasta is my favorite food."
                       }
                     ]
                   },
                   "funFact": {
-                    "title": "The Concept of 'Feierabend'",
-                    "content": "When Germans finish work and transition to doing what they like (gern machen), they announce: 'Ich mache jetzt Feierabend!'. *Feierabend* literally translates to 'celebration evening'. It signifies the sacred boundary where all work stops, and personal relaxation, hobbies, and family time begin!"
+                    "title": "'Lieblings-' as a Prefix",
+                    "content": "To say 'my favorite X' in German, attach the word 'Lieblings-' directly to the front of any noun: das Lieblingsessen (favorite food), das Lieblingsbuch (favorite book), die Lieblingsfarbe (favorite color), der Lieblingsfilm (favorite movie)!"
                   },
                   "practice": [
                     {
-                      "question": "How do you say 'I like traveling'?",
+                      "question": "How do you say: 'I like swimming' in natural German?",
                       "options": [
-                        "Ich mag reisen.",
-                        "Ich reise gern.",
-                        "Ich bin gern reisen."
+                        "Ich mag schwimmen.",
+                        "Ich schwimme gern.",
+                        "Ich liebe schwimmen."
                       ],
-                      "answer": "Ich reise gern.",
-                      "explanation": "For activities and actions, pair the conjugated verb with the adverb 'gern' (Ich reise gern)."
+                      "answer": "Ich schwimme gern.",
+                      "explanation": "To express enjoying an activity, German places the adverb 'gern' after the conjugated verb: Ich schwimme gern."
+                    },
+                    {
+                      "question": "What is the comparative form of 'gern' meaning 'prefer'?",
+                      "options": [
+                        "gerner",
+                        "lieber",
+                        "besser"
+                      ],
+                      "answer": "lieber",
+                      "explanation": "The comparative form of 'gern' is 'lieber' (prefer / would rather)."
                     }
                   ]
                 }
@@ -3725,109 +4362,124 @@ export const FALLBACK_COURSES: CourseDetail[] = [
                 "title": "Lesson 29: Dativ Introduction & Article Transformations",
                 "description": "Indirect objects (Wem?); Dative articles: der/das -> dem, die -> der, die Plural -> den + n.",
                 "content": {
-                  "overview": "The Dative case (der Dativ) introduces indirect objects—the person or recipient who benefits from an action (e.g. giving, answering, helping). It also serves as the default case for some of the most vital prepositions in everyday German.",
-                  "canDo": "Can identify indirect objects by asking 'Wem?' (To whom?), and apply the Dative article transformations (dem, der, dem, den + n).",
-                  "teacherNote": "Here is the musical rhyme that German schoolchildren learn to remember the Dative articles: 'Aus dem, aus der, aus dem, aus den!' Notice that masculine and neuter both change to DEM, feminine becomes DER, and plural becomes DEN with an extra 'n' added to the noun!",
+                  "overview": "The Dative case (der Dativ) marks the indirect object—the beneficiary or recipient of an action (answering 'Wem?' / To whom?). In this lesson, you will master the article transformations in Dativ (dem, der, dem, den + n) and learn verbs that inherently require a Dative object.",
+                  "canDo": "Can identify the recipient of an action by asking 'Wem?' and apply correct Dative articles (dem, der, dem, den + n) to nouns.",
+                  "teacherNote": "Remember this quick rhyme for Dative definite articles: 'DEM - DER - DEM - DEN plus N'! Notice that in the plural, you not only change the article to 'den', but you ALSO add an '-n' to the end of the noun if it doesn't already have one (den Kindern, den Freunden)!",
                   "sections": [
                     {
-                      "title": "1. The Dative Article Transformations",
-                      "description": "Study how all genders transform in the Dative case:",
+                      "title": "1. Die Artikel im Dativ (Dative Article Shifts)",
+                      "description": "How articles change to mark the indirect object:",
                       "table": {
                         "headers": [
-                          "Gender",
-                          "Nominativ",
-                          "Akkusativ",
-                          "DATIV (Recipient / Wem?)",
-                          "Indefinite Dativ"
+                          "Genus",
+                          "Nominativ (Subjekt)",
+                          "Dativ (Empfänger / Wem?)",
+                          "Indefinit / Negativ im Dativ"
                         ],
                         "rows": [
                           [
-                            "Masculine (m)",
+                            "Maskulin (m)",
                             "der Mann",
-                            "den Mann",
                             "DEM Mann",
-                            "einem Mann"
+                            "einem / keinem Mann"
                           ],
                           [
-                            "Feminine (f)",
-                            "die Frau",
+                            "Feminin (f)",
                             "die Frau",
                             "DER Frau",
-                            "einer Frau"
+                            "einer / keiner Frau"
                           ],
                           [
-                            "Neuter (n)",
-                            "das Kind",
+                            "Neutral (n)",
                             "das Kind",
                             "DEM Kind",
-                            "einem Kind"
+                            "einem / keinem Kind"
                           ],
                           [
                             "Plural (pl)",
-                            "die Kinder",
-                            "die Kinder",
-                            "DEN Kindern (+n!)",
-                            "keinen Kindern"
+                            "die Freunde",
+                            "DEN FreundeN (+n)",
+                            "keinen FreundeN"
                           ]
                         ]
                       }
                     },
                     {
-                      "title": "2. The Question for Dativ: 'Wem?' (To whom?)",
-                      "description": "Dative answers the question 'Wem?' (To whom do you give/help/show?):",
+                      "title": "2. Verben mit Dativ (Verbs Triggering Dative)",
+                      "description": "These common verbs always take a Dative partner:",
                       "items": [
                         {
-                          "term": "geben (to give)",
-                          "meaning": "Ich gebe DEM Mann das Buch. (I give the man the book.)",
-                          "example": "Wem gebe ich das Buch? -> Dem Mann (Indirect Object)."
-                        },
-                        {
                           "term": "helfen (to help)",
-                          "meaning": "Ich helfe DER Frau. (I help the woman.)",
-                          "example": "Wem helfe ich? -> Der Frau."
+                          "meaning": "Ich helfe + Dativ (I help someone)",
+                          "example": "Ich helfe dem Mann / der Kollegin."
                         },
                         {
-                          "term": "antworten (to answer)",
-                          "meaning": "Er antwortet DEM Lehrer. (He answers the teacher.)",
-                          "example": "Wem antwortet er? -> Dem Lehrer."
+                          "term": "danken (to thank)",
+                          "meaning": "Ich danke + Dativ (I thank someone)",
+                          "example": "Ich danke Ihnen herzlich für Ihre Unterstützung."
+                        },
+                        {
+                          "term": "gefallen (to be pleasing / like)",
+                          "meaning": "Das gefällt + Dativ (Someone likes that)",
+                          "example": "Das Buch gefällt dem Studenten sehr."
+                        },
+                        {
+                          "term": "gehören (to belong to)",
+                          "meaning": "Das gehört + Dativ (That belongs to someone)",
+                          "example": "Der Stift gehört der Lehrerin."
                         }
                       ]
                     }
                   ],
                   "dialogue": {
-                    "context": "A tourist asking for help and giving thanks in central Vienna:",
+                    "context": "Unterstützung im Sprachinstitut (Netzwerk A1 Kapitel 7):",
                     "lines": [
                       {
-                        "speaker": "Tourist",
-                        "german": "Entschuldigung, können Sie mir helfen?",
-                        "english": "Excuse me, can you help me (mir - Dativ)?"
+                        "speaker": "Gregor",
+                        "german": "Hallo Paco! Kann ich dir bei der Hausaufgabe helfen?",
+                        "english": "Hello Paco! Can I help you with the homework?"
                       },
                       {
-                        "speaker": "Wiener",
-                        "german": "Ja gerne! Ich helfe Ihnen gerne. Was suchen Sie?",
-                        "english": "Yes gladly! I gladly help you (Ihnen - Dativ). What are you looking for?"
+                        "speaker": "Paco",
+                        "german": "Ja, bitte! Ich verstehe diese Übung mit dem Dativ nicht ganz.",
+                        "english": "Yes, please! I don't quite understand this exercise with the dative."
                       },
                       {
-                        "speaker": "Tourist",
-                        "german": "Ich gebe dem Taxifahrer diese Adresse, aber er findet sie nicht.",
-                        "english": "I am giving the taxi driver (dem Taxifahrer) this address, but he cannot find it."
+                        "speaker": "Gregor",
+                        "german": "Kein Problem. Schau mal: 'Ich gebe der Lehrerin das Buch'. Die Lehrerin bekommt das Buch, also Dativ!",
+                        "english": "No problem. Look: 'I give the teacher the book'. The teacher receives the book, so Dative!"
+                      },
+                      {
+                        "speaker": "Paco",
+                        "german": "Ah, jetzt verstehe ich es! Vielen Dank für deine Hilfe, Gregor.",
+                        "english": "Ah, now I understand it! Thank you very much for your help, Gregor."
                       }
                     ]
                   },
                   "funFact": {
-                    "title": "The Plural '+ n' Rule",
-                    "content": "In the Dative plural, German not only changes the article to 'den', but also adds a final letter '-n' to the end of the noun if it doesn't already have one! For example: *die Kinder* -> *den Kindern*, *die Freunde* -> *den Freunden*. This is the famous 'Dativ-Plural-n'!"
+                    "title": "'Wie geht es dir?' is Literally Dative!",
+                    "content": "Why do Germans ask 'Wie geht es dir?' (How goes it *to you*?) instead of 'Wie bist du?'. Because health and well-being are viewed as happening TO you! That is why the answer is 'Es geht MIR gut' (It goes well *to me*), using the Dative pronoun 'mir'!"
                   },
                   "practice": [
                     {
-                      "question": "What is the Dative form of 'die Mutter'?",
+                      "question": "Choose the correct article: 'Ich helfe _____ (die) Frau.'",
                       "options": [
-                        "dem Mutter",
-                        "der Mutter",
-                        "den Mutter"
+                        "die",
+                        "der",
+                        "dem"
                       ],
-                      "answer": "der Mutter",
-                      "explanation": "Feminine nouns shift from 'die' to 'der' in the Dative case ('Ich helfe der Mutter')."
+                      "answer": "der",
+                      "explanation": "'helfen' takes the dative case. The feminine article 'die' changes to 'der' in Dative."
+                    },
+                    {
+                      "question": "What happens to plural nouns in the Dative case?",
+                      "options": [
+                        "The article becomes 'den' and the noun adds '-n'",
+                        "The article becomes 'die'",
+                        "Nothing changes"
+                      ],
+                      "answer": "The article becomes 'den' and the noun adds '-n'",
+                      "explanation": "Dative plural takes the article 'den' and adds an '-n' to the noun (z.B. den Kindern)."
                     }
                   ]
                 }
@@ -3837,132 +4489,137 @@ export const FALLBACK_COURSES: CourseDetail[] = [
                 "title": "Lesson 30: Common Dativ Prepositions",
                 "description": "Fixed Dative prepositions: aus, bei, mit, nach, seit, von, zu ('Ich fahre mit dem Bus').",
                 "content": {
-                  "overview": "A select group of German prepositions ALWAYS trigger the Dative case, no matter what verb is in the sentence. Learning this fixed list is one of the highest return-on-investment topics in beginner German.",
-                  "canDo": "Can apply the fixed Dative prepositions: aus, bei, mit, nach, seit, von, zu in everyday travel and conversational contexts.",
-                  "teacherNote": "Sing this to the tune of 'The Blue Danube' or chant it aloud: 'Aus, bei, mit, nach, seit, von, zu — immer mit dem Dativ, du!'. The moment you see one of these seven words, the very next noun MUST be in Dativ.",
+                  "overview": "Certain prepositions in German are strictly linked to the Dative case, no matter what. Whenever you use one of these prepositions, the noun following it MUST be in the Dativ case. In this lesson, you will master the 7 fixed Dative prepositions: aus, bei, mit, nach, seit, von, zu.",
+                  "canDo": "Can use the fixed Dative prepositions to talk about travel methods (mit dem Bus), origins (aus dem Kurs), workplace (bei Siemens), and appointments (beim Arzt, zum Kurs).",
+                  "teacherNote": "Learn the musical Dative preposition rhyme: 'Aus - bei - mit - nach - seit - von - zu, immer mit dem Dativ, weißt du!'. Also memorize contractions: bei + dem = beim, zu + dem = zum, zu + der = zur, von + dem = vom!",
                   "sections": [
                     {
-                      "title": "1. The 7 Fixed Dative Prepositions",
-                      "description": "Every single one of these words locks the noun into Dativ:",
+                      "title": "1. Die festen Dativ-Präpositionen (Fixed Dative Prepositions)",
+                      "description": "These 7 prepositions always trigger Dative:",
                       "table": {
                         "headers": [
-                          "Preposition",
-                          "Primary Meaning",
-                          "Example in Dativ",
-                          "Translation"
+                          "Präposition",
+                          "Hauptbedeutung",
+                          "Beispiel mit Dativ (Netzwerk A1)",
+                          "Typische Kontraktion"
                         ],
                         "rows": [
                           [
                             "aus",
                             "out of / from",
-                            "Er kommt aus DEM Haus.",
-                            "He comes out of the house."
+                            "Ich komme aus der Schweiz.",
+                            "—"
                           ],
                           [
                             "bei",
-                            "at / with / near",
-                            "Ich wohne bei MEINEN Eltern.",
-                            "I live with my parents."
+                            "at / with (company/person)",
+                            "Er arbeitet bei einer Bank / beim Arzt.",
+                            "bei + dem = beim"
                           ],
                           [
                             "mit",
-                            "with / by (transit)",
-                            "Wir fahren mit DEM Bus / Zug.",
-                            "We travel by bus / train."
+                            "with / by means of (transport)",
+                            "Ich fahre mit dem Bus / mit der Bahn.",
+                            "—"
                           ],
                           [
                             "nach",
-                            "to (cities/countries) / after",
-                            "Nach DER Arbeit trinken wir Kaffee.",
-                            "After work we drink coffee."
+                            "after / to (cities & countries)",
+                            "Nach dem Unterricht fahre ich nach Berlin.",
+                            "—"
                           ],
                           [
                             "seit",
-                            "since / for (time)",
-                            "Ich lerne seit EINEM Monat Deutsch.",
-                            "I've been learning German for a month."
+                            "since / for (ongoing time)",
+                            "Sie lernt seit einem Monat Deutsch.",
+                            "—"
                           ],
                           [
                             "von",
                             "from / of",
-                            "Das ist ein Geschenk von MEINEM Bruder.",
-                            "That is a gift from my brother."
+                            "Ich komme gerade vom Bahnhof.",
+                            "von + dem = vom"
                           ],
                           [
                             "zu",
-                            "to (places/people)",
-                            "Ich gehe zu DEM Arzt (zum Arzt).",
-                            "I am going to the doctor."
+                            "to (places & people)",
+                            "Gehst du heute zum Deutschkurs / zur Post?",
+                            "zu + dem = zum, zu + der = zur"
                           ]
                         ]
                       }
                     },
                     {
-                      "title": "2. Common Contractions with Prepositions",
-                      "description": "In spoken and written German, prepositions blend with the Dative article:",
+                      "title": "2. Verkehrsmittel mit 'mit dem / mit der' (Modes of Transport)",
+                      "description": "How to say how you travel in German from Netzwerk Kapitel 3:",
                       "items": [
                         {
-                          "term": "bei + dem = BEIM",
-                          "meaning": "Ich bin beim Arzt. (I am at the doctor's.)",
-                          "example": "Beim Essen sprechen wir nicht."
+                          "term": "mit dem Bus / mit dem Zug / mit dem Auto",
+                          "meaning": "By bus / by train / by car (masculine & neuter take 'dem')",
+                          "example": "Ich fahre jeden Tag mit dem Bus zur Arbeit."
                         },
                         {
-                          "term": "zu + dem = ZUM",
-                          "meaning": "Ich gehe zum Bahnhof. (I am going to the train station.)",
-                          "example": "Zum Frühstück esse ich Brot."
+                          "term": "mit der U-Bahn / mit der S-Bahn / mit der Tram",
+                          "meaning": "By subway / by suburban train / by tram (feminine takes 'der')",
+                          "example": "Wir fahren mit der U-Bahn ins Zentrum."
                         },
                         {
-                          "term": "zu + der = ZUR",
-                          "meaning": "Ich gehe zur Post / Schule. (I am going to the post office / school.)",
-                          "example": "Zur Arbeit fahre ich mit dem Rad."
-                        },
-                        {
-                          "term": "von + dem = VOM",
-                          "meaning": "Er kommt gerade vom Flughafen. (He's just coming from the airport.)",
-                          "example": "Vom Bahnhof sind es fünf Minuten."
+                          "term": "zu Fuß (gegangen)",
+                          "meaning": "On foot (fixed expression without article)",
+                          "example": "Der Marktplatz ist nah, wir gehen zu Fuß."
                         }
                       ]
                     }
                   ],
                   "dialogue": {
-                    "context": "Discussing how to commute to work in Munich:",
+                    "context": "Unterwegs zur Arbeit in München (Netzwerk A1 Kapitel 3):",
                     "lines": [
                       {
-                        "speaker": "Mark",
-                        "german": "Wie fährst du morgens zur Arbeit?",
-                        "english": "How do you travel to work (zur Arbeit) in the morning?"
+                        "speaker": "Julia",
+                        "german": "Guten Morgen, Gregor! Wie fährst du heute zur Arbeit?",
+                        "english": "Good morning, Gregor! How are you travelling to work today?"
                       },
                       {
-                        "speaker": "Lisa",
-                        "german": "Ich fahre meistens mit der U-Bahn oder mit dem Fahrrad.",
-                        "english": "I usually travel by subway (mit der) or by bicycle (mit dem)."
+                        "speaker": "Gregor",
+                        "german": "Ich fahre meistens mit dem Fahrrad, aber heute regnet es. Also fahre ich mit der U-Bahn.",
+                        "english": "I mostly ride by bicycle, but today it is raining. So I am taking the subway."
                       },
                       {
-                        "speaker": "Mark",
-                        "german": "Und wie lange brauchst du von deiner Wohnung zum Büro?",
-                        "english": "And how long do you need from your apartment (von deiner) to the office (zum Büro)?"
+                        "speaker": "Julia",
+                        "german": "Gute Idee! Und fährst du nach der Arbeit direkt nach Hause?",
+                        "english": "Good idea! And are you going directly home after work?"
                       },
                       {
-                        "speaker": "Lisa",
-                        "german": "Etwa zwanzig Minuten.",
-                        "english": "About twenty minutes."
+                        "speaker": "Gregor",
+                        "german": "Nein, um 17 Uhr gehe ich noch zum Arzt und dann zum Supermarkt.",
+                        "english": "No, at 5 PM I am going to the doctor and then to the supermarket."
                       }
                     ]
                   },
                   "funFact": {
-                    "title": "'Mit dem Bus' - German Transit Etiquette",
-                    "content": "Whenever talking about taking transit in German, you always use 'mit dem' (with the): *mit dem Bus, mit dem Zug, mit dem Auto, mit dem Flugzeug*. Only 'die Bahn' (train/subway) is feminine, so you say *mit der Bahn*!"
+                    "title": "The Magic Contractions (beim, zum, zur, vom)",
+                    "content": "Native speakers almost never say 'bei dem Arzt' or 'zu der Post'. They combine the preposition and article into smooth contractions: bei + dem = beim, zu + dem = zum, zu + der = zur, von + dem = vom. Using these contractions immediately makes you sound natural!"
                   },
                   "practice": [
                     {
-                      "question": "How do you say: 'I am traveling by train' (der Zug)?",
+                      "question": "How do you say: 'I travel by train' in German? (der Zug)",
                       "options": [
                         "Ich fahre mit den Zug.",
                         "Ich fahre mit dem Zug.",
-                        "Ich fahre mit das Zug."
+                        "Ich fahre mit der Zug."
                       ],
                       "answer": "Ich fahre mit dem Zug.",
-                      "explanation": "'mit' always takes the Dative case; masculine 'der Zug' becomes 'dem Zug'."
+                      "explanation": "'mit' always triggers Dative: der Zug becomes 'dem Zug'."
+                    },
+                    {
+                      "question": "What is the contraction of 'zu + der'?",
+                      "options": [
+                        "zum",
+                        "zur",
+                        "zudem"
+                      ],
+                      "answer": "zur",
+                      "explanation": "'zu + der' contracts to 'zur' (z.B. zur Schule, zur Post)."
                     }
                   ]
                 }
@@ -3972,98 +4629,119 @@ export const FALLBACK_COURSES: CourseDetail[] = [
                 "title": "Lesson 31: Place & Time Prepositions: Wo vs. Wann",
                 "description": "Temporal prepositions (um, am, im, von... bis) and static location (in, an, auf).",
                 "content": {
-                  "overview": "Answering 'Where?' (Wo?) and 'When?' (Wann?) requires location and time prepositions. In this lesson, you will master the foundational static prepositions (in, an, auf) and time markers (um, am, im).",
-                  "canDo": "Can tell where things are located using static Dative prepositions (in, an, auf) and indicate times and dates using um, am, and im.",
-                  "teacherNote": "Remember the time formula: **UM** for clock times (um 8 Uhr), **AM** for days and parts of the day (am Montag, am Morgen), and **IM** for months and seasons (im Juli, im Sommer).",
+                  "overview": "Stating when an event takes place and where you are located requires temporal and spatial prepositions. In this lesson, you will master the three temporal giants (um, am, im) and understand static location with Dative.",
+                  "canDo": "Can use time prepositions (um, am, im, von... bis) to state clock times, days of the week, months, and describe static locations.",
+                  "teacherNote": "Remember this formula for time: UM for exact hours (um 8 Uhr), AM for days and parts of the day (am Montag, am Abend), IM for months and seasons (im Juli, im Sommer)!",
                   "sections": [
                     {
-                      "title": "1. The Time Prepositions Formula: UM - AM - IM",
-                      "description": "Never guess time prepositions again with this 3-step hierarchy:",
+                      "title": "1. Die Zeit-Präpositionen: UM, AM, IM (Wann?)",
+                      "description": "The golden trio for answering 'Wann?' (When?):",
                       "table": {
                         "headers": [
-                          "Preposition",
-                          "Used for...",
-                          "Examples",
-                          "English"
+                          "Präposition",
+                          "Verwendung (Usage)",
+                          "Beispiele (Netzwerk A1)",
+                          "Signalwort"
                         ],
                         "rows": [
                           [
-                            "UM",
-                            "Precise clock times",
-                            "um 8 Uhr / um halb drei",
-                            "at 8 o'clock / at 2:30"
+                            "um",
+                            "Uhrzeiten (Exact clock times)",
+                            "um 9 Uhr, um 14:30 Uhr, um Viertel nach drei",
+                            "Uhrzeit"
                           ],
                           [
-                            "AM (an + dem)",
-                            "Days of the week, dates & day parts",
-                            "am Montag / am Wochenende / am Abend",
-                            "on Monday / on the weekend / in the evening"
+                            "am (an + dem)",
+                            "Wochentage & Tageszeiten",
+                            "am Montag, am Wochenende, am Morgen, am Abend",
+                            "Tage / Tageszeit"
                           ],
                           [
-                            "IM (in + dem)",
-                            "Months, seasons & years with 'Jahr'",
-                            "im Januar / im Sommer / im Jahr 2026",
-                            "in January / in summer / in the year 2026"
+                            "im (in + dem)",
+                            "Monate & Jahreszeiten",
+                            "im Januar, im Mai, im Sommer, im Winter",
+                            "Monat / Saison"
+                          ],
+                          [
+                            "von ... bis",
+                            "Zeitspanne (From ... until)",
+                            "von Montag bis Freitag, von 9 bis 17 Uhr",
+                            "Dauer"
                           ]
                         ]
                       }
                     },
                     {
-                      "title": "2. Static Location (Wo? + Dativ)",
-                      "description": "When answering 'Where?' (no movement, stationary), use Dativ:",
+                      "title": "2. Ort-Präpositionen bei Ruhe (Wo? + Dativ)",
+                      "description": "Answering 'Wo?' (Where?) when staying in one place:",
                       "items": [
                         {
-                          "term": "in + dem = IM (inside a space/city)",
-                          "meaning": "Ich bin im Supermarkt / im Park / in der Stadt.",
-                          "example": "Er sitzt im Café."
+                          "term": "in + Dativ (in / inside)",
+                          "meaning": "Inside buildings, rooms, cities, and countries",
+                          "example": "in der Schule, im Kursraum, in München, in Deutschland"
                         },
                         {
-                          "term": "an + dem = AM (at the edge/wall/water)",
-                          "meaning": "Wir stehen am Bahnhof / am Strand / an der Wand.",
-                          "example": "Das Bild hängt an der Wand."
+                          "term": "an + Dativ (at / on the edge of)",
+                          "meaning": "Bordering water, at the window, or on the board",
+                          "example": "am Meer (at the sea), am Bahnhof, an der Haltestelle"
                         },
                         {
-                          "term": "auf + dem = AUF DEM (on a horizontal surface/square)",
-                          "meaning": "Das Buch liegt auf dem Tisch / auf dem Marktplatz.",
-                          "example": "Die Kinder spielen auf der Straße."
+                          "term": "auf + Dativ (on / on top of)",
+                          "meaning": "On horizontal surfaces or open public spaces",
+                          "example": "auf dem Marktplatz, auf dem Tisch, auf der Straße"
                         }
                       ]
                     }
                   ],
                   "dialogue": {
-                    "context": "Scheduling an appointment at a doctor's clinic in Berlin:",
+                    "context": "Termine absprechen für das Wochenende (Netzwerk A1 Kapitel 5):",
                     "lines": [
                       {
-                        "speaker": "Arzthelferin",
-                        "german": "Praxis Dr. Schneider, guten Tag! Wann möchten Sie kommen?",
-                        "english": "Dr. Schneider's clinic, good day! When would you like to come?"
+                        "speaker": "Paco",
+                        "german": "Wann hast du am Wochenende Zeit, Christian?",
+                        "english": "When do you have time on the weekend, Christian?"
                       },
                       {
-                        "speaker": "Patient",
-                        "german": "Guten Tag. Geht es am Freitag um zehn Uhr?",
-                        "english": "Good day. Is Friday (am Freitag) at ten o'clock (um zehn Uhr) possible?"
+                        "speaker": "Christian",
+                        "german": "Am Samstag arbeite ich von 10 bis 14 Uhr. Aber am Abend habe ich frei!",
+                        "english": "On Saturday I work from 10 to 2 PM. But in the evening I am free!"
                       },
                       {
-                        "speaker": "Arzthelferin",
-                        "german": "Ja, am Freitag um zehn Uhr haben wir einen freien Termin für Sie.",
-                        "english": "Yes, on Friday at ten o'clock we have an open appointment for you."
+                        "speaker": "Paco",
+                        "german": "Perfekt! Treffen wir uns um 19 Uhr im Café am Marktplatz?",
+                        "english": "Perfect! Shall we meet at 7 PM in the café at the marketplace?"
+                      },
+                      {
+                        "speaker": "Christian",
+                        "german": "Ja, super! Um sieben Uhr am Marktplatz. Bis Samstag!",
+                        "english": "Yes, super! At seven o'clock at the marketplace. See you Saturday!"
                       }
                     ]
                   },
                   "funFact": {
-                    "title": "'In der Nacht' - The One Exception!",
-                    "content": "All parts of the day in German use 'am' (*am Morgen, am Vormittag, am Nachmittag, am Abend*) because they are all grammatically masculine (der Morgen, der Abend). The only exception is night, which is feminine (die Nacht), so Germans say: **in der Nacht**!"
+                    "title": "The One Exception: In der Nacht!",
+                    "content": "All parts of the day use 'am' (am Morgen, am Vormittag, am Nachmittag, am Abend)—EXCEPT night! Because 'die Nacht' is feminine, Germans say 'in der Nacht' (during the night). Always remember: 'am Abend', but 'in der Nacht'!"
                   },
                   "practice": [
                     {
-                      "question": "Which preposition correctly fills the blank: 'Der Kurs beginnt _____ 19:00 Uhr.'?",
+                      "question": "Which preposition completes the sentence: 'Der Kurs beginnt _____ 9 Uhr.'?",
                       "options": [
                         "am",
                         "im",
                         "um"
                       ],
                       "answer": "um",
-                      "explanation": "Precise clock hours always use the preposition 'um' (um 19:00 Uhr)."
+                      "explanation": "Exact clock times always take 'um' (um 9 Uhr)."
+                    },
+                    {
+                      "question": "How do you say: 'on Friday' in German?",
+                      "options": [
+                        "im Freitag",
+                        "am Freitag",
+                        "um Freitag"
+                      ],
+                      "answer": "am Freitag",
+                      "explanation": "Days of the week always take 'am' (am Freitag)."
                     }
                   ]
                 }
@@ -4073,130 +4751,169 @@ export const FALLBACK_COURSES: CourseDetail[] = [
                 "title": "Lesson 32: The 6 German Modal Verbs (Modalverben)",
                 "description": "Bracket structure: können (can), müssen (must), wollen (want), möchten (would like), dürfen (may), sollen (should).",
                 "content": {
-                  "overview": "Modal verbs (Modalverben) express ability, necessity, permission, intention, and desire. German has 6 modal verbs, and they create the famous 'Satzklammer' (sentence bracket), sending the main action verb all the way to the end of the sentence in the infinitive!",
-                  "canDo": "Can conjugate and use the 6 German modal verbs (können, müssen, wollen, möchten, dürfen, sollen) with the second verb at the end.",
-                  "teacherNote": "The 'Sentence Bracket' (Satzklammer) is a hallmark of German: Modal verb goes in Position 2, and the second verb is kicked all the way to the VERY END of the clause in its unconjugated infinitive form! Example: *Ich MUSS heute für die Prüfung LERNEN*.",
+                  "overview": "Modal verbs express possibility, necessity, permission, intention, and desire. In German, modal verbs create the famous 'sentence bracket' (die Satzklammer): the conjugated modal verb stands in Position 2, while the main action verb is sent all the way to the very end of the sentence in its infinitive form!",
+                  "canDo": "Can conjugate and use the 6 German modal verbs (können, müssen, wollen, möchten, dürfen, sollen) with infinitive verbs at the end of the sentence.",
+                  "teacherNote": "Golden rule of modal sentences: 'Two verbs, one sentence -> Modal verb in Position 2, Infinitive verb at the Satzende (sentence end)!'. For example: 'Ich KANN sehr gut Deutsch SPRECHEN'.",
                   "sections": [
                     {
-                      "title": "1. The 6 German Modal Verbs & Their Meanings",
-                      "description": "Notice that in singular (ich, du, er/sie/es), modals change their stem vowel, and 'ich' and 'er' share the exact same ending (no -t!):",
+                      "title": "1. Die 6 Modalverben im Präsens (The 6 Modal Verbs)",
+                      "description": "Notice that 'ich' and 'er/sie/es' have identical forms and drop endings:",
                       "table": {
                         "headers": [
-                          "Modal Verb",
-                          "Meaning",
-                          "ich form",
-                          "du form",
-                          "er/sie/es form",
-                          "wir / sie form"
+                          "Pronomen",
+                          "können (can/able)",
+                          "müssen (must/have to)",
+                          "wollen (want to)",
+                          "möchten (would like)",
+                          "dürfen (allowed/may)",
+                          "sollen (should)"
                         ],
                         "rows": [
                           [
+                            "ich",
+                            "kann",
+                            "muss",
+                            "will",
+                            "möchte",
+                            "darf",
+                            "soll"
+                          ],
+                          [
+                            "du",
+                            "kannst",
+                            "musst",
+                            "willst",
+                            "möchtest",
+                            "darfst",
+                            "sollst"
+                          ],
+                          [
+                            "er / sie / es",
+                            "kann",
+                            "muss",
+                            "will",
+                            "möchte",
+                            "darf",
+                            "soll"
+                          ],
+                          [
+                            "wir",
                             "können",
-                            "can / to be able to",
-                            "ich kann",
-                            "du kannst",
-                            "er kann",
-                            "wir können"
-                          ],
-                          [
                             "müssen",
-                            "must / to have to",
-                            "ich muss",
-                            "du musst",
-                            "er muss",
-                            "wir müssen"
-                          ],
-                          [
                             "wollen",
-                            "to want to (strong will)",
-                            "ich will",
-                            "du willst",
-                            "er will",
-                            "wir wollen"
-                          ],
-                          [
                             "möchten",
-                            "would like to (polite wish)",
-                            "ich möchte",
-                            "du möchtest",
-                            "er möchte",
-                            "wir möchten"
-                          ],
-                          [
                             "dürfen",
-                            "may / to be allowed to",
-                            "ich darf",
-                            "du darfst",
-                            "er darf",
-                            "wir dürfen"
+                            "sollen"
                           ],
                           [
-                            "sollen",
-                            "should / supposed to",
-                            "ich soll",
-                            "du sollst",
-                            "er soll",
-                            "wir sollen"
+                            "ihr",
+                            "könnt",
+                            "müsst",
+                            "wollt",
+                            "möchtet",
+                            "dürft",
+                            "sollt"
+                          ],
+                          [
+                            "sie / Sie",
+                            "können",
+                            "müssen",
+                            "wollen",
+                            "möchten",
+                            "dürfen",
+                            "sollen"
                           ]
                         ]
                       }
                     },
                     {
-                      "title": "2. The Sentence Bracket (Die Satzklammer)",
-                      "description": "The modal verb and the infinitive hug the rest of the sentence:",
-                      "items": [
-                        {
-                          "term": "Position 2: Conjugated Modal",
-                          "meaning": "Ich KANN sehr gut Deutsch sprechen.",
-                          "example": "kann (Pos 2) ... sprechen (End of sentence)."
-                        },
-                        {
-                          "term": "Negation inside the bracket",
-                          "meaning": "Hier DARF man nicht RAUCHEN.",
-                          "example": "You are not allowed to smoke here."
-                        },
-                        {
-                          "term": "Questions with modals",
-                          "meaning": "KÖNNEN Sie mir bitte HELFEN?",
-                          "example": "Modal in Pos 1, infinitive at the very end."
-                        }
-                      ]
+                      "title": "2. Die Satzklammer (Sentence Bracket Structure)",
+                      "description": "The conjugated modal in Position 2 and the infinitive at the end bracket the sentence:",
+                      "table": {
+                        "headers": [
+                          "Position 1",
+                          "Position 2 (Modalverb)",
+                          "Mittelfeld (Information)",
+                          "Satzende (Infinitiv)"
+                        ],
+                        "rows": [
+                          [
+                            "Ich",
+                            "kann",
+                            "heute leider nicht",
+                            "kommen."
+                          ],
+                          [
+                            "Wir",
+                            "müssen",
+                            "für die Prüfung",
+                            "lernen."
+                          ],
+                          [
+                            "Paco",
+                            "möchte",
+                            "einen Kaffee",
+                            "trinken."
+                          ],
+                          [
+                            "Hier",
+                            "darf",
+                            "man nicht",
+                            "rauchen!"
+                          ]
+                        ]
+                      }
                     }
                   ],
                   "dialogue": {
-                    "context": "A café guest ordering politely in Frankfurt:",
+                    "context": "Absprachen am Arbeitsplatz im Büro (Netzwerk A1 Kapitel 9):",
                     "lines": [
                       {
-                        "speaker": "Kellner",
-                        "german": "Guten Tag! Was darf ich Ihnen bringen?",
-                        "english": "Good day! What may I bring you (dürfen)?"
+                        "speaker": "Chef",
+                        "german": "Herr Schubert, können Sie heute den Bericht fertig schreiben?",
+                        "english": "Mr. Schubert, can you finish writing the report today?"
                       },
                       {
-                        "speaker": "Gast",
-                        "german": "Ich möchte bitte einen Cappuccino und ein Stück Apfelkuchen haben.",
-                        "english": "I would like to have (möchten... haben) a cappuccino and a piece of apple cake, please."
+                        "speaker": "Gregor",
+                        "german": "Ja, natürlich. Ich muss nur noch die Zahlen überprüfen.",
+                        "english": "Yes, of course. I just have to verify the numbers."
                       },
                       {
-                        "speaker": "Kellner",
-                        "german": "Sehr gerne! Kommt sofort.",
-                        "english": "Very gladly! Coming right up."
+                        "speaker": "Chef",
+                        "german": "Sehr gut! Möchten Sie heute früher Feierabend machen?",
+                        "english": "Very good! Would you like to finish work earlier today?"
+                      },
+                      {
+                        "speaker": "Gregor",
+                        "german": "Das wäre wunderbar! Ich will um 16 Uhr zum Sport gehen.",
+                        "english": "That would be wonderful! I want to go to sports at 4 PM."
                       }
                     ]
                   },
                   "funFact": {
-                    "title": "'Wollen' vs. 'Möchten' in German Etiquette",
-                    "content": "In a German bakery or restaurant, saying 'Ich will einen Kaffee' sounds blunt and demanding (like 'I demand a coffee!'). German culture highly values politeness when ordering—always use: **'Ich möchte bitte einen Kaffee'** (I would like a coffee, please) or **'Ich hätte gern einen Kaffee'**!"
+                    "title": "'Dürfen' vs. 'Müssen' with Negation",
+                    "content": "Pay close attention to negative modals: 'Du MUSST NICHT' means 'You don't have to' (it is optional). But 'Du DARFST NICHT' means 'You are NOT allowed to / You must not!' (it is strictly forbidden by law or rule)!"
                   },
                   "practice": [
                     {
-                      "question": "Where does the second verb go in a sentence with a modal verb?",
+                      "question": "Where does the main verb go in a sentence with a modal verb?",
                       "options": [
-                        "Immediately after the modal verb in Position 3",
-                        "At the very end of the sentence in the infinitive",
-                        "At the start of the sentence"
+                        "Immediately after the modal verb",
+                        "At the very end of the sentence as an infinitive",
+                        "At the beginning"
                       ],
-                      "answer": "At the very end of the sentence in the infinitive",
-                      "explanation": "Modal verbs create the 'Satzklammer'—the infinitive is pushed to the very end of the sentence."
+                      "answer": "At the very end of the sentence as an infinitive",
+                      "explanation": "German modal sentence structure places the infinitive at the end: 'Ich möchte Deutsch lernen'."
+                    },
+                    {
+                      "question": "What is the correct form: 'Er _____ heute lange arbeiten.' (müssen)",
+                      "options": [
+                        "muss",
+                        "müsst",
+                        "musst"
+                      ],
+                      "answer": "muss",
+                      "explanation": "The 3rd person singular of 'müssen' is 'muss' (identical to 'ich muss')."
                     }
                   ]
                 }
@@ -4206,81 +4923,122 @@ export const FALLBACK_COURSES: CourseDetail[] = [
                 "title": "Lesson 33: The Imperative Form & Polite Requests",
                 "description": "Formulating commands and polite requests for du, ihr, and Sie ('Geh!', 'Kommen Sie bitte!').",
                 "content": {
-                  "overview": "Whether giving instructions, telling a friend to hurry, or asking a stranger for help, you need the Imperative mood (der Imperativ). German creates three distinct forms depending on whether you are addressing 'du', 'ihr', or formal 'Sie'.",
-                  "canDo": "Can formulate commands, polite requests, and instructions for 'du', 'ihr', and 'Sie' using the word 'bitte'.",
-                  "teacherNote": "The easiest imperative is the formal 'Sie': simply swap the order and add 'bitte': *Kommen Sie bitte!*, *Warten Sie bitte!* It is polite, easy, and universally safe.",
+                  "overview": "The Imperative form (der Imperativ) is used for giving instructions, directions, polite requests, and medical advice. In German, there are three distinct imperative forms depending on whether you are commanding one friend (du), a group of friends (ihr), or addressing someone formally (Sie).",
+                  "canDo": "Can form commands and polite requests for 'du', 'ihr', and formal 'Sie', and understand instructions from doctors, teachers, and signs.",
+                  "teacherNote": "For formal 'Sie', making an imperative is effortless: take the verb, add 'Sie', and add 'bitte': 'Kommen Sie bitte!', 'Lesen Sie bitte!'. It is impossible to get wrong!",
                   "sections": [
                     {
-                      "title": "1. The 3 Imperative Forms",
-                      "description": "Study how imperative forms are constructed:",
+                      "title": "1. Die 3 Formen des Imperativs (The 3 Imperative Forms)",
+                      "description": "How to address one friend, multiple friends, or a formal partner:",
                       "table": {
                         "headers": [
-                          "Addressee",
-                          "How to form",
-                          "Infinitive: kommen",
-                          "Infinitive: lesen",
-                          "Example Request"
+                          "Form",
+                          "Bildung (Formation Rule)",
+                          "Beispiel: kommen",
+                          "Beispiel: lesen (e->ie)",
+                          "Beispiel: sein"
                         ],
                         "rows": [
                           [
-                            "du (one friend)",
-                            "Drop 'du' and the '-st' ending",
+                            "du (informell singular)",
+                            "Verbstamm ohne '-st', kein Pronomen!",
                             "Komm!",
-                            "Lies! (keeps e->ie)",
-                            "Komm bitte hierher! (Come here please!)"
+                            "Lies!",
+                            "Sei ruhig!"
                           ],
                           [
-                            "ihr (group of friends)",
-                            "Drop 'ihr', keep regular '-t'",
+                            "ihr (informell plural)",
+                            "Gleiche Form wie 'ihr', kein Pronomen!",
                             "Kommt!",
                             "Lest!",
-                            "Kommt schnell! (Come quickly, guys!)"
+                            "Seid pünktlich!"
                           ],
                           [
-                            "Sie (formal - any number)",
-                            "Verb + Sie + bitte",
+                            "Sie (formell)",
+                            "Verb an Position 1 + 'Sie' + 'bitte'",
                             "Kommen Sie bitte!",
                             "Lesen Sie bitte!",
-                            "Kommen Sie bitte herein! (Please come in!)"
+                            "Seien Sie bitte leise!"
                           ]
                         ]
                       }
+                    },
+                    {
+                      "title": "2. Ratschläge beim Arzt & im Unterricht (Netzwerk A1)",
+                      "description": "Everyday imperative instructions:",
+                      "items": [
+                        {
+                          "term": "Trinken Sie viel Wasser / Tee!",
+                          "meaning": "Drink plenty of water / tea! (doctor's advice)",
+                          "example": "Bleiben Sie im Bett und trinken Sie viel Tee."
+                        },
+                        {
+                          "term": "Öffnen Sie das Buch auf Seite 20!",
+                          "meaning": "Open the book to page 20! (teacher instruction)",
+                          "example": "Lesen Sie bitte den Text laut vor."
+                        },
+                        {
+                          "term": "Steigen Sie hier um!",
+                          "meaning": "Transfer / change trains here! (travel direction)",
+                          "example": "Fahren Sie zwei Stationen und steigen Sie dann um."
+                        }
+                      ]
                     }
                   ],
                   "dialogue": {
-                    "context": "At a doctor's office waiting room in Berlin:",
+                    "context": "In der Praxis bei der Ärztin in München (Netzwerk A1 Kapitel 11):",
                     "lines": [
                       {
-                        "speaker": "Arzt",
-                        "german": "Herr Meyer, kommen Sie bitte herein und nehmen Sie Platz!",
-                        "english": "Mr. Meyer, please come in and take a seat!"
+                        "speaker": "Ärztin",
+                        "german": "Guten Tag, Herr Schubert. Nehmen Sie bitte Platz! Was fehlt Ihnen denn?",
+                        "english": "Good day, Mr. Schubert. Please take a seat! What seems to be the problem?"
                       },
                       {
-                        "speaker": "Patient",
-                        "german": "Guten Tag, Herr Doktor. Vielen Dank.",
-                        "english": "Good day, doctor. Thank you very much."
+                        "speaker": "Gregor",
+                        "german": "Guten Tag, Frau Doktor. Ich habe starke Halsschmerzen und Fieber.",
+                        "english": "Good day, doctor. I have a severe sore throat and fever."
                       },
                       {
-                        "speaker": "Arzt",
-                        "german": "Bitte beschreiben Sie: Wo haben Sie Schmerzen?",
-                        "english": "Please describe: Where do you have pain?"
+                        "speaker": "Ärztin",
+                        "german": "Machen Sie bitte den Mund auf und sagen Sie 'Aah'. Ja, der Hals ist rot.",
+                        "english": "Please open your mouth and say 'Aah'. Yes, the throat is red."
+                      },
+                      {
+                        "speaker": "Ärztin",
+                        "german": "Bleiben Sie drei Tage zu Hause im Bett und nehmen Sie diese Tabletten dreimal täglich!",
+                        "english": "Stay home in bed for three days and take these tablets three times daily!"
+                      },
+                      {
+                        "speaker": "Gregor",
+                        "german": "Vielen Dank, Frau Doktor. Das mache ich.",
+                        "english": "Thank you very much, doctor. I will do that."
                       }
                     ]
                   },
                   "funFact": {
-                    "title": "The Magic Power of 'Bitte' in German Commands",
-                    "content": "Without the word 'bitte', German imperatives can sound harsh or military-like to foreign ears (*Komm!*, *Warte!*). Adding 'bitte' (*Kommen Sie bitte*, *Warte mal bitte*) immediately transforms an order into a warm, polite, and respectful German request!"
+                    "title": "Softening Commands with 'mal' and 'doch'",
+                    "content": "A German imperative like 'Komm!' can sound very direct. To make commands sound friendly and warm, native speakers insert little particle words like 'mal' or 'doch': 'Komm mal her!' (Just come over here!), 'Schau mal!' (Take a look!), 'Hilf mir doch mal bitte!' (Could you just help me please?)."
                   },
                   "practice": [
                     {
-                      "question": "How do you politely ask a stranger to wait?",
+                      "question": "How do you politely tell someone (formal) to drink more water?",
                       "options": [
-                        "Warte!",
-                        "Warten Sie bitte!",
-                        "Wartet Sie bitte!"
+                        "Trinken Sie bitte mehr Wasser!",
+                        "Trinkst du bitte mehr Wasser!",
+                        "Trink mehr Wasser!"
                       ],
-                      "answer": "Warten Sie bitte!",
-                      "explanation": "The polite formal imperative is formed by: Verb + Sie + bitte -> 'Warten Sie bitte!'."
+                      "answer": "Trinken Sie bitte mehr Wasser!",
+                      "explanation": "Formal imperative: Verb + Sie + bitte (Trinken Sie bitte...)."
+                    },
+                    {
+                      "question": "What is the informal 'du' imperative of 'hören' (to listen)?",
+                      "options": [
+                        "Hörst!",
+                        "Hör!",
+                        "Hören!"
+                      ],
+                      "answer": "Hör!",
+                      "explanation": "The 'du' imperative removes the ending '-st' and the pronoun: Hör! (Listen!)."
                     }
                   ]
                 }
@@ -4296,116 +5054,152 @@ export const FALLBACK_COURSES: CourseDetail[] = [
                 "title": "Lesson 34: Telling Clock Time (Die Uhrzeit - Formal & Informal)",
                 "description": "24-hour official time (14:30 = vierzehn Uhr dreißig) and casual 12-hour phrasing (halb drei, Viertel vor).",
                 "content": {
-                  "overview": "Telling time accurately in German is an essential daily skill. German has two systems: official 24-hour time (used on train boards, TV schedules, and official appointments) and conversational 12-hour time (used with friends and family).",
-                  "canDo": "Can ask for and tell the time in both official 24-hour format and colloquial 12-hour format, avoiding the famous 'halb' trap.",
-                  "teacherNote": "⚠️ DANGER ZONE: The word **'halb'**! In German, 'halb drei' does NOT mean 3:30. It means 'halfway to three'—which is **2:30**! Always remember: 'halb' looks forward to the next hour!",
+                  "overview": "Telling the time (Die Uhrzeit) is essential for catching trains, scheduling meetings, and planning your day. German has two systems: the official 24-hour time used in announcements and work, and the conversational 12-hour phrasing used among friends and family.",
+                  "canDo": "Can ask for the time ('Wie spät ist es?'), understand official train and flight announcements, and use colloquial 12-hour phrasing (halb, Viertel vor, Viertel nach).",
+                  "teacherNote": "Beware of 'halb'! In English, 'half three' (British) means 3:30. In German, 'halb drei' means half-way TO three, which is 2:30! Think of it as: 'the clock is half-full on its way to hour 3'!",
                   "sections": [
                     {
-                      "title": "1. Official 24-Hour Time vs. Casual 12-Hour Time",
-                      "description": "Compare how the two systems describe the exact same hour:",
+                      "title": "1. Offizielle Uhrzeit (24-Stunden-System)",
+                      "description": "Used at train stations, airports, news, and business appointments:",
                       "table": {
                         "headers": [
-                          "Time",
-                          "Official 24-Hour Format",
-                          "Casual 12-Hour Format",
-                          "Literal Meaning of Casual"
+                          "Uhrzeit",
+                          "Offizielle Aussprache",
+                          "Englische Bedeutung"
                         ],
                         "rows": [
                           [
-                            "08:00",
+                            "08:00 Uhr",
                             "acht Uhr",
-                            "acht Uhr",
-                            "eight o'clock"
+                            "8:00 AM"
                           ],
                           [
-                            "08:15",
-                            "acht Uhr fünfzehn",
-                            "Viertel nach acht",
-                            "quarter past eight"
+                            "14:15 Uhr",
+                            "vierzehn Uhr fünfzehn",
+                            "2:15 PM"
                           ],
                           [
-                            "08:30",
-                            "acht Uhr dreißig",
-                            "HALB NEUN! (Watch out!)",
-                            "halfway to nine!"
+                            "17:30 Uhr",
+                            "siebzehn Uhr dreißig",
+                            "5:30 PM"
                           ],
                           [
-                            "08:45",
-                            "acht Uhr fünfundvierzig",
-                            "Viertel vor neun",
-                            "quarter to nine"
+                            "20:45 Uhr",
+                            "zwanzig Uhr fünfundvierzig",
+                            "8:45 PM"
                           ],
                           [
-                            "14:20",
-                            "vierzehn Uhr zwanzig",
-                            "zwanzig nach zwei",
-                            "twenty past two"
-                          ],
-                          [
-                            "17:50",
-                            "siebzehn Uhr fünfzig",
-                            "zehn vor sechs",
-                            "ten to six"
+                            "22:10 Uhr",
+                            "zweiundzwanzig Uhr zehn",
+                            "10:10 PM"
                           ]
                         ]
                       }
                     },
                     {
-                      "title": "2. How to Ask the Time",
-                      "description": "Two equivalent ways to ask 'What time is it?' in German:",
+                      "title": "2. Umgangssprachliche Uhrzeit (12-Stunden-System)",
+                      "description": "Conversational phrasing among friends and colleagues from Netzwerk Kapitel 5:",
+                      "table": {
+                        "headers": [
+                          "Uhrzeit",
+                          "Umgangssprachlich",
+                          "Wort-für-Wort Logik"
+                        ],
+                        "rows": [
+                          [
+                            "08:15",
+                            "Viertel nach acht",
+                            "Quarter past eight"
+                          ],
+                          [
+                            "08:30",
+                            "HALB NEUN (not half eight!)",
+                            "Half-way TO nine"
+                          ],
+                          [
+                            "08:45",
+                            "Viertel vor neun",
+                            "Quarter to nine"
+                          ],
+                          [
+                            "08:20",
+                            "zehn vor halb neun / zwanzig nach acht",
+                            "Ten before half nine"
+                          ],
+                          [
+                            "08:40",
+                            "zehn nach halb neun / zwanzig vor neun",
+                            "Ten after half nine"
+                          ]
+                        ]
+                      }
+                    },
+                    {
+                      "title": "3. Fragen nach der Uhrzeit (Asking the Time)",
+                      "description": "Two identical ways to ask what time it is:",
                       "items": [
                         {
-                          "term": "Wie spät ist es?",
-                          "meaning": "Literally: 'How late is it?' (Most common)",
-                          "example": "Entschuldigung, wie spät ist es? -> Es ist halb vier."
+                          "term": "Wie spät ist es? / Wie viel Uhr ist es?",
+                          "meaning": "How late is it? / How much o'clock is it? (both mean 'What time is it?')",
+                          "example": "Entschuldigung, wie spät ist es bitte? - Es ist Viertel vor fünf."
                         },
                         {
-                          "term": "Wie viel Uhr ist es?",
-                          "meaning": "Literally: 'How much clock is it?'",
-                          "example": "Wie viel Uhr ist es bitte? -> Es ist genau zehn Uhr."
+                          "term": "Um wie viel Uhr...? / Wann...?",
+                          "meaning": "At what time...? / When...?",
+                          "example": "Um wie viel Uhr beginnt der Film? - Um acht Uhr."
                         }
                       ]
                     }
                   ],
                   "dialogue": {
-                    "context": "At the central train station in Nuremberg waiting for the ICE to Munich:",
+                    "context": "Verabredung am Hauptbahnhof in Hannover (Netzwerk A1 Kapitel 5):",
                     "lines": [
                       {
-                        "speaker": "Reisender",
-                        "german": "Entschuldigung, wie viel Uhr ist es jetzt?",
-                        "english": "Excuse me, what time is it right now?"
+                        "speaker": "Paco",
+                        "german": "Entschuldigung, Gregor, wie spät ist es jetzt?",
+                        "english": "Excuse me, Gregor, what time is it now?"
                       },
                       {
-                        "speaker": "Bahnbeamter",
-                        "german": "Es ist genau Viertel vor drei.",
-                        "english": "It is exactly a quarter to three (2:45)."
+                        "speaker": "Gregor",
+                        "german": "Es ist genau halb drei. Unser Zug fährt um Viertel nach drei ab.",
+                        "english": "It is exactly half-past two (2:30). Our train departs at a quarter past three (3:15)."
                       },
                       {
-                        "speaker": "Reisender",
-                        "german": "Danke! Wann fährt der Zug nach München ab?",
-                        "english": "Thank you! When does the train to Munich depart?"
+                        "speaker": "Paco",
+                        "german": "Super, dann haben wir noch eine Dreiviertelstunde Zeit. Trinken wir einen Kaffee?",
+                        "english": "Great, then we still have 45 minutes. Shall we drink a coffee?"
                       },
                       {
-                        "speaker": "Bahnbeamter",
-                        "german": "Um vierzehn Uhr fünfzig von Gleis sieben.",
-                        "english": "At 14:50 from platform seven."
+                        "speaker": "Gregor",
+                        "german": "Gute Idee! Da drüben ist ein schönes Café an Gleis 2.",
+                        "english": "Good idea! Over there is a nice café at platform 2."
                       }
                     ]
                   },
                   "funFact": {
-                    "title": "German Pünktlichkeit (Punctuality)",
-                    "content": "The German proverb states: *'Fünf Minuten vor der Zeit ist des Deutschen Pünktlichkeit'* (Five minutes before time is the German's punctuality). Arriving late to a professional or personal meeting without calling ahead is seen as deeply inconsiderate. Always aim to be 5 minutes early!"
+                    "title": "Punctuality (Pünktlichkeit) in Germany",
+                    "content": "Punctuality is a deeply ingrained cultural value in the DACH countries. Arriving 5 minutes early is considered on time. If you have an appointment at 15:00, arriving at 15:05 without sending a message is viewed as inconsiderate. When in doubt, always aim to arrive 5–10 minutes early!"
                   },
                   "practice": [
                     {
-                      "question": "If someone says 'Es ist halb sechs', what time is it?",
+                      "question": "What time does 'halb sechs' mean in German?",
                       "options": [
                         "6:30",
                         "5:30",
-                        "4:30"
+                        "6:15"
                       ],
                       "answer": "5:30",
-                      "explanation": "'halb sechs' means halfway to six, which is 5:30!"
+                      "explanation": "'halb sechs' means half-way TO six o'clock, which is 5:30."
+                    },
+                    {
+                      "question": "How do you ask: 'At what time does the course start?'",
+                      "options": [
+                        "Um wie viel Uhr beginnt der Kurs?",
+                        "Wie spät beginnt der Kurs?",
+                        "Wo beginnt der Kurs?"
+                      ],
+                      "answer": "Um wie viel Uhr beginnt der Kurs?",
+                      "explanation": "'Um wie viel Uhr beginnt...?' means 'At what time does ... start?'."
                     }
                   ]
                 }
@@ -4415,156 +5209,176 @@ export const FALLBACK_COURSES: CourseDetail[] = [
                 "title": "Lesson 35: Days of the Week, Months, Seasons & Dates",
                 "description": "Montag bis Sonntag, 12 months, 4 seasons, and ordinal numbers for calendar dates ('am ersten Mai').",
                 "content": {
-                  "overview": "Planning appointments, celebrating birthdays, and understanding store opening hours requires the days of the week, months of the year, seasons, and calendar dates.",
-                  "canDo": "Can name all 7 days of the week, 12 months, 4 seasons, and express dates using ordinal numbers (am ersten Mai).",
-                  "teacherNote": "All 7 days of the week and all 12 months in German are **DER** (masculine)! That means they all take the preposition **AM** for days (*am Montag*) and **IM** for months (*im Januar*).",
+                  "overview": "Days of the week, months, seasons, and calendar dates structure all personal and professional planning. In this lesson, you will master the 7 days of the week, the 12 months, the 4 seasons, and how to write and speak dates using ordinal numbers ('am ersten Mai').",
+                  "canDo": "Can state days of the week, months, seasons, and formulate appointment dates and birthdays using ordinal numbers.",
+                  "teacherNote": "All days of the week, months, and seasons are MASCULINE (der Montag, der Januar, der Sommer)! That is why they all take 'am' (an dem Montag) and 'im' (in dem Sommer)!",
                   "sections": [
                     {
-                      "title": "1. The 7 Days of the Week (Die Wochentage)",
-                      "description": "Monday through Sunday in German-speaking countries:",
+                      "title": "1. Die Wochentage (Days of the Week)",
+                      "description": "Always paired with 'am' (on):",
                       "table": {
                         "headers": [
-                          "Day",
-                          "German Word",
-                          "Preposition with Days",
-                          "English"
+                          "Wochentag",
+                          "Abkürzung",
+                          "Bedeutung",
+                          "Beispiel"
                         ],
                         "rows": [
                           [
+                            "Montag",
+                            "Mo",
                             "Monday",
-                            "der Montag",
-                            "am Montag",
-                            "on Monday"
+                            "am Montag"
                           ],
                           [
+                            "Dienstag",
+                            "Di",
                             "Tuesday",
-                            "der Dienstag",
-                            "am Dienstag",
-                            "on Tuesday"
+                            "am Dienstag"
                           ],
                           [
-                            "Wednesday",
-                            "der Mittwoch",
-                            "am Mittwoch",
-                            "on Wednesday (literally: mid-week!)"
+                            "Mittwoch",
+                            "Mi",
+                            "Wednesday (Mid-week)",
+                            "am Mittwoch"
                           ],
                           [
-                            "Thursday",
-                            "der Donnerstag",
-                            "am Donnerstag",
-                            "on Thursday"
+                            "Donnerstag",
+                            "Do",
+                            "Thursday (Thor's day)",
+                            "am Donnerstag"
                           ],
                           [
+                            "Freitag",
+                            "Fr",
                             "Friday",
-                            "der Freitag",
-                            "am Freitag",
-                            "on Friday"
+                            "am Freitag"
                           ],
                           [
+                            "Samstag / Sonnabend",
+                            "Sa",
                             "Saturday",
-                            "der Samstag / Sonnabend",
-                            "am Samstag",
-                            "on Saturday"
+                            "am Samstag"
                           ],
                           [
+                            "Sonntag",
+                            "So",
                             "Sunday",
-                            "der Sonntag",
-                            "am Sonntag",
-                            "on Sunday"
+                            "am Sonntag"
                           ],
                           [
-                            "Weekend",
                             "das Wochenende",
-                            "am Wochenende",
-                            "on the weekend"
+                            "WE",
+                            "the weekend",
+                            "am Wochenende"
                           ]
                         ]
                       }
                     },
                     {
-                      "title": "2. The 12 Months & 4 Seasons",
-                      "description": "Months take 'im' (im Januar, im Juli):",
+                      "title": "2. Die 4 Jahreszeiten & 12 Monate",
+                      "description": "Always paired with 'im' (in):",
                       "table": {
                         "headers": [
-                          "Season",
-                          "German Season",
-                          "Months in German"
+                          "Jahreszeit (im...)",
+                          "Monate 1",
+                          "Monate 2",
+                          "Monate 3"
                         ],
                         "rows": [
                           [
-                            "Spring",
-                            "der Frühling (im Frühling)",
-                            "März, April, Mai"
+                            "der Frühling (Spring)",
+                            "März",
+                            "April",
+                            "Mai"
                           ],
                           [
-                            "Summer",
-                            "der Sommer (im Sommer)",
-                            "Juni, Juli, August"
+                            "der Sommer (Summer)",
+                            "Juni",
+                            "Juli",
+                            "August"
                           ],
                           [
-                            "Autumn",
-                            "der Herbst (im Herbst)",
-                            "September, Oktober, November"
+                            "der Herbst (Autumn)",
+                            "September",
+                            "Oktober",
+                            "November"
                           ],
                           [
-                            "Winter",
-                            "der Winter (im Winter)",
-                            "Dezember, Januar, Februar"
+                            "der Winter (Winter)",
+                            "Dezember",
+                            "Januar",
+                            "Februar"
                           ]
                         ]
                       }
                     },
                     {
-                      "title": "3. Calendar Dates with Ordinal Numbers",
-                      "description": "For dates, add '-ten' after 'am':",
+                      "title": "3. Datum & Ordnungszahlen (Calendar Dates)",
+                      "description": "How to say dates aloud in German:",
                       "items": [
                         {
-                          "term": "am ersten (1st)",
-                          "meaning": "am ersten Mai (on the first of May)",
-                          "example": "Heute ist der erste Mai."
+                          "term": "Numbers 1–19: add '-ten'",
+                          "meaning": "am ersten (1st), am zweiten (2nd), am dritten (3rd), am siebten (7th)",
+                          "example": "Mein Geburtstag ist am vierten Mai."
                         },
                         {
-                          "term": "am dritten (3rd)",
-                          "meaning": "am dritten Oktober (German Unity Day)",
-                          "example": "Mein Geburtstag ist am dritten Oktober."
+                          "term": "Numbers 20–31: add '-sten'",
+                          "meaning": "am zwanzigsten (20th), am einunddreißigsten (31st)",
+                          "example": "Der Kurs endet am dreißigsten Juni."
                         }
                       ]
                     }
                   ],
                   "dialogue": {
-                    "context": "Checking a friend's birthday and weekend plans in Basel:",
+                    "context": "Geburtstagskalender im Büro (Netzwerk A1 Kapitel 5):",
                     "lines": [
                       {
-                        "speaker": "Hannah",
-                        "german": "Wann hast du Geburtstag, Lukas?",
-                        "english": "When is your birthday, Lukas?"
+                        "speaker": "Nina",
+                        "german": "Paco, wann hast du eigentlich Geburtstag?",
+                        "english": "Paco, when is your birthday actually?"
                       },
                       {
-                        "speaker": "Lukas",
-                        "german": "Am zwanzigsten Juli, also im Sommer! Feiern wir am Samstag?",
-                        "english": "On the twentieth of July (am zwanzigsten), so in the summer! Shall we celebrate on Saturday?"
+                        "speaker": "Paco",
+                        "german": "Ich habe am fünfzehnten Oktober Geburtstag, im Herbst. Und du?",
+                        "english": "My birthday is on the fifteenth of October, in autumn. And you?"
                       },
                       {
-                        "speaker": "Hannah",
-                        "german": "Ja gerne! Am Wochenende habe ich Zeit.",
-                        "english": "Yes gladly! On the weekend I have time."
+                        "speaker": "Nina",
+                        "german": "Mein Geburtstag ist am dritten August, mitten im Sommer!",
+                        "english": "My birthday is on the third of August, right in the middle of summer!"
+                      },
+                      {
+                        "speaker": "Paco",
+                        "german": "Toll, da können wir eine Gartenparty feiern!",
+                        "english": "Great, then we can celebrate a garden party!"
                       }
                     ]
                   },
                   "funFact": {
-                    "title": "Sonntagsruhe: Quiet Sundays by Law",
-                    "content": "In Germany, Austria, and Switzerland, Sunday is protected by the constitution as a day of rest (*Sonntagsruhe*). Almost all supermarkets, clothing stores, and offices are completely closed. Vacuuming, mowing the lawn, or drilling holes in your apartment on Sunday can lead to a formal complaint from neighbors!"
+                    "title": "'Mittwoch' Has No 'Tag'!",
+                    "content": "Notice how all days of the week end in '-tag' (Montag, Dienstag, Donnerstag, Freitag, Samstag, Sonntag)—except Wednesday! In German, Wednesday is called 'Mittwoch', literally meaning 'mid-week' (Mitte der Woche). In ancient German, it was named after the god Wodan (like English Wednesday), but church reformers replaced it with 'Mittwoch' to remove the pagan reference!"
                   },
                   "practice": [
                     {
-                      "question": "Which preposition is used with days of the week (e.g. Monday)?",
+                      "question": "Which preposition do you use with months and seasons?",
                       "options": [
-                        "im",
                         "am",
+                        "im",
                         "um"
                       ],
-                      "answer": "am",
-                      "explanation": "Days of the week always take 'am' (am Montag, am Dienstag)."
+                      "answer": "im",
+                      "explanation": "Months and seasons take 'im' (im Juli, im Sommer)."
+                    },
+                    {
+                      "question": "How do you pronounce the date 'am 1. Mai' aloud?",
+                      "options": [
+                        "am eins Mai",
+                        "am ersten Mai",
+                        "am erst Mai"
+                      ],
+                      "answer": "am ersten Mai",
+                      "explanation": "Dates after 'am' take ordinal endings: am ersten Mai."
                     }
                   ]
                 }
@@ -4574,106 +5388,142 @@ export const FALLBACK_COURSES: CourseDetail[] = [
                 "title": "Lesson 36: Daily Routine & Separable Verbs (Trennbare Verben)",
                 "description": "Prefix separation: aufstehen, anrufen, einkaufen, fernsehen, einschlafen, vorbereiten.",
                 "content": {
-                  "overview": "Separable prefix verbs (trennbare Verben) are one of German's most exciting characteristics. A tiny prefix snaps off the verb and flies all the way to the end of the sentence!",
-                  "canDo": "Can recognize separable prefixes (auf-, an-, ein-, aus-, mit-, fern-) and split the verb cleanly in main clauses.",
-                  "teacherNote": "Think of separable verbs as a pair of magnets: the main verb stem conjugates normally in Position 2, while the prefix snaps off and lands at the very end of the sentence! Example: *Ich STEHE um sieben Uhr AUF*.",
+                  "overview": "Separable verbs (trennbare Verben) are one of the most distinctive features of the German language. In these verbs, a prefix detaches from the stem in the present tense and flies all the way to the very end of the clause. In this lesson, you will master daily routine timelines using separable verbs from Netzwerk Kapitel 5.",
+                  "canDo": "Can identify separable prefixes, conjugate separable verbs, and place the prefix accurately at the end of main clauses to describe daily routines.",
+                  "teacherNote": "Think of separable verbs as a rocket: the verb stem stays in Position 2, and the prefix detaches like a booster rocket and lands at the very END of the sentence! For example: 'aufstehen' -> 'Ich STEHE um 6 Uhr AUF.'",
                   "sections": [
                     {
-                      "title": "1. High-Frequency Separable Verbs for Daily Routine",
-                      "description": "Notice how the prefix separates in the present tense:",
+                      "title": "1. Typische trennbare Präfixe (Separable Prefixes)",
+                      "description": "Common separable prefixes from Netzwerk A1:",
                       "table": {
                         "headers": [
-                          "Infinitive",
-                          "Meaning",
-                          "Prefix",
-                          "Example Sentence with Split!"
+                          "Präfix",
+                          "Infinitiv",
+                          "Bedeutung",
+                          "Beispielsatz im Präsens"
                         ],
                         "rows": [
                           [
-                            "aufstehen",
-                            "to get up / wake up",
                             "auf-",
-                            "Ich STEHE um 7:00 Uhr AUF."
+                            "aufstehen",
+                            "to get up / stand up",
+                            "Ich stehe jeden Tag um 7 Uhr AUF."
                           ],
                           [
+                            "an-",
+                            "anrufen",
+                            "to call on the phone",
+                            "Gregor ruft seine Mutter AN."
+                          ],
+                          [
+                            "ein-",
                             "einkaufen",
                             "to go grocery shopping",
-                            "ein-",
-                            "Wir KAUFEN am Samstag im Supermarkt EIN."
+                            "Wir kaufen am Nachmittag EIN."
                           ],
                           [
-                            "anrufen",
-                            "to call on phone",
-                            "an-",
-                            "Er RUFT seine Mutter AN."
-                          ],
-                          [
+                            "fern-",
                             "fernsehen",
                             "to watch TV",
-                            "fern-",
-                            "Sie SIEHT am Abend FERN."
+                            "Er sieht am Abend gern FERN."
                           ],
                           [
-                            "mitkommen",
-                            "to come along",
+                            "aus-",
+                            "aussteigen",
+                            "to get off / disembark",
+                            "Wir steigen am Hauptbahnhof AUS."
+                          ],
+                          [
                             "mit-",
-                            "KOMMST du heute Abend MIT?"
+                            "mitbringen",
+                            "to bring along",
+                            "Paco bringt einen Kuchen MIT."
                           ],
                           [
+                            "vor-",
                             "vorbereiten",
                             "to prepare",
-                            "vor-",
-                            "Ich BEREITE das Abendessen VOR."
-                          ],
-                          [
-                            "einschlafen",
-                            "to fall asleep",
-                            "ein-",
-                            "Das Kind SCHLÄFT um 20:00 Uhr EIN."
+                            "Sie bereitet die Präsentation VOR."
                           ]
                         ]
                       }
+                    },
+                    {
+                      "title": "2. Der typische Tagesablauf (A Typical Daily Routine)",
+                      "description": "A timeline of daily activities using separable verbs:",
+                      "items": [
+                        {
+                          "term": "06:30 – aufstehen (to get up)",
+                          "meaning": "Ich stehe um halb sieben auf.",
+                          "example": "Wann stehst du morgens auf?"
+                        },
+                        {
+                          "term": "07:30 – losfahren (to depart / leave)",
+                          "meaning": "Ich fahre um halb acht los.",
+                          "example": "Er fährt mit dem Bus los."
+                        },
+                        {
+                          "term": "18:00 – einkaufen (to shop)",
+                          "meaning": "Ich kaufe im Supermarkt ein.",
+                          "example": "Wir kaufen für das Abendessen ein."
+                        },
+                        {
+                          "term": "23:00 – einschlafen (to fall asleep)",
+                          "meaning": "Ich schlafe um elf Uhr ein.",
+                          "example": "Sie schläft schnell ein."
+                        }
+                      ]
                     }
                   ],
                   "dialogue": {
-                    "context": "Describing a typical workday to a classmate in Berlin:",
+                    "context": "Ein ganz normaler Arbeitstag – Interview (Netzwerk A1 Kapitel 5):",
                     "lines": [
                       {
-                        "speaker": "Simon",
-                        "german": "Wie sieht dein normaler Tag aus?",
-                        "english": "What does your normal day look like?"
+                        "speaker": "Julia",
+                        "german": "Paco, wie sieht ein typischer Tag bei dir aus?",
+                        "english": "Paco, what does a typical day look like for you?"
                       },
                       {
-                        "speaker": "Marie",
-                        "german": "Ich stehe um halb sieben auf, trinke Kaffee und fahre zur Arbeit.",
-                        "english": "I get up at 6:30 (stehe... auf), drink coffee, and travel to work."
+                        "speaker": "Paco",
+                        "german": "Ich stehe um sieben Uhr auf und frühstücke gemütlich. Um acht Uhr fahre ich zum Deutschkurs.",
+                        "english": "I get up at seven o'clock and eat breakfast comfortably. At eight o'clock I leave for German class."
                       },
                       {
-                        "speaker": "Simon",
-                        "german": "Und was machst du am Abend?",
-                        "english": "And what do you do in the evening?"
+                        "speaker": "Julia",
+                        "german": "Und was machst du am Nachmittag nach dem Kurs?",
+                        "english": "And what do you do in the afternoon after class?"
                       },
                       {
-                        "speaker": "Marie",
-                        "german": "Ich kaufe schnell ein, koche etwas und sehe ein bisschen fern.",
-                        "english": "I shop quickly (kaufe... ein), cook something, and watch a bit of TV (sehe... fern)."
+                        "speaker": "Paco",
+                        "german": "Ich kaufe im Supermarkt ein, koche etwas und am Abend sehe ich gern mit Freunden fern.",
+                        "english": "I shop at the supermarket, cook something, and in the evening I like watching TV with friends."
                       }
                     ]
                   },
                   "funFact": {
-                    "title": "Listen for the Stress!",
-                    "content": "How can you tell if a German prefix is separable? Listen to where the voice emphasizes the word! In separable verbs, the prefix is ALWAYS stressed heavily: **AUF**stehen, **EIN**kaufen, **AN**rufen. If the prefix is stressed, it separates!"
+                    "title": "Stressed Prefixes are ALWAYS Separable!",
+                    "content": "How do you know if a verb is separable? Listen to the stress! If the prefix is STRESSED (louder), it is separable: ÁUFstehen, ÉINkaufen, ÁNrufen. If the prefix is unstressed (be-, ver-, zer-, ent-, ge-), it NEVER separates: verstehen, bezahlen, bekommen!"
                   },
                   "practice": [
                     {
-                      "question": "How do you say: 'I am calling my friend' (anrufen)?",
+                      "question": "Where does the prefix 'auf-' go in the sentence: 'Ich _____ jeden Morgen um 6 Uhr _____.'?",
                       "options": [
-                        "Ich anrufe meinen Freund.",
-                        "Ich rufe meinen Freund an.",
-                        "Ich rufe an meinen Freund."
+                        "stehe auf / —",
+                        "stehe / auf",
+                        "aufstehe / —"
                       ],
-                      "answer": "Ich rufe meinen Freund an.",
-                      "explanation": "In main clauses, the prefix 'an-' must move to the very end: 'Ich rufe meinen Freund an'."
+                      "answer": "stehe / auf",
+                      "explanation": "In main clauses, the conjugated verb stem goes in Position 2 and the separable prefix goes to the very end: 'Ich stehe ... auf'."
+                    },
+                    {
+                      "question": "Which of these verbs is separable?",
+                      "options": [
+                        "bezahlen",
+                        "einkaufen",
+                        "verstehen"
+                      ],
+                      "answer": "einkaufen",
+                      "explanation": "'ein-' is a separable prefix (Ich kaufe ein)."
                     }
                   ]
                 }
@@ -4683,128 +5533,125 @@ export const FALLBACK_COURSES: CourseDetail[] = [
                 "title": "Lesson 37: Family Members & Describing People",
                 "description": "Family vocabulary (Eltern, Geschwister, Kind), describing appearance, traits, and stating age.",
                 "content": {
-                  "overview": "Family and relationships are frequent conversation topics in A1 exams and social introductions. In this lesson, you will learn the names of family members, how to state age, and how to describe character and appearance.",
-                  "canDo": "Can talk about family relationships, describe physical appearance (hair, height) and traits, and ask about others' families.",
-                  "teacherNote": "Notice the German collective words: 'die Eltern' (the parents) and 'die Geschwister' (the siblings). English doesn't use the word 'siblings' nearly as casually as German uses 'Geschwister'!",
+                  "overview": "Describing family members, relationships, and personal qualities is a central theme of A1 conversation. In this lesson, you will master German family vocabulary, learn terms for extended family, and practice describing appearance and character traits.",
+                  "canDo": "Can name family members, talk about your relatives and marital status, and describe people's appearance and character.",
+                  "teacherNote": "German has a wonderful collective word for siblings: 'die Geschwister' (meaning brothers and sisters together). If someone asks: 'Hast du Geschwister?', you can simply answer: 'Ja, einen Bruder und zwei Schwestern'!",
                   "sections": [
                     {
-                      "title": "1. The Family Tree (Der Stammbaum)",
-                      "description": "Master the members of the family:",
+                      "title": "1. Die Familie & Verwandtschaft (Family & Relatives)",
+                      "description": "Core family vocabulary from Netzwerk Kapitel 2:",
                       "table": {
                         "headers": [
-                          "Family Member",
-                          "German (with article)",
-                          "Plural Form",
-                          "English Meaning"
+                          "Familienmitglied",
+                          "Maskulin (der)",
+                          "Feminin (die)",
+                          "Plural (die)"
                         ],
                         "rows": [
                           [
-                            "Parents",
-                            "die Eltern",
-                            "— (plural only)",
-                            "parents"
+                            "Parents / Grandparents",
+                            "der Vater / der Großvater (Opa)",
+                            "die Mutter / die Großmutter (Oma)",
+                            "die Eltern / die Großeltern"
                           ],
                           [
-                            "Father / Mother",
-                            "der Vater / die Mutter",
-                            "die Väter / die Mütter",
-                            "father / mother"
+                            "Children / Grandchildren",
+                            "der Sohn / der Enkel",
+                            "die Tochter / die Enkelin",
+                            "die Kinder / die Enkelkinder"
                           ],
                           [
                             "Siblings",
-                            "die Geschwister",
-                            "— (plural only)",
-                            "siblings (brothers & sisters)"
+                            "der Bruder",
+                            "die Schwester",
+                            "die Geschwister (siblings)"
                           ],
                           [
-                            "Brother / Sister",
-                            "der Bruder / die Schwester",
-                            "die Brüder / die Schwestern",
-                            "brother / sister"
+                            "Spouses / Partners",
+                            "der Ehemann / der Partner",
+                            "die Ehefrau / die Partnerin",
+                            "die Eheleute / die Paare"
                           ],
                           [
-                            "Son / Daughter",
-                            "der Sohn / die Tochter",
-                            "die Söhne / die Töchter",
-                            "son / daughter"
-                          ],
-                          [
-                            "Grandparents",
-                            "die Großeltern",
-                            "— (plural only)",
-                            "grandparents"
-                          ],
-                          [
-                            "Grandfather / Grandmother",
-                            "der Großvater (Opa) / die Großmutter (Oma)",
-                            "die Großväter / Großmütter",
-                            "grandpa / grandma"
-                          ],
-                          [
-                            "Husband / Wife",
-                            "der Ehemann / die Ehefrau",
-                            "die Ehemänner / Ehefrauen",
-                            "husband / wife"
+                            "Extended Family",
+                            "der Onkel / der Cousin",
+                            "die Tante / die Cousine",
+                            "die Onkel / die Tanten"
                           ]
                         ]
                       }
                     },
                     {
-                      "title": "2. Describing Appearance & Age",
-                      "description": "Formulas for describing people:",
+                      "title": "2. Familienstand & Eigenschaften (Marital Status & Traits)",
+                      "description": "Describing status and character:",
                       "items": [
                         {
-                          "term": "Stating Age (with 'sein')",
-                          "meaning": "Mein Bruder ist 25 Jahre alt. (My brother is 25 years old.)",
-                          "example": "Wie alt ist dein Kind? -> Er ist drei Jahre alt."
+                          "term": "ledig / verheiratet / geschieden",
+                          "meaning": "single / married / divorced",
+                          "example": "Ich bin ledig, aber mein Bruder ist verheiratet."
                         },
                         {
-                          "term": "Hair & Eyes (with 'haben')",
-                          "meaning": "Er hat blaue Augen und kurze, blonde Haare.",
-                          "example": "Sie hat lange braune Haare."
+                          "term": "sympathisch / freundlich / nett",
+                          "meaning": "likeable / friendly / kind",
+                          "example": "Meine Kollegen sind sehr sympathisch."
+                        },
+                        {
+                          "term": "groß / klein / sportlich",
+                          "meaning": "tall / short / athletic",
+                          "example": "Mein Vater ist groß und sehr sportlich."
                         }
                       ]
                     }
                   ],
                   "dialogue": {
-                    "context": "Two friends sharing family updates over coffee in Vienna:",
+                    "context": "Familienfotos ansehen (Netzwerk A1 Kapitel 2):",
                     "lines": [
                       {
-                        "speaker": "Paul",
-                        "german": "Hast du Geschwister, Claudia?",
-                        "english": "Do you have siblings, Claudia?"
+                        "speaker": "Gregor",
+                        "german": "Das ist ein schönes Foto, Nina! Wer sind die Personen?",
+                        "english": "That is a nice photo, Nina! Who are the people?"
                       },
                       {
-                        "speaker": "Claudia",
-                        "german": "Ja, ich habe einen älteren Bruder und eine jüngere Schwester.",
-                        "english": "Yes, I have an older brother and a younger sister."
+                        "speaker": "Nina",
+                        "german": "Das sind meine Eltern und meine beiden Geschwister. Mein Bruder heißt Lukas.",
+                        "english": "Those are my parents and my two siblings. My brother is called Lukas."
                       },
                       {
-                        "speaker": "Paul",
-                        "german": "Und wie alt sind deine Geschwister?",
-                        "english": "And how old are your siblings?"
+                        "speaker": "Gregor",
+                        "german": "Und wie alt ist deine Schwester?",
+                        "english": "And how old is your sister?"
                       },
                       {
-                        "speaker": "Claudia",
-                        "german": "Mein Bruder ist achtundzwanzig und meine Schwester ist einundzwanzig.",
-                        "english": "My brother is twenty-eight and my sister is twenty-one."
+                        "speaker": "Nina",
+                        "german": "Sie ist 22 Jahre alt und studiert Medizin in Freiburg.",
+                        "english": "She is 22 years old and is studying medicine in Freiburg."
                       }
                     ]
                   },
                   "funFact": {
-                    "title": "'Oma' & 'Opa' Are Universally Cherished",
-                    "content": "While 'Großvater' and 'Großmutter' are the official dictionary words, almost nobody in Germany addresses their grandparents that formally. Nearly everyone affectionately says 'Oma' and 'Opa', even in formal books and television!"
+                    "title": "'Opa' and 'Oma' are Universal",
+                    "content": "While the formal words are 'der Großvater' and 'die Großmutter', in actual German families practically everyone affectionately says 'der Opa' (Grandpa) and 'die Oma' (Grandma)!"
                   },
                   "practice": [
                     {
-                      "question": "What does 'Ich habe keine Geschwister' mean?",
+                      "question": "What does the German word 'Geschwister' mean?",
                       "options": [
-                        "I have no children.",
-                        "I have no siblings (I am an only child).",
-                        "I have no parents."
+                        "Grandparents",
+                        "Siblings (brothers & sisters)",
+                        "Cousins"
                       ],
-                      "answer": "I have no siblings (I am an only child).",
-                      "explanation": "'Geschwister' refers to brothers and sisters (siblings)."
+                      "answer": "Siblings (brothers & sisters)",
+                      "explanation": "'Geschwister' is the collective plural noun for brothers and sisters."
+                    },
+                    {
+                      "question": "How do you say: 'I am married' in German?",
+                      "options": [
+                        "Ich bin ledig.",
+                        "Ich bin verheiratet.",
+                        "Ich bin geschieden."
+                      ],
+                      "answer": "Ich bin verheiratet.",
+                      "explanation": "'verheiratet' means married."
                     }
                   ]
                 }
@@ -4814,122 +5661,141 @@ export const FALLBACK_COURSES: CourseDetail[] = [
                 "title": "Lesson 38: Housing, Rooms & Furniture",
                 "description": "Housing types (Wohnung, Haus), rooms (Wohnzimmer, Küche, Bad), and furniture (Tisch, Bett, Schrank).",
                 "content": {
-                  "overview": "Whether hunting for a flat in Berlin, describing your home, or shopping for furniture, housing vocabulary is critical. German housing ads use specific abbreviations that you will decipher in this lesson.",
-                  "canDo": "Can name rooms in a house, identify key pieces of furniture with their genders, and describe your living situation.",
-                  "teacherNote": "Notice that most rooms in German are NEUTER (das Zimmer): *das Wohnzimmer* (living room), *das Schlafzimmer* (bedroom), *das Badezimmer* (bathroom). The two main exceptions are *die Küche* (kitchen - feminine) and *der Flur* (hallway - masculine)!",
+                  "overview": "Finding an apartment, describing rooms, and discussing furniture are key communicative tasks in Germany. In this lesson, you will master housing vocabulary, rooms, furniture items, and understand rental ads (Kaltmiete vs. Warmmiete) from Netzwerk Kapitel 8 ('Meine Wohnung').",
+                  "canDo": "Can describe your home and rooms, name common furniture pieces, and understand German apartment rental terms (Zimmer, Küche, Bad, Balkon, Warmmiete).",
+                  "teacherNote": "German apartment listings count the TOTAL number of rooms, not just bedrooms! A '3-Zimmer-Wohnung' means: living room + bedroom + study/second bedroom (kitchen and bathroom are listed separately: '3 Zimmer, Küche, Bad')!",
                   "sections": [
                     {
-                      "title": "1. The Rooms in a Home (Die Räume)",
-                      "description": "Learn the parts of a German flat (die Wohnung):",
+                      "title": "1. Die Räume im Haus (Rooms in the House)",
+                      "description": "Core room vocabulary from Netzwerk Kapitel 8:",
                       "table": {
                         "headers": [
-                          "Room",
-                          "German Word",
-                          "Gender",
-                          "English Meaning"
+                          "Zimmer (Room)",
+                          "Genus & Artikel",
+                          "Typische Möbel / Ausstattung",
+                          "Bedeutung"
                         ],
                         "rows": [
                           [
-                            "Living Room",
+                            "Wohnzimmer",
                             "das Wohnzimmer",
-                            "Neuter (das)",
-                            "living room"
+                            "das Sofa, der Sessel, der Fernseher",
+                            "Living room"
                           ],
                           [
-                            "Bedroom",
+                            "Schlafzimmer",
                             "das Schlafzimmer",
-                            "Neuter (das)",
-                            "bedroom"
+                            "das Bett, der Kleiderschrank",
+                            "Bedroom"
                           ],
                           [
-                            "Kitchen",
+                            "Küche",
                             "die Küche",
-                            "Feminine (die)",
-                            "kitchen"
+                            "der Herd, der Kühlschrank, der Tisch",
+                            "Kitchen"
                           ],
                           [
-                            "Bathroom",
+                            "Badezimmer",
                             "das Badezimmer / das Bad",
-                            "Neuter (das)",
-                            "bathroom"
+                            "die Dusche, die Badewanne, die Toilette",
+                            "Bathroom"
                           ],
                           [
-                            "Hallway",
+                            "Flur / Diele",
                             "der Flur",
-                            "Masculine (der)",
-                            "hallway / corridor"
+                            "die Garderobe, der Spiegel",
+                            "Hallway / corridor"
                           ],
                           [
-                            "Balcony",
-                            "der Balkon",
-                            "Masculine (der)",
-                            "balcony"
-                          ],
-                          [
-                            "Garden",
-                            "der Garten",
-                            "Masculine (der)",
-                            "garden"
+                            "Balkon / Garten",
+                            "der Balkon / der Garten",
+                            "die Pflanzen, die Gartenstühle",
+                            "Balcony / garden"
                           ]
                         ]
                       }
                     },
                     {
-                      "title": "2. Essential Furniture (Die Möbel)",
-                      "description": "Master furniture items and their colors:",
+                      "title": "2. Wichtige Mietbegriffe (Rental Vocabulary)",
+                      "description": "Essential terms on German housing portals (ImmoScout24, WG-Gesucht):",
                       "items": [
                         {
-                          "term": "der Tisch / der Stuhl / der Schrank / das Bett",
-                          "meaning": "table (m) / chair (m) / wardrobe (m) / bed (n)",
-                          "example": "Der Schrank steht im Schlafzimmer."
+                          "term": "die Kaltmiete (Net Rent)",
+                          "meaning": "Base rent for the apartment space alone (without heating and utilities)",
+                          "example": "Die Kaltmiete beträgt 650 Euro pro Monat."
                         },
                         {
-                          "term": "das Sofa / der Schreibtisch / die Lampe",
-                          "meaning": "sofa (n) / desk (m) / lamp (f)",
-                          "example": "Auf dem Tisch steht eine schöne Lampe."
+                          "term": "die Nebenkosten (Utilities)",
+                          "meaning": "Heating, water, trash collection, and building maintenance",
+                          "example": "Nebenkosten: ca. 150 Euro."
+                        },
+                        {
+                          "term": "die Warmmiete (Gross Rent)",
+                          "meaning": "Total monthly rent including utilities (Kaltmiete + Nebenkosten)",
+                          "example": "Die Warmmiete ist 800 Euro."
+                        },
+                        {
+                          "term": "die WG (Wohngemeinschaft)",
+                          "meaning": "Shared apartment popular with students and young professionals",
+                          "example": "Ich wohne in einer 3er-WG in Berlin-Mitte."
                         }
                       ]
                     }
                   ],
                   "dialogue": {
-                    "context": "A tenant showing their new apartment in Munich to a visiting friend:",
+                    "context": "Wohnungsbesichtigung in München (Netzwerk A1 Kapitel 8):",
                     "lines": [
                       {
-                        "speaker": "Besucher",
-                        "german": "Gratuliere zur neuen Wohnung! Wie viele Zimmer hat sie?",
-                        "english": "Congratulations on the new apartment! How many rooms does it have?"
+                        "speaker": "Vermieterin",
+                        "german": "Guten Tag, Herr Garcia! Kommen Sie bitte herein. Das ist die Wohnung.",
+                        "english": "Good day, Mr. Garcia! Please come in. This is the apartment."
                       },
                       {
-                        "speaker": "Mieter",
-                        "german": "Sie hat drei Zimmer: ein Wohnzimmer, ein Schlafzimmer und ein Arbeitszimmer.",
-                        "english": "It has three rooms: a living room, a bedroom, and a study."
+                        "speaker": "Paco",
+                        "german": "Guten Tag! Die Wohnung ist wirklich sehr hell und modern. Wie groß ist sie?",
+                        "english": "Good day! The apartment is really very bright and modern. How big is it?"
                       },
                       {
-                        "speaker": "Besucher",
-                        "german": "Und gibt es auch einen Balkon?",
-                        "english": "And is there also a balcony?"
+                        "speaker": "Vermieterin",
+                        "german": "Sie hat 65 Quadratmeter: zwei Zimmer, eine Einbauküche, ein Bad und einen großen Balkon.",
+                        "english": "It has 65 square meters: two rooms, a fitted kitchen, a bathroom, and a large balcony."
                       },
                       {
-                        "speaker": "Mieter",
-                        "german": "Ja, vom Wohnzimmer aus kommt man direkt auf den Balkon.",
-                        "english": "Yes, from the living room you go directly out onto the balcony."
+                        "speaker": "Paco",
+                        "german": "Sehr schön! Wie hoch ist die Warmmiete?",
+                        "english": "Very nice! How high is the total rent including heating?"
+                      },
+                      {
+                        "speaker": "Vermieterin",
+                        "german": "Die Kaltmiete ist 750 Euro plus 150 Euro Nebenkosten, also 900 Euro warm.",
+                        "english": "The base rent is 750 euros plus 150 euros utilities, so 900 euros total."
                       }
                     ]
                   },
                   "funFact": {
-                    "title": "Warmmiete vs. Kaltmiete in German Housing",
-                    "content": "When renting an apartment in Germany, you will always encounter two prices: **Kaltmiete** (cold rent = basic rent for the space only) and **Warmmiete** (warm rent = includes heating, water, and building maintenance). Always check the Warmmiete before signing a contract!"
+                    "title": "Kitchens Don't Always Come with Apartments!",
+                    "content": "In Germany, many unfurnished apartments are rented out completely bare—without a stove, sink, or kitchen cabinets! Renters either buy and install their own kitchen ('Einbauküche' / EBK) or purchase it from the previous tenant ('die Ablöse'). Always check if the listing says 'mit Einbauküche'!"
                   },
                   "practice": [
                     {
-                      "question": "What is the gender of 'Küche' (kitchen)?",
+                      "question": "What does a '3-Zimmer-Wohnung' mean in a German rental ad?",
                       "options": [
-                        "der",
-                        "die",
-                        "das"
+                        "An apartment with 3 bedrooms",
+                        "An apartment with 3 total living rooms/bedrooms plus kitchen and bath",
+                        "An apartment for 3 people"
                       ],
-                      "answer": "die",
-                      "explanation": "'Küche' is feminine: die Küche."
+                      "answer": "An apartment with 3 total living rooms/bedrooms plus kitchen and bath",
+                      "explanation": "German apartment sizes count total living rooms and bedrooms (kitchen and bath are separate)."
+                    },
+                    {
+                      "question": "What is 'die Warmmiete'?",
+                      "options": [
+                        "The base rent without heating",
+                        "The total monthly rent including heating and utilities",
+                        "The deposit"
+                      ],
+                      "answer": "The total monthly rent including heating and utilities",
+                      "explanation": "Warmmiete = Kaltmiete + Nebenkosten (utilities/heating)."
                     }
                   ]
                 }
@@ -4945,126 +5811,136 @@ export const FALLBACK_COURSES: CourseDetail[] = [
                 "title": "Lesson 39: Supermarket Shopping, Food, Drinks & Prices",
                 "description": "Food items, quantities (Kilo, Gramm, Liter), inquiring prices ('Was kostet ein Kilo Äpfel?').",
                 "content": {
-                  "overview": "Shopping at a German supermarket or weekly market (Wochenmarkt) is a rich sensory and linguistic experience. You will learn food vocabulary, units of weight and volume, asking for prices, and navigating the German cash register.",
-                  "canDo": "Can ask for food items, specify quantities (Kilo, Gramm, Flasche, Stück), ask prices ('Was kostet...?'), and handle supermarket checkout interactions.",
-                  "teacherNote": "German cashiers are famously fast! Be prepared to pack your own bags rapidly at the register, as German supermarkets do not have baggers and bag charges apply if you don't bring your own reusable bag (*Stoffbeutel*).",
+                  "overview": "Shopping for food at open-air markets and supermarkets requires practical knowledge of units of measurement (Kilo, Gramm, Liter), inquiring about prices, and courteous customer interactions from Netzwerk A1 Kapitel 4.",
+                  "canDo": "Can buy food items, ask for specific quantities and weights, inquire about prices, and interact politely with shopkeepers.",
+                  "teacherNote": "In German food shopping, 'ein Pfund' (a pound) is exactly 500 grams (half a kilo)! Native speakers frequently say: 'Ein Pfund Tomaten, bitte' (500 grams of tomatoes).",
                   "sections": [
                     {
-                      "title": "1. Food & Groceries (Lebensmittel)",
-                      "description": "Master the most common food items by category:",
+                      "title": "1. Maßeinheiten beim Lebensmitteleinkauf (Units of Measurement)",
+                      "description": "Standard weights and measures in German markets:",
                       "table": {
                         "headers": [
-                          "Category",
-                          "German Item (with article)",
-                          "Plural Form",
-                          "English Meaning"
+                          "Maßeinheit",
+                          "Abkürzung",
+                          "Bedeutung",
+                          "Beispiel"
                         ],
                         "rows": [
                           [
-                            "Bakery",
-                            "das Brot / das Brötchen",
-                            "die Brote / die Brötchen",
-                            "bread / bread roll"
+                            "das Kilo / Kilogramm",
+                            "kg",
+                            "1000 Gramm",
+                            "ein Kilo Äpfel / zwei Kilo Kartoffeln"
                           ],
                           [
-                            "Produce",
-                            "der Apfel / die Banane",
-                            "die Äpfel / die Bananen",
-                            "apple / banana"
+                            "das Pfund",
+                            "Pfd",
+                            "500 Gramm (halbes Kilo)",
+                            "ein Pfund Butter / ein Pfund Erdbeeren"
                           ],
                           [
-                            "Vegetables",
-                            "die Tomate / die Kartoffel",
-                            "die Tomaten / die Kartoffeln",
-                            "tomato / potato"
+                            "das Gramm",
+                            "g",
+                            "Gramm",
+                            "200 Gramm Käse / 150 Gramm Schinken"
                           ],
                           [
-                            "Dairy",
-                            "die Milch / der Käse / die Butter",
-                            "— / die Käsesorten / —",
-                            "milk / cheese / butter"
+                            "der Liter",
+                            "l",
+                            "Flüssigkeiten",
+                            "ein Liter Milch / zwei Liter Wasser"
                           ],
                           [
-                            "Meat",
-                            "das Fleisch / das Hähnchen",
-                            "—",
-                            "meat / chicken"
+                            "die Flasche / die Dose",
+                            "Fl. / D.",
+                            "Verpackung",
+                            "eine Flasche Saft / eine Dose Tomaten"
                           ],
                           [
-                            "Beverages",
-                            "das Wasser / der Orangensaft",
-                            "die Wasser / die Säfte",
-                            "water / orange juice"
+                            "das Stück",
+                            "Stk.",
+                            "Einzelartikel",
+                            "drei Stück Kuchen / ein Stück Käse"
                           ]
                         ]
                       }
                     },
                     {
-                      "title": "2. Quantities & Asking Prices",
-                      "description": "Formulas for purchasing by weight or piece:",
+                      "title": "2. Preise nennen und verstehen (Euros & Cents)",
+                      "description": "How to say prices aloud in German:",
                       "items": [
                         {
-                          "term": "ein Kilo (1 kg) / ein halbes Kilo (500g)",
-                          "meaning": "Ich hätte gern ein Kilo Äpfel, bitte.",
-                          "example": "Hundert Gramm Käse, bitte."
+                          "term": "€ 2,50 = zwei Euro fünfzig",
+                          "meaning": "Euro amount first, then 'Euro', then the cent amount",
+                          "example": "Das Brot kostet zwei Euro fünfzig."
                         },
                         {
-                          "term": "eine Flasche / eine Packung / ein Stück",
-                          "meaning": "a bottle of / a pack of / a piece of",
-                          "example": "Eine Flasche Mineralwasser / ein Stück Kuchen."
+                          "term": "€ 0,89 = neunundachtzig Cent",
+                          "meaning": "Cent amounts under 1 Euro simply state the number + 'Cent'",
+                          "example": "Ein Brötchen kostet fünfundvierzig Cent."
                         },
                         {
-                          "term": "Was kostet...? / Wie viel kostet...?",
-                          "meaning": "How much does X cost?",
-                          "example": "Was kostet ein Kilo Tomaten? -> Das kostet zwei Euro fünfzig."
+                          "term": "Was kostet...? / Was machen...?",
+                          "meaning": "How much does ... cost? / What does that come to?",
+                          "example": "Was kostet das Kilo Bananen? - Ein Euro neunundsiebzig."
                         }
                       ]
                     }
                   ],
                   "dialogue": {
-                    "context": "At a weekly farmer's market in Freiburg buying fresh fruit and cheese:",
+                    "context": "Einkaufen am Marktstand in Dresden (Netzwerk A1 Kapitel 4):",
                     "lines": [
                       {
-                        "speaker": "Marktfrau",
-                        "german": "Guten Tag! Was darf es sein?",
-                        "english": "Good day! What can I get for you?"
+                        "speaker": "Verkäufer",
+                        "german": "Guten Tag! Der Nächste bitte! Was darf ich Ihnen geben?",
+                        "english": "Good day! Next please! What can I get for you?"
                       },
                       {
-                        "speaker": "Kunde",
-                        "german": "Guten Tag. Ich hätte gern ein Kilo Äpfel und zweihundert Gramm von dem Bergkäse.",
-                        "english": "Good day. I would like a kilo of apples and 200 grams of the mountain cheese."
+                        "speaker": "Kundin",
+                        "german": "Guten Tag. Ich hätte gern zwei Kilo Äpfel und ein Pfund Erdbeeren.",
+                        "english": "Good day. I would like two kilos of apples and a pound of strawberries."
                       },
                       {
-                        "speaker": "Marktfrau",
-                        "german": "Gerne. Sonst noch etwas?",
-                        "english": "With pleasure. Anything else?"
+                        "speaker": "Verkäufer",
+                        "german": "Sehr gern, die Erdbeeren sind heute besonders süß. Sonst noch etwas?",
+                        "english": "Very gladly, the strawberries are especially sweet today. Anything else?"
                       },
                       {
-                        "speaker": "Kunde",
-                        "german": "Nein danke, das ist alles. Wie viel macht das zusammen?",
-                        "english": "No thank you, that is all. How much does that come to altogether?"
+                        "speaker": "Kundin",
+                        "german": "Haben Sie auch frischen Bio-Käse?",
+                        "english": "Do you also have fresh organic cheese?"
                       },
                       {
-                        "speaker": "Marktfrau",
-                        "german": "Das macht genau sechs Euro zwanzig, bitte.",
-                        "english": "That comes to exactly six euros twenty, please."
+                        "speaker": "Verkäufer",
+                        "german": "Ja, der Bergkäse hier ist herrlich. 200 Gramm? Das macht zusammen 8 Euro 40.",
+                        "english": "Yes, this mountain cheese here is wonderful. 200 grams? That comes to 8 euros 40 altogether."
                       }
                     ]
                   },
                   "funFact": {
-                    "title": "The Legendary German Pfandsystem (Bottle Deposit)",
-                    "content": "Never throw plastic bottles or cans into the trash in Germany! Almost all beverage containers carry a deposit (**Pfand**) between €0.08 and €0.25. When you finish your drink, take the empty bottles back to the automated reverse vending machine (*Pfandautomat*) inside any supermarket to collect your cash voucher!"
+                    "title": "Cash is Still King (Bargeld)",
+                    "content": "While card payments have grown rapidly, Germany and Austria remain famous for their love of cash ('Bargeld lacht' - cash laughs!). At bakeries, small kiosks, open-air markets, and traditional beer gardens, always carry cash, as signs often say: 'Keine Kartenzahlung' (No card payment)!"
                   },
                   "practice": [
                     {
-                      "question": "How do you ask 'How much do the bananas cost?'",
+                      "question": "How much is 'ein Pfund' in Germany?",
                       "options": [
-                        "Wie viel sind die Bananen?",
-                        "Was kosten die Bananen?",
-                        "Wo kosten die Bananen?"
+                        "100 Gramm",
+                        "500 Gramm",
+                        "1000 Gramm"
                       ],
-                      "answer": "Was kosten die Bananen?",
-                      "explanation": "'Was kosten [Plural]?' or 'Wie viel kostet [Singular]?' are the standard price inquiries."
+                      "answer": "500 Gramm",
+                      "explanation": "In German culinary and market tradition, 'ein Pfund' is exactly 500 grams."
+                    },
+                    {
+                      "question": "How do you pronounce € 3,80 in German?",
+                      "options": [
+                        "drei achtzig",
+                        "drei Euro achtzig",
+                        "achtzig Euro drei"
+                      ],
+                      "answer": "drei Euro achtzig",
+                      "explanation": "Prices are pronounced: [Euro amount] + Euro + [Cent amount]."
                     }
                   ]
                 }
@@ -5074,132 +5950,135 @@ export const FALLBACK_COURSES: CourseDetail[] = [
                 "title": "Lesson 40: Restaurant & Café Etiquette & Ordering Phrases",
                 "description": "Ordering ('Ich hätte gern...', 'Ich möchte...'), paying ('Zusammen oder getrennt?').",
                 "content": {
-                  "overview": "Dining out in a German restaurant, Biergarten, or traditional Gasthaus is an authentic cultural ritual. In this lesson, you will master polite ordering formulas, asking for recommendations, and the famous payment question.",
-                  "canDo": "Can reserve a table, order meals and beverages politely, ask for the bill, and understand the waiter's question: 'Zusammen oder getrennt?'.",
-                  "teacherNote": "When ordering in a restaurant, native speakers rarely use 'Ich will'. Instead, use the ultra-polite subjunctive formula: **'Ich hätte gern...'** (I would like to have...) or **'Ich möchte bitte...'**.",
+                  "overview": "Visiting restaurants, cafes, and beer gardens is one of the greatest pleasures in the DACH countries. In this lesson, you will master reading a German menu (die Speisekarte), ordering food and drinks, and asking for the bill using authentic etiquette.",
+                  "canDo": "Can order meals and beverages politely in a restaurant, ask about menu recommendations, and settle the bill ('Zusammen oder getrennt?').",
+                  "teacherNote": "When paying in Germany, the server will almost always ask: 'Zusammen oder getrennt?' (Together or separately?). Splitting the bill item-by-item is completely normal and expected in German restaurant culture!",
                   "sections": [
                     {
-                      "title": "1. Core Phrases for Dining Out",
-                      "description": "Navigate the restaurant experience from start to finish:",
+                      "title": "1. Redemittel im Restaurant (Restaurant Phrase Bank)",
+                      "description": "Step-by-step phrases for dining out:",
                       "table": {
                         "headers": [
                           "Phase",
-                          "German Phrase",
-                          "English Meaning",
-                          "When to Use"
+                          "Deutscher Ausdruck",
+                          "Bedeutung",
+                          "Antwort des Kellners"
                         ],
                         "rows": [
                           [
-                            "Arrival",
+                            "Ankunft",
                             "Einen Tisch für zwei Personen, bitte.",
-                            "A table for two people, please.",
-                            "Entering the restaurant"
+                            "A table for two, please.",
+                            "Sehr gern, hier entlang bitte."
                           ],
                           [
-                            "Menu",
-                            "Die Speisekarte, bitte!",
-                            "The menu, please!",
-                            "At the table"
+                            "Speisekarte",
+                            "Die Speisekarte bitte.",
+                            "The menu, please.",
+                            "Hier ist die Karte."
                           ],
                           [
-                            "Ordering",
-                            "Ich hätte gern das Schnitzel mit Pommes.",
-                            "I'd like the schnitzel with fries.",
-                            "Speaking to the waiter"
+                            "Bestellen",
+                            "Ich nehme / Ich hätte gern...",
+                            "I'll take / I would like...",
+                            "Und was möchten Sie trinken?"
                           ],
                           [
-                            "Beverage",
-                            "Für mich ein stilles Wasser, bitte.",
-                            "For me a still water, please.",
-                            "Drink orders"
+                            "Wohl bekomm's",
+                            "Guten Appetit! / Prost! / Zum Wohl!",
+                            "Enjoy your meal! / Cheers!",
+                            "Danke, gleichfalls! (Same to you!)"
                           ],
                           [
-                            "Toast",
-                            "Prost! / Zum Wohl!",
-                            "Cheers! / To your health!",
-                            "Clinking glasses (make eye contact!)"
-                          ],
-                          [
-                            "Compliment",
-                            "Es schmeckt sehr lecker!",
-                            "It tastes very delicious!",
-                            "During the meal"
-                          ],
-                          [
-                            "Bill",
-                            "Wir möchten bitte zahlen.",
-                            "We would like to pay, please.",
-                            "At the end"
+                            "Rechnung",
+                            "Die Rechnung bitte! / Wir möchten zahlen.",
+                            "The bill, please! / We'd like to pay.",
+                            "Zusammen oder getrennt?"
                           ]
                         ]
                       }
                     },
                     {
-                      "title": "2. The Magic Payment Question: 'Zusammen oder getrennt?'",
-                      "description": "In German restaurants, servers expect table parties to split the bill individually:",
+                      "title": "2. Trinkgeld-Kultur (Tipping in Germany)",
+                      "description": "How tipping works in German-speaking countries:",
                       "items": [
                         {
-                          "term": "Zusammen (Together)",
-                          "meaning": "One person pays for the entire table",
-                          "example": "Zusammen, bitte. Das macht fünfzig Euro."
-                        },
-                        {
-                          "term": "Getrennt (Separately)",
-                          "meaning": "Each guest pays only for what they ordered down to the cent!",
-                          "example": "Getrennt, bitte. Ich hatte das Schnitzel und ein Bier."
+                          "term": "5% bis 10% Trinkgeld (Rounding Up)",
+                          "meaning": "Tipping is not obligatory by law, but 5% to 10% is standard for good service",
+                          "example": "If the bill is € 27,20, round up to € 29 or € 30."
                         },
                         {
                           "term": "Stimmt so! (Keep the change)",
-                          "meaning": "Standard tipping phrase when handing cash to the server",
-                          "example": "Das macht 18 Euro. -> 'Hier sind 20, stimmt so!'"
+                          "meaning": "Tell the server directly when handing over money if you don't need change",
+                          "example": "Hand over a € 20 note for an € 18 bill and say: 'Stimmt so!'."
                         }
                       ]
                     }
                   ],
                   "dialogue": {
-                    "context": "Paying the bill at a traditional Brauhaus in Cologne:",
+                    "context": "Abendessen im traditionellen Gasthaus in Nürnberg (Netzwerk A1):",
                     "lines": [
                       {
-                        "speaker": "Gast",
-                        "german": "Entschuldigung, wir möchten bitte zahlen!",
-                        "english": "Excuse me, we would like to pay, please!"
+                        "speaker": "Kellner",
+                        "german": "Guten Abend! Haben Sie schon gewählt?",
+                        "english": "Good evening! Have you made your choices?"
+                      },
+                      {
+                        "speaker": "Paco",
+                        "german": "Ja, ich hätte gern die Bratwürste mit Sauerkraut und Kartoffelsalat.",
+                        "english": "Yes, I would like the sausages with sauerkraut and potato salad."
+                      },
+                      {
+                        "speaker": "Sarah",
+                        "german": "Und für mich bitte den vegetarischen Flammkuchen und ein Mineralwasser.",
+                        "english": "And for me please the vegetarian tarte flambée and a mineral water."
                       },
                       {
                         "speaker": "Kellner",
-                        "german": "Sehr gerne! Zusammen oder getrennt?",
-                        "english": "Very gladly! Together or separately?"
+                        "german": "Sehr gern! War alles zu Ihrer Zufriedenheit?",
+                        "english": "Very gladly! Was everything to your satisfaction?"
                       },
                       {
-                        "speaker": "Gast 1",
-                        "german": "Getrennt, bitte. Ich hatte den Salat und eine Apfelschorle.",
-                        "english": "Separately, please. I had the salad and an apple spritzer."
+                        "speaker": "Paco",
+                        "german": "Ja, ausgezeichnet! Wir möchten bitte zahlen, getrennt.",
+                        "english": "Yes, excellent! We would like to pay please, separately."
                       },
                       {
                         "speaker": "Kellner",
-                        "german": "Das macht elf Euro fünfzig.",
-                        "english": "That comes to eleven euros fifty."
+                        "german": "Für Sie macht das 14 Euro 20.",
+                        "english": "For you that comes to 14 euros 20."
                       },
                       {
-                        "speaker": "Gast 1",
-                        "german": "Hier sind dreizehn Euro, stimmt so!",
-                        "english": "Here is thirteen euros, keep the change (stimmt so)!"
+                        "speaker": "Paco",
+                        "german": "Machen Sie 16 Euro. Stimmt so!",
+                        "english": "Make it 16 euros. Keep the change!"
                       }
                     ]
                   },
                   "funFact": {
-                    "title": "UNESCO Intangible Cultural Heritage: German Bread Culture",
-                    "content": "Germany has over 3,000 officially registered specialty breads, recognized by UNESCO! A traditional German evening meal is known as **'Abendbrot'** (literally: evening bread), where families gather around a cutting board of hearty dark sourdough bread, butter, cold meats, cheeses, and pickles rather than cooking a warm dinner."
+                    "title": "Never Leave Tips on the Table!",
+                    "content": "In the US and UK, people often leave cash tips on the table when leaving. In Germany, you ALWAYS state the tip directly to the server when paying! If the bill is € 18 and you want to tip € 2, hand over € 20 and say: 'Machen Sie 20' (Make it 20) or 'Stimmt so!'."
                   },
                   "practice": [
                     {
-                      "question": "What does 'Stimmt so!' mean when paying in a German restaurant?",
+                      "question": "What does a server mean when asking: 'Zusammen oder getrennt?'",
                       "options": [
-                        "Is that correct?",
-                        "Keep the change (tip included).",
-                        "Please bring the receipt."
+                        "Do you want indoor or outdoor seating?",
+                        "Paying together or separately on split bills?",
+                        "Cash or card?"
                       ],
-                      "answer": "Keep the change (tip included).",
-                      "explanation": "'Stimmt so!' is the idiomatic way to tell the server to keep the difference as a tip."
+                      "answer": "Paying together or separately on split bills?",
+                      "explanation": "'Zusammen oder getrennt' asks whether the party wants one combined bill or separate individual bills."
+                    },
+                    {
+                      "question": "What phrase tells the server to keep the change as a tip?",
+                      "options": [
+                        "Danke schön!",
+                        "Stimmt so!",
+                        "Auf Wiedersehen!"
+                      ],
+                      "answer": "Stimmt so!",
+                      "explanation": "'Stimmt so!' literally means 'It is correct like that' (keep the change)."
                     }
                   ]
                 }
@@ -5209,122 +6088,154 @@ export const FALLBACK_COURSES: CourseDetail[] = [
                 "title": "Lesson 41: Clothes, Colors, Weather & Seasons",
                 "description": "Garments, colors, weather statements ('Es regnet', 'Es ist sonnig', 'Mir ist kalt').",
                 "content": {
-                  "overview": "Discussing the weather, seasons, and clothing choices is the universal small-talk skill. In this lesson, you will learn weather expressions using the dummy subject 'es' (es regnet, es schneit) and key clothing items.",
-                  "canDo": "Can describe the day's weather, name essential clothing items and colors, and express personal physical comfort ('Mir ist kalt / warm').",
-                  "teacherNote": "⚠️ A famous cultural false friend: In German, NEVER say 'Ich bin heiß' or 'Ich bin kalt'—that has sexual connotations! Always use the Dative phrase: **'Mir ist warm'** (I feel warm) or **'Mir ist kalt'** (I feel cold)!",
+                  "overview": "Knowing how to describe symptoms, visit a doctor's practice (die Arztpraxis), and obtain medication at a pharmacy (die Apotheke) is vital survival German. In this lesson, you will master body parts, common illnesses, and medical advice from Netzwerk Kapitel 11 ('Gesund und munter').",
+                  "canDo": "Can name core body parts, express physical symptoms ('Ich habe Kopfschmerzen / Fieber'), and understand medical recommendations.",
+                  "teacherNote": "In German, to say something hurts, you use the verb 'wehtun' (separable): 'Mein Kopf TUT WEH' (My head hurts), 'Meine Beine TUN WEH' (My legs hurt). Or simply use the compound with '-schmerzen': Kopfschmerzen, Halsschmerzen, Bauchschmerzen!",
                   "sections": [
                     {
-                      "title": "1. Weather Expressions with 'Es'",
-                      "description": "German uses the impersonal pronoun 'es' for atmospheric conditions:",
+                      "title": "1. Die Körperteile (Body Parts)",
+                      "description": "Essential body parts from Netzwerk Kapitel 11:",
                       "table": {
                         "headers": [
-                          "German Weather Phrase",
-                          "Literal Meaning",
-                          "English Meaning",
-                          "Icon / Context"
+                          "Körperteil",
+                          "Artikel & Singular",
+                          "Plural",
+                          "Typisches Symptom"
                         ],
                         "rows": [
                           [
-                            "Die Sonne scheint.",
-                            "The sun shines.",
-                            "It is sunny.",
-                            "☀️ Sunny"
+                            "Head",
+                            "der Kopf",
+                            "die Köpfe",
+                            "Kopfschmerzen (headache)"
                           ],
                           [
-                            "Es regnet.",
-                            "It rains.",
-                            "It is raining.",
-                            "🌧️ Rain"
+                            "Throat / Neck",
+                            "der Hals",
+                            "die Hälse",
+                            "Halsschmerzen (sore throat)"
                           ],
                           [
-                            "Es schneit.",
-                            "It snows.",
-                            "It is snowing.",
-                            "❄️ Snow"
+                            "Stomach",
+                            "der Bauch / der Magen",
+                            "die Bäuche",
+                            "Bauchschmerzen (stomach ache)"
                           ],
                           [
-                            "Es ist windig.",
-                            "It is windy.",
-                            "It is windy.",
-                            "💨 Wind"
+                            "Back",
+                            "der Rücken",
+                            "die Rücken",
+                            "Rückenschmerzen (back pain)"
                           ],
                           [
-                            "Es ist bewölkt.",
-                            "It is clouded.",
-                            "It is cloudy / overcast.",
-                            "☁️ Clouds"
+                            "Eye",
+                            "das Auge",
+                            "die Augen",
+                            "brennende Augen"
                           ],
                           [
-                            "Es ist warm / kalt.",
-                            "It is warm / cold.",
-                            "The temperature is warm / cold.",
-                            "🌡️ Temperature"
+                            "Ear",
+                            "das Ohr",
+                            "die Ohren",
+                            "Ohrenschmerzen"
                           ],
                           [
-                            "Wie ist das Wetter heute?",
-                            "How is the weather today?",
-                            "What is the weather like today?",
-                            "Question"
+                            "Tooth",
+                            "der Zahn",
+                            "die Zähne",
+                            "Zahnschmerzen (toothache)"
+                          ],
+                          [
+                            "Hand / Arm",
+                            "die Hand / der Arm",
+                            "die Hände / die Arme",
+                            "Mein Arm tut weh."
+                          ],
+                          [
+                            "Foot / Leg",
+                            "der Fuß / das Bein",
+                            "die Füße / die Beine",
+                            "Mein Fuß tut weh."
                           ]
                         ]
                       }
                     },
                     {
-                      "title": "2. Clothes & Colors (Kleidung und Farben)",
-                      "description": "Master everyday garments and color descriptions:",
+                      "title": "2. Krankheiten & Ratschläge mit 'sollen'",
+                      "description": "Using modal verb 'sollen' (should) for doctor's instructions:",
                       "items": [
                         {
-                          "term": "die Jacke / der Mantel / der Pullover",
-                          "meaning": "jacket (f) / coat (m) / sweater (m)",
-                          "example": "Ich ziehe eine warme Jacke an."
+                          "term": "Ich habe die Grippe / eine Erkältung",
+                          "meaning": "I have the flu / a cold",
+                          "example": "Ich fühle mich schwach und habe Fieber."
                         },
                         {
-                          "term": "die Hose / das T-Shirt / die Schuhe",
-                          "meaning": "pants/trousers (f) / T-shirt (n) / shoes (pl)",
-                          "example": "Die Schuhe sind schwarz."
+                          "term": "Sie sollen im Bett bleiben",
+                          "meaning": "You should stay in bed (doctor's orders)",
+                          "example": "Die Ärztin sagt, ich soll viel schlafen."
                         },
                         {
-                          "term": "Farben: rot, blau, grün, gelb, schwarz, weiß, grau",
-                          "meaning": "red, blue, green, yellow, black, white, gray",
-                          "example": "Mein Pullover ist blau."
+                          "term": "das Rezept / die Apotheke",
+                          "meaning": "Prescription / pharmacy (marked with a large red 'A')",
+                          "example": "Hier ist Ihr Rezept für die Apotheke."
                         }
                       ]
                     }
                   ],
                   "dialogue": {
-                    "context": "Checking the morning forecast before going for a walk in Hamburg:",
+                    "context": "Telefonat mit der Arztpraxis zur Terminvereinbarung (Netzwerk A1 Kapitel 11):",
                     "lines": [
                       {
-                        "speaker": "Jannik",
-                        "german": "Wie ist das Wetter draußen?",
-                        "english": "What is the weather like outside?"
+                        "speaker": "Arzthelferin",
+                        "german": "Praxis Dr. Schreyer, guten Tag! Was kann ich für Sie tun?",
+                        "english": "Dr. Schreyer's practice, good day! What can I do for you?"
                       },
                       {
-                        "speaker": "Nele",
-                        "german": "Es ist ziemlich kalt und es regnet ein bisschen.",
-                        "english": "It is quite cold and it is raining a bit."
+                        "speaker": "Gregor",
+                        "german": "Guten Tag, hier spricht Gregor Schubert. Ich brauche dringend einen Termin, ich bin krank.",
+                        "english": "Good day, this is Gregor Schubert speaking. I urgently need an appointment, I am sick."
                       },
                       {
-                        "speaker": "Jannik",
-                        "german": "Dann ziehe ich meinen dicken Mantel und feste Schuhe an!",
-                        "english": "Then I'll put on my thick coat and sturdy shoes!"
+                        "speaker": "Arzthelferin",
+                        "german": "Was fehlt Ihnen denn, Herr Schubert?",
+                        "english": "What symptoms do you have, Mr. Schubert?"
+                      },
+                      {
+                        "speaker": "Gregor",
+                        "german": "Ich habe hohes Fieber, starken Husten und mein Hals tut sehr weh.",
+                        "english": "I have a high fever, severe cough, and my throat hurts very much."
+                      },
+                      {
+                        "speaker": "Arzthelferin",
+                        "german": "Kommen Sie bitte heute Vormittag um 11:30 Uhr vorbei. Bringen Sie Ihre Versichertenkarte mit!",
+                        "english": "Please come by this morning at 11:30 AM. Bring your health insurance card with you!"
                       }
                     ]
                   },
                   "funFact": {
-                    "title": "'Es gibt kein schlechtes Wetter...'",
-                    "content": "There is a famous German saying known to every child: *'Es gibt kein schlechtes Wetter, es gibt nur falsche Kleidung!'* (There is no bad weather, only wrong clothing!). Germans love outdoor activities regardless of rain or snow—as long as you have a proper weatherproof jacket (*Regenjacke*)!"
+                    "title": "Apotheke vs. Drogerie",
+                    "content": "Germany strictly separates 'die Apotheke' (Pharmacy) from 'die Drogerie' (Drugstore like dm or Rossmann). In a Drogerie, you can buy shampoo, toothpaste, and vitamins, but ZERO medications—not even aspirin! All medicine must be bought at an Apotheke with a licensed pharmacist!"
                   },
                   "practice": [
                     {
-                      "question": "How do you correctly say 'I am feeling cold' in German?",
+                      "question": "How do you say: 'My head hurts' in German?",
                       "options": [
-                        "Ich bin kalt.",
-                        "Mir ist kalt.",
-                        "Ich habe kalt."
+                        "Mein Kopf tut weh.",
+                        "Mein Kopf macht weh.",
+                        "Mein Kopf ist weh."
                       ],
-                      "answer": "Mir ist kalt.",
-                      "explanation": "Physical sensation takes the Dative personal pronoun: 'Mir ist kalt' (literally: to me it is cold)."
+                      "answer": "Mein Kopf tut weh.",
+                      "explanation": "'wehtun' is the verb for hurting: Mein Kopf tut weh."
+                    },
+                    {
+                      "question": "Where in Germany can you buy headache tablets like Ibuprofen?",
+                      "options": [
+                        "In the supermarket",
+                        "In a Drogerie (dm)",
+                        "Only in an Apotheke"
+                      ],
+                      "answer": "Only in an Apotheke",
+                      "explanation": "All medicinal pain relievers are strictly pharmacy-only (apothekenpflichtig) in Germany."
                     }
                   ]
                 }
@@ -5334,133 +6245,136 @@ export const FALLBACK_COURSES: CourseDetail[] = [
                 "title": "Lesson 42: Health, Body Parts & Doctor Visits",
                 "description": "Anatomy (Kopf, Hals, Bauch), symptoms (Kopfschmerzen, Fieber), making appointments (Termin).",
                 "content": {
-                  "overview": "When you fall ill or need medical care while living or traveling in Germany, knowing how to describe symptoms and book an appointment (Termin) at a clinic is crucial.",
-                  "canDo": "Can name core body parts, express aches and pains using 'wehtun' and 'Schmerzen haben', and schedule a doctor's appointment.",
-                  "teacherNote": "In Germany, you cannot simply walk into most specialist doctors without a prior scheduled time: you must always make an appointment (**einen Termin vereinbaren**) with the medical receptionist (*Arzthelferin*).",
+                  "overview": "Shopping for clothes (Kleidung) involves asking for sizes, colors, trying items on in the fitting room, and expressing opinions. In this lesson, you will master wardrobe vocabulary, colors, and demonstrative pronouns (dieser, dieses, diese) from Netzwerk Kapitel 10 ('Kleidung und Mode').",
+                  "canDo": "Can name everyday clothing items, specify colors and sizes, ask for fitting rooms, and express whether clothes fit well.",
+                  "teacherNote": "To ask which item someone prefers, use 'Welcher? / Welches? / Welche?'. To point out a specific item, use 'Dieser / Dieses / Diese' (This one): 'Welche Jacke gefällt dir?' - 'Diese Jacke hier!'",
                   "sections": [
                     {
-                      "title": "1. Core Body Parts (Körperteile)",
-                      "description": "Learn body parts with their articles:",
+                      "title": "1. Kleidungsstücke & Farben (Clothing & Colors)",
+                      "description": "Wardrobe vocabulary from Netzwerk Kapitel 10:",
                       "table": {
                         "headers": [
-                          "Body Part",
-                          "German (with article)",
-                          "Plural Form",
-                          "English Meaning"
+                          "Kleidungsstück",
+                          "Artikel & Genus",
+                          "Plural",
+                          "Farbe (Color)"
                         ],
                         "rows": [
                           [
-                            "Head",
-                            "der Kopf",
-                            "die Köpfe",
-                            "head"
+                            "die Hose (pants/trousers)",
+                            "feminin",
+                            "die Hosen",
+                            "schwarz / blau"
                           ],
                           [
-                            "Throat / Neck",
-                            "der Hals",
-                            "die Hälse",
-                            "throat / neck"
+                            "die Jacke / der Mantel (jacket / coat)",
+                            "feminin / maskulin",
+                            "die Jacken / die Mäntel",
+                            "braun / grau"
                           ],
                           [
-                            "Stomach / Belly",
-                            "der Bauch",
-                            "die Bäuche",
-                            "stomach"
+                            "das Hemd / die Bluse (shirt / blouse)",
+                            "neutral / feminin",
+                            "die Hemden / die Blusen",
+                            "weiß / hellblau"
                           ],
                           [
-                            "Back",
-                            "der Rücken",
-                            "die Rücken",
-                            "back"
+                            "das T-Shirt / das Kleid (t-shirt / dress)",
+                            "neutral",
+                            "die T-Shirts / die Kleider",
+                            "rot / grün"
                           ],
                           [
-                            "Eye",
-                            "das Auge",
-                            "die Augen",
-                            "eye"
+                            "der Pullover (sweater)",
+                            "maskulin",
+                            "die Pullover",
+                            "gelb / dunkelblau"
                           ],
                           [
-                            "Ear",
-                            "das Ohr",
-                            "die Ohren",
-                            "ear"
-                          ],
-                          [
-                            "Arm / Leg / Foot",
-                            "der Arm / das Bein / der Fuß",
-                            "die Arme / Beine / Füße",
-                            "arm / leg / foot"
-                          ],
-                          [
-                            "Hand",
-                            "die Hand",
-                            "die Hände",
-                            "hand"
+                            "die Schuhe / die Stiefel (shoes / boots)",
+                            "plural",
+                            "die Schuhe",
+                            "schwarz / leder"
                           ]
                         ]
                       }
                     },
                     {
-                      "title": "2. Two Ways to Express Pain",
-                      "description": "Both formulas are natural and common:",
+                      "title": "2. Redemittel beim Kleiderkauf (Shopping Phrases)",
+                      "description": "Phrases for trying on clothes in department stores:",
                       "items": [
                         {
-                          "term": "1. [Body Part] + Schmerzen haben",
-                          "meaning": "Ich habe Kopfschmerzen / Halsschmerzen / Bauchschmerzen.",
-                          "example": "Hast du Rückenschmerzen? (Do you have back pain?)"
+                          "term": "Welche Größe haben Sie? / Ich trage Größe M (38)",
+                          "meaning": "What size are you? / I wear size M (38)",
+                          "example": "Haben Sie diese Hose in Größe 40?"
                         },
                         {
-                          "term": "2. [Body Part] tut weh (wehtun)",
-                          "meaning": "Mein Kopf tut weh. (My head hurts.) / Meine Augen tun weh (plural).",
-                          "example": "Der Fuß tut mir weh."
+                          "term": "Wo sind die Umkleidekabinen?",
+                          "meaning": "Where are the fitting / changing rooms?",
+                          "example": "Die Umkleidekabinen sind dort hinten links."
+                        },
+                        {
+                          "term": "Das passt mir gut / Das steht dir gut!",
+                          "meaning": "That fits me well (size) / That suits you well (appearance)!",
+                          "example": "Die Farbe steht dir fantastisch!"
                         }
                       ]
                     }
                   ],
                   "dialogue": {
-                    "context": "Calling a general practitioner's office (Hausarzt) in Munich to schedule an appointment:",
+                    "context": "Im Modegeschäft am Kudamm in Berlin (Netzwerk A1 Kapitel 10):",
                     "lines": [
                       {
-                        "speaker": "Praxis",
-                        "german": "Praxis Dr. Bergmann, guten Tag!",
-                        "english": "Dr. Bergmann's practice, good day!"
+                        "speaker": "Verkäuferin",
+                        "german": "Guten Tag! Kann ich Ihnen helfen?",
+                        "english": "Good day! Can I help you?"
                       },
                       {
-                        "speaker": "Patient",
-                        "german": "Guten Tag. Ich brauche bitte einen Termin. Ich bin krank.",
-                        "english": "Good day. I need an appointment, please. I am sick."
+                        "speaker": "Sarah",
+                        "german": "Ja gern. Ich suche eine warme Jacke für den Winter.",
+                        "english": "Yes gladly. I am looking for a warm jacket for the winter."
                       },
                       {
-                        "speaker": "Praxis",
-                        "german": "Was fehlt Ihnen denn?",
-                        "english": "What is ailing you? (What are your symptoms?)"
+                        "speaker": "Verkäuferin",
+                        "german": "Wie gefällt Ihnen diese blaue Jacke hier? Welche Größe tragen Sie?",
+                        "english": "How do you like this blue jacket here? What size do you wear?"
                       },
                       {
-                        "speaker": "Patient",
-                        "german": "Ich habe seit gestern hohes Fieber und starke Halsschmerzen.",
-                        "english": "Since yesterday I have a high fever and severe sore throat."
+                        "speaker": "Sarah",
+                        "german": "Die Farbe ist sehr schön! Ich trage Größe 38. Kann ich sie anprobieren?",
+                        "english": "The color is very nice! I wear size 38. Can I try it on?"
                       },
                       {
-                        "speaker": "Praxis",
-                        "german": "Kommen Sie heute um elf Uhr vorbei und bringen Sie Ihre Versichertenkarte mit.",
-                        "english": "Come by today at eleven o'clock and bring your health insurance card along."
+                        "speaker": "Verkäuferin",
+                        "german": "Natürlich! Die Umkleidekabinen sind gleich da drüben.",
+                        "english": "Of course! The fitting rooms are right over there."
                       }
                     ]
                   },
                   "funFact": {
-                    "title": "The Golden Apotheke Sign",
-                    "content": "In Germany, you cannot buy basic pain medications (like aspirin or ibuprofen) at a grocery store or gas station. All medications must be purchased at a licensed **Apotheke** (pharmacy), easily recognized across every German city by a giant red gothic letter 'A' with a bowl of Hygieia!"
+                    "title": "Passen vs. Stehen",
+                    "content": "German makes an elegant distinction: 'Die Hose PASST mir' means the physical size fits your body. 'Die Hose STEHT mir' means the style and color look great on you! If a friend tries on a coat, say: 'Das steht dir super!'."
                   },
                   "practice": [
                     {
-                      "question": "How do you say 'My head hurts' using 'wehtun'?",
+                      "question": "What does 'Wo ist die Umkleidekabine?' mean?",
                       "options": [
-                        "Mein Kopf tut weh.",
-                        "Mein Kopf hat weh.",
-                        "Mein Kopf ist weh."
+                        "Where is the cash register?",
+                        "Where is the fitting room?",
+                        "Where is the exit?"
                       ],
-                      "answer": "Mein Kopf tut weh.",
-                      "explanation": "The separable verb 'wehtun' conjugates with the body part: 'Mein Kopf tut weh'."
+                      "answer": "Where is the fitting room?",
+                      "explanation": "'die Umkleidekabine' is the changing/fitting room in a store."
+                    },
+                    {
+                      "question": "How do you tell a friend that a jacket suits their appearance?",
+                      "options": [
+                        "Die Jacke passt dir.",
+                        "Die Jacke steht dir gut!",
+                        "Die Jacke ist teuer."
+                      ],
+                      "answer": "Die Jacke steht dir gut!",
+                      "explanation": "'stehen' (+ Dativ) means to look good / suit someone."
                     }
                   ]
                 }
@@ -5470,115 +6384,130 @@ export const FALLBACK_COURSES: CourseDetail[] = [
                 "title": "Lesson 43: City Navigation, Places, Directions & Public Transit",
                 "description": "Landmarks (Bahnhof, Post, Apotheke), directions (geradeaus, rechts, links), buying tickets.",
                 "content": {
-                  "overview": "Navigating German cities by foot, tram, U-Bahn, and S-Bahn requires asking for directions, understanding landmarks, and buying transit tickets at automated ticket kiosks.",
-                  "canDo": "Can ask for and give walking directions (straight ahead, left, right), identify city landmarks, and purchase public transport tickets.",
-                  "teacherNote": "Notice how German direction words are crisp: **geradeaus** (straight ahead), **nach links** (to the left), **nach rechts** (to the right). When asking where something is, always start with 'Entschuldigung, wo ist...?'",
+                  "overview": "Public transportation (der öffentliche Nahverkehr - ÖPNV) in the DACH region is famous for its efficiency and punctuality. In this lesson, you will master navigating trains, subways, buying tickets at the automated machine (der Fahrkartenautomat), and finding your track (das Gleis).",
+                  "canDo": "Can buy transit tickets at machines or counters, understand platform announcements, and inquire about connections and delays.",
+                  "teacherNote": "Notice the difference: 'der Bahnsteig' is the physical platform you stand on, but 'das Gleis' is the track number printed on your ticket: 'Der Zug fährt von Gleis 7 ab'!",
                   "sections": [
                     {
-                      "title": "1. Giving & Following Directions",
-                      "description": "Key spatial directions in city navigation:",
+                      "title": "1. Verkehrsmittel im Nah- und Fernverkehr",
+                      "description": "Transit types from Netzwerk Kapitel 3 & 12:",
                       "table": {
                         "headers": [
-                          "Direction",
-                          "German Phrase",
-                          "English Meaning",
-                          "Example in Context"
+                          "Abkürzung / Begriff",
+                          "Voller Name",
+                          "Bedeutung",
+                          "Netz-Typ"
                         ],
                         "rows": [
                           [
-                            "Straight ahead",
-                            "immer geradeaus",
-                            "straight ahead",
-                            "Gehen Sie immer geradeaus."
+                            "ICE",
+                            "Intercity Express",
+                            "High-speed German long-distance train",
+                            "Fernverkehr"
                           ],
                           [
-                            "Turn left",
-                            "nach links / links abbiegen",
-                            "to the left / turn left",
-                            "Biegen Sie an der Kreuzung nach links ab."
+                            "RE / RB",
+                            "Regional-Express / Regionalbahn",
+                            "Regional commuter train between cities",
+                            "Regionalverkehr"
                           ],
                           [
-                            "Turn right",
-                            "nach rechts / rechts abbiegen",
-                            "to the right / turn right",
-                            "Die Apotheke ist gleich rechts."
+                            "S-Bahn",
+                            "Stadtschnellbahn",
+                            "Suburban above-ground transit train",
+                            "Stadtverkehr"
                           ],
                           [
-                            "Around the corner",
-                            "um die Ecke",
-                            "around the corner",
-                            "Der Bäcker ist direkt um die Ecke."
+                            "U-Bahn",
+                            "Untergrundbahn",
+                            "Metro / subway network",
+                            "Stadtverkehr"
                           ],
                           [
-                            "At the traffic light",
-                            "an der Ampel",
-                            "at the traffic light",
-                            "An der Ampel gehen Sie nach rechts."
+                            "Tram / Straßenbahn",
+                            "Straßenbahn",
+                            "Street-level light rail / tram",
+                            "Stadtverkehr"
                           ]
                         ]
                       }
                     },
                     {
-                      "title": "2. City Landmarks & Public Transit (ÖPNV)",
-                      "description": "Essential locations in every German town:",
+                      "title": "2. Am Bahnhof: Anzeigen & Durchsagen verstehen",
+                      "description": "Key terms heard and read at train stations:",
                       "items": [
                         {
-                          "term": "der Hauptbahnhof (Hbf)",
-                          "meaning": "Central train station (hub of city transit)",
-                          "example": "Der ICE fährt vom Hauptbahnhof ab."
+                          "term": "die Abfahrt / die Ankunft",
+                          "meaning": "Departure / Arrival",
+                          "example": "Abfahrt: 14:12 Uhr von Gleis 5."
                         },
                         {
-                          "term": "die U-Bahn / die S-Bahn / die Straßenbahn",
-                          "meaning": "Subway (underground) / Suburban commuter rail / Tram",
-                          "example": "Wir nehmen die U2 Richtung Alexanderplatz."
+                          "term": "die Verspätung",
+                          "meaning": "Delay (in minutes)",
+                          "example": "Heute circa 15 Minuten Verspätung."
                         },
                         {
-                          "term": "eine Fahrkarte / ein Ticket entwerten",
-                          "meaning": "To validate/stamp a ticket in the little stamping box before boarding!",
-                          "example": "Vergessen Sie nicht, das Ticket zu entwerten!"
+                          "term": "Einsteigen bitte! / Zurückbleiben bitte!",
+                          "meaning": "All aboard please! / Please stand back from the doors!",
+                          "example": "Vorsicht bei der Abfahrt des Zuges!"
                         }
                       ]
                     }
                   ],
                   "dialogue": {
-                    "context": "A tourist asking a pedestrian for directions to the museum in Dresden:",
+                    "context": "Fahrkartenkauf am Schalter im Berliner Hauptbahnhof (Netzwerk A1):",
                     "lines": [
                       {
-                        "speaker": "Tourist",
-                        "german": "Entschuldigung, wie komme ich zum Kunstmuseum?",
-                        "english": "Excuse me, how do I get to the art museum?"
+                        "speaker": "Bahn-Mitarbeiter",
+                        "german": "Guten Tag! Wie kann ich Ihnen helfen?",
+                        "english": "Good day! How can I help you?"
                       },
                       {
-                        "speaker": "Passant",
-                        "german": "Gehen Sie diese Straße geradeaus bis zur Ampel, dann nach links.",
-                        "english": "Go straight ahead down this street until the traffic light, then to the left."
+                        "speaker": "Paco",
+                        "german": "Guten Tag. Ich möchte eine Fahrkarte nach Dresden, bitte.",
+                        "english": "Good day. I would like a train ticket to Dresden, please."
                       },
                       {
-                        "speaker": "Tourist",
-                        "german": "Ist es weit von hier?",
-                        "english": "Is it far from here?"
+                        "speaker": "Bahn-Mitarbeiter",
+                        "german": "Einfache Fahrt oder hin und zurück?",
+                        "english": "Single journey or round-trip?"
                       },
                       {
-                        "speaker": "Passant",
-                        "german": "Nein, überhaupt nicht—nur etwa fünf Minuten zu Fuß.",
-                        "english": "No, not at all—only about five minutes on foot."
+                        "speaker": "Paco",
+                        "german": "Hin und zurück, bitte. Der nächste Zug um 11 Uhr.",
+                        "english": "Round-trip, please. The next train at 11 o'clock."
+                      },
+                      {
+                        "speaker": "Bahn-Mitarbeiter",
+                        "german": "Der ICE fährt um 11:05 Uhr von Gleis 3 ab. Hier ist Ihre Fahrkarte!",
+                        "english": "The ICE departs at 11:05 AM from track 3. Here is your ticket!"
                       }
                     ]
                   },
                   "funFact": {
-                    "title": "No Ticket Turnstiles in Germany: Validate Your Ticket!",
-                    "content": "Unlike the London Tube or New York Subway, German train and subway stations do not have physical barrier turnstiles! You can walk straight onto the train platform. However, you MUST buy a ticket and punch it in the little red or yellow stamping machine (**entwerten**) before boarding. Plainclothes inspectors (*Fahrkartenkontrolleure*) conduct random checks, and traveling without a validated ticket carries a hefty €60 fine (*Schwarzfahren*)!"
+                    "title": "Validating Tickets (Entwerten)",
+                    "content": "In many German cities (like Berlin and Munich), buying a single transit ticket is not enough—you must validate it in a little stamping box ('entwerten') before boarding! If ticket controllers ('Fahrkartenkontrolle') catch you with an unstamped ticket, there is an immediate € 60 fine ('erhöhtes Beförderungsentgelt')!"
                   },
                   "practice": [
                     {
-                      "question": "What does 'Gehen Sie geradeaus' mean?",
+                      "question": "What does 'Gleis 4' mean on a German train ticket?",
                       "options": [
-                        "Turn left",
-                        "Turn right",
-                        "Go straight ahead"
+                        "Carriage 4",
+                        "Track / Platform 4",
+                        "Seat 4"
                       ],
-                      "answer": "Go straight ahead",
-                      "explanation": "'geradeaus' means 'straight ahead'."
+                      "answer": "Track / Platform 4",
+                      "explanation": "'das Gleis' indicates the track number where your train arrives and departs."
+                    },
+                    {
+                      "question": "What is the German term for a 'round-trip ticket'?",
+                      "options": [
+                        "Einfache Fahrt",
+                        "Hin und zurück",
+                        "Tageskarte"
+                      ],
+                      "answer": "Hin und zurück",
+                      "explanation": "'hin und zurück' literally means 'there and back' (round-trip)."
                     }
                   ]
                 }
@@ -5594,122 +6523,130 @@ export const FALLBACK_COURSES: CourseDetail[] = [
                 "title": "Lesson 44: Phone Conversations & Text Messaging",
                 "description": "Answering calls, leaving messages, short SMS/chat conversational shorthand.",
                 "content": {
-                  "overview": "Answering the phone, leaving a brief voicemail, and texting friends in German involves standard cultural conventions that differ significantly from English.",
-                  "canDo": "Can answer a telephone formally and informally, state who is speaking, leave a callback request, and read basic German SMS/WhatsApp abbreviations.",
-                  "teacherNote": "In Germany, when picking up the phone, never just say 'Hallo?'. You immediately state your family name: 'Schmidt, guten Tag!' or 'Hier ist Thomas'. Answering without your name sounds unprofessional to Germans.",
+                  "overview": "Speaking on the telephone and exchanging short digital messages requires specialized conversational etiquette. In this lesson, you will master introducing yourself on the phone ('Hier spricht...'), asking to speak with someone, leaving messages, and common German text abbreviations.",
+                  "canDo": "Can answer and conduct simple telephone calls, ask for people politely, leave brief messages, and understand short SMS and chat messages.",
+                  "teacherNote": "On the phone, Germans never say 'Ich bin Gregor'. They state their name directly as: 'Hier spricht Gregor Schubert' (Here speaks Gregor Schubert) or simply 'Schubert, guten Tag!'.",
                   "sections": [
                     {
-                      "title": "1. Phone Call Etiquette & Key Formulas",
-                      "description": "Standard German telephone exchanges:",
+                      "title": "1. Redemittel am Telefon (Telephone Phrase Bank)",
+                      "description": "Standard telephone expressions from Netzwerk Kapitel 7:",
                       "table": {
                         "headers": [
-                          "Call Stage",
-                          "German Phrase",
-                          "English Meaning",
-                          "Context"
+                          "Situation",
+                          "Deutscher Ausdruck",
+                          "Bedeutung",
+                          "Antwort"
                         ],
                         "rows": [
                           [
-                            "Answering (Formal)",
-                            "[Nachname], guten Tag!",
-                            "Schmidt, good day!",
-                            "Standard professional opening"
+                            "Melden (Answering)",
+                            "Firma Müller, Meier am Apparat, guten Tag!",
+                            "Company Müller, Meier on the line, hello!",
+                            "Guten Tag, hier spricht..."
                           ],
                           [
-                            "Answering (Informal)",
-                            "Hallo, hier ist [Vorname].",
-                            "Hello, here is [First Name].",
-                            "Calling friends"
+                            "Verbinden fragen",
+                            "Ich möchte bitte Herrn Schmidt sprechen.",
+                            "I would like to speak to Mr. Schmidt.",
+                            "Einen Moment, ich verbinde Sie."
                           ],
                           [
-                            "Connecting",
-                            "Kann ich bitte Herrn Braun sprechen?",
-                            "May I speak to Mr. Braun, please?",
-                            "Asking for someone"
+                            "Nicht da",
+                            "Herr Schmidt ist leider nicht am Platz.",
+                            "Mr. Schmidt is unfortunately not at his desk.",
+                            "Kann ich eine Nachricht hinterlassen?"
                           ],
                           [
-                            "Availability",
-                            "Er ist im Moment nicht da.",
-                            "He is not there at the moment.",
-                            "Unavailable"
-                          ],
-                          [
-                            "Message",
-                            "Kann ich eine Nachricht hinterlassen?",
-                            "Can I leave a message?",
-                            "Leaving a note"
-                          ],
-                          [
-                            "Callback request",
+                            "Rückruf",
                             "Können Sie mich bitte zurückrufen?",
                             "Could you please call me back?",
-                            "Requesting callback"
+                            "Ja, wie ist Ihre Nummer?"
                           ],
                           [
-                            "Farewell",
-                            "Auf Wiederhören!",
-                            "Goodbye (telephone only)!",
-                            "Formal sign-off"
+                            "Verabschiedung",
+                            "Auf Wiederhören, Frau Weber!",
+                            "Goodbye (on the phone), Ms. Weber!",
+                            "Auf Wiederhören!"
                           ]
                         ]
                       }
                     },
                     {
-                      "title": "2. Common Text & Chat Phrases (SMS / WhatsApp)",
-                      "description": "Everyday shorthand used in German texting:",
+                      "title": "2. Abkürzungen im Chat & SMS (Texting Shorthand)",
+                      "description": "Common informal abbreviations in German texting:",
                       "items": [
                         {
-                          "term": "LG = Liebe Grüße",
-                          "meaning": "Kind regards (most popular friendly sign-off)",
-                          "example": "Bis morgen! LG, Anna"
+                          "term": "VG / LG (Viele Grüße / Liebe Grüße)",
+                          "meaning": "Best regards / warm regards (standard friendly sign-off)",
+                          "example": "Bis morgen! LG, Nina"
                         },
                         {
-                          "term": "VG = Viele Grüße",
-                          "meaning": "Many regards (friendly/semi-formal)",
-                          "example": "Danke für die Info! VG, Michael"
+                          "term": "WE (Wochenende)",
+                          "meaning": "Weekend",
+                          "example": "Was machst du am WE?"
                         },
                         {
-                          "term": "Gleich da! / Bin unterwegs!",
-                          "meaning": "Almost there! / On my way!",
-                          "example": "Entschuldigung, Bus hatte Verspätung, bin gleich da!"
+                          "term": "hdl (hab dich lieb)",
+                          "meaning": "Love you / fond of you (used between close friends and couples)",
+                          "example": "Danke für alles, hdl!"
                         }
                       ]
                     }
                   ],
                   "dialogue": {
-                    "context": "Calling an office to inquire about a German language course schedule:",
+                    "context": "Telefonanruf im Büro (Netzwerk A1 Kapitel 7):",
                     "lines": [
                       {
-                        "speaker": "Sprachschule",
-                        "german": "Sprachschule Lingua, Becker, guten Tag!",
-                        "english": "Lingua Language School, Becker speaking, good day!"
+                        "speaker": "Sekretärin",
+                        "german": "Klett Verlag, Rezeption, guten Tag! Was kann ich für Sie tun?",
+                        "english": "Klett Publishing, reception, good day! What can I do for you?"
                       },
                       {
-                        "speaker": "Anrufer",
-                        "german": "Guten Tag, mein Name ist David Miller. Ich habe eine Frage zum A1-Kurs.",
-                        "english": "Good day, my name is David Miller. I have a question about the A1 course."
+                        "speaker": "Gregor",
+                        "german": "Guten Tag, mein Name ist Gregor Schubert. Ich möchte gern Frau Kilimann sprechen.",
+                        "english": "Good day, my name is Gregor Schubert. I would like to speak to Ms. Kilimann."
                       },
                       {
-                        "speaker": "Sprachschule",
-                        "german": "Sehr gerne, Herr Miller. Frau Sommer leitet den Kurs. Einen kleinen Moment, ich verbinde Sie.",
-                        "english": "Very gladly, Mr. Miller. Ms. Sommer runs the course. Just a moment, I'll connect you."
+                        "speaker": "Sekretärin",
+                        "german": "Einen kleinen Moment bitte, ich verbinde Sie... Tut mir leid, sie ist gerade in einer Besprechung.",
+                        "english": "One moment please, I am connecting you... I am sorry, she is currently in a meeting."
+                      },
+                      {
+                        "speaker": "Gregor",
+                        "german": "Kann ich ihr eine kurze Nachricht hinterlassen? Sie soll mich bitte unter 0172-88492 zurückrufen.",
+                        "english": "Can I leave her a short message? Could she please call me back at 0172-88492."
+                      },
+                      {
+                        "speaker": "Sekretärin",
+                        "german": "Sehr gern, Herr Schubert. Ich gebe ihr die Nachricht weiter. Auf Wiederhören!",
+                        "english": "Very gladly, Mr. Schubert. I will pass the message along to her. Goodbye!"
                       }
                     ]
                   },
                   "funFact": {
-                    "title": "The German Office Lunch Greeting: 'Mahlzeit!'",
-                    "content": "If you walk through any German office, university, or workshop hallway between 11:30 and 13:30, coworkers will greet you with a single cheerful word: **'Mahlzeit!'** (literally: 'mealtime'). It serves simultaneously as hello, enjoy your lunch, and have a good break!"
+                    "title": "State Your Last Name First When Answering",
+                    "content": "When private landline phones or business phones ring in Germany, people almost never answer with a generic 'Hallo?'. Instead, they state their family name directly: 'Schubert!' or 'Schubert, guten Tag!'. It confirms immediately to the caller that they have reached the right household."
                   },
                   "practice": [
                     {
-                      "question": "When answering the phone in a German company, what do you say first?",
+                      "question": "How do you correctly say: 'This is Gregor Schubert speaking' on the phone?",
                       "options": [
-                        "Was gibt's?",
-                        "Hallo, wer ist da?",
-                        "Your last name + 'guten Tag'"
+                        "Ich bin Gregor Schubert.",
+                        "Hier spricht Gregor Schubert.",
+                        "Das ist Gregor Schubert."
                       ],
-                      "answer": "Your last name + 'guten Tag'",
-                      "explanation": "German professional etiquette dictates stating your last name immediately upon answering."
+                      "answer": "Hier spricht Gregor Schubert.",
+                      "explanation": "'Hier spricht [Name]' is the standard, professional phone introduction in German."
+                    },
+                    {
+                      "question": "What does the text abbreviation 'LG' stand for?",
+                      "options": [
+                        "Lange Grüße",
+                        "Liebe Grüße",
+                        "Letzter Gruß"
+                      ],
+                      "answer": "Liebe Grüße",
+                      "explanation": "'LG' stands for 'Liebe Grüße' (warm regards / best wishes)."
                     }
                   ]
                 }
@@ -5719,104 +6656,109 @@ export const FALLBACK_COURSES: CourseDetail[] = [
                 "title": "Lesson 45: Writing Simple Emails & Letters in German",
                 "description": "Formal & informal letters: salutations (Liebe... / Sehr geehrte...) & sign-offs (Mit freundlichen Grüßen).",
                 "content": {
-                  "overview": "Writing short emails and letters is tested directly in Part 2 of the Goethe-Zertifikat A1 writing exam (*Schreiben Teil 2*). Mastering formal and informal salutations and closings guarantees you high marks.",
-                  "canDo": "Can structure and write a simple formal or informal email with correct opening salutations, clear communicative body, and polite closing formulas.",
-                  "teacherNote": "⚠️ Grammatical trap in German letters: After the salutation comma (e.g. *Liebe Anna,* or *Sehr geehrte Frau Müller,*), you DO NOT capitalize the next word! The first word of your letter body begins with a **lowercase letter** unless it is a noun!",
+                  "overview": "Writing simple letters and emails is tested directly in the Goethe-Zertifikat A1 exam (Writing Part 2). In this lesson, you will master the formal structure (Sehr geehrte Damen und Herren / Mit freundlichen Grüßen) and the informal structure (Liebe... / Viele Grüße).",
+                  "canDo": "Can write simple formal inquiries, registrations, and informal personal emails using correct salutations and closing formulas.",
+                  "teacherNote": "Punctuation alert: After a German email salutation, put a COMMA, and then start the next line with a LOWERCASE letter! For example: 'Liebe Julia, / ich danke dir für deine Einladung...'.",
                   "sections": [
                     {
-                      "title": "1. Formal vs. Informal Letter Layout",
-                      "description": "Match the salutation to the recipient:",
+                      "title": "1. Formelle vs. Informelle E-Mail-Struktur",
+                      "description": "Standard letter layout required in the Goethe-Zertifikat A1 exam:",
                       "table": {
                         "headers": [
-                          "Element",
-                          "Formal Correspondence (Boss, Landlord, Office)",
-                          "Informal Correspondence (Friend, Classmate)"
+                          "Baustein (Element)",
+                          "Formell (Ämter, Vermieter, Chefs)",
+                          "Informell (Freunde, Familie)"
                         ],
                         "rows": [
                           [
-                            "Salutation (Male)",
-                            "Sehr geehrter Herr [Nachname],",
-                            "Lieber [Vorname],"
+                            "Betreffzeile (Subject)",
+                            "Anmeldung zum Deutschkurs A1",
+                            "Party am Samstag!"
                           ],
                           [
-                            "Salutation (Female)",
-                            "Sehr geehrte Frau [Nachname],",
-                            "Liebe [Vorname],"
+                            "Anrede (Salutation)",
+                            "Sehr geehrte Damen und Herren, / Sehr geehrte Frau...",
+                            "Liebe Julia, (f) / Lieber Paco, (m)"
                           ],
                           [
-                            "Salutation (Unknown)",
-                            "Sehr geehrte Damen und Herren,",
-                            "Hallo zusammen! / Liebe Freunde,"
+                            "Erster Satz (First sentence)",
+                            "Beginnt KLEIN nach dem Komma!",
+                            "Beginnt KLEIN nach dem Komma!"
                           ],
                           [
-                            "Starting line",
-                            "ich schreibe Ihnen, weil...",
-                            "wie geht es dir? Ich schreibe dir, weil..."
+                            "Hauptteil (Body)",
+                            "Ich schreibe Ihnen, weil ich...",
+                            "Wie geht es dir? Ich möchte dich fragen..."
                           ],
                           [
-                            "Sign-off (Closing)",
+                            "Grußformel (Closing)",
                             "Mit freundlichen Grüßen",
-                            "Herzliche Grüße / Viele Grüße / Dein(e)..."
+                            "Viele Grüße / Liebe Grüße"
+                          ],
+                          [
+                            "Unterschrift (Signature)",
+                            "Vorname + Nachname",
+                            "Nur Vorname"
                           ]
                         ]
                       }
                     },
                     {
-                      "title": "2. Sample Goethe A1 Writing Model",
-                      "description": "Study this model for an official exam writing prompt:",
+                      "title": "2. Typische Textbausteine (Email Building Blocks)",
+                      "description": "Phrases you can copy directly into your emails from Netzwerk A1:",
                       "items": [
                         {
-                          "term": "Prompt",
-                          "meaning": "Write an email to your German teacher, Frau Berg. Say you are sick and cannot come to class today.",
-                          "example": "See sample email below."
+                          "term": "Ich schreibe Ihnen, weil...",
+                          "meaning": "I am writing to you because... (states the purpose of the email)",
+                          "example": "Ich schreibe Ihnen, weil ich mich für den Kurs anmelden möchte."
                         },
                         {
-                          "term": "Model Answer",
-                          "meaning": "Sehr geehrte Frau Berg,\n\nich kann heute leider nicht zum Deutschkurs kommen, weil ich krank bin. Ich habe Fieber. Können Sie mir bitte die Hausaufgaben per E-Mail schicken?\n\nVielen Dank und mit freundlichen Grüßen,\nDavid Miller",
-                          "example": "30 words, complete sentences, covers all 3 prompt points!"
+                          "term": "Können Sie mir bitte mitteilen, ob...",
+                          "meaning": "Could you please let me know whether...",
+                          "example": "Können Sie mir bitte mitteilen, wann der Kurs beginnt?"
+                        },
+                        {
+                          "term": "Vielen Dank im Voraus für Ihre Antwort.",
+                          "meaning": "Thank you in advance for your reply.",
+                          "example": "Über eine baldige Antwort würde ich mich freuen."
                         }
                       ]
                     }
                   ],
                   "dialogue": {
-                    "context": "A learner reviewing an email draft with their study buddy:",
+                    "context": "Eine formelle Anfrage an das Goethe-Institut (Netzwerk A1 Kapitel 7):",
                     "lines": [
                       {
-                        "speaker": "Lukas",
-                        "german": "Hast du den Brief an die Hausverwaltung schon geschrieben?",
-                        "english": "Have you already written the letter to the property management?"
-                      },
-                      {
-                        "speaker": "Elena",
-                        "german": "Ja, ich habe geschrieben: 'Sehr geehrte Damen und Herren, die Heizung in meiner Wohnung ist kaputt.'",
-                        "english": "Yes, I wrote: 'Dear Sir or Madam, the heating in my apartment is broken.'"
-                      },
-                      {
-                        "speaker": "Lukas",
-                        "german": "Sehr gut! Hast du mit 'Mit freundlichen Grüßen' beendet?",
-                        "english": "Very good! Did you conclude with 'Mit freundlichen Grüßen'?"
-                      },
-                      {
-                        "speaker": "Elena",
-                        "german": "Ja, genau. Jetzt schicke ich die E-Mail ab.",
-                        "english": "Yes, exactly. Now I'll send off the email."
+                        "speaker": "E-Mail Text",
+                        "german": "Betreff: Anfrage Deutschkurs A1 im Juli\n\nSehr geehrte Damen und Herren,\n\nich heiße Paco Garcia und möchte im Juli einen Intensivkurs A1 besuchen. Gibt es noch freie Plätze? Und wie viel kostet der Kurs inklusive Lehrbuch?\n\nVielen Dank im Voraus für Ihre Auskunft.\n\nMit freundlichen Grüßen\nPaco Garcia",
+                        "english": "Subject: Inquiry German Course A1 in July\n\nDear Sir or Madam,\n\nMy name is Paco Garcia and I would like to attend an intensive A1 course in July. Are there still free spots available? And how much does the course cost including the textbook?\n\nThank you in advance for your information.\n\nSincerely yours,\nPaco Garcia"
                       }
                     ]
                   },
                   "funFact": {
-                    "title": "Never Abbreviate 'Mit freundlichen Grüßen' in Official Letters!",
-                    "content": "While Germans casually text 'MfG' on internal instant messengers, writing 'MfG' on a formal letter, job application, or email to a landlord is considered sloppy and disrespectful. Always spell out the full phrase: **'Mit freundlichen Grüßen'**!"
+                    "title": "Lower-Case First Word After Salutation",
+                    "content": "One of the most noticeable differences between English and German letter writing is that in German, the line immediately following the salutation begins with a lowercase letter! In English: 'Dear John, I am writing...'. In German: 'Lieber John, ich schreibe...'."
                   },
                   "practice": [
                     {
-                      "question": "How should you address an unknown official or customer service team formally?",
+                      "question": "What is the standard formal sign-off for business emails in German?",
                       "options": [
-                        "Hallo Leute,",
-                        "Sehr geehrte Damen und Herren,",
-                        "Lieber Herr und Frau,"
+                        "Viele Grüße",
+                        "Mit freundlichen Grüßen",
+                        "Tschüs!"
                       ],
-                      "answer": "Sehr geehrte Damen und Herren,",
-                      "explanation": "'Sehr geehrte Damen und Herren,' is the universal German formal opening when names are unknown."
+                      "answer": "Mit freundlichen Grüßen",
+                      "explanation": "'Mit freundlichen Grüßen' (With kind regards) is the universal formal closing."
+                    },
+                    {
+                      "question": "How do you address a female teacher or manager formally?",
+                      "options": [
+                        "Lieber Frau Müller,",
+                        "Sehr geehrte Frau Müller,",
+                        "Hallo Frau Müller!"
+                      ],
+                      "answer": "Sehr geehrte Frau Müller,",
+                      "explanation": "'Sehr geehrte Frau [Nachname]' is the polite formal salutation for a woman."
                     }
                   ]
                 }
@@ -5826,95 +6768,124 @@ export const FALLBACK_COURSES: CourseDetail[] = [
                 "title": "Lesson 46: Invitations, Appointments & Rescheduling",
                 "description": "Inviting people to events, accepting/declining politely, proposing new dates.",
                 "content": {
-                  "overview": "Social life revolves around inviting people over, accepting or declining invitations politely, and agreeing on suitable times to meet.",
-                  "canDo": "Can invite someone to a party or event, express acceptance or polite regret, and propose alternative dates and times.",
-                  "teacherNote": "When declining an invitation in German, always give a short polite reason: *'Es tut mir leid, ich kann leider nicht kommen, weil ich arbeiten muss'* (I'm sorry, I unfortunately can't come because I have to work). Adding 'leider' (unfortunately) makes any refusal gracious.",
+                  "overview": "Inviting friends to parties, accepting or declining invitations politely, and suggesting alternative dates are key social skills. In this lesson, you will work with an authentic party invitation from Netzwerk Kapitel 6 ('Psst - eine Überraschung für Sofia!') and practice social coordination.",
+                  "canDo": "Can understand party invitations, accept with enthusiasm, decline with polite justification, and propose alternative meeting times.",
+                  "teacherNote": "When declining an invitation in German, always follow the 'polite sandwich': 1. Thank them ('Danke für die Einladung'), 2. Give a brief reason ('Leider kann ich nicht, weil ich arbeiten muss'), 3. Propose another time ('Können wir uns nächste Woche treffen?').",
                   "sections": [
                     {
-                      "title": "1. The Invitation Toolbox",
-                      "description": "Formulas for extending, accepting, and declining invitations:",
+                      "title": "1. Eine Einladung verstehen (Authentic Invitation from Netzwerk A1)",
+                      "description": "Read the authentic email from Netzwerk Kapitel 6:",
                       "table": {
                         "headers": [
-                          "Goal",
-                          "German Expression",
-                          "English Meaning",
-                          "Response Option"
+                          "Abschnitt",
+                          "Originaltext aus Netzwerk A1 (Kapitel 6)",
+                          "Bedeutung"
                         ],
                         "rows": [
                           [
-                            "Invite",
-                            "Ich lade dich herzlich zu meiner Party ein!",
-                            "I cordially invite you to my party!",
-                            "Gerne! Ich komme sehr gerne."
+                            "Betreff",
+                            "Psst – eine Überraschung für Sofia!",
+                            "Psst – a surprise for Sofia!"
                           ],
                           [
-                            "Propose date",
-                            "Hast du am Samstag Zeit?",
-                            "Do you have time on Saturday?",
-                            "Ja, am Samstag passt es mir gut."
+                            "Anrede",
+                            "Hallo liebe Freunde von Sofia,",
+                            "Hello dear friends of Sofia,"
                           ],
                           [
-                            "Propose activity",
-                            "Wollen wir zusammen ins Kino gehen?",
-                            "Shall we go to the movies together?",
-                            "Tolle Idee! Welcher Film?"
+                            "Anlass (Occasion)",
+                            "Sofia hat Geburtstag und wir möchten ihr ein Geschenk machen!",
+                            "Sofia has a birthday and we want to give her a gift!"
                           ],
                           [
-                            "Accept",
-                            "Vielen Dank für die Einladung! Ich freue mich.",
-                            "Thanks for the invitation! I look forward to it.",
-                            "Super, bis dann!"
+                            "Treffpunkt & Zeit",
+                            "Am Samstag, den 18.07. um 10 Uhr am Bahnhof.",
+                            "On Saturday, July 18th at 10 AM at the station."
                           ],
                           [
-                            "Decline politely",
-                            "Es tut mir leid, aber ich habe leider keine Zeit.",
-                            "I'm sorry, but unfortunately I don't have time.",
-                            "Schade, vielleicht nächstes Mal."
+                            "Plan (Activity)",
+                            "Wir machen einen Ausflug mit dem Fahrrad und ein Picknick.",
+                            "We are doing a bike excursion and a picnic."
                           ],
                           [
-                            "Reschedule",
-                            "Geht es vielleicht am Sonntag um 15 Uhr?",
-                            "Is Sunday at 3 PM possible perhaps?",
-                            "Ja, das passt perfekt."
+                            "Mitbringen (Bring)",
+                            "Wir bringen Essen und Getränke mit. Bitte gebt Bescheid!",
+                            "We bring food and drinks along. Please let us know!"
                           ]
                         ]
                       }
+                    },
+                    {
+                      "title": "2. Zusagen und Absagen (Accepting & Declining)",
+                      "description": "How to respond to invitations:",
+                      "items": [
+                        {
+                          "term": "Zusagen (Accepting enthusiastically)",
+                          "meaning": "Ich komme sehr gern! / Ich bin auf jeden Fall dabei!",
+                          "example": "Vielen Dank für die Einladung, ich komme gern!"
+                        },
+                        {
+                          "term": "Absagen (Declining politely)",
+                          "meaning": "Leider kann ich nicht kommen. / Das geht leider nicht.",
+                          "example": "Es tut mir leid, aber am Samstag muss ich arbeiten."
+                        },
+                        {
+                          "term": "Bescheid geben",
+                          "meaning": "To let someone know / give notice",
+                          "example": "Ich gebe dir bis Freitag Bescheid!"
+                        }
+                      ]
                     }
                   ],
                   "dialogue": {
-                    "context": "Inviting a friend to a birthday celebration in Cologne:",
+                    "context": "Antwort auf die Einladung per WhatsApp (Netzwerk A1 Kapitel 6):",
                     "lines": [
                       {
-                        "speaker": "Markus",
-                        "german": "Hallo Leon! Ich habe am Freitag Geburtstag und mache eine kleine Party. Hast du Zeit?",
-                        "english": "Hello Leon! It's my birthday on Friday and I'm having a small party. Do you have time?"
+                        "speaker": "Gregor",
+                        "german": "Hallo Christian! Hast du die Mail über Sofias Überraschungstag gelesen?",
+                        "english": "Hello Christian! Did you read the email about Sofia's surprise day?"
                       },
                       {
-                        "speaker": "Leon",
-                        "german": "Herzlichen Glückwunsch schon mal! Am Freitag arbeite ich bis 20 Uhr, aber danach komme ich gerne vorbei.",
-                        "english": "Happy birthday in advance! On Friday I work until 8 PM, but after that I'd love to drop by."
+                        "speaker": "Christian",
+                        "german": "Ja, tolle Idee! Ich bin auf jeden Fall dabei. Ich bringe einen Kuchen und Musik mit.",
+                        "english": "Yes, great idea! I am definitely in. I'll bring a cake and music."
                       },
                       {
-                        "speaker": "Markus",
-                        "german": "Perfekt! Bring einfach gute Laune mit!",
-                        "english": "Perfect! Just bring a good mood along!"
+                        "speaker": "Gregor",
+                        "german": "Perfekt! Und weißt du, ob Julia auch mitkommt?",
+                        "english": "Perfect! And do you know if Julia is coming along too?"
+                      },
+                      {
+                        "speaker": "Christian",
+                        "german": "Julia hat leider keine Zeit, weil sie ihre Großeltern besucht. Aber sie gibt Bescheid!",
+                        "english": "Julia unfortunately has no time because she is visiting her grandparents. But she will let us know!"
                       }
                     ]
                   },
                   "funFact": {
-                    "title": "Never Congratulate Before the Actual Birthday!",
-                    "content": "In German culture, wishing someone a happy birthday BEFORE the actual day (*Vorfeiern* / *vorzeitig gratulieren*) is considered very bad luck! Even if you see a friend the day before, wait until midnight or the exact date to say: **'Herzlichen Glückwunsch zum Geburtstag!'**"
+                    "title": "'Bescheid sagen / Bescheid geben'",
+                    "content": "You will hear 'Bescheid geben' or 'Bescheid sagen' in almost every single German conversation! It simply means 'to let someone know / keep someone posted': 'Gib mir bitte Bescheid!' (Please let me know!)."
                   },
                   "practice": [
                     {
-                      "question": "How do you politely decline an invitation because you have to work?",
+                      "question": "How do you accept an invitation with enthusiasm?",
                       "options": [
-                        "Ich will nicht kommen.",
-                        "Ich kann leider nicht kommen, ich muss arbeiten.",
-                        "Komm nicht."
+                        "Ich habe keine Lust.",
+                        "Ich bin auf jeden Fall dabei!",
+                        "Vielleicht später."
                       ],
-                      "answer": "Ich kann leider nicht kommen, ich muss arbeiten.",
-                      "explanation": "Using 'leider' (unfortunately) creates a respectful, polite decline."
+                      "answer": "Ich bin auf jeden Fall dabei!",
+                      "explanation": "'Ich bin auf jeden Fall dabei!' means 'I am definitely joining / count me in!'."
+                    },
+                    {
+                      "question": "What does the expression 'Gib mir Bescheid' mean?",
+                      "options": [
+                        "Give me a ticket",
+                        "Let me know / keep me posted",
+                        "Pay the bill"
+                      ],
+                      "answer": "Let me know / keep me posted",
+                      "explanation": "'Bescheid geben' means to notify or let someone know."
                     }
                   ]
                 }
@@ -5924,114 +6895,119 @@ export const FALLBACK_COURSES: CourseDetail[] = [
                 "title": "Lesson 47: A1 Final Comprehensive Review & Exam Preparation",
                 "description": "Full review of all 10 chapters; format walkthrough of Goethe-Zertifikat / TELC A1 (Hören, Lesen, Schreiben, Sprechen).",
                 "content": {
-                  "overview": "Herzlichen Glückwunsch! You have arrived at the capstone lesson of German Level A1. In this module, we conduct a full review of all 10 chapters and walk through the exact structure of the official Goethe-Zertifikat A1 / telc Deutsch A1 exam.",
-                  "canDo": "Can demonstrate comprehensive A1 mastery across all 4 CEFR competencies: Hören (Listening), Lesen (Reading), Schreiben (Writing), and Sprechen (Speaking), and successfully pass the A1 exam simulation.",
-                  "teacherNote": "Take a moment to be proud of how far you have come! From learning the alphabet and Umlauts in Chapter 1, you now understand German sentence architecture, the Accusative and Dative cases, modal verbs, everyday transit, dining, and writing correspondence. You are fully ready for the Goethe-Zertifikat A1!",
+                  "overview": "Congratulations on completing the German A1 curriculum! In this final milestone lesson, you will review the complete architecture of the official Goethe-Zertifikat A1 (Start Deutsch 1) exam, understand scoring across the 4 modules (Hören, Lesen, Schreiben, Sprechen), and learn expert exam strategies to pass with confidence.",
+                  "canDo": "Understand the exact structure and time limits of the Goethe-Zertifikat A1 exam, know how to approach multiple-choice audio, short reading texts, email writing, and the group speaking test.",
+                  "teacherNote": "To pass the Goethe-Zertifikat A1, you need at least 60 points out of 100 (60%). Each of the 4 sections is weighted equally at 25%! Even if one section is challenging, strong performance in the other three will easily carry you over the passing line!",
                   "sections": [
                     {
-                      "title": "1. The 4 Components of the Goethe / TELC A1 Exam",
-                      "description": "Breakdown of the official 60-point exam:",
+                      "title": "1. Die 4 Module der Goethe-Zertifikat A1 Prüfung",
+                      "description": "Exam structure, timing, and point distribution:",
                       "table": {
                         "headers": [
-                          "Exam Section",
-                          "Duration",
-                          "Points",
-                          "What is Tested"
+                          "Modul",
+                          "Dauer (Time)",
+                          "Aufgaben (Tasks)",
+                          "Punkte (Points)"
                         ],
                         "rows": [
                           [
                             "1. Hören (Listening)",
-                            "20 mins",
-                            "15 pts (25%)",
-                            "Short everyday announcements, phone messages, public transit voice broadcasts."
+                            "ca. 20 Minuten",
+                            "3 Teile: kurze Alltagsgespräche, Durchsagen am Bahnhof, Anrufbeantworter",
+                            "25 Punkte (25%)"
                           ],
                           [
                             "2. Lesen (Reading)",
-                            "25 mins",
-                            "15 pts (25%)",
-                            "Short emails, classified ads, notice boards, signs in public buildings."
+                            "ca. 25 Minuten",
+                            "3 Teile: E-Mails, Kleinanzeigen, Schilder & Hinweise im Kaufhaus",
+                            "25 Punkte (25%)"
                           ],
                           [
                             "3. Schreiben (Writing)",
-                            "20 mins",
-                            "15 pts (25%)",
-                            "Part 1: Fill out a personal registration form. Part 2: Write a short 30-word email."
+                            "ca. 20 Minuten",
+                            "Teil 1: Ein Formular ausfüllen (5 Lücken). Teil 2: Eine kurze E-Mail (ca. 30 Wörter).",
+                            "25 Punkte (25%)"
                           ],
                           [
                             "4. Sprechen (Speaking)",
-                            "15 mins",
-                            "15 pts (25%)",
-                            "Part 1: Self-introduction. Part 2: Asking and answering with flashcards. Part 3: Formulating requests with objects."
+                            "ca. 15 Minuten",
+                            "Gruppe (3-4 Personen): Teil 1: Sich vorstellen & buchstabieren. Teil 2: Um Informationen bitten. Teil 3: Bitten formulieren.",
+                            "25 Punkte (25%)"
                           ]
                         ]
                       }
                     },
                     {
-                      "title": "2. The Golden Rules for Passing Start Deutsch 1",
-                      "description": "Essential tips to maximize your score on exam day:",
+                      "title": "2. Erfolgsstrategien für das Modul 'Sprechen'",
+                      "description": "Tips for the group speaking exam from Netzwerk A1:",
                       "items": [
                         {
-                          "term": "Pass Mark",
-                          "meaning": "You need 60% overall (36 out of 60 points) to earn your official Goethe-Zertifikat A1.",
-                          "example": "Recognized worldwide for visa applications, study prep, and employment."
+                          "term": "Teil 1: Sich vorstellen",
+                          "meaning": "Be prepared to state: Name, Alter, Land, Wohnort, Sprachen, Beruf, Hobby. Plus spell your name and say your phone number!",
+                          "example": "Ich heiße Paco Garcia. Ich bin 25 Jahre alt..."
                         },
                         {
-                          "term": "Speaking Part 1 Formula",
-                          "meaning": "Memorize your personal card points: Name, Alter, Land, Wohnort, Sprachen, Beruf, Hobby.",
-                          "example": "Practice spelling your last name and reciting your phone number smoothly."
+                          "term": "Teil 2: Thema & Wortkarte",
+                          "meaning": "You draw a card with a theme (e.g. Essen & Trinken) and a word (z.B. Kaffee). Formulate a question: 'Trinken Sie gern Kaffee?'.",
+                          "example": "Antwort: 'Ja, sehr gern mit Milch!'"
                         },
                         {
-                          "term": "Word Order Anchor",
-                          "meaning": "Always keep your conjugated verb in Position 2 in statements, Position 1 in yes/no questions, and at the end with modal verbs!",
-                          "example": "Grammar accuracy on verb placement earns top marks in writing."
+                          "term": "Teil 3: Bildkarte & Bitte formulieren",
+                          "meaning": "You draw a picture card (e.g. an apple or a pencil) and make a polite request with imperative or 'Können Sie...?'",
+                          "example": "'Geben Sie mir bitte den Stift!' -> 'Hier, bitte sehr!'"
                         }
                       ]
                     }
                   ],
                   "dialogue": {
-                    "context": "Celebration after completing the final A1 speaking examination:",
+                    "context": "Simulierte Sprechprüfung A1 – Teil 2: Thema 'Essen und Trinken' (Netzwerk A1):",
                     "lines": [
                       {
-                        "speaker": "Prüfer (Examiner)",
-                        "german": "Herzlichen Glückwunsch! Sie haben die A1-Prüfung erfolgreich bestanden.",
-                        "english": "Congratulations! You have successfully passed the A1 examination."
+                        "speaker": "Prüfer",
+                        "german": "So, meine Damen und Herren, wir kommen zu Teil 2. Paco, ziehen Sie bitte eine Karte und stellen Sie Ihrem Nachbarn eine Frage!",
+                        "english": "So, ladies and gentlemen, we come to part 2. Paco, please draw a card and ask your neighbor a question!"
                       },
                       {
-                        "speaker": "Kandidat",
-                        "german": "Vielen herzlichen Dank! Das freut mich wirklich sehr.",
-                        "english": "Thank you very much! That truly makes me very happy."
+                        "speaker": "Paco (Karte: Frühstück)",
+                        "german": "Gregor, was isst du normalerweise zum Frühstück?",
+                        "english": "Gregor, what do you normally eat for breakfast?"
+                      },
+                      {
+                        "speaker": "Gregor",
+                        "german": "Ich esse meistens ein Müsli mit Joghurt und trinke einen schwarzen Kaffee. Und du?",
+                        "english": "I mostly eat muesli with yogurt and drink a black coffee. And you?"
                       },
                       {
                         "speaker": "Prüfer",
-                        "german": "Ihr Deutsch ist schon sehr gut. Viel Erfolg beim Weiterlernen auf Level A2!",
-                        "english": "Your German is already very good. Much success in continuing your studies on Level A2!"
+                        "german": "Sehr gut! Danke schön. Jetzt ist Gregor an der Reihe.",
+                        "english": "Very good! Thank you. Now it is Gregor's turn."
                       }
                     ]
                   },
                   "funFact": {
-                    "title": "The CEFR Journey: From A1 to C2",
-                    "content": "Passing Level A1 is the monumental first milestone on the Common European Framework of Reference for Languages (CEFR). With these 47 lessons and 10 chapters, you have built the permanent grammar skeleton and active vocabulary that will power your journey through A2, B1, and beyond into fluent German!"
+                    "title": "The Global Power of the Goethe-Zertifikat A1",
+                    "content": "The Goethe-Zertifikat A1 is legally recognized worldwide as proof of basic German proficiency. It fulfills the visa requirement for spouse reunification in Germany (Ehegattennachzug), working holiday visas, and au pair placements across the DACH region!"
                   },
                   "practice": [
                     {
-                      "question": "What overall percentage is required to pass the official Goethe-Zertifikat A1 exam?",
+                      "question": "What is the minimum passing score for the Goethe-Zertifikat A1?",
                       "options": [
-                        "50%",
-                        "60%",
-                        "75%"
+                        "50% (50 points)",
+                        "60% (60 points)",
+                        "75% (75 points)"
                       ],
-                      "answer": "60%",
-                      "explanation": "A score of 60% (36 out of 60 points) is the official passing grade for the Goethe-Zertifikat A1."
+                      "answer": "60% (60 points)",
+                      "explanation": "You need at least 60% (60 out of 100 points) to pass the official exam."
                     },
                     {
-                      "question": "Which of the following is true regarding verb placement in standard German main clauses?",
+                      "question": "In the A1 speaking test (Teil 1), what additional task will the examiner ask after you introduce yourself?",
                       "options": [
-                        "The verb always goes at the beginning.",
-                        "The conjugated verb is always in Position 2.",
-                        "The verb is placed randomly."
+                        "Sing a song in German",
+                        "Spell a word/name and dictate a number",
+                        "Translate an English text"
                       ],
-                      "answer": "The conjugated verb is always in Position 2.",
-                      "explanation": "The conjugated verb's fixed anchor in Position 2 (Verbzweitstellung) is the fundamental rule of German syntax."
+                      "answer": "Spell a word/name and dictate a number",
+                      "explanation": "The examiner always asks candidates to spell a name or word (Buchstabieren) and recite a number (phone number or postal code)."
                     }
                   ]
                 }

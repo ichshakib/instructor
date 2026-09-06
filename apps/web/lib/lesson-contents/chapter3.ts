@@ -2,419 +2,831 @@ import { LessonContent } from "../api";
 
 export const CHAPTER_3_LESSONS: Record<string, LessonContent> = {
   "a1-ch3-l11": {
-    overview:
-      "Politeness and friendly greetings form the backbone of daily social life in German-speaking countries. In this lesson, you will learn the essential time-of-day greetings, parting phrases, and the essential magic words: 'Bitte' and 'Danke'.",
-    canDo:
-      "Can greet people appropriately at any time of day, bid farewell formally and informally, and navigate basic polite interactions with 'Bitte', 'Danke', and 'Entschuldigung'.",
-    teacherNote:
-      "Notice regional variations! In Southern Germany and Austria, you will hear 'Grüß Gott' or 'Servus'. In Northern Germany, people greet each other with 'Moin' at any hour of the day or night.",
-    sections: [
+    "overview": "Greetings and courteous farewells form the foundation of social life across Germany, Austria, and Switzerland. In this lesson, you will master the official Netzwerk A1 'Redemittel' for greetings, time-of-day etiquette, parting phrases, and the essential politeness trio: 'Bitte', 'Danke', and 'Entschuldigung'.",
+    "canDo": "Can greet people appropriately according to time of day and formality, bid polite farewells face-to-face and on the telephone, and use courtesy phrases naturally.",
+    "teacherNote": "Regional greetings add authentic charm: In Southern Germany and Austria, you will often hear 'Grüß Gott' or 'Servus'. In Northern Germany, 'Moin' is used warmly at all hours of the day or night!",
+    "sections": [
       {
-        title: "1. Time-of-Day Greetings & Goodbyes",
-        description: "Choose the appropriate phrase depending on time and formality:",
-        table: {
-          headers: ["German Phrase", "Meaning", "Time / Context", "Register"],
-          rows: [
-            ["Guten Morgen", "Good morning", "Until approx. 11:00 AM", "Formal & Neutral"],
-            ["Guten Tag", "Good day / Hello", "11:00 AM until approx. 6:00 PM", "Formal & Standard"],
-            ["Guten Abend", "Good evening", "From 6:00 PM onwards", "Formal & Standard"],
-            ["Hallo", "Hello / Hi", "Anytime", "Informal & Friendly"],
-            ["Gute Nacht", "Good night", "When going to sleep / late parting", "Informal & Neutral"],
-            ["Auf Wiedersehen", "Goodbye", "Formal face-to-face farewell", "Formal"],
-            ["Auf Wiederhören", "Goodbye (on the phone)", "Used strictly on telephone calls", "Formal Phone"],
-            ["Tschüss / Ciao", "Bye!", "Casual farewell with friends & family", "Informal"],
+        "title": "1. Redemittel: Begrüßen & Verabschieden (Netzwerk A1)",
+        "description": "Standard phrases for greetings and farewells according to context:",
+        "table": {
+          "headers": [
+            "Redemittel (Ausdruck)",
+            "Bedeutung (Meaning)",
+            "Tageszeit / Situation",
+            "Stil (Register)"
           ],
-        },
+          "rows": [
+            [
+              "Guten Morgen!",
+              "Good morning",
+              "Bis ca. 11:00 Uhr",
+              "Formell & Neutral"
+            ],
+            [
+              "Guten Tag!",
+              "Good day / Hello",
+              "11:00 Uhr bis ca. 18:00 Uhr",
+              "Formell & Standard"
+            ],
+            [
+              "Guten Abend!",
+              "Good evening",
+              "Ab ca. 18:00 Uhr",
+              "Formell & Standard"
+            ],
+            [
+              "Hallo!",
+              "Hello / Hi",
+              "Jederzeit",
+              "Informell & Freundlich"
+            ],
+            [
+              "Gute Nacht!",
+              "Good night",
+              "Beim Schlafengehen / Später Abschied",
+              "Beim Zubettgehen"
+            ],
+            [
+              "Auf Wiedersehen!",
+              "Goodbye",
+              "Persönlicher Abschied",
+              "Formell"
+            ],
+            [
+              "Auf Wiederhören!",
+              "Goodbye (am Telefon)",
+              "Nur am Telefon!",
+              "Formell am Telefon"
+            ],
+            [
+              "Tschüs! / Ciao!",
+              "Bye!",
+              "Freunde, Kollegen, Familie",
+              "Informell"
+            ],
+            [
+              "Bis bald! / Bis morgen!",
+              "See you soon! / See you tomorrow!",
+              "Häufige Verabschiedung",
+              "Sehr verbreitet"
+            ]
+          ]
+        }
       },
       {
-        title: "2. The Magic Politeness Words",
-        description: "These three words will make you beloved across Germany:",
-        items: [
+        "title": "2. Die 3 Zauberwörter (Bitte, Danke, Entschuldigung)",
+        "description": "The golden trio of everyday courtesy in the DACH countries:",
+        "items": [
           {
-            term: "Bitte (Please / You're welcome)",
-            meaning: "Used when making a request ('Ein Wasser, bitte') AND when answering 'Danke' ('Gern geschehen' or simply 'Bitte!').",
-            example: "Einen Kaffee, bitte! -> Bitte schön!",
+            "term": "Bitte / Bitte schön / Gern geschehen",
+            "meaning": "Used when requesting something ('Einen Kaffee, bitte') AND when replying to 'Danke' (You're welcome!).",
+            "example": "Danke schön! - Bitte sehr! / Gern geschehen!"
           },
           {
-            term: "Danke / Vielen Dank (Thank you / Many thanks)",
-            meaning: "Expressing genuine gratitude. Adding 'sehr' (Danke sehr) or 'vielmals' elevates politeness.",
-            example: "Vielen Dank für Ihre Hilfe!",
+            "term": "Danke / Vielen Dank / Herzlichen Dank",
+            "meaning": "Expressing gratitude. Adding 'vielen' or 'sehr' elevates warmth and professionalism.",
+            "example": "Vielen Dank für Ihre Hilfe, Herr Müller!"
           },
           {
-            term: "Entschuldigung (Excuse me / Sorry)",
-            meaning: "Used to get someone's attention or apologize for bumping into someone.",
-            example: "Entschuldigung, wo ist die U-Bahn?",
-          },
+            "term": "Entschuldigung / Verzeihung",
+            "meaning": "Used to get someone's attention on the street or apologize for minor inconveniences.",
+            "example": "Entschuldigung, wo ist die U-Bahn-Station?"
+          }
+        ]
+      }
+    ],
+    "dialogue": {
+      "context": "Vor der Sprachschule am Nachmittag (Netzwerk A1):",
+      "lines": [
+        {
+          "speaker": "Gregor",
+          "german": "Hallo Julia! Wie geht's dir?",
+          "english": "Hello Julia! How are you doing?"
+        },
+        {
+          "speaker": "Julia",
+          "german": "Danke, sehr gut! Und dir?",
+          "english": "Thanks, very well! And you?"
+        },
+        {
+          "speaker": "Gregor",
+          "german": "Auch gut, danke. Bis morgen im Unterricht!",
+          "english": "Also good, thanks. See you tomorrow in class!"
+        },
+        {
+          "speaker": "Julia",
+          "german": "Tschüs Gregor! Bis morgen!",
+          "english": "Bye Gregor! Until tomorrow!"
+        }
+      ]
+    },
+    "funFact": {
+      "title": "'Auf Wiederhören' is Exclusively for the Phone!",
+      "content": "Notice the difference: 'Auf Wiedersehen' literally means 'until we *see* each other again' (sehen = to see). Because you cannot see the other person over a telephone call, Germans say 'Auf Wiederhören' (hören = to hear)! Saying 'Auf Wiedersehen' on the phone immediately marks you as a beginner."
+    },
+    "practice": [
+      {
+        "question": "You are ending a phone call with a business partner in Munich. How do you say goodbye?",
+        "options": [
+          "Auf Wiedersehen!",
+          "Auf Wiederhören!",
+          "Tschüs!"
         ],
+        "answer": "Auf Wiederhören!",
+        "explanation": "'Auf Wiederhören' is the polite, standard farewell specifically used when speaking on the phone."
       },
-    ],
-    dialogue: {
-      context: "Stepping into a local bakery (Bäckerei) in Dresden in the morning:",
-      lines: [
-        {
-          speaker: "Bäckerin",
-          german: "Guten Morgen! Was darf es sein?",
-          english: "Good morning! What can I get for you?",
-        },
-        {
-          speaker: "Kunde",
-          german: "Guten Morgen! Zwei Brötchen, bitte.",
-          english: "Good morning! Two bread rolls, please.",
-        },
-        {
-          speaker: "Bäckerin",
-          german: "Gerne. Das macht einen Euro achtzig.",
-          english: "With pleasure. That comes to one euro eighty.",
-        },
-        {
-          speaker: "Kunde",
-          german: "Hier bitte. Vielen Dank und einen schönen Tag!",
-          english: "Here you go. Thank you very much and have a nice day!",
-        },
-        {
-          speaker: "Bäckerin",
-          german: "Danke ebenfalls, auf Wiedersehen!",
-          english: "Thank you as well, goodbye!",
-        },
-      ],
-    },
-    funFact: {
-      title: "The Handshake & Direct Eye Contact",
-      content:
-        "When greeting someone in person in Germany, a firm handshake accompanied by direct eye contact is expected business and social etiquette. A weak handshake or looking away can be perceived as insincere. Casual air-kisses or hugs are reserved solely for very close friends.",
-    },
-    practice: [
       {
-        question: "You are ending a formal phone call with a German client. Which goodbye should you say?",
-        options: ["Auf Wiedersehen", "Auf Wiederhören", "Tschüss"],
-        answer: "Auf Wiederhören",
-        explanation: "'Auf Wiederhören' specifically translates to 'until we hear each other again' and is the standard formal telephone farewell.",
-      },
-    ],
+        "question": "Someone hands you a document and says: 'Danke schön!'. What is the most natural reply?",
+        "options": [
+          "Bitte sehr!",
+          "Guten Tag!",
+          "Entschuldigung!"
+        ],
+        "answer": "Bitte sehr!",
+        "explanation": "'Bitte sehr' or 'Gern geschehen' means 'You're very welcome'."
+      }
+    ]
   },
-
   "a1-ch3-l12": {
-    overview:
-      "Introducing yourself with confidence is the core goal of CEFR A1 Speaking Part 1. In this lesson, you will master the three foundational self-introduction questions: your name, where you are from, and where you live.",
-    canDo:
-      "Can introduce yourself, state your full name, country of origin, current city of residence, and ask conversation partners for their personal details.",
-    teacherNote:
-      "Pay attention to the prepositions: 'aus' (from) is used for your country/city of origin (*Ich komme aus...*), while 'in' is used for your current residence (*Ich wohne in...*).",
-    sections: [
+    "overview": "Introducing yourself smoothly is the first major conversational milestone in A1. In this lesson, you will master the official Netzwerk A1 'Redemittel' for stating your name, place of residence, origin, language skills, and occupation.",
+    "canDo": "Can introduce yourself and others, ask conversation partners for their personal information, and fill in basic registration forms.",
+    "teacherNote": "Learn the 4 questions that every German native speaker will ask when meeting you: 1. Wie heißen Sie? 2. Woher kommen Sie? 3. Wo wohnen Sie? 4. Was machen Sie beruflich?",
+    "sections": [
       {
-        title: "1. Three Ways to State Your Name",
-        description: "All three are natural and widely used:",
-        table: {
-          headers: ["Pattern", "German", "English", "Register"],
-          rows: [
-            ["heißen", "Ich heiße Michael Bauer.", "I am called Michael Bauer.", "Universal & Standard"],
-            ["sein", "Ich bin Michael.", "I am Michael.", "Friendly & Direct"],
-            ["mein Name", "Mein Name ist Michael Bauer.", "My name is Michael Bauer.", "Polite & Professional"],
+        "title": "1. Redemittel: Sich und andere vorstellen (Netzwerk A1)",
+        "description": "Essential question-and-answer pairs for introducing yourself:",
+        "table": {
+          "headers": [
+            "Thema (Topic)",
+            "Frage (Informell / Formell)",
+            "Antwort (Redemittel)"
           ],
-        },
+          "rows": [
+            [
+              "Name",
+              "Wie heißt du? / Wie heißen Sie?",
+              "Ich heiße Paco. / Mein Name ist Nina Weber."
+            ],
+            [
+              "Identität",
+              "Wer bist du? / Wer sind Sie?",
+              "Ich bin Gregor Schubert."
+            ],
+            [
+              "Herkunft (Origin)",
+              "Woher kommst du? / Woher kommen Sie?",
+              "Ich komme aus Spanien / aus Deutschland."
+            ],
+            [
+              "Wohnort (Residence)",
+              "Wo wohnst du? / Wo wohnen Sie?",
+              "Ich wohne in Leipzig / in Berlin."
+            ],
+            [
+              "Sprachen (Languages)",
+              "Welche Sprachen sprichst du / sprechen Sie?",
+              "Ich spreche Spanisch und lerne Deutsch."
+            ],
+            [
+              "Beruf (Profession)",
+              "Was bist du / sind Sie von Beruf?",
+              "Ich bin Ingenieur. / Ich arbeite als Lehrerin."
+            ],
+            [
+              "Andere vorstellen",
+              "Wer ist das?",
+              "Das ist mein Kollege Paco. / Das ist Frau Müller."
+            ]
+          ]
+        }
       },
       {
-        title: "2. Asking & Answering Origin and Residence",
-        description: "Master these paired questions and answers:",
-        table: {
-          headers: ["Topic", "Informal (du)", "Formal (Sie)", "Your Answer"],
-          rows: [
-            ["Name", "Wie heißt du?", "Wie heißen Sie?", "Ich heiße [Name]. / Mein Name ist [Name]."],
-            ["Origin", "Woher kommst du?", "Woher kommen Sie?", "Ich komme aus [Land/Stadt]."],
-            ["Residence", "Wo wohnst du?", "Wo wohnen Sie?", "Ich wohne in [Stadt]."],
-            ["Profession", "Was bist du von Beruf?", "Was sind Sie von Beruf?", "Ich bin Ingenieur / Lehrerin."],
-          ],
-        },
-      },
+        "title": "2. Stating Your Profession: 'als' vs. Direct Noun",
+        "description": "Two elegant ways to talk about your job in German:",
+        "items": [
+          {
+            "term": "Ich bin + Beruf (m/f)",
+            "meaning": "Direct statement without article: male ends standard, female adds '-in'",
+            "example": "Ich bin Student (m) / Studentin (f). Ich bin Arzt / Ärztin."
+          },
+          {
+            "term": "Ich arbeite als + Beruf",
+            "meaning": "Expressing your current employment role with 'als' (as)",
+            "example": "Ich arbeite als Designerin bei Siemens."
+          },
+          {
+            "term": "Ich studiere / Ich mache eine Ausbildung",
+            "meaning": "Studying at university or doing a vocational apprenticeship",
+            "example": "Ich studiere Informatik an der TU München."
+          }
+        ]
+      }
     ],
-    dialogue: {
-      context: "First day of German language class in Frankfurt, meeting your desk partner:",
-      lines: [
+    "dialogue": {
+      "context": "Vorstellungsrunde im Deutschkurs A1 (Netzwerk A1):",
+      "lines": [
         {
-          speaker: "Lina",
-          german: "Hallo, ich bin Lina! Und wie heißt du?",
-          english: "Hello, I am Lina! And what is your name?",
+          "speaker": "Lehrerin",
+          "german": "Guten Morgen zusammen! Stellen wir uns kurz vor. Nina, fängst du an?",
+          "english": "Good morning everyone! Let's briefly introduce ourselves. Nina, will you start?"
         },
         {
-          speaker: "Tariq",
-          german: "Hallo Lina. Ich heiße Tariq. Woher kommst du?",
-          english: "Hello Lina. I am called Tariq. Where are you from?",
+          "speaker": "Nina",
+          "german": "Gern! Mein Name ist Nina Weber. Ich komme aus Deutschland und wohne in München.",
+          "english": "Gladly! My name is Nina Weber. I come from Germany and live in Munich."
         },
         {
-          speaker: "Lina",
-          german: "Ich komme aus Spanien, aber ich wohne jetzt hier in Frankfurt.",
-          english: "I come from Spain, but I live here in Frankfurt now.",
+          "speaker": "Paco",
+          "german": "Hallo, ich bin Paco. Ich komme aus Valencia in Spanien, aber jetzt wohne ich auch in München.",
+          "english": "Hello, I am Paco. I come from Valencia in Spain, but now I also live in Munich."
         },
         {
-          speaker: "Tariq",
-          german: "Schön! Ich komme aus Marokko und wohne auch in Frankfurt.",
-          english: "Nice! I come from Morocco and also live in Frankfurt.",
+          "speaker": "Lehrerin",
+          "german": "Willkommen, Paco! Welche Sprachen sprechen Sie?",
+          "english": "Welcome, Paco! What languages do you speak?"
         },
-      ],
+        {
+          "speaker": "Paco",
+          "german": "Ich spreche Spanisch, Englisch und ein bisschen Deutsch.",
+          "english": "I speak Spanish, English, and a little German."
+        }
+      ]
     },
-    funFact: {
-      title: "Goethe A1 Exam Speaking Part 1",
-      content:
-        "In the official Goethe-Zertifikat A1 exam, Part 1 of the speaking test requires you to introduce yourself using seven prompt cards: Name, Alter (Age), Land (Country), Wohnort (Residence), Sprachen (Languages), Beruf (Job), and Hobby. Practicing this dialogue prepares you for 100% of that exam station!",
+    "funFact": {
+      "title": "The Female Professional Suffix '-in'",
+      "content": "In German, almost every profession has a masculine and a feminine form created by adding '-in': der Lehrer -> die Lehrerin, der Student -> die Studentin, der Arzt -> die Ärztin (often adding an Umlaut!). When talking about a group of mixed genders, traditionally the plural 'die Studenten' or modern gender-neutral forms like 'die Studierenden' are used."
     },
-    practice: [
+    "practice": [
       {
-        question: "How do you ask a new neighbor politely (formal) where they live?",
-        options: ["Wo wohnst du?", "Wo wohnen Sie?", "Woher wohnen Sie?"],
-        answer: "Wo wohnen Sie?",
-        explanation: "Formal address uses 'Sie' with the verb 'wohnen': 'Wo wohnen Sie?'.",
+        "question": "How does a female software engineer say: 'I am a software engineer'?",
+        "options": [
+          "Ich bin Software-Ingenieur.",
+          "Ich bin Software-Ingenieurin.",
+          "Ich bin eine Software-Ingenieur."
+        ],
+        "answer": "Ich bin Software-Ingenieurin.",
+        "explanation": "Female professions in German take the suffix '-in', with no indefinite article."
       },
-    ],
+      {
+        "question": "How do you ask someone for their origin politely (formal)?",
+        "options": [
+          "Woher kommst du?",
+          "Wo wohnen Sie?",
+          "Woher kommen Sie?"
+        ],
+        "answer": "Woher kommen Sie?",
+        "explanation": "'Woher kommen Sie?' is the formal, polite way to ask where someone is from."
+      }
+    ]
   },
-
   "a1-ch3-l13": {
-    overview:
-      "Discussing geography, what languages you speak, and where people originate expands your horizons. Most countries in German have no grammatical article, but a few famous exceptions require one!",
-    canDo:
-      "Can name major world countries and languages in German, state nationalities, and correctly use the countries that require articles (die Schweiz, die Türkei, die USA).",
-    teacherNote:
-      "Notice the pattern for languages: almost all languages end in '-isch' (Deutsch, Englisch, Spanisch, Französisch, Arabisch). And remember that when you speak a language, no article is used: *Ich spreche Deutsch*.",
-    sections: [
+    "overview": "Talking about where you come from and what languages you speak is central to beginner German. In this lesson, you will learn the names of major world countries, their associated languages, and the crucial grammar rule for countries that require definite articles.",
+    "canDo": "Can state your country of origin and languages spoken, and correctly use prepositions with countries that have articles (die Schweiz, die Türkei, die USA).",
+    "teacherNote": "95% of countries in German have NO article: 'Ich komme aus Deutschland', 'Ich fliege nach Italien'. However, a handful of famous exceptions DO take an article: 'die Schweiz', 'die Türkei', 'die USA'. Learn these exceptions early to impress native speakers!",
+    "sections": [
       {
-        title: "1. Countries Without Articles (The Standard Rule)",
-        description: "Over 90% of countries take no article after 'aus':",
-        table: {
-          headers: ["Country", "Coming from... (aus)", "Language", "Language in German"],
-          rows: [
-            ["Deutschland", "aus Deutschland", "German", "Deutsch"],
-            ["Österreich", "aus Österreich", "German", "Deutsch"],
-            ["Spanien", "aus Spanien", "Spanish", "Spanisch"],
-            ["Frankreich", "aus Frankreich", "French", "Französisch"],
-            ["Italien", "aus Italien", "Italian", "Italienisch"],
-            ["Polen", "aus Polen", "Polish", "Polnisch"],
-            ["Japan", "aus Japan", "Japanese", "Japanisch"],
-            ["Kanada", "aus Kanada", "English/French", "Englisch / Französisch"],
+        "title": "1. Länder und Sprachen (Countries & Languages)",
+        "description": "Standard countries without articles (use 'aus' for origin, 'in' for location):",
+        "table": {
+          "headers": [
+            "Land (Country)",
+            "Hauptstadt (Capital)",
+            "Sprache (Language)",
+            "Herkunft (Origin)"
           ],
-        },
+          "rows": [
+            [
+              "Deutschland",
+              "Berlin",
+              "Deutsch",
+              "aus Deutschland"
+            ],
+            [
+              "Österreich",
+              "Wien",
+              "Deutsch",
+              "aus Österreich"
+            ],
+            [
+              "Spanien",
+              "Madrid",
+              "Spanisch",
+              "aus Spanien"
+            ],
+            [
+              "Frankreich",
+              "Paris",
+              "Französisch",
+              "aus Frankreich"
+            ],
+            [
+              "Italien",
+              "Rom",
+              "Italienisch",
+              "aus Italien"
+            ],
+            [
+              "Polen",
+              "Warschau",
+              "Polnisch",
+              "aus Polen"
+            ],
+            [
+              "Großbritannien",
+              "London",
+              "Englisch",
+              "aus Großbritannien"
+            ],
+            [
+              "China",
+              "Peking",
+              "Chinesisch",
+              "aus China"
+            ],
+            [
+              "Japan",
+              "Tokio",
+              "Japanisch",
+              "aus Japan"
+            ]
+          ]
+        }
       },
       {
-        title: "2. The Crucial Exceptions: Countries with Articles!",
-        description:
-          "These few countries have grammatical gender. After 'aus', feminine countries become 'der', and plurals become 'den':",
-        items: [
-          {
-            term: "die Schweiz (Switzerland - Feminine)",
-            meaning: "Ich komme aus DER Schweiz. (I come from Switzerland.)",
-            example: "Sie wohnt in der Schweiz.",
-          },
-          {
-            term: "die Türkei (Turkey - Feminine)",
-            meaning: "Ich komme aus DER Türkei. (I come from Turkey.)",
-            example: "Er spricht Türkisch und Deutsch.",
-          },
-          {
-            term: "die USA (United States - Plural)",
-            meaning: "Ich komme aus DEN USA. (I come from the USA.)",
-            example: "Wir reisen in die USA.",
-          },
+        "title": "2. Die Ausnahmen: Länder mit Artikel (Countries with Articles)",
+        "description": "These countries require articles when stating origin ('aus der...') or location ('in der...'):",
+        "table": {
+          "headers": [
+            "Land mit Artikel",
+            "Geschlecht",
+            "Herkunft ('from')",
+            "Aufenthalt ('in')"
+          ],
+          "rows": [
+            [
+              "die Schweiz (Switzerland)",
+              "feminin",
+              "aus der Schweiz",
+              "in der Schweiz"
+            ],
+            [
+              "die Türkei (Turkey)",
+              "feminin",
+              "aus der Türkei",
+              "in der Türkei"
+            ],
+            [
+              "die Slowakei (Slovakia)",
+              "feminin",
+              "aus der Slowakei",
+              "in der Slowakei"
+            ],
+            [
+              "die Ukraine (Ukraine)",
+              "feminin",
+              "aus der Ukraine",
+              "in der Ukraine"
+            ],
+            [
+              "die USA (United States)",
+              "plural",
+              "aus den USA",
+              "in den USA"
+            ],
+            [
+              "die Niederlande (Netherlands)",
+              "plural",
+              "aus den Niederlanden",
+              "in den Niederlanden"
+            ]
+          ]
+        }
+      }
+    ],
+    "dialogue": {
+      "context": "Internationaler Abend im Studentenwohnheim in München (Netzwerk A1):",
+      "lines": [
+        {
+          "speaker": "Christian",
+          "german": "Hallo! Bist du auch neu im Wohnheim?",
+          "english": "Hello! Are you also new in the dormitory?"
+        },
+        {
+          "speaker": "Elif",
+          "german": "Ja, ich bin Elif. Ich komme aus der Türkei, aus Istanbul.",
+          "english": "Yes, I am Elif. I come from Turkey, from Istanbul."
+        },
+        {
+          "speaker": "Christian",
+          "german": "Schön dich kennenzulernen! Und welche Sprachen sprichst du?",
+          "english": "Nice to meet you! And what languages do you speak?"
+        },
+        {
+          "speaker": "Elif",
+          "german": "Ich spreche Türkisch, fließend Englisch und lerne jetzt fleißig Deutsch.",
+          "english": "I speak Turkish, fluent English, and am now diligently learning German."
+        }
+      ]
+    },
+    "funFact": {
+      "title": "German in Switzerland & Austria",
+      "content": "German is pluricentric: Austrian German (Österreichisches Deutsch) and Swiss Standard German (Schweizer Hochdeutsch) are official national standards with distinct vocabulary! For example, in Austria, potatoes are called 'Erdäpfel' (not 'Kartoffeln'), and in Switzerland, a parking ticket is 'die Parkbusse'."
+    },
+    "practice": [
+      {
+        "question": "How do you say: 'I come from Switzerland'?",
+        "options": [
+          "Ich komme aus Schweiz.",
+          "Ich komme aus der Schweiz.",
+          "Ich komme in die Schweiz."
         ],
+        "answer": "Ich komme aus der Schweiz.",
+        "explanation": "'die Schweiz' is feminine and changes to Dative 'der' after 'aus': aus der Schweiz."
       },
-    ],
-    dialogue: {
-      context: "International student orientation dinner in Heidelberg:",
-      lines: [
-        {
-          speaker: "Moderator",
-          german: "Guten Abend zusammen! Welche Sprachen sprechen Sie?",
-          english: "Good evening everyone! Which languages do you speak?",
-        },
-        {
-          speaker: "Studentin",
-          german: "Ich komme aus der Schweiz. Ich spreche Deutsch, Französisch und ein bisschen Italienisch.",
-          english: "I come from Switzerland. I speak German, French, and a bit of Italian.",
-        },
-      ],
-    },
-    funFact: {
-      title: "Switzerland's Four National Languages",
-      content:
-        "Switzerland (die Schweiz) officially has four national languages: German (Deutsch, spoken by ~62%), French (Französisch, ~23%), Italian (Italienisch, ~8%), and Romansh (Rätoromanisch, <1%). The Swiss German dialect is called 'Schwiizerdütsch'!",
-    },
-    practice: [
       {
-        question: "How do you say 'I come from Switzerland'?",
-        options: ["Ich komme aus Schweiz.", "Ich komme aus der Schweiz.", "Ich komme in Schweiz."],
-        answer: "Ich komme aus der Schweiz.",
-        explanation: "'Schweiz' is a feminine noun and requires the dative article 'der' after the preposition 'aus'.",
-      },
-    ],
+        "question": "What preposition is used for origin with standard countries (e.g. Germany, Spain)?",
+        "options": [
+          "in",
+          "nach",
+          "aus"
+        ],
+        "answer": "aus",
+        "explanation": "'aus' means 'out of / from' and indicates country of origin."
+      }
+    ]
   },
-
   "a1-ch3-l14": {
-    overview:
-      "Whether buying groceries, giving your phone number, or checking train departure times, numbers are indispensable. German numbers from 21 to 99 follow an inverted pattern that is famous worldwide: you say the ones before the tens!",
-    canDo:
-      "Can count from 0 to 100, exchange telephone numbers digit by digit, and dictate email addresses in German.",
-    teacherNote:
-      "For numbers 21–99, German says: 'one-and-twenty' (einundzwanzig), 'two-and-twenty' (zweiundzwanzig). Think of it like reading the last digit first, then adding 'und' and the tens!",
-    sections: [
+    "overview": "Numbers are the heartbeat of practical communication: shopping, booking tickets, exchanging phone numbers, and noting addresses. In this lesson, you will master counting from 0 to 100, understanding German's inverted tens-and-ones logic (e.g. 21 = 'one-and-twenty'), and reciting phone numbers and emails aloud.",
+    "canDo": "Can count from 0 to 100 in German, state prices, exchange telephone numbers, and dictate email addresses using correct symbols (@, ., -).",
+    "teacherNote": "German flips numbers between 21 and 99: you say the ones digit FIRST, then 'und', then the tens digit! 21 = einundzwanzig (one-and-twenty), 35 = fünfunddreißig (five-and-thirty). English did the exact same thing in the days of Shakespeare ('four and twenty blackbirds')!",
+    "sections": [
       {
-        title: "1. Numbers 0 to 20 (Die Grundzahlen)",
-        description: "Master these foundational building blocks:",
-        table: {
-          headers: ["0–5", "6–10", "11–15", "16–20"],
-          rows: [
-            ["0 null", "6 sechs", "11 elf", "16 sechzehn (drops 's')"],
-            ["1 eins", "7 sieben", "12 zwölf", "17 siebzehn (drops 'en')"],
-            ["2 zwei", "8 acht", "13 dreizehn", "18 achtzehn"],
-            ["3 drei", "9 neun", "14 vierzehn", "19 neunzehn"],
-            ["4 vier", "10 zehn", "15 fünfzehn", "20 zwanzig"],
-            ["5 fünf", "", "", ""],
+        "title": "1. Die Zahlen von 0 bis 20 (Numbers 0–20)",
+        "description": "The foundation of all counting:",
+        "table": {
+          "headers": [
+            "Zahl",
+            "Wort",
+            "Zahl",
+            "Wort"
           ],
-        },
+          "rows": [
+            [
+              "0",
+              "null",
+              "11",
+              "elf"
+            ],
+            [
+              "1",
+              "eins",
+              "12",
+              "zwölf"
+            ],
+            [
+              "2",
+              "zwei",
+              "13",
+              "dreizehn"
+            ],
+            [
+              "3",
+              "drei",
+              "14",
+              "vierzehn"
+            ],
+            [
+              "4",
+              "vier",
+              "15",
+              "fünfzehn"
+            ],
+            [
+              "5",
+              "fünf",
+              "16",
+              "sechzehn (drops 's')"
+            ],
+            [
+              "6",
+              "sechs",
+              "17",
+              "siebzehn (drops 'en')"
+            ],
+            [
+              "7",
+              "sieben",
+              "18",
+              "achtzehn"
+            ],
+            [
+              "8",
+              "acht",
+              "19",
+              "neunzehn"
+            ],
+            [
+              "9",
+              "neun",
+              "20",
+              "zwanzig"
+            ],
+            [
+              "10",
+              "zehn",
+              "100",
+              "hundert / einhundert"
+            ]
+          ]
+        }
       },
       {
-        title: "2. The Tens & The 'Ones-First' Rule (21–99)",
-        description: "Notice how the tens end in '-zig' (except dreißig with ß):",
-        table: {
-          headers: ["The Tens", "Example Combo", "Literal Breakdown", "English"],
-          rows: [
-            ["20 zwanzig", "21 einundzwanzig", "one-and-twenty", "twenty-one"],
-            ["30 dreißig", "35 fünfunddreißig", "five-and-thirty", "thirty-five"],
-            ["40 vierzig", "48 achtundvierzig", "eight-and-forty", "forty-eight"],
-            ["50 fünfzig", "59 neunundfünfzig", "nine-and-fifty", "fifty-nine"],
-            ["60 sechzig", "64 vierundsechzig", "four-and-sixty", "sixty-four"],
-            ["70 siebzig", "77 siebenundsiebzig", "seven-and-seventy", "seventy-seven"],
-            ["80 achtzig", "82 zweiundachtzig", "two-and-eighty", "eighty-two"],
-            ["90 neunzig", "99 neunundneunzig", "nine-and-ninety", "ninety-nine"],
-            ["100 (ein)hundert", "100", "one hundred", "one hundred"],
+        "title": "2. Die Zehnerzahlen ab 20 (Tens & Combined Numbers)",
+        "description": "Remember the inverted pattern: [Ones] + und + [Tens]:",
+        "table": {
+          "headers": [
+            "Zehnerzahl",
+            "Deutsches Wort",
+            "Zusammensetzung (Beispiel)",
+            "Aussprache"
           ],
-        },
+          "rows": [
+            [
+              "20",
+              "zwanzig",
+              "21 = einundzwanzig",
+              "eye-n-oond-tsvan-tsig"
+            ],
+            [
+              "30",
+              "dreißig (note 'ß'!)",
+              "32 = zweiunddreißig",
+              "tsvy-oond-dry-sig"
+            ],
+            [
+              "40",
+              "vierzig",
+              "45 = fünfundvierzig",
+              "fünf-oond-feer-tsig"
+            ],
+            [
+              "50",
+              "fünfzig",
+              "58 = achtundfünfzig",
+              "acht-oond-fünf-tsig"
+            ],
+            [
+              "60",
+              "sechzig (drops 's')",
+              "64 = vierundsechzig",
+              "vier-oond-sech-tsig"
+            ],
+            [
+              "70",
+              "siebzig (drops 'en')",
+              "77 = siebenundsiebzig",
+              "sieben-oond-sieb-tsig"
+            ],
+            [
+              "80",
+              "achtzig",
+              "89 = neunundachtzig",
+              "neun-oond-acht-tsig"
+            ],
+            [
+              "90",
+              "neunzig",
+              "93 = dreiundneunzig",
+              "drei-oond-neun-tsig"
+            ]
+          ]
+        }
       },
       {
-        title: "3. Email & Phone Symbols",
-        description: "How to read symbols aloud when giving contact info:",
-        items: [
+        "title": "3. Telefonnummern & E-Mail-Adressen diktieren",
+        "description": "Essential syntax symbols when exchanging contact information:",
+        "items": [
           {
-            term: "@ (At symbol)",
-            meaning: "Pronounced 'ät' (like English at)",
-            example: "info@beispiel.de -> info ät beispiel punkt de",
+            "term": "@ (At-Zeichen)",
+            "pronunciation": "ät / at-zeichen",
+            "meaning": "Used in email addresses: name@gmx.de = 'name ät gmx punkt de'"
           },
           {
-            term: ". (Dot / Period)",
-            meaning: "Pronounced 'Punkt'",
-            example: "lernen.de -> lernen punkt de",
+            "term": ". (Punkt)",
+            "pronunciation": "punkt",
+            "meaning": "Dot/period in web URLs and emails"
           },
           {
-            term: "- (Hyphen / Dash)",
-            meaning: "Pronounced 'Bindestrich'",
-            example: "anna-meier -> anna bindestrich meier",
+            "term": "- (Bindestrich / Minus)",
+            "pronunciation": "bindestrich",
+            "meaning": "Hyphen or dash in phone numbers and emails"
           },
           {
-            term: "_ (Underscore)",
-            meaning: "Pronounced 'Unterstrich'",
-            example: "max_berlin -> max unterstrich berlin",
-          },
+            "term": "_ (Unterstrich)",
+            "pronunciation": "unterstrich",
+            "meaning": "Underscore symbol"
+          }
+        ]
+      }
+    ],
+    "dialogue": {
+      "context": "Telefonnummern austauschen am Ende des Deutschkurses (Netzwerk A1):",
+      "lines": [
+        {
+          "speaker": "Julia",
+          "german": "Paco, wie ist deine Handynummer? Wir haben eine WhatsApp-Gruppe.",
+          "english": "Paco, what is your mobile number? We have a WhatsApp group."
+        },
+        {
+          "speaker": "Paco",
+          "german": "Meine Nummer ist 0176 - 45 82 91 03.",
+          "english": "My number is 0176 - 45 82 91 03."
+        },
+        {
+          "speaker": "Julia",
+          "german": "Super, danke! Und wie ist deine E-Mail-Adresse?",
+          "english": "Great, thanks! And what is your email address?"
+        },
+        {
+          "speaker": "Paco",
+          "german": "paco.garcia@web.de – also paco punkt garcia ät web punkt de.",
+          "english": "paco.garcia@web.de – so paco dot garcia at web dot de."
+        }
+      ]
+    },
+    "funFact": {
+      "title": "'Zwo' Instead of 'Zwei' on the Phone",
+      "content": "On telephone lines or radio calls, the numbers 'zwei' (2) and 'drei' (3) sound very similar. To avoid confusion, Germans frequently say 'zwo' instead of 'zwei' when reading numbers aloud!"
+    },
+    "practice": [
+      {
+        "question": "How do you say the number 54 in German?",
+        "options": [
+          "fünfzigvier",
+          "vierundfünfzig",
+          "fünfundvierzig"
         ],
+        "answer": "vierundfünfzig",
+        "explanation": "German says the ones first, then 'und', then tens: 4 (vier) + und + 50 (fünfzig) = vierundfünfzig."
       },
-    ],
-    dialogue: {
-      context: "Exchanging phone numbers and email after class in Berlin:",
-      lines: [
-        {
-          speaker: "Sven",
-          german: "Wie ist deine Handynummer?",
-          english: "What is your mobile number?",
-        },
-        {
-          speaker: "Sara",
-          german: "Meine Nummer ist 0176 - 45 82 91 30.",
-          english: "My number is 0176 - 45 82 91 30.",
-        },
-        {
-          speaker: "Sven",
-          german: "Und deine E-Mail-Adresse?",
-          english: "And your email address?",
-        },
-        {
-          speaker: "Sara",
-          german: "sara punkt meier ät web punkt de.",
-          english: "sara dot meier at web dot de.",
-        },
-      ],
-    },
-    funFact: {
-      title: "Counting Starts on the Thumb!",
-      content:
-        "If you want to blend in with locals in a German café or beer garden, always indicate the number one with your **thumb**, not your index finger! Showing the index finger is interpreted as the number two (thumb + index). This famously served as a major plot point in the movie *Inglourious Basterds*!",
-    },
-    practice: [
       {
-        question: "How is the number 54 constructed in German?",
-        options: ["fünfzigvier", "vierundfünfzig", "fünfundvierzig"],
-        answer: "vierundfünfzig",
-        explanation: "German says ones first: vier (4) + und + fünfzig (50) = vierundfünfzig.",
-      },
-    ],
+        "question": "How is the symbol '@' pronounced in a German email address?",
+        "options": [
+          "ät (or At-Zeichen)",
+          "Klammeraffe",
+          "und"
+        ],
+        "answer": "ät (or At-Zeichen)",
+        "explanation": "'@' is pronounced 'ät' or 'At-Zeichen' in German."
+      }
+    ]
   },
-
   "a1-ch3-l15": {
-    overview:
-      "When learning German, you don't need to understand every word immediately. Having a toolkit of survival phrases empowers you to ask people to slow down, repeat, or clarify without feeling lost.",
-    canDo:
-      "Can navigate a German language classroom, ask someone to repeat or speak slowly, and express that you don't understand something.",
-    teacherNote:
-      "Never be shy to say 'Wie bitte?' (Pardon / What did you say?). It is the most polite and natural way to ask someone to repeat themselves in German.",
-    sections: [
+    "overview": "When learning a new language, the ability to ask for clarification, request someone to speak slower, or find the page in the textbook is your primary survival kit. In this lesson, you will master authentic classroom German phrases from Netzwerk A1.",
+    "canDo": "Can ask the teacher or conversation partner for clarification ('Wie bitte?'), request repetitions, ask what words mean, and navigate learning activities smoothly in German.",
+    "teacherNote": "'Wie bitte?' (Pardon / Come again?) is one of the most polite and natural phrases you can learn. Never shout 'Was?!' when you don't understand someone—always say 'Wie bitte?'.",
+    "sections": [
       {
-        title: "1. The Essential Survival Expressions",
-        description: "Keep these phrases ready whenever you need clarification:",
-        table: {
-          headers: ["German Phrase", "Literal Meaning", "English Function", "Usage Tip"],
-          rows: [
-            ["Wie bitte?", "How please?", "Pardon? Could you repeat that?", "Infinitely more polite than saying 'Was?'"],
-            ["Ich verstehe nicht.", "I understand not.", "I don't understand.", "Clear and direct"],
-            ["Sprechen Sie bitte langsamer.", "Speak you please slower.", "Please speak more slowly.", "Essential with native speakers"],
-            ["Können Sie das wiederholen?", "Can you that repeat?", "Could you repeat that?", "Polite request"],
-            ["Wie heißt das auf Deutsch?", "How is called that in German?", "What is that called in German?", "Great for expanding vocabulary"],
-            ["Was bedeutet das?", "What means that?", "What does that mean?", "Asking for explanations"],
-            ["Können Sie das bitte anschreiben?", "Can you that please write down?", "Could you please write that down?", "Great in classrooms & shops"],
+        "title": "1. Redemittel: Im Kursraum (Classroom German)",
+        "description": "Essential survival phrases for language learners from Netzwerk A1:",
+        "table": {
+          "headers": [
+            "Deutscher Ausdruck",
+            "Bedeutung",
+            "Wann man es benutzt (Context)"
           ],
-        },
+          "rows": [
+            [
+              "Wie bitte?",
+              "Pardon? / Excuse me?",
+              "Wenn man etwas akustisch nicht verstanden hat"
+            ],
+            [
+              "Ich verstehe das nicht.",
+              "I don't understand that.",
+              "Wenn die Erklärung unklar ist"
+            ],
+            [
+              "Können Sie das bitte wiederholen?",
+              "Could you please repeat that?",
+              "Bitte um Wiederholung (formell)"
+            ],
+            [
+              "Sprechen Sie bitte etwas langsamer!",
+              "Please speak a little slower!",
+              "Wenn der Partner zu schnell spricht"
+            ],
+            [
+              "Wie heißt das auf Deutsch?",
+              "What is that called in German?",
+              "Nach Vokabeln fragen"
+            ],
+            [
+              "Wie schreibt man das?",
+              "How do you spell that?",
+              "Nach der Rechtschreibung fragen"
+            ],
+            [
+              "Was bedeutet dieses Wort?",
+              "What does this word mean?",
+              "Nach der Bedeutung fragen"
+            ],
+            [
+              "Auf welcher Seite sind wir bitte?",
+              "Which page are we on, please?",
+              "Orientierung im Kursbuch"
+            ],
+            [
+              "Ich habe eine Frage.",
+              "I have a question.",
+              "Vor einer Frage im Unterricht"
+            ]
+          ]
+        }
       },
-    ],
-    dialogue: {
-      context: "In a German language class with an instructor in Leipzig:",
-      lines: [
-        {
-          speaker: "Lehrer",
-          german: "Bitte schlagen Sie das Kursbuch auf Seite 24 auf!",
-          english: "Please open the coursebook to page 24!",
-        },
-        {
-          speaker: "Schüler",
-          german: "Entschuldigung, wie bitte? Welche Seite?",
-          english: "Excuse me, pardon? Which page?",
-        },
-        {
-          speaker: "Lehrer",
-          german: "Seite vierundzwanzig, bitte.",
-          english: "Page twenty-four, please.",
-        },
-        {
-          speaker: "Schüler",
-          german: "Vielen Dank!",
-          english: "Thank you very much!",
-        },
-      ],
-    },
-    funFact: {
-      title: "'Wie bitte?' vs. 'Was?'",
-      content:
-        "In English, answering 'What?' when you didn't hear someone can sound slightly curt. In German, saying just 'Was?' to a teacher, elder, or customer is considered quite rude! Always use the gentle, courteous phrase: **'Wie bitte?'**.",
-    },
-    practice: [
       {
-        question: "You didn't catch what a train conductor said. What is the most polite phrase to use?",
-        options: ["Was?", "Hä?", "Wie bitte?"],
-        answer: "Wie bitte?",
-        explanation: "'Wie bitte?' is the polite, standard German equivalent of 'Pardon me?'.",
-      },
+        "title": "2. Arbeitsanweisungen im Lehrwerk (Textbook Instructions)",
+        "description": "Key action verbs you will see in every exercise of Netzwerk A1:",
+        "items": [
+          {
+            "term": "Hören Sie! / Lesen Sie!",
+            "meaning": "Listen! / Read!",
+            "example": "Hören Sie das Gespräch und kreuzen Sie an."
+          },
+          {
+            "term": "Kreuzen Sie an! (ankreuzen)",
+            "meaning": "Tick / check the correct box (a, b, or c)",
+            "example": "Was ist richtig? Kreuzen Sie an: [X]"
+          },
+          {
+            "term": "Ergänzen Sie! (ergänzen)",
+            "meaning": "Fill in the blank with the missing word",
+            "example": "Ergänzen Sie die Verben in der richtigen Form."
+          },
+          {
+            "term": "Ordnen Sie zu! (zuordnen)",
+            "meaning": "Match items together (e.g. photos with vocabulary)",
+            "example": "Ordnen Sie die Bilder den Wörtern zu."
+          }
+        ]
+      }
     ],
-  },
+    "dialogue": {
+      "context": "Im Deutschunterricht – Eine Übung im Kursbuch (Netzwerk A1):",
+      "lines": [
+        {
+          "speaker": "Lehrerin",
+          "german": "Schlagen Sie bitte das Kursbuch auf Seite 16 auf!",
+          "english": "Please open the coursebook to page 16!"
+        },
+        {
+          "speaker": "Paco",
+          "german": "Entschuldigung, welche Seite bitte? Können Sie das wiederholen?",
+          "english": "Excuse me, which page please? Could you repeat that?"
+        },
+        {
+          "speaker": "Lehrerin",
+          "german": "Seite sechzehn, Paco. Wir machen Aufgabe 3: Hören und ankreuzen.",
+          "english": "Page sixteen, Paco. We are doing exercise 3: Listen and check the box."
+        },
+        {
+          "speaker": "Paco",
+          "german": "Vielen Dank! Und was bedeutet 'Buchstabieren'?",
+          "english": "Thank you very much! And what does 'Buchstabieren' mean?"
+        },
+        {
+          "speaker": "Lehrerin",
+          "german": "'Buchstabieren' bedeutet: die Buchstaben einzeln sprechen, wie A - B - C.",
+          "english": "'Buchstabieren' means: saying the letters individually, like A - B - C."
+        }
+      ]
+    },
+    "funFact": {
+      "title": "The Politeness of 'Wie bitte?'",
+      "content": "In German culture, saying 'Was?' (What?) when you didn't hear someone can sound abrupt or even rude to older speakers. Using 'Wie bitte?' or 'Entschuldigung?' is universally regarded as polite and refined."
+    },
+    "practice": [
+      {
+        "question": "What is the most polite way to ask someone to repeat what they said?",
+        "options": [
+          "Was?!",
+          "Wie bitte? Können Sie das wiederholen?",
+          "Sprich lauter!"
+        ],
+        "answer": "Wie bitte? Können Sie das wiederholen?",
+        "explanation": "'Wie bitte? Können Sie das wiederholen?' is the polite standard phrasing."
+      },
+      {
+        "question": "What does the textbook instruction 'Ordnen Sie zu!' mean?",
+        "options": [
+          "Read aloud!",
+          "Match / assign the items!",
+          "Write an essay!"
+        ],
+        "answer": "Match / assign the items!",
+        "explanation": "'zuordnen' means to match or assign corresponding items together."
+      }
+    ]
+  }
 };

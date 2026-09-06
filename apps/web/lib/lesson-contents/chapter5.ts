@@ -2,271 +2,542 @@ import { LessonContent } from "../api";
 
 export const CHAPTER_5_LESSONS: Record<string, LessonContent> = {
   "a1-ch5-l20": {
-    overview:
-      "The Accusative case (der Akkusativ) is where German becomes active! Whenever a verb acts upon a direct object—what you buy, what you eat, who you see, or what you need—that object is placed into the Accusative case.",
-    canDo:
-      "Can identify direct objects by asking 'Wen oder was?' (Whom or what?), and execute the famous masculine article shift (der -> den, ein -> einen).",
-    teacherNote:
-      "Here is the great secret of the Accusative case: **ONLY the masculine gender changes!** Feminine (die/eine), neuter (das/ein), and plural (die/keine) stay 100% identical to Nominative. Only masculine shifts from -r to -n: *der -> den*, *ein -> einen*, *kein -> keinen*, *mein -> meinen*.",
-    sections: [
+    "overview": "The Accusative case (der Akkusativ) marks the direct object of an action—the person or thing directly affected by the verb. In this lesson, you will master the fundamental rule of Akkusativ: ONLY masculine articles change! Feminine, neuter, and plural stay completely unchanged.",
+    "canDo": "Can identify direct objects by asking 'Wen oder was?' (Whom or what?), and apply the masculine article shifts (der -> den, ein -> einen, kein -> keinen).",
+    "teacherNote": "Remember this golden rule: Masculine is the ONLY rebel in Akkusativ! Feminine remains 'die / eine', neuter remains 'das / ein', and plural remains 'die / keine'. Only masculine changes: der becomes DEN, ein becomes EINEN, kein becomes KEINEN!",
+    "sections": [
       {
-        title: "1. The Accusative Article Shift",
-        description: "Notice how only the masculine column transforms:",
-        table: {
-          headers: ["Case", "Masculine (The only one that changes!)", "Feminine (No change)", "Neuter (No change)", "Plural (No change)"],
-          rows: [
-            ["Nominativ (Subject)", "der / ein / kein / mein", "die / eine / keine / meine", "das / ein / kein / mein", "die / — / keine / meine"],
-            ["Akkusativ (Direct Object)", "DEN / EINEN / KEINEN / MEINEN", "die / eine / keine / meine", "das / ein / kein / mein", "die / — / keine / meine"],
+        "title": "1. Der Akkusativ-Artikelwechsel (The Masculine Shift)",
+        "description": "Compare Nominative (Subject) and Accusative (Direct Object):",
+        "table": {
+          "headers": [
+            "Genus (Gender)",
+            "Nominativ (Subjekt)",
+            "Akkusativ (Objekt)",
+            "Signal-Endung"
           ],
-        },
+          "rows": [
+            [
+              "Maskulin (m)",
+              "der / ein / kein",
+              "DEN / EINEN / KEINEN",
+              "-en (Masculine Shift!)"
+            ],
+            [
+              "Feminin (f)",
+              "die / eine / keine",
+              "die / eine / keine",
+              "-e (Unverändert / No change)"
+            ],
+            [
+              "Neutral (n)",
+              "das / ein / kein",
+              "das / ein / kein",
+              "- (Unverändert / No change)"
+            ],
+            [
+              "Plural (pl)",
+              "die / — / keine",
+              "die / — / keine",
+              "-e (Unverändert / No change)"
+            ]
+          ]
+        }
       },
       {
-        title: "2. The Question for Akkusativ: 'Wen oder was?'",
-        description: "Ask: 'Whom or what is the subject acting upon?'",
-        items: [
-          {
-            term: "Masculine Example (Changes!)",
-            meaning: "Ich habe EINEN Hund. (der Hund -> einen Hund)",
-            example: "Wen oder was habe ich? -> Einen Hund (Direct Object).",
-          },
-          {
-            term: "Feminine Example (Stays identical)",
-            meaning: "Ich trinke EINE Limonade. (die Limonade -> eine Limonade)",
-            example: "Wen oder was trinke ich? -> Eine Limonade.",
-          },
-          {
-            term: "Neuter Example (Stays identical)",
-            meaning: "Er kauft EIN Buch. (das Buch -> ein Buch)",
-            example: "Wen oder was kauft er? -> Ein Buch.",
-          },
+        "title": "2. Die Frage nach dem Akkusativ: 'Wen oder was?'",
+        "description": "Test any sentence to see which item is the direct object:",
+        "table": {
+          "headers": [
+            "Satz (Netzwerk A1)",
+            "Akkusativ-Frage",
+            "Akkusativ-Objekt"
+          ],
+          "rows": [
+            [
+              "Ich trinke den Kaffee.",
+              "Wen oder was trinke ich?",
+              "den Kaffee (maskulin)"
+            ],
+            [
+              "Gregor kauft einen Apfel.",
+              "Wen oder was kauft Gregor?",
+              "einen Apfel (maskulin)"
+            ],
+            [
+              "Julia isst eine Pizza.",
+              "Wen oder was isst Julia?",
+              "eine Pizza (feminin)"
+            ],
+            [
+              "Wir bestellen das Wasser.",
+              "Wen oder was bestellen wir?",
+              "das Wasser (neutral)"
+            ]
+          ]
+        }
+      }
+    ],
+    "dialogue": {
+      "context": "Einkaufen auf dem Wochenmarkt in München (Netzwerk A1 Kapitel 4):",
+      "lines": [
+        {
+          "speaker": "Marktfrau",
+          "german": "Guten Morgen! Was darf es sein?",
+          "english": "Good morning! What can I get for you?"
+        },
+        {
+          "speaker": "Kunde",
+          "german": "Guten Morgen. Ich nehme bitte einen Apfel und einen Salat.",
+          "english": "Good morning. I'll take an apple and a salad, please."
+        },
+        {
+          "speaker": "Marktfrau",
+          "german": "Sehr gern. Möchten Sie auch diesen Käse probieren?",
+          "english": "Very gladly. Would you also like to try this cheese?"
+        },
+        {
+          "speaker": "Kunde",
+          "german": "Ja, gern! Ich kaufe auch den Käse. Was kostet das zusammen?",
+          "english": "Yes, gladly! I will also buy the cheese. How much is that together?"
+        },
+        {
+          "speaker": "Marktfrau",
+          "german": "Das macht genau vier Euro fünfzig, bitte.",
+          "english": "That comes to exactly four euros fifty, please."
+        }
+      ]
+    },
+    "funFact": {
+      "title": "Why Only Masculine Changes",
+      "content": "In Proto-Indo-European (the ancient ancestor of English and German), masculine and feminine nouns marked objects with '-m' or '-n' (like English 'who -> whom' and 'he -> him'). German preserved this accusative '-n' ending specifically in masculine forms ('den', 'einen', 'ihn', 'meinen')!"
+    },
+    "practice": [
+      {
+        "question": "Fill in the blank: 'Ich kaufe _____ (der) Computer.'",
+        "options": [
+          "der",
+          "den",
+          "dem"
         ],
-      },
-    ],
-    dialogue: {
-      context: "Ordering at a traditional German Imbiss (snack stand) in Berlin:",
-      lines: [
-        {
-          speaker: "Verkäufer",
-          german: "Guten Tag! Was möchten Sie bestellen?",
-          english: "Good day! What would you like to order?",
-        },
-        {
-          speaker: "Kunde",
-          german: "Ich nehme einen Kaffee und eine Currywurst, bitte.",
-          english: "I'll take a coffee (der Kaffee -> einen) and a currywurst (die), please.",
-        },
-        {
-          speaker: "Verkäufer",
-          german: "Möchten Sie auch ein Brötchen dazu?",
-          english: "Would you also like a bread roll (das) with that?",
-        },
-        {
-          speaker: "Kunde",
-          german: "Ja gerne, ein Brötchen nehme ich auch!",
-          english: "Yes please, I'll take a roll too!",
-        },
-      ],
-    },
-    funFact: {
-      title: "Why Cases Make German Word Order Free",
-      content:
-        "Because masculine nouns change to 'den' in Akkusativ, German can invert the sentence completely for stylistic punch: 'Den Kaffee trinkt der Mann!' In English, saying 'The coffee drinks the man' would mean a mutant coffee drank a human. In German, 'den' tells your brain with 100% mathematical certainty that the coffee is the object being drank!",
-    },
-    practice: [
-      {
-        question: "How do you say 'I need a table' (der Tisch)?",
-        options: ["Ich brauche ein Tisch.", "Ich brauche einen Tisch.", "Ich brauche der Tisch."],
-        answer: "Ich brauche einen Tisch.",
-        explanation: "'der Tisch' is masculine and the direct object of 'brauchen', so 'ein' shifts to 'einen'.",
+        "answer": "den",
+        "explanation": "'Computer' is masculine, and because it is the direct object of 'kaufen', 'der' changes to 'den'."
       },
       {
-        question: "How do you say 'She is reading the newspaper' (die Zeitung)?",
-        options: ["Sie liest den Zeitung.", "Sie liest die Zeitung.", "Sie liest das Zeitung."],
-        answer: "Sie liest die Zeitung.",
-        explanation: "Feminine nouns do NOT change in the Accusative case; 'die Zeitung' remains 'die Zeitung'.",
-      },
-    ],
+        "question": "What is the accusative form of 'ein Apfel' (masculine)?",
+        "options": [
+          "ein Apfel",
+          "einen Apfel",
+          "einem Apfel"
+        ],
+        "answer": "einen Apfel",
+        "explanation": "Masculine indefinite article 'ein' becomes 'einen' in the accusative case."
+      }
+    ]
   },
-
   "a1-ch5-l21": {
-    overview:
-      "Almost all standard transitive action verbs in German require the Accusative case for their direct object. In this lesson, we memorize the top 10 most common Akkusativ verbs that you will use in every conversation.",
-    canDo:
-      "Can apply the Accusative case automatically with high-frequency verbs: haben, brauchen, suchen, kaufen, sehen, essen, trinken, nehmen, and finden.",
-    teacherNote:
-      "A classic beginner mistake is saying 'Ich habe ein Bruder'. Remember: 'der Bruder' is masculine! Because you 'have' him, he is an Accusative direct object: *Ich habe einen Bruder*.",
-    sections: [
+    "overview": "Certain verbs naturally require a direct object to complete their meaning. In this lesson, you will master the most common high-frequency Akkusativ verbs used in shopping, eating, and daily tasks from Netzwerk A1 Kapitel 4 ('Guten Appetit!').",
+    "canDo": "Can use high-frequency accusative verbs (haben, brauchen, kaufen, suchen, nehmen, essen, trinken) correctly with direct objects.",
+    "teacherNote": "Whenever you use 'haben' (to have) or 'brauchen' (to need), mentally trigger the accusative masculine shift: 'Ich habe einen...', 'Ich brauche einen...'. This single habit will make you sound 10x more fluent!",
+    "sections": [
       {
-        title: "1. The Top 10 Akkusativ Verbs",
-        description: "These verbs trigger an immediate direct object in Akkusativ:",
-        table: {
-          headers: ["Verb", "Meaning", "Example with Masculine Noun", "Translation"],
-          rows: [
-            ["haben", "to have", "Ich habe einen Computer.", "I have a computer (der Computer)."],
-            ["brauchen", "to need", "Wir brauchen einen Schlüssel.", "We need a key (der Schlüssel)."],
-            ["suchen", "to search / look for", "Suchst du den Bahnhof?", "Are you looking for the station (der Bahnhof)?"],
-            ["kaufen", "to buy", "Er kauft einen Pullover.", "He buys a sweater (der Pullover)."],
-            ["sehen", "to see", "Ich sehe den Bus.", "I see the bus (der Bus)."],
-            ["nehmen", "to take", "Ich nehme den Tee.", "I take the tea (der Tee)."],
-            ["finden", "to find / think of", "Wie findest du den Film?", "How do you find/like the movie (der Film)?"],
-            ["essen", "to eat", "Sie isst einen Apfel.", "She eats an apple (der Apfel)."],
-            ["trinken", "to drink", "Er trinkt einen Saft.", "He drinks a juice (der Saft)."],
-            ["besuchen", "to visit", "Wir besuchen den Zoo.", "We visit the zoo (der Zoo)."],
+        "title": "1. Typische Verben mit Akkusativ (Akkusativ-Verben)",
+        "description": "Essential verbs that always take a direct object:",
+        "table": {
+          "headers": [
+            "Verb",
+            "Bedeutung",
+            "Beispielsatz mit Maskulin (Akkusativ)",
+            "Beispiel mit Feminin / Neutral"
           ],
-        },
+          "rows": [
+            [
+              "haben",
+              "to have",
+              "Ich habe einen Bruder.",
+              "Ich habe eine Schwester / ein Auto."
+            ],
+            [
+              "brauchen",
+              "to need",
+              "Brauchst du einen Stift?",
+              "Wir brauchen eine Lampe / ein Buch."
+            ],
+            [
+              "kaufen",
+              "to buy",
+              "Er kauft einen Pullover.",
+              "Sie kauft eine Jacke / ein Brot."
+            ],
+            [
+              "suchen",
+              "to look for",
+              "Ich suche den Bahnhof.",
+              "Suchst du die Post / das Café?"
+            ],
+            [
+              "nehmen",
+              "to take / order",
+              "Ich nehme einen Kaffee.",
+              "Ich nehme eine Suppe / ein Wasser."
+            ],
+            [
+              "essen",
+              "to eat",
+              "Er isst einen Apfel.",
+              "Er isst eine Banane / ein Brötchen."
+            ],
+            [
+              "trinken",
+              "to drink",
+              "Wir trinken einen Tee.",
+              "Wir trinken eine Limonade / ein Bier."
+            ],
+            [
+              "sehen",
+              "to see",
+              "Siehst du den Mann dort?",
+              "Siehst du die Frau / das Schild?"
+            ]
+          ]
+        }
       },
-    ],
-    dialogue: {
-      context: "Packing a suitcase before a flight from Vienna Airport:",
-      lines: [
-        {
-          speaker: "Moritz",
-          german: "Hast du deinen Reisepass?",
-          english: "Do you have your passport (der Pass -> deinen)?",
-        },
-        {
-          speaker: "Anna",
-          german: "Ja, ich habe den Pass in meiner Tasche. Aber ich suche meinen Koffer!",
-          english: "Yes, I have the passport in my bag. But I am looking for my suitcase (der Koffer -> meinen)!",
-        },
-        {
-          speaker: "Moritz",
-          german: "Dort drüben steht er! Wir nehmen jetzt ein Taxi.",
-          english: "There it is over there! We'll take a taxi (das Taxi) now.",
-        },
-      ],
-    },
-    funFact: {
-      title: "'Finden' Means Both 'To Find' and 'To Have an Opinion'!",
-      content:
-        "In German, the verb 'finden' means both physically finding something (*Ich finde meinen Schlüssel* - I find my key) and expressing an opinion (*Ich finde den Film super!* - I think the movie is great!). It's the most common way Germans ask for feedback: *Wie findest du das?*",
-    },
-    practice: [
       {
-        question: "Which sentence correctly says 'I need a pen' (der Stift)?",
-        options: ["Ich brauche ein Stift.", "Ich brauche einen Stift.", "Ich brauche eine Stift."],
-        answer: "Ich brauche einen Stift.",
-        explanation: "'der Stift' is masculine and becomes 'einen Stift' in the Accusative with 'brauchen'.",
-      },
+        "title": "2. Redemittel beim Einkaufen & Bestellen (Netzwerk A1)",
+        "description": "Phrases for ordering food and buying groceries:",
+        "items": [
+          {
+            "term": "Ich hätte gern... (+ Akkusativ)",
+            "meaning": "I would like to have... (polite ordering phrase)",
+            "example": "Ich hätte gern einen Cappuccino und ein Stück Kuchen."
+          },
+          {
+            "term": "Was kostet...? / Was kosten...?",
+            "meaning": "How much does ... cost? (singular vs. plural)",
+            "example": "Was kostet der Orangensaft? / Was kosten die Tomaten?"
+          },
+          {
+            "term": "Sonst noch etwas?",
+            "meaning": "Anything else? (standard shopkeeper question)",
+            "example": "Sonst noch etwas? - Nein danke, das ist alles."
+          }
+        ]
+      }
     ],
+    "dialogue": {
+      "context": "Im Supermarkt an der Kasse (Netzwerk A1 Kapitel 4):",
+      "lines": [
+        {
+          "speaker": "Kassiererin",
+          "german": "Guten Tag! Haben Sie eine Kundenkarte?",
+          "english": "Good day! Do you have a loyalty card?"
+        },
+        {
+          "speaker": "Paco",
+          "german": "Nein, leider nicht. Ich brauche noch eine Tüte bitte.",
+          "english": "No, unfortunately not. I still need a bag, please."
+        },
+        {
+          "speaker": "Kassiererin",
+          "german": "Hier ist eine Papiertüte. Möchten Sie den Beleg mitnehmen?",
+          "english": "Here is a paper bag. Would you like to take the receipt?"
+        },
+        {
+          "speaker": "Paco",
+          "german": "Ja, bitte. Vielen Dank und einen schönen Feierabend!",
+          "english": "Yes, please. Thank you very much and have a nice evening!"
+        }
+      ]
+    },
+    "funFact": {
+      "title": "German Grocery Bag Etiquette",
+      "content": "In German supermarkets, cashiers scan items at lightning speed, and bags are never given out for free! Shoppers always bring their own cloth bags ('der Stoffbeutel') and pack their groceries themselves. Be ready to pack quickly!"
+    },
+    "practice": [
+      {
+        "question": "Complete the sentence: 'Wir brauchen noch _____ (der) Schlüssel.'",
+        "options": [
+          "der",
+          "den",
+          "dem"
+        ],
+        "answer": "den",
+        "explanation": "'brauchen' requires an accusative direct object: der Schlüssel -> den Schlüssel."
+      },
+      {
+        "question": "What is the polite phrase for 'I would like to have...' in German?",
+        "options": [
+          "Ich will...",
+          "Ich hätte gern...",
+          "Ich habe..."
+        ],
+        "answer": "Ich hätte gern...",
+        "explanation": "'Ich hätte gern...' is the standard, courteous phrase used when ordering food or goods."
+      }
+    ]
   },
-
   "a1-ch5-l22": {
-    overview:
-      "Just as nouns change into direct objects, personal pronouns have distinct direct object forms in German. Saying 'Do you love me?' or 'I see him' requires Accusative personal pronouns.",
-    canDo:
-      "Can replace nouns with Accusative pronouns (mich, dich, ihn, sie, es, uns, euch, sie/Sie) in spoken and written German.",
-    teacherNote:
-      "Notice the exact parallel: in English 'he' becomes 'him', and in German 'er' becomes 'ihn'! 'ich' becomes 'mich', and 'du' becomes 'dich'.",
-    sections: [
+    "overview": "Just as nouns change in the Accusative case, subject pronouns have corresponding object forms. In English, 'I' becomes 'me' and 'he' becomes 'him'. In this lesson, you will master all 9 German accusative pronouns (mich, dich, ihn, sie, es, uns, euch, sie, Sie).",
+    "canDo": "Can use accusative personal pronouns in conversation to refer to people and objects without repeating nouns.",
+    "teacherNote": "Notice the direct parallels with the articles: 'der' becomes 'den' -> 'er' becomes 'ihn'. 'das' stays 'das' -> 'es' stays 'es'. 'die' stays 'die' -> 'sie' stays 'sie'!",
+    "sections": [
       {
-        title: "1. Nominative vs. Accusative Pronouns",
-        description: "Compare the subject form with the direct object form:",
-        table: {
-          headers: ["Nominativ (Subject)", "Akkusativ (Object)", "English Meaning", "Example in Context"],
-          rows: [
-            ["ich", "mich", "me", "Hörst du mich? (Do you hear me?)"],
-            ["du", "dich", "you (informal)", "Ich liebe dich. (I love you.)"],
-            ["er", "ihn", "him", "Ich kenne ihn gut. (I know him well.)"],
-            ["sie", "sie", "her", "Wir besuchen sie morgen. (We visit her tomorrow.)"],
-            ["es", "es", "it", "Ich sehe es nicht. (I don't see it.)"],
-            ["wir", "uns", "us", "Er ruft uns an. (He calls us.)"],
-            ["ihr", "euch", "you all", "Ich vermisse euch. (I miss you all.)"],
-            ["sie", "sie", "them", "Ich frage sie. (I ask them.)"],
-            ["Sie", "Sie", "you (formal)", "Ich verstehe Sie sehr gut. (I understand you very well.)"],
+        "title": "1. Die Personalpronomen im Akkusativ (Accusative Pronouns)",
+        "description": "Object pronouns answering 'Wen?' (Whom?):",
+        "table": {
+          "headers": [
+            "Nominativ (Subjekt)",
+            "Akkusativ (Objekt)",
+            "Englisch",
+            "Beispielsatz (Netzwerk A1)"
           ],
-        },
+          "rows": [
+            [
+              "ich (I)",
+              "mich",
+              "me",
+              "Liebst du mich? / Hörst du mich?"
+            ],
+            [
+              "du (you informal)",
+              "dich",
+              "you",
+              "Ich rufe dich heute Abend an."
+            ],
+            [
+              "er (he)",
+              "ihn",
+              "him / it (m)",
+              "Ich kenne Herrn Schubert. Kennst du ihn auch?"
+            ],
+            [
+              "sie (she)",
+              "sie",
+              "her / it (f)",
+              "Wo ist Julia? Ich sehe sie dort drüben."
+            ],
+            [
+              "es (it)",
+              "es",
+              "it (n)",
+              "Das Buch ist super. Ich lese es gerade."
+            ],
+            [
+              "wir (we)",
+              "uns",
+              "us",
+              "Der Lehrer fragt uns."
+            ],
+            [
+              "ihr (you all)",
+              "euch",
+              "you all",
+              "Ich lade euch zur Party ein!"
+            ],
+            [
+              "sie (they)",
+              "sie",
+              "them",
+              "Paco und Christian kommen. Siehst du sie?"
+            ],
+            [
+              "Sie (you formal)",
+              "Sie",
+              "you (formal)",
+              "Herr Kaiser, ich informiere Sie morgen."
+            ]
+          ]
+        }
       },
-    ],
-    dialogue: {
-      context: "Two friends trying to spot each other in a crowded train station in Munich:",
-      lines: [
-        {
-          speaker: "Fabian (am Telefon)",
-          german: "Hallo Clara! Wo bist du? Siehst du mich?",
-          english: "Hello Clara! Where are you? Do you see me (mich)?",
-        },
-        {
-          speaker: "Clara",
-          german: "Nein, ich sehe dich noch nicht. Ich stehe vor dem Info-Point.",
-          english: "No, I don't see you (dich) yet. I am standing in front of the info point.",
-        },
-        {
-          speaker: "Fabian",
-          german: "Ah, jetzt sehe ich dich! Ich komme zu dir.",
-          english: "Ah, now I see you! I'm coming to you.",
-        },
-      ],
-    },
-    funFact: {
-      title: "'Ich liebe dich' - The Famous Cultural Line",
-      content:
-        "The globally famous phrase 'Ich liebe dich' (I love you) is a pure textbook demonstration of the Accusative case: 'Ich' (Subject/Nominativ) + 'liebe' (Verb in Pos 2) + 'dich' (Direct Object/Akkusativ). Germans reserve this phrase for serious romantic relationships, preferring 'Ich hab dich lieb' for family and close friends!",
-    },
-    practice: [
       {
-        question: "How do you translate: 'We know him'?",
-        options: ["Wir kennen er.", "Wir kennen ihn.", "Wir kennen ihm."],
-        answer: "Wir kennen ihn.",
-        explanation: "'er' becomes 'ihn' in the Accusative direct object position.",
-      },
+        "title": "2. Pronouns Replacing Things (ihn, sie, es)",
+        "description": "In German, 'it' is not always 'es'! The pronoun must match the noun's gender:",
+        "items": [
+          {
+            "term": "ihn (for masculine objects)",
+            "meaning": "Replaces masculine nouns in accusative",
+            "example": "Kaufst du den Pullover? - Ja, ich kaufe ihn."
+          },
+          {
+            "term": "sie (for feminine objects)",
+            "meaning": "Replaces feminine nouns in accusative",
+            "example": "Magst du die Suppe? - Ja, ich mag sie sehr."
+          },
+          {
+            "term": "es (for neuter objects)",
+            "meaning": "Replaces neuter nouns in accusative",
+            "example": "Trinkst du das Bier? - Nein, ich trinke es nicht."
+          }
+        ]
+      }
     ],
+    "dialogue": {
+      "context": "Suche nach Freunden am Bahnhof in Frankfurt (Netzwerk A1):",
+      "lines": [
+        {
+          "speaker": "Julia",
+          "german": "Hallo Gregor! Wo bist du? Ich sehe dich nicht.",
+          "english": "Hello Gregor! Where are you? I don't see you."
+        },
+        {
+          "speaker": "Gregor",
+          "german": "Ich stehe an Gleis 4. Siehst du mich jetzt?",
+          "english": "I am standing at platform 4. Do you see me now?"
+        },
+        {
+          "speaker": "Julia",
+          "german": "Ah ja, jetzt sehe ich dich! Und wo ist Paco? Hast du ihn gesehen?",
+          "english": "Ah yes, now I see you! And where is Paco? Have you seen him?"
+        },
+        {
+          "speaker": "Gregor",
+          "german": "Paco kommt gleich. Er holt noch einen Kaffee.",
+          "english": "Paco is coming right away. He is getting a coffee."
+        }
+      ]
+    },
+    "funFact": {
+      "title": "German Objects Have Personalities",
+      "content": "Because German objects carry gender, native speakers naturally refer to objects as 'he' or 'she'! For example: 'Wo ist der Schlüssel?' - 'Ich habe IHN!' (Where is the key? - I have HIM!). It takes a little practice, but soon it becomes second nature."
+    },
+    "practice": [
+      {
+        "question": "Which pronoun replaces 'den Kuchen' (masculine cake) in the sentence: 'Ich esse _____ gern.'?",
+        "options": [
+          "es",
+          "ihn",
+          "sie"
+        ],
+        "answer": "ihn",
+        "explanation": "'der Kuchen' is masculine, so its accusative pronoun is 'ihn'."
+      },
+      {
+        "question": "How do you say to a friend: 'I will call you today'?",
+        "options": [
+          "Ich rufe du heute an.",
+          "Ich rufe dich heute an.",
+          "Ich rufe dir heute an."
+        ],
+        "answer": "Ich rufe dich heute an.",
+        "explanation": "'anrufen' takes the accusative pronoun: du -> dich."
+      }
+    ]
   },
-
   "a1-ch5-l23": {
-    overview:
-      "When adjectives stand directly in front of a noun (attributive adjectives), they take specific grammatical endings to show case and gender. At Level A1, the most critical pattern to master is the masculine Accusative ending '-en'.",
-    canDo:
-      "Can add correct basic adjective endings in the Accusative case, especially the universal masculine '-en' ending (einen neuen Tisch, einen kalten Saft).",
-    teacherNote:
-      "The 'Akkusativ Masculine Rule' is bulletproof: in the Accusative case with masculine nouns, EVERYTHING ends in -en! *den neuEN Tisch*, *einen kaltEN Kaffee*, *meinen gutEN Freund*.",
-    sections: [
+    "overview": "When you describe an object directly before the noun (e.g. 'a hot coffee', 'a cold beer'), the adjective takes an ending. In this lesson, you will learn the most practical A1 adjective endings in the Accusative case.",
+    "canDo": "Can apply basic adjective endings in the accusative case when ordering food, shopping, or describing everyday items.",
+    "teacherNote": "Focus on the masculine shift: whenever you describe a masculine noun with 'einen' or 'den' in accusative, the adjective ALWAYS ends in '-en'! (einen heißEN Kaffee, einen frischEN Salat).",
+    "sections": [
       {
-        title: "1. Adjectives in the Accusative Case",
-        description: "Notice how masculine adjectives consistently adopt the '-en' ending:",
-        table: {
-          headers: ["Gender", "With Indefinite Article (ein/eine)", "Example", "Meaning"],
-          rows: [
-            ["Masculine (m)", "einen + [Adjective]-EN", "Ich kaufe einen neuen Schrank.", "I buy a new cupboard."],
-            ["Feminine (f)", "eine + [Adjective]-E", "Ich trinke eine heiße Schokolade.", "I drink a hot chocolate."],
-            ["Neuter (n)", "ein + [Adjective]-ES", "Er liest ein interessantes Buch.", "He reads an interesting book."],
-            ["Plural (pl)", "keine / viele + [Adjective]-EN", "Wir haben viele gute Freunde.", "We have many good friends."],
+        "title": "1. Adjektivendungen nach unbestimmtem Artikel (ein / eine / ein)",
+        "description": "Adjective endings when describing new items with 'ein-':",
+        "table": {
+          "headers": [
+            "Genus",
+            "Akkusativ-Muster",
+            "Beispiel (Netzwerk A1)",
+            "Bedeutung"
           ],
-        },
+          "rows": [
+            [
+              "Maskulin (m)",
+              "einen + [Adjektiv]-EN",
+              "Ich trinke einen heißEN Tee.",
+              "a hot tea"
+            ],
+            [
+              "Feminin (f)",
+              "eine + [Adjektiv]-E",
+              "Ich esse eine frischE Pizza.",
+              "a fresh pizza"
+            ],
+            [
+              "Neutral (n)",
+              "ein + [Adjektiv]-ES",
+              "Ich nehme ein kaltES Mineralwasser.",
+              "a cold mineral water"
+            ],
+            [
+              "Plural (pl)",
+              "keine / viele + [Adjektiv]-EN",
+              "Wir kaufen frischE Brötchen.",
+              "fresh rolls"
+            ]
+          ]
+        }
       },
-    ],
-    dialogue: {
-      context: "Shopping for electronics in a department store in Berlin:",
-      lines: [
-        {
-          speaker: "Kunde",
-          german: "Guten Tag, ich suche einen schnellen Laptop für die Universität.",
-          english: "Good day, I am looking for a fast laptop (der Laptop -> einen schnellen) for university.",
-        },
-        {
-          speaker: "Verkäufer",
-          german: "Wir haben hier ein sehr gutes Modell mit einem großen Bildschirm.",
-          english: "We have a very good model (das Modell -> ein gutes) here with a large screen.",
-        },
-        {
-          speaker: "Kunde",
-          german: "Das sieht super aus. Ich nehme ihn!",
-          english: "That looks super. I'll take it!",
-        },
-      ],
-    },
-    funFact: {
-      title: "Mark Twain's Battle with German Adjective Endings",
-      content:
-        "In his famous 1880 essay *The Awful German Language*, Mark Twain wrote: 'When a German gets his hands on an adjective, he declines it, and inflects it, until all its common sense is completely gone.' Fortunately, at A1, remembering that masculine direct objects take '-en' solves 90% of all practical situations!",
-    },
-    practice: [
       {
-        question: "Complete the sentence: 'Er trinkt einen _____ Kaffee.' (kalt)",
-        options: ["kalte", "kaltes", "kalten"],
-        answer: "kalten",
-        explanation: "Because 'Kaffee' is masculine and in the Accusative case ('einen'), the adjective takes '-en': 'kalten'.",
-      },
+        "title": "2. Adjektivendungen nach bestimmtem Artikel (den / die / das)",
+        "description": "When referring to a specific item with 'der / die / das':",
+        "items": [
+          {
+            "term": "den + Adjektiv-en (m)",
+            "meaning": "Masculine specific direct object",
+            "example": "Ich nehme den großen Tisch."
+          },
+          {
+            "term": "die + Adjektiv-e (f)",
+            "meaning": "Feminine specific direct object",
+            "example": "Gefällt dir die rote Jacke?"
+          },
+          {
+            "term": "das + Adjektiv-e (n)",
+            "meaning": "Neuter specific direct object",
+            "example": "Wir buchen das moderne Zimmer."
+          }
+        ]
+      }
     ],
-  },
+    "dialogue": {
+      "context": "Bestellung im Café in Köln (Netzwerk A1 Kapitel 4):",
+      "lines": [
+        {
+          "speaker": "Kellnerin",
+          "german": "Guten Tag! Was darf ich Ihnen bringen?",
+          "english": "Good day! What may I bring you?"
+        },
+        {
+          "speaker": "Sarah",
+          "german": "Ich hätte gern einen großen Cappuccino und ein leckeres Stück Käsekuchen.",
+          "english": "I would like a large cappuccino and a delicious piece of cheesecake."
+        },
+        {
+          "speaker": "Kellnerin",
+          "german": "Sehr gern. Möchten Sie auch ein kaltes Wasser dazu?",
+          "english": "Very gladly. Would you also like a cold water with that?"
+        },
+        {
+          "speaker": "Sarah",
+          "german": "Ja, bitte ein kleines Mineralwasser mit Kohlensäure.",
+          "english": "Yes, please a small sparkling mineral water."
+        }
+      ]
+    },
+    "funFact": {
+      "title": "'Mit oder ohne Kohlensäure?'",
+      "content": "When you order 'Wasser' in Germany, you will almost always be asked: 'Mit oder ohne Kohlensäure?' (Sparkling or still?). By default, Germans love sparkling water ('Sprudel' / 'Medium'). If you prefer flat tap-style water, ask specifically for 'Stilles Wasser'!"
+    },
+    "practice": [
+      {
+        "question": "Which ending is correct: 'Ich trinke einen stark_____ Espresso.' (der Espresso)",
+        "options": [
+          "-e",
+          "-en",
+          "-es"
+        ],
+        "answer": "-en",
+        "explanation": "Masculine accusative after 'einen' always takes '-en': einen starken Espresso."
+      },
+      {
+        "question": "Choose the correct phrase: 'Sie möchte ein _____ (kalt) Bier.'",
+        "options": [
+          "kaltes",
+          "kalten",
+          "kalte"
+        ],
+        "answer": "kaltes",
+        "explanation": "'das Bier' is neuter, so after 'ein' in accusative it takes '-es': ein kaltes Bier."
+      }
+    ]
+  }
 };
