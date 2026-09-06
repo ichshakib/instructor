@@ -1,12 +1,7 @@
 "use client";
 
 import React, { useState, useMemo } from "react";
-import {
-  CheckCircle2,
-  Eye,
-  EyeOff,
-  Check,
-} from "lucide-react";
+import { CheckCircle2 } from "lucide-react";
 
 interface AlphabetLetter {
   char: string;
@@ -117,39 +112,6 @@ const DIALOGUE_LINES = [
     english: "Thank you very much, Mr. Schubert! Your classroom is number 12 on the first floor.",
     role: "Receptionist",
     avatarChar: "👩‍💼",
-  },
-];
-
-const PRACTICE_QUESTIONS = [
-  {
-    question: "How is the German letter 'W' in 'Wasser' (water) pronounced?",
-    options: [
-      "Like English 'W' in 'water'",
-      "Like English 'V' in 'vase'",
-      "Silent",
-    ],
-    answer: "Like English 'V' in 'vase'",
-    explanation: "In German, the letter 'W' is consistently pronounced like the English 'V'. German has no English 'W' sound.",
-  },
-  {
-    question: "How do you pronounce the number 'zehn' (ten)?",
-    options: [
-      "Like English 'zen'",
-      "Like 'tsehn' with a sharp 'ts'",
-      "Like 'kehn'",
-    ],
-    answer: "Like 'tsehn' with a sharp 'ts'",
-    explanation: "The letter 'Z' in German always makes a crisp 'ts' sound, exactly as at the end of 'cats'.",
-  },
-  {
-    question: "Which question asks someone to spell their name in German?",
-    options: [
-      "Wie heißen Sie?",
-      "Woher kommen Sie?",
-      "Wie schreibt man das?",
-    ],
-    answer: "Wie schreibt man das?",
-    explanation: "'Wie schreibt man das?' means 'How do you write/spell that?' in German.",
   },
 ];
 
@@ -404,10 +366,6 @@ export function GermanLessonExplorer() {
   const [alphabetFilter, setAlphabetFilter] = useState<"all" | "shifts" | "vowels" | "consonants">("all");
   const [selectedLetter, setSelectedLetter] = useState<string>("W");
 
-  // Practice state
-  const [selectedAnswers, setSelectedAnswers] = useState<Record<number, number>>({});
-  const [revealedAnswers, setRevealedAnswers] = useState<Record<number, boolean>>({});
-
   const filteredAlphabet = useMemo(() => {
     if (alphabetFilter === "shifts") return GERMAN_ALPHABET.filter((l) => l.isShift);
     if (alphabetFilter === "vowels") return GERMAN_ALPHABET.filter((l) => l.isVowel);
@@ -423,24 +381,9 @@ export function GermanLessonExplorer() {
       {/* LESSON INTRODUCTION */}
       {/* ========================================================================= */}
       <header className="space-y-4">
-        <div className="flex items-center gap-2">
-          <span className="text-[11px] font-mono font-bold tracking-widest text-neutral-400 uppercase">
-            Lesson 01 • Interactive Masterclass
-          </span>
-          <span className="text-neutral-300">•</span>
-          <span className="text-[11px] font-bold text-neutral-500 uppercase tracking-wider">
-            Netzwerk Deutsch A1.1
-          </span>
-        </div>
-
-        <div className="space-y-2">
-          <h1 className="text-2xl sm:text-3xl md:text-4xl font-black text-[#18191E] tracking-tight">
-            Das Deutsche Alphabet &amp; Aussprache
-          </h1>
-          <p className="text-sm sm:text-base text-neutral-600 leading-relaxed font-normal">
-            Willkommen! In German, what you see is what you say. Unlike English, where spelling rules constantly surprise you, German pronunciation is remarkably logical and consistent. Once you learn how these sounds work together, you will be able to read almost any German word aloud with confidence. Let&apos;s go through each concept together one by one.
-          </p>
-        </div>
+        <p className="text-sm sm:text-base text-neutral-600 leading-relaxed font-normal">
+          Willkommen! In German, what you see is what you say. Unlike English, where spelling rules constantly surprise you, German pronunciation is remarkably logical and consistent. Once you learn how these sounds work together, you will be able to read almost any German word aloud with confidence. Let&apos;s go through each concept together one by one.
+        </p>
 
         {/* Teacher Advice Callout */}
         <div className="p-4 sm:p-5 rounded-xl bg-neutral-50/80 border-l-2 border-[#18191E] text-neutral-800 space-y-1.5">
@@ -961,95 +904,6 @@ export function GermanLessonExplorer() {
           <p className="leading-relaxed text-neutral-600">
             In German, every noun is capitalized without exception: <span className="font-bold text-[#18191E]">der Name</span> (the name), <span className="font-bold text-[#18191E]">der Nachname</span> (the surname), and <span className="font-bold text-[#18191E]">der Kursraum</span> (the classroom). This convention originated in the 17th century to help readers parse sentence roles quickly.
           </p>
-        </div>
-      </section>
-
-      {/* ========================================================================= */}
-      {/* 6. QUICK SELF-ASSESSMENT */}
-      {/* ========================================================================= */}
-      <section className="border-t border-neutral-200/80 pt-10 space-y-6">
-        <div className="space-y-1.5">
-          <h2 className="text-xl sm:text-2xl font-black text-[#18191E] tracking-tight">
-            6. Quick Practice: Check Your Ear
-          </h2>
-          <p className="text-xs sm:text-sm text-neutral-600 leading-relaxed">
-            Before we finish our first lesson, test your ear and intuition with these three quick questions. Pick an answer and check the teacher&apos;s explanation:
-          </p>
-        </div>
-
-        <div className="space-y-4">
-          {PRACTICE_QUESTIONS.map((q, qIdx) => {
-            const isRevealed = Boolean(revealedAnswers[qIdx]);
-            const selectedOpt = selectedAnswers[qIdx];
-
-            return (
-              <div
-                key={qIdx}
-                className="p-4 sm:p-5 rounded-2xl bg-neutral-50/70 border border-neutral-200/90 space-y-3.5"
-              >
-                <div className="flex items-start gap-2.5">
-                  <span className="w-6 h-6 rounded-lg bg-[#18191E] text-white text-xs font-bold flex items-center justify-center shrink-0 mt-0.5">
-                    Q{qIdx + 1}
-                  </span>
-                  <p className="text-sm font-bold text-[#18191E] leading-relaxed">
-                    {q.question}
-                  </p>
-                </div>
-
-                <div className="grid grid-cols-1 sm:grid-cols-3 gap-2 pl-8">
-                  {q.options.map((opt, optIdx) => {
-                    const isChosen = selectedOpt === optIdx;
-                    return (
-                      <button
-                        key={optIdx}
-                        type="button"
-                        onClick={() => setSelectedAnswers((prev) => ({ ...prev, [qIdx]: optIdx }))}
-                        className={`px-3 py-2.5 rounded-xl border text-xs font-semibold text-left transition-all cursor-pointer ${
-                          isChosen
-                            ? "bg-[#18191E] text-white border-[#18191E] shadow-2xs"
-                            : "bg-white hover:bg-neutral-100 text-neutral-800 border-neutral-200"
-                        }`}
-                      >
-                        {opt}
-                      </button>
-                    );
-                  })}
-                </div>
-
-                <div className="pl-8 pt-1">
-                  <button
-                    type="button"
-                    onClick={() => setRevealedAnswers((prev) => ({ ...prev, [qIdx]: !prev[qIdx] }))}
-                    className="inline-flex items-center gap-1.5 text-xs font-bold text-neutral-800 hover:text-black cursor-pointer"
-                  >
-                    {isRevealed ? (
-                      <>
-                        <EyeOff className="w-3.5 h-3.5" />
-                        <span>Hide Explanation</span>
-                      </>
-                    ) : (
-                      <>
-                        <Eye className="w-3.5 h-3.5" />
-                        <span>Verify Answer &amp; Explanation</span>
-                      </>
-                    )}
-                  </button>
-
-                  {isRevealed && (
-                    <div className="mt-3 p-3.5 rounded-xl bg-white border border-neutral-200 text-xs space-y-1">
-                      <div className="font-bold text-neutral-900 flex items-center gap-1.5">
-                        <Check className="w-3.5 h-3.5 text-neutral-900" />
-                        <span>Correct Answer: {q.answer}</span>
-                      </div>
-                      <p className="text-neutral-600 leading-relaxed pl-5">
-                        {q.explanation}
-                      </p>
-                    </div>
-                  )}
-                </div>
-              </div>
-            );
-          })}
         </div>
       </section>
     </div>

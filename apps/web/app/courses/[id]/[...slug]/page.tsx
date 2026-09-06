@@ -25,11 +25,7 @@ import {
   AlertCircle,
   GraduationCap,
   Sparkles,
-  CheckCircle2,
-  Eye,
-  EyeOff,
   Play,
-  Check,
 } from "lucide-react";
 import { GermanLessonExplorer } from "../../../../components/GermanLessonExplorer";
 
@@ -66,15 +62,6 @@ export default function CourseDetailPage() {
 
   // Active Lesson ID
   const [activeLessonId, setActiveLessonId] = useState<string | null>(null);
-
-  // Quick practice answer reveal state for standard lessons
-  const [revealedAnswers, setRevealedAnswers] = useState<Record<number, boolean>>({});
-  const [selectedAnswers, setSelectedAnswers] = useState<Record<number, number>>({});
-
-  useEffect(() => {
-    setRevealedAnswers({});
-    setSelectedAnswers({});
-  }, [activeLessonId]);
 
   // Track whether initial level and lesson have been loaded from URL
   const isInitializedRef = useRef<boolean>(false);
@@ -915,13 +902,10 @@ export default function CourseDetailPage() {
                   <div className="max-w-4xl w-full mx-auto space-y-8 py-2 pb-16">
                     {/* Lesson Overview & Objectives */}
                     <div className="p-6 sm:p-7 rounded-2xl bg-neutral-50 border border-neutral-200 space-y-4">
-                      <div className="border-b border-neutral-200 pb-3">
-                        <span className="text-[11px] font-bold text-neutral-500 uppercase tracking-wider block mb-1">
+                      <div className="border-b border-neutral-200 pb-2">
+                        <span className="text-xs font-bold text-neutral-500 uppercase tracking-wider block">
                           Lesson Overview
                         </span>
-                        <h2 className="text-xl sm:text-2xl font-bold text-[#18191E]">
-                          {activeLessonInfo.lesson.title}
-                        </h2>
                       </div>
 
                       <p className="text-sm sm:text-base text-neutral-700 leading-relaxed font-normal">
@@ -1065,96 +1049,6 @@ export default function CourseDetailPage() {
                       </div>
                     )}
 
-                    {/* Quick Practice & Self-Check */}
-                    {currentLessonContent.practice && currentLessonContent.practice.length > 0 && (
-                      <div className="p-6 sm:p-7 rounded-2xl bg-white border border-neutral-200 shadow-2xs space-y-5">
-                        <div className="flex items-center gap-2 border-b border-neutral-100 pb-3">
-                          <CheckCircle2 className="w-4 h-4 text-[#18191E] shrink-0" />
-                          <h3 className="text-sm font-bold uppercase tracking-wider text-[#18191E]">
-                            Knowledge Check &amp; Practice
-                          </h3>
-                        </div>
-
-                        <div className="space-y-4">
-                          {currentLessonContent.practice.map((item, qIdx) => {
-                            const isRevealed = Boolean(revealedAnswers[qIdx]);
-                            const selectedOpt = selectedAnswers[qIdx];
-
-                            return (
-                              <div
-                                key={qIdx}
-                                className="p-4 sm:p-5 rounded-xl bg-neutral-50 border border-neutral-200 space-y-3"
-                              >
-                                <div className="flex items-start gap-2.5">
-                                  <span className="w-5 h-5 rounded-md bg-[#18191E] text-white text-[10px] font-bold flex items-center justify-center shrink-0 mt-0.5">
-                                    {qIdx + 1}
-                                  </span>
-                                  <p className="text-xs sm:text-sm font-bold text-[#18191E] leading-relaxed">
-                                    {item.question}
-                                  </p>
-                                </div>
-
-                                {item.options && (
-                                  <div className="grid grid-cols-1 sm:grid-cols-3 gap-2 pl-7">
-                                    {item.options.map((opt, oIdx) => (
-                                      <button
-                                        key={oIdx}
-                                        type="button"
-                                        onClick={() => setSelectedAnswers((prev) => ({ ...prev, [qIdx]: oIdx }))}
-                                        className={`px-3 py-2 rounded-lg border text-xs font-medium text-left transition-all cursor-pointer ${
-                                          selectedOpt === oIdx
-                                            ? "bg-[#18191E] text-white border-[#18191E]"
-                                            : "bg-white hover:bg-neutral-100 text-neutral-800 border-neutral-200"
-                                        }`}
-                                      >
-                                        {opt}
-                                      </button>
-                                    ))}
-                                  </div>
-                                )}
-
-                                <div className="pl-7 pt-1">
-                                  <button
-                                    type="button"
-                                    onClick={() =>
-                                      setRevealedAnswers((prev) => ({
-                                        ...prev,
-                                        [qIdx]: !prev[qIdx],
-                                      }))
-                                    }
-                                    className="inline-flex items-center gap-1.5 text-xs font-bold text-neutral-800 hover:text-black cursor-pointer"
-                                  >
-                                    {isRevealed ? (
-                                      <>
-                                        <EyeOff className="w-3.5 h-3.5" />
-                                        <span>Hide Solution</span>
-                                      </>
-                                    ) : (
-                                      <>
-                                        <Eye className="w-3.5 h-3.5" />
-                                        <span>Verify Answer &amp; Explanation</span>
-                                      </>
-                                    )}
-                                  </button>
-
-                                  {isRevealed && (
-                                    <div className="mt-3 p-3 rounded-xl bg-white border border-neutral-200 text-xs space-y-1">
-                                      <div className="font-bold text-emerald-800 flex items-center gap-1.5">
-                                        <Check className="w-3.5 h-3.5 text-emerald-600" />
-                                        <span>Correct Answer: {item.answer}</span>
-                                      </div>
-                                      <p className="text-neutral-600 leading-relaxed pl-5">
-                                        {item.explanation}
-                                      </p>
-                                    </div>
-                                  )}
-                                </div>
-                              </div>
-                            );
-                          })}
-                        </div>
-                      </div>
-                    )}
                   </div>
                 ) : (
                   /* Empty state if content is being prepared */

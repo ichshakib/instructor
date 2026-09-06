@@ -363,39 +363,7 @@ export const CHAPTER_1_LESSONS: Record<string, LessonContent> = {
     "funFact": {
       "title": "Universal Noun Capitalization in German",
       "content": "German is the only major world language where every single noun is capitalized! Whether it is 'der Name' (name), 'das Buch' (book), or 'die Musik' (music), capitalizing nouns was standardized in the 17th century to help readers instantly distinguish subjects and objects in long philosophical and literary texts."
-    },
-    "practice": [
-      {
-        "question": "How is the German letter 'W' in 'Wasser' (water) pronounced?",
-        "options": [
-          "Like English 'W' in 'water'",
-          "Like English 'V' in 'vase'",
-          "Silent"
-        ],
-        "answer": "Like English 'V' in 'vase'",
-        "explanation": "In German, the letter 'W' is consistently pronounced like the English 'V'."
-      },
-      {
-        "question": "How do you pronounce the number 'zehn' (ten)?",
-        "options": [
-          "Like English 'zen'",
-          "Like 'tsehn' with a sharp 'ts'",
-          "Like 'kehn'"
-        ],
-        "answer": "Like 'tsehn' with a sharp 'ts'",
-        "explanation": "The letter 'Z' in German always makes a crisp 'ts' sound, exactly as in 'cats'."
-      },
-      {
-        "question": "Which question asks someone to spell their name?",
-        "options": [
-          "Wie heißen Sie?",
-          "Woher kommen Sie?",
-          "Wie schreibt man das?"
-        ],
-        "answer": "Wie schreibt man das?",
-        "explanation": "'Wie schreibt man das?' means 'How do you spell/write that?' in German."
-      }
-    ]
+    }
   },
   "a1-ch1-l2": {
     "overview": "German features four characters you won't find in the standard English alphabet: the three Umlauts (ä, ö, ü) and the unique ligature Eszett (ß). In this lesson, you will master mouth positioning for these authentic sounds, learn the golden rule for diphthongs (ei vs. ie), and master hard vs. soft 'ch'.",
@@ -515,29 +483,7 @@ export const CHAPTER_1_LESSONS: Record<string, LessonContent> = {
     "funFact": {
       "title": "The Swiss 'ß' Rule",
       "content": "In Switzerland and Liechtenstein, the letter 'ß' does not exist! They replaced it entirely with 'ss' (Strasse, gross, heissen). However, in Germany and Austria, 'ß' is strictly necessary because it shows the preceding vowel is long (die Maße = dimensions) versus short (die Masse = mass)!"
-    },
-    "practice": [
-      {
-        "question": "How do you distinguish the pronunciation of 'Wein' (wine) and 'Wien' (Vienna)?",
-        "options": [
-          "Wein sounds like 'Vine', Wien sounds like 'Veen'",
-          "Wein sounds like 'Veen', Wien sounds like 'Vine'",
-          "They sound identical"
-        ],
-        "answer": "Wein sounds like 'Vine', Wien sounds like 'Veen'",
-        "explanation": "Pronounce the second vowel: in 'Wein', i sounds like 'eye'; in 'Wien', e sounds like 'ee'."
-      },
-      {
-        "question": "Which of these words contains the soft 'Ich-Laut' whispered sound?",
-        "options": [
-          "das Buch",
-          "die Nacht",
-          "nicht"
-        ],
-        "answer": "nicht",
-        "explanation": "Following the vowel 'i', 'ch' always forms the soft whispered Ich-Laut."
-      }
-    ]
+    }
   },
   "a1-ch1-l3": {
     "overview": "To converse naturally, you need subject pronouns. In German, there is a fundamental social division between informal 'du' (friends, family, peers) and formal 'Sie' (adult strangers, colleagues, professionals).",
@@ -667,29 +613,7 @@ export const CHAPTER_1_LESSONS: Record<string, LessonContent> = {
     "funFact": {
       "title": "Das 'Du' anbieten (Offering the Informal 'Du')",
       "content": "In German corporate culture, colleagues often work alongside each other for years using formal 'Sie' and last names (Herr Schmidt, Frau Weber). It is a major social milestone when the senior or older colleague says: 'Wir können uns gern duzen!' (We can gladly use 'du'). Once accepted, you switch to first names!"
-    },
-    "practice": [
-      {
-        "question": "You enter a doctor's office in Frankfurt. Which greeting and pronoun do you use?",
-        "options": [
-          "Hallo, wie heißt du?",
-          "Guten Tag! Wie geht es Ihnen?",
-          "Hi, wer seid ihr?"
-        ],
-        "answer": "Guten Tag! Wie geht es Ihnen?",
-        "explanation": "In professional healthcare settings, formal 'Sie' / 'Ihnen' is always required."
-      },
-      {
-        "question": "What is the meaning of 'ihr'?",
-        "options": [
-          "She",
-          "We",
-          "You all (informal plural)"
-        ],
-        "answer": "You all (informal plural)",
-        "explanation": "'ihr' is the informal plural pronoun used when talking to two or more friends."
-      }
-    ]
+    }
   },
   "a1-ch1-l4": {
     "overview": "The verb 'sein' (to be) is the single most essential verb in German. Just like English 'to be' (am, is, are), it is irregular, and mastering its conjugation allows you to state your identity, nationality, profession, and status.",
@@ -796,29 +720,7 @@ export const CHAPTER_1_LESSONS: Record<string, LessonContent> = {
     "funFact": {
       "title": "No 'A/An' before Professions in German!",
       "content": "In English, you say 'I am a teacher' or 'He is an architect'. In German, saying 'Ich bin ein Lehrer' sounds foreign! Germans drop the article completely: 'Ich bin Lehrer' or 'Ich bin Ingenieurin'."
-    },
-    "practice": [
-      {
-        "question": "Choose the correct form: 'Wir _____ heute in Berlin.'",
-        "options": [
-          "seid",
-          "sind",
-          "ist"
-        ],
-        "answer": "sind",
-        "explanation": "The correct conjugation of 'sein' for 'wir' is 'sind'."
-      },
-      {
-        "question": "How do you say: 'Who are you?' (informal)",
-        "options": [
-          "Wer bist du?",
-          "Wer ist du?",
-          "Wer seid du?"
-        ],
-        "answer": "Wer bist du?",
-        "explanation": "'du' always pairs with 'bist' (Wer bist du?)."
-      }
-    ]
+    }
   },
   "a1-ch1-l5": {
     "overview": "Together with 'sein', the verb 'haben' (to have) is one of the two pillar verbs of German. It expresses possession, physical feelings, schedule availability, and forms the past tense (Perfekt).",
