@@ -102,8 +102,10 @@ interface ApiResponse<T> {
   success: boolean;
 }
 
+import { FALLBACK_COURSES } from "./courses-fallback";
+
 /**
- * Fetches all courses or filtered courses from the backend API.
+ * Fetches all courses or filtered courses from the backend API, falling back to local dataset if offline.
  */
 export async function fetchCourses(
   options?: FetchCoursesOptions
@@ -136,13 +138,30 @@ export async function fetchCourses(
     const json: ApiResponse<CourseDetail[]> = await response.json();
     return json.data || [];
   } catch (error) {
-    console.error("Failed to fetch courses from API:", error);
-    throw error;
+    console.warn("API unavailable, using local fallback courses dataset:", error);
+    let list = [...FALLBACK_COURSES];
+    if (options?.category && options.category !== "All Courses" && options.category !== "All") {
+      list = list.filter((c) => c.category.toLowerCase() === options.category!.trim().toLowerCase());
+    }
+    if (options?.featured !== undefined) {
+      list = list.filter((c) => Boolean(c.featured) === options.featured);
+    }
+    if (options?.search && options.search.trim()) {
+      const term = options.search.trim().toLowerCase();
+      list = list.filter(
+        (c) =>
+          c.title.toLowerCase().includes(term) ||
+          c.description?.toLowerCase().includes(term) ||
+          c.tag1.toLowerCase().includes(term) ||
+          c.tag2.toLowerCase().includes(term)
+      );
+    }
+    return list;
   }
 }
 
 /**
- * Fetches a single course by ID from the backend API.
+ * Fetches a single course by ID from the backend API, falling back to local dataset if offline.
  */
 export async function fetchCourseById(id: string): Promise<CourseDetail | null> {
   try {
@@ -167,8 +186,9 @@ export async function fetchCourseById(id: string): Promise<CourseDetail | null> 
     const json: ApiResponse<CourseDetail> = await response.json();
     return json.data || null;
   } catch (error) {
-    console.error(`Failed to fetch course '${id}' from API:`, error);
-    throw error;
+    console.warn(`API unavailable, using local fallback for course '${id}':`, error);
+    const fallback = FALLBACK_COURSES.find((c) => c.id === id);
+    return fallback || null;
   }
 }
 

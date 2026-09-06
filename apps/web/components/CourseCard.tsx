@@ -417,13 +417,18 @@ export default function CourseCard({ course }: CourseCardProps) {
       >
         {course.imageUrl ? (
           <img
-            src={
-              course.imageUrl.startsWith("http")
-                ? course.imageUrl
-                : `${process.env.NEXT_PUBLIC_API_URL || "http://localhost:5000"}${course.imageUrl}`
-            }
+            src={course.imageUrl}
             alt={course.title}
             className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+            onError={(e) => {
+              // If relative fails, fallback to API URL or hide to show illustration
+              const target = e.currentTarget;
+              if (process.env.NEXT_PUBLIC_API_URL && !target.src.startsWith(process.env.NEXT_PUBLIC_API_URL)) {
+                target.src = `${process.env.NEXT_PUBLIC_API_URL}${course.imageUrl}`;
+              } else {
+                target.style.display = "none";
+              }
+            }}
           />
         ) : (
           renderCoverIllustration()
