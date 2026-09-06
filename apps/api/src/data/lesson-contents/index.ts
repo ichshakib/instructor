@@ -11,6 +11,10 @@ import { CHAPTER_9_LESSONS } from "./chapter9";
 import { CHAPTER_10_LESSONS } from "./chapter10";
 import { CHAPTER_11_LESSONS } from "./chapter11";
 import { CHAPTER_12_LESSONS } from "./chapter12";
+import { A2_LESSONS_CONTENT } from "./a2-lessons";
+import { B1_LESSONS_CONTENT } from "./b1-lessons";
+import { B2_LESSONS_CONTENT } from "./b2-lessons";
+import { C1_C2_LESSONS_CONTENT } from "./c1-c2-lessons";
 
 export const ALL_A1_LESSONS_CONTENT: Record<string, LessonContent> = {
   ...CHAPTER_1_LESSONS,
@@ -27,6 +31,17 @@ export const ALL_A1_LESSONS_CONTENT: Record<string, LessonContent> = {
   ...CHAPTER_12_LESSONS,
 };
 
+export const ALL_GERMAN_LESSONS_CONTENT: Record<string, LessonContent> = {
+  ...ALL_A1_LESSONS_CONTENT,
+  ...A2_LESSONS_CONTENT,
+  ...B1_LESSONS_CONTENT,
+  ...B2_LESSONS_CONTENT,
+  ...C1_C2_LESSONS_CONTENT,
+};
+
+export { A2_LESSONS_CONTENT, B1_LESSONS_CONTENT, B2_LESSONS_CONTENT, C1_C2_LESSONS_CONTENT };
+
 export function getLessonContent(lessonId: string): LessonContent | undefined {
-  return ALL_A1_LESSONS_CONTENT[lessonId];
+  return ALL_GERMAN_LESSONS_CONTENT[lessonId];
 }
+

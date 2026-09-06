@@ -1,5 +1,5 @@
 import { Course, Chapter } from "../../../types/course.types";
-import { ALL_A1_LESSONS_CONTENT } from "../../lesson-contents";
+import { ALL_GERMAN_LESSONS_CONTENT } from "../../lesson-contents";
 
 const A1_RAW_CHAPTERS: Chapter[] = [
   {
@@ -351,13 +351,14 @@ const A1_RAW_CHAPTERS: Chapter[] = [
           },
         ];
 
-const A1_CHAPTERS: Chapter[] = A1_RAW_CHAPTERS.map((chapter) => ({
-  ...chapter,
-  lessons: chapter.lessons.map((lesson) => ({
-    ...lesson,
-    content: ALL_A1_LESSONS_CONTENT[lesson.id],
-  })),
-}));
+const attachLessonContent = (chapters: Chapter[]): Chapter[] =>
+  chapters.map((chapter) => ({
+    ...chapter,
+    lessons: chapter.lessons.map((lesson) => ({
+      ...lesson,
+      content: ALL_GERMAN_LESSONS_CONTENT[lesson.id] || lesson.content,
+    })),
+  }));
 
 export const germanCourse: Course = {
     id: "german-language-course",
@@ -386,13 +387,13 @@ export const germanCourse: Course = {
         level: "A1",
         title: "A1 • Absolute Beginner",
         description: "Foundations of German: Alphabet, basic greetings, core grammar, sentence structure, and daily survival vocabulary.",
-        chapters: A1_CHAPTERS,
+        chapters: attachLessonContent(A1_RAW_CHAPTERS),
       },
       {
         level: "A2",
         title: "A2 • Elementary German",
         description: "Expand conversations: Past tense (Perfekt), modal verbs, separable verbs, and dative case.",
-        chapters: [
+        chapters: attachLessonContent([
           {
             id: "a2-ch1",
             title: "Chapter 1: Talking About the Past (Das Perfekt)",
@@ -441,13 +442,13 @@ export const germanCourse: Course = {
               },
             ],
           },
-        ],
+        ]),
       },
       {
         level: "B1",
         title: "B1 • Intermediate German",
         description: "Independent language use: Subordinate clauses, passive voice, adjective declensions, and storytelling.",
-        chapters: [
+        chapters: attachLessonContent([
           {
             id: "b1-ch1",
             title: "Chapter 1: Complex Sentence Structures & Subordinate Clauses",
@@ -480,13 +481,13 @@ export const germanCourse: Course = {
               },
             ],
           },
-        ],
+        ]),
       },
       {
         level: "B2",
         title: "B2 • Upper Intermediate",
         description: "Fluent communication: Subjunctive II (Konjunktiv II), advanced prepositions, and professional German.",
-        chapters: [
+        chapters: attachLessonContent([
           {
             id: "b2-ch1",
             title: "Chapter 1: Hypotheticals & Politeness (Konjunktiv II)",
@@ -519,13 +520,13 @@ export const germanCourse: Course = {
               },
             ],
           },
-        ],
+        ]),
       },
       {
         level: "C1",
         title: "C1 • Advanced German",
         description: "Sophisticated communication: Nominalization style, participle constructions, and nuances.",
-        chapters: [
+        chapters: attachLessonContent([
           {
             id: "c1-ch1",
             title: "Chapter 1: Nominalstil & Scientific Discourse",
@@ -542,13 +543,13 @@ export const germanCourse: Course = {
               },
             ],
           },
-        ],
+        ]),
       },
       {
         level: "C2",
         title: "C2 • Mastery & Native Fluency",
         description: "Near-native precision: Idiomatic nuance, cultural depth, and advanced rhetoric.",
-        chapters: [
+        chapters: attachLessonContent([
           {
             id: "c2-ch1",
             title: "Chapter 1: Rhetoric, Stylistics & Idiomatic Expression",
@@ -565,7 +566,8 @@ export const germanCourse: Course = {
               },
             ],
           },
-        ],
+        ]),
       },
     ],
   };
+

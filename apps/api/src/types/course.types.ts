@@ -35,8 +35,10 @@ export interface LessonPracticeQuestion {
 
 export interface LessonDialogueLine {
   speaker: string;
-  german: string;
-  english: string;
+  german?: string;
+  text?: string;
+  english?: string;
+  notes?: string;
 }
 
 export interface LessonSectionItem {

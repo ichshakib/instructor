@@ -258,32 +258,8 @@ export default function InstructorLanding() {
       {/* ========================================================================= */}
       <section className="relative w-full bg-white text-[#18191E] pt-14 sm:pt-16 pb-20 sm:pb-28">
         <div className="relative z-10 w-full max-w-7xl mx-auto px-6 sm:px-10 lg:px-16">
-          {/* MINIMAL "TRUSTED BY" BAR */}
-          <div className="pt-2 pb-12 border-b border-neutral-100">
-            <p className="text-center text-xs font-semibold uppercase tracking-widest text-neutral-400 mb-8">
-              Trusted by ambitious learners from top teams & universities
-            </p>
-            <div className="flex flex-wrap items-center justify-center gap-8 sm:gap-14 text-neutral-400">
-              <span className="text-base sm:text-lg font-bold tracking-tight text-neutral-500 hover:text-[#18191E] transition-colors select-none">
-                STANFORD
-              </span>
-              <span className="text-base sm:text-lg font-bold tracking-tight text-neutral-500 hover:text-[#18191E] transition-colors select-none">
-                MIT
-              </span>
-              <span className="text-base sm:text-lg font-bold tracking-tight text-neutral-500 hover:text-[#18191E] transition-colors select-none">
-                GOOGLE
-              </span>
-              <span className="text-base sm:text-lg font-bold tracking-tight text-neutral-500 hover:text-[#18191E] transition-colors select-none">
-                MICROSOFT
-              </span>
-              <span className="text-base sm:text-lg font-bold tracking-tight text-neutral-500 hover:text-[#18191E] transition-colors select-none">
-                AMAZON
-              </span>
-            </div>
-          </div>
-
           {/* COURSE CATALOG SECTION */}
-          <div id="courses-section" className="pt-12 pb-6">
+          <div id="courses-section" className="pt-6 sm:pt-10 pb-6">
             <div className="text-center max-w-xl mx-auto mb-12">
               <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-neutral-100 border border-neutral-200 text-xs font-medium text-neutral-700 mb-3">
                 <BookOpen className="w-3.5 h-3.5 text-neutral-600" />

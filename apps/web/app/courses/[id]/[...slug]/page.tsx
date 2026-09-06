@@ -1047,38 +1047,44 @@ export default function CourseDetailPage() {
                       <div className="p-5 sm:p-7 rounded-2xl bg-white border border-neutral-200 shadow-2xs space-y-4">
                         <div className="border-b border-neutral-100 pb-3">
                           <span className="text-[10px] font-bold text-neutral-500 uppercase tracking-wider block">
-                            Praxis-Dialog
+                            {isGermanCourse ? "Praxis-Dialog" : "Practical Dialogue"}
                           </span>
                           <h3 className="text-base sm:text-lg font-bold text-[#18191E] mt-0.5">
-                            {currentLessonContent.dialogue.context || "Dialogue Flow • German with Direct English Translation"}
+                            {currentLessonContent.dialogue.context || (isGermanCourse ? "Dialogue Flow • German with Direct English Translation" : "Conversational Dialogue Flow")}
                           </h3>
                         </div>
 
                         <div className="space-y-3 pt-1">
-                          {currentLessonContent.dialogue.lines.map((line, lIdx) => (
-                            <div
-                              key={lIdx}
-                              className="flex items-start gap-3.5 p-3.5 sm:p-4 rounded-xl bg-neutral-50/80 border border-neutral-200/80 transition-colors hover:bg-neutral-50"
-                            >
-                              <div className="w-10 h-10 rounded-full bg-white border border-neutral-200 flex items-center justify-center text-xs font-bold text-[#18191E] shrink-0 shadow-2xs">
-                                {line.speaker.slice(0, 2).toUpperCase()}
+                          {currentLessonContent.dialogue.lines.map((line, lIdx) => {
+                            const primaryText = line.text || line.german;
+                            const secondaryText = line.notes || (line.english !== primaryText ? line.english : undefined);
+                            return (
+                              <div
+                                key={lIdx}
+                                className="flex items-start gap-3.5 p-3.5 sm:p-4 rounded-xl bg-neutral-50/80 border border-neutral-200/80 transition-colors hover:bg-neutral-50"
+                              >
+                                <div className="w-10 h-10 rounded-full bg-white border border-neutral-200 flex items-center justify-center text-xs font-bold text-[#18191E] shrink-0 shadow-2xs">
+                                  {line.speaker.slice(0, 2).toUpperCase()}
+                                </div>
+
+                                <div className="min-w-0 flex-1 space-y-1">
+                                  <span className="text-xs font-bold text-[#18191E]">
+                                    {line.speaker}
+                                  </span>
+
+                                  <p className="text-sm sm:text-base font-bold text-[#18191E] leading-snug">
+                                    {primaryText}
+                                  </p>
+
+                                  {secondaryText && (
+                                    <p className="text-xs sm:text-sm text-neutral-600 leading-snug font-normal">
+                                      {secondaryText}
+                                    </p>
+                                  )}
+                                </div>
                               </div>
-
-                              <div className="min-w-0 flex-1 space-y-1">
-                                <span className="text-xs font-bold text-[#18191E]">
-                                  {line.speaker}
-                                </span>
-
-                                <p className="text-sm sm:text-base font-bold text-[#18191E] leading-snug">
-                                  {line.german}
-                                </p>
-
-                                <p className="text-xs sm:text-sm text-neutral-600 leading-snug font-normal">
-                                  {line.english}
-                                </p>
-                              </div>
-                            </div>
-                          ))}
+                            );
+                          })}
                         </div>
                       </div>
                     )}

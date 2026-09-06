@@ -15,8 +15,10 @@ export interface LessonPracticeQuestion {
 
 export interface LessonDialogueLine {
   speaker: string;
-  german: string;
-  english: string;
+  german?: string;
+  text?: string;
+  english?: string;
+  notes?: string;
 }
 
 export interface LessonSectionItem {
@@ -179,13 +181,45 @@ export async function fetchCourseById(id: string): Promise<CourseDetail | null> 
   return course ? { ...course, imageUrl: resolveCourseImageUrl(course.imageUrl) } : null;
 }
 
-export type {
-  BlogPost,
-  BlogCategory,
-  BlogSection,
-  BlogAuthor,
-} from "./blogs-fallback";
-import { FALLBACK_BLOGS, BlogPost } from "./blogs-fallback";
+export type BlogCategory =
+  | "Grammar"
+  | "Vocabulary"
+  | "Exam Prep"
+  | "German Life & Culture"
+  | "Study Tips"
+  | "Career";
+
+export interface BlogAuthor {
+  name: string;
+  role: string;
+  avatar?: string;
+}
+
+export interface BlogSection {
+  heading?: string;
+  subheading?: string;
+  paragraphs?: string[];
+  keyTakeaway?: string;
+  bulletPoints?: string[];
+  table?: {
+    headers: string[];
+    rows: string[][];
+  };
+}
+
+export interface BlogPost {
+  id: string;
+  slug: string;
+  title: string;
+  excerpt: string;
+  category: BlogCategory;
+  tags: string[];
+  author: BlogAuthor;
+  publishedAt: string;
+  readTime: string;
+  featured?: boolean;
+  sections: BlogSection[];
+}
 
 export interface FetchBlogsOptions {
   category?: string;
@@ -194,98 +228,67 @@ export interface FetchBlogsOptions {
 }
 
 /**
- * Fetches all blogs or filtered blogs from the backend API, falling back to local dataset if offline.
+ * Fetches all blogs or filtered blogs from the backend API.
+ * Throws an error if the API request fails.
  */
 export async function fetchBlogs(
   options?: FetchBlogsOptions
 ): Promise<BlogPost[]> {
-  try {
-    const url = new URL("/api/v1/blogs", API_BASE_URL);
+  const url = new URL("/api/v1/blogs", API_BASE_URL);
 
-    if (options?.category && options.category !== "All") {
-      url.searchParams.append("category", options.category);
-    }
-    if (options?.search && options.search.trim()) {
-      url.searchParams.append("search", options.search.trim());
-    }
-    if (options?.tag && options.tag.trim()) {
-      url.searchParams.append("tag", options.tag.trim());
-    }
-
-    const response = await fetch(url.toString(), {
-      method: "GET",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      cache: "no-store",
-    });
-
-    if (response.ok) {
-      const json: ApiResponse<BlogPost[]> = await response.json();
-      if (json.data && Array.isArray(json.data) && json.data.length > 0) {
-        return json.data;
-      }
-    }
-  } catch (error) {
-    console.warn("API request for blogs failed, falling back to local dataset:", error);
-  }
-
-  // Fallback filtering
-  let results: BlogPost[] = [...FALLBACK_BLOGS];
   if (options?.category && options.category !== "All") {
-    results = results.filter(
-      (b: BlogPost) => b.category.toLowerCase() === options.category?.toLowerCase()
-    );
+    url.searchParams.append("category", options.category);
   }
   if (options?.search && options.search.trim()) {
-    const term = options.search.trim().toLowerCase();
-    results = results.filter(
-      (b: BlogPost) =>
-        b.title.toLowerCase().includes(term) ||
-        b.excerpt.toLowerCase().includes(term) ||
-        b.category.toLowerCase().includes(term) ||
-        b.tags.some((t: string) => t.toLowerCase().includes(term))
-    );
+    url.searchParams.append("search", options.search.trim());
   }
   if (options?.tag && options.tag.trim()) {
-    const term = options.tag.trim().toLowerCase();
-    results = results.filter((b: BlogPost) =>
-      b.tags.some((t: string) => t.toLowerCase() === term)
-    );
+    url.searchParams.append("tag", options.tag.trim());
   }
-  return results;
+
+  const response = await fetch(url.toString(), {
+    method: "GET",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    cache: "no-store",
+  });
+
+  if (!response.ok) {
+    throw new Error(`API error: ${response.status} ${response.statusText}`);
+  }
+
+  const json: ApiResponse<BlogPost[]> = await response.json();
+  return json.data || [];
 }
 
 /**
- * Fetches a single blog by ID or slug from the backend API, with fallback.
+ * Fetches a single blog by ID or slug from the backend API.
+ * Throws an error if the API request fails.
  */
 export async function fetchBlogById(
   idOrSlug: string
 ): Promise<BlogPost | null> {
-  try {
-    const url = new URL(`/api/v1/blogs/${idOrSlug}`, API_BASE_URL);
+  const url = new URL(`/api/v1/blogs/${idOrSlug}`, API_BASE_URL);
 
-    const response = await fetch(url.toString(), {
-      method: "GET",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      cache: "no-store",
-    });
+  const response = await fetch(url.toString(), {
+    method: "GET",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    cache: "no-store",
+  });
 
-    if (response.ok) {
-      const json: ApiResponse<BlogPost> = await response.json();
-      if (json.data) {
-        return json.data;
-      }
-    }
-  } catch (error) {
-    console.warn(`API request for blog '${idOrSlug}' failed, using fallback:`, error);
+  if (response.status === 404) {
+    return null;
   }
 
-  const fallback = FALLBACK_BLOGS.find(
-    (b: BlogPost) => b.id === idOrSlug || b.slug === idOrSlug
-  );
-  return fallback || null;
+  if (!response.ok) {
+    throw new Error(`API error: ${response.status} ${response.statusText}`);
+  }
+
+  const json: ApiResponse<BlogPost> = await response.json();
+  return json.data || null;
 }
+
 
