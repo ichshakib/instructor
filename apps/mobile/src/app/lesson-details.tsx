@@ -1,4 +1,5 @@
 import { Ionicons } from '@expo/vector-icons';
+import * as Speech from 'expo-speech';
 import { useLocalSearchParams, useRouter } from 'expo-router';
 import React, { useEffect, useState, useMemo, useRef } from 'react';
 import {
@@ -129,8 +130,20 @@ export default function LessonDetailsScreen() {
   const [alphabetFilter, setAlphabetFilter] = useState<'all' | 'shifts' | 'vowels' | 'consonants'>('all');
   const [selectedLetter, setSelectedLetter] = useState<string | null>('W');
   const [playingLetterAudio, setPlayingLetterAudio] = useState<string | null>(null);
+  const [playingShift, setPlayingShift] = useState<string | null>(null);
+  const [isSpeakingSpelling, setIsSpeakingSpelling] = useState(false);
+  const [playingDialogueIdx, setPlayingDialogueIdx] = useState<number | null>(null);
   const [customSpellingInput, setCustomSpellingInput] = useState<string>('GREGOR');
   const [showDialogueTranslations, setShowDialogueTranslations] = useState(true);
+
+  // Stop speech when switching lessons or unmounting
+  useEffect(() => {
+    return () => {
+      try {
+        Speech.stop();
+      } catch {}
+    };
+  }, [currentLessonId]);
 
   // Practice state
   const [selectedAnswers, setSelectedAnswers] = useState<Record<number, number>>({});
@@ -229,13 +242,63 @@ export default function LessonDetailsScreen() {
     }
   };
 
+  const speakGerman = (text: string, onFinish?: () => void) => {
+    try {
+      Speech.stop();
+      Speech.speak(text, {
+        language: 'de-DE',
+        pitch: 1.0,
+        rate: 0.85,
+        onDone: () => onFinish?.(),
+        onError: () => onFinish?.(),
+        onStopped: () => onFinish?.(),
+      });
+    } catch (err) {
+      console.warn('Speech error:', err);
+      onFinish?.();
+    }
+  };
+
   const handlePlayLetterAudio = (char: string) => {
     LayoutAnimation.configureNext(LayoutAnimation.Presets.easeInEaseOut);
     setPlayingLetterAudio(char);
     setSelectedLetter(char);
-    setTimeout(() => {
-      setPlayingLetterAudio((curr) => (curr === char ? null : curr));
-    }, 1200);
+
+    const letterItem = GERMAN_ALPHABET.find((l) => l.char === char);
+    const textToSpeak = letterItem
+      ? `${letterItem.char}. ${letterItem.name}. ${letterItem.example}.`
+      : char;
+
+    speakGerman(textToSpeak, () => {
+      setPlayingLetterAudio(null);
+    });
+  };
+
+  const handleSpeakShift = (shift: typeof GERMAN_CONSONANT_SHIFTS[0]) => {
+    LayoutAnimation.configureNext(LayoutAnimation.Presets.easeInEaseOut);
+    setPlayingShift(shift.equation);
+    const textToSpeak = `${shift.equation.replace('=', 'ist')}. ${shift.examples.join(', ')}`;
+    speakGerman(textToSpeak, () => {
+      setPlayingShift(null);
+    });
+  };
+
+  const handleSpeakSpelling = () => {
+    if (!spelledTokens.length) return;
+    LayoutAnimation.configureNext(LayoutAnimation.Presets.easeInEaseOut);
+    setIsSpeakingSpelling(true);
+    const textToSpeak = spelledTokens.map((t) => `${t.char} wie ${t.dinName}`).join('. ');
+    speakGerman(textToSpeak, () => {
+      setIsSpeakingSpelling(false);
+    });
+  };
+
+  const handleSpeakDialogue = (germanText: string, index: number) => {
+    LayoutAnimation.configureNext(LayoutAnimation.Presets.easeInEaseOut);
+    setPlayingDialogueIdx(index);
+    speakGerman(germanText, () => {
+      setPlayingDialogueIdx(null);
+    });
   };
 
   const toggleAnswerReveal = (qIndex: number) => {
@@ -818,9 +881,33 @@ export default function LessonDetailsScreen() {
                             {shift.equation}
                           </Text>
                         </View>
-                        <Text style={[styles.shiftNamePill, { color: mutedText }]}>
-                          German: [{shift.germanName}]
-                        </Text>
+
+                        <Pressable
+                          onPress={() => handleSpeakShift(shift)}
+                          style={({ pressed }) => [
+                            styles.shiftAudioBtn,
+                            {
+                              backgroundColor: playingShift === shift.equation ? activeColor : cardBg,
+                              borderColor: playingShift === shift.equation ? activeColor : borderColor,
+                            },
+                            pressed && styles.pressed,
+                          ]}
+                          hitSlop={8}
+                        >
+                          <Ionicons
+                            name={playingShift === shift.equation ? 'volume-high' : 'volume-medium-outline'}
+                            size={14}
+                            color={playingShift === shift.equation ? activeTextColor : textColor}
+                          />
+                          <Text
+                            style={[
+                              styles.shiftAudioBtnText,
+                              { color: playingShift === shift.equation ? activeTextColor : textColor },
+                            ]}
+                          >
+                            {playingShift === shift.equation ? 'Speaking...' : 'Listen Words'}
+                          </Text>
+                        </Pressable>
                       </View>
 
                       <Text style={[styles.shiftRuleText, { color: textColor }]}>
@@ -914,13 +1001,47 @@ export default function LessonDetailsScreen() {
                     ))}
                   </View>
 
+                  {/* Listen Aloud Button for full spelling sequence */}
+                  {spelledTokens.length > 0 ? (
+                    <Pressable
+                      onPress={handleSpeakSpelling}
+                      style={({ pressed }) => [
+                        styles.speakSpellingBtn,
+                        {
+                          backgroundColor: isSpeakingSpelling ? activeColor : cardBg,
+                          borderColor: isSpeakingSpelling ? activeColor : borderColor,
+                        },
+                        pressed && styles.pressed,
+                      ]}
+                    >
+                      <Ionicons
+                        name={isSpeakingSpelling ? 'volume-high' : 'volume-medium-outline'}
+                        size={17}
+                        color={isSpeakingSpelling ? activeTextColor : textColor}
+                      />
+                      <Text
+                        style={[
+                          styles.speakSpellingBtnText,
+                          { color: isSpeakingSpelling ? activeTextColor : textColor },
+                        ]}
+                      >
+                        {isSpeakingSpelling ? 'Speaking Spelling...' : 'Listen to Full Spelling Aloud (DIN 5009)'}
+                      </Text>
+                    </Pressable>
+                  ) : null}
+
                   {/* Dynamic Spelled Tokens Output */}
                   <View style={styles.spelledCardsWrap}>
                     {spelledTokens.length > 0 ? (
                       spelledTokens.map((token, idx) => (
-                        <View
+                        <Pressable
                           key={`${token.char}-${idx}`}
-                          style={[styles.spelledTokenBadge, { backgroundColor: cardBg, borderColor }]}
+                          onPress={() => speakGerman(token.phrase)}
+                          style={({ pressed }) => [
+                            styles.spelledTokenBadge,
+                            { backgroundColor: cardBg, borderColor },
+                            pressed && styles.pressed,
+                          ]}
                         >
                           <View style={[styles.spelledCharCircle, { backgroundColor: activeColor }]}>
                             <Text style={[styles.spelledCharText, { color: activeTextColor }]}>
@@ -935,7 +1056,8 @@ export default function LessonDetailsScreen() {
                               &quot;{token.phrase}&quot;
                             </Text>
                           </View>
-                        </View>
+                          <Ionicons name="volume-medium-outline" size={14} color={mutedText} style={{ marginLeft: 2 }} />
+                        </Pressable>
                       ))
                     ) : (
                       <Text style={[styles.emptyPromptText, { color: mutedText }]}>
@@ -1012,9 +1134,26 @@ export default function LessonDetailsScreen() {
                             },
                           ]}
                         >
-                          <Text style={[styles.speakerHeaderName, { color: mutedText }]}>
-                            {line.speaker}
-                          </Text>
+                          <View style={styles.dialogueSpeakerRow}>
+                            <Text style={[styles.speakerHeaderName, { color: mutedText }]}>
+                              {line.speaker}
+                            </Text>
+                            <Pressable
+                              onPress={() => handleSpeakDialogue(line.german, dIdx)}
+                              style={({ pressed }) => [
+                                styles.dialogueAudioBtn,
+                                pressed && styles.pressed,
+                              ]}
+                              hitSlop={8}
+                              accessibilityLabel="Listen Dialogue"
+                            >
+                              <Ionicons
+                                name={playingDialogueIdx === dIdx ? 'volume-high' : 'volume-medium-outline'}
+                                size={16}
+                                color={playingDialogueIdx === dIdx ? '#10B981' : mutedText}
+                              />
+                            </Pressable>
+                          </View>
                           <Text style={[styles.chatGermanText, { color: textColor }]}>
                             {line.german}
                           </Text>
@@ -1719,6 +1858,19 @@ const styles = StyleSheet.create({
     fontWeight: '800',
     letterSpacing: 0.5,
   },
+  shiftAudioBtn: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 5,
+    paddingHorizontal: 10,
+    paddingVertical: 5,
+    borderRadius: 8,
+    borderWidth: 1,
+  },
+  shiftAudioBtnText: {
+    fontSize: 11,
+    fontWeight: '700',
+  },
   shiftNamePill: {
     fontSize: 12,
     fontWeight: '600',
@@ -1794,6 +1946,21 @@ const styles = StyleSheet.create({
   },
   presetChipText: {
     fontSize: 11,
+    fontWeight: '700',
+  },
+  speakSpellingBtn: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'center',
+    gap: 8,
+    paddingVertical: 10,
+    paddingHorizontal: 14,
+    borderRadius: 10,
+    borderWidth: 1,
+    marginTop: 4,
+  },
+  speakSpellingBtnText: {
+    fontSize: 12.5,
     fontWeight: '700',
   },
   spelledCardsWrap: {
@@ -1888,6 +2055,15 @@ const styles = StyleSheet.create({
     borderRadius: 12,
     borderWidth: 1,
     gap: 4,
+  },
+  dialogueSpeakerRow: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    marginBottom: 2,
+  },
+  dialogueAudioBtn: {
+    padding: 2,
   },
   speakerHeaderName: {
     fontSize: 10,
