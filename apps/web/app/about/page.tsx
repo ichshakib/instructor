@@ -18,123 +18,112 @@ import {
 
 export default function AboutPage() {
   return (
-    <div className="min-h-screen flex flex-col bg-[#FAF9F5] text-[#18191E] selection:bg-[#18191E] selection:text-white">
+    <div className="min-h-screen flex flex-col bg-white text-[#18191E] selection:bg-[#18191E] selection:text-white">
       <Navbar />
 
       <main className="flex-1 max-w-5xl w-full mx-auto px-6 sm:px-10 lg:px-16 pt-28 sm:pt-36 pb-24">
         {/* Hero Section */}
         <div className="max-w-3xl mb-16 sm:mb-20">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-amber-100/70 border border-amber-200/80 text-amber-900 text-xs font-semibold mb-5">
-            <Sparkles className="w-3.5 h-3.5 text-amber-700" />
-            <span>About The Platform</span>
-          </div>
-
           <h1 className="text-3xl sm:text-5xl lg:text-6xl font-black text-[#18191E] tracking-tight leading-tight sm:leading-none">
-            Humanized Language Learning for the Modern World.
+            Deep Learning for the Modern World.
           </h1>
 
           <p className="text-sm sm:text-lg text-[#6D6B62] mt-6 leading-relaxed">
-            Instructor was built to bridge the gap between abstract grammar rules and natural spoken fluency. We believe learning a language shouldn&apos;t feel like memorizing a telephone book—it should feel like stepping into a vibrant culture with a trusted mentor by your side.
+            Instructor was built to bridge the gap between theoretical knowledge and practical mastery. We believe learning shouldn&apos;t feel like memorizing abstract rules—it should empower you to build real systems, speak fluently, and excel in your craft.
           </p>
         </div>
 
         {/* Core Mission Card */}
-        <section className="bg-white rounded-3xl border border-neutral-200/90 p-8 sm:p-12 shadow-2xs mb-16 space-y-6">
+        <section className="bg-white rounded-2xl border border-neutral-200 p-8 sm:p-12 shadow-xs mb-16 space-y-6">
           <div className="flex items-center gap-3">
-            <div className="w-10 h-10 rounded-2xl bg-[#18191E] text-white flex items-center justify-center font-bold">
-              <Globe2 className="w-5 h-5 text-amber-400" />
+            <div className="w-10 h-10 rounded-xl bg-[#18191E] text-white flex items-center justify-center font-bold">
+              <Globe2 className="w-5 h-5 text-white" />
             </div>
             <div>
               <h2 className="text-xl sm:text-2xl font-extrabold text-[#18191E]">
                 Our Mission
               </h2>
-              <span className="text-xs text-neutral-400 font-medium">Clarity • Immersion • Autonomy</span>
+              <span className="text-xs text-neutral-400 font-medium">Clarity • Mastery • Autonomy</span>
             </div>
           </div>
 
           <p className="text-sm sm:text-base text-[#383733] leading-relaxed">
-            Most language platforms fall into one of two extremes: gamified apps that teach isolated words without coherent grammar, or dry academic textbooks filled with jargon that leave you terrified to speak out loud.
+            Most modern learning platforms fall into one of two extremes: superficial gamified apps that focus on gimmicky engagement, or dense academic textbooks with no practical implementation guidance.
           </p>
 
           <p className="text-sm sm:text-base text-[#383733] leading-relaxed">
-            <strong>Instructor</strong> takes a third path. We pair comprehensive, CEFR-aligned curricula (from complete A1 beginner through advanced C2 mastery) with clear linguistic explanations, real-time native pronunciation audio, and realistic conversational dialogues you will actually use on the streets of Berlin, Munich, Vienna, or Zurich.
+            <strong>Instructor</strong> takes a focused path. We combine rigorous, comprehensive curricula with clear architectural explanations, interactive quizzes, and real-world projects that prepare you for production environments.
           </p>
         </section>
 
         {/* The 4 Pillars */}
         <section className="mb-20 space-y-8">
           <div>
-            <span className="text-xs font-extrabold uppercase tracking-wider text-amber-800">
-              The Methodology
-            </span>
-            <h2 className="text-2xl sm:text-3xl font-black text-[#18191E] mt-1 tracking-tight">
+            <h2 className="text-2xl sm:text-3xl font-black text-[#18191E] tracking-tight">
               The 4 Pillars of the Instructor Method
             </h2>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             {/* Pillar 1 */}
-            <div className="bg-white rounded-2xl border border-neutral-200/90 p-7 shadow-2xs space-y-3">
-              <div className="w-9 h-9 rounded-xl bg-amber-50 border border-amber-200 text-amber-900 flex items-center justify-center font-bold">
-                <GraduationCap className="w-5 h-5 text-amber-700" />
+            <div className="bg-white rounded-xl border border-neutral-200 p-6 shadow-xs space-y-3">
+              <div className="w-9 h-9 rounded-lg bg-neutral-100 border border-neutral-200 text-neutral-900 flex items-center justify-center font-bold">
+                <GraduationCap className="w-5 h-5 text-neutral-800" />
               </div>
               <h3 className="text-base font-bold text-[#18191E]">
-                1. CEFR-Aligned Progression
+                1. Structured Progression
               </h3>
               <p className="text-xs sm:text-sm text-[#6D6B62] leading-relaxed">
-                Every chapter and lesson is systematically mapped to the Common European Framework of Reference. No gaps, no guesswork—you know exactly what skill milestones you are unlocking.
+                Every course is systematically broken down into coherent chapters and focused lessons. No gaps and no guesswork—you know exactly what skill milestones you are unlocking.
               </p>
             </div>
 
             {/* Pillar 2 */}
-            <div className="bg-white rounded-2xl border border-neutral-200/90 p-7 shadow-2xs space-y-3">
-              <div className="w-9 h-9 rounded-xl bg-neutral-100 border border-neutral-200 text-neutral-800 flex items-center justify-center font-bold">
-                <Volume2 className="w-5 h-5 text-[#18191E]" />
+            <div className="bg-white rounded-xl border border-neutral-200 p-6 shadow-xs space-y-3">
+              <div className="w-9 h-9 rounded-lg bg-neutral-100 border border-neutral-200 text-neutral-900 flex items-center justify-center font-bold">
+                <Volume2 className="w-5 h-5 text-neutral-800" />
               </div>
               <h3 className="text-base font-bold text-[#18191E]">
-                2. Integrated Native Audio
+                2. Real-World Audio & Feedback
               </h3>
               <p className="text-xs sm:text-sm text-[#6D6B62] leading-relaxed">
-                Reading without hearing creates flawed inner pronunciation habits. Every vocabulary item, example sentence, and dialogue line in Instructor features interactive audio playback at the touch of a button.
+                Multi-sensory learning accelerates retention. From native audio pronunciation to interactive self-grading quizzes, you receive instant verification on your understanding.
               </p>
             </div>
 
             {/* Pillar 3 */}
-            <div className="bg-white rounded-2xl border border-neutral-200/90 p-7 shadow-2xs space-y-3">
-              <div className="w-9 h-9 rounded-xl bg-neutral-100 border border-neutral-200 text-neutral-800 flex items-center justify-center font-bold">
-                <Layers className="w-5 h-5 text-[#18191E]" />
+            <div className="bg-white rounded-xl border border-neutral-200 p-6 shadow-xs space-y-3">
+              <div className="w-9 h-9 rounded-lg bg-neutral-100 border border-neutral-200 text-neutral-900 flex items-center justify-center font-bold">
+                <Layers className="w-5 h-5 text-neutral-800" />
               </div>
               <h3 className="text-base font-bold text-[#18191E]">
-                3. Real-World Practicality
+                3. Practical Industry Utility
               </h3>
               <p className="text-xs sm:text-sm text-[#6D6B62] leading-relaxed">
-                We prioritize high-frequency survival language first: registering your address at the Bürgeramt, shopping at the supermarket, navigating Deutsche Bahn, and succeeding in job interviews.
+                We prioritize high-frequency engineering patterns and practical language skills first: real data structures, production architectures, and scenarios you will actually encounter.
               </p>
             </div>
 
             {/* Pillar 4 */}
-            <div className="bg-white rounded-2xl border border-neutral-200/90 p-7 shadow-2xs space-y-3">
-              <div className="w-9 h-9 rounded-xl bg-amber-50 border border-amber-200 text-amber-900 flex items-center justify-center font-bold">
-                <Zap className="w-5 h-5 text-amber-700" />
+            <div className="bg-white rounded-xl border border-neutral-200 p-6 shadow-xs space-y-3">
+              <div className="w-9 h-9 rounded-lg bg-neutral-100 border border-neutral-200 text-neutral-900 flex items-center justify-center font-bold">
+                <Zap className="w-5 h-5 text-neutral-800" />
               </div>
               <h3 className="text-base font-bold text-[#18191E]">
-                4. Cross-Platform Ecosystem
+                4. Distraction-Free Ecosystem
               </h3>
               <p className="text-xs sm:text-sm text-[#6D6B62] leading-relaxed">
-                Whether you prefer in-depth study sessions on your desktop web browser or quick 10-minute reviews on your mobile device on the train, your learning materials and progress remain harmonized.
+                Clean, minimal, high-contrast interfaces designed for deep focus. No flashing notifications or artificial streak pressure—just uninterrupted learning.
               </p>
             </div>
           </div>
         </section>
 
         {/* Platform Values */}
-        <section className="bg-white rounded-3xl border border-neutral-200/90 p-8 sm:p-12 shadow-2xs mb-20 space-y-8">
+        <section className="bg-white rounded-2xl border border-neutral-200 p-8 sm:p-12 shadow-xs mb-20 space-y-8">
           <div>
-            <span className="text-xs font-extrabold uppercase tracking-wider text-amber-800">
-              Our Principles
-            </span>
-            <h2 className="text-xl sm:text-2xl font-black text-[#18191E] mt-1 tracking-tight">
-              What We Stand For
+            <h2 className="text-xl sm:text-2xl font-black text-[#18191E] tracking-tight">
+              Our Core Principles
             </h2>
           </div>
 
@@ -187,7 +176,7 @@ export default function AboutPage() {
               Explore Courses
             </Link>
             <Link
-              href="/blog"
+              href="/blogs"
               className="px-6 py-3.5 rounded-2xl bg-white/10 hover:bg-white/15 border border-white/20 text-white text-xs sm:text-sm font-bold transition-all"
             >
               Read Articles
@@ -204,7 +193,7 @@ export default function AboutPage() {
           </Link>
           <div className="flex items-center gap-6 text-xs text-[#7A776D]">
             <Link href="/courses" className="hover:text-black transition-colors">Courses</Link>
-            <Link href="/blog" className="hover:text-black transition-colors">Blog</Link>
+            <Link href="/blogs" className="hover:text-black transition-colors">Blogs</Link>
             <Link href="/about" className="hover:text-black font-semibold text-black transition-colors">About</Link>
           </div>
           <p className="text-xs text-neutral-400">

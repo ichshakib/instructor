@@ -65,37 +65,22 @@ export default function CoursesPage() {
   });
 
   return (
-    <div className="relative min-h-screen w-full bg-[#FAF9F5] text-[#18191E] overflow-x-hidden font-sans selection:bg-[#18191E] selection:text-white">
+    <div className="relative min-h-screen w-full bg-white text-[#18191E] overflow-x-hidden font-sans selection:bg-[#18191E] selection:text-white">
       {/* Sticky Persistent Navbar */}
       <Navbar />
 
       {/* ========================================================================= */}
-      {/* COURSES HERO BANNER                                                       */}
+      {/* COURSES HEADER (CLEAN & MINIMAL)                                          */}
       {/* ========================================================================= */}
-      <section className="relative w-full bg-[#FFF7DF] pt-32 pb-16 sm:pb-20 border-b border-amber-200/50">
-        {/* Subtle Decorative Grid */}
-        <div
-          className="pointer-events-none absolute top-12 right-6 sm:top-16 sm:right-16 grid grid-cols-4 gap-3 opacity-60"
-          aria-hidden="true"
-        >
-          {Array.from({ length: 16 }).map((_, i) => (
-            <div key={`banner-dot-${i}`} className="w-1.5 h-1.5 rounded-full bg-[#C7B283]" />
-          ))}
-        </div>
-
+      <section className="relative w-full bg-white pt-28 sm:pt-32 pb-10 border-b border-neutral-100">
         <div className="relative z-10 max-w-7xl mx-auto px-6 sm:px-10 lg:px-16">
           <div className="max-w-3xl">
-            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/80 backdrop-blur-md border border-neutral-200/80 text-xs font-semibold text-[#18191E] mb-5 shadow-sm">
-              <Sparkles className="w-3.5 h-3.5 text-amber-600" />
-              <span>Interactive Learning Modules</span>
-            </div>
-
-            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-[#18191E] tracking-tight leading-[1.12]">
-              Explore All Courses & Learning Tracks
+            <h1 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-[#18191E] tracking-tight leading-tight">
+              Courses & Curricula
             </h1>
 
-            <p className="mt-4 text-[#6A685F] text-base sm:text-lg leading-relaxed max-w-2xl font-normal">
-              Direct access to interactive quizzes, design heuristics, and technical curricula. Jump in anytime.
+            <p className="mt-3 text-[#6A685F] text-base leading-relaxed max-w-2xl font-normal">
+              Explore interactive curricula, technical programming deep dives, and structured lessons built for serious learners.
             </p>
           </div>
 
@@ -104,23 +89,23 @@ export default function CoursesPage() {
             <div className="flex flex-col sm:flex-row gap-3">
               {/* Search Box */}
               <div className="relative flex-1">
-                <Search className="w-5 h-5 text-[#7A776D] absolute left-4 top-1/2 -translate-y-1/2" />
+                <Search className="w-4 h-4 text-neutral-400 absolute left-4 top-1/2 -translate-y-1/2" />
                 <input
                   type="text"
                   placeholder="Search by topic, skill, or title..."
                   value={searchQuery}
                   onChange={(e) => setSearchQuery(e.target.value)}
-                  className="w-full pl-12 pr-4 py-3.5 rounded-2xl bg-white border border-neutral-200/90 shadow-sm text-sm text-[#18191E] placeholder:text-[#7A776D] focus:outline-none focus:ring-2 focus:ring-[#18191E] transition-all"
+                  className="w-full pl-11 pr-4 py-3 rounded-xl bg-white border border-neutral-200 text-sm text-[#18191E] placeholder:text-neutral-400 focus:outline-none focus:ring-2 focus:ring-[#18191E] transition-all"
                 />
               </div>
 
               {/* Status Filter Dropdown */}
               <div className="relative w-full sm:w-48">
-                <Filter className="w-4 h-4 text-[#7A776D] absolute left-4 top-1/2 -translate-y-1/2" />
+                <Filter className="w-4 h-4 text-neutral-400 absolute left-4 top-1/2 -translate-y-1/2" />
                 <select
                   value={selectedLevel}
                   onChange={(e) => setSelectedLevel(e.target.value)}
-                  className="w-full pl-11 pr-8 py-3.5 rounded-2xl bg-white border border-neutral-200/90 shadow-sm text-sm font-medium text-[#18191E] focus:outline-none focus:ring-2 focus:ring-[#18191E] transition-all appearance-none cursor-pointer"
+                  className="w-full pl-10 pr-8 py-3 rounded-xl bg-white border border-neutral-200 text-sm font-medium text-[#18191E] focus:outline-none focus:ring-2 focus:ring-[#18191E] transition-all appearance-none cursor-pointer"
                 >
                   <option value="All">All Tracks</option>
                   <option value="Quizzes">Quizzes & Certifications</option>
@@ -136,10 +121,10 @@ export default function CoursesPage() {
                 <button
                   key={cat}
                   onClick={() => setSelectedCategory(cat)}
-                  className={`px-4 py-2 rounded-xl text-xs font-semibold transition-all duration-200 ${
+                  className={`px-3.5 py-1.5 rounded-lg text-xs font-medium transition-all duration-150 ${
                     selectedCategory === cat
-                      ? "bg-[#18191E] text-white shadow-md shadow-neutral-900/10 scale-105"
-                      : "bg-white/80 hover:bg-white text-[#18191E] border border-neutral-200/80"
+                      ? "bg-[#18191E] text-white"
+                      : "bg-neutral-100 hover:bg-neutral-200 text-neutral-700"
                   }`}
                 >
                   {cat}
@@ -153,7 +138,7 @@ export default function CoursesPage() {
       {/* ========================================================================= */}
       {/* COURSES GRID SECTION                                                      */}
       {/* ========================================================================= */}
-      <section className="relative w-full py-16 sm:py-20 bg-[#FAF9F5]">
+      <section className="relative w-full py-12 bg-white">
         <div className="max-w-7xl mx-auto px-6 sm:px-10 lg:px-16">
           <div className="flex items-center justify-between mb-8 pb-4 border-b border-neutral-200/70">
             <span className="text-sm font-semibold text-[#18191E]">
@@ -318,8 +303,8 @@ export default function CoursesPage() {
               <Link href="/about" className="hover:text-black transition-colors">
                 About
               </Link>
-              <Link href="/blog" className="hover:text-black transition-colors">
-                Blog
+              <Link href="/blogs" className="hover:text-black transition-colors">
+                Blogs
               </Link>
             </div>
           </div>

@@ -21,7 +21,7 @@ export default function Navbar() {
 
   const navLinks = [
     { name: "Courses", href: "/courses" },
-    { name: "Blog", href: "/blog" },
+    { name: "Blogs", href: "/blogs" },
     { name: "About", href: "/about" },
   ];
 
@@ -48,7 +48,7 @@ export default function Navbar() {
           {/* Desktop Navigation Links */}
           <nav className="hidden md:flex items-center gap-10 text-[15px] font-medium text-[#18191E]">
             {navLinks.map((link) => {
-              const isActive = pathname === link.href;
+              const isActive = link.href === "/" ? pathname === "/" : pathname.startsWith(link.href);
               return (
                 <Link
                   key={link.name}

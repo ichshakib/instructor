@@ -105,6 +105,18 @@ interface ApiResponse<T> {
 import { FALLBACK_COURSES } from "./courses-fallback";
 
 /**
+ * Resolves a course imageUrl into an absolute URL hosted on the backend API.
+ */
+export function resolveCourseImageUrl(imageUrl?: string | null): string | undefined {
+  if (!imageUrl) return undefined;
+  if (imageUrl.startsWith("http://") || imageUrl.startsWith("https://")) {
+    return imageUrl;
+  }
+  const clean = imageUrl.startsWith("/") ? imageUrl : `/${imageUrl}`;
+  return `${API_BASE_URL}${clean}`;
+}
+
+/**
  * Fetches all courses or filtered courses from the backend API, falling back to local dataset if offline.
  */
 export async function fetchCourses(
@@ -136,7 +148,11 @@ export async function fetchCourses(
     }
 
     const json: ApiResponse<CourseDetail[]> = await response.json();
-    return json.data || [];
+    const courses = json.data || [];
+    return courses.map((c) => ({
+      ...c,
+      imageUrl: resolveCourseImageUrl(c.imageUrl),
+    }));
   } catch (error) {
     console.warn("API unavailable, using local fallback courses dataset:", error);
     let list = [...FALLBACK_COURSES];
@@ -156,7 +172,10 @@ export async function fetchCourses(
           c.tag2.toLowerCase().includes(term)
       );
     }
-    return list;
+    return list.map((c) => ({
+      ...c,
+      imageUrl: resolveCourseImageUrl(c.imageUrl),
+    }));
   }
 }
 
@@ -184,11 +203,12 @@ export async function fetchCourseById(id: string): Promise<CourseDetail | null> 
     }
 
     const json: ApiResponse<CourseDetail> = await response.json();
-    return json.data || null;
+    const course = json.data || null;
+    return course ? { ...course, imageUrl: resolveCourseImageUrl(course.imageUrl) } : null;
   } catch (error) {
     console.warn(`API unavailable, using local fallback for course '${id}':`, error);
     const fallback = FALLBACK_COURSES.find((c) => c.id === id);
-    return fallback || null;
+    return fallback ? { ...fallback, imageUrl: resolveCourseImageUrl(fallback.imageUrl) } : null;
   }
 }
 

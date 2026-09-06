@@ -3,6 +3,31 @@ import { asyncHandler } from "../utils/asyncHandler";
 import { ApiResponse } from "../utils/ApiResponse";
 import { ApiError } from "../utils/ApiError";
 import { COURSES_DATA } from "../data/courses.data";
+import { Course } from "../types/course.types";
+
+/**
+ * Ensures course image URLs are absolute URLs hosted directly by this API.
+ */
+export const withAbsoluteImageUrl = (req: Request, course: Course): Course => {
+  if (!course.imageUrl) {
+    return course;
+  }
+
+  // Already an absolute URL
+  if (course.imageUrl.startsWith("http://") || course.imageUrl.startsWith("https://")) {
+    return course;
+  }
+
+  const protocol = (req.headers["x-forwarded-proto"] as string) || req.protocol || "http";
+  const host = req.get("host") || `localhost:${process.env.PORT || 5000}`;
+  const baseUrl = process.env.API_BASE_URL || `${protocol}://${host}`;
+  const cleanPath = course.imageUrl.startsWith("/") ? course.imageUrl : `/${course.imageUrl}`;
+
+  return {
+    ...course,
+    imageUrl: `${baseUrl}${cleanPath}`,
+  };
+};
 
 /**
  * @desc Get all courses with optional filters for category, featured, and search query
@@ -13,7 +38,12 @@ export const getAllCourses = asyncHandler(async (req: Request, res: Response) =>
 
   let courses = [...COURSES_DATA];
 
-  if (typeof category === "string" && category.trim() !== "" && category.toLowerCase() !== "all courses" && category.toLowerCase() !== "all") {
+  if (
+    typeof category === "string" &&
+    category.trim() !== "" &&
+    category.toLowerCase() !== "all courses" &&
+    category.toLowerCase() !== "all"
+  ) {
     courses = courses.filter(
       (c) => c.category.toLowerCase() === category.trim().toLowerCase()
     );
@@ -36,10 +66,12 @@ export const getAllCourses = asyncHandler(async (req: Request, res: Response) =>
     );
   }
 
+  const formattedCourses = courses.map((c) => withAbsoluteImageUrl(req, c));
+
   return res.status(200).json(
     new ApiResponse(
       200,
-      courses,
+      formattedCourses,
       "Courses fetched successfully"
     )
   );
@@ -61,7 +93,7 @@ export const getCourseById = asyncHandler(async (req: Request, res: Response) =>
   return res.status(200).json(
     new ApiResponse(
       200,
-      course,
+      withAbsoluteImageUrl(req, course),
       "Course fetched successfully"
     )
   );

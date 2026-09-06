@@ -421,10 +421,12 @@ export default function CourseCard({ course }: CourseCardProps) {
             alt={course.title}
             className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
             onError={(e) => {
-              // If relative fails, fallback to API URL or hide to show illustration
+              // If image fails, fallback to API URL or hide to show illustration
               const target = e.currentTarget;
-              if (process.env.NEXT_PUBLIC_API_URL && !target.src.startsWith(process.env.NEXT_PUBLIC_API_URL)) {
-                target.src = `${process.env.NEXT_PUBLIC_API_URL}${course.imageUrl}`;
+              const apiBase = process.env.NEXT_PUBLIC_API_URL || "http://localhost:5000";
+              if (!target.src.startsWith(apiBase) && course.imageUrl) {
+                const clean = course.imageUrl.startsWith("/") ? course.imageUrl : `/${course.imageUrl}`;
+                target.src = `${apiBase}${clean}`;
               } else {
                 target.style.display = "none";
               }
@@ -458,7 +460,7 @@ export default function CourseCard({ course }: CourseCardProps) {
             <div className="mt-3 pt-3 border-t border-neutral-100 flex items-center gap-3 text-xs text-[#5F5D54]">
               {totalChapters !== undefined && (
                 <div className="inline-flex items-center gap-1.5 font-semibold text-[#18191E]">
-                  <Layers className="w-3.5 h-3.5 text-amber-600" />
+                  <Layers className="w-3.5 h-3.5 text-neutral-500" />
                   <span>{totalChapters} Chapters</span>
                 </div>
               )}
@@ -467,7 +469,7 @@ export default function CourseCard({ course }: CourseCardProps) {
               )}
               {totalLessons !== undefined && (
                 <div className="inline-flex items-center gap-1.5 font-semibold text-[#18191E]">
-                  <BookOpen className="w-3.5 h-3.5 text-amber-600" />
+                  <BookOpen className="w-3.5 h-3.5 text-neutral-500" />
                   <span>{totalLessons} Lessons</span>
                 </div>
               )}

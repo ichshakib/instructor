@@ -543,7 +543,7 @@ export default function CourseDetailPage() {
 
   if (isLoading) {
     return (
-      <div className="h-screen w-full flex flex-col md:flex-row bg-[#FAF9F5] text-[#18191E] overflow-hidden animate-pulse">
+      <div className="h-screen w-full flex flex-col md:flex-row bg-neutral-50 text-[#18191E] overflow-hidden animate-pulse">
         {/* Left Side Skeleton */}
         <div className="w-full md:w-80 lg:w-96 border-r border-neutral-200/80 bg-white p-5 flex flex-col gap-4">
           <div className="h-8 w-3/4 bg-neutral-200/80 rounded-xl" />
@@ -566,7 +566,7 @@ export default function CourseDetailPage() {
 
   if (error || !course) {
     return (
-      <div className="h-screen w-full flex items-center justify-center bg-[#FAF9F5] p-6">
+      <div className="h-screen w-full flex items-center justify-center bg-neutral-50 p-6">
         <div className="p-8 sm:p-10 rounded-3xl bg-white border border-rose-200 shadow-sm text-center max-w-md">
           <AlertCircle className="w-12 h-12 text-rose-500 mx-auto mb-4" />
           <h2 className="text-xl font-bold text-[#18191E]">Course Not Found</h2>
@@ -597,7 +597,7 @@ export default function CourseDetailPage() {
   }
 
   return (
-    <div className="h-screen w-full flex flex-col md:flex-row bg-[#FAF9F5] text-[#18191E] font-sans selection:bg-[#18191E] selection:text-white overflow-hidden">
+    <div className="h-screen w-full flex flex-col md:flex-row bg-neutral-50 text-[#18191E] font-sans selection:bg-[#18191E] selection:text-white overflow-hidden">
       {/* ========================================================================= */}
       {/* LEFT SIDE: Less Space (Course Title at top, A1-C2, Course Outline)        */}
       {/* ========================================================================= */}
@@ -803,7 +803,7 @@ export default function CourseDetailPage() {
       {/* ========================================================================= */}
       {/* RIGHT SIDE: More Space (Lesson Name at Top, Main Contents Area)           */}
       {/* ========================================================================= */}
-      <main className="flex-1 h-full flex flex-col overflow-hidden bg-[#FAF9F5]">
+      <main className="flex-1 h-full flex flex-col overflow-hidden bg-neutral-50">
         {activeLessonInfo ? (
           <>
             {/* 1. TOP HEADER: SHOWING LEVEL (if leveled), CHAPTER (if exists), AND LESSON NAME */}
@@ -1196,7 +1196,7 @@ export default function CourseDetailPage() {
                 </div>
               ) : (
                 <div className="max-w-3xl w-full mx-auto my-auto py-12 flex flex-col items-center justify-center text-center">
-                  <div className="w-16 h-16 sm:w-20 sm:h-20 rounded-3xl bg-[#FFF7DF] border border-amber-200 flex items-center justify-center text-amber-700 shadow-sm mb-6">
+                  <div className="w-16 h-16 sm:w-20 sm:h-20 rounded-2xl bg-neutral-100 border border-neutral-200 flex items-center justify-center text-neutral-600 shadow-xs mb-6">
                     <FileQuestion className="w-8 h-8 sm:w-10 sm:h-10 stroke-[1.8]" />
                   </div>
 

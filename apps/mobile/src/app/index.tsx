@@ -1,5 +1,6 @@
 import { Ionicons } from '@expo/vector-icons';
-import React, { useEffect, useState } from 'react';
+import { useRouter } from 'expo-router';
+import React, { useEffect, useState, useMemo } from 'react';
 import {
   ActivityIndicator,
   Pressable,
@@ -27,6 +28,7 @@ const CATEGORIES = [
 ];
 
 export default function HomeScreen() {
+  const router = useRouter();
   const { userName } = useOnboarding();
   const colorScheme = useColorScheme();
   const isDark = colorScheme === 'dark';
@@ -84,20 +86,47 @@ export default function HomeScreen() {
     loadCourses();
   };
 
-  const filteredCourses = courses.filter((c) => {
-    const matchesCategory =
-      selectedCategory === 'All Courses' ||
-      c.category.toLowerCase() === selectedCategory.toLowerCase();
+  // Filter courses by category and search
+  const filteredCourses = useMemo(() => {
+    return courses.filter((c) => {
+      const matchesCategory =
+        selectedCategory === 'All Courses' ||
+        c.category.toLowerCase() === selectedCategory.toLowerCase();
 
-    const matchesSearch =
-      searchQuery.trim() === '' ||
-      c.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
-      c.tag1.toLowerCase().includes(searchQuery.toLowerCase()) ||
-      c.tag2.toLowerCase().includes(searchQuery.toLowerCase()) ||
-      (c.description && c.description.toLowerCase().includes(searchQuery.toLowerCase()));
+      const term = searchQuery.trim().toLowerCase();
+      const matchesSearch =
+        !term ||
+        c.title.toLowerCase().includes(term) ||
+        c.tag1?.toLowerCase().includes(term) ||
+        c.tag2?.toLowerCase().includes(term) ||
+        (c.description && c.description.toLowerCase().includes(term));
 
-    return matchesCategory && matchesSearch;
-  });
+      return matchesCategory && matchesSearch;
+    });
+  }, [courses, selectedCategory, searchQuery]);
+
+  // Horizontal row courses (featured or first slice of courses)
+  const horizontalCourses = useMemo(() => {
+    if (filteredCourses.length <= 3) {
+      return filteredCourses;
+    }
+    const featured = filteredCourses.filter((c) => c.featured);
+    return featured.length >= 2 ? featured : filteredCourses.slice(0, 5);
+  }, [filteredCourses]);
+
+  // Popular courses (vertical list)
+  const popularCourses = useMemo(() => {
+    return filteredCourses;
+  }, [filteredCourses]);
+
+  const handleViewAll = () => {
+    if (selectedCategory !== 'All Courses') {
+      setSelectedCategory('All Courses');
+    }
+    setSearchQuery('');
+  };
+
+  const isSearching = searchQuery.trim().length > 0;
 
   return (
     <SafeAreaView style={[styles.safeArea, { backgroundColor: bgColor }]} edges={['top']}>
@@ -197,40 +226,98 @@ export default function HomeScreen() {
           })}
         </ScrollView>
 
-        {/* COURSES LIST SECTION */}
-        <View style={styles.coursesSection}>
-          <View style={styles.sectionHeaderRow}>
-            <Text style={[styles.sectionHeading, { color: textColor }]}>
-              {selectedCategory === 'All Courses' ? 'All Learning Tracks' : selectedCategory}
-            </Text>
-            <Text style={[styles.countBadge, { color: mutedText }]}>
-              {filteredCourses.length} {filteredCourses.length === 1 ? 'course' : 'courses'}
+        {/* LOADING STATE */}
+        {isLoading ? (
+          <View style={styles.loadingContainer}>
+            <ActivityIndicator size="large" color={activeColor} />
+            <Text style={[styles.loadingText, { color: mutedText }]}>
+              Loading courses...
             </Text>
           </View>
-
-          {isLoading ? (
-            <View style={styles.loadingContainer}>
-              <ActivityIndicator size="large" color={activeColor} />
-              <Text style={[styles.loadingText, { color: mutedText }]}>
-                Loading courses from API...
+        ) : filteredCourses.length === 0 ? (
+          /* EMPTY STATE */
+          <View style={[styles.emptyContainer, { backgroundColor: cardBg, borderColor }]}>
+            <Ionicons name="book-outline" size={36} color={mutedText} style={{ marginBottom: 8 }} />
+            <Text style={[styles.emptyTitle, { color: textColor }]}>No courses found</Text>
+            <Text style={[styles.emptySub, { color: mutedText }]}>
+              Try adjusting your search query or choosing another category.
+            </Text>
+          </View>
+        ) : isSearching ? (
+          /* SEARCH RESULTS VERTICAL LIST */
+          <View style={styles.popularSection}>
+            <View style={styles.sectionHeaderRow}>
+              <Text style={[styles.sectionHeading, { color: textColor }]}>
+                Search Results
+              </Text>
+              <Text style={[styles.countBadge, { color: mutedText }]}>
+                {filteredCourses.length} {filteredCourses.length === 1 ? 'course' : 'courses'}
               </Text>
             </View>
-          ) : filteredCourses.length === 0 ? (
-            <View style={[styles.emptyContainer, { backgroundColor: cardBg, borderColor }]}>
-              <Ionicons name="book-outline" size={36} color={mutedText} style={{ marginBottom: 8 }} />
-              <Text style={[styles.emptyTitle, { color: textColor }]}>No courses found</Text>
-              <Text style={[styles.emptySub, { color: mutedText }]}>
-                Try adjusting your search query or choosing another category.
-              </Text>
-            </View>
-          ) : (
-            filteredCourses.map((course) => (
-              <MobileCourseCard key={course.id} course={course} />
-            ))
-          )}
-        </View>
 
-        <View style={{ height: 32 }} />
+            {filteredCourses.map((course) => (
+              <MobileCourseCard key={`search-${course.id}`} course={course} variant="compact" />
+            ))}
+          </View>
+        ) : (
+          /* DUAL LAYOUT: 1) HORIZONTAL SCROLL ROW + 2) POPULAR COURSES VERTICAL AREA */
+          <>
+            {/* 1. FIRST ROW: HORIZONTAL SCROLLABLE COURSES */}
+            <View style={styles.horizontalSection}>
+              <View style={styles.horizontalHeaderRow}>
+                <Text style={[styles.sectionHeading, { color: textColor }]}>
+                  {selectedCategory === 'All Courses' ? 'Featured Tracks' : `${selectedCategory} Tracks`}
+                </Text>
+                <Text style={[styles.countBadge, { color: mutedText }]}>
+                  Swipe to browse
+                </Text>
+              </View>
+
+              <ScrollView
+                horizontal
+                showsHorizontalScrollIndicator={false}
+                contentContainerStyle={styles.horizontalScrollContent}
+              >
+                {horizontalCourses.map((course) => (
+                  <MobileCourseCard
+                    key={`carousel-${course.id}`}
+                    course={course}
+                    variant="carousel"
+                  />
+                ))}
+              </ScrollView>
+            </View>
+
+            {/* 2. SECOND SECTION: POPULAR COURSES VERTICAL AREA */}
+            <View style={styles.popularSection}>
+              <View style={styles.sectionHeaderRow}>
+                <Text style={[styles.sectionHeading, { color: textColor }]}>
+                  Popular Courses
+                </Text>
+                <Pressable
+                  onPress={handleViewAll}
+                  hitSlop={8}
+                  style={({ pressed }) => [pressed && styles.pressed]}
+                >
+                  <Text style={[styles.viewAllText, { color: textColor }]}>
+                    View All
+                  </Text>
+                </Pressable>
+              </View>
+
+              {/* Vertical list using compact side-by-side cards */}
+              {popularCourses.map((course) => (
+                <MobileCourseCard
+                  key={`pop-${course.id}`}
+                  course={course}
+                  variant="compact"
+                />
+              ))}
+            </View>
+          </>
+        )}
+
+        <View style={{ height: 36 }} />
       </ScrollView>
     </SafeAreaView>
   );
@@ -303,7 +390,7 @@ const styles = StyleSheet.create({
   categoryScroll: {
     paddingHorizontal: 20,
     gap: 8,
-    marginBottom: 20,
+    marginBottom: 22,
   },
   categoryPill: {
     paddingVertical: 8,
@@ -316,7 +403,25 @@ const styles = StyleSheet.create({
   categoryPillText: {
     fontSize: 13,
   },
-  coursesSection: {
+
+  // 1. Horizontal Scroll Row Styles
+  horizontalSection: {
+    marginBottom: 26,
+  },
+  horizontalHeaderRow: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    paddingHorizontal: 20,
+    marginBottom: 12,
+  },
+  horizontalScrollContent: {
+    paddingHorizontal: 20,
+    gap: 14,
+  },
+
+  // 2. Popular Courses Vertical Section Styles
+  popularSection: {
     paddingHorizontal: 20,
   },
   sectionHeaderRow: {
@@ -330,10 +435,17 @@ const styles = StyleSheet.create({
     fontWeight: '800',
     letterSpacing: -0.2,
   },
-  countBadge: {
+  viewAllText: {
     fontSize: 13,
+    fontWeight: '700',
+    textDecorationLine: 'underline',
+  },
+  countBadge: {
+    fontSize: 12,
     fontWeight: '500',
   },
+
+  // Loading & Empty States
   loadingContainer: {
     paddingVertical: 40,
     alignItems: 'center',
@@ -343,6 +455,7 @@ const styles = StyleSheet.create({
     fontSize: 13,
   },
   emptyContainer: {
+    marginHorizontal: 20,
     padding: 32,
     borderRadius: 16,
     borderWidth: 1,

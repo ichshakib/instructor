@@ -64,28 +64,9 @@ export default function InstructorLanding() {
       <Navbar />
 
       {/* ========================================================================= */}
-      {/* 1. TOP HERO SECTION (WARM CREAM PALETTE: #FFF7DF)                        */}
+      {/* 1. TOP HERO SECTION (CLEAN & MINIMAL WHITE)                               */}
       {/* ========================================================================= */}
-      <section className="relative w-full bg-[#FFF7DF] text-[#18191E] overflow-hidden pt-24 sm:pt-28 pb-16 sm:pb-24">
-        {/* Top Left Organic Dark Accent (Background layer - never hides content) */}
-        <div
-          className="pointer-events-none select-none absolute -top-3 -left-3 w-16 h-16 sm:w-20 sm:h-20 md:w-28 md:h-28 bg-[#18191E] rounded-br-[50px] sm:rounded-br-[75px] z-0 transition-all duration-300 shadow-sm"
-          aria-hidden="true"
-        />
-
-        {/* Top Right Dot Grid on Cream Canvas */}
-        <div
-          className="pointer-events-none absolute top-12 right-6 sm:top-16 sm:right-14 md:right-24 z-0 grid grid-cols-4 gap-2.5 sm:gap-3.5 opacity-70"
-          aria-hidden="true"
-        >
-          {Array.from({ length: 20 }).map((_, i) => (
-            <div
-              key={`dot-top-${i}`}
-              className="w-1.5 h-1.5 rounded-full bg-[#C7B283]"
-            />
-          ))}
-        </div>
-
+      <section className="relative w-full bg-white text-[#18191E] overflow-hidden pt-24 sm:pt-28 pb-16 sm:pb-24 border-b border-neutral-100">
         {/* Hero Content */}
         <div className="relative z-10 w-full max-w-7xl mx-auto px-6 sm:px-10 lg:px-16 pt-4 sm:pt-8">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-center">
@@ -105,55 +86,39 @@ export default function InstructorLanding() {
                 Discover interactive, expert-led courses designed to help you build in-demand skills, launch real projects, and advance your career at your own pace.
               </p>
 
-              {/* CTA & Social Proof Avatars Row */}
+              {/* CTA & Social Proof Row */}
               <div className="mt-8 sm:mt-10 flex flex-wrap items-center gap-6 sm:gap-8">
                 {/* Primary Pill Button - Redirects to /courses */}
                 <Link
                   href="/courses"
-                  className="group relative inline-flex items-center justify-center px-8 py-4 text-base font-semibold text-white bg-[#18191E] rounded-2xl shadow-lg shadow-neutral-900/15 hover:bg-[#2A2B33] hover:shadow-xl hover:-translate-y-0.5 active:translate-y-0 active:scale-[0.98] transition-all duration-200"
+                  className="group relative inline-flex items-center justify-center px-8 py-3.5 text-base font-semibold text-white bg-[#18191E] rounded-xl shadow-xs hover:bg-[#2A2B33] hover:-translate-y-0.5 active:translate-y-0 transition-all duration-200"
                 >
                   <span>Our Courses</span>
                   <ArrowRight className="w-4 h-4 ml-2 opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-200" />
                 </Link>
 
-                {/* Overlapping Avatars & 29.5k+ Counter */}
+                {/* Overlapping Minimal Avatars & Counter */}
                 <div className="flex items-center">
-                  <div className="flex -space-x-3 overflow-hidden p-0.5">
-                    {/* Avatar 1 */}
-                    <div
-                      className="w-10 h-10 sm:w-11 sm:h-11 rounded-full border-2 border-[#FFF7DF] bg-amber-200/90 shadow-sm flex items-center justify-center text-xs font-bold text-amber-900 overflow-hidden relative"
-                      title="Sarah M. - Active Learner"
-                    >
-                      <span className="select-none">SM</span>
+                  <div className="flex -space-x-2.5 overflow-hidden p-0.5">
+                    <div className="w-9 h-9 rounded-full border-2 border-white bg-neutral-200 flex items-center justify-center text-[11px] font-bold text-neutral-700 select-none">
+                      SM
                     </div>
-                    {/* Avatar 2 */}
-                    <div
-                      className="w-10 h-10 sm:w-11 sm:h-11 rounded-full border-2 border-[#FFF7DF] bg-sky-200/90 shadow-sm flex items-center justify-center text-xs font-bold text-sky-900 overflow-hidden relative"
-                      title="David K. - Fullstack Student"
-                    >
-                      <span className="select-none">DK</span>
+                    <div className="w-9 h-9 rounded-full border-2 border-white bg-neutral-300 flex items-center justify-center text-[11px] font-bold text-neutral-800 select-none">
+                      DK
                     </div>
-                    {/* Avatar 3 */}
-                    <div
-                      className="w-10 h-10 sm:w-11 sm:h-11 rounded-full border-2 border-[#FFF7DF] bg-rose-200/90 shadow-sm flex items-center justify-center text-xs font-bold text-rose-900 overflow-hidden relative"
-                      title="Elena R. - UI/UX Designer"
-                    >
-                      <span className="select-none">ER</span>
+                    <div className="w-9 h-9 rounded-full border-2 border-white bg-neutral-200 flex items-center justify-center text-[11px] font-bold text-neutral-700 select-none">
+                      ER
                     </div>
-                    {/* Avatar 4 */}
-                    <div
-                      className="w-10 h-10 sm:w-11 sm:h-11 rounded-full border-2 border-[#FFF7DF] bg-emerald-200/90 shadow-sm flex items-center justify-center text-xs font-bold text-emerald-900 overflow-hidden relative"
-                      title="Liam T. - AI Certified"
-                    >
-                      <span className="select-none">LT</span>
+                    <div className="w-9 h-9 rounded-full border-2 border-white bg-neutral-800 flex items-center justify-center text-[11px] font-bold text-white select-none">
+                      LT
                     </div>
                   </div>
 
-                  <div className="ml-3.5 flex flex-col justify-center">
-                    <span className="text-xl sm:text-2xl font-bold text-[#18191E] tracking-tight leading-none">
+                  <div className="ml-3 flex flex-col justify-center">
+                    <span className="text-lg sm:text-xl font-bold text-[#18191E] tracking-tight leading-none">
                       29.5k+
                     </span>
-                    <span className="text-[11px] text-[#78756B] font-medium tracking-wide">
+                    <span className="text-[11px] text-neutral-500 font-medium tracking-wide">
                       Enrolled Students
                     </span>
                   </div>
@@ -161,38 +126,8 @@ export default function InstructorLanding() {
               </div>
             </div>
 
-            {/* ----------------- RIGHT COLUMN: HERO VISUAL & WIDGETS ----------------- */}
-            <div className="lg:col-span-6 relative flex items-center justify-center min-h-[460px] sm:min-h-[520px]">
-              {/* 1. ARTISTIC WATERCOLOR / BRUSH STROKE BACKDROP */}
-              <div
-                className="absolute inset-0 flex items-center justify-center pointer-events-none select-none z-0"
-                aria-hidden="true"
-              >
-                <svg
-                  viewBox="0 0 600 600"
-                  className="w-[120%] h-[120%] max-w-[650px] opacity-80"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  {/* Organic brush splatter layers */}
-                  <path
-                    d="M480 260C515 340 460 440 370 480C280 520 160 490 110 410C60 330 80 210 150 140C220 70 330 90 410 130C450 150 460 210 480 260Z"
-                    fill="#EFE1BB"
-                    fillOpacity="0.75"
-                  />
-                  <path
-                    d="M440 180C490 240 520 350 450 420C380 490 270 470 190 430C110 390 90 290 120 210C150 130 250 100 340 110C390 115 415 150 440 180Z"
-                    fill="#F5E8C7"
-                    fillOpacity="0.6"
-                  />
-                  <path
-                    d="M320 80C390 90 460 140 470 210C480 280 430 360 370 410C310 460 210 460 150 400C90 340 100 240 140 170C180 100 250 70 320 80Z"
-                    fill="#E8D9B0"
-                    fillOpacity="0.4"
-                  />
-                </svg>
-              </div>
-
+            {/* ----------------- RIGHT COLUMN: HERO VISUAL ----------------- */}
+            <div className="lg:col-span-6 relative flex items-center justify-center min-h-[440px] sm:min-h-[500px]">
               {/* MAIN HERO STUDENT IMAGE CONTAINER */}
               <div className="relative z-10 w-full max-w-[440px] sm:max-w-[480px] lg:max-w-[520px] h-[460px] sm:h-[520px] lg:h-[560px] flex items-center justify-center">
                 {customHeroImg ? (
@@ -250,66 +185,66 @@ export default function InstructorLanding() {
       </section>
 
       {/* ========================================================================= */}
-      {/* 2. FLOATING STATS BANNER (STRADDLING CREAM & WHITE BACKGROUNDS)           */}
+      {/* 2. FLOATING STATS BANNER (MINIMAL, CLEAN)                                 */}
       {/* ========================================================================= */}
-      <div className="relative z-30 w-full max-w-6xl mx-auto px-4 sm:px-6 -mt-14 sm:-mt-16">
-        <div className="w-full rounded-3xl bg-gradient-to-b from-white/55 via-white/35 to-white/45 backdrop-blur-2xl backdrop-saturate-150 border border-white/80 shadow-[0_20px_45px_-15px_rgba(24,25,30,0.08),inset_0_1px_2px_rgba(255,255,255,0.95)] px-6 sm:px-12 py-7 sm:py-8 transition-all duration-300">
-          <div className="grid grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-6 divide-y lg:divide-y-0 lg:divide-x divide-neutral-300/40">
+      <div className="relative z-30 w-full max-w-6xl mx-auto px-4 sm:px-6 -mt-10 sm:-mt-12">
+        <div className="w-full rounded-2xl bg-white border border-neutral-200/80 shadow-sm px-6 sm:px-10 py-6 sm:py-7">
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-6 divide-y lg:divide-y-0 lg:divide-x divide-neutral-100">
             {/* Stat 1: Happy Learner */}
-            <div className="flex items-center gap-4 pt-4 first:pt-0 lg:pt-0 lg:px-4 first:pl-0">
-              <div className="w-12 h-12 rounded-2xl bg-white/70 backdrop-blur-md border border-white/90 flex items-center justify-center text-[#18191E] shrink-0 shadow-sm shadow-black/[0.04]">
-                <Smile className="w-6 h-6 stroke-[1.8]" />
+            <div className="flex items-center gap-3.5 pt-4 first:pt-0 lg:pt-0 lg:px-4 first:pl-0">
+              <div className="w-11 h-11 rounded-xl bg-neutral-50 border border-neutral-200/60 flex items-center justify-center text-[#18191E] shrink-0">
+                <Smile className="w-5 h-5 stroke-[1.8]" />
               </div>
               <div>
-                <div className="text-2xl sm:text-3xl font-extrabold text-[#18191E] tracking-tight">
+                <div className="text-2xl font-bold text-[#18191E] tracking-tight">
                   21k+
                 </div>
-                <div className="text-xs sm:text-sm text-[#706E66] font-medium mt-0.5">
-                  Happy Learner
+                <div className="text-xs text-neutral-500 font-medium">
+                  Happy Learners
                 </div>
               </div>
             </div>
 
             {/* Stat 2: Winning Awards */}
-            <div className="flex items-center gap-4 pt-4 lg:pt-0 lg:px-4">
-              <div className="w-12 h-12 rounded-2xl bg-white/70 backdrop-blur-md border border-white/90 flex items-center justify-center text-[#18191E] shrink-0 shadow-sm shadow-black/[0.04]">
-                <Award className="w-6 h-6 stroke-[1.8]" />
+            <div className="flex items-center gap-3.5 pt-4 lg:pt-0 lg:px-4">
+              <div className="w-11 h-11 rounded-xl bg-neutral-50 border border-neutral-200/60 flex items-center justify-center text-[#18191E] shrink-0">
+                <Award className="w-5 h-5 stroke-[1.8]" />
               </div>
               <div>
-                <div className="text-2xl sm:text-3xl font-extrabold text-[#18191E] tracking-tight">
+                <div className="text-2xl font-bold text-[#18191E] tracking-tight">
                   72+
                 </div>
-                <div className="text-xs sm:text-sm text-[#706E66] font-medium mt-0.5">
-                  Winning Awards
+                <div className="text-xs text-neutral-500 font-medium">
+                  Expert Mentors
                 </div>
               </div>
             </div>
 
             {/* Stat 3: Online Courses */}
-            <div className="flex items-center gap-4 pt-4 lg:pt-0 lg:px-4">
-              <div className="w-12 h-12 rounded-2xl bg-white/70 backdrop-blur-md border border-white/90 flex items-center justify-center text-[#18191E] shrink-0 shadow-sm shadow-black/[0.04]">
-                <Video className="w-6 h-6 stroke-[1.8]" />
+            <div className="flex items-center gap-3.5 pt-4 lg:pt-0 lg:px-4">
+              <div className="w-11 h-11 rounded-xl bg-neutral-50 border border-neutral-200/60 flex items-center justify-center text-[#18191E] shrink-0">
+                <Video className="w-5 h-5 stroke-[1.8]" />
               </div>
               <div>
-                <div className="text-2xl sm:text-3xl font-extrabold text-[#18191E] tracking-tight">
-                  218+
+                <div className="text-2xl font-bold text-[#18191E] tracking-tight">
+                  200+
                 </div>
-                <div className="text-xs sm:text-sm text-[#706E66] font-medium mt-0.5">
-                  Online Courses
+                <div className="text-xs text-neutral-500 font-medium">
+                  Course Modules
                 </div>
               </div>
             </div>
 
             {/* Stat 4: Live Support */}
-            <div className="flex items-center gap-4 pt-4 lg:pt-0 lg:px-4">
-              <div className="w-12 h-12 rounded-2xl bg-white/70 backdrop-blur-md border border-white/90 flex items-center justify-center text-[#18191E] shrink-0 shadow-sm shadow-black/[0.04]">
-                <Headphones className="w-6 h-6 stroke-[1.8]" />
+            <div className="flex items-center gap-3.5 pt-4 lg:pt-0 lg:px-4">
+              <div className="w-11 h-11 rounded-xl bg-neutral-50 border border-neutral-200/60 flex items-center justify-center text-[#18191E] shrink-0">
+                <Headphones className="w-5 h-5 stroke-[1.8]" />
               </div>
               <div>
-                <div className="text-2xl sm:text-3xl font-extrabold text-[#18191E] tracking-tight">
-                  27/7
+                <div className="text-2xl font-bold text-[#18191E] tracking-tight">
+                  24/7
                 </div>
-                <div className="text-xs sm:text-sm text-[#706E66] font-medium mt-0.5">
+                <div className="text-xs text-neutral-500 font-medium">
                   Live Support
                 </div>
               </div>
@@ -319,181 +254,46 @@ export default function InstructorLanding() {
       </div>
 
       {/* ========================================================================= */}
-      {/* 3. WHITE BOTTOM SECTION (PURE WHITE: #FFFFFF)                            */}
+      {/* 3. WHITE BOTTOM SECTION (MINIMAL, CLEAN)                                  */}
       {/* ========================================================================= */}
-      <section className="relative w-full bg-white text-[#18191E] pt-14 sm:pt-18 pb-28 sm:pb-36 overflow-hidden">
-        {/* Mid-Left Dot Grid placed on the white background beside Trusted By */}
-        <div
-          className="pointer-events-none absolute top-12 left-6 sm:left-10 md:left-16 z-0 grid grid-cols-5 gap-2.5 sm:gap-3.5 opacity-65"
-          aria-hidden="true"
-        >
-          {Array.from({ length: 20 }).map((_, i) => (
-            <div
-              key={`dot-mid-${i}`}
-              className="w-1.5 h-1.5 rounded-full bg-[#C7B283]"
-            />
-          ))}
-        </div>
-
-        {/* Bottom Right Organic Dark Accent (Background layer - never hides content) */}
-        <div
-          className="pointer-events-none select-none absolute -bottom-4 -right-4 w-24 h-24 sm:w-32 sm:h-32 md:w-40 md:h-40 bg-[#18191E] rounded-tl-[60px] sm:rounded-tl-[90px] z-0 transition-all duration-300 shadow-sm"
-          aria-hidden="true"
-        />
-
+      <section className="relative w-full bg-white text-[#18191E] pt-14 sm:pt-16 pb-20 sm:pb-28">
         <div className="relative z-10 w-full max-w-7xl mx-auto px-6 sm:px-10 lg:px-16">
-          {/* "TRUSTED BY" SECTION */}
-          <div className="pt-4 pb-14">
-            {/* Header Row */}
-            <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 border-b border-neutral-200 pb-6 mb-10">
-              <h2 className="text-2xl sm:text-3xl font-extrabold text-[#18191E] tracking-tight">
-                Trusted By
-              </h2>
-              <p className="text-xs sm:text-sm text-[#7A776D] max-w-md font-normal leading-relaxed">
-                Empowering leading universities, high-growth startups, and over 29,000+ ambitious learners worldwide.
-              </p>
-            </div>
-
-            {/* Partner Brands Grid */}
-            <div className="grid grid-cols-2 md:grid-cols-5 gap-8 sm:gap-10 items-center justify-items-center opacity-85 hover:opacity-100 transition-opacity">
-              {/* Logo 1: Power XR2 Module */}
-              <div className="flex items-center gap-2.5 hover:scale-105 transition-transform duration-200 cursor-pointer">
-                <div className="w-9 h-9 rounded-lg bg-[#18191E] text-white font-extrabold text-sm flex items-center justify-center tracking-tighter">
-                  QC
-                </div>
-                <div className="flex flex-col">
-                  <span className="text-[10px] font-black tracking-widest leading-none text-[#18191E]">
-                    POWER
-                  </span>
-                  <span className="text-xs font-black tracking-tight text-[#18191E]">
-                    XR2
-                  </span>
-                  <span className="text-[8px] font-bold tracking-widest text-[#6E6B62] leading-none">
-                    MODULE
-                  </span>
-                </div>
-              </div>
-
-              {/* Logo 2: Logo Ipsum Plus */}
-              <div className="flex items-center gap-2.5 hover:scale-105 transition-transform duration-200 cursor-pointer">
-                <div className="w-8 h-8 relative flex items-center justify-center">
-                  <div className="absolute top-0 left-0 w-3.5 h-3.5 bg-[#18191E]" />
-                  <div className="absolute bottom-0 right-0 w-3.5 h-3.5 bg-[#18191E]" />
-                  <div className="absolute top-1 right-0 w-2.5 h-2.5 bg-[#18191E]" />
-                  <div className="absolute bottom-1 left-0 w-2.5 h-2.5 bg-[#18191E]" />
-                </div>
-                <div className="flex flex-col leading-tight">
-                  <span className="text-xs font-bold text-[#18191E]">Logo</span>
-                  <span className="text-xs font-bold text-[#18191E]">Ipsum</span>
-                  <span className="text-[9px] font-medium text-[#7A776D]">Plus</span>
-                </div>
-              </div>
-
-              {/* Logo 3: Ultra Prestigious Winner */}
-              <div className="flex items-center gap-2 hover:scale-105 transition-transform duration-200 cursor-pointer">
-                <svg
-                  viewBox="0 0 120 70"
-                  className="w-28 h-14 text-[#18191E] fill-current"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path d="M22,35 C20,28 15,22 10,20 C12,25 15,30 18,34 C12,38 8,45 10,50 C14,46 18,41 22,35 Z" />
-                  <path d="M28,24 C27,18 24,12 20,8 C21,14 24,19 26,23 Z" />
-                  <path d="M28,46 C27,52 23,58 18,62 C20,56 24,51 27,45 Z" />
-                  <path d="M98,35 C100,28 105,22 110,20 C108,25 105,30 102,34 C108,38 112,45 110,50 C106,46 102,41 98,35 Z" />
-                  <path d="M92,24 C93,18 96,12 100,8 C99,14 96,19 94,23 Z" />
-                  <path d="M92,46 C93,52 97,58 102,62 C100,56 96,51 93,45 Z" />
-                  <text x="44" y="14" fontSize="8" letterSpacing="2">
-                    ★★★★★
-                  </text>
-                  <text x="40" y="26" fontSize="9" fontWeight="900">
-                    ULTRA
-                  </text>
-                  <text x="31" y="36" fontSize="6.5" fontWeight="700">
-                    PRESTIGIOUS
-                  </text>
-                  <text x="33" y="44" fontSize="5" fontWeight="500">
-                    BEST OF THE WORLD
-                  </text>
-                  <text x="40" y="54" fontSize="7" fontWeight="800">
-                    WINNER
-                  </text>
-                </svg>
-              </div>
-
-              {/* Logo 4: Ultimate Winner */}
-              <div className="flex items-center gap-2 hover:scale-105 transition-transform duration-200 cursor-pointer">
-                <svg
-                  viewBox="0 0 120 70"
-                  className="w-28 h-14 text-[#18191E] fill-current"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path d="M20,35 C15,25 8,28 12,38 C16,34 18,34 20,35 Z" />
-                  <path d="M22,22 C18,14 12,18 16,25 C19,23 21,22 22,22 Z" />
-                  <path d="M22,48 C18,56 12,52 16,45 C19,47 21,48 22,48 Z" />
-                  <path d="M100,35 C105,25 112,28 108,38 C104,34 102,34 100,35 Z" />
-                  <path d="M98,22 C102,14 108,18 104,25 C101,23 99,22 98,22 Z" />
-                  <path d="M98,48 C102,56 108,52 104,45 C101,47 99,48 98,48 Z" />
-                  <text x="44" y="15" fontSize="7" letterSpacing="2">
-                    ★★★★★
-                  </text>
-                  <text x="35" y="27" fontSize="8" fontWeight="900">
-                    ULTIMATE
-                  </text>
-                  <text x="39" y="37" fontSize="7.5" fontWeight="800">
-                    WINNER
-                  </text>
-                  <text x="37" y="45" fontSize="5" fontWeight="600">
-                    ULTRA BEST
-                  </text>
-                  <text x="33" y="52" fontSize="4.5" fontWeight="500">
-                    PERFORMANCE
-                  </text>
-                  <text x="44" y="60" fontSize="6" letterSpacing="2">
-                    ★★★★★
-                  </text>
-                </svg>
-              </div>
-
-              {/* Logo 5: LOGOIPSUM (Wheat Stem) */}
-              <div className="flex items-center gap-2 hover:scale-105 transition-transform duration-200 cursor-pointer">
-                <svg
-                  viewBox="0 0 24 32"
-                  className="w-6 h-8 text-[#18191E] fill-current"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path d="M12,2 C10,5 9,9 12,12 C15,9 14,5 12,2 Z" />
-                  <path d="M11,10 C8,12 6,15 9,18 C11,16 11,13 11,10 Z" />
-                  <path d="M13,10 C16,12 18,15 15,18 C13,16 13,13 13,10 Z" />
-                  <path d="M11,17 C8,19 6,22 9,25 C11,23 11,20 11,17 Z" />
-                  <path d="M13,17 C16,19 18,22 15,25 C13,23 13,20 13,17 Z" />
-                  <line
-                    x1="12"
-                    y1="10"
-                    x2="12"
-                    y2="30"
-                    stroke="currentColor"
-                    strokeWidth="1.5"
-                  />
-                </svg>
-                <span className="text-sm font-black tracking-wider text-[#18191E]">
-                  LOGOIPSUM
-                </span>
-              </div>
+          {/* MINIMAL "TRUSTED BY" BAR */}
+          <div className="pt-2 pb-12 border-b border-neutral-100">
+            <p className="text-center text-xs font-semibold uppercase tracking-widest text-neutral-400 mb-8">
+              Trusted by ambitious learners from top teams & universities
+            </p>
+            <div className="flex flex-wrap items-center justify-center gap-8 sm:gap-14 text-neutral-400">
+              <span className="text-base sm:text-lg font-bold tracking-tight text-neutral-500 hover:text-[#18191E] transition-colors select-none">
+                STANFORD
+              </span>
+              <span className="text-base sm:text-lg font-bold tracking-tight text-neutral-500 hover:text-[#18191E] transition-colors select-none">
+                MIT
+              </span>
+              <span className="text-base sm:text-lg font-bold tracking-tight text-neutral-500 hover:text-[#18191E] transition-colors select-none">
+                GOOGLE
+              </span>
+              <span className="text-base sm:text-lg font-bold tracking-tight text-neutral-500 hover:text-[#18191E] transition-colors select-none">
+                MICROSOFT
+              </span>
+              <span className="text-base sm:text-lg font-bold tracking-tight text-neutral-500 hover:text-[#18191E] transition-colors select-none">
+                AMAZON
+              </span>
             </div>
           </div>
 
           {/* COURSE CATALOG SECTION */}
-          <div id="courses-section" className="pt-10 pb-8">
-            <div className="text-center max-w-2xl mx-auto mb-12">
-              <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-neutral-100 border border-neutral-200 text-xs font-semibold text-[#18191E] mb-3">
-                <BookOpen className="w-3.5 h-3.5" />
-                Explore Academy Programs
+          <div id="courses-section" className="pt-12 pb-6">
+            <div className="text-center max-w-xl mx-auto mb-12">
+              <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-neutral-100 border border-neutral-200 text-xs font-medium text-neutral-700 mb-3">
+                <BookOpen className="w-3.5 h-3.5 text-neutral-600" />
+                Curated Learning Paths
               </span>
               <h2 className="text-3xl sm:text-4xl font-extrabold text-[#18191E] tracking-tight">
-                Featured LMS Course Catalog
+                Featured Courses
               </h2>
-              <p className="mt-3 text-[#6A685F] text-sm leading-relaxed">
-                Accelerate your knowledge with peer-reviewed modules created by industry experts.
+              <p className="mt-3 text-neutral-500 text-sm leading-relaxed">
+                Accelerate your knowledge with structured, interactive courses built by industry experts.
               </p>
             </div>
 
@@ -714,8 +514,8 @@ export default function InstructorLanding() {
               </h4>
               <ul className="space-y-2.5 text-xs text-[#706E66]">
                 <li>
-                  <Link href="/blog" className="hover:text-[#18191E] transition-colors">
-                    Articles & Blog
+                  <Link href="/blogs" className="hover:text-[#18191E] transition-colors">
+                    Articles & Blogs
                   </Link>
                 </li>
                 <li>
