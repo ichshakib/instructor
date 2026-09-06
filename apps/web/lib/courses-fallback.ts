@@ -3,6 +3,2839 @@ import { CourseDetail } from "./api";
 
 export const FALLBACK_COURSES: CourseDetail[] = [
   {
+    "id": "python-complete-course",
+    "title": "Python Programming: From First Steps to Advanced Engineering",
+    "category": "Development",
+    "type": "Full Course",
+    "typeIcon": "path",
+    "structureType": "chapters-and-lessons",
+    "tag1": "Python 3.10+",
+    "tag2": "Beginner to Advanced",
+    "badgeCount": "",
+    "coverVariant": "code-architecture",
+    "imageUrl": "/course-images/python-course.jpg",
+    "buttonLabel": "Start",
+    "description": "Master modern Python from foundational syntax to advanced software engineering, based on Eric Matthes' 'Python Crash Course', Mark Lutz's 'Learning Python', and Guido van Rossum's official Python documentation. Covers the Python object model, dynamic typing, data structures, OOP classes, dunder protocols, decorators, generators, error handling, and standard library powerhouses.",
+    "featured": true,
+    "totalChapters": 10,
+    "totalLessons": 30,
+    "progressStatus": {
+      "type": "status",
+      "statusText": "New"
+    },
+    "chapters": [
+      {
+        "id": "py-ch1",
+        "title": "Chapter 1: Getting Started, Execution Model & Python Fundamentals",
+        "lessons": [
+          {
+            "id": "py-ch1-l1",
+            "title": "Lesson 1: The Python Execution Model: Bytecode, CPython & Virtual Environments",
+            "description": "CPython runtime mechanics, bytecode compilation (.pyc), the Python Virtual Machine, and venv isolation.",
+            "content": {
+              "overview": "Python is a high-level, interpreted, dynamically typed programming language renowned for its elegance, readability, and multi-paradigm design. Drawing from Mark Lutz's 'Learning Python' and Guido van Rossum's official tutorial, this lesson explores how the CPython virtual machine compiles source text into portable bytecode (.pyc), executes it in the Python runtime loop, and isolates dependencies cleanly using modern virtual environments (venv).",
+              "canDo": "Can explain the CPython compilation and runtime pipeline, execute scripts in interactive and file modes, and initialize isolated virtual environments.",
+              "teacherNote": "Unlike pure compiled languages (C/C++) or pure tree-walking interpreters, Python is a bytecode interpreter. Source files (.py) are parsed into Python Virtual Machine (PVM) opcodes stored in the __pycache__ directory, which significantly accelerates repeated imports.",
+              "sections": [
+                {
+                  "title": "1. The CPython Execution Architecture",
+                  "description": "How Python processes, compiles, and evaluates your code at runtime:",
+                  "table": {
+                    "headers": [
+                      "Stage",
+                      "Input",
+                      "Output",
+                      "Description"
+                    ],
+                    "rows": [
+                      [
+                        "1. Source Code Parsing",
+                        "app.py (Text)",
+                        "AST (Abstract Syntax Tree)",
+                        "CPython checks lexical syntax, indentation blocks, and generates tokens."
+                      ],
+                      [
+                        "2. Bytecode Compilation",
+                        "AST",
+                        ".pyc / Code Objects",
+                        "Generates platform-independent stack machine instructions (disassemblable via dis)."
+                      ],
+                      [
+                        "3. Python Virtual Machine",
+                        "Bytecode Stack Instructions",
+                        "OS System Calls / CPU Execution",
+                        "CPython's runtime loop iteratively fetches opcodes and modifies memory heaps."
+                      ]
+                    ]
+                  }
+                },
+                {
+                  "title": "2. Script Execution Modes & Virtual Environments",
+                  "description": "Core commands for running Python code and managing isolated dependency sandboxes:",
+                  "items": [
+                    {
+                      "term": "python script.py",
+                      "meaning": "Compiles and executes the specified file from the entry point",
+                      "example": "python main.py"
+                    },
+                    {
+                      "term": "python -m venv .venv",
+                      "meaning": "Creates an isolated virtual environment containing dedicated site-packages",
+                      "example": "python -m venv .venv && source .venv/bin/activate  # (Linux/macOS)\n.venv\\Scripts\\activate  # (Windows)"
+                    },
+                    {
+                      "term": "python -i script.py",
+                      "meaning": "Runs script and then remains in interactive REPL inspection mode",
+                      "example": "python -i test_module.py"
+                    }
+                  ],
+                  "notes": [
+                    "Always activate a virtual environment before installing project dependencies via pip install.",
+                    "Check active interpreter paths with sys.executable and active search paths with sys.path."
+                  ]
+                }
+              ],
+              "funFact": {
+                "title": "Why 'Python'?",
+                "content": "Guido van Rossum named the language after the British surreal comedy sketch troupe Monty Python's Flying Circus, not after the snake genus. The official documentation frequently references spam, eggs, and knights!"
+              },
+              "practice": [
+                {
+                  "question": "Where does CPython cache compiled bytecode for imported modules?",
+                  "options": [
+                    "In the system /tmp partition",
+                    "Inside the __pycache__ directory as .pyc files",
+                    "In browser localStorage",
+                    "Inside the operating system kernel registry"
+                  ],
+                  "answer": "Inside the __pycache__ directory as .pyc files",
+                  "explanation": "CPython saves pre-compiled bytecode inside the local __pycache__ folder with filenames indicating the Python version (e.g., module.cpython-310.pyc) to avoid recompilation on subsequent runs."
+                },
+                {
+                  "question": "Which built-in module is recommended to create isolated package environments in Python 3?",
+                  "options": [
+                    "virtualenv_legacy",
+                    "pip_builder",
+                    "venv",
+                    "sandbox"
+                  ],
+                  "answer": "venv",
+                  "explanation": "The venv module is built into Python's standard library since Python 3.3 and is invoked using 'python -m venv <env_name>'."
+                }
+              ]
+            }
+          },
+          {
+            "id": "py-ch1-l2",
+            "title": "Lesson 2: Syntactic Style, Comments & PEP 8 Standards",
+            "description": "Significant 4-space indentation, docstrings, variable casing conventions, and clean code aesthetics.",
+            "content": {
+              "overview": "Python's defining design aesthetic is clarity and readability. Syntactic structure in Python is communicated through significant indentation rather than curly braces. This lesson, grounded in PEP 8 (Style Guide for Python Code) and Eric Matthes' 'Python Crash Course', establishes professional habits: proper 4-space indentation, docstrings, variable naming conventions, and clean inline commenting.",
+              "canDo": "Can format code adhering to PEP 8, formulate expressive comments and docstrings, and prevent IndentationError and SyntaxError.",
+              "teacherNote": "Never mix tabs and spaces. Modern Python 3 strictly prohibits mixing tabs and spaces for indentation and will raise a TabError. Standardize on 4 spaces per indentation level across all editors.",
+              "sections": [
+                {
+                  "title": "1. PEP 8 Naming Conventions",
+                  "description": "Official community conventions for identifier casing across Python applications:",
+                  "table": {
+                    "headers": [
+                      "Identifier Type",
+                      "Naming Convention",
+                      "Correct Example",
+                      "Anti-Pattern"
+                    ],
+                    "rows": [
+                      [
+                        "Variables & Functions",
+                        "snake_case (lowercase with underscores)",
+                        "user_active_count, calculate_total()",
+                        "userActiveCount, CalculateTotal()"
+                      ],
+                      [
+                        "Classes",
+                        "PascalCase (CapWords)",
+                        "UserProfile, DatabaseConnection",
+                        "user_profile, databaseConnection"
+                      ],
+                      [
+                        "Constants",
+                        "UPPER_SNAKE_CASE",
+                        "MAX_RETRY_LIMIT, DATABASE_PORT",
+                        "maxRetryLimit, Max_Retry"
+                      ],
+                      [
+                        "Modules & Packages",
+                        "short, all-lowercase (underscores discouraged)",
+                        "math, request_handler",
+                        "RequestHandler, MathUtils"
+                      ]
+                    ]
+                  }
+                },
+                {
+                  "title": "2. Indentation & Structural Blocks",
+                  "description": "Code blocks are defined by a colon followed by indented statements:",
+                  "items": [
+                    {
+                      "term": "4 Spaces Standard",
+                      "meaning": "PEP 8 mandate for every nesting indentation level",
+                      "example": "def greet(name):\n    if name:\n        print(f'Hello, {name}')"
+                    },
+                    {
+                      "term": "Docstrings (\"\"\"...\"\"\")",
+                      "meaning": "Triple-quoted multi-line string documenting modules, classes, and functions",
+                      "example": "def add(a, b):\n    \"\"\"Return the arithmetic sum of a and b.\"\"\"\n    return a + b"
+                    },
+                    {
+                      "term": "# Single-Line Comment",
+                      "meaning": "Explanatory commentary ignored by the bytecode compiler",
+                      "example": "# Validate that timeout is a positive integer\nif timeout < 0:\n    raise ValueError()"
+                    }
+                  ],
+                  "notes": [
+                    "Docstrings are accessible at runtime via the `__doc__` attribute or `help(function_name)`.",
+                    "Limit all lines to a maximum of 79 characters, and docstrings/comments to 72 characters where possible."
+                  ]
+                }
+              ],
+              "practice": [
+                {
+                  "question": "According to PEP 8, which casing convention must be used for function and variable names?",
+                  "options": [
+                    "camelCase",
+                    "snake_case",
+                    "kebab-case",
+                    "PascalCase"
+                  ],
+                  "answer": "snake_case",
+                  "explanation": "PEP 8 stipulates that variable and function names should be lowercase, with words separated by underscores (snake_case) to improve readability."
+                },
+                {
+                  "question": "How does Python determine the body of a loop, function, or conditional block?",
+                  "options": [
+                    "Enclosing statements inside curly braces { }",
+                    "Using begin and end keywords",
+                    "A colon (:) followed by consistently indented lines",
+                    "Semicolons at the end of each statement"
+                  ],
+                  "answer": "A colon (:) followed by consistently indented lines",
+                  "explanation": "Python uses significant whitespace: a colon introduces a block, and all subsequent lines indented to the same depth belong to that block."
+                }
+              ]
+            }
+          },
+          {
+            "id": "py-ch1-l3",
+            "title": "Lesson 3: The Zen of Python, Dynamic Typing & Object References",
+            "description": "Core design philosophy (import this), pointers to heap objects, and identity (is) versus equality (==).",
+            "content": {
+              "overview": "Python's computational model treats everything as an object. As Mark Lutz meticulously demonstrates in 'Learning Python', Python variables are not memory-reserved boxes; they are lightweight object references (pointers) bound to allocated heap objects. This lesson explores the Zen of Python (PEP 20), dynamic typing, object identity vs equality, and garbage collection via reference counting.",
+              "canDo": "Can explain Python's object pointer model, differentiate between the 'is' and '==' operators, and apply the principles of the Zen of Python.",
+              "teacherNote": "When you execute `a = [1, 2, 3]` and `b = a`, Python does NOT copy the list. Both variables now point to the exact same heap memory object! Modifying `b.append(4)` will mutate `a` as well.",
+              "sections": [
+                {
+                  "title": "1. The Zen of Python (Guiding Principles)",
+                  "description": "Core aphorisms accessible by entering `import this` in any Python shell:",
+                  "items": [
+                    {
+                      "term": "Beautiful is better than ugly",
+                      "meaning": "Prioritize clean, aesthetically pleasing, expressive syntax",
+                      "example": "numbers = [x * 2 for x in raw_values if x > 0]"
+                    },
+                    {
+                      "term": "Explicit is better than implicit",
+                      "meaning": "Avoid hidden magic, obscure side-effects, and implicit assumptions",
+                      "example": "def calculate_fee(price, tax_rate=0.05): return price * tax_rate"
+                    },
+                    {
+                      "term": "Simple is better than complex",
+                      "meaning": "Choose the simplest viable data structures before building complex abstractions",
+                      "example": "Use a dictionary before building an elaborate custom class hierarchy"
+                    },
+                    {
+                      "term": "Readability counts",
+                      "meaning": "Write code optimized for human readers, who spend 10x more time reading than writing",
+                      "example": "Meaningful variable names over single-letter cryptic abbreviations"
+                    }
+                  ]
+                },
+                {
+                  "title": "2. Variables as References & Object Identity",
+                  "description": "How Python handles allocation, pointers, and equality checks:",
+                  "table": {
+                    "headers": [
+                      "Concept",
+                      "Mechanism",
+                      "Code Example",
+                      "Evaluation"
+                    ],
+                    "rows": [
+                      [
+                        "Value Equality (==)",
+                        "Checks if the contents / values of two objects are equivalent",
+                        "[1, 2] == [1, 2]",
+                        "True (contents are identical)"
+                      ],
+                      [
+                        "Identity Check (is)",
+                        "Checks if two references point to the exact same memory address (id)",
+                        "[1, 2] is [1, 2]",
+                        "False (two distinct list instances in memory)"
+                      ],
+                      [
+                        "Shared Reference",
+                        "Binding an existing reference to a new identifier name",
+                        "x = [1]; y = x; y is x",
+                        "True (both refer to the identical memory heap address)"
+                      ],
+                      [
+                        "Reference Counting",
+                        "CPython frees memory when an object's reference count drops to zero",
+                        "del x; del y",
+                        "Memory reclaimed automatically by garbage collector"
+                      ]
+                    ]
+                  }
+                }
+              ],
+              "practice": [
+                {
+                  "question": "What will the following code output?\n\na = [1, 2, 3]\nb = a\nb.append(4)\nprint(len(a))",
+                  "options": [
+                    "3",
+                    "4",
+                    "Error: b is immutable",
+                    "None"
+                  ],
+                  "answer": "4",
+                  "explanation": "Because variables in Python are object references, 'b = a' does not clone the list; both 'a' and 'b' reference the exact same list in heap memory. Appending to 'b' mutates the object referenced by 'a', making len(a) equal to 4."
+                },
+                {
+                  "question": "Which operator tests whether two variables point to the exact same memory address?",
+                  "options": [
+                    "==",
+                    "===",
+                    "is",
+                    "id_equals"
+                  ],
+                  "answer": "is",
+                  "explanation": "The 'is' operator compares object identity (memory addresses via id()), whereas '==' compares equality of values."
+                }
+              ]
+            }
+          }
+        ]
+      },
+      {
+        "id": "py-ch2",
+        "title": "Chapter 2: Numbers, Booleans & Modern String Processing",
+        "lessons": [
+          {
+            "id": "py-ch2-l4",
+            "title": "Lesson 4: Numeric Types, Operators & Arithmetic Precisions",
+            "description": "Arbitrary-precision integers, IEEE-754 float limitations, floor division (//), and the math module.",
+            "content": {
+              "overview": "Python provides rich, built-in numeric types that support arbitrary precision integers, IEEE 754 double-precision floating-point numbers, and complex numbers. Synthesizing insights from Mark Lutz's 'Learning Python' and the official tutorial, this lesson unpacks standard arithmetic operators, floor division vs true division, modulo arithmetic, precedence, and floating-point precision caveats.",
+              "canDo": "Can select appropriate numeric types, perform robust arithmetic calculations, handle floating-point precision limitations, and utilize the math standard library.",
+              "teacherNote": "In Python 3, integers have arbitrary precision (they automatically expand to use as much RAM as needed, eliminating integer overflow bugs). However, floats are 64-bit IEEE 754 representations, meaning expressions like 0.1 + 0.2 equal 0.30000000000000004. For exact currency math, always use the decimal module!",
+              "sections": [
+                {
+                  "title": "1. Numeric Data Types & Arithmetic Operators",
+                  "description": "Standard mathematical operators and their behavioral semantics:",
+                  "table": {
+                    "headers": [
+                      "Operator",
+                      "Operation",
+                      "Example",
+                      "Result"
+                    ],
+                    "rows": [
+                      [
+                        "+",
+                        "Addition",
+                        "15 + 4",
+                        "19"
+                      ],
+                      [
+                        "-",
+                        "Subtraction",
+                        "20 - 7",
+                        "13"
+                      ],
+                      [
+                        "*",
+                        "Multiplication",
+                        "6 * 7",
+                        "42"
+                      ],
+                      [
+                        "/",
+                        "True Division (Always returns float)",
+                        "10 / 2",
+                        "5.0"
+                      ],
+                      [
+                        "//",
+                        "Floor Division (Truncates down)",
+                        "11 // 3",
+                        "3"
+                      ],
+                      [
+                        "%",
+                        "Modulo (Remainder)",
+                        "11 % 3",
+                        "2"
+                      ],
+                      [
+                        "**",
+                        "Exponentiation (Power)",
+                        "2 ** 8",
+                        "256"
+                      ]
+                    ]
+                  }
+                },
+                {
+                  "title": "2. Precision & The Math Module",
+                  "description": "Techniques for controlling floating-point precision and advanced computations:",
+                  "items": [
+                    {
+                      "term": "round(number, ndigits)",
+                      "meaning": "Rounds a floating-point number to specified decimal places (uses round-half-to-even)",
+                      "example": "round(3.14159, 2)  # 3.14"
+                    },
+                    {
+                      "term": "math.floor() / math.ceil()",
+                      "meaning": "Rounds down to nearest integer / rounds up to nearest integer",
+                      "example": "import math\nmath.floor(4.9)  # 4\nmath.ceil(4.1)   # 5"
+                    },
+                    {
+                      "term": "decimal.Decimal",
+                      "meaning": "Fixed-precision arithmetic designed specifically for financial and monetary calculation",
+                      "example": "from decimal import Decimal\nprice = Decimal('0.1') + Decimal('0.2')  # Decimal('0.3')"
+                    }
+                  ],
+                  "notes": [
+                    "Underscores can be placed anywhere inside numeric literals for readability without affecting value: 1_000_000.",
+                    "Complex numbers are supported natively using 'j' suffix: z = 3 + 4j."
+                  ]
+                }
+              ],
+              "practice": [
+                {
+                  "question": "What is the return type of the true division operator (10 / 2) in Python 3?",
+                  "options": [
+                    "int (5)",
+                    "float (5.0)",
+                    "complex (5+0j)",
+                    "Decimal('5')"
+                  ],
+                  "answer": "float (5.0)",
+                  "explanation": "In Python 3, the single slash operator (/) always performs true division and produces a float result, even if the division is without remainder. Use integer floor division (//) to get an int."
+                },
+                {
+                  "question": "What does the expression 17 // 5 evaluate to?",
+                  "options": [
+                    "3.4",
+                    "3",
+                    "2",
+                    "3.0"
+                  ],
+                  "answer": "3",
+                  "explanation": "Floor division (//) computes the quotient and truncates fractional digits down towards negative infinity, resulting in the integer 3."
+                }
+              ]
+            }
+          },
+          {
+            "id": "py-ch2-l5",
+            "title": "Lesson 5: String Fundamentals: Immutability, Indexing & Slicing",
+            "description": "Zero-based and negative indexing, stride slicing [start:stop:step], immutability, and raw string literals.",
+            "content": {
+              "overview": "Strings in Python (str) are immutable sequences of Unicode characters. Based on Eric Matthes' 'Python Crash Course' and Mark Lutz's detailed string analysis, this lesson covers string construction, escape sequences, raw strings, zero-based indexing, negative indexing, and Python's slicing idiom [start:stop:step].",
+              "canDo": "Can extract substrings using forward, negative, and stride slicing, demonstrate string immutability, and apply raw string literals.",
+              "teacherNote": "Python strings are strictly immutable: you cannot write `text[0] = 'H'`. Any modification method (like `.replace()`, `.upper()`, or slicing) creates and returns a brand-new string object in memory.",
+              "sections": [
+                {
+                  "title": "1. Indexing & Slicing Syntax: [start:stop:step]",
+                  "description": "Sub-sequence extraction without boundary exceptions:",
+                  "table": {
+                    "headers": [
+                      "Slice Pattern",
+                      "Meaning",
+                      "Example (s = 'PYTHON')",
+                      "Result"
+                    ],
+                    "rows": [
+                      [
+                        "s[0]",
+                        "First character (0-indexed)",
+                        "s[0]",
+                        "'P'"
+                      ],
+                      [
+                        "s[-1]",
+                        "Last character (negative indexing)",
+                        "s[-1]",
+                        "'N'"
+                      ],
+                      [
+                        "s[1:4]",
+                        "Indices 1 up to (not including) 4",
+                        "s[1:4]",
+                        "'YTH'"
+                      ],
+                      [
+                        "s[:3]",
+                        "From start up to index 3",
+                        "s[:3]",
+                        "'PYT'"
+                      ],
+                      [
+                        "s[2:]",
+                        "From index 2 to end",
+                        "s[2:]",
+                        "'THON'"
+                      ],
+                      [
+                        "s[::2]",
+                        "Every second character across string",
+                        "s[::2]",
+                        "'PTO'"
+                      ],
+                      [
+                        "s[::-1]",
+                        "Reverse the entire string",
+                        "s[::-1]",
+                        "'NOHTYP'"
+                      ]
+                    ]
+                  }
+                },
+                {
+                  "title": "2. Escape Sequences & Raw Strings",
+                  "description": "Controlling special characters and regex patterns:",
+                  "items": [
+                    {
+                      "term": "\\n and \\t",
+                      "meaning": "Newline and horizontal tab characters",
+                      "example": "print('Row 1\\nRow 2\\tIndented')"
+                    },
+                    {
+                      "term": "Raw String: r'path\\to\\file'",
+                      "meaning": "Treats backslashes as literal characters; disables escape character processing",
+                      "example": "path = r'C:\\Users\\Professor\\Documents'  # No need for double backslashes"
+                    },
+                    {
+                      "term": "Triple-Quoted Strings: \"\"\"...\"\"\"",
+                      "meaning": "Multi-line strings preserving linebreaks and internal quotes literally",
+                      "example": "query = \"\"\"SELECT id, email\nFROM users\nWHERE active = TRUE\"\"\""
+                    }
+                  ]
+                }
+              ],
+              "practice": [
+                {
+                  "question": "Given the string text = 'PROGRAMMING', what does text[3:7] return?",
+                  "options": [
+                    "'GRAM'",
+                    "'ROGR'",
+                    "'GRAMM'",
+                    "'PROG'"
+                  ],
+                  "answer": "'GRAM'",
+                  "explanation": "Slicing text[3:7] extracts characters at indices 3 ('G'), 4 ('R'), 5 ('A'), and 6 ('M'), stopping right before index 7 ('M')."
+                },
+                {
+                  "question": "What happens when you attempt `s = 'hello'; s[0] = 'H'` in Python?",
+                  "options": [
+                    "The string changes to 'Hello'",
+                    "It raises a TypeError because strings are immutable",
+                    "It returns False",
+                    "It creates an alias named 'Hello'"
+                  ],
+                  "answer": "It raises a TypeError because strings are immutable",
+                  "explanation": "Python strings are immutable. Direct in-place character mutation raises 'TypeError: 'str' object does not support item assignment'."
+                }
+              ]
+            }
+          },
+          {
+            "id": "py-ch2-l6",
+            "title": "Lesson 6: Modern String Formatting: f-strings & String Transformations",
+            "description": "Formatted string literals (f-strings), numeric specifiers, padding, and essential methods (split, join, strip).",
+            "content": {
+              "overview": "Modern Python code relies on formatted string literals (f-strings) introduced in Python 3.6 for high-performance, readable interpolation. In this lesson, we explore f-strings with expression evaluation, decimal precision format specifiers, date alignment, and essential str transformation methods (.strip(), .split(), .join(), .replace(), .find()).",
+              "canDo": "Can format complex output using f-strings with format specifiers, clean user inputs with string methods, and construct structured text from sequences with str.join().",
+              "teacherNote": "Prefer f-strings (`f'{var}'`) over the legacy `%` operator or `.format()`. F-strings are evaluated at runtime directly as optimized bytecode, making them noticeably faster and far easier to read.",
+              "sections": [
+                {
+                  "title": "1. Formatted String Literals (f-strings)",
+                  "description": "Dynamic interpolation and format specifiers inside `{expression:format}`:",
+                  "table": {
+                    "headers": [
+                      "Feature",
+                      "Syntax",
+                      "Output Example",
+                      "Description"
+                    ],
+                    "rows": [
+                      [
+                        "Variable & Expression",
+                        "f'Total: {price * 1.08}'",
+                        "'Total: 108.0'",
+                        "Evaluates arbitrary Python expressions inside braces."
+                      ],
+                      [
+                        "Decimal Precision",
+                        "f'{pi:.2f}'",
+                        "'3.14'",
+                        "Rounds and formats floating point to 2 decimal places."
+                      ],
+                      [
+                        "Comma Separators",
+                        "f'{1000000:,}'",
+                        "'1,000,000'",
+                        "Adds standard thousands separators for large numeric values."
+                      ],
+                      [
+                        "Padding & Alignment",
+                        "f'{\"Code\":<10} | {\"Result\":>10}'",
+                        "'Code       |     Result'",
+                        "Left (<), center (^), or right (>) align with padding characters."
+                      ]
+                    ]
+                  }
+                },
+                {
+                  "title": "2. High-Frequency String Methods",
+                  "description": "Built-in methods for parsing, trimming, and sanitizing strings:",
+                  "items": [
+                    {
+                      "term": "s.strip() / s.lstrip() / s.rstrip()",
+                      "meaning": "Removes leading and trailing whitespace (or specific characters)",
+                      "example": "'  data  '.strip()  # 'data'"
+                    },
+                    {
+                      "term": "s.split(delimiter)",
+                      "meaning": "Splits a string into a list of substrings based on a separator",
+                      "example": "'apple,banana,cherry'.split(',')  # ['apple', 'banana', 'cherry']"
+                    },
+                    {
+                      "term": "delimiter.join(iterable)",
+                      "meaning": "Concatenates a sequence of strings using the caller string as a glue delimiter",
+                      "example": "'-'.join(['2026', '09', '06'])  # '2026-09-06'"
+                    },
+                    {
+                      "term": "s.replace(old, new)",
+                      "meaning": "Returns a copy with all occurrences of substring replaced",
+                      "example": "'good morning'.replace('morning', 'evening')  # 'good evening'"
+                    }
+                  ]
+                }
+              ],
+              "practice": [
+                {
+                  "question": "How do you format a float balance = 45.6789 to exactly two decimal places using an f-string?",
+                  "options": [
+                    "f'{balance.2f}'",
+                    "f'{balance:.2f}'",
+                    "f'{balance%2}'",
+                    "f'{round(balance, 2):f}'"
+                  ],
+                  "answer": "f'{balance:.2f}'",
+                  "explanation": "The format specifier inside an f-string follows a colon (:). ':.2f' specifies floating-point presentation rounded to 2 decimal places."
+                },
+                {
+                  "question": "What does ', '.join(['HTML', 'CSS', 'JS']) return?",
+                  "options": [
+                    "['HTML, CSS, JS']",
+                    "'HTML, CSS, JS'",
+                    "'HTML CSS JS'",
+                    "Error: join is a list method"
+                  ],
+                  "answer": "'HTML, CSS, JS'",
+                  "explanation": "str.join() takes an iterable of strings and concatenates them with the calling delimiter string in between each element."
+                }
+              ]
+            }
+          }
+        ]
+      },
+      {
+        "id": "py-ch3",
+        "title": "Chapter 3: Ordered Sequences: Lists & Tuples",
+        "lessons": [
+          {
+            "id": "py-ch3-l7",
+            "title": "Lesson 7: Lists: In-Place Mutation, Indexing & Resizing",
+            "description": "Dynamic resizing arrays, appending, popping, removing, and avoiding shallow vs deep copy mutation bugs.",
+            "content": {
+              "overview": "Lists in Python are dynamic, mutable arrays capable of holding heterogeneous object references. As explained in Eric Matthes' 'Python Crash Course' and Mark Lutz's 'Learning Python', lists are contiguous arrays of pointers that dynamically resize when capacity is reached. This lesson masters index assignments, appending, inserting, extending, removing, popping, and the difference between shallow and deep copying.",
+              "canDo": "Can manipulate lists dynamically, append and pop elements, explain memory over-allocation in list resizing, and implement shallow vs deep copies with copy.deepcopy.",
+              "teacherNote": "Appending to a list (`list.append(x)`) runs in amortized O(1) time because Python over-allocates internal pointer slots. However, inserting or deleting at the front (`list.insert(0, x)` or `list.pop(0)`) requires shifting all downstream pointers, running in O(n) time. For frequent queue operations from the left, use collections.deque!",
+              "sections": [
+                {
+                  "title": "1. List Mutation Methods & Complexity",
+                  "description": "Standard in-place operations on mutable lists:",
+                  "table": {
+                    "headers": [
+                      "Method",
+                      "Syntax",
+                      "Time Complexity",
+                      "Behavior"
+                    ],
+                    "rows": [
+                      [
+                        "append(x)",
+                        "items.append('new')",
+                        "O(1) amortized",
+                        "Adds element to the rightmost end."
+                      ],
+                      [
+                        "extend(iterable)",
+                        "items.extend([1, 2])",
+                        "O(k)",
+                        "Appends all elements from another iterable."
+                      ],
+                      [
+                        "insert(i, x)",
+                        "items.insert(0, 'first')",
+                        "O(n)",
+                        "Inserts element at index i, shifting remaining items."
+                      ],
+                      [
+                        "pop([i])",
+                        "val = items.pop()",
+                        "O(1) for end, O(n) for index",
+                        "Removes and returns item (defaults to last)."
+                      ],
+                      [
+                        "remove(x)",
+                        "items.remove('val')",
+                        "O(n)",
+                        "Searches and removes first occurrence of value."
+                      ],
+                      [
+                        "clear()",
+                        "items.clear()",
+                        "O(n)",
+                        "Removes all elements, leaving empty list []."
+                      ]
+                    ]
+                  }
+                },
+                {
+                  "title": "2. Shallow vs Deep Copying",
+                  "description": "Preventing accidental mutation of nested data structures:",
+                  "items": [
+                    {
+                      "term": "Shallow Copy: list.copy() or items[:]",
+                      "meaning": "Creates a new outer list container, but nested mutable objects remain shared pointers",
+                      "example": "original = [[1, 2], [3, 4]]\nshallow = original.copy()\nshallow[0].append(99)  # Mutates original[0] as well!"
+                    },
+                    {
+                      "term": "Deep Copy: copy.deepcopy(items)",
+                      "meaning": "Recursively clones both the outer list and every nested object down the entire hierarchy",
+                      "example": "import copy\ndeep = copy.deepcopy(original)\ndeep[0].append(100)  # original remains completely untouched"
+                    }
+                  ]
+                }
+              ],
+              "practice": [
+                {
+                  "question": "What is the difference between list.append([1, 2]) and list.extend([1, 2])?",
+                  "options": [
+                    "They behave identically",
+                    "append() adds the list as a single nested element; extend() unpacks and appends each element individually",
+                    "extend() only works on numeric strings",
+                    "append() is O(n) while extend() is O(1)"
+                  ],
+                  "answer": "append() adds the list as a single nested element; extend() unpacks and appends each element individually",
+                  "explanation": "append(x) inserts x as one element (producing [..., [1, 2]]), while extend(iterable) iterates through the argument and appends each item separately (producing [..., 1, 2])."
+                },
+                {
+                  "question": "Why should you use copy.deepcopy() when copying a list containing nested dictionaries or lists?",
+                  "options": [
+                    "Because standard copy() is deprecated",
+                    "Because shallow copy only copies the outer container, leaving nested mutable objects shared",
+                    "Because deepcopy converts lists into immutable tuples",
+                    "Because deepcopy runs in O(1) constant time"
+                  ],
+                  "answer": "Because shallow copy only copies the outer container, leaving nested mutable objects shared",
+                  "explanation": "A shallow copy creates a new outer list but copies references to inner objects. Mutating an inner dictionary or sublist will modify both lists unless copy.deepcopy() is used."
+                }
+              ]
+            }
+          },
+          {
+            "id": "py-ch3-l8",
+            "title": "Lesson 8: List Algorithms: Sorting, Slicing & Sequence Unpacking",
+            "description": "Timsort with list.sort() vs sorted(), custom key lambdas, reverse ordering, and starred unpacking (*rest).",
+            "content": {
+              "overview": "Sorting, searching, and unpacking sequences are core daily tasks in Python development. Drawing from the official Python Tutorial by Guido van Rossum and Mark Lutz's algorithms section, this lesson examines list.sort() (in-place Timsort) versus the built-in sorted(), custom sorting with key lambda functions, reverse iteration, and extended unpacking (*rest).",
+              "canDo": "Can sort complex sequences using key functions, reverse lists efficiently, and unpack elements using starred expressions (*args).",
+              "teacherNote": "Remember the golden rule of Python API design: methods that mutate an object in-place (like `list.sort()` or `list.reverse()`) return `None` to prevent method-chaining confusion! If you need a new sorted list, use the built-in function `sorted(iterable)`.",
+              "sections": [
+                {
+                  "title": "1. In-Place sort() vs Built-in sorted()",
+                  "description": "Understanding return values, immutability, and Timsort:",
+                  "table": {
+                    "headers": [
+                      "Feature",
+                      "list.sort()",
+                      "sorted(iterable)",
+                      "Characteristics"
+                    ],
+                    "rows": [
+                      [
+                        "Return Value",
+                        "None",
+                        "New sorted list",
+                        "list.sort() alters original in-place; sorted() leaves source untouched."
+                      ],
+                      [
+                        "Supported Inputs",
+                        "Lists only",
+                        "Any iterable (tuples, dicts, sets, generators)",
+                        "sorted() accepts any iterable collection."
+                      ],
+                      [
+                        "Custom Key",
+                        "key=callable",
+                        "key=callable",
+                        "Transforms each element prior to comparison without altering output values."
+                      ],
+                      [
+                        "Reverse Order",
+                        "reverse=True",
+                        "reverse=True",
+                        "Sorts in descending order with guaranteed stability."
+                      ]
+                    ]
+                  }
+                },
+                {
+                  "title": "2. Extended Sequence Unpacking (* operator)",
+                  "description": "Destructuring collections into variables cleanly:",
+                  "items": [
+                    {
+                      "term": "first, *middle, last = items",
+                      "meaning": "Captures first item, arbitrary middle items as a list, and final item",
+                      "example": "scores = [98, 85, 76, 92, 99]\nfirst, *rest, last = sorted(scores)\n# first = 76, rest = [85, 92, 98], last = 99"
+                    },
+                    {
+                      "term": "Key Sorting with Lambdas",
+                      "meaning": "Custom sorting by attribute or nested item index",
+                      "example": "users = [{'name': 'Alice', 'age': 30}, {'name': 'Bob', 'age': 25}]\nusers.sort(key=lambda u: u['age'])  # Bob, then Alice"
+                    }
+                  ]
+                }
+              ],
+              "practice": [
+                {
+                  "question": "What is the result of running:\n\nnums = [3, 1, 2]\nres = nums.sort()\nprint(res)",
+                  "options": [
+                    "[1, 2, 3]",
+                    "None",
+                    "[3, 2, 1]",
+                    "Error"
+                  ],
+                  "answer": "None",
+                  "explanation": "list.sort() mutates the list in place and returns None. The variable nums is now [1, 2, 3], but res is None."
+                },
+                {
+                  "question": "What does *rest capture in `head, *rest = [10, 20, 30, 40]`?",
+                  "options": [
+                    "20",
+                    "(20, 30, 40)",
+                    "[20, 30, 40]",
+                    "40"
+                  ],
+                  "answer": "[20, 30, 40]",
+                  "explanation": "Extended sequence unpacking assigns the first element to head (10) and gathers all remaining elements into a list bound to rest ([20, 30, 40])."
+                }
+              ]
+            }
+          },
+          {
+            "id": "py-ch3-l9",
+            "title": "Lesson 9: Tuples: Immutability, Memory Efficiency & Data Integrity",
+            "description": "Immutable sequence guarantees, memory optimization, hashable dictionary keys, and namedtuples.",
+            "content": {
+              "overview": "Tuples (tuple) are immutable ordered sequences in Python. In this lesson, informed by Guido van Rossum's design decisions in the official tutorial and Mark Lutz's memory analysis, we explore why tuples exist alongside lists: data integrity guarantees, constant-time hashing allowing tuples to serve as dictionary keys, memory optimization, and namedtuples from collections.",
+              "canDo": "Can construct single-element and multi-element tuples, utilize tuples as compound dictionary keys, and structure self-documenting data records with collections.namedtuple.",
+              "teacherNote": "To create a single-element tuple, a trailing comma is syntactically mandatory! `(42)` is just the integer 42 enclosed in mathematical grouping parentheses; `(42,)` is a single-element tuple.",
+              "sections": [
+                {
+                  "title": "1. Tuples vs Lists: Structural Comparison",
+                  "description": "When to choose tuples over lists in professional Python:",
+                  "table": {
+                    "headers": [
+                      "Attribute",
+                      "Tuple (tuple)",
+                      "List (list)",
+                      "Significance"
+                    ],
+                    "rows": [
+                      [
+                        "Mutability",
+                        "Immutable (Fixed after creation)",
+                        "Mutable (Resizable)",
+                        "Tuples guarantee write-protection."
+                      ],
+                      [
+                        "Memory Overhead",
+                        "Compact (exact size allocated)",
+                        "Over-allocated (headroom for appending)",
+                        "Tuples consume ~25% less RAM."
+                      ],
+                      [
+                        "Hashability",
+                        "Hashable (if elements are hashable)",
+                        "Unhashable (TypeError if used as key)",
+                        "Tuples can be dictionary keys or set members."
+                      ],
+                      [
+                        "Use Case",
+                        "Heterogeneous records (x, y, timestamp)",
+                        "Homogeneous collections of items",
+                        "Semantic clarity in codebases."
+                      ]
+                    ]
+                  }
+                },
+                {
+                  "title": "2. Named Tuples (collections.namedtuple)",
+                  "description": "Lightweight, readable record structures without the overhead of full classes:",
+                  "items": [
+                    {
+                      "term": "collections.namedtuple",
+                      "meaning": "Creates tuple subclasses with named fields accessible via dot notation",
+                      "example": "from collections import namedtuple\nPoint = namedtuple('Point', ['x', 'y'])\np = Point(10, 20)\nprint(p.x, p.y)  # 10 20 (also accessible as p[0], p[1])"
+                    },
+                    {
+                      "term": "Tuple Packing and Unpacking",
+                      "meaning": "Implicit tuple creation and element assignment without parentheses",
+                      "example": "coords = 10, 20  # Packing into tuple\nx, y = coords    # Unpacking"
+                    }
+                  ]
+                }
+              ],
+              "practice": [
+                {
+                  "question": "How do you define a valid single-element tuple containing the integer 5?",
+                  "options": [
+                    "(5)",
+                    "tuple(5)",
+                    "(5,)",
+                    "[5]"
+                  ],
+                  "answer": "(5,)",
+                  "explanation": "The comma is what defines a tuple in Python syntax. (5) is treated as the integer 5 within grouping parentheses; (5,) defines a tuple of length 1."
+                },
+                {
+                  "question": "Can a tuple containing two strings `('admin', 'write')` be used as a dictionary key?",
+                  "options": [
+                    "No, only integers can be keys",
+                    "Yes, because strings and tuples are immutable and hashable",
+                    "No, because tuples are collections",
+                    "Only if imported from typing"
+                  ],
+                  "answer": "Yes, because strings and tuples are immutable and hashable",
+                  "explanation": "Dictionary keys must be hashable. Because strings are immutable and the tuple containing them is immutable, the entire tuple is hashable and can serve as a dict key."
+                }
+              ]
+            }
+          }
+        ]
+      },
+      {
+        "id": "py-ch4",
+        "title": "Chapter 4: Key-Value Mappings & Hash Sets: Dictionaries & Sets",
+        "lessons": [
+          {
+            "id": "py-ch4-l10",
+            "title": "Lesson 10: Dictionaries: Hash Tables, Keys & Value Retrievals",
+            "description": "O(1) average lookup, key immutability requirements, safe lookups with .get(), and KeyError prevention.",
+            "content": {
+              "overview": "Dictionaries (dict) are Python's ubiquitous mapping type, mapping hashable keys to arbitrary object values. Based on Mark Lutz's deep exploration of hash tables and Eric Matthes' practical dictionary patterns, this lesson reveals how hash tables work, why keys must be immutable and hashable, how to safely retrieve values with .get() to prevent KeyError, and how Python 3.7+ guarantees insertion-order preservation.",
+              "canDo": "Can construct dictionaries, safely look up items using .get() with fallbacks, explain hash functions, and explain the hashable requirement for dictionary keys.",
+              "teacherNote": "Direct indexing with square brackets (`user['email']`) raises a runtime `KeyError` if the key does not exist. Use `user.get('email', default_value)` whenever a key may be absent to avoid unhandled crashes!",
+              "sections": [
+                {
+                  "title": "1. The Hash Table Engine & Key Requirements",
+                  "description": "How Python achieves average O(1) constant-time key lookups:",
+                  "table": {
+                    "headers": [
+                      "Mechanism",
+                      "Requirement",
+                      "Underlying Function",
+                      "Performance"
+                    ],
+                    "rows": [
+                      [
+                        "Hashing",
+                        "Keys must implement __hash__() and remain immutable",
+                        "hash(key) -> 64-bit integer",
+                        "O(1) average lookup"
+                      ],
+                      [
+                        "Equality Comparison",
+                        "Keys must implement __eq__() for collision resolution",
+                        "key1 == key2",
+                        "Resolves slot collisions"
+                      ],
+                      [
+                        "Order Preservation",
+                        "Since Python 3.7, dictionaries preserve insertion order",
+                        "Dense array + index table",
+                        "Guaranteed deterministic iteration"
+                      ],
+                      [
+                        "Valid Key Types",
+                        "str, int, float, tuple (immutable items), frozenset",
+                        "Must be hashable",
+                        "Lists and dicts raise TypeError: unhashable type"
+                      ]
+                    ]
+                  }
+                },
+                {
+                  "title": "2. Safe Access & Default Values",
+                  "description": "Retrieval patterns that prevent KeyError exceptions:",
+                  "items": [
+                    {
+                      "term": "dict.get(key, default=None)",
+                      "meaning": "Returns the value if key exists; returns fallback default without raising KeyError",
+                      "example": "user = {'username': 'jdoe'}\nrole = user.get('role', 'guest')  # 'guest'"
+                    },
+                    {
+                      "term": "key in dict",
+                      "meaning": "O(1) membership check testing whether key exists in mapping",
+                      "example": "if 'email' in user:\n    send_email(user['email'])"
+                    },
+                    {
+                      "term": "dict.setdefault(key, default)",
+                      "meaning": "Retrieves value if key is present; otherwise inserts key with default and returns it",
+                      "example": "counts = {}\ncounts.setdefault('views', 0)\ncounts['views'] += 1"
+                    }
+                  ]
+                }
+              ],
+              "practice": [
+                {
+                  "question": "What happens when you run `d = {'a': 1}; print(d['b'])`?",
+                  "options": [
+                    "Prints None",
+                    "Prints 0",
+                    "Raises a KeyError: 'b'",
+                    "Inserts 'b' into d"
+                  ],
+                  "answer": "Raises a KeyError: 'b'",
+                  "explanation": "Accessing a non-existent key using bracket syntax d[k] raises a KeyError. Use d.get('b') to safely return None or a specified default instead."
+                },
+                {
+                  "question": "Why can a list NOT be used as a dictionary key?",
+                  "options": [
+                    "Lists can only contain numbers",
+                    "Lists are mutable and therefore unhashable (TypeError)",
+                    "Lists have a maximum length limit",
+                    "Lists use 1-based indexing internally"
+                  ],
+                  "answer": "Lists are mutable and therefore unhashable (TypeError)",
+                  "explanation": "Because lists can be mutated in-place, their hash value could change while stored in the hash table, breaking table lookups. Hence, mutable types do not implement __hash__ and raise TypeError."
+                }
+              ]
+            }
+          },
+          {
+            "id": "py-ch4-l11",
+            "title": "Lesson 11: Dictionary Mutation, Iteration & Dictionary Views",
+            "description": "Iterating keys, values, and items, mutating dictionaries, and merging with the union operator (|).",
+            "content": {
+              "overview": "Dictionaries are dynamic and allow versatile in-place mutation, bulk updates, and structured iteration. Drawing from the official Python Tutorial and modern Python 3.9+ features, this lesson demonstrates iterating over .keys(), .values(), and .items(), mutating via .pop() and .update(), and merging dictionaries using the union operator (|).",
+              "canDo": "Can iterate through dictionary keys, values, and pairs simultaneously, merge dictionaries using the | operator, and delete keys using .pop() and del.",
+              "teacherNote": "In Python 3.9+, you can merge two dictionaries using the concise union operator `dict1 | dict2` or update in-place with `dict1 |= dict2`. If keys overlap, values from the right-hand operand take precedence!",
+              "sections": [
+                {
+                  "title": "1. Dictionary Views & Iteration",
+                  "description": "Dynamic view objects that reflect dictionary modifications in real time:",
+                  "table": {
+                    "headers": [
+                      "Method",
+                      "Yields",
+                      "Idiomatic for Loop Example",
+                      "Characteristics"
+                    ],
+                    "rows": [
+                      [
+                        "d.items()",
+                        "(key, value) 2-tuples",
+                        "for key, value in d.items():",
+                        "Unpacks both keys and values in one traversal step."
+                      ],
+                      [
+                        "d.keys()",
+                        "All dictionary keys",
+                        "for key in d:",
+                        "Default dictionary iteration yields keys automatically."
+                      ],
+                      [
+                        "d.values()",
+                        "All stored values",
+                        "for value in d.values():",
+                        "Extracts values without needing keys."
+                      ]
+                    ]
+                  }
+                },
+                {
+                  "title": "2. Merging & Deleting Keys",
+                  "description": "Modern techniques for combining and pruning dictionaries:",
+                  "items": [
+                    {
+                      "term": "Union Operator: d1 | d2 (Python 3.9+)",
+                      "meaning": "Creates a new dictionary containing keys from both operands; right operand overrides overlaps",
+                      "example": "defaults = {'theme': 'light', 'size': 14}\ncustom = {'theme': 'dark'}\nconfig = defaults | custom  # {'theme': 'dark', 'size': 14}"
+                    },
+                    {
+                      "term": "d.pop(key, [default])",
+                      "meaning": "Removes the key and returns its associated value; returns default if key not present",
+                      "example": "token = session.pop('auth_token', None)"
+                    },
+                    {
+                      "term": "del d[key]",
+                      "meaning": "Directly deletes key from hash table; raises KeyError if not present",
+                      "example": "del user['temp_password']"
+                    }
+                  ]
+                }
+              ],
+              "practice": [
+                {
+                  "question": "What is the result of `{'a': 1, 'b': 2} | {'b': 99, 'c': 3}` in Python 3.9+?",
+                  "options": [
+                    "{'a': 1, 'b': 2, 'c': 3}",
+                    "{'a': 1, 'b': 99, 'c': 3}",
+                    "{'a': 1, 'b': [2, 99], 'c': 3}",
+                    "TypeError: unsupported operand type"
+                  ],
+                  "answer": "{'a': 1, 'b': 99, 'c': 3}",
+                  "explanation": "The dictionary union operator (|) combines two dictionaries. When keys collide ('b'), the right-hand dictionary's value (99) overrides the left-hand value (2)."
+                },
+                {
+                  "question": "Which loop cleanly unpacks both key and value from a dictionary?",
+                  "options": [
+                    "for k, v in d:",
+                    "for k, v in d.items():",
+                    "for k, v in d.all():",
+                    "for k, v in d.entries():"
+                  ],
+                  "answer": "for k, v in d.items():",
+                  "explanation": "d.items() yields dynamic key-value pairs as 2-tuples, allowing clean tuple unpacking with 'for k, v in d.items():'."
+                }
+              ]
+            }
+          },
+          {
+            "id": "py-ch4-l12",
+            "title": "Lesson 12: Sets & Frozensets: Mathematical Operations & O(1) Membership",
+            "description": "Deduplicating collections, set mathematical operations (union, intersection, difference), and frozenset.",
+            "content": {
+              "overview": "Sets (set) and immutable sets (frozenset) are unordered collections of unique, hashable elements. Grounded in Guido van Rossum's standard library tutorial and mathematical set theory, this lesson covers O(1) membership testing, deduplicating sequences, set comprehensions, and mathematical operations: union, intersection, difference, and symmetric difference.",
+              "canDo": "Can perform mathematical set operations with operators and methods, deduplicate sequences, utilize frozensets as dictionary keys, and leverage O(1) membership checks.",
+              "teacherNote": "Membership testing in a list (`item in list`) is an O(n) linear scan that checks every element until a match is found. In contrast, membership testing in a set (`item in set`) is O(1) average constant time because it computes a hash! For large datasets, always convert to a set before checking membership.",
+              "sections": [
+                {
+                  "title": "1. Mathematical Set Operations",
+                  "description": "High-performance set operations via operators and methods:",
+                  "table": {
+                    "headers": [
+                      "Operation",
+                      "Operator",
+                      "Method Equivalent",
+                      "Description"
+                    ],
+                    "rows": [
+                      [
+                        "Union",
+                        "a | b",
+                        "a.union(b)",
+                        "All elements in either a or b or both."
+                      ],
+                      [
+                        "Intersection",
+                        "a & b",
+                        "a.intersection(b)",
+                        "Elements common to both a and b."
+                      ],
+                      [
+                        "Difference",
+                        "a - b",
+                        "a.difference(b)",
+                        "Elements in a that are not in b."
+                      ],
+                      [
+                        "Symmetric Difference",
+                        "a ^ b",
+                        "a.symmetric_difference(b)",
+                        "Elements in either a or b, but NOT both."
+                      ],
+                      [
+                        "Subset Test",
+                        "a <= b",
+                        "a.issubset(b)",
+                        "True if every element of a is in b."
+                      ]
+                    ]
+                  }
+                },
+                {
+                  "title": "2. Deduplication & Frozenset",
+                  "description": "Eliminating duplicates and building immutable hashable sets:",
+                  "items": [
+                    {
+                      "term": "Deduplication: list(set(items))",
+                      "meaning": "Instant removal of duplicate elements from any collection",
+                      "example": "emails = ['a@x.com', 'b@x.com', 'a@x.com']\nunique = list(set(emails))  # ['a@x.com', 'b@x.com']"
+                    },
+                    {
+                      "term": "frozenset([iterable])",
+                      "meaning": "Immutable variant of a set; hashable and can be used as a dictionary key or set element",
+                      "example": "permissions = frozenset(['read', 'write'])\ncache = {permissions: 'granted'}"
+                    },
+                    {
+                      "term": "Set Literal: {1, 2, 3}",
+                      "meaning": "Fast literal construction (note: {} creates an empty dict, use set() for empty set)",
+                      "example": "tags = {'python', 'backend', 'api'}\nempty_set = set()  # NOT {}"
+                    }
+                  ]
+                }
+              ],
+              "practice": [
+                {
+                  "question": "How do you initialize a truly empty set in Python?",
+                  "options": [
+                    "{}",
+                    "set()",
+                    "[]",
+                    "set([]) only"
+                  ],
+                  "answer": "set()",
+                  "explanation": "{} is reserved for creating an empty dictionary (dict). To create an empty set, you must call set()."
+                },
+                {
+                  "question": "Given s1 = {1, 2, 3} and s2 = {2, 3, 4}, what does `s1 & s2` evaluate to?",
+                  "options": [
+                    "{1, 4}",
+                    "{1, 2, 3, 4}",
+                    "{2, 3}",
+                    "{}"
+                  ],
+                  "answer": "{2, 3}",
+                  "explanation": "The ampersand (&) operator performs set intersection, returning a new set containing only the elements present in both sets ({2, 3})."
+                }
+              ]
+            }
+          }
+        ]
+      },
+      {
+        "id": "py-ch5",
+        "title": "Chapter 5: Control Flow: Branching Logic & Iteration",
+        "lessons": [
+          {
+            "id": "py-ch5-l13",
+            "title": "Lesson 13: Conditional Branching & Boolean Truthiness",
+            "description": "if, elif, else logic, truthy/falsy evaluation, short-circuiting with and/or, and inline ternary expressions.",
+            "content": {
+              "overview": "Control flow in Python directs program execution through boolean evaluations. Grounded in Eric Matthes' 'Python Crash Course' and Mark Lutz's syntax rules, this lesson examines if, elif, and else statements, boolean logic with short-circuit operators (and, or, not), truthy and falsy evaluation rules across all data types, and the inline conditional expression (ternary operator).",
+              "canDo": "Can construct multi-branch conditional statements, apply short-circuit evaluation rules, evaluate truthiness of collections, and write ternary expressions.",
+              "teacherNote": "In Python, empty collections (`[]`, `{}`, `set()`, `\"\"`, `0`, `None`, `False`) are inherently falsy! Never write `if len(items) > 0:`; write the idiomatic Python check `if items:` instead.",
+              "sections": [
+                {
+                  "title": "1. Truth Value Testing (Truthy vs Falsy)",
+                  "description": "How Python evaluates object truthiness when used in boolean conditions:",
+                  "table": {
+                    "headers": [
+                      "Category",
+                      "Falsy Values (Evaluate to False)",
+                      "Truthy Values (Evaluate to True)"
+                    ],
+                    "rows": [
+                      [
+                        "Constants",
+                        "None, False",
+                        "True"
+                      ],
+                      [
+                        "Numeric Zeroes",
+                        "0, 0.0, 0j, Decimal(0)",
+                        "Any non-zero number (1, -5, 0.001)"
+                      ],
+                      [
+                        "Empty Sequences",
+                        "\"\", (), [], range(0)",
+                        "Any sequence with length >= 1 (\"hi\", [0])"
+                      ],
+                      [
+                        "Empty Mappings",
+                        "{}, set(), frozenset()",
+                        "Any collection with elements ({'a': 1})"
+                      ]
+                    ]
+                  }
+                },
+                {
+                  "title": "2. Short-Circuit Evaluation & The Ternary Operator",
+                  "description": "Optimized conditional evaluation and concise inline expressions:",
+                  "items": [
+                    {
+                      "term": "Short-Circuit: a or b",
+                      "meaning": "Evaluates a; if truthy, returns a immediately without evaluating b; otherwise evaluates and returns b",
+                      "example": "user_name = input_name or 'Anonymous'  # Sets fallback if input_name is empty string"
+                    },
+                    {
+                      "term": "Short-Circuit: a and b",
+                      "meaning": "Evaluates a; if falsy, returns a immediately; otherwise evaluates and returns b",
+                      "example": "result = is_valid and compute_expensive_hash()"
+                    },
+                    {
+                      "term": "Ternary Expression: x if condition else y",
+                      "meaning": "Concise single-line expression returning x when condition is true, else y",
+                      "example": "status = 'admin' if user.is_superuser else 'member'"
+                    }
+                  ]
+                }
+              ],
+              "practice": [
+                {
+                  "question": "Which of the following values is considered TRUTHY in an if statement?",
+                  "options": [
+                    "[]",
+                    "0",
+                    "[0]",
+                    "None"
+                  ],
+                  "answer": "[0]",
+                  "explanation": "An empty list [] is falsy, 0 is falsy, and None is falsy. However, [0] is a non-empty list with 1 element, making its truth value True."
+                },
+                {
+                  "question": "What does the expression `[] or 'default'` evaluate to?",
+                  "options": [
+                    "True",
+                    "False",
+                    "[]",
+                    "'default'"
+                  ],
+                  "answer": "'default'",
+                  "explanation": "The 'or' operator evaluates the left operand ([]); because [] is falsy, it evaluates and returns the right operand ('default')."
+                }
+              ]
+            }
+          },
+          {
+            "id": "py-ch5-l14",
+            "title": "Lesson 14: Structural Pattern Matching (match / case)",
+            "description": "Modern Python 3.10+ pattern matching, sequence destructuring, wildcard fallbacks, and conditional guards.",
+            "content": {
+              "overview": "Introduced in Python 3.10 (PEP 634), structural pattern matching (match/case) elevates Python control flow far beyond traditional switch/case statements. In this lesson, we explore matching literal values, destructuring sequences and mappings, binding variables with 'as', wildcard matches (_), and applying guard clauses with 'if'.",
+              "canDo": "Can structure complex branching logic using match/case, destructure lists and dictionaries directly in case patterns, and apply conditional guard clauses.",
+              "teacherNote": "Structural pattern matching is NOT merely a switch statement; it does deep structural destructuring. For example, `case [x, y]:` will check both that the value is a 2-element sequence AND unpack the two elements into local variables `x` and `y` in a single step!",
+              "sections": [
+                {
+                  "title": "1. Structural Pattern Matching Syntax",
+                  "description": "Anatomy of match, case, variable binding, and guard conditions:",
+                  "table": {
+                    "headers": [
+                      "Pattern Type",
+                      "Case Syntax Example",
+                      "Matches When",
+                      "Action"
+                    ],
+                    "rows": [
+                      [
+                        "Literal Match",
+                        "case 200 | 201:",
+                        "Subject equals 200 or 201",
+                        "Runs block for status success"
+                      ],
+                      [
+                        "Sequence Pattern",
+                        "case [cmd, arg]:",
+                        "Subject is a 2-item sequence",
+                        "Binds items to variables cmd and arg"
+                      ],
+                      [
+                        "Wildcard Match",
+                        "case _:",
+                        "Any unmatched subject",
+                        "Default fallback (equivalent to default/else)"
+                      ],
+                      [
+                        "Guard Clause",
+                        "case x if x > 100:",
+                        "Value matches pattern AND condition holds",
+                        "Executes when predicate is True"
+                      ]
+                    ]
+                  }
+                },
+                {
+                  "title": "2. Practical Destructuring Example",
+                  "description": "Parsing API actions and command payloads elegantly:",
+                  "items": [
+                    {
+                      "term": "Command Parser with match/case",
+                      "meaning": "Handling user inputs or command line flags without fragile if/else chains",
+                      "example": "command = ['move', 10, 'north']\nmatch command:\n    case ['quit']:\n        sys.exit()\n    case ['move', distance, direction]:\n        player.move(distance, direction)\n    case ['shoot', *targets]:\n        player.attack(targets)\n    case _:\n        print('Unknown command')"
+                    }
+                  ]
+                }
+              ],
+              "practice": [
+                {
+                  "question": "In Python 3.10+ match/case, what represents the default fallback pattern (like default in C/JS)?",
+                  "options": [
+                    "case *:",
+                    "case default:",
+                    "case _:",
+                    "case else:"
+                  ],
+                  "answer": "case _:",
+                  "explanation": "The single underscore (case _:) acts as a wildcard pattern that matches any subject that did not match previous cases."
+                },
+                {
+                  "question": "What is a guard clause in a case statement?",
+                  "options": [
+                    "A try/except block wrapping the case",
+                    "An additional `if <condition>` appended to the case pattern",
+                    "A type annotation on the match variable",
+                    "A security filter for malicious inputs"
+                  ],
+                  "answer": "An additional `if <condition>` appended to the case pattern",
+                  "explanation": "A guard clause (e.g., case [x, y] if x == y:) adds an extra boolean condition that must evaluate to True for the case to match."
+                }
+              ]
+            }
+          },
+          {
+            "id": "py-ch5-l15",
+            "title": "Lesson 15: Iteration Mastery: while, for, range, enumerate & zip",
+            "description": "Clean traversal with range, enumerate, zip, loop flow control with break/continue, and the loop else clause.",
+            "content": {
+              "overview": "Iteration is at the heart of idiomatic Python. Drawing from Mark Lutz's detailed loop analysis and Guido van Rossum's tutorial, this lesson covers while loops, for...in iteration, generating arithmetic ranges with range(), tracking indices with enumerate(), iterating multiple streams in lockstep with zip(), and the unique 'else' clause in Python loops.",
+              "canDo": "Can implement while and for loops, use range(), enumerate(), and zip() productively, control iteration with break and continue, and explain loop 'else' semantics.",
+              "teacherNote": "The loop `else` block runs ONLY if the loop completes normally without encountering a `break` statement! It is ideal for search algorithms where you want to execute a fallback action if no match was found.",
+              "sections": [
+                {
+                  "title": "1. Built-in Iteration Helpers",
+                  "description": "Standard utilities for clean, index-free traversal:",
+                  "table": {
+                    "headers": [
+                      "Function",
+                      "Signature",
+                      "Use Case Example",
+                      "Output Yielded"
+                    ],
+                    "rows": [
+                      [
+                        "range()",
+                        "range(start, stop[, step])",
+                        "for i in range(1, 10, 2):",
+                        "Arithmetic sequence: 1, 3, 5, 7, 9"
+                      ],
+                      [
+                        "enumerate()",
+                        "enumerate(iterable, start=0)",
+                        "for idx, val in enumerate(items, 1):",
+                        "Pairs: (1, 'first'), (2, 'second')"
+                      ],
+                      [
+                        "zip()",
+                        "zip(*iterables, strict=False)",
+                        "for name, score in zip(names, scores):",
+                        "Pairs: ('Alice', 95), ('Bob', 88)"
+                      ],
+                      [
+                        "reversed()",
+                        "reversed(sequence)",
+                        "for item in reversed(items):",
+                        "Reverse-order iterator"
+                      ]
+                    ]
+                  }
+                },
+                {
+                  "title": "2. Loop Control & The Loop 'else' Clause",
+                  "description": "Controlling flow and implementing clean search loops:",
+                  "items": [
+                    {
+                      "term": "break and continue",
+                      "meaning": "break terminates loop immediately; continue skips to next iteration",
+                      "example": "for n in numbers:\n    if n < 0: continue  # Skip negatives\n    if n > 100: break   # Terminate on threshold"
+                    },
+                    {
+                      "term": "for ... else / while ... else",
+                      "meaning": "Executes if the loop finishes without hitting a 'break' statement",
+                      "example": "for item in inventory:\n    if item.id == target_id:\n        print('Found!')\n        break\nelse:\n    print('Item not found in inventory!')  # Runs only if break was NOT hit"
+                    }
+                  ]
+                }
+              ],
+              "practice": [
+                {
+                  "question": "When does the `else` block of a Python `for` loop execute?",
+                  "options": [
+                    "Every time an iteration completes",
+                    "Only when the loop is terminated by a break statement",
+                    "Only if the loop completes all iterations without encountering a break",
+                    "When an exception occurs during the loop"
+                  ],
+                  "answer": "Only if the loop completes all iterations without encountering a break",
+                  "explanation": "In Python, a loop's else clause runs when the loop terminates through exhaustion of the iterable, but NOT when it is terminated prematurely by a break statement."
+                },
+                {
+                  "question": "How do you loop over a list of items while simultaneously accessing the 1-based index?",
+                  "options": [
+                    "for i in range(len(items)):",
+                    "for idx, item in enumerate(items, start=1):",
+                    "for idx, item in zip(items, 1):",
+                    "for item, idx in items.indices():"
+                  ],
+                  "answer": "for idx, item in enumerate(items, start=1):",
+                  "explanation": "enumerate(iterable, start=1) yields tuples containing the current index (starting at 1) and the corresponding item, which unpacks directly in the for header."
+                }
+              ]
+            }
+          }
+        ]
+      },
+      {
+        "id": "py-ch6",
+        "title": "Chapter 6: Functions, Scopes & The LEGB Architecture",
+        "lessons": [
+          {
+            "id": "py-ch6-l16",
+            "title": "Lesson 16: Function Signatures, Return Values & Type Hints",
+            "description": "Function definitions, multiple return values via tuple packing, docstrings, and PEP 484 type annotations.",
+            "content": {
+              "overview": "Functions are Python's primary mechanism for procedural decomposition and code reuse. Synthesizing Mark Lutz's thorough function chapter and Eric Matthes' practical programming patterns, this lesson covers def statement mechanics, returning single and multiple values, writing descriptive docstrings, and modern PEP 484 type annotations for static analysis with tools like mypy.",
+              "canDo": "Can define functions, return multiple values via tuple packing, write compliant docstrings, and annotate parameters and return types with type hints.",
+              "teacherNote": "Functions without an explicit `return` statement implicitly return `None`. If you return comma-separated values like `return x, y`, Python automatically packs them into a single `tuple` `(x, y)` which caller code can unpack immediately.",
+              "sections": [
+                {
+                  "title": "1. Defining Functions & Return Values",
+                  "description": "Syntax, tuple packing on return, and runtime evaluation:",
+                  "table": {
+                    "headers": [
+                      "Construct",
+                      "Syntax Example",
+                      "Evaluation Detail"
+                    ],
+                    "rows": [
+                      [
+                        "Standard Definition",
+                        "def calculate_tax(subtotal: float) -> float:\n    return subtotal * 0.08",
+                        "The def statement is executable code: it creates a function object and assigns it to the name."
+                      ],
+                      [
+                        "Multiple Returns",
+                        "def min_max(items):\n    return min(items), max(items)",
+                        "Implicitly returns a 2-element tuple: low, high = min_max(nums)."
+                      ],
+                      [
+                        "Docstring Standard",
+                        "def fetch_user(uid: int) -> dict:\n    \"\"\"Fetch user record from database by ID.\"\"\"",
+                        "Stored in the function's __doc__ attribute; readable via help()."
+                      ]
+                    ]
+                  }
+                },
+                {
+                  "title": "2. Modern Type Hints (PEP 484 / Python 3.10+)",
+                  "description": "Documenting and statically verifying argument and return types:",
+                  "items": [
+                    {
+                      "term": "Union Types: int | str",
+                      "meaning": "Specifies that an argument or return value can be either an integer or string",
+                      "example": "def parse_id(val: int | str) -> int:\n    return int(val)"
+                    },
+                    {
+                      "term": "Optional Types: str | None",
+                      "meaning": "Specifies a value that can be a string or None",
+                      "example": "def get_nickname(user_id: int) -> str | None:\n    return db.find_nickname(user_id)"
+                    },
+                    {
+                      "term": "Generic Collections: list[str], dict[str, int]",
+                      "meaning": "Type hints for collections with specific internal element types",
+                      "example": "def word_frequencies(words: list[str]) -> dict[str, int]:\n    return {w: words.count(w) for w in set(words)}"
+                    }
+                  ],
+                  "notes": [
+                    "Type annotations do NOT enforce type safety at runtime in CPython; they enable editor autocomplete and static type checkers like mypy and pyright."
+                  ]
+                }
+              ],
+              "practice": [
+                {
+                  "question": "What actually happens when a Python function executes `return 10, 20, 30`?",
+                  "options": [
+                    "It returns a list [10, 20, 30]",
+                    "It packs the values into a tuple (10, 20, 30) and returns it",
+                    "It raises a SyntaxError: multiple returns unsupported",
+                    "It returns only the first value (10)"
+                  ],
+                  "answer": "It packs the values into a tuple (10, 20, 30) and returns it",
+                  "explanation": "In Python, returning comma-separated values is syntactic sugar for tuple packing: the function returns the single tuple (10, 20, 30)."
+                },
+                {
+                  "question": "Do Python type hints cause a runtime TypeError if a caller passes the wrong type?",
+                  "options": [
+                    "Yes, Python halts execution immediately",
+                    "No, type hints are purely annotations used by linters and IDEs, not enforced at runtime",
+                    "Only in production mode",
+                    "Only if the function uses async def"
+                  ],
+                  "answer": "No, type hints are purely annotations used by linters and IDEs, not enforced at runtime",
+                  "explanation": "Python remains dynamically typed. Type annotations are ignored during standard runtime execution and are analyzed by external tools like mypy."
+                }
+              ]
+            }
+          },
+          {
+            "id": "py-ch6-l17",
+            "title": "Lesson 17: Flexible Arguments: *args, **kwargs & Keyword-Only Params",
+            "description": "Arbitrary positional and keyword args, keyword-only params (*), and the mutable default argument trap.",
+            "content": {
+              "overview": "Python provides one of the most expressive argument-passing systems of any modern language. In this lesson, grounded in Mark Lutz's argument resolution model and the official Python tutorial, you will master positional arguments, keyword arguments, default parameters (and the classic mutable default argument trap!), arbitrary positional args (*args), arbitrary keyword args (**kwargs), and keyword-only parameters.",
+              "canDo": "Can design flexible function APIs with *args and **kwargs, establish keyword-only parameters using the bare asterisk (*), and avoid the mutable default argument bug.",
+              "teacherNote": "CRITICAL PYTHON GOTCHA: Default parameter expressions are evaluated ONCE when the function definition is executed, NOT each time the function is called! Never write `def append_to(item, target=[]):`. If you mutate `target`, that mutated list persists across subsequent function calls! Use `target=None` and initialize inside the function.",
+              "sections": [
+                {
+                  "title": "1. The Mutable Default Argument Trap",
+                  "description": "Why default arguments must be immutable (or None):",
+                  "table": {
+                    "headers": [
+                      "Pattern",
+                      "Code Example",
+                      "Consequence",
+                      "Status"
+                    ],
+                    "rows": [
+                      [
+                        "Dangerous Anti-Pattern",
+                        "def add_item(val, bag=[]):\n    bag.append(val)\n    return bag",
+                        "Subsequent calls share the SAME mutated list: add_item(1) -> [1]; add_item(2) -> [1, 2]!",
+                        "BUG prone"
+                      ],
+                      [
+                        "Idiomatic Best Practice",
+                        "def add_item(val, bag=None):\n    if bag is None:\n        bag = []\n    bag.append(val)\n    return bag",
+                        "A fresh empty list is instantiated dynamically on every function call when bag is omitted.",
+                        "RECOMMENDED"
+                      ]
+                    ]
+                  }
+                },
+                {
+                  "title": "2. *args, **kwargs & Keyword-Only Parameters",
+                  "description": "Capturing arbitrary parameters and enforcing caller clarity:",
+                  "items": [
+                    {
+                      "term": "*args (Varargs)",
+                      "meaning": "Collects arbitrary surplus positional arguments into a tuple",
+                      "example": "def calculate_sum(*numbers):\n    return sum(numbers)  # numbers is a tuple of all passed positional arguments"
+                    },
+                    {
+                      "term": "**kwargs (Keyword Args)",
+                      "meaning": "Collects arbitrary surplus keyword arguments into a dictionary",
+                      "example": "def create_profile(username, **attributes):\n    # attributes is a dict of any extra key=value pairs"
+                    },
+                    {
+                      "term": "Keyword-Only Parameters (*, arg)",
+                      "meaning": "Forces callers to explicitly supply arguments by name, preventing confusion",
+                      "example": "def connect(host, port, *, timeout=30, retry=True):\n    pass\n# Valid: connect('localhost', 5432, timeout=60)\n# Invalid: connect('localhost', 5432, 60) -> TypeError"
+                    }
+                  ]
+                }
+              ],
+              "practice": [
+                {
+                  "question": "Why should you NOT use a mutable object like a list or dict as a default parameter value in Python?",
+                  "options": [
+                    "It raises a SyntaxError at compile time",
+                    "Default values are evaluated once at definition time, so mutations persist across all subsequent calls",
+                    "Python runs out of memory",
+                    "It prevents the function from returning a value"
+                  ],
+                  "answer": "Default values are evaluated once at definition time, so mutations persist across all subsequent calls",
+                  "explanation": "Because default argument expressions are evaluated once when the function is parsed, using a mutable object creates a single shared object that accumulates changes across all calls."
+                },
+                {
+                  "question": "How do you enforce that an argument `timeout` must be passed as a keyword argument?",
+                  "options": [
+                    "def connect(host, timeout: keyword):",
+                    "def connect(host, *, timeout=30):",
+                    "def connect(host, **timeout):",
+                    "def connect(host, @keyword timeout=30):"
+                  ],
+                  "answer": "def connect(host, *, timeout=30):",
+                  "explanation": "A bare asterisk (*) in the parameter list separates positional arguments from keyword-only arguments. Any parameters defined after the * can only be passed by name."
+                }
+              ]
+            }
+          },
+          {
+            "id": "py-ch6-l18",
+            "title": "Lesson 18: Scopes: The LEGB Rule, Closures & Lambda Expressions",
+            "description": "Local, Enclosing, Global, Built-in name resolution, nonlocal state rebinding, closures, and lambdas.",
+            "content": {
+              "overview": "Scope rules dictate how names are resolved when referenced in code. Mark Lutz's 'Learning Python' dedicates multiple chapters to the LEGB rule: Local, Enclosing, Global, Built-in. In this lesson, we study variable resolution order, mutating outer scopes with global and nonlocal, creating stateful closures, and writing anonymous lambda functions.",
+              "canDo": "Can trace name resolution using the LEGB lookup rule, manipulate enclosing state with nonlocal, build function factories with closures, and write anonymous lambdas.",
+              "teacherNote": "Remember the LEGB lookup order: when a variable name is referenced, Python searches: 1. Local (inside current def) -> 2. Enclosing (inside outer enclosing defs) -> 3. Global (module level) -> 4. Built-in (builtins module). It stops at the first match or raises NameError.",
+              "sections": [
+                {
+                  "title": "1. The LEGB Scope Architecture",
+                  "description": "The 4 nested scoping layers in Python name resolution:",
+                  "table": {
+                    "headers": [
+                      "Scope Layer",
+                      "Description",
+                      "Example Identifiers"
+                    ],
+                    "rows": [
+                      [
+                        "L - Local",
+                        "Names assigned inside the active function body",
+                        "Variables created within the local def."
+                      ],
+                      [
+                        "E - Enclosing",
+                        "Names in local scopes of any enclosing (outer) defs",
+                        "Variables in parent factory functions."
+                      ],
+                      [
+                        "G - Global",
+                        "Names assigned at the top-level of the current module file",
+                        "Module-level constants and definitions."
+                      ],
+                      [
+                        "B - Built-in",
+                        "Pre-assigned names in the Python builtins module",
+                        "len, print, range, open, int, ValueError."
+                      ]
+                    ]
+                  }
+                },
+                {
+                  "title": "2. Closures, nonlocal & Lambdas",
+                  "description": "Techniques for functional programming and state retention:",
+                  "items": [
+                    {
+                      "term": "Function Closure",
+                      "meaning": "An inner function that retains access to variables from its enclosing scope even after the outer function has finished executing",
+                      "example": "def make_multiplier(factor):\n    def multiply(n):\n        return n * factor\n    return multiply\ndouble = make_multiplier(2)\nprint(double(5))  # 10"
+                    },
+                    {
+                      "term": "nonlocal Keyword",
+                      "meaning": "Allows an inner function to rebind a variable located in an enclosing (non-global) scope",
+                      "example": "def make_counter():\n    count = 0\n    def increment():\n        nonlocal count\n        count += 1\n        return count\n    return increment"
+                    },
+                    {
+                      "term": "Lambda Expression: lambda args: expr",
+                      "meaning": "Anonymous inline function restricted to a single expression whose result is returned",
+                      "example": "sorted_pairs = sorted([(1, 'b'), (2, 'a')], key=lambda x: x[1])"
+                    }
+                  ]
+                }
+              ],
+              "practice": [
+                {
+                  "question": "In what order does Python search for variable names according to the LEGB rule?",
+                  "options": [
+                    "Local -> Enclosing -> Global -> Built-in",
+                    "Global -> Local -> Enclosing -> Built-in",
+                    "Built-in -> Global -> Enclosing -> Local",
+                    "Local -> Global -> Enclosing -> Built-in"
+                  ],
+                  "answer": "Local -> Enclosing -> Global -> Built-in",
+                  "explanation": "Python name resolution strictly checks Local scope first, then Enclosing function scopes from innermost to outermost, then module Global scope, and finally the Built-in scope."
+                },
+                {
+                  "question": "Which keyword allows an inner function to modify a variable declared in its outer enclosing function?",
+                  "options": [
+                    "global",
+                    "nonlocal",
+                    "outer",
+                    "super"
+                  ],
+                  "answer": "nonlocal",
+                  "explanation": "The 'nonlocal' keyword tells Python that a variable name refers to a previously bound variable in the nearest enclosing function scope, allowing in-place reassignment without creating a new local variable."
+                }
+              ]
+            }
+          }
+        ]
+      },
+      {
+        "id": "py-ch7",
+        "title": "Chapter 7: Object-Oriented Programming: Classes & State",
+        "lessons": [
+          {
+            "id": "py-ch7-l19",
+            "title": "Lesson 19: Classes, Instances, __init__, and self",
+            "description": "Class declaration blueprints, object instantiation, constructor initialization, and the explicit self argument.",
+            "content": {
+              "overview": "Object-Oriented Programming (OOP) is a foundational paradigm for organizing state and behavior in Python. Combining Eric Matthes' class walkthroughs with Mark Lutz's comprehensive OOP architecture, this lesson breaks down the class statement, instantiating objects, initializing instance state using the `__init__` constructor method, and understanding the explicit `self` reference.",
+              "canDo": "Can declare custom classes, initialize instance attributes inside `__init__`, explain why `self` must be explicitly passed in method signatures, and create multiple instances with independent state.",
+              "teacherNote": "In languages like C++ or Java, `this` is an implicit hidden parameter. In Python, explicit is better than implicit: `self` is explicitly declared as the first parameter of every instance method, but Python automatically passes the calling instance when you invoke `obj.method()`.",
+              "sections": [
+                {
+                  "title": "1. Classes, Instances & The __init__ Lifecycle",
+                  "description": "Declaring object factories and binding instance state:",
+                  "table": {
+                    "headers": [
+                      "Component",
+                      "Declaration Syntax",
+                      "Purpose",
+                      "Execution Detail"
+                    ],
+                    "rows": [
+                      [
+                        "Class Definition",
+                        "class UserAccount:",
+                        "Defines the blueprint and shared namespace for instances.",
+                        "Evaluated when module loads; creates a class object in memory."
+                      ],
+                      [
+                        "Constructor (__init__)",
+                        "def __init__(self, username, email):",
+                        "Initializes instance attributes on freshly created objects.",
+                        "Invoked automatically immediately after __new__ allocates the instance."
+                      ],
+                      [
+                        "Explicit self",
+                        "self.username = username",
+                        "Binds attributes to the specific instance being created.",
+                        "When calling u.login(), Python translates it to UserAccount.login(u)."
+                      ]
+                    ]
+                  }
+                },
+                {
+                  "title": "2. Defining Instance Methods",
+                  "description": "Methods operate on instance state through self:",
+                  "items": [
+                    {
+                      "term": "Instance Method",
+                      "meaning": "A function defined inside a class that takes self as its first parameter",
+                      "example": "class BankAccount:\n    def __init__(self, owner, balance=0.0):\n        self.owner = owner\n        self.balance = balance\n\n    def deposit(self, amount):\n        if amount <= 0:\n            raise ValueError('Amount must be positive')\n        self.balance += amount\n        return self.balance"
+                    },
+                    {
+                      "term": "Multiple Instances",
+                      "meaning": "Each instance maintains its own distinct dictionary of attributes in __dict__",
+                      "example": "acc1 = BankAccount('Alice', 100)\nacc2 = BankAccount('Bob', 50)\n# acc1.balance and acc2.balance are completely independent"
+                    }
+                  ]
+                }
+              ],
+              "practice": [
+                {
+                  "question": "Why must `self` be included as the first parameter of instance methods in Python?",
+                  "options": [
+                    "It is a required keyword that prevents syntax errors",
+                    "Because Python passes the calling instance explicitly to the method as its first argument",
+                    "It designates the method as a static utility",
+                    "It forces the method to run in a background thread"
+                  ],
+                  "answer": "Because Python passes the calling instance explicitly to the method as its first argument",
+                  "explanation": "In Python, calling obj.method(arg) is syntactic sugar for Class.method(obj, arg). Therefore, the instance itself is passed as the first parameter, conventionally named 'self'."
+                },
+                {
+                  "question": "What is the primary responsibility of the `__init__` method?",
+                  "options": [
+                    "Allocating raw memory for the object",
+                    "Initializing attributes and setting up the object's initial state",
+                    "Garbage collecting the object when done",
+                    "Serializing the object to disk"
+                  ],
+                  "answer": "Initializing attributes and setting up the object's initial state",
+                  "explanation": "__init__ is the initializer method called after the object is allocated by __new__. It sets up instance attributes and state on self."
+                }
+              ]
+            }
+          },
+          {
+            "id": "py-ch7-l20",
+            "title": "Lesson 20: Encapsulation, Class vs Instance Attributes & Properties",
+            "description": "Shared class state vs instance state, naming privacy conventions, and pythonic getters/setters via @property.",
+            "content": {
+              "overview": "Effective OOP requires controlling access to internal state. In this lesson, informed by Mark Lutz's managed attributes analysis and Guido van Rossum's Python philosophy, we examine class attributes versus instance attributes, privacy and encapsulation conventions (single underscore `_` and double underscore `__` name mangling), and Python's `@property` decorator for pythonic getters and setters.",
+              "canDo": "Can differentiate between class-level and instance-level attributes, protect attributes using private conventions and name mangling, and implement getters and setters using @property.",
+              "teacherNote": "Python does not have true access modifiers like `private` or `public` from Java or C++. As the community motto says, 'We are all consenting adults here.' A single leading underscore (`_variable`) signifies an internal implementation detail, while double leading underscores (`__variable`) trigger name mangling (`_ClassName__variable`) to prevent subclass collisions.",
+              "sections": [
+                {
+                  "title": "1. Class Attributes vs Instance Attributes",
+                  "description": "Shared state across all instances vs per-instance state:",
+                  "table": {
+                    "headers": [
+                      "Attribute Scope",
+                      "Where Defined",
+                      "Access Syntax",
+                      "Key Behavior"
+                    ],
+                    "rows": [
+                      [
+                        "Class Attribute",
+                        "Directly inside class body, outside any def",
+                        "ClassName.attr or instance.attr",
+                        "Shared across ALL instances. If mutated on the class, all instances see the change."
+                      ],
+                      [
+                        "Instance Attribute",
+                        "Inside __init__ or methods attached to self",
+                        "self.attr",
+                        "Unique to each individual object. Modifying it affects only that single instance."
+                      ]
+                    ]
+                  }
+                },
+                {
+                  "title": "2. The @property Decorator (Pythonic Encapsulation)",
+                  "description": "Providing attribute-like access while executing validation logic behind the scenes:",
+                  "items": [
+                    {
+                      "term": "@property (Getter)",
+                      "meaning": "Allows a method to be accessed like an attribute without parentheses",
+                      "example": "class Product:\n    def __init__(self, price):\n        self._price = price\n\n    @property\n    def price(self):\n        return self._price"
+                    },
+                    {
+                      "term": "@prop_name.setter (Setter)",
+                      "meaning": "Runs validation logic when the attribute is assigned with =",
+                      "example": "    @price.setter\n    def price(self, new_price):\n        if new_price < 0:\n            raise ValueError('Price cannot be negative')\n        self._price = new_price"
+                    },
+                    {
+                      "term": "Double Underscore Name Mangling (__attr)",
+                      "meaning": "CPython rewrites __attr to _ClassName__attr to prevent accidental overriding in subclasses",
+                      "example": "class Safe:\n    def __init__(self):\n        self.__pin = '1234'  # Mangled to _Safe__pin"
+                    }
+                  ]
+                }
+              ],
+              "practice": [
+                {
+                  "question": "What does the @property decorator allow you to do in Python?",
+                  "options": [
+                    "Make an attribute accessible across different operating systems",
+                    "Access a method like a normal attribute without calling parentheses, while adding getter/setter logic",
+                    "Encrypt the attribute with AES-256",
+                    "Prevent any changes to the entire class"
+                  ],
+                  "answer": "Access a method like a normal attribute without calling parentheses, while adding getter/setter logic",
+                  "explanation": "@property turns a method into a read-only attribute getter, allowing clean obj.attribute syntax while preserving the ability to validate or compute values dynamically."
+                },
+                {
+                  "question": "If an attribute is named `__secret` inside a class named `Vault`, what does CPython mangle its name to?",
+                  "options": [
+                    "__secret_Vault",
+                    "_Vault__secret",
+                    "Vault.__secret",
+                    "__Vault_secret__"
+                  ],
+                  "answer": "_Vault__secret",
+                  "explanation": "CPython applies name mangling by prepending a single underscore and the class name to any identifier with at least two leading underscores and at most one trailing underscore, resulting in _Vault__secret."
+                }
+              ]
+            }
+          },
+          {
+            "id": "py-ch7-l21",
+            "title": "Lesson 21: Inheritance, Method Overriding & super()",
+            "description": "Specializing classes with single inheritance, method overriding, super() delegation, and the MRO lookup tree.",
+            "content": {
+              "overview": "Inheritance enables classes to specialize, extend, and reuse behavior from parent classes. Drawing from Eric Matthes' 'Python Crash Course' and Mark Lutz's inheritance tree mechanics, this lesson covers single inheritance, method overriding, invoking parent implementations safely using `super()`, checking types with `isinstance()` and `issubclass()`, and Python's Method Resolution Order (MRO).",
+              "canDo": "Can derive child classes from base classes, override parent methods while preserving base functionality via super(), check object hierarchies with isinstance(), and inspect the MRO.",
+              "teacherNote": "Always use `super().__init__(...)` rather than hardcoding the parent class name (`ParentClass.__init__(self, ...)`). `super()` dynamically navigates the Method Resolution Order (MRO), which is essential for cooperative multiple inheritance and maintainability.",
+              "sections": [
+                {
+                  "title": "1. Inheritance & The super() Built-In",
+                  "description": "Extending parent capabilities without duplicating logic:",
+                  "table": {
+                    "headers": [
+                      "Concept",
+                      "Code Pattern",
+                      "Role",
+                      "Best Practice"
+                    ],
+                    "rows": [
+                      [
+                        "Subclass Declaration",
+                        "class Developer(Employee):",
+                        "Inherits all attributes and methods of Employee.",
+                        "Model 'is-a' relationships cleanly."
+                      ],
+                      [
+                        "Invoking Superclass Init",
+                        "super().__init__(name, salary)",
+                        "Executes parent initialization logic before adding subclass-specific state.",
+                        "Always delegate to super() first inside subclass __init__."
+                      ],
+                      [
+                        "Method Overriding",
+                        "def calculate_bonus(self):",
+                        "Replaces parent implementation with specialized child logic.",
+                        "Maintain consistent signature with parent method."
+                      ]
+                    ]
+                  }
+                },
+                {
+                  "title": "2. Type Introspection & MRO",
+                  "description": "Verifying object lineage and method dispatch order:",
+                  "items": [
+                    {
+                      "term": "isinstance(object, ClassInfo)",
+                      "meaning": "Returns True if object is an instance of ClassInfo or any subclass thereof",
+                      "example": "dev = Developer('Alice', 120000)\nisinstance(dev, Employee)  # True\nisinstance(dev, Developer) # True"
+                    },
+                    {
+                      "term": "issubclass(SubClass, BaseClass)",
+                      "meaning": "Checks if a class directly or indirectly inherits from another class",
+                      "example": "issubclass(Developer, Employee)  # True"
+                    },
+                    {
+                      "term": "Method Resolution Order (Class.__mro__)",
+                      "meaning": "The linearized tuple of classes CPython searches when looking up an attribute or method (C3 Linearization algorithm)",
+                      "example": "print(Developer.__mro__)  # (Developer, Employee, object)"
+                    }
+                  ]
+                }
+              ],
+              "practice": [
+                {
+                  "question": "What is the recommended way to call a parent class constructor inside a child class in Python 3?",
+                  "options": [
+                    "parent.__init__(self)",
+                    "super().__init__(...)",
+                    "this.parent(...)",
+                    "inherit.constructor(...)"
+                  ],
+                  "answer": "super().__init__(...)",
+                  "explanation": "In Python 3, super().__init__(...) returns a proxy object delegating method calls to the next class in the Method Resolution Order without needing explicit self passing."
+                },
+                {
+                  "question": "Why does isinstance(dev, Employee) return True when dev is an instance of Developer(Employee)?",
+                  "options": [
+                    "Because isinstance() only checks variable names",
+                    "Because Developer inherits from Employee, satisfying the 'is-a' relationship",
+                    "It only returns True if they have the exact same memory ID",
+                    "It is a known Python bug"
+                  ],
+                  "answer": "Because Developer inherits from Employee, satisfying the 'is-a' relationship",
+                  "explanation": "isinstance() honors the inheritance hierarchy: an instance of a subclass is considered an instance of its parent and ancestor classes."
+                }
+              ]
+            }
+          }
+        ]
+      },
+      {
+        "id": "py-ch8",
+        "title": "Chapter 8: Dunder Methods, Polymorphism & Protocols",
+        "lessons": [
+          {
+            "id": "py-ch8-l22",
+            "title": "Lesson 22: Representation Protocols: __str__ vs __repr__",
+            "description": "Unambiguous developer representations with __repr__ vs friendly user-facing formatting with __str__.",
+            "content": {
+              "overview": "Python objects communicate their textual identity through two distinct special methods: `__repr__` and `__str__`. Guided by Mark Lutz's operator overloading guide and Python standard conventions, this lesson demystifies the difference between unambiguous developer debugging representations (`__repr__`) and readable user-facing output (`__str__`).",
+              "canDo": "Can implement __repr__ and __str__ on custom classes, differentiate their triggers in interactive shells vs print statements, and format fallback representations.",
+              "teacherNote": "Rule of thumb from Python's core developers: `__repr__` should aim to be unambiguous and, whenever possible, match the exact Python code string needed to recreate the object (e.g., `Point(x=3, y=4)`). `__str__` is for end users. If `__str__` is not implemented, Python automatically falls back to `__repr__`!",
+              "sections": [
+                {
+                  "title": "1. __str__ vs __repr__ Protocols",
+                  "description": "How Python displays objects to developers vs end-users:",
+                  "table": {
+                    "headers": [
+                      "Method",
+                      "Primary Audience",
+                      "Primary Goal",
+                      "Triggered By"
+                    ],
+                    "rows": [
+                      [
+                        "__repr__(self)",
+                        "Developers / Debuggers",
+                        "Unambiguous; ideally executable Python code (e.g. `User('alice')`)",
+                        "REPL inspection, debugger output, repr(obj), fallback for collections."
+                      ],
+                      [
+                        "__str__(self)",
+                        "End-Users / UI",
+                        "Human-readable, clear, and concise",
+                        "print(obj), str(obj), f'{obj}'."
+                      ]
+                    ]
+                  }
+                },
+                {
+                  "title": "2. Complete Implementation Example",
+                  "description": "Best practices for instrumenting domain models:",
+                  "items": [
+                    {
+                      "term": "Instrumenting Custom Models",
+                      "meaning": "Providing clean debugging and display representations",
+                      "example": "class Money:\n    def __init__(self, amount, currency='USD'):\n        self.amount = amount\n        self.currency = currency\n\n    def __repr__(self):\n        return f'Money(amount={self.amount!r}, currency={self.currency!r})'\n\n    def __str__(self):\n        return f'{self.amount:.2f} {self.currency}'\n\nm = Money(25.5, 'EUR')\nprint(m)       # '25.50 EUR' (calls __str__)\nprint([m])     # '[Money(amount=25.5, currency='EUR')]' (calls __repr__ in collections!)"
+                    }
+                  ],
+                  "notes": [
+                    "Always implement `__repr__` first. If you only implement `__str__`, displaying a list of your objects `[obj]` will still show the ugly `<__main__.Object object at 0x...>` memory address."
+                  ]
+                }
+              ],
+              "practice": [
+                {
+                  "question": "When a list containing custom objects `[obj1, obj2]` is printed, which method is invoked on each element?",
+                  "options": [
+                    "__str__",
+                    "__repr__",
+                    "__display__",
+                    "__format__"
+                  ],
+                  "answer": "__repr__",
+                  "explanation": "Python's collection representations (lists, tuples, dicts) intentionally call __repr__ on their contained elements to ensure unambiguous inspection during debugging."
+                },
+                {
+                  "question": "What happens if a class defines `__repr__` but does NOT define `__str__`?",
+                  "options": [
+                    "Calling print(obj) raises an AttributeError",
+                    "Python automatically falls back to using `__repr__` for string conversion",
+                    "Python prints None",
+                    "The class cannot be instantiated"
+                  ],
+                  "answer": "Python automatically falls back to using `__repr__` for string conversion",
+                  "explanation": "Python has a built-in fallback: if __str__ is missing, str(obj) and print(obj) will seamlessly execute __repr__."
+                }
+              ]
+            }
+          },
+          {
+            "id": "py-ch8-l23",
+            "title": "Lesson 23: Operator Overloading & Collection Protocols",
+            "description": "Overloading arithmetic (+, -), comparisons (==, <), and collection protocols (__len__, __getitem__).",
+            "content": {
+              "overview": "Python achieves deep language polymorphism through special methods ('dunder' methods, short for double-underscore). In this lesson, drawn from Mark Lutz's 'Learning Python' Part VI, you will implement operator overloading: arithmetic operators (`__add__`, `__sub__`), comparison operators (`__eq__`, `__lt__`), and collection protocols (`__len__`, `__getitem__`).",
+              "canDo": "Can overload arithmetic and comparison operators for custom types, enable sequence indexing with __getitem__, and support len() queries with __len__.",
+              "teacherNote": "Implementing `__getitem__` not only enables square bracket indexing (`obj[index]`), but Python also automatically uses it to provide iteration (`for x in obj:`) and membership testing (`item in obj`) for free via protocol fallbacks!",
+              "sections": [
+                {
+                  "title": "1. Core Operator Dunder Methods",
+                  "description": "Mapping Python operators to internal class methods:",
+                  "table": {
+                    "headers": [
+                      "Expression",
+                      "Dunder Method",
+                      "Operation Category",
+                      "Typical Return"
+                    ],
+                    "rows": [
+                      [
+                        "a + b",
+                        "__add__(self, other)",
+                        "Arithmetic Addition",
+                        "New combined instance"
+                      ],
+                      [
+                        "a == b",
+                        "__eq__(self, other)",
+                        "Equality Comparison",
+                        "bool (True / False)"
+                      ],
+                      [
+                        "a < b",
+                        "__lt__(self, other)",
+                        "Rich Comparison (Less Than)",
+                        "bool (enables sorted())"
+                      ],
+                      [
+                        "len(a)",
+                        "__len__(self)",
+                        "Collection Sizing",
+                        "non-negative int"
+                      ],
+                      [
+                        "a[key]",
+                        "__getitem__(self, key)",
+                        "Sequence / Mapping Indexing",
+                        "Value at specified key/index"
+                      ],
+                      [
+                        "a[key] = v",
+                        "__setitem__(self, key, value)",
+                        "Item Assignment",
+                        "None"
+                      ]
+                    ]
+                  }
+                },
+                {
+                  "title": "2. Implementing a Custom Vector",
+                  "description": "Working vector arithmetic through operator overloading:",
+                  "items": [
+                    {
+                      "term": "Vector 2D Math",
+                      "meaning": "Overloading addition, scaling, and length queries",
+                      "example": "class Vector:\n    def __init__(self, x, y):\n        self.x, self.y = x, y\n\n    def __add__(self, other):\n        return Vector(self.x + other.x, self.y + other.y)\n\n    def __mul__(self, scalar):\n        return Vector(self.x * scalar, self.y * scalar)\n\n    def __eq__(self, other):\n        return self.x == other.x and self.y == other.y\n\nv1 = Vector(2, 4)\nv2 = Vector(3, 1)\nv3 = v1 + v2  # Vector(5, 5)"
+                    }
+                  ]
+                }
+              ],
+              "practice": [
+                {
+                  "question": "Which dunder method must you implement to allow instances of your class to be measured using `len(obj)`?",
+                  "options": [
+                    "__size__",
+                    "__count__",
+                    "__len__",
+                    "__length__"
+                  ],
+                  "answer": "__len__",
+                  "explanation": "The built-in len() function invokes the object's __len__() method, which must return a non-negative integer."
+                },
+                {
+                  "question": "If you implement `__lt__` (less than) on a custom class, what built-in capability does Python enable?",
+                  "options": [
+                    "Sorting instances in lists using sorted() or list.sort()",
+                    "Automatic encryption",
+                    "Instant parallel execution",
+                    "Direct database storage"
+                  ],
+                  "answer": "Sorting instances in lists using sorted() or list.sort()",
+                  "explanation": "Python's Timsort algorithm relies on rich comparisons (specifically __lt__). Implementing __lt__ allows collections of your objects to be ordered cleanly using sorted()."
+                }
+              ]
+            }
+          },
+          {
+            "id": "py-ch8-l24",
+            "title": "Lesson 24: Context Managers: The with Statement & __enter__ / __exit__",
+            "description": "Guaranteed resource cleanup, implementing context manager classes, and contextlib.contextmanager.",
+            "content": {
+              "overview": "Deterministic resource management is critical when handling files, network sockets, locks, and database transactions. Guided by Guido van Rossum's PEP 343 and Mark Lutz's context manager design, this lesson teaches the `with` statement, how the `__enter__` and `__exit__` context management protocol works, exception suppression, and building context managers using `contextlib.contextmanager`.",
+              "canDo": "Can manage critical system resources using with statements, build custom context manager classes, intercept and suppress exceptions in __exit__, and write generator context managers with contextlib.",
+              "teacherNote": "The `__exit__(self, exc_type, exc_val, exc_tb)` method receives any exception raised inside the `with` block. If `__exit__` returns `True`, Python suppresses the exception! If it returns `None` or `False`, the exception propagates outward normally.",
+              "sections": [
+                {
+                  "title": "1. The Context Management Protocol Lifecycle",
+                  "description": "How Python's `with` statement executes guaranteed setup and teardown:",
+                  "table": {
+                    "headers": [
+                      "Phase",
+                      "Protocol Method",
+                      "Triggered When",
+                      "Action"
+                    ],
+                    "rows": [
+                      [
+                        "1. Setup",
+                        "__enter__(self)",
+                        "Immediately upon entering the with block",
+                        "Acquires resource; return value is bound to the 'as' variable."
+                      ],
+                      [
+                        "2. Execution",
+                        "Block Statements",
+                        "Inside the indented body",
+                        "Application logic executes. If an exception occurs, execution halts."
+                      ],
+                      [
+                        "3. Teardown",
+                        "__exit__(self, exc_type, exc_val, exc_tb)",
+                        "Always runs upon leaving block (even on uncaught exceptions)",
+                        "Closes file/socket, releases locks, commits or rolls back transactions."
+                      ]
+                    ]
+                  }
+                },
+                {
+                  "title": "2. contextlib Generator Decorator",
+                  "description": "Simplifying context manager creation using generators and yield:",
+                  "items": [
+                    {
+                      "term": "@contextlib.contextmanager",
+                      "meaning": "Transforms a generator into a context manager: code before yield runs in __enter__, code in finally runs in __exit__",
+                      "example": "from contextlib import contextmanager\nimport time\n\n@contextmanager\ndef timer(label):\n    start = time.perf_counter()\n    try:\n        yield\n    finally:\n        elapsed = time.perf_counter() - start\n        print(f'{label}: {elapsed:.4f}s')\n\nwith timer('Heavy calculation'):\n    sum(i * i for i in range(1_000_000))"
+                    }
+                  ]
+                }
+              ],
+              "practice": [
+                {
+                  "question": "When is the `__exit__` method of a context manager guaranteed to run?",
+                  "options": [
+                    "Only if the block finishes without errors",
+                    "Only when an exception is thrown",
+                    "Always, whether the block succeeds, returns early, or raises an unhandled exception",
+                    "Only if invoked explicitly by the user"
+                  ],
+                  "answer": "Always, whether the block succeeds, returns early, or raises an unhandled exception",
+                  "explanation": "The with statement guarantees that __exit__ is called upon exiting the block under all circumstances, ensuring robust cleanup of files, locks, and network resources."
+                },
+                {
+                  "question": "How can the `__exit__` method tell Python to suppress an exception that occurred inside the with block?",
+                  "options": [
+                    "By raising a new exception",
+                    "By returning True",
+                    "By returning None",
+                    "By calling sys.suppress()"
+                  ],
+                  "answer": "By returning True",
+                  "explanation": "If __exit__ returns a truthy value (specifically True), Python swallows the active exception and continues program execution immediately after the with block."
+                }
+              ]
+            }
+          }
+        ]
+      },
+      {
+        "id": "py-ch9",
+        "title": "Chapter 9: Advanced Python: Comprehensions, Generators & Decorators",
+        "lessons": [
+          {
+            "id": "py-ch9-l25",
+            "title": "Lesson 25: Comprehensions: Lists, Dicts & Sets with Filtering",
+            "description": "Declarative transformations with list, dict, and set comprehensions, and conditional predicate filtering.",
+            "content": {
+              "overview": "Comprehensions provide a concise, declarative syntax for transforming, filtering, and constructing collections in Python. Synthesizing Mark Lutz's benchmark analysis in 'Learning Python' and Eric Matthes' practical examples, this lesson covers list comprehensions, dictionary comprehensions, set comprehensions, conditional filtering, and avoiding unreadable nested comprehension antipatterns.",
+              "canDo": "Can construct list, dict, and set comprehensions with predicates, explain why comprehensions execute faster than equivalent for-loop append operations in CPython, and refactor multi-line loops.",
+              "teacherNote": "Comprehensions are not merely aesthetic: in CPython, a list comprehension runs at C-speed in an optimized bytecode loop (LIST_APPEND opcode) without the overhead of repeated attribute lookup and function calls that `items.append()` incurs.",
+              "sections": [
+                {
+                  "title": "1. The 3 Comprehension Flavors",
+                  "description": "Declarative construction syntax across list, dict, and set collections:",
+                  "table": {
+                    "headers": [
+                      "Type",
+                      "Syntax Template",
+                      "Example",
+                      "Result"
+                    ],
+                    "rows": [
+                      [
+                        "List Comprehension",
+                        "[expr for item in iterable if condition]",
+                        "[x**2 for x in range(5) if x % 2 == 0]",
+                        "[0, 4, 16]"
+                      ],
+                      [
+                        "Dict Comprehension",
+                        "{k_expr: v_expr for item in iterable if condition}",
+                        "{w: len(w) for w in ['python', 'dev']}",
+                        "{'python': 6, 'dev': 3}"
+                      ],
+                      [
+                        "Set Comprehension",
+                        "{expr for item in iterable if condition}",
+                        "{x.lower() for x in ['A', 'B', 'a']}",
+                        "{'a', 'b'}"
+                      ]
+                    ]
+                  }
+                },
+                {
+                  "title": "2. Filtering vs Transforming",
+                  "description": "Position of if conditions changes semantic behavior:",
+                  "items": [
+                    {
+                      "term": "Trailing if (Filtering)",
+                      "meaning": "Filters which items from the iterable enter the result; placed at the very end",
+                      "example": "evens = [x for x in numbers if x % 2 == 0]"
+                    },
+                    {
+                      "term": "Leading if/else (Ternary Value Selection)",
+                      "meaning": "Transforms the value based on a condition; placed before the 'for' keyword",
+                      "example": "labels = ['even' if x % 2 == 0 else 'odd' for x in numbers]"
+                    }
+                  ],
+                  "notes": [
+                    "Keep comprehensions readable: if a comprehension requires more than two for clauses or complex logic, write a standard for loop instead."
+                  ]
+                }
+              ],
+              "practice": [
+                {
+                  "question": "What is the output of `[x * 10 for x in range(4) if x > 1]`?",
+                  "options": [
+                    "[0, 10, 20, 30]",
+                    "[20, 30]",
+                    "[10, 20, 30]",
+                    "[20, 30, 40]"
+                  ],
+                  "answer": "[20, 30]",
+                  "explanation": "range(4) produces 0, 1, 2, 3. The trailing if condition filters for elements strictly greater than 1 (yielding 2 and 3). Multiplying by 10 produces [20, 30]."
+                },
+                {
+                  "question": "How do you create a dictionary mapping words to their length using a comprehension?",
+                  "options": [
+                    "[w: len(w) for w in words]",
+                    "{w: len(w) for w in words}",
+                    "{w, len(w) for w in words}",
+                    "dict([w for w in words])"
+                  ],
+                  "answer": "{w: len(w) for w in words}",
+                  "explanation": "Dictionary comprehensions use curly braces {} with key: value syntax separated by a colon, followed by the for clause: {w: len(w) for w in words}."
+                }
+              ]
+            }
+          },
+          {
+            "id": "py-ch9-l26",
+            "title": "Lesson 26: Iterators & Generator Functions with yield",
+            "description": "The iterator protocol (__iter__, __next__), lazy evaluation, streaming big data with yield, and gen expressions.",
+            "content": {
+              "overview": "Generators and the iterator protocol enable processing massive or infinite streams of data with minimal memory consumption. Grounded in Guido van Rossum's PEP 255 and Mark Lutz's deep iteration mechanics, this lesson covers the iterator protocol (`__iter__` and `__next__`), writing generator functions using `yield`, generator expressions `(x for x in seq)`, and pipeline streaming.",
+              "canDo": "Can construct memory-efficient generator functions using yield, stream large datasets without loading them entirely into RAM, and manually drive iterators with next().",
+              "teacherNote": "A regular function runs to completion and destroys its stack frame upon returning. A generator function containing `yield` freezes its state, preserves local variables and execution pointers, and resumes execution right where it paused when `next()` is called again!",
+              "sections": [
+                {
+                  "title": "1. The Iterator Protocol & yield Mechanics",
+                  "description": "How Python processes sequences lazily on-demand:",
+                  "table": {
+                    "headers": [
+                      "Concept",
+                      "Mechanism",
+                      "Role",
+                      "Memory Impact"
+                    ],
+                    "rows": [
+                      [
+                        "Iterator Protocol",
+                        "__iter__() returns self; __next__() yields next item or raises StopIteration",
+                        "Universal abstraction behind all Python for loops.",
+                        "Only the current item is held in memory."
+                      ],
+                      [
+                        "Generator Function",
+                        "def gen(): ... yield value",
+                        "Produces a generator object upon invocation without executing code immediately.",
+                        "O(1) memory regardless of stream size (even infinite streams!)."
+                      ],
+                      [
+                        "Generator Expression",
+                        "(expr for item in iterable)",
+                        "Lazy, on-demand counterpart to list comprehensions.",
+                        "Avoids allocating intermediate lists."
+                      ]
+                    ]
+                  }
+                },
+                {
+                  "title": "2. Large Dataset Streaming Pipeline",
+                  "description": "Processing gigabyte-scale logs with zero memory footprint:",
+                  "items": [
+                    {
+                      "term": "Log File Streamer",
+                      "meaning": "Reading line by line without readlines() loading the entire file",
+                      "example": "def read_error_logs(filename):\n    with open(filename, 'r') as file:\n        for line in file:\n            if 'ERROR' in line:\n                yield line.strip()\n\n# Pipeline: memory stays under 5MB even for a 50GB file!\nfor error in read_error_logs('system.log'):\n    alert_engineer(error)"
+                    }
+                  ]
+                }
+              ],
+              "practice": [
+                {
+                  "question": "What exception does an iterator raise when there are no more items left to yield?",
+                  "options": [
+                    "IndexError",
+                    "StopIteration",
+                    "EOFError",
+                    "GeneratorExit"
+                  ],
+                  "answer": "StopIteration",
+                  "explanation": "Under the Python iterator protocol, calling next(iterator) when the sequence is exhausted raises a StopIteration exception, which for loops catch automatically."
+                },
+                {
+                  "question": "Why would you choose a generator function with `yield` over returning a list of 10,000,000 items?",
+                  "options": [
+                    "Generators execute 100x faster in single-threaded tasks",
+                    "Generators produce items on-demand (lazy evaluation), requiring virtually no memory compared to a huge in-memory list",
+                    "Generators are automatically multi-threaded",
+                    "Lists cannot hold more than 100,000 items"
+                  ],
+                  "answer": "Generators produce items on-demand (lazy evaluation), requiring virtually no memory compared to a huge in-memory list",
+                  "explanation": "Generators evaluate lazily one item at a time. A list of 10 million items consumes hundreds of megabytes of RAM, whereas a generator uses constant O(1) memory."
+                }
+              ]
+            }
+          },
+          {
+            "id": "py-ch9-l27",
+            "title": "Lesson 27: Function Decorators & Metaprogramming Utilities",
+            "description": "Higher-order function wrappers, the @decorator syntax, functools.wraps, and execution timing/caching.",
+            "content": {
+              "overview": "Decorators are a powerful metaprogramming technique in Python, enabling you to wrap, extend, or alter the behavior of functions and methods cleanly without modifying their source code. Informed by Mark Lutz's decorator architecture in 'Learning Python', this lesson covers higher-order functions, closure wrappers, the `@decorator` syntax, accepting arguments in decorators, and preserving function signatures with `functools.wraps`.",
+              "canDo": "Can implement custom decorators for timing, logging, authentication, and caching, pass arguments into parameterized decorators, and preserve function metadata with @functools.wraps.",
+              "teacherNote": "ALWAYS decorate your inner wrapper with `@functools.wraps(func)`. Without it, your decorated function will lose its original `__name__`, `__doc__`, and signature, appearing to the debugger as 'wrapper', which makes debugging and documentation generation a nightmare!",
+              "sections": [
+                {
+                  "title": "1. The Anatomy of a Decorator",
+                  "description": "How the `@syntax` translates to function composition:",
+                  "table": {
+                    "headers": [
+                      "Syntax",
+                      "Syntactic Translation",
+                      "Lifecycle",
+                      "Purpose"
+                    ],
+                    "rows": [
+                      [
+                        "@my_decorator\ndef func(): pass",
+                        "func = my_decorator(func)",
+                        "Evaluated when module loads",
+                        "Wraps func inside decorator's wrapper logic."
+                      ],
+                      [
+                        "@functools.wraps(func)",
+                        "Copies __name__, __doc__, __annotations__",
+                        "Applied to inner wrapper",
+                        "Preserves introspection and debugging metadata."
+                      ]
+                    ]
+                  }
+                },
+                {
+                  "title": "2. Practical Production Decorators",
+                  "description": "Timing execution and caching expensive results:",
+                  "items": [
+                    {
+                      "term": "Execution Timer Decorator",
+                      "meaning": "Measures wall-clock time of any function call automatically",
+                      "example": "import time\nfrom functools import wraps\n\ndef measure_time(func):\n    @wraps(func)\n    def wrapper(*args, **kwargs):\n        start = time.perf_counter()\n        result = func(*args, **kwargs)\n        elapsed = time.perf_counter() - start\n        print(f'[{func.__name__}] executed in {elapsed:.4f}s')\n        return result\n    return wrapper\n\n@measure_time\ndef compute_data():\n    return sum(i**2 for i in range(500_000))"
+                    },
+                    {
+                      "term": "functools.lru_cache",
+                      "meaning": "Standard library memoization decorator caching function results for repeated arguments",
+                      "example": "from functools import lru_cache\n\n@lru_cache(maxsize=128)\ndef fibonacci(n):\n    if n < 2: return n\n    return fibonacci(n-1) + fibonacci(n-2)"
+                    }
+                  ]
+                }
+              ],
+              "practice": [
+                {
+                  "question": "What does the syntax `@track_calls\ndef compute(): pass` do under the hood?",
+                  "options": [
+                    "It compiles compute into C machine code",
+                    "It executes `compute = track_calls(compute)`",
+                    "It registers compute in the global operating system scheduler",
+                    "It makes compute asynchronous"
+                  ],
+                  "answer": "It executes `compute = track_calls(compute)`",
+                  "explanation": "The @decorator syntax is syntactic sugar that passes the declared function object into the decorator callable and rebinds the function name to the return value."
+                },
+                {
+                  "question": "Why should you always apply `@functools.wraps(func)` to the inner wrapper function of a decorator?",
+                  "options": [
+                    "To make the wrapper thread-safe",
+                    "To preserve the original function's name (__name__), docstring (__doc__), and signature metadata",
+                    "To automatically convert return values into JSON",
+                    "Because Python throws a SyntaxError without it"
+                  ],
+                  "answer": "To preserve the original function's name (__name__), docstring (__doc__), and signature metadata",
+                  "explanation": "@functools.wraps copies the original function's metadata (including __name__, __doc__, and type annotations) onto the wrapper function, preventing loss of introspection data."
+                }
+              ]
+            }
+          }
+        ]
+      },
+      {
+        "id": "py-ch10",
+        "title": "Chapter 10: Error Handling, File I/O & The Python Ecosystem",
+        "lessons": [
+          {
+            "id": "py-ch10-l28",
+            "title": "Lesson 28: Robust Exception Handling: try, except, else, finally",
+            "description": "Intercepting runtime exceptions, safe cleanup with finally, happy path with else, and custom exception classes.",
+            "content": {
+              "overview": "Production-grade software must anticipate, gracefully intercept, and recover from runtime anomalies. Drawing from Mark Lutz's comprehensive exception architecture in 'Learning Python' and Eric Matthes' practical error handling patterns, this lesson covers the complete try/except/else/finally statement, catching specific exception types, re-raising with 'raise', exception chaining, and architecting custom exception hierarchies derived from Exception.",
+              "canDo": "Can intercept specific runtime exceptions, implement cleanup routines with finally, write clean happy-path code in else blocks, and define custom domain exceptions.",
+              "teacherNote": "NEVER write a bare `except:` or `except Exception:` that silently ignores errors with `pass`! This antipattern hides programming bugs, typos, and interrupts like KeyboardInterrupt and SystemExit, making systems impossible to troubleshoot.",
+              "sections": [
+                {
+                  "title": "1. The Complete Exception Block Architecture",
+                  "description": "The 4 interconnected clauses of Python error handling:",
+                  "table": {
+                    "headers": [
+                      "Clause",
+                      "Execution Timing",
+                      "Mandatory?",
+                      "Primary Purpose"
+                    ],
+                    "rows": [
+                      [
+                        "try",
+                        "Always starts the block",
+                        "Yes",
+                        "Encloses code that might trigger an exception."
+                      ],
+                      [
+                        "except ExcType as e",
+                        "Only when an exception matching ExcType occurs",
+                        "At least one (or finally)",
+                        "Intercepts error, inspects message, and executes recovery."
+                      ],
+                      [
+                        "else",
+                        "Only when NO exceptions occurred in try",
+                        "No",
+                        "Contains code that should run only on complete success."
+                      ],
+                      [
+                        "finally",
+                        "Always runs regardless of success or unhandled exception",
+                        "No",
+                        "Guarantees resource teardown, lock release, or socket closure."
+                      ]
+                    ]
+                  }
+                },
+                {
+                  "title": "2. Custom Exception Hierarchies",
+                  "description": "Modeling domain-specific errors cleanly:",
+                  "items": [
+                    {
+                      "term": "Domain Exception Class",
+                      "meaning": "Custom exception subclasses inheriting from built-in Exception",
+                      "example": "class PaymentError(Exception):\n    \"\"\"Base exception for all billing domain failures.\"\"\"\n    pass\n\nclass InsufficientFundsError(PaymentError):\n    def __init__(self, balance, amount):\n        super().__init__(f'Cannot withdraw {amount}; current balance is {balance}')\n        self.balance = balance\n        self.amount = amount"
+                    },
+                    {
+                      "term": "Exception Chaining: raise ... from ...",
+                      "meaning": "Links a high-level domain error to an underlying low-level cause for debugging",
+                      "example": "try:\n    connect_database()\nexcept ConnectionRefusedError as err:\n    raise ServiceUnavailableError('Database down') from err"
+                    }
+                  ]
+                }
+              ],
+              "practice": [
+                {
+                  "question": "When does the `else` clause in a `try...except...else...finally` block execute?",
+                  "options": [
+                    "Only when an exception was caught and handled",
+                    "Only when no exceptions were raised inside the try block",
+                    "Every time before the finally block runs",
+                    "Only when the system runs out of memory"
+                  ],
+                  "answer": "Only when no exceptions were raised inside the try block",
+                  "explanation": "The else block runs only if the try block executes to completion without encountering any exception."
+                },
+                {
+                  "question": "What class should custom application exceptions inherit from?",
+                  "options": [
+                    "BaseException",
+                    "Exception",
+                    "RuntimeError only",
+                    "object directly"
+                  ],
+                  "answer": "Exception",
+                  "explanation": "Custom exceptions should inherit from Exception. Inheriting from BaseException is reserved for system-exiting exceptions like KeyboardInterrupt and SystemExit that normal code should rarely catch."
+                }
+              ]
+            }
+          },
+          {
+            "id": "py-ch10-l29",
+            "title": "Lesson 29: File I/O & Data Serialization with json",
+            "description": "Contextual file reading and writing with open(encoding='utf-8'), and JSON serialization with the json module.",
+            "content": {
+              "overview": "Working with files and persistent state is essential for real-world software. Combining Eric Matthes' file chapters with Guido van Rossum's I/O tutorials, this lesson covers contextual file handling with open(), reading text line-by-line vs chunk-by-chunk, writing and appending data, and serializing complex Python objects into portable JSON data structures using the standard library `json` module.",
+              "canDo": "Can open, read, write, and append files safely using with open(), handle file encodings (UTF-8), and serialize/deserialize data using json.dumps(), json.loads(), json.dump(), and json.load().",
+              "teacherNote": "Always explicitly declare `encoding='utf-8'` when calling `open()`. Operating systems have differing default encodings (e.g., Windows may default to cp1252), which leads to mysterious UnicodeDecodeError bugs when files with accents or emojis are moved across platforms.",
+              "sections": [
+                {
+                  "title": "1. File Modes & Context Management",
+                  "description": "File access modes with automatic closure:",
+                  "table": {
+                    "headers": [
+                      "Mode",
+                      "Name",
+                      "Behavior",
+                      "File Pointer Position"
+                    ],
+                    "rows": [
+                      [
+                        "'r'",
+                        "Read (Default)",
+                        "Opens for reading; raises FileNotFoundError if missing",
+                        "Beginning of file"
+                      ],
+                      [
+                        "'w'",
+                        "Write",
+                        "Opens for writing; truncates/overwrites existing file",
+                        "Beginning of file"
+                      ],
+                      [
+                        "'a'",
+                        "Append",
+                        "Opens for writing; appends to end without deleting content",
+                        "End of file"
+                      ],
+                      [
+                        "'rb' / 'wb'",
+                        "Binary Read/Write",
+                        "Reads/writes raw bytes (for images, audio, PDFs)",
+                        "Beginning of file"
+                      ]
+                    ]
+                  }
+                },
+                {
+                  "title": "2. The json Standard Module",
+                  "description": "Bidirectional JSON serialization and deserialization:",
+                  "items": [
+                    {
+                      "term": "json.dumps(obj, indent=2)",
+                      "meaning": "Serializes a Python dict/list into a JSON formatted string (with optional pretty-printing)",
+                      "example": "payload = {'status': 'ok', 'count': 42}\njson_str = json.dumps(payload, indent=2)"
+                    },
+                    {
+                      "term": "json.loads(json_str)",
+                      "meaning": "Deserializes a JSON string back into native Python dictionaries, lists, and primitives",
+                      "example": "data = json.loads('{\"name\": \"Alice\", \"age\": 30}')\nprint(data['name'])  # Alice"
+                    },
+                    {
+                      "term": "json.dump(obj, file) / json.load(file)",
+                      "meaning": "Serializes / deserializes directly to and from open file streams",
+                      "example": "with open('config.json', 'w', encoding='utf-8') as f:\n    json.dump(config_data, f, indent=4)"
+                    }
+                  ]
+                }
+              ],
+              "practice": [
+                {
+                  "question": "Why is `with open('data.txt', 'r', encoding='utf-8') as f:` preferred over `f = open('data.txt')`?",
+                  "options": [
+                    "It compresses the file automatically",
+                    "The with statement guarantees the file descriptor is closed automatically, even if an exception occurs",
+                    "It makes reading 10x faster",
+                    "It encrypts the contents in RAM"
+                  ],
+                  "answer": "The with statement guarantees the file descriptor is closed automatically, even if an exception occurs",
+                  "explanation": "Context managers guarantee proper cleanup. The with statement automatically closes the underlying OS file handle when exiting the block, preventing resource leaks."
+                },
+                {
+                  "question": "Which function converts a valid JSON string directly into a Python dictionary or list in memory?",
+                  "options": [
+                    "json.dump()",
+                    "json.loads()",
+                    "json.parse()",
+                    "json.encode()"
+                  ],
+                  "answer": "json.loads()",
+                  "explanation": "json.loads() ('load string') parses a JSON formatted string into native Python objects, while json.load() reads from an open file-like object."
+                }
+              ]
+            }
+          },
+          {
+            "id": "py-ch10-l30",
+            "title": "Lesson 30: Modular Architecture & Standard Library Tour",
+            "description": "Modules, packages, __init__.py, the if __name__ == '__main__' guard, pathlib, collections, and datetime.",
+            "content": {
+              "overview": "As Python projects expand, organizing code into reusable modules, packages, and utilizing the extensive Standard Library ('Batteries Included') is what turns scripts into production software. In this capstone lesson, synthesizing Guido van Rossum's module design and Mark Lutz's package namespaces, you will master `import` mechanics, the `__name__ == '__main__'` guard, creating packages with `__init__.py`, and essential standard library powerhouses (pathlib, collections, itertools, and datetime).",
+              "canDo": "Can structure Python packages and modules, explain import search paths in sys.path, use the __name__ == '__main__' guard idiomatically, and leverage core standard library utilities.",
+              "teacherNote": "The `if __name__ == '__main__':` boilerplate allows a Python file to act BOTH as a standalone executable script (when run directly via `python file.py`) and as an importable module without side-effects (when imported into another file via `import file`). Always guard execution code with this pattern!",
+              "sections": [
+                {
+                  "title": "1. Module Importation & The __name__ Guard",
+                  "description": "How Python resolves and executes modular code:",
+                  "table": {
+                    "headers": [
+                      "Concept",
+                      "Code Construct",
+                      "Behavior",
+                      "Key Advantage"
+                    ],
+                    "rows": [
+                      [
+                        "Import Statement",
+                        "import math\nfrom pathlib import Path",
+                        "Searches sys.path, executes module on first import, caches in sys.modules.",
+                        "Prevents duplicate execution."
+                      ],
+                      [
+                        "Execution Guard",
+                        "if __name__ == '__main__':\n    main()",
+                        "Only executes the enclosed block if the script is run directly from CLI.",
+                        "Enables testability and clean module importing."
+                      ],
+                      [
+                        "Package Directory",
+                        "package_name/__init__.py",
+                        "Treats directory as a Python package containing sub-modules.",
+                        "Structures clean namespaces."
+                      ]
+                    ]
+                  }
+                },
+                {
+                  "title": "2. Standard Library Powerhouses",
+                  "description": "The most indispensable tools built directly into Python:",
+                  "items": [
+                    {
+                      "term": "pathlib.Path",
+                      "meaning": "Object-oriented, cross-platform filesystem navigation replacing legacy os.path",
+                      "example": "from pathlib import Path\nbase_dir = Path(__file__).resolve().parent\nconfig_file = base_dir / 'config' / 'app.json'\nif config_file.exists():\n    content = config_file.read_text(encoding='utf-8')"
+                    },
+                    {
+                      "term": "collections.Counter / defaultdict",
+                      "meaning": "High-performance specialized container datatypes",
+                      "example": "from collections import Counter, defaultdict\ncounts = Counter(['apple', 'orange', 'apple'])  # Counter({'apple': 2, 'orange': 1})\ngroups = defaultdict(list)\ngroups['admins'].append('Alice')"
+                    },
+                    {
+                      "term": "datetime.datetime",
+                      "meaning": "Date and time manipulation with ISO 8601 parsing and arithmetic",
+                      "example": "from datetime import datetime, timezone\nnow = datetime.now(timezone.utc)\nprint(now.isoformat())"
+                    }
+                  ]
+                }
+              ],
+              "funFact": {
+                "title": "Batteries Included",
+                "content": "The Python motto 'Batteries Included' reflects the philosophy that the standard library should provide rich, reliable functionality out of the box—from sqlite3 databases and cryptographic hashes to HTTP servers and zip compression—without requiring third-party downloads."
+              },
+              "practice": [
+                {
+                  "question": "What is the value of `__name__` when a Python script is executed directly from the terminal?",
+                  "options": [
+                    "'__main__'",
+                    "'main'",
+                    "The filename without extension",
+                    "None"
+                  ],
+                  "answer": "'__main__'",
+                  "explanation": "When a file is executed directly, CPython sets the global __name__ variable to the string '__main__'. When imported into another file, __name__ is set to the module's name."
+                },
+                {
+                  "question": "Which modern standard library module provides an object-oriented, cross-platform interface for file and directory paths?",
+                  "options": [
+                    "os.path",
+                    "pathlib",
+                    "sys.file",
+                    "filepath"
+                  ],
+                  "answer": "pathlib",
+                  "explanation": "pathlib (introduced in Python 3.4) offers the Path class, providing an elegant, object-oriented API for path manipulation across Windows, macOS, and Linux."
+                }
+              ]
+            }
+          }
+        ]
+      }
+    ]
+  },
+  {
     "id": "javascript-complete-course",
     "title": "JavaScript from Beginner to Professional: The Complete Guide",
     "category": "Development",
