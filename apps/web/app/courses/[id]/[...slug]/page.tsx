@@ -16,6 +16,7 @@ import {
   FileQuestion,
   ChevronDown,
   ChevronUp,
+  ChevronLeft,
   ArrowLeft,
   ArrowRight,
   RefreshCw,
@@ -365,6 +366,19 @@ export default function CourseDetailPage() {
     return allLessonsInLevel.findIndex((item) => item.lesson.id === activeLessonInfo.lesson.id);
   }, [allLessonsInLevel, activeLessonInfo]);
 
+  const currentChapterNumber = useMemo(() => {
+    if (!activeLessonInfo?.chapter) return 1;
+    const match = activeLessonInfo.chapter.title.match(/Chapter\s+(\d+)/i);
+    if (match) return match[1];
+    if (currentLevelCurriculum?.chapters) {
+      const idx = currentLevelCurriculum.chapters.findIndex(
+        (c) => c.id === activeLessonInfo.chapter.id
+      );
+      if (idx >= 0) return idx + 1;
+    }
+    return 1;
+  }, [activeLessonInfo, currentLevelCurriculum]);
+
   const goToNextLesson = () => {
     if (currentLessonIndex >= 0 && currentLessonIndex < allLessonsInLevel.length - 1) {
       const nextItem = allLessonsInLevel[currentLessonIndex + 1];
@@ -444,24 +458,20 @@ export default function CourseDetailPage() {
       {/* LEFT SIDE: Less Space (Course Title at top, A1-C2, Course Outline)        */}
       {/* ========================================================================= */}
       <aside className="w-full md:w-80 lg:w-[380px] xl:w-[410px] shrink-0 h-full bg-white border-r border-neutral-200/90 flex flex-col z-20 shadow-xs">
-        {/* 1. TOP: COURSE TITLE */}
-        <div className="p-4 sm:p-5 border-b border-neutral-200/80 bg-white">
-          <div className="flex items-center gap-2 mb-2">
-            <Link
-              href="/courses"
-              className="inline-flex items-center gap-1 text-[11px] font-semibold text-[#7A776D] hover:text-[#18191E] transition-colors group cursor-pointer"
-              title="Return to courses directory"
-            >
-              <ArrowLeft className="w-3.5 h-3.5 transition-transform group-hover:-translate-x-0.5" />
-              <span>All Courses</span>
-            </Link>
-            <span className="text-neutral-300">•</span>
-            <span className="text-[10px] font-bold text-amber-700 uppercase tracking-wider bg-amber-50 px-2 py-0.5 rounded border border-amber-200/60">
-              German
-            </span>
-          </div>
+        {/* 1. TOP: COURSE TITLE WITH BACK BUTTON */}
+        <div className="p-3.5 sm:p-4 border-b border-neutral-200/80 bg-white flex items-center gap-3 min-h-[61px]">
+          <Link
+            href="/courses"
+            className="w-8 h-8 rounded-xl border border-neutral-200/90 bg-neutral-50/80 hover:bg-neutral-100 flex items-center justify-center text-neutral-600 hover:text-[#18191E] transition-all shrink-0 cursor-pointer shadow-2xs group"
+            title="Return to courses directory"
+          >
+            <ChevronLeft className="w-4 h-4 transition-transform group-hover:-translate-x-0.5" />
+          </Link>
 
-          <h1 className="text-lg sm:text-xl font-extrabold text-[#18191E] tracking-tight leading-snug">
+          <h1
+            className="text-sm sm:text-base font-extrabold text-[#18191E] tracking-tight leading-snug line-clamp-2"
+            title={course.title}
+          >
             {course.title}
           </h1>
         </div>
@@ -603,18 +613,31 @@ export default function CourseDetailPage() {
       <main className="flex-1 h-full flex flex-col overflow-hidden bg-[#FAF9F5]">
         {activeLessonInfo ? (
           <>
-            {/* 1. TOP HEADER: SHOWING LESSON OR CHAPTER NAME */}
-            <header className="px-6 sm:px-10 py-5 bg-white border-b border-neutral-200/80 shrink-0 flex flex-col sm:flex-row sm:items-center justify-between gap-3 shadow-xs">
-              <div className="min-w-0 flex-1">
-                <div className="flex items-center gap-2 text-[11px] font-semibold text-[#7A776D] mb-1">
-                  <span className="px-2 py-0.5 rounded bg-[#18191E] text-white text-[10px] font-bold">
-                    Level {activeLevel}
-                  </span>
-                  <span>•</span>
-                  <span className="truncate">{activeLessonInfo.chapter.title}</span>
-                </div>
+            {/* 1. TOP HEADER: SHOWING LEVEL, CHAPTER, AND LESSON NAME IN ONE LINE */}
+            <header className="px-6 sm:px-8 py-3.5 sm:py-4 bg-white border-b border-neutral-200/80 shrink-0 flex items-center justify-between gap-4 min-h-[61px] shadow-xs">
+              <div className="min-w-0 flex-1 flex items-center gap-2.5">
+                {/* Level Card */}
+                <span className="px-2.5 py-1 rounded-lg bg-[#18191E] text-white text-xs font-bold shrink-0 shadow-2xs">
+                  {activeLevel}
+                </span>
 
-                <h2 className="text-lg sm:text-2xl font-extrabold text-[#18191E] tracking-tight truncate">
+                {/* Chapter Card */}
+                <span
+                  className="px-2.5 py-1 rounded-lg bg-neutral-100 border border-neutral-200/90 text-neutral-800 text-xs font-semibold shrink-0 shadow-2xs"
+                  title={activeLessonInfo.chapter.title}
+                >
+                  Ch {currentChapterNumber}
+                </span>
+
+                {/* Lesson Name */}
+                <h2
+                  className="text-sm sm:text-base font-bold text-[#18191E] tracking-tight truncate"
+                  title={
+                    currentLessonIndex >= 0
+                      ? formatLessonTitle(activeLessonInfo.lesson.title, currentLessonIndex + 1)
+                      : activeLessonInfo.lesson.title
+                  }
+                >
                   {currentLessonIndex >= 0
                     ? formatLessonTitle(activeLessonInfo.lesson.title, currentLessonIndex + 1)
                     : activeLessonInfo.lesson.title}

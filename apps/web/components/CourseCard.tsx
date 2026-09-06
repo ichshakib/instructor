@@ -3,8 +3,6 @@
 import React from "react";
 import Link from "next/link";
 import {
-  FileText,
-  Award,
   BookOpen,
   Layers,
 } from "lucide-react";
@@ -377,20 +375,6 @@ export default function CourseCard({ course }: CourseCardProps) {
     }
   };
 
-  const getTypeIcon = () => {
-    switch (course.typeIcon) {
-      case "quiz":
-        return <Award className="w-3.5 h-3.5 text-amber-500 fill-amber-500/20" />;
-      case "page":
-        return <FileText className="w-3.5 h-3.5 text-orange-500" />;
-      case "path":
-        return <Layers className="w-3.5 h-3.5 text-purple-500" />;
-      case "lab":
-      default:
-        return <BookOpen className="w-3.5 h-3.5 text-indigo-500" />;
-    }
-  };
-
   const totalChapters =
     course.totalChapters ??
     (Array.isArray(course.curriculum)
@@ -442,16 +426,6 @@ export default function CourseCard({ course }: CourseCardProps) {
       {/* 2. CARD CONTENT BODY */}
       <div className="p-4 sm:p-5 flex flex-col flex-1 justify-between">
         <div>
-          {/* Type / Meta Header Row (omitted if Mastery Track or Certified) */}
-          {course.type &&
-            !course.type.toLowerCase().includes("mastery track") &&
-            !course.type.toLowerCase().includes("certified") && (
-              <div className="flex items-center gap-1.5 text-[11px] font-semibold text-[#18191E] mb-1">
-                {getTypeIcon()}
-                <span>{course.type}</span>
-              </div>
-            )}
-
           {/* Course Title - Clickable with underline on hover */}
           <Link
             href={`/courses/${course.id}`}
