@@ -1,4 +1,4 @@
-import { LessonContent } from "../api";
+import { LessonContent } from "../../../../types/course.types";
 import { CHAPTER_1_LESSONS } from "./chapter1";
 import { CHAPTER_2_LESSONS } from "./chapter2";
 import { CHAPTER_3_LESSONS } from "./chapter3";
@@ -10,7 +10,7 @@ import { CHAPTER_8_LESSONS } from "./chapter8";
 import { CHAPTER_9_LESSONS } from "./chapter9";
 import { CHAPTER_10_LESSONS } from "./chapter10";
 
-export const ALL_A1_LESSONS_CONTENT: Record<string, LessonContent> = {
+export const ALL_JAVASCRIPT_LESSONS_CONTENT: Record<string, LessonContent> = {
   ...CHAPTER_1_LESSONS,
   ...CHAPTER_2_LESSONS,
   ...CHAPTER_3_LESSONS,
@@ -23,6 +23,6 @@ export const ALL_A1_LESSONS_CONTENT: Record<string, LessonContent> = {
   ...CHAPTER_10_LESSONS,
 };
 
-export function getLessonContent(lessonId: string): LessonContent | undefined {
-  return ALL_A1_LESSONS_CONTENT[lessonId];
+export function getJavaScriptLessonContent(lessonId: string): LessonContent | undefined {
+  return ALL_JAVASCRIPT_LESSONS_CONTENT[lessonId];
 }

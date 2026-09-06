@@ -9,6 +9,8 @@ import { CHAPTER_7_LESSONS } from "./chapter7";
 import { CHAPTER_8_LESSONS } from "./chapter8";
 import { CHAPTER_9_LESSONS } from "./chapter9";
 import { CHAPTER_10_LESSONS } from "./chapter10";
+import { CHAPTER_11_LESSONS } from "./chapter11";
+import { CHAPTER_12_LESSONS } from "./chapter12";
 
 export const ALL_A1_LESSONS_CONTENT: Record<string, LessonContent> = {
   ...CHAPTER_1_LESSONS,
@@ -21,6 +23,8 @@ export const ALL_A1_LESSONS_CONTENT: Record<string, LessonContent> = {
   ...CHAPTER_8_LESSONS,
   ...CHAPTER_9_LESSONS,
   ...CHAPTER_10_LESSONS,
+  ...CHAPTER_11_LESSONS,
+  ...CHAPTER_12_LESSONS,
 };
 
 export function getLessonContent(lessonId: string): LessonContent | undefined {

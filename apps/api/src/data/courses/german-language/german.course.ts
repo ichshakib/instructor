@@ -242,58 +242,110 @@ const A1_RAW_CHAPTERS: Chapter[] = [
           },
           {
             id: "a1-ch9",
-            title: "Chapter 9: Praktische Alltagssituationen (Practical A1 Daily Situations)",
+            title: "Chapter 9: Alles Arbeit? & Das Perfekt (Work, Career & Past Tense)",
             lessons: [
               {
                 id: "a1-ch9-l39",
-                title: "Lesson 39: Supermarket Shopping, Food, Drinks & Prices",
-                description: "Food items, quantities (Kilo, Gramm, Liter), inquiring prices ('Was kostet ein Kilo Äpfel?').",
+                title: "Lesson 39: Job Profiles, Work Routines & German Workplace Culture",
+                description: "German job titles in masculine and feminine forms, workplace routines, and work schedule vocabulary (Gleitzeit, Feierabend).",
               },
               {
                 id: "a1-ch9-l40",
-                title: "Lesson 40: Restaurant & Café Etiquette & Ordering Phrases",
-                description: "Ordering ('Ich hätte gern...', 'Ich möchte...'), paying ('Zusammen oder getrennt?').",
+                title: "Lesson 40: Das Perfekt with 'haben': Regular Past Participles",
+                description: "Constructing conversational past tense with 'haben' and regular participles (ge-...-t) in the sentence bracket (Satzklammer).",
               },
               {
                 id: "a1-ch9-l41",
-                title: "Lesson 41: Clothes, Colors, Weather & Seasons",
-                description: "Garments, colors, weather statements ('Es regnet', 'Es ist sonnig', 'Mir ist kalt').",
+                title: "Lesson 41: Das Perfekt with 'sein': Movement & Change of State",
+                description: "Mastering 'sein' in the past tense for motion (fahren, gehen, fliegen) and state transitions (aufstehen, einschlafen, bleiben).",
               },
               {
                 id: "a1-ch9-l42",
-                title: "Lesson 42: Health, Body Parts & Doctor Visits",
-                description: "Anatomy (Kopf, Hals, Bauch), symptoms (Kopfschmerzen, Fieber), making appointments (Termin).",
+                title: "Lesson 42: Essential Irregular Participles & Past Tense of 'sein'/'haben'",
+                description: "High-frequency irregular participles (gesprochen, gegessen, gelesen) and spoken Präteritum for sein (war) and haben (hatte).",
               },
               {
                 id: "a1-ch9-l43",
-                title: "Lesson 43: City Navigation, Places, Directions & Public Transit",
-                description: "Landmarks (Bahnhof, Post, Apotheke), directions (geradeaus, rechts, links), buying tickets.",
+                title: "Lesson 43: Workplace Phone Calls & Professional Messages",
+                description: "Standard business telephone etiquette ('Hier spricht...', 'Auf Wiederhören'), taking phone notes, and leaving messages.",
               },
             ],
           },
           {
             id: "a1-ch10",
-            title: "Chapter 10: Alltagskommunikation, Schriftlicher Ausdruck & Abschluss (Everyday Communication & Course Review)",
+            title: "Chapter 10: Kleidung und Mode (Clothing, Shopping & Demonstratives)",
             lessons: [
               {
                 id: "a1-ch10-l44",
-                title: "Lesson 44: Phone Conversations & Text Messaging",
-                description: "Answering calls, leaving messages, short SMS/chat conversational shorthand.",
+                title: "Lesson 44: Clothes, Colors & Personal Style",
+                description: "Everyday garments with articles and plurals, colors, patterns, and describing outfits using 'tragen' (er trägt).",
               },
               {
                 id: "a1-ch10-l45",
-                title: "Lesson 45: Writing Simple Emails & Letters in German",
-                description: "Formal & informal letters: salutations (Liebe... / Sehr geehrte...) & sign-offs (Mit freundlichen Grüßen).",
+                title: "Lesson 45: Shopping in the Department Store & Exchanging Items",
+                description: "Navigating store floor layouts (EG, OG, UG), asking sales assistants for help, and exchanging items (Umtausch mit Kassenbon).",
               },
               {
                 id: "a1-ch10-l46",
-                title: "Lesson 46: Invitations, Appointments & Rescheduling",
-                description: "Inviting people to events, accepting/declining politely, proposing new dates.",
+                title: "Lesson 46: Sizing, Trying On & Fit (passen vs. stehen)",
+                description: "Asking for clothing and shoe sizes, locating fitting rooms (Umkleidekabine), and describing fit (passt gut, zu eng, zu weit).",
               },
               {
                 id: "a1-ch10-l47",
-                title: "Lesson 47: A1 Final Comprehensive Review & Exam Preparation",
-                description: "Full review of all 10 chapters; format walkthrough of Goethe-Zertifikat / TELC A1 (Hören, Lesen, Schreiben, Sprechen).",
+                title: "Lesson 47: Question Words & Demonstratives: 'Welch-?' and 'Dies-?'",
+                description: "Targeted shopping queries using 'Welcher / Welche / Welches / Welchen' and pointing out items with 'Dieser / Diese / Dieses / Diesen'.",
+              },
+            ],
+          },
+          {
+            id: "a1-ch11",
+            title: "Chapter 11: Gesund und munter (Health, Body Parts & Doctor Visits)",
+            lessons: [
+              {
+                id: "a1-ch11-l48",
+                title: "Lesson 48: Body Parts & Anatomy (Körperteile)",
+                description: "Anatomy with articles and plurals, and expressing physical pain using 'tut weh' (singular) and 'tun weh' (plural).",
+              },
+              {
+                id: "a1-ch11-l49",
+                title: "Lesson 49: Expressing Ailments, Symptoms & Pain",
+                description: "Describing illnesses (Fieber, Husten, Schnupfen, Erkältung), stating duration with 'seit + Dativ', and wishing 'Gute Besserung!'.",
+              },
+              {
+                id: "a1-ch11-l50",
+                title: "Lesson 50: At the Doctor's Office (Beim Arzt & in der Apotheke)",
+                description: "Doctor consultation dialogues ('Was fehlt Ihnen?'), prescriptions (Rezept), sick leave notes (Krankschreibung), and pharmacy visits.",
+              },
+              {
+                id: "a1-ch11-l51",
+                title: "Lesson 51: Giving Health Advice: Modal Verb 'sollen' & Imperative",
+                description: "Conveying medical instructions and doctor's orders with 'sollen' ('Du sollst im Bett bleiben') and helpful imperatives.",
+              },
+            ],
+          },
+          {
+            id: "a1-ch12",
+            title: "Chapter 12: Ab in den Urlaub & A1 Finale (Travel, Hotel & Exam Prep)",
+            lessons: [
+              {
+                id: "a1-ch12-l52",
+                title: "Lesson 52: Vacation Planning, Transport & Travel Destinations",
+                description: "Travel prepositions (nach Wien, ans Meer, in die Berge, in die Schweiz), booking train tickets, and station announcements.",
+              },
+              {
+                id: "a1-ch12-l53",
+                title: "Lesson 53: Weather Forecasts & Writing a Holiday Postcard",
+                description: "Describing weather conditions (Es regnet, sonnig, bewölkt, warm/kalt) and writing a 4-part German holiday postcard.",
+              },
+              {
+                id: "a1-ch12-l54",
+                title: "Lesson 54: Hotel Check-In & Handling Room Problems",
+                description: "Front desk check-in (Einzel-/Doppelzimmer), breakfast times, and politely reporting room complaints ('Die Heizung geht nicht').",
+              },
+              {
+                id: "a1-ch12-l55",
+                title: "Lesson 55: Comprehensive A1 Exam Mastery: Goethe & TELC A1",
+                description: "Full walkthrough of Goethe-Zertifikat A1 (Start Deutsch 1) & telc Deutsch A1: Hören, Lesen, Schreiben, and Sprechen simulations.",
               },
             ],
           },
@@ -323,8 +375,8 @@ export const germanCourse: Course = {
     description:
       "Comprehensive German language learning from absolute beginner to advanced fluency, with interactive chapters, practical dialogues, audio pronunciation, and real-world examples.",
     featured: true,
-    totalChapters: 19,
-    totalLessons: 65,
+    totalChapters: 21,
+    totalLessons: 73,
     progressStatus: {
       type: "status",
       statusText: "Enrolled",

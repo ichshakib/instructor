@@ -3,6 +3,3234 @@ import { CourseDetail } from "./api";
 
 export const FALLBACK_COURSES: CourseDetail[] = [
   {
+    "id": "javascript-complete-course",
+    "title": "JavaScript from Beginner to Professional: The Complete Guide",
+    "category": "Development",
+    "type": "Full Course",
+    "typeIcon": "path",
+    "structureType": "chapters-and-lessons",
+    "tag1": "JavaScript (ES6+)",
+    "tag2": "Beginner to Professional",
+    "badgeCount": "",
+    "coverVariant": "code-architecture",
+    "imageUrl": "/course-images/javascript-course.jpg",
+    "buttonLabel": "Start",
+    "description": "Master modern JavaScript (ES6+) from fundamentals to full-stack readiness based on Laurence Svekis, Maaike van Putten, and Rob Percival's authoritative Packt guide. Learn variables, data structures, OOP classes, DOM manipulation, asynchronous programming, event handling, and modern web application APIs.",
+    "featured": true,
+    "totalChapters": 10,
+    "totalLessons": 30,
+    "progressStatus": {
+      "type": "status",
+      "statusText": "New"
+    },
+    "chapters": [
+      {
+        "id": "js-ch1",
+        "title": "Chapter 1: Getting Started & JavaScript Essentials",
+        "lessons": [
+          {
+            "id": "js-ch1-l1",
+            "title": "Lesson 1: The JavaScript Runtime, Script Loading & 'use strict'",
+            "description": "Understanding browser JS execution, inline vs deferred external scripts, and strict mode.",
+            "content": {
+              "overview": "JavaScript is the universal programming language of the web, enabling dynamic behavior, responsive interfaces, and interactive applications. In this lesson, based on Chapter 1 of 'JavaScript from Beginner to Professional', you will understand the JavaScript execution environment, how the browser engine processes scripts, incorporating JavaScript into HTML documents via <script> tags, and debugging using the browser console and 'use strict' mode.",
+              "canDo": "Can configure a development environment, embed JavaScript into HTML documents, inspect values in the browser developer console, and apply ECMAScript strict mode.",
+              "teacherNote": "Always link external scripts right before the closing `</body>` tag or use the `defer` attribute in the `<head>` (`<script src='app.js' defer></script>`). This prevents script loading from blocking HTML parsing, delivering immediate visual rendering for users.",
+              "sections": [
+                {
+                  "title": "1. The JavaScript Runtime & Browser Integration",
+                  "description": "How JavaScript is delivered and executed in web clients:",
+                  "table": {
+                    "headers": [
+                      "Inclusion Method",
+                      "Syntax Example",
+                      "Execution Characteristic",
+                      "Best For"
+                    ],
+                    "rows": [
+                      [
+                        "Inline Script",
+                        "<script> console.log('Hello'); </script>",
+                        "Executes synchronously when HTML parser encounters the tag",
+                        "Small bootstrapping configurations or critical early state"
+                      ],
+                      [
+                        "External Script",
+                        "<script src='main.js'></script>",
+                        "Blocks HTML parsing while fetching and executing external asset",
+                        "Legacy scripts where order of execution must be strictly preserved"
+                      ],
+                      [
+                        "Deferred External Script",
+                        "<script src='main.js' defer></script>",
+                        "Downloads in parallel; executes in order after HTML parsing completes",
+                        "Modern production web applications (Recommended)"
+                      ],
+                      [
+                        "Asynchronous External Script",
+                        "<script src='analytics.js' async></script>",
+                        "Downloads in parallel; executes immediately upon arrival",
+                        "Independent third-party scripts (e.g., analytics, tracking)"
+                      ]
+                    ]
+                  }
+                },
+                {
+                  "title": "2. The Browser Developer Console & 'use strict'",
+                  "description": "Essential debugging workflows and strict execution mode:",
+                  "items": [
+                    {
+                      "term": "console.log(value, ...)",
+                      "meaning": "Standard output log to the browser developer tools console",
+                      "example": "console.log('App initialized:', { version: '1.0.0' });"
+                    },
+                    {
+                      "term": "console.error() / console.warn()",
+                      "meaning": "Outputs formatted warning and error messages with stack traces",
+                      "example": "console.warn('Deprecated API invoked in session.');"
+                    },
+                    {
+                      "term": "'use strict';",
+                      "meaning": "Enforces stricter parsing and error handling across modern JavaScript",
+                      "example": "'use strict'; x = 10; // Throws ReferenceError: x is not defined"
+                    }
+                  ],
+                  "notes": [
+                    "'use strict' eliminates silent JavaScript bugs by throwing errors when variables are declared without let/const/var, or when assigning to non-writable properties.",
+                    "ES6 modules (`<script type='module'>`) execute in strict mode automatically without needing an explicit 'use strict' pragma."
+                  ]
+                }
+              ],
+              "practice": [
+                {
+                  "question": "Which script attribute downloads an external JavaScript file in the background without pausing HTML parsing and executes it after DOM parsing is complete?",
+                  "options": [
+                    "async",
+                    "defer",
+                    "preload",
+                    "blocking"
+                  ],
+                  "answer": "defer",
+                  "explanation": "The `defer` attribute allows external JavaScript files to download asynchronously without blocking HTML parsing, and guarantees execution in document order once the DOM is constructed."
+                },
+                {
+                  "question": "What happens in strict mode ('use strict') if you assign a value to an undeclared variable (e.g. `x = 5;`)?",
+                  "options": [
+                    "It automatically creates a global variable without errors",
+                    "It throws a ReferenceError: x is not defined",
+                    "It silently converts the value to null",
+                    "It creates a block-scoped constant"
+                  ],
+                  "answer": "It throws a ReferenceError: x is not defined",
+                  "explanation": "In strict mode, assigning to an undeclared variable throws a ReferenceError, preventing accidental leaks of global variables."
+                },
+                {
+                  "question": "Where in the browser can developers test interactive JavaScript snippets and inspect output immediately?",
+                  "options": [
+                    "Network Panel",
+                    "Console Panel in Developer Tools",
+                    "Performance Profiler",
+                    "Application Cache Storage"
+                  ],
+                  "answer": "Console Panel in Developer Tools",
+                  "explanation": "The browser developer console provides a REPL (Read-Eval-Print Loop) for testing expressions and viewing logs in real time."
+                }
+              ]
+            }
+          },
+          {
+            "id": "js-ch1-l2",
+            "title": "Lesson 2: Variables: let, const, and var (Scope & Hoisting)",
+            "description": "Block scope, mutability rules, variable hoisting, and avoiding the Temporal Dead Zone.",
+            "content": {
+              "overview": "Variables are named containers used to store data values in memory. In modern JavaScript (ES6+), variable declarations transitioned from legacy function-scoped 'var' to block-scoped 'let' and 'const'. In this lesson from Chapter 2 of 'JavaScript from Beginner to Professional', you will master the declaration rules, lexical block scoping, re-assignment mutability, and the temporal dead zone.",
+              "canDo": "Can select the correct variable declaration keyword (`const`, `let`, or `var`), predict scope boundaries, and avoid variable hoisting pitfalls.",
+              "teacherNote": "Follow the modern JavaScript golden rule: Use `const` by default for all identifiers. Only switch to `let` when you know the variable will be reassigned (such as in a loop counter or accumulator). Avoid legacy `var` entirely in modern codebases.",
+              "sections": [
+                {
+                  "title": "1. Comparing let, const, and var",
+                  "description": "Architectural differences in scope, re-assignment, and hoisting:",
+                  "table": {
+                    "headers": [
+                      "Keyword",
+                      "Scope Boundary",
+                      "Re-assignable?",
+                      "Re-declarable?",
+                      "Hoisting Behavior"
+                    ],
+                    "rows": [
+                      [
+                        "const (ES6)",
+                        "Block Scope ({ ... })",
+                        "No (Immutable identifier binding)",
+                        "No (SyntaxError)",
+                        "Hoisted to Temporal Dead Zone (TDZ); accessing before declaration throws ReferenceError"
+                      ],
+                      [
+                        "let (ES6)",
+                        "Block Scope ({ ... })",
+                        "Yes (Can reassign new values)",
+                        "No (SyntaxError)",
+                        "Hoisted to Temporal Dead Zone (TDZ); accessing before declaration throws ReferenceError"
+                      ],
+                      [
+                        "var (Legacy)",
+                        "Function Scope (ignores { } blocks)",
+                        "Yes",
+                        "Yes (Can re-declare silently)",
+                        "Hoisted to top of function and initialized to `undefined`; causes subtle bugs"
+                      ]
+                    ]
+                  }
+                },
+                {
+                  "title": "2. Understanding Block Scope & Temporal Dead Zone (TDZ)",
+                  "description": "How lexical boundaries protect variables from unintended leakage:",
+                  "items": [
+                    {
+                      "term": "Block Scope ({ ... })",
+                      "meaning": "Variables declared inside if-statements, loops, or curly braces remain private to that block",
+                      "example": "if (true) { let count = 10; } console.log(count); // ReferenceError"
+                    },
+                    {
+                      "term": "Temporal Dead Zone (TDZ)",
+                      "meaning": "The time span between entering a block scope and executing the let/const declaration",
+                      "example": "console.log(score); // ReferenceError: Cannot access 'score' before initialization \nlet score = 95;"
+                    },
+                    {
+                      "term": "const Mutation vs Reassignment",
+                      "meaning": "const prevents reassigning the variable identifier, but nested properties in arrays and objects remain mutable",
+                      "example": "const user = { name: 'Alex' }; user.name = 'Sam'; // Valid mutation!"
+                    }
+                  ]
+                }
+              ],
+              "practice": [
+                {
+                  "question": "What error occurs when trying to reassign a variable declared with `const`?",
+                  "options": [
+                    "ReferenceError",
+                    "TypeError: Assignment to constant variable",
+                    "RangeError",
+                    "No error, it silently updates"
+                  ],
+                  "answer": "TypeError: Assignment to constant variable",
+                  "explanation": "Variables declared with `const` cannot be reassigned; attempting to do so throws a TypeError at runtime."
+                },
+                {
+                  "question": "Which of the following keywords respects block scope inside an `if` block or `for` loop?",
+                  "options": [
+                    "var only",
+                    "let and const",
+                    "function and var",
+                    "global"
+                  ],
+                  "answer": "let and const",
+                  "explanation": "Both `let` and `const` are block-scoped, confining their visibility strictly to the enclosing `{ ... }` block."
+                },
+                {
+                  "question": "Does `const items = [1, 2]; items.push(3);` throw an error in JavaScript?",
+                  "options": [
+                    "Yes, because `items` is constant and cannot be modified",
+                    "No, because mutating an array's contents does not reassign the variable reference",
+                    "Yes, unless strict mode is disabled",
+                    "Yes, arrays require `let` for any method call"
+                  ],
+                  "answer": "No, because mutating an array's contents does not reassign the variable reference",
+                  "explanation": "`const` freezes the variable identifier binding, not the underlying object or array values in memory."
+                }
+              ]
+            }
+          },
+          {
+            "id": "js-ch1-l3",
+            "title": "Lesson 3: Primitive Data Types, Type Coercion & Operators",
+            "description": "String, Number, BigInt, Boolean, Symbol, Null, Undefined, strict equality (===), and logical operators.",
+            "content": {
+              "overview": "JavaScript features seven primitive data types alongside objects and rich operator expressions. In this lesson from Chapter 2 of 'JavaScript from Beginner to Professional', you will explore strings, numbers, booleans, BigInt, Symbol, null, and undefined, understand automatic type coercion, and master arithmetic, comparison (== vs ===), and logical operators.",
+              "canDo": "Can identify primitive types using `typeof`, execute safe mathematical and logical operations, and apply strict equality (`===`) to eliminate type coercion bugs.",
+              "teacherNote": "Always use strict equality (`===`) and strict inequality (`!==`) instead of loose equality (`==`). Loose equality performs implicit type coercion, leading to notorious bugs like `0 == ''` (true) or `null == undefined` (true). Strict equality evaluates both type and value without coercion.",
+              "sections": [
+                {
+                  "title": "1. The 7 JavaScript Primitive Data Types",
+                  "description": "Immutable data representations stored directly on the stack:",
+                  "table": {
+                    "headers": [
+                      "Primitive Type",
+                      "Example Literal",
+                      "typeof Output",
+                      "Characteristics"
+                    ],
+                    "rows": [
+                      [
+                        "String",
+                        "'Hello', \"World\", `Total: ${n}`",
+                        "'string'",
+                        "Textual data; template literals support interpolation (`${...}`)"
+                      ],
+                      [
+                        "Number",
+                        "42, 3.14159, -7, NaN, Infinity",
+                        "'number'",
+                        "64-bit floating point; includes special values NaN and Infinity"
+                      ],
+                      [
+                        "BigInt",
+                        "9007199254740991n",
+                        "'bigint'",
+                        "Arbitrary-precision integers ending with an 'n' suffix"
+                      ],
+                      [
+                        "Boolean",
+                        "true, false",
+                        "'boolean'",
+                        "Binary logic representations for conditionals"
+                      ],
+                      [
+                        "Undefined",
+                        "let x; (unassigned)",
+                        "'undefined'",
+                        "Default state of declared variables that have not received a value"
+                      ],
+                      [
+                        "Null",
+                        "let user = null;",
+                        "'object' (legacy bug!)",
+                        "Intentional absence of any object value"
+                      ],
+                      [
+                        "Symbol",
+                        "Symbol('id')",
+                        "'symbol'",
+                        "Unique, immutable identifier commonly used for private object keys"
+                      ]
+                    ]
+                  }
+                },
+                {
+                  "title": "2. Comparison Operators: Strict (===) vs. Loose (==)",
+                  "description": "Understanding type coercion in equality checks:",
+                  "table": {
+                    "headers": [
+                      "Expression",
+                      "Operator Type",
+                      "Result",
+                      "Reasoning"
+                    ],
+                    "rows": [
+                      [
+                        "5 === '5'",
+                        "Strict Equality",
+                        "false",
+                        "Different types (number !== string); no coercion performed"
+                      ],
+                      [
+                        "5 == '5'",
+                        "Loose Equality",
+                        "true",
+                        "String '5' is coerced to number 5 before comparison"
+                      ],
+                      [
+                        "null === undefined",
+                        "Strict Equality",
+                        "false",
+                        "Different types (object/null !== undefined)"
+                      ],
+                      [
+                        "null == undefined",
+                        "Loose Equality",
+                        "true",
+                        "Loose equality specification treats both as equivalent empty values"
+                      ],
+                      [
+                        "0 === false",
+                        "Strict Equality",
+                        "false",
+                        "Number 0 !== boolean false"
+                      ],
+                      [
+                        "NaN === NaN",
+                        "Strict Equality",
+                        "false",
+                        "NaN is the only value in JavaScript that is not equal to itself! (Use Number.isNaN)"
+                      ]
+                    ]
+                  }
+                },
+                {
+                  "title": "3. Logical Operators & Short-Circuit Evaluation",
+                  "description": "Boolean logic and default fallbacks in JavaScript:",
+                  "items": [
+                    {
+                      "term": "Logical AND (&&)",
+                      "meaning": "Evaluates left-to-right; returns first falsy value or the last truthy value",
+                      "example": "const name = user && user.name; // Short-circuits if user is null"
+                    },
+                    {
+                      "term": "Logical OR (||)",
+                      "meaning": "Returns first truthy operand, or the last falsy value if none are truthy",
+                      "example": "const port = process.env.PORT || 3000; // Fallback to 3000"
+                    },
+                    {
+                      "term": "Nullish Coalescing (??)",
+                      "meaning": "Returns right-hand operand ONLY when left operand is null or undefined (preserves 0 and '')",
+                      "example": "const count = inputCount ?? 10; // If inputCount is 0, count remains 0!"
+                    }
+                  ]
+                }
+              ],
+              "practice": [
+                {
+                  "question": "What is the historical quirk of calling `typeof null` in JavaScript?",
+                  "options": [
+                    "It returns 'null'",
+                    "It returns 'object'",
+                    "It throws a TypeError",
+                    "It returns 'undefined'"
+                  ],
+                  "answer": "It returns 'object'",
+                  "explanation": "`typeof null` returns 'object' due to an early bug in the original 1995 JavaScript engine implementation where object type tags were represented as 0."
+                },
+                {
+                  "question": "What is the result of `5 + '10'` in JavaScript?",
+                  "options": [
+                    "15",
+                    "'510'",
+                    "NaN",
+                    "TypeError"
+                  ],
+                  "answer": "'510'",
+                  "explanation": "When the binary addition operator (`+`) encounters a string operand, it coerces the other operand to a string and performs concatenation."
+                },
+                {
+                  "question": "How does the nullish coalescing operator (`??`) differ from the logical OR operator (`||`)?",
+                  "options": [
+                    "`??` triggers only on `null` and `undefined`, preserving falsy values like `0` and `''`",
+                    "`??` is only used inside switch statements",
+                    "`??` converts strings into numbers automatically",
+                    "There is no difference; they are exact aliases"
+                  ],
+                  "answer": "`??` triggers only on `null` and `undefined`, preserving falsy values like `0` and `''`",
+                  "explanation": "`||` treats `0`, `false`, `NaN`, and `''` as triggers for the fallback, whereas `??` triggers only when the value is strictly `null` or `undefined`."
+                }
+              ]
+            }
+          }
+        ]
+      },
+      {
+        "id": "js-ch2",
+        "title": "Chapter 2: Working with Multiple Values: Arrays & Objects",
+        "lessons": [
+          {
+            "id": "js-ch2-l4",
+            "title": "Lesson 4: Arrays: Indexing, Length & Fundamental Mutators",
+            "description": "Zero-based indexing, dynamic array sizing, push, pop, shift, and unshift operations.",
+            "content": {
+              "overview": "Arrays are ordered collections capable of storing lists of values under a single identifier. In this lesson based on Chapter 3 of 'JavaScript from Beginner to Professional', you will learn how to create arrays, access elements using zero-based indexing, manage the array length property, and perform fast end and start mutations using push, pop, shift, and unshift.",
+              "canDo": "Can instantiate arrays, query elements by index, dynamically resize lists, and apply stack and queue operations in JavaScript.",
+              "teacherNote": "`push()` and `pop()` operate at the END of an array with O(1) constant time complexity. In contrast, `shift()` and `unshift()` operate at the START of an array and must re-index all subsequent elements, making them O(n) linear time on large datasets.",
+              "sections": [
+                {
+                  "title": "1. Array Creation & Zero-Based Indexing",
+                  "description": "Fundamentals of constructing and reading ordered lists:",
+                  "table": {
+                    "headers": [
+                      "Operation",
+                      "Code Syntax",
+                      "Description / Output",
+                      "Data Type Handled"
+                    ],
+                    "rows": [
+                      [
+                        "Array Literal",
+                        "const colors = ['red', 'green', 'blue'];",
+                        "Standard literal initialization syntax",
+                        "Any JavaScript types"
+                      ],
+                      [
+                        "Zero-Based Index",
+                        "colors[0]; // 'red'",
+                        "First element is located at index 0",
+                        "First element"
+                      ],
+                      [
+                        "Last Element",
+                        "colors[colors.length - 1]; // 'blue'",
+                        "Dynamically compute the final element index",
+                        "Last element"
+                      ],
+                      [
+                        "Length Property",
+                        "colors.length; // 3",
+                        "Tracks the total count of elements; dynamically updated",
+                        "Number"
+                      ],
+                      [
+                        "Overwriting Index",
+                        "colors[1] = 'emerald';",
+                        "Direct assignment mutates the item at index 1 in-place",
+                        "Mutation"
+                      ]
+                    ]
+                  }
+                },
+                {
+                  "title": "2. The Four Fundamental Array Mutators",
+                  "description": "Stack and queue operations for adding and removing items:",
+                  "table": {
+                    "headers": [
+                      "Method",
+                      "Target Position",
+                      "Action",
+                      "Return Value",
+                      "Performance"
+                    ],
+                    "rows": [
+                      [
+                        "push(item)",
+                        "End of array",
+                        "Appends one or more elements",
+                        "New array length",
+                        "O(1) - Fast"
+                      ],
+                      [
+                        "pop()",
+                        "End of array",
+                        "Removes and returns the final element",
+                        "The removed element",
+                        "O(1) - Fast"
+                      ],
+                      [
+                        "unshift(item)",
+                        "Start of array",
+                        "Prepends one or more elements",
+                        "New array length",
+                        "O(n) - Re-indexes all"
+                      ],
+                      [
+                        "shift()",
+                        "Start of array",
+                        "Removes and returns the first element",
+                        "The removed element",
+                        "O(n) - Re-indexes all"
+                      ]
+                    ]
+                  }
+                }
+              ],
+              "practice": [
+                {
+                  "question": "What does the `push()` method return after appending an element to an array?",
+                  "options": [
+                    "The element that was added",
+                    "The new length of the array",
+                    "A copy of the updated array",
+                    "Boolean true if successful"
+                  ],
+                  "answer": "The new length of the array",
+                  "explanation": "`array.push()` returns the newly updated numeric `length` property of the mutated array."
+                },
+                {
+                  "question": "What is the index of the first item in a JavaScript array?",
+                  "options": [
+                    "0",
+                    "1",
+                    "-1",
+                    "undefined"
+                  ],
+                  "answer": "0",
+                  "explanation": "JavaScript arrays are zero-indexed, meaning the initial element resides at index 0."
+                },
+                {
+                  "question": "Which method removes the FIRST element of an array?",
+                  "options": [
+                    "pop()",
+                    "shift()",
+                    "unshift()",
+                    "splice(0)"
+                  ],
+                  "answer": "shift()",
+                  "explanation": "`shift()` removes the item at index 0 and shifts all remaining elements down by one position."
+                }
+              ]
+            }
+          },
+          {
+            "id": "js-ch2-l5",
+            "title": "Lesson 5: Advanced Array Operations & Multi-Dimensional Matrices",
+            "description": "Extracting subarrays with slice, in-place splicing, concatenation, and navigating 2D grids.",
+            "content": {
+              "overview": "Beyond basic mutations, modern JavaScript offers powerful tools for splicing, slicing, merging, and navigating complex multi-dimensional lists. In this lesson from Chapter 3 of 'JavaScript from Beginner to Professional', you will master the critical differences between mutating 'splice()' and non-mutating 'slice()', array searching, and nested matrices.",
+              "canDo": "Can extract subarrays with `slice`, insert/delete elements anywhere with `splice`, combine arrays with `concat`, and traverse 2D arrays.",
+              "teacherNote": "Never confuse `slice()` with `splice()`: `slice(start, end)` is NON-DESTRUCTIVE and returns a shallow copy without altering the original array. `splice(start, count, ...items)` is DESTRUCTIVE and alters the original array in place.",
+              "sections": [
+                {
+                  "title": "1. Destructive splice() vs. Non-Destructive slice()",
+                  "description": "Side-by-side behavioral comparison:",
+                  "table": {
+                    "headers": [
+                      "Method",
+                      "Mutates Original?",
+                      "Parameters",
+                      "Example Call",
+                      "Result"
+                    ],
+                    "rows": [
+                      [
+                        "slice(start, end)",
+                        "No (Pure)",
+                        "start index (inclusive), end index (exclusive)",
+                        "['a','b','c','d'].slice(1, 3)",
+                        "Returns ['b', 'c']; original remains unchanged"
+                      ],
+                      [
+                        "splice(start, deleteCount, ...items)",
+                        "Yes (Destructive)",
+                        "start index, number of items to delete, replacement items",
+                        "['a','b','c'].splice(1, 1, 'x')",
+                        "Returns ['b']; original array is now ['a', 'x', 'c']"
+                      ]
+                    ]
+                  }
+                },
+                {
+                  "title": "2. Multi-Dimensional Arrays (Matrices)",
+                  "description": "Working with nested arrays in JavaScript:",
+                  "items": [
+                    {
+                      "term": "2D Grid Representation",
+                      "meaning": "An array containing arrays, accessed via multiple sequential brackets `[row][col]`",
+                      "example": "const grid = [[1, 2, 3], [4, 5, 6], [7, 8, 9]]; console.log(grid[1][2]); // 6"
+                    },
+                    {
+                      "term": "concat(...arrays)",
+                      "meaning": "Merges two or more arrays into a new array without modifying the originals",
+                      "example": "const merged = listA.concat(listB, listC);"
+                    },
+                    {
+                      "term": "indexOf() & includes()",
+                      "meaning": "Checks for value existence (`includes` returns boolean; `indexOf` returns numeric index or -1)",
+                      "example": "['apple', 'banana'].includes('banana'); // true"
+                    }
+                  ]
+                }
+              ],
+              "practice": [
+                {
+                  "question": "Given `const arr = ['a', 'b', 'c', 'd']; const sub = arr.slice(1, 3);`, what does `arr` contain afterwards?",
+                  "options": [
+                    "['a', 'd']",
+                    "['a', 'b', 'c', 'd']",
+                    "['b', 'c']",
+                    "['d']"
+                  ],
+                  "answer": "['a', 'b', 'c', 'd']",
+                  "explanation": "`slice()` does not mutate the original array. `arr` remains `['a', 'b', 'c', 'd']`, while `sub` receives `['b', 'c']`."
+                },
+                {
+                  "question": "How do you access the number 9 in `const matrix = [[1, 2, 3], [4, 5, 6], [7, 8, 9]];`?",
+                  "options": [
+                    "matrix[3][3]",
+                    "matrix[2][2]",
+                    "matrix[9]",
+                    "matrix(2, 2)"
+                  ],
+                  "answer": "matrix[2][2]",
+                  "explanation": "The inner array `[7, 8, 9]` is at outer row index 2 (`matrix[2]`), and the number 9 is at inner column index 2 (`matrix[2][2]`)."
+                },
+                {
+                  "question": "Which method checks if an array contains a specific value and returns a boolean `true` or `false`?",
+                  "options": [
+                    "has()",
+                    "includes()",
+                    "contains()",
+                    "find()"
+                  ],
+                  "answer": "includes()",
+                  "explanation": "`Array.prototype.includes()` returns `true` if the specified element is found, or `false` otherwise."
+                }
+              ]
+            }
+          },
+          {
+            "id": "js-ch2-l6",
+            "title": "Lesson 6: JavaScript Objects & Complex Data Structures",
+            "description": "Object literals, dot vs bracket notation, property deletion, and nesting objects with arrays.",
+            "content": {
+              "overview": "While arrays store ordered elements by index, JavaScript Objects store data as key-value pairs (properties and methods) accessible by name. In this lesson based on Chapter 3 of 'JavaScript from Beginner to Professional', you will learn to declare object literals, access properties via dot notation and bracket notation, nest objects inside arrays, and model real-world entities.",
+              "canDo": "Can construct object literals, dynamically query properties using dot and bracket notation, delete properties, and model complex real-world data structures.",
+              "teacherNote": "Use dot notation (`person.name`) when the property name is a known valid identifier. Switch to bracket notation (`person['first-name']` or `person[dynamicKey]`) when the property name contains hyphens/spaces or is stored in a dynamic variable.",
+              "sections": [
+                {
+                  "title": "1. Object Anatomy: Keys, Values & Access Notation",
+                  "description": "Representing structured data using object literals:",
+                  "table": {
+                    "headers": [
+                      "Concept",
+                      "Syntax Example",
+                      "Usage Rule",
+                      "Output / Behavior"
+                    ],
+                    "rows": [
+                      [
+                        "Object Literal",
+                        "const user = { name: 'Sarah', age: 29 };",
+                        "Curly braces `{}` with key-value pairs",
+                        "Creates an object in memory"
+                      ],
+                      [
+                        "Dot Notation",
+                        "user.name",
+                        "Standard accessor for alphanumeric identifiers",
+                        "'Sarah'"
+                      ],
+                      [
+                        "Bracket Notation",
+                        "user['age'] or user[propKey]",
+                        "Required for dynamic variables, spaces, or special characters",
+                        "29"
+                      ],
+                      [
+                        "Property Deletion",
+                        "delete user.age;",
+                        "Deletes the key-value pair from the object",
+                        "Returns boolean true"
+                      ],
+                      [
+                        "in Operator",
+                        "'name' in user",
+                        "Checks if a property key exists on the object",
+                        "Returns true or false"
+                      ]
+                    ]
+                  }
+                },
+                {
+                  "title": "2. Complex Modeling: Objects in Arrays & Arrays in Objects",
+                  "description": "Nesting collections to mirror realistic API payloads:",
+                  "items": [
+                    {
+                      "term": "Array of Objects",
+                      "meaning": "A list where each item is a structured object (standard database/API record list)",
+                      "example": "const students = [{ id: 1, name: 'Ava' }, { id: 2, name: 'Ben' }];"
+                    },
+                    {
+                      "term": "Object with Nested Array",
+                      "meaning": "An entity with multi-value attributes stored inside an array property",
+                      "example": "const company = { name: 'Acme', departments: ['Dev', 'Sales', 'HR'] };"
+                    },
+                    {
+                      "term": "Object.keys() & Object.values()",
+                      "meaning": "Extracts an array of all property keys or values from an object",
+                      "example": "Object.keys({ a: 1, b: 2 }); // ['a', 'b']"
+                    }
+                  ]
+                }
+              ],
+              "practice": [
+                {
+                  "question": "When is bracket notation (`object[key]`) required over dot notation (`object.key`)?",
+                  "options": [
+                    "Only when reading numbers",
+                    "When the property name is stored in a dynamic variable or contains hyphens/spaces",
+                    "Only inside class constructors",
+                    "Bracket notation is always mandatory in modern ES6+"
+                  ],
+                  "answer": "When the property name is stored in a dynamic variable or contains hyphens/spaces",
+                  "explanation": "Bracket notation accepts arbitrary string expressions, making it essential when keys are dynamic (`user[dynamicField]`) or contain special characters."
+                },
+                {
+                  "question": "How do you delete a property named `status` from an object named `order`?",
+                  "options": [
+                    "remove order.status;",
+                    "delete order.status;",
+                    "order.status.destroy();",
+                    "order.status = undefined;"
+                  ],
+                  "answer": "delete order.status;",
+                  "explanation": "The `delete` operator removes a property key and its corresponding value completely from an object."
+                },
+                {
+                  "question": "What does `Object.values({ name: 'Alex', role: 'Admin' })` return?",
+                  "options": [
+                    "['name', 'role']",
+                    "['Alex', 'Admin']",
+                    "{ name: 'Alex', role: 'Admin' }",
+                    "2"
+                  ],
+                  "answer": "['Alex', 'Admin']",
+                  "explanation": "`Object.values()` returns an array containing all enumerable property values of the provided object."
+                }
+              ]
+            }
+          }
+        ]
+      },
+      {
+        "id": "js-ch3",
+        "title": "Chapter 3: Control Flow: Logic Statements & Loops",
+        "lessons": [
+          {
+            "id": "js-ch3-l7",
+            "title": "Lesson 7: Conditional Logic, Truthy/Falsy & The Ternary Operator",
+            "description": "Branching execution with if, else if, else, truthy evaluation, and clean inline ternary checks.",
+            "content": {
+              "overview": "Control flow dictates the decision-making pathways of a computer program. In this lesson based on Chapter 4 of 'JavaScript from Beginner to Professional', you will master if, else if, and else branching, evaluate JavaScript's truthy and falsy values, and construct concise ternary operators for conditional inline expressions.",
+              "canDo": "Can construct conditional execution trees, evaluate truthiness, and replace simple if-else blocks with clean ternary expressions.",
+              "teacherNote": "Memorize the 8 falsy values in JavaScript: `false`, `0`, `-0`, `0n` (BigInt zero), `''` (empty string), `null`, `undefined`, and `NaN`. Every other value in JavaScript—including empty arrays `[]` and empty objects `{}`—evaluates to TRUTHY!",
+              "sections": [
+                {
+                  "title": "1. The if, else if, and else Structure",
+                  "description": "Branching code paths based on Boolean conditions:",
+                  "table": {
+                    "headers": [
+                      "Branch",
+                      "Syntax Pattern",
+                      "Evaluation Rule",
+                      "Example"
+                    ],
+                    "rows": [
+                      [
+                        "if statement",
+                        "if (condition) { ... }",
+                        "Executes only if the expression evaluates to truthy",
+                        "if (age >= 18) { grantAccess(); }"
+                      ],
+                      [
+                        "else if branch",
+                        "} else if (cond2) { ... }",
+                        "Evaluates sequentially if preceding conditions are falsy",
+                        "else if (age >= 13) { allowTeen(); }"
+                      ],
+                      [
+                        "else fallback",
+                        "} else { ... }",
+                        "Catch-all branch executed when all prior conditions fail",
+                        "else { denyAccess(); }"
+                      ]
+                    ]
+                  }
+                },
+                {
+                  "title": "2. Truthy vs. Falsy & The Ternary Operator",
+                  "description": "How values evaluate in boolean contexts:",
+                  "table": {
+                    "headers": [
+                      "Concept",
+                      "Definition / Value List",
+                      "Example Syntax",
+                      "Result"
+                    ],
+                    "rows": [
+                      [
+                        "Falsy Values",
+                        "false, 0, -0, 0n, '', null, undefined, NaN",
+                        "if ('') { ... }",
+                        "Block is skipped (falsy)"
+                      ],
+                      [
+                        "Truthy Values",
+                        "Everything else (including [], {}, 'false', '0')",
+                        "if ([]) { ... }",
+                        "Block executes! (truthy)"
+                      ],
+                      [
+                        "Ternary Operator",
+                        "condition ? exprIfTrue : exprIfFalse",
+                        "const status = age >= 18 ? 'Adult' : 'Minor';",
+                        "Returns 'Adult' or 'Minor'"
+                      ]
+                    ]
+                  }
+                }
+              ],
+              "practice": [
+                {
+                  "question": "Which of the following values is considered TRUTHY in a JavaScript if condition?",
+                  "options": [
+                    "0",
+                    "'' (empty string)",
+                    "[] (empty array)",
+                    "null"
+                  ],
+                  "answer": "[] (empty array)",
+                  "explanation": "In JavaScript, all objects and arrays (even empty ones `[]` and `{}`) evaluate to truthy."
+                },
+                {
+                  "question": "What is the equivalent ternary operator for: `let msg; if (isLoggedIn) { msg = 'Welcome'; } else { msg = 'Login'; }`?",
+                  "options": [
+                    "const msg = isLoggedIn ? 'Welcome' : 'Login';",
+                    "const msg = isLoggedIn : 'Welcome' ? 'Login';",
+                    "const msg = if (isLoggedIn) 'Welcome' : 'Login';",
+                    "const msg = isLoggedIn ?? 'Welcome' || 'Login';"
+                  ],
+                  "answer": "const msg = isLoggedIn ? 'Welcome' : 'Login';",
+                  "explanation": "The ternary operator syntax is `condition ? expressionIfTrue : expressionIfFalse`."
+                },
+                {
+                  "question": "How many falsy values exist in modern JavaScript?",
+                  "options": [
+                    "2 (true and false)",
+                    "5",
+                    "8",
+                    "Unlimited"
+                  ],
+                  "answer": "8",
+                  "explanation": "There are exactly 8 falsy values: false, 0, -0, 0n, '', null, undefined, and NaN."
+                }
+              ]
+            }
+          },
+          {
+            "id": "js-ch3-l8",
+            "title": "Lesson 8: Multi-Branch Switching & Case Fallthrough",
+            "description": "Organizing discrete comparison paths with switch statements, break statements, and defaults.",
+            "content": {
+              "overview": "When comparing a single expression against many possible discrete values, long chains of `else if` statements become verbose and hard to maintain. In this lesson based on Chapter 4 of 'JavaScript from Beginner to Professional', you will learn how to use the 'switch' statement, leverage the 'break' statement to prevent unintended fallthrough, and use 'default' for fallback handling.",
+              "canDo": "Can replace repetitive conditional chains with clean switch statements, apply break statements correctly, and handle grouping cases.",
+              "teacherNote": "Switch statements use strict equality (`===`) when matching cases! A case value of `5` will not match the string `'5'`. Remember to include `break;` at the end of each case block unless you intentionally desire fallthrough behavior.",
+              "sections": [
+                {
+                  "title": "1. The switch Statement Architecture",
+                  "description": "Components of multi-branch switching:",
+                  "table": {
+                    "headers": [
+                      "Component",
+                      "Syntax",
+                      "Purpose",
+                      "Gotcha / Best Practice"
+                    ],
+                    "rows": [
+                      [
+                        "switch (expr)",
+                        "switch (day) { ... }",
+                        "Evaluates expression once and matches against case values",
+                        "Uses strict equality (`===`) for matching"
+                      ],
+                      [
+                        "case value:",
+                        "case 'Monday':",
+                        "A potential branch target",
+                        "Executes all subsequent code until a `break` is reached!"
+                      ],
+                      [
+                        "break;",
+                        "break;",
+                        "Terminates the switch statement and jumps past the closing brace",
+                        "Missing `break` causes 'case fallthrough' bugs"
+                      ],
+                      [
+                        "default:",
+                        "default: ... break;",
+                        "Fallback branch executed when no cases match",
+                        "Acts like the final `else` in an if-statement chain"
+                      ]
+                    ]
+                  }
+                },
+                {
+                  "title": "2. Intentional Fallthrough & Grouping Cases",
+                  "description": "Stacking cases to share logic across multiple values:",
+                  "items": [
+                    {
+                      "term": "Case Grouping (OR behavior)",
+                      "meaning": "Omitting break between sequential cases allows them to share identical execution code",
+                      "example": "switch(day) {\n  case 'Saturday':\n  case 'Sunday':\n    console.log('Weekend!');\n    break;\n}"
+                    },
+                    {
+                      "term": "switch (true) Pattern",
+                      "meaning": "Advanced pattern evaluating boolean expressions in each case clause",
+                      "example": "switch(true) {\n  case score >= 90: grade = 'A'; break;\n  case score >= 80: grade = 'B'; break;\n}"
+                    }
+                  ]
+                }
+              ],
+              "practice": [
+                {
+                  "question": "What happens if you omit the `break;` statement in a matching `case` block?",
+                  "options": [
+                    "JavaScript throws a SyntaxError",
+                    "Execution falls through into the next case block regardless of whether its condition matches",
+                    "The switch immediately exits",
+                    "The default block executes twice"
+                  ],
+                  "answer": "Execution falls through into the next case block regardless of whether its condition matches",
+                  "explanation": "Without a `break`, execution continues into the subsequent case statements unconditionally (known as 'case fallthrough')."
+                },
+                {
+                  "question": "What equality check does `switch(x)` use when matching `case y:`?",
+                  "options": [
+                    "Loose equality (`==`)",
+                    "Strict equality (`===`)",
+                    "Object.is()",
+                    "Regex matching"
+                  ],
+                  "answer": "Strict equality (`===`)",
+                  "explanation": "JavaScript switch statements always compare case clauses using strict equality (`===`), so types must match exactly."
+                },
+                {
+                  "question": "What is the role of `default:` in a switch statement?",
+                  "options": [
+                    "It is required at the top of the switch statement",
+                    "It executes when none of the specified `case` values match the expression",
+                    "It resets all variables to 0",
+                    "It converts the switch to a loop"
+                  ],
+                  "answer": "It executes when none of the specified `case` values match the expression",
+                  "explanation": "`default:` acts as the fallback branch, running when all preceding case checks have failed."
+                }
+              ]
+            }
+          },
+          {
+            "id": "js-ch3-l9",
+            "title": "Lesson 9: Iteration & Loops: for, while, do-while & for...of",
+            "description": "Mastering loop constructs, collection traversal with for...of, and loop control with break and continue.",
+            "content": {
+              "overview": "Repetitive tasks require automated iteration loops. In this lesson based on Chapter 5 of 'JavaScript from Beginner to Professional', you will master the classic 'for' loop, conditional 'while' and 'do-while' loops, modern collection iteration with 'for...of' and 'for...in', and loop control statements 'break' and 'continue'.",
+              "canDo": "Can select the appropriate loop construct for any scenario, iterate over arrays and object keys, and control loop execution flow with `break` and `continue`.",
+              "teacherNote": "Remember this crucial distinction: Use `for...of` to iterate over VALUES of iterable collections (like Arrays, Strings, Sets, and Maps). Use `for...in` to iterate over the KEYS (properties) of an Object. Using `for...in` on arrays is an anti-pattern!",
+              "sections": [
+                {
+                  "title": "1. Core Loop Types in JavaScript",
+                  "description": "Selecting the optimal loop structure:",
+                  "table": {
+                    "headers": [
+                      "Loop Type",
+                      "Structure Syntax",
+                      "When to Use",
+                      "Guaranteed Runs"
+                    ],
+                    "rows": [
+                      [
+                        "for loop",
+                        "for (let i = 0; i < n; i++)",
+                        "When the exact number of iterations or an index counter is known",
+                        "0 or more times"
+                      ],
+                      [
+                        "while loop",
+                        "while (condition) { ... }",
+                        "When looping until an unknown dynamic condition becomes false",
+                        "0 or more times"
+                      ],
+                      [
+                        "do-while loop",
+                        "do { ... } while (condition);",
+                        "When the loop body must execute AT LEAST ONCE before evaluating the condition",
+                        "1 or more times (Guaranteed!)"
+                      ],
+                      [
+                        "for...of (ES6)",
+                        "for (const item of array)",
+                        "Clean, readable iteration over array elements and iterables",
+                        "0 or more times"
+                      ],
+                      [
+                        "for...in",
+                        "for (const key in object)",
+                        "Iterates over enumerable property keys of an object",
+                        "0 or more times"
+                      ]
+                    ]
+                  }
+                },
+                {
+                  "title": "2. Loop Control: break vs. continue",
+                  "description": "Altering the execution course of a loop:",
+                  "items": [
+                    {
+                      "term": "break",
+                      "meaning": "Immediately terminates the loop and resumes execution after the loop's closing brace",
+                      "example": "for (let i = 0; i < 10; i++) { if (i === 5) break; } // Stops at 5"
+                    },
+                    {
+                      "term": "continue",
+                      "meaning": "Skips the rest of the current iteration and jumps directly to the next iteration step",
+                      "example": "for (let i = 0; i < 10; i++) { if (i % 2 === 0) continue; } // Skips evens"
+                    }
+                  ]
+                }
+              ],
+              "practice": [
+                {
+                  "question": "Which loop construct guarantees that its block will execute AT LEAST ONCE regardless of the condition?",
+                  "options": [
+                    "for loop",
+                    "while loop",
+                    "do-while loop",
+                    "for...of loop"
+                  ],
+                  "answer": "do-while loop",
+                  "explanation": "`do-while` loops evaluate the condition at the end of the block, ensuring the body runs at least once."
+                },
+                {
+                  "question": "What is the recommended modern loop to iterate directly over the values of an array `['a', 'b', 'c']`?",
+                  "options": [
+                    "for...in",
+                    "for...of",
+                    "while...do",
+                    "loop...until"
+                  ],
+                  "answer": "for...of",
+                  "explanation": "`for...of` is the standard ES6 construct for iterating over the values of iterable objects like arrays."
+                },
+                {
+                  "question": "What does the `continue;` statement do inside a loop?",
+                  "options": [
+                    "Exits the loop entirely",
+                    "Skips the rest of the current iteration and advances to the next loop cycle",
+                    "Restarts the loop from index 0",
+                    "Pauses execution for 1 second"
+                  ],
+                  "answer": "Skips the rest of the current iteration and advances to the next loop cycle",
+                  "explanation": "`continue` bypasses remaining statements in the current iteration and moves immediately to the next iteration."
+                }
+              ]
+            }
+          }
+        ]
+      },
+      {
+        "id": "js-ch4",
+        "title": "Chapter 4: Functions & Scope",
+        "lessons": [
+          {
+            "id": "js-ch4-l10",
+            "title": "Lesson 10: Declarations, Expressions & ES6 Arrow Functions",
+            "description": "Comparing function declarations, expressions, concise arrow syntax, and lexical 'this' binding.",
+            "content": {
+              "overview": "Functions are reusable blocks of code designed to perform specific tasks. In this lesson based on Chapter 6 of 'JavaScript from Beginner to Professional', you will master the three major ways to declare functions: traditional Function Declarations, Function Expressions, and concise ES6 Arrow Functions, understanding how their syntax, hoisting, and 'this' binding differ.",
+              "canDo": "Can define functions using declarations, expressions, and arrow functions, and select the correct syntax based on hoisting requirements and lexical 'this' binding.",
+              "teacherNote": "Arrow functions (`() => {}`) do NOT possess their own `this`, `arguments`, or `prototype`! They lexically inherit `this` from the enclosing execution context. For object methods that rely on `this.property`, use traditional method syntax (`greet() { ... }`). For callbacks, array methods, and functional code, prefer arrow functions.",
+              "sections": [
+                {
+                  "title": "1. Three Ways to Define Functions in JavaScript",
+                  "description": "Syntax, hoisting, and behavior comparison:",
+                  "table": {
+                    "headers": [
+                      "Pattern",
+                      "Example Syntax",
+                      "Hoisting Behavior",
+                      "Lexical 'this'?"
+                    ],
+                    "rows": [
+                      [
+                        "Function Declaration",
+                        "function add(a, b) { return a + b; }",
+                        "Fully hoisted (Can be called BEFORE its definition in code)",
+                        "No (Has its own dynamic `this`)"
+                      ],
+                      [
+                        "Function Expression",
+                        "const add = function(a, b) { return a + b; };",
+                        "Variable is hoisted to TDZ; cannot be called before definition",
+                        "No (Has its own dynamic `this`)"
+                      ],
+                      [
+                        "Arrow Function (ES6)",
+                        "const add = (a, b) => a + b;",
+                        "Variable is hoisted to TDZ; cannot be called before definition",
+                        "Yes (Lexically inherits `this` from enclosing scope)"
+                      ]
+                    ]
+                  }
+                },
+                {
+                  "title": "2. Concise Arrow Function Syntax Rules",
+                  "description": "Streamlining functional expressions:",
+                  "items": [
+                    {
+                      "term": "Implicit Return",
+                      "meaning": "When omitting curly braces `{ ... }`, the single expression is automatically returned without the `return` keyword",
+                      "example": "const square = x => x * x; // Returns x * x automatically"
+                    },
+                    {
+                      "term": "Returning Object Literals",
+                      "meaning": "Wrap object literals in parentheses `({ ... })` so the parser doesn't mistake curly braces for a function block",
+                      "example": "const makeUser = name => ({ name: name, active: true });"
+                    },
+                    {
+                      "term": "Single Parameter Parenthesis",
+                      "meaning": "If a function takes exactly one parameter, the parentheses around the parameter are optional",
+                      "example": "const double = n => n * 2;"
+                    }
+                  ]
+                }
+              ],
+              "practice": [
+                {
+                  "question": "Can a standard Function Declaration be invoked in code before the line where it is written?",
+                  "options": [
+                    "Yes, because function declarations are fully hoisted to the top of their scope",
+                    "No, it throws a ReferenceError",
+                    "Only if 'use strict' is disabled",
+                    "Only in Node.js, not in web browsers"
+                  ],
+                  "answer": "Yes, because function declarations are fully hoisted to the top of their scope",
+                  "explanation": "JavaScript engines hoist function declarations with their complete body during the compile phase, allowing them to be called anywhere in their enclosing scope."
+                },
+                {
+                  "question": "How do arrow functions determine the value of `this`?",
+                  "options": [
+                    "They bind `this` dynamically to whatever object called them",
+                    "They inherit `this` lexically from the surrounding scope where they were defined",
+                    "`this` is always null inside an arrow function",
+                    "`this` always refers to the window object"
+                  ],
+                  "answer": "They inherit `this` lexically from the surrounding scope where they were defined",
+                  "explanation": "Arrow functions do not bind their own `this`; they inherit `this` lexically from the enclosing execution context."
+                },
+                {
+                  "question": "How do you implicitly return an object literal from an arrow function?",
+                  "options": [
+                    "const getObj = () => { id: 1 };",
+                    "const getObj = () => ({ id: 1 });",
+                    "const getObj = () => return { id: 1 };",
+                    "const getObj = () => [ id: 1 ];"
+                  ],
+                  "answer": "const getObj = () => ({ id: 1 });",
+                  "explanation": "Wrapping the object in parentheses `({ ... })` tells JavaScript that the curly braces represent an object literal, not a statement block."
+                }
+              ]
+            }
+          },
+          {
+            "id": "js-ch4-l11",
+            "title": "Lesson 11: Parameters, Default Values & Rest/Spread Syntax",
+            "description": "Configuring robust argument signatures with default fallbacks and gathering arguments with rest syntax.",
+            "content": {
+              "overview": "Passing information into functions is central to modular programming. In this lesson based on Chapter 6 of 'JavaScript from Beginner to Professional', you will master function parameters, ES6 default parameter values, the Rest parameter syntax (`...args`) for variable-length argument lists, and the Spread operator (`...`) for unpacking data.",
+              "canDo": "Can configure functions with default fallback arguments, collect arbitrary argument lists using the rest operator, and unpack arrays with spread syntax.",
+              "teacherNote": "Remember the difference between Rest and Spread: Rest (`...`) GATHERS multiple elements into a single array (used in function parameter definitions: `function sum(...nums)`). Spread (`...`) EXPANDS a single array into individual values (used in function calls or array literals: `Math.max(...nums)`).",
+              "sections": [
+                {
+                  "title": "1. Default Parameters & The Rest Parameter",
+                  "description": "Handling flexible input signatures in modern JavaScript:",
+                  "table": {
+                    "headers": [
+                      "Feature",
+                      "Syntax Example",
+                      "Behavior",
+                      "Replaces"
+                    ],
+                    "rows": [
+                      [
+                        "Default Parameters (ES6)",
+                        "function greet(name = 'Guest', role = 'Member')",
+                        "Assigns default value if argument is undefined or omitted",
+                        "Old manual checks: `name = name || 'Guest'`"
+                      ],
+                      [
+                        "Rest Parameters (ES6)",
+                        "function sum(...numbers)",
+                        "Collects all remaining arguments into a true JavaScript array",
+                        "Old legacy `arguments` array-like pseudo-object"
+                      ],
+                      [
+                        "Spread in Function Calls",
+                        "Math.max(...scoresArray)",
+                        "Spreads array elements into individual comma-separated arguments",
+                        "Old `Math.max.apply(null, scoresArray)`"
+                      ]
+                    ]
+                  }
+                },
+                {
+                  "title": "2. Rules of Rest Parameters",
+                  "description": "Syntax boundaries when capturing variable arguments:",
+                  "items": [
+                    {
+                      "term": "Must be the Final Parameter",
+                      "meaning": "A rest parameter must always be the last argument in the function definition",
+                      "example": "function logMessage(level, ...details) { ... } // Valid!"
+                    },
+                    {
+                      "term": "Only One Rest Parameter Allowed",
+                      "meaning": "A function signature cannot contain multiple rest parameters",
+                      "example": "// SyntaxError: Rest parameter must be last formal parameter"
+                    }
+                  ]
+                }
+              ],
+              "practice": [
+                {
+                  "question": "When is a default parameter value used in a function call?",
+                  "options": [
+                    "Whenever an argument is passed as `false` or `0`",
+                    "When the argument is omitted or passed explicitly as `undefined`",
+                    "Only when strict mode is active",
+                    "Whenever the argument is `null`"
+                  ],
+                  "answer": "When the argument is omitted or passed explicitly as `undefined`",
+                  "explanation": "Default parameters are triggered exclusively when an argument is missing or strictly `undefined` (`null` is considered a valid value and does not trigger the default)."
+                },
+                {
+                  "question": "What does `...` represent in `function calculateTotal(tax, ...items)`?",
+                  "options": [
+                    "Spread operator",
+                    "Rest parameter",
+                    "Ellipsis string",
+                    "Optional chaining"
+                  ],
+                  "answer": "Rest parameter",
+                  "explanation": "Inside a function's parameter definition list, `...items` is a Rest parameter that collects all subsequent arguments into an array."
+                },
+                {
+                  "question": "How do you pass the elements of `const nums = [10, 25, 5];` to `Math.max()`?",
+                  "options": [
+                    "Math.max(nums)",
+                    "Math.max(...nums)",
+                    "Math.max(..nums)",
+                    "Math.max([nums])"
+                  ],
+                  "answer": "Math.max(...nums)",
+                  "explanation": "`Math.max(...nums)` uses the spread operator to expand the array into individual numerical arguments."
+                }
+              ]
+            }
+          },
+          {
+            "id": "js-ch4-l12",
+            "title": "Lesson 12: Return Values, Lexical Scope, Closures & Recursion",
+            "description": "Scope boundaries, data encapsulation through closures, and recursive algorithms with base cases.",
+            "content": {
+              "overview": "Understanding return values, variable scope, closures, and recursion separates intermediate JavaScript developers from beginners. In this lesson based on Chapter 6 of 'JavaScript from Beginner to Professional', you will explore the return statement, lexical scope hierarchies, closures (functions remembering their creation scope), and recursive self-calling algorithms.",
+              "canDo": "Can return values cleanly from functions, predict variable visibility across nested scopes, leverage closures for data encapsulation, and implement base-cased recursion.",
+              "teacherNote": "A closure is formed whenever an inner function retains access to its outer lexical environment, even after the outer function has finished executing. Closures enable private variables and powerful factory patterns without polluting the global namespace.",
+              "sections": [
+                {
+                  "title": "1. Scope Hierarchy: Global, Function, and Block",
+                  "description": "How the JavaScript engine traverses the scope chain:",
+                  "table": {
+                    "headers": [
+                      "Scope Level",
+                      "Where Declared",
+                      "Visibility",
+                      "Lifespan"
+                    ],
+                    "rows": [
+                      [
+                        "Global Scope",
+                        "Outside any function or block",
+                        "Accessible everywhere across the application",
+                        "Entire runtime session"
+                      ],
+                      [
+                        "Function Scope",
+                        "Inside a `function() { ... }`",
+                        "Accessible only inside that specific function",
+                        "While the function is executing"
+                      ],
+                      [
+                        "Block Scope",
+                        "Inside `{ ... }` with `let` or `const`",
+                        "Confined strictly to the enclosing curly braces",
+                        "While the block executes"
+                      ]
+                    ]
+                  }
+                },
+                {
+                  "title": "2. Closures & Recursion",
+                  "description": "Advanced functional execution patterns:",
+                  "items": [
+                    {
+                      "term": "Closure Definition",
+                      "meaning": "A function bundled together with references to its surrounding lexical state",
+                      "example": "function makeCounter() {\n  let count = 0;\n  return () => ++count;\n}\nconst counter = makeCounter();\ncounter(); // 1\ncounter(); // 2 (count is private and preserved!)"
+                    },
+                    {
+                      "term": "Recursion & Base Case",
+                      "meaning": "A function that calls itself until a stopping condition (the base case) is reached",
+                      "example": "function factorial(n) {\n  if (n <= 1) return 1; // Base case\n  return n * factorial(n - 1); // Recursive step\n}"
+                    }
+                  ]
+                }
+              ],
+              "practice": [
+                {
+                  "question": "What is a closure in JavaScript?",
+                  "options": [
+                    "A method that automatically closes the browser window",
+                    "An inner function that retains access to variables from its outer enclosing scope even after the outer function returns",
+                    "A syntax error caused by unclosed curly braces",
+                    "A tool used only for database connections"
+                  ],
+                  "answer": "An inner function that retains access to variables from its outer enclosing scope even after the outer function returns",
+                  "explanation": "Closures allow functions to maintain persistent private state across invocations by remembering their lexical environment."
+                },
+                {
+                  "question": "What happens if a recursive function lacks a base case?",
+                  "options": [
+                    "It returns null",
+                    "It loops forever until a 'RangeError: Maximum call stack size exceeded' occurs",
+                    "JavaScript automatically halts execution after 100 calls without error",
+                    "It converts itself into a while loop"
+                  ],
+                  "answer": "It loops forever until a 'RangeError: Maximum call stack size exceeded' occurs",
+                  "explanation": "Without a base case to terminate execution, recursion continuously pushes frames onto the call stack until a stack overflow error occurs."
+                },
+                {
+                  "question": "What does a JavaScript function return if it lacks an explicit `return` statement?",
+                  "options": [
+                    "null",
+                    "undefined",
+                    "false",
+                    "0"
+                  ],
+                  "answer": "undefined",
+                  "explanation": "In JavaScript, functions that finish executing without reaching an explicit `return` statement return `undefined` by default."
+                }
+              ]
+            }
+          }
+        ]
+      },
+      {
+        "id": "js-ch5",
+        "title": "Chapter 5: Object-Oriented Programming & Modern Classes",
+        "lessons": [
+          {
+            "id": "js-ch5-l13",
+            "title": "Lesson 13: ES6 Class Syntax & The Constructor Lifecycle",
+            "description": "Declaring object blueprints, initializing instance state with constructors, and the new operator.",
+            "content": {
+              "overview": "Object-Oriented Programming (OOP) organizes software design around data objects rather than standalone functions. In modern JavaScript (ES6+), classes provide a clean, declarative syntax built over JavaScript's prototypal inheritance system. In this lesson based on Chapter 7 of 'JavaScript from Beginner to Professional', you will learn to declare classes, initialize state via the constructor method, and instantiate objects using the 'new' keyword.",
+              "canDo": "Can define ES6 classes, implement constructors to initialize instance properties, and instantiate multiple object instances using the `new` operator.",
+              "teacherNote": "Unlike function declarations, JavaScript classes are NOT hoisted! You cannot instantiate an object from a class before the line where that class is declared in code.",
+              "sections": [
+                {
+                  "title": "1. The Anatomy of an ES6 Class",
+                  "description": "Declaring blueprints and instantiating objects:",
+                  "table": {
+                    "headers": [
+                      "Component",
+                      "Syntax Example",
+                      "Role / Execution Timing",
+                      "Best Practice"
+                    ],
+                    "rows": [
+                      [
+                        "class Declaration",
+                        "class Person { ... }",
+                        "Defines the blueprint schema for objects",
+                        "PascalCase naming convention (e.g. UserAccount, BankAccount)"
+                      ],
+                      [
+                        "constructor()",
+                        "constructor(name, age) { this.name = name; this.age = age; }",
+                        "Special method called automatically when invoking `new Person(...)`",
+                        "Initializes instance properties onto the newly created `this` context"
+                      ],
+                      [
+                        "new Operator",
+                        "const user1 = new Person('Maya', 28);",
+                        "Allocates memory, creates empty object, binds `this`, returns instance",
+                        "Always required when creating class instances"
+                      ]
+                    ]
+                  }
+                },
+                {
+                  "title": "2. Instance Properties vs. Methods",
+                  "description": "Organizing state and behavior inside a class:",
+                  "items": [
+                    {
+                      "term": "Instance Properties",
+                      "meaning": "Unique data values attached to each individual object created from the class",
+                      "example": "this.username = username; // Set inside constructor"
+                    },
+                    {
+                      "term": "Instance Methods",
+                      "meaning": "Shared functions defined on the prototype, accessible to all instances",
+                      "example": "greet() { return `Hello, I am ${this.name}`; }"
+                    }
+                  ]
+                }
+              ],
+              "practice": [
+                {
+                  "question": "Which keyword is used to create a new instance of an ES6 class in JavaScript?",
+                  "options": [
+                    "create",
+                    "new",
+                    "instantiate",
+                    "make"
+                  ],
+                  "answer": "new",
+                  "explanation": "The `new` keyword instantiates a new object, sets its prototype to the class prototype, and runs the constructor."
+                },
+                {
+                  "question": "What is the purpose of the `constructor()` method inside a class?",
+                  "options": [
+                    "To destroy the class after execution",
+                    "To initialize instance properties when a new object is created",
+                    "To export the class to another file",
+                    "To convert the class into JSON"
+                  ],
+                  "answer": "To initialize instance properties when a new object is created",
+                  "explanation": "The `constructor()` is a special lifecycle method that executes automatically when `new ClassName()` is invoked, initializing the new object's state."
+                },
+                {
+                  "question": "Are ES6 class declarations hoisted like traditional function declarations?",
+                  "options": [
+                    "Yes, they can be instantiated anywhere before their definition",
+                    "No, classes are hoisted into the Temporal Dead Zone and cannot be used before declaration",
+                    "Only in non-strict mode",
+                    "Only when exported"
+                  ],
+                  "answer": "No, classes are hoisted into the Temporal Dead Zone and cannot be used before declaration",
+                  "explanation": "Classes follow `let`/`const` lexical rules and throw a ReferenceError if accessed before their declaration in code."
+                }
+              ]
+            }
+          },
+          {
+            "id": "js-ch5-l14",
+            "title": "Lesson 14: Instance Methods, Getters, Setters & Static Utilities",
+            "description": "Adding behavioral methods, intercepting property access with get/set, and static class helpers.",
+            "content": {
+              "overview": "Beyond basic methods, modern classes support Getter and Setter accessors to intercept property reads and writes, providing encapsulation and data validation. In this lesson based on Chapter 7 of 'JavaScript from Beginner to Professional', you will master declaring instance methods, static utility methods, and implementing get/set accessors.",
+              "canDo": "Can implement methods on classes, write getters for computed properties, create setters for validation, and use static methods for class-level utilities.",
+              "teacherNote": "Getters and Setters look like methods in code (`get fullName() { ... }`), but are accessed like normal properties WITHOUT parentheses (`console.log(user.fullName)`). Do not name the internal backing property the exact same as the getter/setter name, or an infinite recursion loop will occur!",
+              "sections": [
+                {
+                  "title": "1. Methods, Getters, and Setters",
+                  "description": "Controlling access and computation in classes:",
+                  "table": {
+                    "headers": [
+                      "Feature",
+                      "Syntax Example",
+                      "How to Access",
+                      "Benefit"
+                    ],
+                    "rows": [
+                      [
+                        "Instance Method",
+                        "calculateArea() { return this.w * this.h; }",
+                        "rect.calculateArea()",
+                        "Reusable action on instance data"
+                      ],
+                      [
+                        "Getter (get)",
+                        "get area() { return this.w * this.h; }",
+                        "rect.area (No parentheses!)",
+                        "Provides dynamic computed properties with clean property syntax"
+                      ],
+                      [
+                        "Setter (set)",
+                        "set score(val) { if (val < 0) throw Error(); this._score = val; }",
+                        "game.score = 10 (Assignment syntax)",
+                        "Validates and sanitizes incoming data before setting internal state"
+                      ],
+                      [
+                        "Static Method",
+                        "static compare(a, b) { return a.age - b.age; }",
+                        "Person.compare(p1, p2) (On class, not instance!)",
+                        "Utility functions tied to the class namespace without needing an instance"
+                      ]
+                    ]
+                  }
+                }
+              ],
+              "practice": [
+                {
+                  "question": "How do you access a getter property defined as `get fullName() { return ...; }` on an instance named `person`?",
+                  "options": [
+                    "person.fullName()",
+                    "person.fullName",
+                    "person.get('fullName')",
+                    "person->fullName"
+                  ],
+                  "answer": "person.fullName",
+                  "explanation": "Getters are accessed as standard properties without parentheses (`person.fullName`)."
+                },
+                {
+                  "question": "What is a `static` method in a JavaScript class?",
+                  "options": [
+                    "A method that cannot be called by any part of the program",
+                    "A method called on the class itself rather than on instances of the class",
+                    "A method that only works on static HTML pages",
+                    "A method that cannot return numbers"
+                  ],
+                  "answer": "A method called on the class itself rather than on instances of the class",
+                  "explanation": "Static methods (`ClassName.staticMethod()`) belong to the class constructor function directly, not to individual instantiated objects."
+                },
+                {
+                  "question": "Why do developers often use an underscore prefix (e.g. `this._age`) when writing a setter `set age(value)`?",
+                  "options": [
+                    "It is required by the JavaScript compiler for all numbers",
+                    "To avoid infinite recursion between setting the property and triggering the setter again",
+                    "It makes the property run faster",
+                    "To automatically convert strings to booleans"
+                  ],
+                  "answer": "To avoid infinite recursion between setting the property and triggering the setter again",
+                  "explanation": "If a setter assigns to `this.age`, it invokes the setter recursively in an infinite loop. Using a distinct backing variable like `this._age` prevents this."
+                }
+              ]
+            }
+          },
+          {
+            "id": "js-ch5-l15",
+            "title": "Lesson 15: Inheritance (extends & super) and Private Fields (#)",
+            "description": "Deriving subclasses with extends, invoking parent constructors with super, and private encapsulation.",
+            "content": {
+              "overview": "Inheritance enables classes to derive functionality from parent classes, promoting clean code reuse. In modern JavaScript (ES6+), the 'extends' keyword establishes inheritance, 'super()' invokes parent constructors and methods, and private fields ('#') provide true language-level encapsulation. In this lesson based on Chapter 7 of 'JavaScript from Beginner to Professional', you will master OOP hierarchies and privacy.",
+              "canDo": "Can establish class inheritance using `extends`, pass arguments to parent constructors with `super()`, override methods, and protect sensitive state with private fields (`#`).",
+              "teacherNote": "In a derived subclass constructor, you MUST call `super(...)` BEFORE referencing `this`! Forgetting to call `super()` in a subclass constructor causes a ReferenceError.",
+              "sections": [
+                {
+                  "title": "1. Class Inheritance with extends & super",
+                  "description": "Specializing child classes from parent blueprints:",
+                  "table": {
+                    "headers": [
+                      "Concept",
+                      "Syntax Example",
+                      "Rule / Purpose"
+                    ],
+                    "rows": [
+                      [
+                        "Subclass Declaration",
+                        "class Dog extends Animal { ... }",
+                        "Inherits all public methods and prototypes from the parent Animal class"
+                      ],
+                      [
+                        "super() in Constructor",
+                        "constructor(name, breed) { super(name); this.breed = breed; }",
+                        "Must be called first in derived constructor to instantiate the parent `this` context"
+                      ],
+                      [
+                        "Method Overriding",
+                        "speak() { super.speak(); console.log('Woof!'); }",
+                        "Child class defines its own version of a method, optionally calling `super.method()`"
+                      ],
+                      [
+                        "Private Fields (#)",
+                        "class Bank { #balance = 0; getBalance() { return this.#balance; } }",
+                        "Fields prefixed with `#` are strictly inaccessible outside the class body (SyntaxError)"
+                      ]
+                    ]
+                  }
+                }
+              ],
+              "practice": [
+                {
+                  "question": "What happens if a child class constructor attempts to access `this.property` before calling `super()`?",
+                  "options": [
+                    "It assigns the property to the parent class",
+                    "It throws a ReferenceError: Must call super constructor in derived class before accessing 'this'",
+                    "It silently converts the property to null",
+                    "JavaScript automatically invokes `super()` in the background"
+                  ],
+                  "answer": "It throws a ReferenceError: Must call super constructor in derived class before accessing 'this'",
+                  "explanation": "In subclasses, the `this` context is initialized by the parent constructor; therefore, `super()` must be invoked before `this` can be referenced."
+                },
+                {
+                  "question": "Which syntax designates a private class field that cannot be accessed from outside the class in modern JavaScript?",
+                  "options": [
+                    "private myField = 10;",
+                    "_myField = 10;",
+                    "#myField = 10;",
+                    "__myField__ = 10;"
+                  ],
+                  "answer": "#myField = 10;",
+                  "explanation": "The hash symbol `#` declares true private class fields enforced at the language syntax level."
+                },
+                {
+                  "question": "Which keyword specifies that a class inherits from another class?",
+                  "options": [
+                    "inherits",
+                    "extends",
+                    "implements",
+                    "prototype"
+                  ],
+                  "answer": "extends",
+                  "explanation": "The `extends` keyword is used in class declarations to create a child class of another class."
+                }
+              ]
+            }
+          }
+        ]
+      },
+      {
+        "id": "js-ch6",
+        "title": "Chapter 6: Standard Library & Built-in Methods",
+        "lessons": [
+          {
+            "id": "js-ch6-l16",
+            "title": "Lesson 16: Global Utility Methods, Number Parsing & URI Encoding",
+            "description": "Parsing integers and floats with parseInt/parseFloat, robust NaN checks, and URI encoding.",
+            "content": {
+              "overview": "JavaScript includes a rich set of built-in global utility functions accessible everywhere without importing. In this lesson based on Chapter 8 of 'JavaScript from Beginner to Professional', you will master number parsing with 'parseInt' and 'parseFloat', checking numeric validity with 'Number.isNaN', and encoding URLs with 'encodeURIComponent' to safely transmit data over the web.",
+              "canDo": "Can parse integers and floating-point values from strings, safely inspect numbers with `Number.isFinite` and `Number.isNaN`, and encode query strings for network requests.",
+              "teacherNote": "Always pass the radix parameter `10` when using `parseInt(string, 10)` to guarantee base-10 decimal parsing! Furthermore, use `Number.isNaN()` instead of the legacy global `isNaN()`, because the legacy function coerces inputs (making `isNaN('hello')` true, while `Number.isNaN('hello')` is correctly false).",
+              "sections": [
+                {
+                  "title": "1. Global Number Parsing Methods",
+                  "description": "Extracting numeric values from textual inputs:",
+                  "table": {
+                    "headers": [
+                      "Method",
+                      "Sample Input",
+                      "Output",
+                      "Parsing Behavior"
+                    ],
+                    "rows": [
+                      [
+                        "parseInt(str, 10)",
+                        "parseInt('42px', 10)",
+                        "42",
+                        "Reads leading digits; stops at the first non-numeric character ('p')"
+                      ],
+                      [
+                        "parseInt(str, 10)",
+                        "parseInt('px42', 10)",
+                        "NaN",
+                        "Fails immediately if the first character cannot be parsed as a digit"
+                      ],
+                      [
+                        "parseFloat(str)",
+                        "parseFloat('3.1415rem')",
+                        "3.1415",
+                        "Extracts fractional decimal numbers up to the unit suffix"
+                      ],
+                      [
+                        "Number(str)",
+                        "Number('42px')",
+                        "NaN",
+                        "Strict conversion: entire string must be numeric, otherwise returns NaN"
+                      ],
+                      [
+                        "Number.isNaN(val)",
+                        "Number.isNaN(NaN)",
+                        "true",
+                        "Robust NaN check without performing type coercion"
+                      ]
+                    ]
+                  }
+                },
+                {
+                  "title": "2. URI Encoding for Web Transmission",
+                  "description": "Safely encoding special characters in URLs:",
+                  "items": [
+                    {
+                      "term": "encodeURIComponent(string)",
+                      "meaning": "Encodes characters like &, =, ?, / so they can be safely passed inside query parameters",
+                      "example": "const param = encodeURIComponent('John & Sons?'); // 'John%20%26%20Sons%3F'"
+                    },
+                    {
+                      "term": "decodeURIComponent(string)",
+                      "meaning": "Decodes percent-encoded URI strings back into original human-readable characters",
+                      "example": "decodeURIComponent('hello%20world'); // 'hello world'"
+                    }
+                  ]
+                }
+              ],
+              "practice": [
+                {
+                  "question": "What is the output of `parseInt('100px', 10)` in JavaScript?",
+                  "options": [
+                    "100",
+                    "NaN",
+                    "TypeError",
+                    "'100'"
+                  ],
+                  "answer": "100",
+                  "explanation": "`parseInt` scans from left to right, parses the digits `100`, and terminates cleanly upon reaching the non-digit `'p'`."
+                },
+                {
+                  "question": "Why is `Number.isNaN(val)` preferred over the global `isNaN(val)`?",
+                  "options": [
+                    "`Number.isNaN` works only on strings",
+                    "`Number.isNaN` does not perform type coercion, ensuring only actual NaN values return true",
+                    "`Number.isNaN` converts undefined to 0",
+                    "Global `isNaN` is deprecated in all browsers"
+                  ],
+                  "answer": "`Number.isNaN` does not perform type coercion, ensuring only actual NaN values return true",
+                  "explanation": "Global `isNaN('hello')` coerces `'hello'` to `NaN` and returns `true`, whereas `Number.isNaN('hello')` strictly checks if the argument is of type number and value NaN, returning `false`."
+                },
+                {
+                  "question": "Which function should be used to encode a query string parameter containing an ampersand (`&`)?",
+                  "options": [
+                    "escape()",
+                    "encodeURI()",
+                    "encodeURIComponent()",
+                    "sanitize()"
+                  ],
+                  "answer": "encodeURIComponent()",
+                  "explanation": "`encodeURIComponent()` encodes reserved URL characters including `&`, `=`, and `?`, making it safe for query parameter values."
+                }
+              ]
+            }
+          },
+          {
+            "id": "js-ch6-l17",
+            "title": "Lesson 17: String Transformation, Search & Slicing Methods",
+            "description": "Transforming text with slice, replace, replaceAll, includes, split, and whitespace trimming.",
+            "content": {
+              "overview": "Strings are fundamental across every web application, from UI rendering to data validation. In this lesson based on Chapter 8 of 'JavaScript from Beginner to Professional', you will master the essential string manipulation methods: extracting substrings, replacing patterns, testing character containment, trimming whitespace, and splitting text into arrays.",
+              "canDo": "Can transform strings, replace patterns using `replace` and `replaceAll`, test substring existence with `includes`, split strings into arrays, and clean user inputs with `trim`.",
+              "teacherNote": "All JavaScript string methods return a BRAND NEW string! Strings in JavaScript are primitive and completely immutable; calling `str.trim()` or `str.replace()` will NEVER modify the original string in place.",
+              "sections": [
+                {
+                  "title": "1. Core String Manipulation Methods",
+                  "description": "Transforming, searching, and extracting textual data:",
+                  "table": {
+                    "headers": [
+                      "Method",
+                      "Example Call",
+                      "Output",
+                      "Description"
+                    ],
+                    "rows": [
+                      [
+                        "includes(sub)",
+                        "'JavaScript'.includes('Script')",
+                        "true",
+                        "Checks if substring exists anywhere in string (case-sensitive)"
+                      ],
+                      [
+                        "startsWith() / endsWith()",
+                        "'index.html'.endsWith('.html')",
+                        "true",
+                        "Tests if string begins or ends with the specified substring"
+                      ],
+                      [
+                        "slice(start, end)",
+                        "'Hello World'.slice(0, 5)",
+                        "'Hello'",
+                        "Extracts a section of a string and returns a new string"
+                      ],
+                      [
+                        "replace(target, replacement)",
+                        "'red car'.replace('red', 'blue')",
+                        "'blue car'",
+                        "Replaces first occurrence of target with replacement"
+                      ],
+                      [
+                        "replaceAll(target, replacement)",
+                        "'a-b-a'.replaceAll('a', 'x')",
+                        "'x-b-x'",
+                        "Replaces all occurrences across the entire string"
+                      ],
+                      [
+                        "split(separator)",
+                        "'cat,dog,bird'.split(',')",
+                        "['cat', 'dog', 'bird']",
+                        "Divides a string into an ordered array of substrings"
+                      ],
+                      [
+                        "trim()",
+                        "'   hello   '.trim()",
+                        "'hello'",
+                        "Removes leading and trailing whitespace characters"
+                      ]
+                    ]
+                  }
+                }
+              ],
+              "practice": [
+                {
+                  "question": "Do string methods like `.toUpperCase()` mutate the original string variable?",
+                  "options": [
+                    "Yes, they modify the variable directly in memory",
+                    "No, strings are immutable in JavaScript; string methods return a new string",
+                    "Only if declared with `let`",
+                    "Only in strict mode"
+                  ],
+                  "answer": "No, strings are immutable in JavaScript; string methods return a new string",
+                  "explanation": "JavaScript primitive strings are immutable. All string transformation methods return new string values without changing the original."
+                },
+                {
+                  "question": "Which method converts the comma-separated string `'apple,banana,cherry'` into an array?",
+                  "options": [
+                    "string.toArray(',')",
+                    "string.split(',')",
+                    "string.slice(',')",
+                    "string.parse(',')"
+                  ],
+                  "answer": "string.split(',')",
+                  "explanation": "The `split(separator)` method breaks a string into an array of substrings using the specified delimiter."
+                },
+                {
+                  "question": "What is the difference between `replace()` and `replaceAll()` when passing a string target?",
+                  "options": [
+                    "`replace()` replaces all instances; `replaceAll()` replaces the first",
+                    "`replace()` replaces only the first matching occurrence; `replaceAll()` replaces every matching occurrence",
+                    "`replaceAll()` requires a regular expression",
+                    "They are exact synonyms"
+                  ],
+                  "answer": "`replace()` replaces only the first matching occurrence; `replaceAll()` replaces every matching occurrence",
+                  "explanation": "When given a string target, `replace()` only substitutes the first occurrence, while `replaceAll()` replaces all occurrences throughout the text."
+                }
+              ]
+            }
+          },
+          {
+            "id": "js-ch6-l18",
+            "title": "Lesson 18: The Math Object, Random Numbers & Date Timestamps",
+            "description": "Mathematical rounding (floor, ceil, round), random ranges, and constructing Date moments.",
+            "content": {
+              "overview": "Working with numbers, mathematical formulas, random values, and timestamps is essential for game development, UI animations, financial calculations, and timers. In this lesson based on Chapter 8 of 'JavaScript from Beginner to Professional', you will master the Math object (`Math.random`, `Math.floor`, `Math.round`), and the Date object for timestamps and date arithmetic.",
+              "canDo": "Can generate random integers within custom ranges, apply accurate mathematical rounding, construct Date instances, and compute elapsed time intervals.",
+              "teacherNote": "To generate a random integer between `min` and `max` inclusive, use the standard formula: `Math.floor(Math.random() * (max - min + 1)) + min`. Also note that JavaScript Date months are zero-indexed: 0 is January and 11 is December!",
+              "sections": [
+                {
+                  "title": "1. The Math Object & Rounding Operations",
+                  "description": "Built-in mathematical constants and calculations:",
+                  "table": {
+                    "headers": [
+                      "Method / Property",
+                      "Example Syntax",
+                      "Output",
+                      "Description"
+                    ],
+                    "rows": [
+                      [
+                        "Math.PI",
+                        "Math.PI",
+                        "3.141592653589793",
+                        "Ratio of a circle's circumference to its diameter"
+                      ],
+                      [
+                        "Math.floor(n)",
+                        "Math.floor(4.9)",
+                        "4",
+                        "Rounds downwards to the nearest integer"
+                      ],
+                      [
+                        "Math.ceil(n)",
+                        "Math.ceil(4.1)",
+                        "5",
+                        "Rounds upwards to the nearest integer"
+                      ],
+                      [
+                        "Math.round(n)",
+                        "Math.round(4.5)",
+                        "5",
+                        "Rounds to the nearest integer (.5 rounds up)"
+                      ],
+                      [
+                        "Math.min(...nums)",
+                        "Math.min(5, 2, 9, 1)",
+                        "1",
+                        "Returns the smallest numeric value"
+                      ],
+                      [
+                        "Math.max(...nums)",
+                        "Math.max(5, 2, 9, 1)",
+                        "9",
+                        "Returns the largest numeric value"
+                      ],
+                      [
+                        "Math.random()",
+                        "Math.random()",
+                        "0.0 <= x < 1.0",
+                        "Returns a pseudo-random floating-point number"
+                      ]
+                    ]
+                  }
+                },
+                {
+                  "title": "2. The Date Object & Timestamps",
+                  "description": "Creating, querying, and comparing calendar moments:",
+                  "items": [
+                    {
+                      "term": "new Date()",
+                      "meaning": "Creates a Date instance representing the exact current moment",
+                      "example": "const now = new Date();"
+                    },
+                    {
+                      "term": "Date.now()",
+                      "meaning": "Returns the current Unix timestamp in milliseconds since January 1, 1970 UTC",
+                      "example": "const start = Date.now(); // e.g. 1725619200000"
+                    },
+                    {
+                      "term": "Zero-Indexed Months",
+                      "meaning": "Months are numbered 0 to 11 in the Date constructor",
+                      "example": "const dec25 = new Date(2025, 11, 25); // Month 11 is December!"
+                    }
+                  ]
+                }
+              ],
+              "practice": [
+                {
+                  "question": "Which formula correctly generates a random integer between 1 and 10 inclusive in JavaScript?",
+                  "options": [
+                    "Math.floor(Math.random() * 10) + 1",
+                    "Math.random(1, 10)",
+                    "Math.round(Math.random() * 10)",
+                    "Math.ceil(Math.random() * 9)"
+                  ],
+                  "answer": "Math.floor(Math.random() * 10) + 1",
+                  "explanation": "`Math.random() * 10` produces a float from 0 to 9.999. `Math.floor()` rounds down to 0-9, and adding `+ 1` yields 1 to 10."
+                },
+                {
+                  "question": "In the JavaScript `Date` object, what number corresponds to the month of January?",
+                  "options": [
+                    "1",
+                    "0",
+                    "-1",
+                    "'Jan'"
+                  ],
+                  "answer": "0",
+                  "explanation": "JavaScript Date months are 0-indexed: January is 0, February is 1, and December is 11."
+                },
+                {
+                  "question": "What does `Math.ceil(7.01)` evaluate to?",
+                  "options": [
+                    "7",
+                    "8",
+                    "7.5",
+                    "7.1"
+                  ],
+                  "answer": "8",
+                  "explanation": "`Math.ceil()` always rounds a number up to the next highest integer."
+                }
+              ]
+            }
+          }
+        ]
+      },
+      {
+        "id": "js-ch7",
+        "title": "Chapter 7: The Document Object Model (DOM)",
+        "lessons": [
+          {
+            "id": "js-ch7-l19",
+            "title": "Lesson 19: The DOM Tree Architecture: Window, Document & Nodes",
+            "description": "Understanding the browser object model, document root, and parent-child-sibling relationships.",
+            "content": {
+              "overview": "The Document Object Model (DOM) is a tree-like object representation of the HTML document created by the browser. In this lesson based on Chapter 9 of 'JavaScript from Beginner to Professional', you will understand the global 'window' object, the 'document' root, DOM node hierarchies (Element nodes, Text nodes, Comment nodes), and parent-child tree relationships.",
+              "canDo": "Can explain the relationship between HTML source code and the live DOM tree, navigate parent, child, and sibling nodes, and distinguish Element nodes from Text nodes.",
+              "teacherNote": "The DOM is NOT JavaScript! The DOM is a platform-independent API provided by the browser environment. JavaScript is merely the programming language used to interact with and mutate this DOM tree.",
+              "sections": [
+                {
+                  "title": "1. The Browser Hierarchy: window & document",
+                  "description": "The global environment model of web browsers:",
+                  "table": {
+                    "headers": [
+                      "Object",
+                      "Role",
+                      "Key Properties / Children"
+                    ],
+                    "rows": [
+                      [
+                        "window",
+                        "The global browser execution context",
+                        "window.location, window.navigator, window.localStorage, window.document"
+                      ],
+                      [
+                        "document",
+                        "The root object of the loaded web page",
+                        "document.documentElement (<html>), document.head, document.body"
+                      ],
+                      [
+                        "DOM Nodes",
+                        "Every structural part of the tree",
+                        "Element nodes (type 1), Text nodes (type 3), Comment nodes (type 8)"
+                      ]
+                    ]
+                  }
+                },
+                {
+                  "title": "2. Traversing the DOM Tree",
+                  "description": "Moving across connected nodes without querying:",
+                  "items": [
+                    {
+                      "term": "parentNode / parentElement",
+                      "meaning": "Accesses the parent node or enclosing element of the current node",
+                      "example": "const card = button.parentElement;"
+                    },
+                    {
+                      "term": "children vs childNodes",
+                      "meaning": "`children` returns ONLY Element nodes; `childNodes` includes whitespace text nodes and comments",
+                      "example": "list.children.length; // Count of child <li> tags only"
+                    },
+                    {
+                      "term": "nextElementSibling / previousElementSibling",
+                      "meaning": "Navigates directly to the adjacent sibling Element node",
+                      "example": "const nextItem = currentItem.nextElementSibling;"
+                    }
+                  ]
+                }
+              ],
+              "practice": [
+                {
+                  "question": "What is the primary difference between `element.children` and `element.childNodes`?",
+                  "options": [
+                    "`children` contains only Element nodes; `childNodes` includes text nodes (whitespace) and comments",
+                    "`childNodes` works only on tables",
+                    "`children` is deprecated in modern HTML5",
+                    "There is no difference"
+                  ],
+                  "answer": "`children` contains only Element nodes; `childNodes` includes text nodes (whitespace) and comments",
+                  "explanation": "`children` returns an HTMLCollection containing strictly Element nodes, filtering out blank whitespace text nodes that `childNodes` includes."
+                },
+                {
+                  "question": "Which global object represents the browser window and hosts all global variables in client-side JavaScript?",
+                  "options": [
+                    "globalThis / window",
+                    "process",
+                    "document",
+                    "navigator"
+                  ],
+                  "answer": "globalThis / window",
+                  "explanation": "In web browsers, `window` (accessible universally as `globalThis`) represents the top-level global environment."
+                },
+                {
+                  "question": "Is the DOM an intrinsic part of the core JavaScript ECMAScript language specification?",
+                  "options": [
+                    "Yes, it is defined directly in the ECMAScript standard",
+                    "No, the DOM is a Web API provided by browser engines (defined by W3C/WHATWG)",
+                    "Yes, it is identical in Node.js server environments",
+                    "Only in ES6 and above"
+                  ],
+                  "answer": "No, the DOM is a Web API provided by browser engines (defined by W3C/WHATWG)",
+                  "explanation": "The DOM is a browser Web API specified by the WHATWG standard; JavaScript is the programming language that interfaces with it."
+                }
+              ]
+            }
+          },
+          {
+            "id": "js-ch7-l20",
+            "title": "Lesson 20: Modern Element Selection: querySelector & querySelectorAll",
+            "description": "Targeting elements with CSS selectors, traversing NodeLists, and avoiding null reference errors.",
+            "content": {
+              "overview": "Before you can manipulate a webpage, you must target and select the appropriate DOM elements. In this lesson based on Chapter 9 of 'JavaScript from Beginner to Professional', you will master the modern element query methods: 'document.querySelector' and 'document.querySelectorAll', compare them to legacy methods ('getElementById', 'getElementsByClassName'), and understand NodeLists versus live HTMLCollections.",
+              "canDo": "Can target any element using standard CSS selectors (`querySelector`), retrieve multiple elements (`querySelectorAll`), and iterate over selected collections safely.",
+              "teacherNote": "`querySelector` returns the FIRST matching Element node, or `null` if none match. `querySelectorAll` returns a static `NodeList` containing all matches. Always check if the returned element exists before attempting to read its properties!",
+              "sections": [
+                {
+                  "title": "1. DOM Selector Methods Comparison",
+                  "description": "Targeting elements across the document:",
+                  "table": {
+                    "headers": [
+                      "Method",
+                      "Selector Syntax",
+                      "Return Value",
+                      "Live or Static?"
+                    ],
+                    "rows": [
+                      [
+                        "getElementById(id)",
+                        "document.getElementById('header')",
+                        "Single matching Element or null",
+                        "Direct reference"
+                      ],
+                      [
+                        "querySelector(cssSelector)",
+                        "document.querySelector('.card > p.lead')",
+                        "First matching Element or null",
+                        "Direct reference"
+                      ],
+                      [
+                        "querySelectorAll(cssSelector)",
+                        "document.querySelectorAll('.btn-primary')",
+                        "NodeList of matching Elements",
+                        "Static (Snapshot of the DOM at query time)"
+                      ],
+                      [
+                        "getElementsByClassName(name)",
+                        "document.getElementsByClassName('active')",
+                        "HTMLCollection of matching Elements",
+                        "Live (Automatically updates if DOM changes!)"
+                      ]
+                    ]
+                  }
+                }
+              ],
+              "practice": [
+                {
+                  "question": "What does `document.querySelector('.btn')` return if there are five buttons with class `btn` on the page?",
+                  "options": [
+                    "An array containing all five buttons",
+                    "Only the first button matching the selector",
+                    "null",
+                    "A NodeList"
+                  ],
+                  "answer": "Only the first button matching the selector",
+                  "explanation": "`querySelector` terminates as soon as it discovers the first matching element in document order."
+                },
+                {
+                  "question": "What does `document.querySelector('#non-existent-id')` return if no matching element exists?",
+                  "options": [
+                    "undefined",
+                    "null",
+                    "false",
+                    "Empty NodeList"
+                  ],
+                  "answer": "null",
+                  "explanation": "`querySelector` and `getElementById` return `null` when no element matches the query."
+                },
+                {
+                  "question": "Can you call `.forEach()` directly on the result of `document.querySelectorAll()` in modern browsers?",
+                  "options": [
+                    "Yes, modern NodeList supports forEach directly",
+                    "No, you must always convert it to an array with Array.from() first",
+                    "Only in Internet Explorer",
+                    "Only if the NodeList contains fewer than 10 elements"
+                  ],
+                  "answer": "Yes, modern NodeList supports forEach directly",
+                  "explanation": "`NodeList.prototype.forEach()` is supported in all modern browsers, allowing direct iteration."
+                }
+              ]
+            }
+          },
+          {
+            "id": "js-ch7-l21",
+            "title": "Lesson 21: Modifying Content, Attributes, Classes & Styles",
+            "description": "Safe text injection with textContent, the classList API, inline styles, and createElement.",
+            "content": {
+              "overview": "Dynamic web applications require changing text, injecting HTML structures, toggling CSS classes, and modifying element attributes in response to user actions. In this lesson based on Chapter 10 of 'JavaScript from Beginner to Professional', you will master 'textContent', 'innerHTML', the 'classList' API, modifying attributes, and programmatically creating elements with 'createElement' and 'appendChild'.",
+              "canDo": "Can modify text safely without XSS vulnerabilities, manage CSS classes dynamically with `classList.toggle()`, update HTML attributes, and build new DOM nodes from scratch.",
+              "teacherNote": "Never use `innerHTML` when displaying untrusted user input! Doing so creates severe Cross-Site Scripting (XSS) vulnerabilities where malicious `<script>` or `<img onerror=...>` tags can execute. Use `textContent` for plain text injection.",
+              "sections": [
+                {
+                  "title": "1. Modifying Text & Content: textContent vs innerHTML",
+                  "description": "Safely writing to DOM nodes:",
+                  "table": {
+                    "headers": [
+                      "Property",
+                      "Behavior",
+                      "Security / Performance",
+                      "Best Used For"
+                    ],
+                    "rows": [
+                      [
+                        "textContent",
+                        "Inserts pure text; automatically escapes all HTML tags",
+                        "100% Safe from XSS; Fast",
+                        "User input, labels, counts, titles"
+                      ],
+                      [
+                        "innerHTML",
+                        "Parses string as HTML and constructs child DOM nodes",
+                        "Vulnerable to XSS if user input is unescaped",
+                        "Trusted HTML markup templates"
+                      ]
+                    ]
+                  }
+                },
+                {
+                  "title": "2. The classList API & Dynamic Styles",
+                  "description": "Manipulating visual presentation through CSS classes:",
+                  "table": {
+                    "headers": [
+                      "Method",
+                      "Code Syntax",
+                      "Action"
+                    ],
+                    "rows": [
+                      [
+                        "classList.add()",
+                        "card.classList.add('highlight', 'active');",
+                        "Adds one or more class names"
+                      ],
+                      [
+                        "classList.remove()",
+                        "modal.classList.remove('open');",
+                        "Removes specified class names"
+                      ],
+                      [
+                        "classList.toggle()",
+                        "nav.classList.toggle('collapsed');",
+                        "Adds if absent, removes if present; returns boolean"
+                      ],
+                      [
+                        "classList.contains()",
+                        "if (btn.classList.contains('disabled'))",
+                        "Checks if element possesses the specified class"
+                      ],
+                      [
+                        "style property",
+                        "el.style.backgroundColor = '#f8fafc';",
+                        "Applies inline CSS (uses camelCase property names)"
+                      ]
+                    ]
+                  }
+                },
+                {
+                  "title": "3. Creating & Appending DOM Nodes",
+                  "description": "Constructing elements programmatically:",
+                  "items": [
+                    {
+                      "term": "document.createElement(tagName)",
+                      "meaning": "Creates a new element in memory (not yet attached to the visible document)",
+                      "example": "const newLi = document.createElement('li');"
+                    },
+                    {
+                      "term": "parent.appendChild(child) / parent.append(...nodes)",
+                      "meaning": "Mounts the constructed element into the visible DOM tree inside the parent container",
+                      "example": "list.appendChild(newLi);"
+                    },
+                    {
+                      "term": "node.remove()",
+                      "meaning": "Removes an element node directly from the DOM tree",
+                      "example": "oldCard.remove();"
+                    }
+                  ]
+                }
+              ],
+              "practice": [
+                {
+                  "question": "Why is `textContent` preferred over `innerHTML` when displaying user-entered comments or usernames?",
+                  "options": [
+                    "`textContent` is faster and prevents Cross-Site Scripting (XSS) attacks by escaping HTML tags",
+                    "`textContent` can display images while `innerHTML` cannot",
+                    "`innerHTML` is deprecated in HTML5",
+                    "`textContent` only works on `<input>` fields"
+                  ],
+                  "answer": "`textContent` is faster and prevents Cross-Site Scripting (XSS) attacks by escaping HTML tags",
+                  "explanation": "`textContent` treats input strictly as plain text, neutralising any injected HTML tags or malicious scripts."
+                },
+                {
+                  "question": "Which `classList` method adds a class if it is missing, or removes it if it is already present?",
+                  "options": [
+                    "classList.switch()",
+                    "classList.toggle()",
+                    "classList.flip()",
+                    "classList.replace()"
+                  ],
+                  "answer": "classList.toggle()",
+                  "explanation": "`classList.toggle('className')` flips the presence of a class and returns a boolean indicating whether the class is now active."
+                },
+                {
+                  "question": "How do you set an inline style for `background-color` in JavaScript?",
+                  "options": [
+                    "el.style['background-color'] or el.style.backgroundColor",
+                    "el.css.background-color",
+                    "el.style(background-color)",
+                    "el.setAttribute('css', 'background-color')"
+                  ],
+                  "answer": "el.style['background-color'] or el.style.backgroundColor",
+                  "explanation": "The `style` object uses camelCase properties (`backgroundColor`) or bracket notation with kebab-case."
+                }
+              ]
+            }
+          }
+        ]
+      },
+      {
+        "id": "js-ch8",
+        "title": "Chapter 8: Interactive Content & Event-Driven Programming",
+        "lessons": [
+          {
+            "id": "js-ch8-l22",
+            "title": "Lesson 22: Event Listeners with addEventListener & Cleanup",
+            "description": "Registering asynchronous event handlers, passing options ({ once: true }), and removing listeners.",
+            "content": {
+              "overview": "Web applications are asynchronous and event-driven. Rather than executing sequentially from top to bottom, code responds to user interactions like clicks, keystrokes, and scrolls. In this lesson based on Chapter 11 of 'JavaScript from Beginner to Professional', you will master attaching event listeners using 'addEventListener', managing callback references, and cleanly tearing down listeners with 'removeEventListener'.",
+              "canDo": "Can attach multiple event listeners to elements using `addEventListener`, prevent memory leaks by removing listeners, and configure handler options.",
+              "teacherNote": "Never use inline HTML event attributes like `<button onclick='doSomething()'>`! Inline handlers mix structural markup with logic, expose global scope, and prevent attaching multiple handlers. Always use `element.addEventListener('click', handler)`.",
+              "sections": [
+                {
+                  "title": "1. The addEventListener Architecture",
+                  "description": "Registering handlers for asynchronous user interactions:",
+                  "table": {
+                    "headers": [
+                      "Method Signature",
+                      "Parameter",
+                      "Description",
+                      "Best Practice"
+                    ],
+                    "rows": [
+                      [
+                        "target.addEventListener(type, listener, options)",
+                        "type (string)",
+                        "The name of the event (e.g., 'click', 'keydown', 'submit')",
+                        "All event names are lowercase"
+                      ],
+                      [
+                        "target.addEventListener(type, listener, options)",
+                        "listener (function)",
+                        "Callback function executed when event triggers",
+                        "Use named functions if you plan to remove the listener later!"
+                      ],
+                      [
+                        "target.addEventListener(type, listener, options)",
+                        "options (object/bool)",
+                        "Optional settings (e.g. `{ once: true }` or capture phase)",
+                        "Use `{ once: true }` for single-use actions like one-time submit"
+                      ]
+                    ]
+                  }
+                },
+                {
+                  "title": "2. Removing Event Listeners",
+                  "description": "Preventing memory leaks and unexpected behavior:",
+                  "items": [
+                    {
+                      "term": "removeEventListener Requirement",
+                      "meaning": "To remove an event listener, you MUST pass the exact same function reference that was added",
+                      "example": "function handleClick() { ... }\nbtn.addEventListener('click', handleClick);\nbtn.removeEventListener('click', handleClick);"
+                    },
+                    {
+                      "term": "Anonymous Function Trap",
+                      "meaning": "Anonymous arrow functions `btn.addEventListener('click', () => {})` CANNOT be removed because their reference cannot be retrieved!",
+                      "example": "// Cannot remove anonymous listener!"
+                    }
+                  ]
+                }
+              ],
+              "practice": [
+                {
+                  "question": "Why can't you remove an event listener added like this: `btn.addEventListener('click', () => console.log('Hi'));`?",
+                  "options": [
+                    "The arrow function creates a unique anonymous reference that cannot be matched by `removeEventListener`",
+                    "Arrow functions are permanent in browsers",
+                    "`removeEventListener` only works with mouse events",
+                    "Browsers do not support removing click listeners"
+                  ],
+                  "answer": "The arrow function creates a unique anonymous reference that cannot be matched by `removeEventListener`",
+                  "explanation": "`removeEventListener` requires the exact same function reference in memory. An inline anonymous function cannot be referenced again."
+                },
+                {
+                  "question": "How can you configure an event listener to trigger only once and automatically remove itself?",
+                  "options": [
+                    "Pass `{ once: true }` in the options object",
+                    "Use `btn.addSingleListener()`",
+                    "Call `event.stop()` in the function",
+                    "Declare the callback with `const`"
+                  ],
+                  "answer": "Pass `{ once: true }` in the options object",
+                  "explanation": "Passing `{ once: true }` as the third parameter instructs the browser to automatically invoke `removeEventListener` immediately after the first execution."
+                },
+                {
+                  "question": "Which of the following represents the modern best practice for event handling?",
+                  "options": [
+                    "`button.onclick = handleClick;`",
+                    "`<button onclick='handleClick()'>` in HTML",
+                    "`button.addEventListener('click', handleClick);`",
+                    "`button.trigger('click');`"
+                  ],
+                  "answer": "`button.addEventListener('click', handleClick);`",
+                  "explanation": "`addEventListener` maintains clean separation of concerns and allows multiple independent handlers to listen to the same event."
+                }
+              ]
+            }
+          },
+          {
+            "id": "js-ch8-l23",
+            "title": "Lesson 23: Mouse, Keyboard & Form Submission Events",
+            "description": "Intercepting form submissions with preventDefault, inspecting e.key, and real-time input events.",
+            "content": {
+              "overview": "Capturing keyboard input, managing mouse gestures, and controlling HTML form submissions form the backbone of interactive user interfaces. In this lesson based on Chapter 11 of 'JavaScript from Beginner to Professional', you will master the Event object (`e`), intercepting form submissions with `e.preventDefault()`, and distinguishing between 'input' and 'change' events.",
+              "canDo": "Can intercept form submissions without page reloads, inspect keyboard keycodes via `e.key`, and track input field updates in real-time.",
+              "teacherNote": "When a form is submitted, the browser's default behavior is to reload the page or navigate to the form's `action` URL. In modern single-page applications (SPAs), always call `e.preventDefault()` inside your `submit` handler to prevent the page reload!",
+              "sections": [
+                {
+                  "title": "1. Core DOM Event Categories",
+                  "description": "The most frequent user interactions in web applications:",
+                  "table": {
+                    "headers": [
+                      "Category",
+                      "Event Type",
+                      "Fires When",
+                      "Key Event Properties"
+                    ],
+                    "rows": [
+                      [
+                        "Form",
+                        "submit",
+                        "Form submit button is clicked or Enter key is pressed",
+                        "`e.preventDefault()` prevents browser reload"
+                      ],
+                      [
+                        "Form",
+                        "input",
+                        "Value of an `<input>`, `<textarea>`, or `<select>` changes immediately",
+                        "`e.target.value` contains the live text"
+                      ],
+                      [
+                        "Form",
+                        "change",
+                        "Input value changes AND loses focus (blur)",
+                        "`e.target.value` contains the finalized text"
+                      ],
+                      [
+                        "Keyboard",
+                        "keydown / keyup",
+                        "User presses or releases a physical key",
+                        "`e.key` ('Enter', 'Escape', 'a') and `e.code`"
+                      ],
+                      [
+                        "Mouse",
+                        "click / dblclick",
+                        "Pointer button is pressed and released over an element",
+                        "`e.clientX`, `e.clientY`, `e.button`"
+                      ]
+                    ]
+                  }
+                },
+                {
+                  "title": "2. The Event Object & preventDefault()",
+                  "description": "Controlling default browser behaviors:",
+                  "items": [
+                    {
+                      "term": "event.preventDefault()",
+                      "meaning": "Cancels the browser's built-in default action (e.g. following links, reloading on form submit)",
+                      "example": "form.addEventListener('submit', (e) => {\n  e.preventDefault();\n  // Handle submit via JavaScript fetch!\n});"
+                    },
+                    {
+                      "term": "event.target",
+                      "meaning": "Reference to the exact DOM element that originally dispatched the event",
+                      "example": "console.log('Clicked element:', e.target);"
+                    }
+                  ]
+                }
+              ],
+              "practice": [
+                {
+                  "question": "What is the primary purpose of calling `e.preventDefault()` in a form's `submit` event handler?",
+                  "options": [
+                    "To stop the browser from refreshing the entire page",
+                    "To reset all form inputs to empty strings",
+                    "To validate email addresses automatically",
+                    "To disable the submit button"
+                  ],
+                  "answer": "To stop the browser from refreshing the entire page",
+                  "explanation": "HTML forms naturally reload the page on submit; `e.preventDefault()` cancels this default navigation so JavaScript can process the data."
+                },
+                {
+                  "question": "Which event property provides the human-readable character of a pressed keyboard key (e.g. 'Enter', 'ArrowUp', 'a')?",
+                  "options": [
+                    "e.key",
+                    "e.keyCode",
+                    "e.charCode",
+                    "e.ascii"
+                  ],
+                  "answer": "e.key",
+                  "explanation": "`e.key` is the modern standard property that returns the string representation of the pressed key."
+                },
+                {
+                  "question": "How does the `input` event differ from the `change` event on a text field?",
+                  "options": [
+                    "`input` fires on every keystroke in real-time; `change` fires only after the input loses focus",
+                    "`input` only works on numbers",
+                    "`change` fires on every keystroke",
+                    "They are identical"
+                  ],
+                  "answer": "`input` fires on every keystroke in real-time; `change` fires only after the input loses focus",
+                  "explanation": "`input` triggers immediately upon any character change, whereas `change` waits until focus leaves the input field."
+                }
+              ]
+            }
+          },
+          {
+            "id": "js-ch8-l24",
+            "title": "Lesson 24: Event Propagation: Bubbling, Capturing & Delegation",
+            "description": "Understanding the 3 phases of event flow, stopping bubbling, and the high-performance Event Delegation pattern.",
+            "content": {
+              "overview": "When an event occurs on a deeply nested element, it does not happen in isolation—it travels through the DOM tree in phases. In this lesson based on Chapter 11 of 'JavaScript from Beginner to Professional', you will master the 3 phases of event propagation (Capturing, Target, and Bubbling), halting propagation with 'e.stopPropagation()', and implementing Event Delegation.",
+              "canDo": "Can predict event propagation paths, stop event bubbling, and implement the high-performance Event Delegation pattern on parent containers.",
+              "teacherNote": "Event Delegation is one of the most important performance patterns in frontend development: Instead of attaching 1,000 event listeners to 1,000 list items (`<li>`), attach a SINGLE event listener to their parent container (`<ul>`) and check `e.target`! This consumes minimal memory and automatically handles dynamically added child elements.",
+              "sections": [
+                {
+                  "title": "1. The 3 Phases of Event Propagation",
+                  "description": "How events travel through the DOM hierarchy:",
+                  "table": {
+                    "headers": [
+                      "Phase",
+                      "Direction",
+                      "Description",
+                      "Standard Behavior"
+                    ],
+                    "rows": [
+                      [
+                        "1. Capturing Phase",
+                        "Downwards (Window -> Target)",
+                        "Event trickles down from the root window through ancestors to the target",
+                        "Skipped unless `{ capture: true }` is explicitly set"
+                      ],
+                      [
+                        "2. Target Phase",
+                        "At the Target",
+                        "Event arrives at the exact element where the user initiated the interaction",
+                        "Fires handlers registered directly on the target"
+                      ],
+                      [
+                        "3. Bubbling Phase",
+                        "Upwards (Target -> Window)",
+                        "Event bubbles upwards through all parent ancestors back to root",
+                        "Default phase where almost all handlers execute"
+                      ]
+                    ]
+                  }
+                },
+                {
+                  "title": "2. The Event Delegation Pattern",
+                  "description": "Handling events on many children using a single parent listener:",
+                  "items": [
+                    {
+                      "term": "Event Delegation",
+                      "meaning": "Leveraging event bubbling by listening on a common parent and using `e.target.closest()` to identify the clicked child",
+                      "example": "list.addEventListener('click', (e) => {\n  const button = e.target.closest('.delete-btn');\n  if (button) removeItem(button.dataset.id);\n});"
+                    },
+                    {
+                      "term": "e.stopPropagation()",
+                      "meaning": "Prevents the event from traveling further up or down the DOM propagation chain",
+                      "example": "modalBox.addEventListener('click', e => e.stopPropagation()); // Prevents closing backdrop"
+                    }
+                  ]
+                }
+              ],
+              "practice": [
+                {
+                  "question": "In what direction does an event travel during the default Bubbling phase?",
+                  "options": [
+                    "From the target element UPWARDS through its ancestors to the window",
+                    "From the window DOWNWARDS to the target element",
+                    "Horizontally across sibling elements only",
+                    "It stays confined to the target element without moving"
+                  ],
+                  "answer": "From the target element UPWARDS through its ancestors to the window",
+                  "explanation": "During the bubbling phase, the event bubbles upward from the target element through all parent nodes to `document` and `window`."
+                },
+                {
+                  "question": "What is the primary advantage of using Event Delegation on a parent `<ul>` instead of adding listeners to each `<li>`?",
+                  "options": [
+                    "Better memory performance and automatic support for dynamically added list items",
+                    "It makes CSS transitions faster",
+                    "It prevents all mouse clicks",
+                    "It converts list items to numbers"
+                  ],
+                  "answer": "Better memory performance and automatic support for dynamically added list items",
+                  "explanation": "A single event listener uses less memory and automatically catches events from child elements added to the DOM in the future."
+                },
+                {
+                  "question": "Which method stops an event from bubbling further up the DOM hierarchy?",
+                  "options": [
+                    "e.stopPropagation()",
+                    "e.preventDefault()",
+                    "e.halt()",
+                    "e.freeze()"
+                  ],
+                  "answer": "e.stopPropagation()",
+                  "explanation": "`e.stopPropagation()` halts the propagation of the event through the capture and bubble phases."
+                }
+              ]
+            }
+          }
+        ]
+      },
+      {
+        "id": "js-ch9",
+        "title": "Chapter 9: Concurrency & Asynchronous JavaScript",
+        "lessons": [
+          {
+            "id": "js-ch9-l25",
+            "title": "Lesson 25: The Call Stack, Web APIs, Task Queues & The Event Loop",
+            "description": "Visualizing single-threaded asynchronous execution, microtasks vs macrotasks, and non-blocking I/O.",
+            "content": {
+              "overview": "JavaScript is single-threaded, meaning it can only execute one piece of code at any given time. How then can a web browser handle user input, run timers, and make HTTP requests without freezing the screen? In this lesson based on Chapter 13 of 'JavaScript from Beginner to Professional', you will demystify the JavaScript concurrency model: the Call Stack, Web APIs, the Task Queue (Macrotasks), the Microtask Queue (Promises), and the Event Loop.",
+              "canDo": "Can trace execution order across synchronous and asynchronous code, explain why JavaScript remains responsive, and avoid blocking the main UI thread.",
+              "teacherNote": "Remember the event loop processing priority: The call stack runs all synchronous code first. Once the stack is empty, the Event Loop drains the ENTIRE Microtask Queue (Promises, `queueMicrotask`) before picking up a single task from the Macrotask Queue (`setTimeout`, `setInterval`). This is why `Promise.resolve().then(...)` runs BEFORE `setTimeout(..., 0)`!",
+              "sections": [
+                {
+                  "title": "1. The Anatomy of the Event Loop",
+                  "description": "How single-threaded JavaScript achieves non-blocking concurrency:",
+                  "table": {
+                    "headers": [
+                      "Component",
+                      "Location",
+                      "Role",
+                      "Example"
+                    ],
+                    "rows": [
+                      [
+                        "Call Stack",
+                        "JS Engine (V8, SpiderMonkey)",
+                        "Executes functions in LIFO (Last In, First Out) order",
+                        "Active function execution frame"
+                      ],
+                      [
+                        "Web APIs",
+                        "Browser C++ Environment",
+                        "Handles timers, network requests, DOM events outside the JS thread",
+                        "`setTimeout()`, `fetch()`, `addEventListener()`"
+                      ],
+                      [
+                        "Microtask Queue",
+                        "Job Queue",
+                        "High-priority queue processed immediately after stack clears",
+                        "`Promise.then()`, `async/await` resumption"
+                      ],
+                      [
+                        "Macrotask Queue",
+                        "Task Queue",
+                        "Standard queue for timers and I/O callbacks",
+                        "`setTimeout()`, `setInterval()`, `setImmediate()`"
+                      ],
+                      [
+                        "Event Loop",
+                        "Orchestrator",
+                        "Continuously checks if stack is clear; pumps tasks into the stack",
+                        "The heartbeat of the browser runtime"
+                      ]
+                    ]
+                  }
+                }
+              ],
+              "practice": [
+                {
+                  "question": "In what order will the numbers log: `console.log(1); setTimeout(() => console.log(2), 0); Promise.resolve().then(() => console.log(3)); console.log(4);`?",
+                  "options": [
+                    "1, 4, 3, 2",
+                    "1, 2, 3, 4",
+                    "1, 4, 2, 3",
+                    "3, 1, 4, 2"
+                  ],
+                  "answer": "1, 4, 3, 2",
+                  "explanation": "1 and 4 are synchronous on the call stack. 3 is a microtask (Promise) and runs immediately after the stack clears. 2 is a macrotask (setTimeout) and runs last."
+                },
+                {
+                  "question": "Is JavaScript a multi-threaded programming language in standard browser execution?",
+                  "options": [
+                    "Yes, each function runs on a separate CPU thread",
+                    "No, JavaScript has a single call stack and executes on a single main thread",
+                    "Yes, except in Internet Explorer",
+                    "Only when using ES6 classes"
+                  ],
+                  "answer": "No, JavaScript has a single call stack and executes on a single main thread",
+                  "explanation": "JavaScript is fundamentally single-threaded; asynchronous operations are offloaded to browser Web APIs, leaving the main thread unblocked."
+                },
+                {
+                  "question": "Which queue has higher priority when the call stack becomes empty?",
+                  "options": [
+                    "Microtask Queue (Promises)",
+                    "Macrotask Queue (setTimeout/setInterval)",
+                    "Both have equal priority and alternate evenly",
+                    "DOM Click Event Queue"
+                  ],
+                  "answer": "Microtask Queue (Promises)",
+                  "explanation": "The event loop processes all pending microtasks to completion before picking up the next macrotask from the task queue."
+                }
+              ]
+            }
+          },
+          {
+            "id": "js-ch9-l26",
+            "title": "Lesson 26: Promises: States, Handlers & Chaining",
+            "description": "Managing asynchronous lifecycles with Promises, .then() chaining, .catch() errors, and .finally().",
+            "content": {
+              "overview": "Before modern Promises, asynchronous JavaScript relied on nested callbacks, leading to unreadable, brittle structures known as 'Callback Hell' or the 'Pyramid of Doom'. In this lesson based on Chapter 13 of 'JavaScript from Beginner to Professional', you will learn how Promises represent future completion, transition between states (Pending, Fulfilled, Rejected), and chain operations using '.then()', '.catch()', and '.finally()'.",
+              "canDo": "Can create new Promises using `new Promise((resolve, reject) => {})`, chain asynchronous operations with `.then()`, catch errors with `.catch()`, and run cleanup logic with `.finally()`.",
+              "teacherNote": "Always return a value or another Promise inside a `.then()` callback! If you return a Promise from within a `.then()`, the next `.then()` in the chain automatically waits for it to resolve, flattening complex asynchronous pipelines into clean sequential code.",
+              "sections": [
+                {
+                  "title": "1. The Three States of a Promise",
+                  "description": "The lifecycle of an asynchronous operation:",
+                  "table": {
+                    "headers": [
+                      "State",
+                      "Description",
+                      "Settled?",
+                      "Next Handler Invoked"
+                    ],
+                    "rows": [
+                      [
+                        "Pending",
+                        "Initial state; the asynchronous operation is still actively running",
+                        "No",
+                        "None yet (Waiting)"
+                      ],
+                      [
+                        "Fulfilled",
+                        "The operation completed successfully (`resolve(value)`)",
+                        "Yes (Immutable)",
+                        "`.then(value => ...)`"
+                      ],
+                      [
+                        "Rejected",
+                        "The operation failed with an error (`reject(error)`)",
+                        "Yes (Immutable)",
+                        "`.catch(error => ...)`"
+                      ]
+                    ]
+                  }
+                },
+                {
+                  "title": "2. Promise Chaining & Error Propagation",
+                  "description": "Sequencing asynchronous steps and centralized error handling:",
+                  "items": [
+                    {
+                      "term": "Promise Chaining",
+                      "meaning": "Each call to `.then()` returns a brand new Promise, allowing linear sequential chaining",
+                      "example": "fetchUser(id)\n  .then(user => fetchOrders(user.id))\n  .then(orders => display(orders))\n  .catch(err => showError(err));"
+                    },
+                    {
+                      "term": "Centralized Error Catching",
+                      "meaning": "A single `.catch()` at the end of a chain catches any rejection that occurred in ANY prior step",
+                      "example": "`.catch(err => console.error('Failed somewhere in pipeline:', err))`"
+                    },
+                    {
+                      "term": ".finally()",
+                      "meaning": "Executes regardless of whether the Promise was fulfilled or rejected (perfect for hiding loading spinners)",
+                      "example": "`.finally(() => setLoading(false))`"
+                    }
+                  ]
+                }
+              ],
+              "practice": [
+                {
+                  "question": "What are the three possible states of a JavaScript Promise?",
+                  "options": [
+                    "Starting, Working, Done",
+                    "Pending, Fulfilled, Rejected",
+                    "Unsent, Opened, Completed",
+                    "Waiting, Success, Error"
+                  ],
+                  "answer": "Pending, Fulfilled, Rejected",
+                  "explanation": "A Promise begins in the `pending` state and transitions once into either `fulfilled` (success) or `rejected` (failure)."
+                },
+                {
+                  "question": "What does the `.finally()` handler do in a Promise chain?",
+                  "options": [
+                    "It only runs if an error occurred",
+                    "It executes regardless of whether the promise was fulfilled or rejected",
+                    "It cancels the promise execution",
+                    "It forces the promise to return a string"
+                  ],
+                  "answer": "It executes regardless of whether the promise was fulfilled or rejected",
+                  "explanation": "`.finally()` is guaranteed to execute at the conclusion of a promise chain, making it ideal for cleanup actions like stopping loaders."
+                },
+                {
+                  "question": "How do Promises solve 'Callback Hell'?",
+                  "options": [
+                    "By running code synchronously",
+                    "By allowing asynchronous steps to be chained linearly with `.then()` instead of nesting deeply inside each other",
+                    "By removing the need for error handling",
+                    "By increasing CPU speed"
+                  ],
+                  "answer": "By allowing asynchronous steps to be chained linearly with `.then()` instead of nesting deeply inside each other",
+                  "explanation": "Promises flatten nested callback pyramids into readable, top-to-bottom chainable pipelines with unified error catching."
+                }
+              ]
+            }
+          },
+          {
+            "id": "js-ch9-l27",
+            "title": "Lesson 27: Modern async/await & Fetching Remote JSON Data",
+            "description": "Syntactic async/await, error handling with try/catch, and making HTTP requests using fetch().",
+            "content": {
+              "overview": "Modern JavaScript revolutionized asynchronous development with 'async' and 'await' (ES2017), allowing asynchronous code to be read and written just like synchronous code. In this lesson based on Chapter 13 of 'JavaScript from Beginner to Professional', you will master declaring async functions, pausing execution with 'await', handling errors with 'try...catch', and fetching live JSON data from web APIs using 'fetch()'.",
+              "canDo": "Can write clean asynchronous functions with `async/await`, make HTTP GET and POST requests using `fetch()`, parse JSON responses, and catch network failures.",
+              "teacherNote": "Remember that `fetch()` does NOT reject on HTTP error statuses like 404 Not Found or 500 Server Error! `fetch()` only rejects if there is a network failure or DNS error. Always check `if (!response.ok)` to handle HTTP errors gracefully!",
+              "sections": [
+                {
+                  "title": "1. The async / await Syntax",
+                  "description": "Syntactic sugar built over native JavaScript Promises:",
+                  "table": {
+                    "headers": [
+                      "Keyword",
+                      "Where Used",
+                      "Behavior / Return Value"
+                    ],
+                    "rows": [
+                      [
+                        "async",
+                        "Before function declaration (`async function()`, `async () =>`)",
+                        "Wraps the function's return value in a Promise automatically"
+                      ],
+                      [
+                        "await",
+                        "Inside an `async` function, before a Promise expression",
+                        "Pauses function execution until the Promise settles; unpacks resolved value"
+                      ],
+                      [
+                        "try / catch",
+                        "Surrounding `await` statements",
+                        "Catches rejected Promises using standard synchronous error handling syntax"
+                      ]
+                    ]
+                  }
+                },
+                {
+                  "title": "2. The Modern fetch() API Pattern",
+                  "description": "Making network requests and parsing JSON:",
+                  "items": [
+                    {
+                      "term": "Two-Step Fetch Pattern",
+                      "meaning": "1st step: await fetch(url) for HTTP headers; 2nd step: await res.json() to parse the JSON body",
+                      "example": "async function loadData() {\n  const res = await fetch('https://api.example.com/users');\n  if (!res.ok) throw new Error(`HTTP error: ${res.status}`);\n  const data = await res.json();\n  return data;\n}"
+                    },
+                    {
+                      "term": "Sending POST Requests with Headers",
+                      "meaning": "Configuring request method, headers, and stringified JSON body",
+                      "example": "await fetch('/api/users', {\n  method: 'POST',\n  headers: { 'Content-Type': 'application/json' },\n  body: JSON.stringify({ name: 'Alex' })\n});"
+                    }
+                  ]
+                }
+              ],
+              "practice": [
+                {
+                  "question": "Does `fetch()` reject its Promise if the server responds with a 404 Not Found status code?",
+                  "options": [
+                    "Yes, all 4xx and 5xx statuses reject automatically",
+                    "No, `fetch()` only rejects on network failures; you must inspect `response.ok` or `response.status`",
+                    "Yes, but only in strict mode",
+                    "Only in Node.js"
+                  ],
+                  "answer": "No, `fetch()` only rejects on network failures; you must inspect `response.ok` or `response.status`",
+                  "explanation": "The Promise from `fetch()` resolves successfully as long as a response was received. Developers must manually check `if (!res.ok)` to handle HTTP errors."
+                },
+                {
+                  "question": "What does an `async` function always return?",
+                  "options": [
+                    "A Promise",
+                    "The raw unpacked value directly",
+                    "undefined",
+                    "A generator"
+                  ],
+                  "answer": "A Promise",
+                  "explanation": "Functions declared with `async` always return a Promise, automatically wrapping any non-Promise return value in `Promise.resolve()`."
+                },
+                {
+                  "question": "Where can the `await` keyword be placed in JavaScript?",
+                  "options": [
+                    "Anywhere in any file",
+                    "Inside `async` functions (or at top-level in ES modules)",
+                    "Only inside class constructors",
+                    "Only inside if-statements"
+                  ],
+                  "answer": "Inside `async` functions (or at top-level in ES modules)",
+                  "explanation": "The `await` keyword pauses execution and is only permitted inside `async` functions or top-level ES module scripts."
+                }
+              ]
+            }
+          }
+        ]
+      },
+      {
+        "id": "js-ch10",
+        "title": "Chapter 10: Client Storage, Error Handling & Modern Tooling",
+        "lessons": [
+          {
+            "id": "js-ch10-l28",
+            "title": "Lesson 28: JSON Serialization: JSON.stringify() and JSON.parse()",
+            "description": "Serializing in-memory objects to portable JSON strings, safe parsing, and pretty-printing.",
+            "content": {
+              "overview": "JSON (JavaScript Object Notation) is the lightweight, universal data interchange standard powering modern web APIs and databases. In this lesson based on Chapter 12 of 'JavaScript from Beginner to Professional', you will master converting JavaScript in-memory objects to textual JSON with 'JSON.stringify()', parsing JSON back into live objects with 'JSON.parse()', and handling circular references and formatting.",
+              "canDo": "Can serialize JavaScript data structures to JSON strings, parse incoming JSON payloads safely, and use indentation parameters for human-readable output.",
+              "teacherNote": "JSON is strictly a data-only format! JSON cannot store JavaScript functions, `undefined`, `Symbol` keys, or DOM nodes. Passing functions or undefined into `JSON.stringify()` causes them to be silently omitted from objects or converted to `null` in arrays.",
+              "sections": [
+                {
+                  "title": "1. The JSON Object: stringify() and parse()",
+                  "description": "Transforming between in-memory objects and portable strings:",
+                  "table": {
+                    "headers": [
+                      "Method",
+                      "Signature",
+                      "Input",
+                      "Output",
+                      "Throws Error?"
+                    ],
+                    "rows": [
+                      [
+                        "JSON.stringify()",
+                        "JSON.stringify(value, replacer, space)",
+                        "JavaScript Object, Array, or primitive",
+                        "JSON-formatted string",
+                        "Throws TypeError on circular references"
+                      ],
+                      [
+                        "JSON.parse()",
+                        "JSON.parse(text, reviver)",
+                        "Valid JSON string",
+                        "JavaScript Object, Array, or primitive",
+                        "Throws SyntaxError if JSON string is malformed!"
+                      ]
+                    ]
+                  }
+                },
+                {
+                  "title": "2. Pretty-Printing & Safe Parsing",
+                  "description": "Best practices for working with JSON:",
+                  "items": [
+                    {
+                      "term": "Pretty-Printing Indentation",
+                      "meaning": "Pass the third argument to format JSON with clean indentation for debugging",
+                      "example": "JSON.stringify({ a: 1, b: 2 }, null, 2); // 2-space indented string"
+                    },
+                    {
+                      "term": "Always Wrap JSON.parse in try/catch",
+                      "meaning": "Malformed JSON throws an uncatchable fatal error unless wrapped in try/catch",
+                      "example": "try {\n  const data = JSON.parse(rawString);\n} catch (err) {\n  console.error('Invalid JSON payload:', err);\n}"
+                    }
+                  ]
+                }
+              ],
+              "practice": [
+                {
+                  "question": "What happens when you pass an object containing a function to `JSON.stringify({ name: 'Alex', greet: () => 'Hi' })`?",
+                  "options": [
+                    "The function is stringified into its source code",
+                    "The `greet` function property is silently omitted from the resulting JSON string",
+                    "It throws a TypeError",
+                    "It converts the function to 'function()'"
+                  ],
+                  "answer": "The `greet` function property is silently omitted from the resulting JSON string",
+                  "explanation": "JSON is a pure data format and does not support executable code. Functions and undefined values are stripped out during serialization."
+                },
+                {
+                  "question": "What happens if you pass an invalid JSON string like `'{ name: Alex }'` to `JSON.parse()`?",
+                  "options": [
+                    "It returns null",
+                    "It throws a SyntaxError",
+                    "It fixes the quotes automatically",
+                    "It returns an empty object"
+                  ],
+                  "answer": "It throws a SyntaxError",
+                  "explanation": "In JSON, all keys and string values must be enclosed in double quotes. Malformed JSON causes `JSON.parse()` to throw a SyntaxError immediately."
+                },
+                {
+                  "question": "How do you pretty-print a JSON string with 2-space indentation using `JSON.stringify`?",
+                  "options": [
+                    "JSON.stringify(obj, null, 2)",
+                    "JSON.stringify(obj, 2)",
+                    "JSON.stringify(obj, 'indent')",
+                    "JSON.format(obj, 2)"
+                  ],
+                  "answer": "JSON.stringify(obj, null, 2)",
+                  "explanation": "The third argument of `JSON.stringify(value, replacer, space)` controls whitespace indentation."
+                }
+              ]
+            }
+          },
+          {
+            "id": "js-ch10-l29",
+            "title": "Lesson 29: The Web Storage API: localStorage vs. sessionStorage",
+            "description": "Persisting user preferences across browser sessions, storage quotas, and JSON storage wrappers.",
+            "content": {
+              "overview": "Client-side web applications often need to persist user settings, auth tokens, themes, and shopping cart items across browser refreshes. In this lesson based on Chapter 12 of 'JavaScript from Beginner to Professional', you will master the Web Storage API, understanding the differences between persistent 'localStorage' and tab-scoped 'sessionStorage', quota limits, and combining storage with JSON serialization.",
+              "canDo": "Can store, retrieve, and remove data from `localStorage` and `sessionStorage`, store complex objects via JSON serialization, and clear browser caches safely.",
+              "teacherNote": "The Web Storage API only stores strings! If you attempt to store an object directly with `localStorage.setItem('user', { name: 'Alex' })`, it will coerce the object into the useless string `'[object Object]'`! Always use `JSON.stringify()` when saving, and `JSON.parse()` when reading.",
+              "sections": [
+                {
+                  "title": "1. localStorage vs. sessionStorage",
+                  "description": "Browser key-value storage comparison:",
+                  "table": {
+                    "headers": [
+                      "Feature",
+                      "localStorage",
+                      "sessionStorage"
+                    ],
+                    "rows": [
+                      [
+                        "Persistence",
+                        "Permanent; persists even after closing browser / restarting OS",
+                        "Ephemeral; cleared automatically when the specific browser tab is closed"
+                      ],
+                      [
+                        "Scope",
+                        "Shared across all tabs and windows of the same origin (protocol + domain + port)",
+                        "Isolated strictly to the single browser tab"
+                      ],
+                      [
+                        "Capacity",
+                        "~5MB per origin",
+                        "~5MB per origin"
+                      ],
+                      [
+                        "Data Format",
+                        "String keys and string values only",
+                        "String keys and string values only"
+                      ]
+                    ]
+                  }
+                },
+                {
+                  "title": "2. The 4 Essential Storage Methods",
+                  "description": "Standard API operations across both storage types:",
+                  "table": {
+                    "headers": [
+                      "Method",
+                      "Syntax Example",
+                      "Action"
+                    ],
+                    "rows": [
+                      [
+                        "setItem(key, value)",
+                        "localStorage.setItem('theme', 'dark');",
+                        "Saves or overwrites a key-value string pair"
+                      ],
+                      [
+                        "getItem(key)",
+                        "const theme = localStorage.getItem('theme');",
+                        "Returns the string value, or `null` if key does not exist"
+                      ],
+                      [
+                        "removeItem(key)",
+                        "localStorage.removeItem('theme');",
+                        "Deletes the specific key and its value"
+                      ],
+                      [
+                        "clear()",
+                        "localStorage.clear();",
+                        "Wipes out all stored data for the entire origin"
+                      ]
+                    ]
+                  }
+                }
+              ],
+              "practice": [
+                {
+                  "question": "What happens if you store an object without serialization like this: `localStorage.setItem('data', { id: 101 });`?",
+                  "options": [
+                    "It stores the object perfectly as a JavaScript object",
+                    "It coerces the object to the string `'[object Object]'`, losing the inner data",
+                    "It throws a TypeError",
+                    "It saves the object into sessionStorage instead"
+                  ],
+                  "answer": "It coerces the object to the string `'[object Object]'`, losing the inner data",
+                  "explanation": "Storage keys and values must be strings. JavaScript calls `.toString()` on objects, turning them into `'[object Object]'`. Use `JSON.stringify()` to preserve data."
+                },
+                {
+                  "question": "When is data in `sessionStorage` automatically cleared by the browser?",
+                  "options": [
+                    "Every 60 minutes",
+                    "When the user closes the browser tab or window",
+                    "When the page is refreshed",
+                    "Never; it is permanent"
+                  ],
+                  "answer": "When the user closes the browser tab or window",
+                  "explanation": "`sessionStorage` persists across page reloads within the same tab, but is completely purged once that tab is closed."
+                },
+                {
+                  "question": "What does `localStorage.getItem('non-existent-key')` return?",
+                  "options": [
+                    "undefined",
+                    "null",
+                    "'' (empty string)",
+                    "false"
+                  ],
+                  "answer": "null",
+                  "explanation": "When a requested key is not present in storage, `getItem()` returns `null`."
+                }
+              ]
+            }
+          },
+          {
+            "id": "js-ch10-l30",
+            "title": "Lesson 30: Robust Error Handling & Modern ES Modules",
+            "description": "try/catch/finally exception recovery, custom Error objects, and modular import/export architecture.",
+            "content": {
+              "overview": "Writing production-grade JavaScript requires anticipating failures, handling exceptions gracefully, and organizing code into modular files. In this capstone lesson based on Chapters 12 and 15 of 'JavaScript from Beginner to Professional', you will master the 'try...catch...finally' statement, throwing custom Error instances, and organizing modular applications using modern ES Modules ('export' and 'import').",
+              "canDo": "Can intercept runtime errors without crashing applications using `try/catch/finally`, construct custom error instances with `throw new Error()`, and organize multi-file codebases using ES module exports and imports.",
+              "teacherNote": "In modern web development, ES modules are native! When linking an entry file that uses `import` / `export`, always specify the `type='module'` attribute in your HTML tag: `<script type='module' src='app.js'></script>`. Modules run in strict mode by default and load deferred automatically.",
+              "sections": [
+                {
+                  "title": "1. The try...catch...finally Error Handling Pattern",
+                  "description": "Intercepting and recovering from runtime exceptions:",
+                  "table": {
+                    "headers": [
+                      "Block",
+                      "Execution Condition",
+                      "Purpose"
+                    ],
+                    "rows": [
+                      [
+                        "try { ... }",
+                        "Always runs first",
+                        "Encloses code that might throw an unexpected runtime error or exception"
+                      ],
+                      [
+                        "catch (error) { ... }",
+                        "Runs ONLY if an error is thrown in `try`",
+                        "Captures the Error object (`error.message`, `error.name`, `error.stack`) to recover"
+                      ],
+                      [
+                        "finally { ... }",
+                        "ALWAYS runs after try and catch",
+                        "Guaranteed cleanup logic (e.g. closing database connections, resetting loading flags)"
+                      ],
+                      [
+                        "throw new Error('msg')",
+                        "Explicit invocation",
+                        "Generates a custom error and interrupts current execution, jumping to nearest catch block"
+                      ]
+                    ]
+                  }
+                },
+                {
+                  "title": "2. ES Modules: export and import",
+                  "description": "Breaking large applications into clean, maintainable files:",
+                  "table": {
+                    "headers": [
+                      "Module Pattern",
+                      "Syntax Example",
+                      "Usage Rule"
+                    ],
+                    "rows": [
+                      [
+                        "Named Export",
+                        "export const PI = 3.14;\nexport function add() { ... }",
+                        "Can export multiple identifiers per file"
+                      ],
+                      [
+                        "Named Import",
+                        "import { PI, add } from './math.js';",
+                        "Names must match the exported identifiers (or use `as` alias)"
+                      ],
+                      [
+                        "Default Export",
+                        "export default class Calculator { ... }",
+                        "Exactly one default export per module file"
+                      ],
+                      [
+                        "Default Import",
+                        "import Calculator from './Calculator.js';",
+                        "Imported without curly braces; can be named anything"
+                      ]
+                    ]
+                  }
+                }
+              ],
+              "practice": [
+                {
+                  "question": "What information does a standard JavaScript `Error` object provide?",
+                  "options": [
+                    "`name`, `message`, and `stack` (call stack trace)",
+                    "Only a number code",
+                    "The user's IP address",
+                    "The browser history"
+                  ],
+                  "answer": "`name`, `message`, and `stack` (call stack trace)",
+                  "explanation": "A JavaScript `Error` instance contains a `name` (e.g. 'TypeError', 'ReferenceError'), a descriptive `message`, and the execution `stack` trace."
+                },
+                {
+                  "question": "How many `export default` statements can exist in a single ES module file?",
+                  "options": [
+                    "As many as you want",
+                    "Exactly one",
+                    "None; default exports are deprecated",
+                    "Two"
+                  ],
+                  "answer": "Exactly one",
+                  "explanation": "A module can contain multiple named exports, but at most one single `export default`."
+                },
+                {
+                  "question": "Which HTML attribute must be added to a `<script>` tag to enable ES Module `import` and `export` statements?",
+                  "options": [
+                    "type='module'",
+                    "module='true'",
+                    "async='module'",
+                    "language='es6'"
+                  ],
+                  "answer": "type='module'",
+                  "explanation": "`<script type='module'>` instructs the browser to treat the script as an ECMAScript module."
+                }
+              ]
+            }
+          }
+        ]
+      }
+    ]
+  },
+  {
     "id": "german-language-course",
     "title": "German Language Learning Course",
     "category": "Language",
@@ -17,8 +3245,8 @@ export const FALLBACK_COURSES: CourseDetail[] = [
     "buttonLabel": "Start",
     "description": "Comprehensive German language learning from absolute beginner to advanced fluency, with interactive chapters, practical dialogues, audio pronunciation, and real-world examples.",
     "featured": true,
-    "totalChapters": 19,
-    "totalLessons": 65,
+    "totalChapters": 21,
+    "totalLessons": 73,
     "progressStatus": {
       "type": "status",
       "statusText": "Enrolled"
@@ -5804,710 +9032,885 @@ export const FALLBACK_COURSES: CourseDetail[] = [
           },
           {
             "id": "a1-ch9",
-            "title": "Chapter 9: Praktische Alltagssituationen (Practical A1 Daily Situations)",
+            "title": "Chapter 9: Alles Arbeit? & Das Perfekt (Work, Career & Past Tense)",
             "lessons": [
               {
                 "id": "a1-ch9-l39",
-                "title": "Lesson 39: Supermarket Shopping, Food, Drinks & Prices",
-                "description": "Food items, quantities (Kilo, Gramm, Liter), inquiring prices ('Was kostet ein Kilo Äpfel?').",
+                "title": "Lesson 39: Job Profiles, Work Routines & German Workplace Culture",
+                "description": "German job titles in masculine and feminine forms, workplace routines, and work schedule vocabulary (Gleitzeit, Feierabend).",
                 "content": {
-                  "overview": "Shopping for food at open-air markets and supermarkets requires practical knowledge of units of measurement (Kilo, Gramm, Liter), inquiring about prices, and courteous customer interactions from Netzwerk A1 Kapitel 4.",
-                  "canDo": "Can buy food items, ask for specific quantities and weights, inquire about prices, and interact politely with shopkeepers.",
-                  "teacherNote": "In German food shopping, 'ein Pfund' (a pound) is exactly 500 grams (half a kilo)! Native speakers frequently say: 'Ein Pfund Tomaten, bitte' (500 grams of tomatoes).",
+                  "overview": "Work and career form a central theme of adult life. In this lesson, inspired by Netzwerk A1 Kapitel 9 ('Alles Arbeit?'), you will master job titles in both masculine and feminine forms, vocabulary for workplace routines, and everyday German office expressions.",
+                  "canDo": "Can name common professions in German (masculine and feminine forms with -in), describe daily job activities, and discuss working hours and typical office routines.",
+                  "teacherNote": "In German, almost every profession has a masculine form and a feminine form ending in '-in' (plural: '-innen'). For example: 'der Lehrer' (male teacher) -> 'die Lehrerin' (female teacher, plural: die Lehrerinnen). When asking someone what they do for a living, ask: 'Was sind Sie von Beruf?' or 'Was machst du beruflich?'.",
                   "sections": [
                     {
-                      "title": "1. Maßeinheiten beim Lebensmitteleinkauf (Units of Measurement)",
-                      "description": "Standard weights and measures in German markets:",
+                      "title": "1. Berufe auf Deutsch (Professions - Masculine & Feminine)",
+                      "description": "Standard German job titles with their correct articles:",
                       "table": {
                         "headers": [
-                          "Maßeinheit",
-                          "Abkürzung",
-                          "Bedeutung",
-                          "Beispiel"
+                          "Männlich (Maskulin)",
+                          "Weiblich (Feminin)",
+                          "Plural (Feminine)",
+                          "Englische Bedeutung"
                         ],
                         "rows": [
                           [
-                            "das Kilo / Kilogramm",
-                            "kg",
-                            "1000 Gramm",
-                            "ein Kilo Äpfel / zwei Kilo Kartoffeln"
+                            "der Arzt",
+                            "die Ärztin",
+                            "die Ärztinnen",
+                            "doctor / physician"
                           ],
                           [
-                            "das Pfund",
-                            "Pfd",
-                            "500 Gramm (halbes Kilo)",
-                            "ein Pfund Butter / ein Pfund Erdbeeren"
+                            "der Lehrer",
+                            "die Lehrerin",
+                            "die Lehrerinnen",
+                            "teacher"
                           ],
                           [
-                            "das Gramm",
-                            "g",
-                            "Gramm",
-                            "200 Gramm Käse / 150 Gramm Schinken"
+                            "der Ingenieur",
+                            "die Ingenieurin",
+                            "die Ingenieurinnen",
+                            "engineer"
                           ],
                           [
-                            "der Liter",
-                            "l",
-                            "Flüssigkeiten",
-                            "ein Liter Milch / zwei Liter Wasser"
+                            "der Informatiker",
+                            "die Informatikerin",
+                            "die Informatikerinnen",
+                            "software developer / IT specialist"
                           ],
                           [
-                            "die Flasche / die Dose",
-                            "Fl. / D.",
-                            "Verpackung",
-                            "eine Flasche Saft / eine Dose Tomaten"
+                            "der Kellner",
+                            "die Kellnerin",
+                            "die Kellnerinnen",
+                            "waiter / waitress"
                           ],
                           [
-                            "das Stück",
-                            "Stk.",
-                            "Einzelartikel",
-                            "drei Stück Kuchen / ein Stück Käse"
+                            "der Verkäufer",
+                            "die Verkäuferin",
+                            "die Verkäuferinnen",
+                            "salesperson / shop assistant"
+                          ],
+                          [
+                            "der Mechatroniker",
+                            "die Mechatronikerin",
+                            "die Mechatronikerinnen",
+                            "automotive / mechanical technician"
+                          ],
+                          [
+                            "der Student",
+                            "die Studentin",
+                            "die Studentinnen",
+                            "university student"
                           ]
                         ]
                       }
                     },
                     {
-                      "title": "2. Preise nennen und verstehen (Euros & Cents)",
-                      "description": "How to say prices aloud in German:",
+                      "title": "2. Arbeitsplatz & Arbeitszeiten (Workplace & Schedule)",
+                      "description": "Essential terms for discussing your work schedule and workplace:",
                       "items": [
                         {
-                          "term": "€ 2,50 = zwei Euro fünfzig",
-                          "meaning": "Euro amount first, then 'Euro', then the cent amount",
-                          "example": "Das Brot kostet zwei Euro fünfzig."
+                          "term": "die Arbeitszeit (-en)",
+                          "meaning": "working hours / schedule",
+                          "example": "Meine Arbeitszeit ist von 9 bis 17 Uhr."
                         },
                         {
-                          "term": "€ 0,89 = neunundachtzig Cent",
-                          "meaning": "Cent amounts under 1 Euro simply state the number + 'Cent'",
-                          "example": "Ein Brötchen kostet fünfundvierzig Cent."
+                          "term": "der Feierabend",
+                          "meaning": "quitting time / end of the working day",
+                          "example": "Schönen Feierabend! (Have a nice evening after work!)"
                         },
                         {
-                          "term": "Was kostet...? / Was machen...?",
-                          "meaning": "How much does ... cost? / What does that come to?",
-                          "example": "Was kostet das Kilo Bananen? - Ein Euro neunundsiebzig."
+                          "term": "die Gleitzeit / feste Arbeitszeiten",
+                          "meaning": "flexible working hours / fixed working hours",
+                          "example": "Wir haben Gleitzeit im Büro."
+                        },
+                        {
+                          "term": "die Vollzeit / die Teilzeit",
+                          "meaning": "full-time / part-time employment",
+                          "example": "Sie arbeitet in Teilzeit (30 Stunden pro Woche)."
+                        },
+                        {
+                          "term": "arbeiten bei / als",
+                          "meaning": "to work at [company] / as [profession]",
+                          "example": "Ich arbeite bei Siemens als Informatiker."
                         }
                       ]
                     }
                   ],
                   "dialogue": {
-                    "context": "Einkaufen am Marktstand in Dresden (Netzwerk A1 Kapitel 4):",
+                    "context": "Kennenlernen beim Mittagessen in der Firmenkantine:",
                     "lines": [
                       {
-                        "speaker": "Verkäufer",
-                        "german": "Guten Tag! Der Nächste bitte! Was darf ich Ihnen geben?",
-                        "english": "Good day! Next please! What can I get for you?"
+                        "speaker": "Markus",
+                        "german": "Hallo! Ich bin Markus. Bist du neu im Team?",
+                        "english": "Hello! I'm Markus. Are you new on the team?"
                       },
                       {
-                        "speaker": "Kundin",
-                        "german": "Guten Tag. Ich hätte gern zwei Kilo Äpfel und ein Pfund Erdbeeren.",
-                        "english": "Good day. I would like two kilos of apples and a pound of strawberries."
+                        "speaker": "Elena",
+                        "german": "Ja, guten Tag! Mein Name ist Elena. Ich arbeite hier als UI-Designerin.",
+                        "english": "Yes, hello! My name is Elena. I work here as a UI designer."
                       },
                       {
-                        "speaker": "Verkäufer",
-                        "german": "Sehr gern, die Erdbeeren sind heute besonders süß. Sonst noch etwas?",
-                        "english": "Very gladly, the strawberries are especially sweet today. Anything else?"
+                        "speaker": "Markus",
+                        "german": "Willkommen bei uns! Wie sind deine Arbeitszeiten?",
+                        "english": "Welcome to our team! What are your working hours like?"
                       },
                       {
-                        "speaker": "Kundin",
-                        "german": "Haben Sie auch frischen Bio-Käse?",
-                        "english": "Do you also have fresh organic cheese?"
+                        "speaker": "Elena",
+                        "german": "Ich habe Gleitzeit und arbeite meistens von 8:30 bis 17:00 Uhr.",
+                        "english": "I have flextime and usually work from 8:30 to 17:00."
                       },
                       {
-                        "speaker": "Verkäufer",
-                        "german": "Ja, der Bergkäse hier ist herrlich. 200 Gramm? Das macht zusammen 8 Euro 40.",
-                        "english": "Yes, this mountain cheese here is wonderful. 200 grams? That comes to 8 euros 40 altogether."
+                        "speaker": "Markus",
+                        "german": "Das ist praktisch. Wann machst du heute Feierabend?",
+                        "english": "That's practical. When are you calling it a day today?"
+                      },
+                      {
+                        "speaker": "Elena",
+                        "german": "Heute mache ich um Punkt 17 Uhr Feierabend. Bis später!",
+                        "english": "Today I'm finishing work at 5 PM sharp. See you later!"
                       }
                     ]
                   },
                   "funFact": {
-                    "title": "Cash is Still King (Bargeld)",
-                    "content": "While card payments have grown rapidly, Germany and Austria remain famous for their love of cash ('Bargeld lacht' - cash laughs!). At bakeries, small kiosks, open-air markets, and traditional beer gardens, always carry cash, as signs often say: 'Keine Kartenzahlung' (No card payment)!"
+                    "title": "The Untranslatable German Word: 'Feierabend'",
+                    "content": "'Feierabend' literally means 'celebration evening'. In German workplace culture, it marks the sacred moment when your workday officially ends, work emails are shut off, and your personal leisure begins. Colleagues greet each other warmly with: 'Schönen Feierabend!'."
                   },
                   "practice": [
                     {
-                      "question": "How much is 'ein Pfund' in Germany?",
+                      "question": "How do you correctly ask someone what they do for a living in formal German?",
                       "options": [
-                        "100 Gramm",
-                        "500 Gramm",
-                        "1000 Gramm"
+                        "Was machst du gestern?",
+                        "Was sind Sie von Beruf?",
+                        "Wo arbeiten du gerne?",
+                        "Wer bist Sie heute?"
                       ],
-                      "answer": "500 Gramm",
-                      "explanation": "In German culinary and market tradition, 'ein Pfund' is exactly 500 grams."
+                      "answer": "Was sind Sie von Beruf?",
+                      "explanation": "'Was sind Sie von Beruf?' (or informally 'Was machst du beruflich?') is the standard polite German question to ask someone's profession."
                     },
                     {
-                      "question": "How do you pronounce € 3,80 in German?",
+                      "question": "What is the correct feminine form of 'der Arzt'?",
                       "options": [
-                        "drei achtzig",
-                        "drei Euro achtzig",
-                        "achtzig Euro drei"
+                        "die Arztin",
+                        "die Ärztin",
+                        "die Arztesse",
+                        "die Ärztin-Frau"
                       ],
-                      "answer": "drei Euro achtzig",
-                      "explanation": "Prices are pronounced: [Euro amount] + Euro + [Cent amount]."
+                      "answer": "die Ärztin",
+                      "explanation": "Many feminine profession titles take an Umlaut shift in addition to the '-in' suffix: der Arzt -> die Ärztin (plural: die Ärztinnen)."
+                    },
+                    {
+                      "question": "Which German phrase means 'Have a great evening after work!'?",
+                      "options": [
+                        "Guten Morgen!",
+                        "Schönen Feierabend!",
+                        "Viel Spaß beim Arbeiten!",
+                        "Auf Wiederhören!"
+                      ],
+                      "answer": "Schönen Feierabend!",
+                      "explanation": "'Schönen Feierabend!' is the quintessential German expression said to colleagues when leaving work at the end of the day."
                     }
                   ]
                 }
               },
               {
                 "id": "a1-ch9-l40",
-                "title": "Lesson 40: Restaurant & Café Etiquette & Ordering Phrases",
-                "description": "Ordering ('Ich hätte gern...', 'Ich möchte...'), paying ('Zusammen oder getrennt?').",
+                "title": "Lesson 40: Das Perfekt with 'haben': Regular Past Participles",
+                "description": "Constructing conversational past tense with 'haben' and regular participles (ge-...-t) in the sentence bracket (Satzklammer).",
                 "content": {
-                  "overview": "Visiting restaurants, cafes, and beer gardens is one of the greatest pleasures in the DACH countries. In this lesson, you will master reading a German menu (die Speisekarte), ordering food and drinks, and asking for the bill using authentic etiquette.",
-                  "canDo": "Can order meals and beverages politely in a restaurant, ask about menu recommendations, and settle the bill ('Zusammen oder getrennt?').",
-                  "teacherNote": "When paying in Germany, the server will almost always ask: 'Zusammen oder getrennt?' (Together or separately?). Splitting the bill item-by-item is completely normal and expected in German restaurant culture!",
+                  "overview": "To converse naturally about what happened earlier today or over the weekend, you need 'Das Perfekt'—the conversational past tense in German. In this lesson from Netzwerk A1 Kapitel 9, you will learn how regular verbs form their past participle (Partizip II) and how they combine with the auxiliary verb 'haben' in the sentence bracket (Satzklammer).",
+                  "canDo": "Can construct sentences in Das Perfekt with regular verbs using 'haben' (e.g., 'Ich habe Deutsch gelernt', 'Wir haben gearbeitet') and position the participle at the end of the clause.",
+                  "teacherNote": "In spoken German, almost all past actions are expressed using Das Perfekt. Notice the sentence bracket: 'haben' goes in Position 2 (conjugated to the subject), and the past participle 'ge-...-t' goes right at the very end of the sentence!",
                   "sections": [
                     {
-                      "title": "1. Redemittel im Restaurant (Restaurant Phrase Bank)",
-                      "description": "Step-by-step phrases for dining out:",
+                      "title": "1. Das Perfekt-Prinzip: Subjekt + haben + ... + Partizip II",
+                      "description": "The sentence structure creates a verbal bracket (Satzklammer):",
                       "table": {
                         "headers": [
-                          "Phase",
-                          "Deutscher Ausdruck",
-                          "Bedeutung",
-                          "Antwort des Kellners"
+                          "Position 1",
+                          "Position 2 (haben konjugiert)",
+                          "Mittelfeld (Details / Zeit / Objekt)",
+                          "Satzende (Partizip II)"
                         ],
                         "rows": [
                           [
-                            "Ankunft",
-                            "Einen Tisch für zwei Personen, bitte.",
-                            "A table for two, please.",
-                            "Sehr gern, hier entlang bitte."
+                            "Ich",
+                            "habe",
+                            "heute viel Deutsch",
+                            "gelernt."
                           ],
                           [
-                            "Speisekarte",
-                            "Die Speisekarte bitte.",
-                            "The menu, please.",
-                            "Hier ist die Karte."
+                            "Lukas",
+                            "hat",
+                            "am Samstag Fußball",
+                            "gespielt."
                           ],
                           [
-                            "Bestellen",
-                            "Ich nehme / Ich hätte gern...",
-                            "I'll take / I would like...",
-                            "Und was möchten Sie trinken?"
+                            "Wir",
+                            "haben",
+                            "gestern bis 18 Uhr",
+                            "gearbeitet."
                           ],
                           [
-                            "Wohl bekomm's",
-                            "Guten Appetit! / Prost! / Zum Wohl!",
-                            "Enjoy your meal! / Cheers!",
-                            "Danke, gleichfalls! (Same to you!)"
-                          ],
-                          [
-                            "Rechnung",
-                            "Die Rechnung bitte! / Wir möchten zahlen.",
-                            "The bill, please! / We'd like to pay.",
-                            "Zusammen oder getrennt?"
+                            "Was",
+                            "hast",
+                            "du am Wochenende",
+                            "gemacht?"
                           ]
                         ]
                       }
                     },
                     {
-                      "title": "2. Trinkgeld-Kultur (Tipping in Germany)",
-                      "description": "How tipping works in German-speaking countries:",
-                      "items": [
-                        {
-                          "term": "5% bis 10% Trinkgeld (Rounding Up)",
-                          "meaning": "Tipping is not obligatory by law, but 5% to 10% is standard for good service",
-                          "example": "If the bill is € 27,20, round up to € 29 or € 30."
-                        },
-                        {
-                          "term": "Stimmt so! (Keep the change)",
-                          "meaning": "Tell the server directly when handing over money if you don't need change",
-                          "example": "Hand over a € 20 note for an € 18 bill and say: 'Stimmt so!'."
-                        }
+                      "title": "2. Bildung des Partizip II für regelmäßige Verben",
+                      "description": "How regular weak verbs build their past participle:",
+                      "table": {
+                        "headers": [
+                          "Infinitiv",
+                          "Muster (Formula)",
+                          "Partizip II",
+                          "Beispielsatz im Perfekt"
+                        ],
+                        "rows": [
+                          [
+                            "lernen (to learn)",
+                            "ge- + lern + -t",
+                            "gelernt",
+                            "Ich habe Grammatik gelernt."
+                          ],
+                          [
+                            "machen (to do/make)",
+                            "ge- + mach + -t",
+                            "gemacht",
+                            "Was hast du heute gemacht?"
+                          ],
+                          [
+                            "arbeiten (to work)",
+                            "ge- + arbeit + -et",
+                            "gearbeitet",
+                            "Er hat 8 Stunden gearbeitet."
+                          ],
+                          [
+                            "kochen (to cook)",
+                            "ge- + koch + -t",
+                            "gekocht",
+                            "Wir haben eine Suppe gekocht."
+                          ],
+                          [
+                            "hören (to hear/listen)",
+                            "ge- + hör + -t",
+                            "gehört",
+                            "Hast du die Musik gehört?"
+                          ],
+                          [
+                            "einkaufen (separable!)",
+                            "ein + ge- + kauf + -t",
+                            "eingekauft",
+                            "Ich habe im Supermarkt eingekauft."
+                          ]
+                        ]
+                      },
+                      "notes": [
+                        "For verbs ending in -d or -t (like arbeiten, warten), insert an 'e' before -t for easier pronunciation: gearbeitet, gewartet.",
+                        "Separable verbs insert '-ge-' between the prefix and the stem: einkaufen -> eingekauft, aufhören -> aufgehört."
                       ]
                     }
                   ],
                   "dialogue": {
-                    "context": "Abendessen im traditionellen Gasthaus in Nürnberg (Netzwerk A1):",
+                    "context": "Zwei Kollegen sprechen am Montagmorgen über das Wochenende:",
                     "lines": [
                       {
-                        "speaker": "Kellner",
-                        "german": "Guten Abend! Haben Sie schon gewählt?",
-                        "english": "Good evening! Have you made your choices?"
+                        "speaker": "Jonas",
+                        "german": "Guten Morgen, Julia! Wie war dein Wochenende?",
+                        "english": "Good morning, Julia! How was your weekend?"
                       },
                       {
-                        "speaker": "Paco",
-                        "german": "Ja, ich hätte gern die Bratwürste mit Sauerkraut und Kartoffelsalat.",
-                        "english": "Yes, I would like the sausages with sauerkraut and potato salad."
+                        "speaker": "Julia",
+                        "german": "Sehr schön, danke! Ich habe am Samstag lange geschlafen und dann die Wohnung geputzt.",
+                        "english": "Very nice, thanks! I slept in on Saturday and then cleaned the apartment."
                       },
                       {
-                        "speaker": "Sarah",
-                        "german": "Und für mich bitte den vegetarischen Flammkuchen und ein Mineralwasser.",
-                        "english": "And for me please the vegetarian tarte flambée and a mineral water."
+                        "speaker": "Jonas",
+                        "german": "Und hast du am Sonntag etwas Besonderes gemacht?",
+                        "english": "And did you do anything special on Sunday?"
                       },
                       {
-                        "speaker": "Kellner",
-                        "german": "Sehr gern! War alles zu Ihrer Zufriedenheit?",
-                        "english": "Very gladly! Was everything to your satisfaction?"
+                        "speaker": "Julia",
+                        "german": "Ja, ich habe für Freunde gekocht und wir haben zusammen Musik gehört. Und du?",
+                        "english": "Yes, I cooked for friends and we listened to music together. And you?"
                       },
                       {
-                        "speaker": "Paco",
-                        "german": "Ja, ausgezeichnet! Wir möchten bitte zahlen, getrennt.",
-                        "english": "Yes, excellent! We would like to pay please, separately."
-                      },
-                      {
-                        "speaker": "Kellner",
-                        "german": "Für Sie macht das 14 Euro 20.",
-                        "english": "For you that comes to 14 euros 20."
-                      },
-                      {
-                        "speaker": "Paco",
-                        "german": "Machen Sie 16 Euro. Stimmt so!",
-                        "english": "Make it 16 euros. Keep the change!"
+                        "speaker": "Jonas",
+                        "german": "Ich habe leider fast den ganzen Sonntag für die Prüfung gelernt!",
+                        "english": "Unfortunately I studied almost all of Sunday for the exam!"
                       }
                     ]
                   },
                   "funFact": {
-                    "title": "Never Leave Tips on the Table!",
-                    "content": "In the US and UK, people often leave cash tips on the table when leaving. In Germany, you ALWAYS state the tip directly to the server when paying! If the bill is € 18 and you want to tip € 2, hand over € 20 and say: 'Machen Sie 20' (Make it 20) or 'Stimmt so!'."
+                    "title": "Spoken German vs. English Past Tense",
+                    "content": "While English speakers frequently say 'I learned' (simple past) or 'I have learned' (present perfect) with subtle grammatical differences, German everyday speech uses 'Das Perfekt' for BOTH! When telling a friend about yesterday, you virtually always use: 'Ich habe gelernt' (I learned / I have learned)."
                   },
                   "practice": [
                     {
-                      "question": "What does a server mean when asking: 'Zusammen oder getrennt?'",
+                      "question": "What is the correct sentence order for: 'Gestern / ich / gearbeitet / habe / viel'?",
                       "options": [
-                        "Do you want indoor or outdoor seating?",
-                        "Paying together or separately on split bills?",
-                        "Cash or card?"
+                        "Gestern ich gearbeitet habe viel.",
+                        "Gestern habe ich viel gearbeitet.",
+                        "Ich habe gearbeitet gestern viel.",
+                        "Gestern habe gearbeitet ich viel."
                       ],
-                      "answer": "Paying together or separately on split bills?",
-                      "explanation": "'Zusammen oder getrennt' asks whether the party wants one combined bill or separate individual bills."
+                      "answer": "Gestern habe ich viel gearbeitet.",
+                      "explanation": "The conjugated verb 'habe' takes Position 2 (after 'Gestern'), the subject 'ich' follows immediately, and the past participle 'gearbeitet' must go to the very end of the clause."
                     },
                     {
-                      "question": "What phrase tells the server to keep the change as a tip?",
+                      "question": "What is the past participle (Partizip II) of the verb 'kochen'?",
                       "options": [
-                        "Danke schön!",
-                        "Stimmt so!",
-                        "Auf Wiedersehen!"
+                        "gekochen",
+                        "gekocht",
+                        "kochtest",
+                        "kochend"
                       ],
-                      "answer": "Stimmt so!",
-                      "explanation": "'Stimmt so!' literally means 'It is correct like that' (keep the change)."
+                      "answer": "gekocht",
+                      "explanation": "For regular verbs: ge- + verb stem (koch) + -t = gekocht."
+                    },
+                    {
+                      "question": "How does the separable verb 'einkaufen' build its past participle?",
+                      "options": [
+                        "geeinkauft",
+                        "einkauft",
+                        "eingekauft",
+                        "einkaufte"
+                      ],
+                      "answer": "eingekauft",
+                      "explanation": "Separable verbs insert '-ge-' between the separable prefix ('ein-') and the verb stem: ein + ge + kauf + t = eingekauft."
                     }
                   ]
                 }
               },
               {
                 "id": "a1-ch9-l41",
-                "title": "Lesson 41: Clothes, Colors, Weather & Seasons",
-                "description": "Garments, colors, weather statements ('Es regnet', 'Es ist sonnig', 'Mir ist kalt').",
+                "title": "Lesson 41: Das Perfekt with 'sein': Movement & Change of State",
+                "description": "Mastering 'sein' in the past tense for motion (fahren, gehen, fliegen) and state transitions (aufstehen, einschlafen, bleiben).",
                 "content": {
-                  "overview": "Knowing how to describe symptoms, visit a doctor's practice (die Arztpraxis), and obtain medication at a pharmacy (die Apotheke) is vital survival German. In this lesson, you will master body parts, common illnesses, and medical advice from Netzwerk Kapitel 11 ('Gesund und munter').",
-                  "canDo": "Can name core body parts, express physical symptoms ('Ich habe Kopfschmerzen / Fieber'), and understand medical recommendations.",
-                  "teacherNote": "In German, to say something hurts, you use the verb 'wehtun' (separable): 'Mein Kopf TUT WEH' (My head hurts), 'Meine Beine TUN WEH' (My legs hurt). Or simply use the compound with '-schmerzen': Kopfschmerzen, Halsschmerzen, Bauchschmerzen!",
+                  "overview": "While most German verbs form Das Perfekt with 'haben', a crucial group of verbs takes 'sein' (to be) as its helping verb! In this lesson from Netzwerk A1 Kapitel 9, you will learn the exact rule for verbs of movement (gehen, fahren, fliegen) and state change (aufstehen, einschlafen), and master past conversations about trips and daily mobility.",
+                  "canDo": "Can construct sentences in Das Perfekt using 'sein' for verbs of movement and change of state (e.g., 'Ich bin nach Hamburg gefahren', 'Wann bist du aufgestanden?').",
+                  "teacherNote": "Here is the simple mnemonic for 'sein' in Perfekt: (1) Does the verb involve physical movement from point A to point B? (gehen, fahren, fliegen, kommen) -> USE SEIN! (2) Does it involve a transformation or state change? (aufstehen, aufwachen, einschlafen) -> USE SEIN! Plus the special verbs: sein (ist gewesen) and bleiben (ist geblieben).",
                   "sections": [
                     {
-                      "title": "1. Die Körperteile (Body Parts)",
-                      "description": "Essential body parts from Netzwerk Kapitel 11:",
+                      "title": "1. Wann bildet man das Perfekt mit 'sein'?",
+                      "description": "The two main categories that require 'sein':",
                       "table": {
                         "headers": [
-                          "Körperteil",
-                          "Artikel & Singular",
-                          "Plural",
-                          "Typisches Symptom"
+                          "Kategorie",
+                          "Bedeutung / Regel",
+                          "Typische Verben",
+                          "Beispielsatz"
                         ],
                         "rows": [
                           [
-                            "Head",
-                            "der Kopf",
-                            "die Köpfe",
-                            "Kopfschmerzen (headache)"
+                            "Ortswechsel (Movement A -> B)",
+                            "Physical motion from one location to another",
+                            "gehen, fahren, fliegen, kommen, reisen",
+                            "Ich bin nach Berlin gefahren."
                           ],
                           [
-                            "Throat / Neck",
-                            "der Hals",
-                            "die Hälse",
-                            "Halsschmerzen (sore throat)"
+                            "Zustandswechsel (Change of State)",
+                            "Transition from one physical condition to another",
+                            "aufstehen, aufwachen, einschlafen",
+                            "Er ist um 7 Uhr aufgestanden."
                           ],
                           [
-                            "Stomach",
-                            "der Bauch / der Magen",
-                            "die Bäuche",
-                            "Bauchschmerzen (stomach ache)"
-                          ],
-                          [
-                            "Back",
-                            "der Rücken",
-                            "die Rücken",
-                            "Rückenschmerzen (back pain)"
-                          ],
-                          [
-                            "Eye",
-                            "das Auge",
-                            "die Augen",
-                            "brennende Augen"
-                          ],
-                          [
-                            "Ear",
-                            "das Ohr",
-                            "die Ohren",
-                            "Ohrenschmerzen"
-                          ],
-                          [
-                            "Tooth",
-                            "der Zahn",
-                            "die Zähne",
-                            "Zahnschmerzen (toothache)"
-                          ],
-                          [
-                            "Hand / Arm",
-                            "die Hand / der Arm",
-                            "die Hände / die Arme",
-                            "Mein Arm tut weh."
-                          ],
-                          [
-                            "Foot / Leg",
-                            "der Fuß / das Bein",
-                            "die Füße / die Beine",
-                            "Mein Fuß tut weh."
+                            "Ausnahmen (Special Verbs)",
+                            "Core existential verbs taking sein",
+                            "sein (ist gewesen), bleiben (ist geblieben)",
+                            "Wir sind zu Hause geblieben."
                           ]
                         ]
                       }
                     },
                     {
-                      "title": "2. Krankheiten & Ratschläge mit 'sollen'",
-                      "description": "Using modal verb 'sollen' (should) for doctor's instructions:",
-                      "items": [
-                        {
-                          "term": "Ich habe die Grippe / eine Erkältung",
-                          "meaning": "I have the flu / a cold",
-                          "example": "Ich fühle mich schwach und habe Fieber."
-                        },
-                        {
-                          "term": "Sie sollen im Bett bleiben",
-                          "meaning": "You should stay in bed (doctor's orders)",
-                          "example": "Die Ärztin sagt, ich soll viel schlafen."
-                        },
-                        {
-                          "term": "das Rezept / die Apotheke",
-                          "meaning": "Prescription / pharmacy (marked with a large red 'A')",
-                          "example": "Hier ist Ihr Rezept für die Apotheke."
-                        }
-                      ]
+                      "title": "2. Verben der Bewegung im Perfekt (Movement Verbs)",
+                      "description": "Subject + konjugiertes 'sein' + ... + Partizip II:",
+                      "table": {
+                        "headers": [
+                          "Infinitiv",
+                          "sein-Form (ich / er)",
+                          "Partizip II",
+                          "Beispielsatz im Perfekt"
+                        ],
+                        "rows": [
+                          [
+                            "fahren (to drive/ride)",
+                            "ich bin / er ist",
+                            "gefahren",
+                            "Ich bin mit dem Zug gefahren."
+                          ],
+                          [
+                            "gehen (to go/walk)",
+                            "ich bin / er ist",
+                            "gegangen",
+                            "Sie ist in die Stadt gegangen."
+                          ],
+                          [
+                            "fliegen (to fly)",
+                            "ich bin / er ist",
+                            "geflogen",
+                            "Wir sind nach Wien geflogen."
+                          ],
+                          [
+                            "kommen (to come)",
+                            "ich bin / er ist",
+                            "gekommen",
+                            "Paco ist pünktlich gekommen."
+                          ],
+                          [
+                            "aufstehen (to get up)",
+                            "ich bin / er ist",
+                            "aufgestanden",
+                            "Wann bist du heute aufgestanden?"
+                          ]
+                        ]
+                      }
                     }
                   ],
                   "dialogue": {
-                    "context": "Telefonat mit der Arztpraxis zur Terminvereinbarung (Netzwerk A1 Kapitel 11):",
+                    "context": "Ein Telefongespräch zwischen zwei Freunden über eine Wochenendreise:",
                     "lines": [
                       {
-                        "speaker": "Arzthelferin",
-                        "german": "Praxis Dr. Schreyer, guten Tag! Was kann ich für Sie tun?",
-                        "english": "Dr. Schreyer's practice, good day! What can I do for you?"
+                        "speaker": "Florian",
+                        "german": "Hallo Leon! Na, wie war dein Ausflug nach Frankfurt?",
+                        "english": "Hello Leon! Well, how was your trip to Frankfurt?"
                       },
                       {
-                        "speaker": "Gregor",
-                        "german": "Guten Tag, hier spricht Gregor Schubert. Ich brauche dringend einen Termin, ich bin krank.",
-                        "english": "Good day, this is Gregor Schubert speaking. I urgently need an appointment, I am sick."
+                        "speaker": "Leon",
+                        "german": "Fantastisch! Ich bin am Freitagnachmittag mit dem ICE gefahren.",
+                        "english": "Fantastic! I traveled on Friday afternoon with the ICE train."
                       },
                       {
-                        "speaker": "Arzthelferin",
-                        "german": "Was fehlt Ihnen denn, Herr Schubert?",
-                        "english": "What symptoms do you have, Mr. Schubert?"
+                        "speaker": "Florian",
+                        "german": "Bist du allein gefahren oder ist deine Schwester mitgekommen?",
+                        "english": "Did you travel alone or did your sister come along?"
                       },
                       {
-                        "speaker": "Gregor",
-                        "german": "Ich habe hohes Fieber, starken Husten und mein Hals tut sehr weh.",
-                        "english": "I have a high fever, severe cough, and my throat hurts very much."
+                        "speaker": "Leon",
+                        "german": "Meine Schwester ist mitgekommen. Wir sind stundenlang durch das Museumsufer spaziert.",
+                        "english": "My sister came along. We strolled for hours along the museum embankment."
                       },
                       {
-                        "speaker": "Arzthelferin",
-                        "german": "Kommen Sie bitte heute Vormittag um 11:30 Uhr vorbei. Bringen Sie Ihre Versichertenkarte mit!",
-                        "english": "Please come by this morning at 11:30 AM. Bring your health insurance card with you!"
+                        "speaker": "Florian",
+                        "german": "Wann seid ihr gestern zurückgekommen?",
+                        "english": "When did you guys get back yesterday?"
+                      },
+                      {
+                        "speaker": "Leon",
+                        "german": "Wir sind erst spät in der Nacht angekommen, aber es war wunderschön!",
+                        "english": "We arrived quite late at night, but it was wonderful!"
                       }
                     ]
                   },
                   "funFact": {
-                    "title": "Apotheke vs. Drogerie",
-                    "content": "Germany strictly separates 'die Apotheke' (Pharmacy) from 'die Drogerie' (Drugstore like dm or Rossmann). In a Drogerie, you can buy shampoo, toothpaste, and vitamins, but ZERO medications—not even aspirin! All medicine must be bought at an Apotheke with a licensed pharmacist!"
+                    "title": "The Curious Verb 'bleiben' (to stay)",
+                    "content": "Even though 'bleiben' (to stay / remain) means the exact OPPOSITE of motion, it grammatically takes 'sein' in Das Perfekt! 'Ich bin zu Hause geblieben' (I stayed at home). Remember: 'sein' and 'bleiben' are grammatical best friends—they both take 'sein'."
                   },
                   "practice": [
                     {
-                      "question": "How do you say: 'My head hurts' in German?",
+                      "question": "Which auxiliary verb (Hilfsverb) completes: 'Wir ___ gestern nach München gefahren'?",
                       "options": [
-                        "Mein Kopf tut weh.",
-                        "Mein Kopf macht weh.",
-                        "Mein Kopf ist weh."
+                        "haben",
+                        "sind",
+                        "hat",
+                        "waren"
                       ],
-                      "answer": "Mein Kopf tut weh.",
-                      "explanation": "'wehtun' is the verb for hurting: Mein Kopf tut weh."
+                      "answer": "sind",
+                      "explanation": "'fahren' indicates movement from one place to another, so it requires 'sein'. For 'wir', the present form of sein is 'sind': 'Wir sind ... gefahren'."
                     },
                     {
-                      "question": "Where in Germany can you buy headache tablets like Ibuprofen?",
+                      "question": "Why does the verb 'aufstehen' (to get up) take 'sein' in Das Perfekt?",
                       "options": [
-                        "In the supermarket",
-                        "In a Drogerie (dm)",
-                        "Only in an Apotheke"
+                        "Because it is an irregular verb",
+                        "Because it indicates a change of state (from sleeping to standing)",
+                        "Because all separable verbs take sein",
+                        "Because it ends in -en"
                       ],
-                      "answer": "Only in an Apotheke",
-                      "explanation": "All medicinal pain relievers are strictly pharmacy-only (apothekenpflichtig) in Germany."
+                      "answer": "Because it indicates a change of state (from sleeping to standing)",
+                      "explanation": "Verbs indicating a change of state or physical condition (e.g., aufstehen, aufwachen, einschlafen) take 'sein' in the past tense."
+                    },
+                    {
+                      "question": "Which of the following sentences is grammatically correct?",
+                      "options": [
+                        "Ich habe heute um 7 Uhr aufgestanden.",
+                        "Ich bin heute um 7 Uhr aufgestanden.",
+                        "Ich bin aufgestanden heute um 7 Uhr.",
+                        "Heute habe ich um 7 Uhr aufstehen."
+                      ],
+                      "answer": "Ich bin heute um 7 Uhr aufgestanden.",
+                      "explanation": "'aufstehen' takes 'sein' ('ich bin') and the past participle 'aufgestanden' must stay at the very end of the sentence."
                     }
                   ]
                 }
               },
               {
                 "id": "a1-ch9-l42",
-                "title": "Lesson 42: Health, Body Parts & Doctor Visits",
-                "description": "Anatomy (Kopf, Hals, Bauch), symptoms (Kopfschmerzen, Fieber), making appointments (Termin).",
+                "title": "Lesson 42: Essential Irregular Participles & Past Tense of 'sein'/'haben'",
+                "description": "High-frequency irregular participles (gesprochen, gegessen, gelesen) and spoken Präteritum for sein (war) and haben (hatte).",
                 "content": {
-                  "overview": "Shopping for clothes (Kleidung) involves asking for sizes, colors, trying items on in the fitting room, and expressing opinions. In this lesson, you will master wardrobe vocabulary, colors, and demonstrative pronouns (dieser, dieses, diese) from Netzwerk Kapitel 10 ('Kleidung und Mode').",
-                  "canDo": "Can name everyday clothing items, specify colors and sizes, ask for fitting rooms, and express whether clothes fit well.",
-                  "teacherNote": "To ask which item someone prefers, use 'Welcher? / Welches? / Welche?'. To point out a specific item, use 'Dieser / Dieses / Diese' (This one): 'Welche Jacke gefällt dir?' - 'Diese Jacke hier!'",
+                  "overview": "Some of the most frequent verbs in the German language are irregular in their past participle (ge- ... -en with vowel shifts). In this lesson, you will master the top irregular participles needed for everyday conversation and discover why native speakers prefer the Präteritum (simple past) for 'sein' (war) and 'haben' (hatte).",
+                  "canDo": "Can recognize and use essential irregular past participles (gesprochen, gegessen, getrunken, gelesen, geschrieben), and naturally use 'war' and 'hatte' in conversation.",
+                  "teacherNote": "Listen closely to native German speakers: while they use Das Perfekt for almost every action verb ('Ich habe gegessen', 'Er hat gearbeitet'), for 'sein' and 'haben' they almost ALWAYS use the short Präteritum: 'Ich war müde' (instead of 'Ich bin müde gewesen') and 'Ich hatte keine Zeit' (instead of 'Ich habe keine Zeit gehabt'). Adopting this makes you sound instantly natural!",
                   "sections": [
                     {
-                      "title": "1. Kleidungsstücke & Farben (Clothing & Colors)",
-                      "description": "Wardrobe vocabulary from Netzwerk Kapitel 10:",
+                      "title": "1. Häufige unregelmäßige Partizipien (High-Frequency Irregulars)",
+                      "description": "Core verbs where the vowel stem shifts in the past participle:",
                       "table": {
                         "headers": [
-                          "Kleidungsstück",
-                          "Artikel & Genus",
-                          "Plural",
-                          "Farbe (Color)"
+                          "Infinitiv",
+                          "Partizip II",
+                          "Hilfsverb",
+                          "Bedeutung",
+                          "Beispielsatz"
                         ],
                         "rows": [
                           [
-                            "die Hose (pants/trousers)",
-                            "feminin",
-                            "die Hosen",
-                            "schwarz / blau"
+                            "sprechen",
+                            "gesprochen",
+                            "haben",
+                            "to speak",
+                            "Ich habe mit dem Chef gesprochen."
                           ],
                           [
-                            "die Jacke / der Mantel (jacket / coat)",
-                            "feminin / maskulin",
-                            "die Jacken / die Mäntel",
-                            "braun / grau"
+                            "essen",
+                            "gegessen",
+                            "haben",
+                            "to eat",
+                            "Wir haben Pizza gegessen."
                           ],
                           [
-                            "das Hemd / die Bluse (shirt / blouse)",
-                            "neutral / feminin",
-                            "die Hemden / die Blusen",
-                            "weiß / hellblau"
+                            "trinken",
+                            "getrunken",
+                            "haben",
+                            "to drink",
+                            "Er hat einen Kaffee getrunken."
                           ],
                           [
-                            "das T-Shirt / das Kleid (t-shirt / dress)",
-                            "neutral",
-                            "die T-Shirts / die Kleider",
-                            "rot / grün"
+                            "lesen",
+                            "gelesen",
+                            "haben",
+                            "to read",
+                            "Hast du die E-Mail gelesen?"
                           ],
                           [
-                            "der Pullover (sweater)",
-                            "maskulin",
-                            "die Pullover",
-                            "gelb / dunkelblau"
+                            "schreiben",
+                            "geschrieben",
+                            "haben",
+                            "to write",
+                            "Sie hat einen Bericht geschrieben."
                           ],
                           [
-                            "die Schuhe / die Stiefel (shoes / boots)",
-                            "plural",
-                            "die Schuhe",
-                            "schwarz / leder"
+                            "sehen",
+                            "gesehen",
+                            "haben",
+                            "to see",
+                            "Ich habe den Film gesehen."
+                          ],
+                          [
+                            "treffen",
+                            "getroffen",
+                            "haben",
+                            "to meet",
+                            "Wir haben Freunde getroffen."
                           ]
                         ]
                       }
                     },
                     {
-                      "title": "2. Redemittel beim Kleiderkauf (Shopping Phrases)",
-                      "description": "Phrases for trying on clothes in department stores:",
-                      "items": [
-                        {
-                          "term": "Welche Größe haben Sie? / Ich trage Größe M (38)",
-                          "meaning": "What size are you? / I wear size M (38)",
-                          "example": "Haben Sie diese Hose in Größe 40?"
-                        },
-                        {
-                          "term": "Wo sind die Umkleidekabinen?",
-                          "meaning": "Where are the fitting / changing rooms?",
-                          "example": "Die Umkleidekabinen sind dort hinten links."
-                        },
-                        {
-                          "term": "Das passt mir gut / Das steht dir gut!",
-                          "meaning": "That fits me well (size) / That suits you well (appearance)!",
-                          "example": "Die Farbe steht dir fantastisch!"
-                        }
-                      ]
+                      "title": "2. Die Ausnahme der Umgangssprache: 'war' & 'hatte'",
+                      "description": "Instead of complex Perfekt, use Präteritum for sein and haben:",
+                      "table": {
+                        "headers": [
+                          "Pronomen",
+                          "sein im Präteritum ('was')",
+                          "haben im Präteritum ('had')",
+                          "Beispielsatz"
+                        ],
+                        "rows": [
+                          [
+                            "ich",
+                            "war",
+                            "hatte",
+                            "Ich war gestern krank. / Ich hatte Kopfschmerzen."
+                          ],
+                          [
+                            "du",
+                            "warst",
+                            "hattest",
+                            "Wo warst du? / Hattest du gestern Zeit?"
+                          ],
+                          [
+                            "er / sie / es",
+                            "war",
+                            "hatte",
+                            "Das Wetter war schön. / Er hatte viel Stress."
+                          ],
+                          [
+                            "wir",
+                            "waren",
+                            "hatten",
+                            "Wir waren in Berlin. / Wir hatten Glück!"
+                          ],
+                          [
+                            "ihr",
+                            "wart",
+                            "hattet",
+                            "Wart ihr im Kino? / Hattet ihr Hunger?"
+                          ],
+                          [
+                            "sie / Sie",
+                            "waren",
+                            "hatten",
+                            "Sie waren sehr freundlich. / Hatten Sie Termine?"
+                          ]
+                        ]
+                      }
                     }
                   ],
                   "dialogue": {
-                    "context": "Im Modegeschäft am Kudamm in Berlin (Netzwerk A1 Kapitel 10):",
+                    "context": "Rückblick auf ein arbeitsreiches Wochenende:",
                     "lines": [
                       {
-                        "speaker": "Verkäuferin",
-                        "german": "Guten Tag! Kann ich Ihnen helfen?",
-                        "english": "Good day! Can I help you?"
+                        "speaker": "Katja",
+                        "german": "Hallo David! Wie war deine Geschäftsreise nach Zürich?",
+                        "english": "Hello David! How was your business trip to Zurich?"
                       },
                       {
-                        "speaker": "Sarah",
-                        "german": "Ja gern. Ich suche eine warme Jacke für den Winter.",
-                        "english": "Yes gladly. I am looking for a warm jacket for the winter."
+                        "speaker": "David",
+                        "german": "Sie war sehr produktiv, aber ich hatte kaum Freizeit.",
+                        "english": "It was very productive, but I had hardly any free time."
                       },
                       {
-                        "speaker": "Verkäuferin",
-                        "german": "Wie gefällt Ihnen diese blaue Jacke hier? Welche Größe tragen Sie?",
-                        "english": "How do you like this blue jacket here? What size do you wear?"
+                        "speaker": "Katja",
+                        "german": "Hast du mit den Schweizer Kunden gesprochen?",
+                        "english": "Did you speak with the Swiss clients?"
                       },
                       {
-                        "speaker": "Sarah",
-                        "german": "Die Farbe ist sehr schön! Ich trage Größe 38. Kann ich sie anprobieren?",
-                        "english": "The color is very nice! I wear size 38. Can I try it on?"
+                        "speaker": "David",
+                        "german": "Ja, wir haben am Vormittag gesprochen und zu Mittag im Restaurant gegessen.",
+                        "english": "Yes, we spoke in the morning and ate lunch at the restaurant."
                       },
                       {
-                        "speaker": "Verkäuferin",
-                        "german": "Natürlich! Die Umkleidekabinen sind gleich da drüben.",
-                        "english": "Of course! The fitting rooms are right over there."
+                        "speaker": "Katja",
+                        "german": "Und warst du abends am Zürichsee?",
+                        "english": "And were you at Lake Zurich in the evening?"
+                      },
+                      {
+                        "speaker": "David",
+                        "german": "Ja, für eine halbe Stunde! Das Wetter war herrlich und ich habe einen Kaffee getrunken.",
+                        "english": "Yes, for half an hour! The weather was marvelous and I drank a coffee."
                       }
                     ]
                   },
                   "funFact": {
-                    "title": "Passen vs. Stehen",
-                    "content": "German makes an elegant distinction: 'Die Hose PASST mir' means the physical size fits your body. 'Die Hose STEHT mir' means the style and color look great on you! If a friend tries on a coat, say: 'Das steht dir super!'."
+                    "title": "Why German Children Say 'Ich war' instead of 'Ich bin gewesen'",
+                    "content": "Even though 'Ich bin gewesen' is 100% grammatically correct in Das Perfekt, saying 'Ich war' is much shorter, crisper, and sounds far more natural. In fact, over 95% of native German speakers use 'war' and 'hatte' exclusively in spoken conversations."
                   },
                   "practice": [
                     {
-                      "question": "What does 'Wo ist die Umkleidekabine?' mean?",
+                      "question": "What is the past participle of 'schreiben' (to write)?",
                       "options": [
-                        "Where is the cash register?",
-                        "Where is the fitting room?",
-                        "Where is the exit?"
+                        "geschreibt",
+                        "geschrieben",
+                        "geschriebt",
+                        "schrieb"
                       ],
-                      "answer": "Where is the fitting room?",
-                      "explanation": "'die Umkleidekabine' is the changing/fitting room in a store."
+                      "answer": "geschrieben",
+                      "explanation": "'schreiben' is an irregular verb with vowel shift ei -> ie: schreiben -> geschrieben."
                     },
                     {
-                      "question": "How do you tell a friend that a jacket suits their appearance?",
+                      "question": "Which form is most natural in spoken German to say: 'I was very tired yesterday'?",
                       "options": [
-                        "Die Jacke passt dir.",
-                        "Die Jacke steht dir gut!",
-                        "Die Jacke ist teuer."
+                        "Ich bin gestern sehr müde gewesen.",
+                        "Ich war gestern sehr müde.",
+                        "Ich habe gestern sehr müde geworden.",
+                        "Ich werde gestern müde."
                       ],
-                      "answer": "Die Jacke steht dir gut!",
-                      "explanation": "'stehen' (+ Dativ) means to look good / suit someone."
+                      "answer": "Ich war gestern sehr müde.",
+                      "explanation": "In spoken German, 'ich war' (Präteritum of sein) is universally preferred over the clumsy 'ich bin gewesen'."
+                    },
+                    {
+                      "question": "Fill in the blank: 'Gestern ___ wir keine Zeit für das Meeting.'",
+                      "options": [
+                        "hatten",
+                        "haben gehabt",
+                        "waren",
+                        "seid"
+                      ],
+                      "answer": "hatten",
+                      "explanation": "'Wir hatten keine Zeit' (We had no time) is the natural Präteritum form of haben for 'wir'."
                     }
                   ]
                 }
               },
               {
                 "id": "a1-ch9-l43",
-                "title": "Lesson 43: City Navigation, Places, Directions & Public Transit",
-                "description": "Landmarks (Bahnhof, Post, Apotheke), directions (geradeaus, rechts, links), buying tickets.",
+                "title": "Lesson 43: Workplace Phone Calls & Professional Messages",
+                "description": "Standard business telephone etiquette ('Hier spricht...', 'Auf Wiederhören'), taking phone notes, and leaving messages.",
                 "content": {
-                  "overview": "Public transportation (der öffentliche Nahverkehr - ÖPNV) in the DACH region is famous for its efficiency and punctuality. In this lesson, you will master navigating trains, subways, buying tickets at the automated machine (der Fahrkartenautomat), and finding your track (das Gleis).",
-                  "canDo": "Can buy transit tickets at machines or counters, understand platform announcements, and inquire about connections and delays.",
-                  "teacherNote": "Notice the difference: 'der Bahnsteig' is the physical platform you stand on, but 'das Gleis' is the track number printed on your ticket: 'Der Zug fährt von Gleis 7 ab'!",
+                  "overview": "Communicating effectively on the phone and leaving concise professional messages is a vital workplace skill. In this lesson, synthesized from Netzwerk A1 Kapitel 7 & 9, you will master telephone introductions ('Hier spricht...'), asking for colleagues politely, taking and leaving phone notes, and standard German business phone etiquette.",
+                  "canDo": "Can answer the phone professionally, introduce yourself, ask to speak with someone, leave a callback number, and understand simple telephone notes.",
+                  "teacherNote": "When answering the phone in a German company or home, state your name immediately! Answering with just 'Hallo?' is considered impolite or informal. In a company: 'Firma Schmidt, mein Name ist Weber, guten Tag!'. At home: 'Weber, hallo!'.",
                   "sections": [
                     {
-                      "title": "1. Verkehrsmittel im Nah- und Fernverkehr",
-                      "description": "Transit types from Netzwerk Kapitel 3 & 12:",
+                      "title": "1. Redemittel am Telefon (Telephone Etiquette Phrase Bank)",
+                      "description": "Essential phrases from initial greeting to saying goodbye:",
                       "table": {
                         "headers": [
-                          "Abkürzung / Begriff",
-                          "Voller Name",
+                          "Schritt (Step)",
+                          "Deutscher Ausdruck",
                           "Bedeutung",
-                          "Netz-Typ"
+                          "Mögliche Antwort"
                         ],
                         "rows": [
                           [
-                            "ICE",
-                            "Intercity Express",
-                            "High-speed German long-distance train",
-                            "Fernverkehr"
+                            "Sich melden (Answering)",
+                            "Firma TechSolutions, mein Name ist Meyer, guten Tag!",
+                            "Company TechSolutions, my name is Meyer, good day!",
+                            "Guten Tag, hier spricht Thomas Beck."
                           ],
                           [
-                            "RE / RB",
-                            "Regional-Express / Regionalbahn",
-                            "Regional commuter train between cities",
-                            "Regionalverkehr"
+                            "Gesprächspartner verlangen",
+                            "Kann ich bitte Frau Dr. Vogel sprechen?",
+                            "May I please speak with Dr. Vogel?",
+                            "Einen Moment bitte, ich verbinde Sie."
                           ],
                           [
-                            "S-Bahn",
-                            "Stadtschnellbahn",
-                            "Suburban above-ground transit train",
-                            "Stadtverkehr"
+                            "Nicht erreichbar sein",
+                            "Frau Vogel ist gerade in einer Besprechung.",
+                            "Ms. Vogel is currently in a meeting.",
+                            "Wann kann ich sie am besten erreichen?"
                           ],
                           [
-                            "U-Bahn",
-                            "Untergrundbahn",
-                            "Metro / subway network",
-                            "Stadtverkehr"
+                            "Nachricht hinterlassen",
+                            "Kann ich ihr etwas ausrichten?",
+                            "Can I take a message for her?",
+                            "Ja, bitte. Könnte sie mich zurückrufen?"
                           ],
                           [
-                            "Tram / Straßenbahn",
-                            "Straßenbahn",
-                            "Street-level light rail / tram",
-                            "Stadtverkehr"
+                            "Telefonnummer angeben",
+                            "Meine Telefonnummer ist 0171 456 78 90.",
+                            "My phone number is...",
+                            "Ich habe die Nummer notiert."
+                          ],
+                          [
+                            "Verabschiedung am Telefon",
+                            "Auf Wiederhören, Herr Beck!",
+                            "Goodbye (on the phone), Mr. Beck!",
+                            "Vielen Dank für Ihre Hilfe. Auf Wiederhören!"
                           ]
                         ]
                       }
                     },
                     {
-                      "title": "2. Am Bahnhof: Anzeigen & Durchsagen verstehen",
-                      "description": "Key terms heard and read at train stations:",
+                      "title": "2. Telefonnotiz (Taking a Phone Note)",
+                      "description": "Standard fields in a German office telephone memo:",
                       "items": [
                         {
-                          "term": "die Abfahrt / die Ankunft",
-                          "meaning": "Departure / Arrival",
-                          "example": "Abfahrt: 14:12 Uhr von Gleis 5."
+                          "term": "Anruf für:",
+                          "meaning": "Call for (the recipient colleague)",
+                          "example": "Anruf für: Frau Dr. Vogel"
                         },
                         {
-                          "term": "die Verspätung",
-                          "meaning": "Delay (in minutes)",
-                          "example": "Heute circa 15 Minuten Verspätung."
+                          "term": "Anrufer / Firma:",
+                          "meaning": "Caller name and organization",
+                          "example": "Herr Thomas Beck (Firma Klett)"
                         },
                         {
-                          "term": "Einsteigen bitte! / Zurückbleiben bitte!",
-                          "meaning": "All aboard please! / Please stand back from the doors!",
-                          "example": "Vorsicht bei der Abfahrt des Zuges!"
+                          "term": "Datum & Uhrzeit:",
+                          "meaning": "Date and time of the call",
+                          "example": "06.09., 14:30 Uhr"
+                        },
+                        {
+                          "term": "Bitte um Rückruf:",
+                          "meaning": "Please call back under the specified number",
+                          "example": "Bitte dringend zurückrufen: 0171-4567890"
                         }
                       ]
                     }
                   ],
                   "dialogue": {
-                    "context": "Fahrkartenkauf am Schalter im Berliner Hauptbahnhof (Netzwerk A1):",
+                    "context": "Ein geschäftlicher Telefonanruf im Büro (Netzwerk A1):",
                     "lines": [
                       {
-                        "speaker": "Bahn-Mitarbeiter",
-                        "german": "Guten Tag! Wie kann ich Ihnen helfen?",
-                        "english": "Good day! How can I help you?"
+                        "speaker": "Sekretariat",
+                        "german": "Verlag Schneider & Partner, guten Tag! Mein Name ist Susanne Braun.",
+                        "english": "Schneider & Partner Publishing, good day! My name is Susanne Braun."
                       },
                       {
-                        "speaker": "Paco",
-                        "german": "Guten Tag. Ich möchte eine Fahrkarte nach Dresden, bitte.",
-                        "english": "Good day. I would like a train ticket to Dresden, please."
+                        "speaker": "Herr Bauer",
+                        "german": "Guten Tag, Frau Braun. Mein Name ist Bauer von der Druckerei Mainz. Kann ich bitte Herrn Schneider sprechen?",
+                        "english": "Good day, Ms. Braun. My name is Bauer from Mainz Print Shop. Could I please speak with Mr. Schneider?"
                       },
                       {
-                        "speaker": "Bahn-Mitarbeiter",
-                        "german": "Einfache Fahrt oder hin und zurück?",
-                        "english": "Single journey or round-trip?"
+                        "speaker": "Sekretariat",
+                        "german": "Herr Schneider ist heute leider außer Haus. Kann ich ihm eine Nachricht hinterlassen?",
+                        "english": "Mr. Schneider is unfortunately out of the office today. Can I leave a message for him?"
                       },
                       {
-                        "speaker": "Paco",
-                        "german": "Hin und zurück, bitte. Der nächste Zug um 11 Uhr.",
-                        "english": "Round-trip, please. The next train at 11 o'clock."
+                        "speaker": "Herr Bauer",
+                        "german": "Ja, gern. Es geht um das neue Lehrbuch. Er soll mich bitte heute noch zurückrufen.",
+                        "english": "Yes, gladly. It's regarding the new textbook. Could he please call me back today?"
                       },
                       {
-                        "speaker": "Bahn-Mitarbeiter",
-                        "german": "Der ICE fährt um 11:05 Uhr von Gleis 3 ab. Hier ist Ihre Fahrkarte!",
-                        "english": "The ICE departs at 11:05 AM from track 3. Here is your ticket!"
+                        "speaker": "Sekretariat",
+                        "german": "Sehr gern, Herr Bauer. Wie ist Ihre direkte Durchwahl?",
+                        "english": "Very gladly, Mr. Bauer. What is your direct extension?"
+                      },
+                      {
+                        "speaker": "Herr Bauer",
+                        "german": "Das ist die 06131 88 44 20. Vielen Dank für Ihre Hilfe!",
+                        "english": "That is 06131 88 44 20. Thank you very much for your help!"
+                      },
+                      {
+                        "speaker": "Sekretariat",
+                        "german": "Gern geschehen. Ich richte es ihm sofort aus. Auf Wiederhören!",
+                        "english": "You're welcome. I'll pass it on immediately. Goodbye!"
                       }
                     ]
                   },
                   "funFact": {
-                    "title": "Validating Tickets (Entwerten)",
-                    "content": "In many German cities (like Berlin and Munich), buying a single transit ticket is not enough—you must validate it in a little stamping box ('entwerten') before boarding! If ticket controllers ('Fahrkartenkontrolle') catch you with an unstamped ticket, there is an immediate € 60 fine ('erhöhtes Beförderungsentgelt')!"
+                    "title": "'Auf Wiedersehen' vs. 'Auf Wiederhören'",
+                    "content": "German has a dedicated farewell specifically for the phone! While 'Auf Wiedersehen' literally means 'until we SEE each other again' (face-to-face), when speaking on the phone you say: 'Auf Wiederhören' (until we HEAR each other again!). Using this is a hallmark of good German etiquette."
                   },
                   "practice": [
                     {
-                      "question": "What does 'Gleis 4' mean on a German train ticket?",
+                      "question": "What is the proper polite farewell when finishing a telephone conversation?",
                       "options": [
-                        "Carriage 4",
-                        "Track / Platform 4",
-                        "Seat 4"
+                        "Auf Wiedersehen!",
+                        "Auf Wiederhören!",
+                        "Gute Nacht!",
+                        "Bis gestern!"
                       ],
-                      "answer": "Track / Platform 4",
-                      "explanation": "'das Gleis' indicates the track number where your train arrives and departs."
+                      "answer": "Auf Wiederhören!",
+                      "explanation": "On the telephone, Germans say 'Auf Wiederhören' because you are hearing each other, not seeing each other."
                     },
                     {
-                      "question": "What is the German term for a 'round-trip ticket'?",
+                      "question": "How do you state your identity when answering a phone call in German?",
                       "options": [
-                        "Einfache Fahrt",
-                        "Hin und zurück",
-                        "Tageskarte"
+                        "Ich bin Susanne Braun.",
+                        "Hier spricht Susanne Braun.",
+                        "Wer da ist?",
+                        "Ich habe Susanne Braun."
                       ],
-                      "answer": "Hin und zurück",
-                      "explanation": "'hin und zurück' literally means 'there and back' (round-trip)."
+                      "answer": "Hier spricht Susanne Braun.",
+                      "explanation": "'Hier spricht [Name]' (Here speaks [Name]) or '[Nachname], guten Tag' is the standard polite telephone self-identification in German."
+                    },
+                    {
+                      "question": "What does 'Herr Weber ist außer Haus' mean?",
+                      "options": [
+                        "Mr. Weber is at home.",
+                        "Mr. Weber is currently out of the office / away.",
+                        "Mr. Weber has bought a house.",
+                        "Mr. Weber is on the roof."
+                      ],
+                      "answer": "Mr. Weber is currently out of the office / away.",
+                      "explanation": "'Außer Haus' is a standard business idiom meaning 'out of the office' or 'away on business'."
                     }
                   ]
                 }
@@ -6516,498 +9919,2046 @@ export const FALLBACK_COURSES: CourseDetail[] = [
           },
           {
             "id": "a1-ch10",
-            "title": "Chapter 10: Alltagskommunikation, Schriftlicher Ausdruck & Abschluss (Everyday Communication & Course Review)",
+            "title": "Chapter 10: Kleidung und Mode (Clothing, Shopping & Demonstratives)",
             "lessons": [
               {
                 "id": "a1-ch10-l44",
-                "title": "Lesson 44: Phone Conversations & Text Messaging",
-                "description": "Answering calls, leaving messages, short SMS/chat conversational shorthand.",
+                "title": "Lesson 44: Clothes, Colors & Personal Style",
+                "description": "Everyday garments with articles and plurals, colors, patterns, and describing outfits using 'tragen' (er trägt).",
                 "content": {
-                  "overview": "Speaking on the telephone and exchanging short digital messages requires specialized conversational etiquette. In this lesson, you will master introducing yourself on the phone ('Hier spricht...'), asking to speak with someone, leaving messages, and common German text abbreviations.",
-                  "canDo": "Can answer and conduct simple telephone calls, ask for people politely, leave brief messages, and understand short SMS and chat messages.",
-                  "teacherNote": "On the phone, Germans never say 'Ich bin Gregor'. They state their name directly as: 'Hier spricht Gregor Schubert' (Here speaks Gregor Schubert) or simply 'Schubert, guten Tag!'.",
+                  "overview": "Describing what you wear, favorite outfits, colors, and seasonal clothing is a frequent everyday conversation topic. In this lesson from Netzwerk A1 Kapitel 10 ('Kleidung und Mode'), you will learn essential clothing items, articles, colors, and adjectives to describe personal style.",
+                  "canDo": "Can name everyday clothing items with their correct genders, describe garments by color and pattern, and state what someone is wearing using the verb 'tragen' (trägt).",
+                  "teacherNote": "Remember that 'tragen' (to wear/carry) is a stem-changing verb: 'ich trage', but 'du trägst' and 'er/sie/es trägt'! Also pay attention to noun genders: 'der Pullover' (m), 'die Jacke' (f), 'das Hemd' (n), 'die Schuhe' (pl).",
                   "sections": [
                     {
-                      "title": "1. Redemittel am Telefon (Telephone Phrase Bank)",
-                      "description": "Standard telephone expressions from Netzwerk Kapitel 7:",
+                      "title": "1. Kleidung & Accessoires (Wardrobe Essentials)",
+                      "description": "Standard clothing items categorized by grammatical gender:",
                       "table": {
                         "headers": [
-                          "Situation",
-                          "Deutscher Ausdruck",
-                          "Bedeutung",
-                          "Antwort"
+                          "Artikel & Nomen",
+                          "Pluralform",
+                          "Englische Bedeutung",
+                          "Beispielsatz"
                         ],
                         "rows": [
                           [
-                            "Melden (Answering)",
-                            "Firma Müller, Meier am Apparat, guten Tag!",
-                            "Company Müller, Meier on the line, hello!",
-                            "Guten Tag, hier spricht..."
+                            "der Pullover / Pulli",
+                            "die Pullover",
+                            "sweater / jumper",
+                            "Der Pullover ist warm."
                           ],
                           [
-                            "Verbinden fragen",
-                            "Ich möchte bitte Herrn Schmidt sprechen.",
-                            "I would like to speak to Mr. Schmidt.",
-                            "Einen Moment, ich verbinde Sie."
+                            "der Mantel",
+                            "die Mäntel",
+                            "overcoat / coat",
+                            "Im Winter brauche ich einen Mantel."
                           ],
                           [
-                            "Nicht da",
-                            "Herr Schmidt ist leider nicht am Platz.",
-                            "Mr. Schmidt is unfortunately not at his desk.",
-                            "Kann ich eine Nachricht hinterlassen?"
+                            "der Anzug",
+                            "die Anzüge",
+                            "man's suit",
+                            "Er trägt einen schwarzen Anzug."
                           ],
                           [
-                            "Rückruf",
-                            "Können Sie mich bitte zurückrufen?",
-                            "Could you please call me back?",
-                            "Ja, wie ist Ihre Nummer?"
+                            "die Hose",
+                            "die Hosen",
+                            "trousers / pants",
+                            "Die blaue Hose gefällt mir."
                           ],
                           [
-                            "Verabschiedung",
-                            "Auf Wiederhören, Frau Weber!",
-                            "Goodbye (on the phone), Ms. Weber!",
-                            "Auf Wiederhören!"
+                            "die Jacke",
+                            "die Jacken",
+                            "jacket",
+                            "Zieh deine Jacke an!"
+                          ],
+                          [
+                            "das Hemd",
+                            "die Hemden",
+                            "collared shirt",
+                            "Das weiße Hemd passt gut."
+                          ],
+                          [
+                            "das T-Shirt",
+                            "die T-Shirts",
+                            "T-shirt",
+                            "Ich kaufe ein neues T-Shirt."
+                          ],
+                          [
+                            "das Kleid",
+                            "die Kleider",
+                            "dress",
+                            "Sie trägt ein rotes Kleid."
+                          ],
+                          [
+                            "die Schuhe (Pl.)",
+                            "der Schuh",
+                            "shoes",
+                            "Die Schuhe sind sehr bequem."
                           ]
                         ]
                       }
                     },
                     {
-                      "title": "2. Abkürzungen im Chat & SMS (Texting Shorthand)",
-                      "description": "Common informal abbreviations in German texting:",
+                      "title": "2. Farben & Muster (Colors & Patterns)",
+                      "description": "Describing shades and styles:",
                       "items": [
                         {
-                          "term": "VG / LG (Viele Grüße / Liebe Grüße)",
-                          "meaning": "Best regards / warm regards (standard friendly sign-off)",
-                          "example": "Bis morgen! LG, Nina"
+                          "term": "Farben (Colors)",
+                          "meaning": "blau (blue), rot (red), gelb (yellow), grün (green), schwarz (black), weiß (white), grau (grey), braun (brown)",
+                          "example": "Der Pullover ist dunkelblau."
                         },
                         {
-                          "term": "WE (Wochenende)",
-                          "meaning": "Weekend",
-                          "example": "Was machst du am WE?"
+                          "term": "hell- / dunkel-",
+                          "meaning": "light / dark prefixes for colors",
+                          "example": "hellgrün (light green), dunkelgrau (dark grey)"
                         },
                         {
-                          "term": "hdl (hab dich lieb)",
-                          "meaning": "Love you / fond of you (used between close friends and couples)",
-                          "example": "Danke für alles, hdl!"
+                          "term": "gestreift / kariert",
+                          "meaning": "striped / checkered",
+                          "example": "ein gestreiftes Hemd / eine karierte Hose"
+                        },
+                        {
+                          "term": "einfarbig / bunt",
+                          "meaning": "monochrome / colorful",
+                          "example": "Das Kleid ist bunt und modern."
                         }
                       ]
                     }
                   ],
                   "dialogue": {
-                    "context": "Telefonanruf im Büro (Netzwerk A1 Kapitel 7):",
+                    "context": "Zwei Freundinnen verabreden sich vor der Party:",
                     "lines": [
                       {
-                        "speaker": "Sekretärin",
-                        "german": "Klett Verlag, Rezeption, guten Tag! Was kann ich für Sie tun?",
-                        "english": "Klett Publishing, reception, good day! What can I do for you?"
+                        "speaker": "Hannah",
+                        "german": "Sophia, was ziehst du heute Abend zur Party an?",
+                        "english": "Sophia, what are you wearing to the party tonight?"
                       },
                       {
-                        "speaker": "Gregor",
-                        "german": "Guten Tag, mein Name ist Gregor Schubert. Ich möchte gern Frau Kilimann sprechen.",
-                        "english": "Good day, my name is Gregor Schubert. I would like to speak to Ms. Kilimann."
+                        "speaker": "Sophia",
+                        "german": "Ich weiß noch nicht genau. Vielleicht meine schwarze Hose und die rote Seidenbluse.",
+                        "english": "I'm not sure yet. Maybe my black trousers and the red silk blouse."
                       },
                       {
-                        "speaker": "Sekretärin",
-                        "german": "Einen kleinen Moment bitte, ich verbinde Sie... Tut mir leid, sie ist gerade in einer Besprechung.",
-                        "english": "One moment please, I am connecting you... I am sorry, she is currently in a meeting."
+                        "speaker": "Hannah",
+                        "german": "Das sieht bestimmt elegant aus! Und welche Schuhe nimmst du?",
+                        "english": "That will definitely look elegant! And which shoes are you taking?"
                       },
                       {
-                        "speaker": "Gregor",
-                        "german": "Kann ich ihr eine kurze Nachricht hinterlassen? Sie soll mich bitte unter 0172-88492 zurückrufen.",
-                        "english": "Can I leave her a short message? Could she please call me back at 0172-88492."
+                        "speaker": "Sophia",
+                        "german": "Meine bequemen Lederstiefel. Und du? Was trägst du?",
+                        "english": "My comfortable leather boots. And you? What are you wearing?"
                       },
                       {
-                        "speaker": "Sekretärin",
-                        "german": "Sehr gern, Herr Schubert. Ich gebe ihr die Nachricht weiter. Auf Wiederhören!",
-                        "english": "Very gladly, Mr. Schubert. I will pass the message along to her. Goodbye!"
+                        "speaker": "Hannah",
+                        "german": "Ich ziehe mein neues blaues Kleid und eine warme Wollstrickjacke an.",
+                        "english": "I'm putting on my new blue dress and a warm woolen cardigan."
                       }
                     ]
                   },
                   "funFact": {
-                    "title": "State Your Last Name First When Answering",
-                    "content": "When private landline phones or business phones ring in Germany, people almost never answer with a generic 'Hallo?'. Instead, they state their family name directly: 'Schubert!' or 'Schubert, guten Tag!'. It confirms immediately to the caller that they have reached the right household."
+                    "title": "German Singular 'Die Hose' vs. English 'Pants'",
+                    "content": "In English, pants/trousers are always plural ('these pants are great'). In German, a pair of trousers is singular: 'Die Hose ist schön' (literally: 'The pant is pretty'). Only when talking about multiple pairs of pants do you use the plural 'die Hosen'!"
                   },
                   "practice": [
                     {
-                      "question": "How do you correctly say: 'This is Gregor Schubert speaking' on the phone?",
+                      "question": "How do you correctly conjugate 'tragen' for 'er' (he)?",
                       "options": [
-                        "Ich bin Gregor Schubert.",
-                        "Hier spricht Gregor Schubert.",
-                        "Das ist Gregor Schubert."
+                        "er tragt",
+                        "er trägte",
+                        "er trägt",
+                        "er trugen"
                       ],
-                      "answer": "Hier spricht Gregor Schubert.",
-                      "explanation": "'Hier spricht [Name]' is the standard, professional phone introduction in German."
+                      "answer": "er trägt",
+                      "explanation": "'tragen' has an a -> ä vowel change in the 2nd and 3rd person singular: du trägst, er/sie/es trägt."
                     },
                     {
-                      "question": "What does the text abbreviation 'LG' stand for?",
+                      "question": "What is the German word for a collared dress shirt?",
                       "options": [
-                        "Lange Grüße",
-                        "Liebe Grüße",
-                        "Letzter Gruß"
+                        "die Bluse",
+                        "das Hemd",
+                        "der Rock",
+                        "die Hose"
                       ],
-                      "answer": "Liebe Grüße",
-                      "explanation": "'LG' stands for 'Liebe Grüße' (warm regards / best wishes)."
+                      "answer": "das Hemd",
+                      "explanation": "'das Hemd' is a man's collared shirt (plural: die Hemden). 'die Bluse' is a woman's blouse."
+                    },
+                    {
+                      "question": "How do you say 'light blue' in German?",
+                      "options": [
+                        "hellblau",
+                        "dunkelblau",
+                        "weißblau",
+                        "lichtblau"
+                      ],
+                      "answer": "hellblau",
+                      "explanation": "The prefix 'hell-' means light/bright, so 'hellblau' is light blue ('dunkelblau' is dark blue)."
                     }
                   ]
                 }
               },
               {
                 "id": "a1-ch10-l45",
-                "title": "Lesson 45: Writing Simple Emails & Letters in German",
-                "description": "Formal & informal letters: salutations (Liebe... / Sehr geehrte...) & sign-offs (Mit freundlichen Grüßen).",
+                "title": "Lesson 45: Shopping in the Department Store & Exchanging Items",
+                "description": "Navigating store floor layouts (EG, OG, UG), asking sales assistants for help, and exchanging items (Umtausch mit Kassenbon).",
                 "content": {
-                  "overview": "Writing simple letters and emails is tested directly in the Goethe-Zertifikat A1 exam (Writing Part 2). In this lesson, you will master the formal structure (Sehr geehrte Damen und Herren / Mit freundlichen Grüßen) and the informal structure (Liebe... / Viele Grüße).",
-                  "canDo": "Can write simple formal inquiries, registrations, and informal personal emails using correct salutations and closing formulas.",
-                  "teacherNote": "Punctuation alert: After a German email salutation, put a COMMA, and then start the next line with a LOWERCASE letter! For example: 'Liebe Julia, / ich danke dir für deine Einladung...'.",
+                  "overview": "Navigating large German department stores (Kaufhäuser) like KaDeWe in Berlin or Galeria requires knowing store floor layouts, asking sales clerks for assistance, and knowing how to return or exchange an item with a receipt (Kassenbon).",
+                  "canDo": "Can find departments in a department store using floor indicators (EG, 1. OG, UG), ask store assistants for help, and request an exchange (Umtausch) using a receipt.",
+                  "teacherNote": "Floor numbering in German-speaking countries follows European standards: The street level is 'das Erdgeschoss' (EG). The floor above is 'der 1. Stock / das 1. Obergeschoss' (1. OG = 2nd floor in US English!). The basement floor is 'das Untergeschoss' (UG).",
                   "sections": [
                     {
-                      "title": "1. Formelle vs. Informelle E-Mail-Struktur",
-                      "description": "Standard letter layout required in the Goethe-Zertifikat A1 exam:",
+                      "title": "1. Etagen & Abteilungen im Kaufhaus (Department Store Layout)",
+                      "description": "Floor directory abbreviations and departments:",
                       "table": {
                         "headers": [
-                          "Baustein (Element)",
-                          "Formell (Ämter, Vermieter, Chefs)",
-                          "Informell (Freunde, Familie)"
+                          "Etage (Abkürzung)",
+                          "Bezeichnung",
+                          "Abteilungen & Waren",
+                          "Englisch"
                         ],
                         "rows": [
                           [
-                            "Betreffzeile (Subject)",
-                            "Anmeldung zum Deutschkurs A1",
-                            "Party am Samstag!"
+                            "3. OG",
+                            "3. Obergeschoss",
+                            "Kinderkleidung & Spielwaren",
+                            "3rd floor: Children's wear & toys"
                           ],
                           [
-                            "Anrede (Salutation)",
-                            "Sehr geehrte Damen und Herren, / Sehr geehrte Frau...",
-                            "Liebe Julia, (f) / Lieber Paco, (m)"
+                            "2. OG",
+                            "2. Obergeschoss",
+                            "Herrenmode & Sportabteilung",
+                            "2nd floor: Men's wear & sports"
                           ],
                           [
-                            "Erster Satz (First sentence)",
-                            "Beginnt KLEIN nach dem Komma!",
-                            "Beginnt KLEIN nach dem Komma!"
+                            "1. OG",
+                            "1. Obergeschoss",
+                            "Damenmode & Schuhe",
+                            "1st floor: Women's wear & shoes"
                           ],
                           [
-                            "Hauptteil (Body)",
-                            "Ich schreibe Ihnen, weil ich...",
-                            "Wie geht es dir? Ich möchte dich fragen..."
+                            "EG",
+                            "Erdgeschoss",
+                            "Kosmetik, Parfümerie, Schmuck",
+                            "Ground floor: Cosmetics & jewelry"
                           ],
                           [
-                            "Grußformel (Closing)",
-                            "Mit freundlichen Grüßen",
-                            "Viele Grüße / Liebe Grüße"
-                          ],
-                          [
-                            "Unterschrift (Signature)",
-                            "Vorname + Nachname",
-                            "Nur Vorname"
+                            "UG",
+                            "Untergeschoss",
+                            "Haushaltswaren & Feinkost",
+                            "Basement: Home goods & gourmet food"
                           ]
                         ]
                       }
                     },
                     {
-                      "title": "2. Typische Textbausteine (Email Building Blocks)",
-                      "description": "Phrases you can copy directly into your emails from Netzwerk A1:",
-                      "items": [
-                        {
-                          "term": "Ich schreibe Ihnen, weil...",
-                          "meaning": "I am writing to you because... (states the purpose of the email)",
-                          "example": "Ich schreibe Ihnen, weil ich mich für den Kurs anmelden möchte."
-                        },
-                        {
-                          "term": "Können Sie mir bitte mitteilen, ob...",
-                          "meaning": "Could you please let me know whether...",
-                          "example": "Können Sie mir bitte mitteilen, wann der Kurs beginnt?"
-                        },
-                        {
-                          "term": "Vielen Dank im Voraus für Ihre Antwort.",
-                          "meaning": "Thank you in advance for your reply.",
-                          "example": "Über eine baldige Antwort würde ich mich freuen."
-                        }
-                      ]
+                      "title": "2. Redemittel für Beratung & Umtausch (Phrases for Shopping & Returns)",
+                      "description": "Essential phrases when talking to sales clerks:",
+                      "table": {
+                        "headers": [
+                          "Situation",
+                          "Deutscher Ausdruck",
+                          "Bedeutung",
+                          "Antwort der Verkäuferin"
+                        ],
+                        "rows": [
+                          [
+                            "Hilfe suchen",
+                            "Entschuldigung, wo finde ich Herrenjacken?",
+                            "Excuse me, where do I find men's jackets?",
+                            "In der 2. Etage, gleich neben den Rolltreppen."
+                          ],
+                          [
+                            "Nur schauen",
+                            "Danke, ich möchte mich nur umsehen.",
+                            "Thanks, I'm just browsing / looking around.",
+                            "Gern, sagen Sie Bescheid, wenn Sie Hilfe brauchen."
+                          ],
+                          [
+                            "Umtausch (Exchange)",
+                            "Ich möchte diese Bluse umtauschen.",
+                            "I would like to exchange this blouse.",
+                            "Haben Sie den Kassenbon dabei?"
+                          ],
+                          [
+                            "Defekt reklamieren",
+                            "Der Reißverschluss ist leider kaputt.",
+                            "The zipper is unfortunately broken.",
+                            "Wir tauschen die Jacke natürlich sofort um."
+                          ],
+                          [
+                            "Zahlung",
+                            "Kann ich mit Kreditkarte / kontaktlos zahlen?",
+                            "Can I pay by credit card / contactless?",
+                            "Ja natürlich, bitte hier auflegen."
+                          ]
+                        ]
+                      }
                     }
                   ],
                   "dialogue": {
-                    "context": "Eine formelle Anfrage an das Goethe-Institut (Netzwerk A1 Kapitel 7):",
+                    "context": "Kundenservice im Kaufhaus am Alexanderplatz in Berlin:",
                     "lines": [
                       {
-                        "speaker": "E-Mail Text",
-                        "german": "Betreff: Anfrage Deutschkurs A1 im Juli\n\nSehr geehrte Damen und Herren,\n\nich heiße Paco Garcia und möchte im Juli einen Intensivkurs A1 besuchen. Gibt es noch freie Plätze? Und wie viel kostet der Kurs inklusive Lehrbuch?\n\nVielen Dank im Voraus für Ihre Auskunft.\n\nMit freundlichen Grüßen\nPaco Garcia",
-                        "english": "Subject: Inquiry German Course A1 in July\n\nDear Sir or Madam,\n\nMy name is Paco Garcia and I would like to attend an intensive A1 course in July. Are there still free spots available? And how much does the course cost including the textbook?\n\nThank you in advance for your information.\n\nSincerely yours,\nPaco Garcia"
+                        "speaker": "Kunde",
+                        "german": "Guten Tag! Ich habe gestern diesen Pullover gekauft, aber er ist zu klein.",
+                        "english": "Good day! I bought this sweater yesterday, but it is too small."
+                      },
+                      {
+                        "speaker": "Verkäuferin",
+                        "german": "Guten Tag! Möchten Sie den Pullover in einer größeren Größe oder suchen Sie ein anderes Modell?",
+                        "english": "Good day! Would you like the sweater in a larger size or are you looking for another model?"
+                      },
+                      {
+                        "speaker": "Kunde",
+                        "german": "Ich hätte ihn gern in Größe L, wenn Sie ihn noch vorrätig haben.",
+                        "english": "I would like it in size L, if you still have it in stock."
+                      },
+                      {
+                        "speaker": "Verkäuferin",
+                        "german": "Ja, in Dunkelblau haben wir noch ein Stück in L. Haben Sie den Kassenbon?",
+                        "english": "Yes, in dark blue we still have one piece in L. Do you have the receipt?"
+                      },
+                      {
+                        "speaker": "Kunde",
+                        "german": "Ja, hier ist der Beleg. Vielen Dank für Ihre schnelle Hilfe!",
+                        "english": "Yes, here is the receipt. Thank you very much for your prompt help!"
+                      },
+                      {
+                        "speaker": "Verkäuferin",
+                        "german": "Sehr gern geschehen. Hier ist Ihr neuer Pullover. Schönen Tag noch!",
+                        "english": "You're very welcome. Here is your new sweater. Have a nice day!"
                       }
                     ]
                   },
                   "funFact": {
-                    "title": "Lower-Case First Word After Salutation",
-                    "content": "One of the most noticeable differences between English and German letter writing is that in German, the line immediately following the salutation begins with a lowercase letter! In English: 'Dear John, I am writing...'. In German: 'Lieber John, ich schreibe...'."
+                    "title": "Germany's Legendary KaDeWe",
+                    "content": "Berlin's 'Kaufhaus des Westens' (KaDeWe), founded in 1907, is the largest department store in continental Europe, spanning over 60,000 square meters. Its 6th floor is world-famous as the 'Feinschmeckeretage' (Gourmet Floor), featuring over 30 culinary bars and 35,000 delicacies."
                   },
                   "practice": [
                     {
-                      "question": "What is the standard formal sign-off for business emails in German?",
+                      "question": "What does 'EG' stand for on an elevator panel in a German department store?",
                       "options": [
-                        "Viele Grüße",
-                        "Mit freundlichen Grüßen",
-                        "Tschüs!"
+                        "Einkaufsgruppe",
+                        "Erdgeschoss",
+                        "Erste Gerade",
+                        "Endstation"
                       ],
-                      "answer": "Mit freundlichen Grüßen",
-                      "explanation": "'Mit freundlichen Grüßen' (With kind regards) is the universal formal closing."
+                      "answer": "Erdgeschoss",
+                      "explanation": "'EG' stands for 'das Erdgeschoss' (ground / street floor)."
                     },
                     {
-                      "question": "How do you address a female teacher or manager formally?",
+                      "question": "What document is typically required when you want to exchange (umtauschen) an item?",
                       "options": [
-                        "Lieber Frau Müller,",
-                        "Sehr geehrte Frau Müller,",
-                        "Hallo Frau Müller!"
+                        "der Reisepass",
+                        "der Kassenbon",
+                        "der Führerschein",
+                        "das Zeugnis"
                       ],
-                      "answer": "Sehr geehrte Frau Müller,",
-                      "explanation": "'Sehr geehrte Frau [Nachname]' is the polite formal salutation for a woman."
+                      "answer": "der Kassenbon",
+                      "explanation": "'der Kassenbon' (or 'der Beleg' / 'die Quittung') is the purchase receipt required for store returns and exchanges."
+                    },
+                    {
+                      "question": "What is the polite phrase to say when you are just browsing in a store?",
+                      "options": [
+                        "Ich habe kein Geld.",
+                        "Ich möchte mich nur umsehen, danke.",
+                        "Verlassen Sie das Geschäft!",
+                        "Geben Sie mir Rabatt!"
+                      ],
+                      "answer": "Ich möchte mich nur umsehen, danke.",
+                      "explanation": "'Ich möchte mich nur umsehen, danke' politely informs the sales assistant that you are just looking around."
                     }
                   ]
                 }
               },
               {
                 "id": "a1-ch10-l46",
-                "title": "Lesson 46: Invitations, Appointments & Rescheduling",
-                "description": "Inviting people to events, accepting/declining politely, proposing new dates.",
+                "title": "Lesson 46: Sizing, Trying On & Fit (passen vs. stehen)",
+                "description": "Asking for clothing and shoe sizes, locating fitting rooms (Umkleidekabine), and describing fit (passt gut, zu eng, zu weit).",
                 "content": {
-                  "overview": "Inviting friends to parties, accepting or declining invitations politely, and suggesting alternative dates are key social skills. In this lesson, you will work with an authentic party invitation from Netzwerk Kapitel 6 ('Psst - eine Überraschung für Sofia!') and practice social coordination.",
-                  "canDo": "Can understand party invitations, accept with enthusiasm, decline with polite justification, and propose alternative meeting times.",
-                  "teacherNote": "When declining an invitation in German, always follow the 'polite sandwich': 1. Thank them ('Danke für die Einladung'), 2. Give a brief reason ('Leider kann ich nicht, weil ich arbeiten muss'), 3. Propose another time ('Können wir uns nächste Woche treffen?').",
+                  "overview": "Trying on clothes and evaluating how they fit is a practical communicative scenario. In this lesson, you will learn to ask for clothing sizes, locate the fitting room ('die Umkleidekabine'), and express whether clothes fit well, are too tight, too loose, too short, or too long.",
+                  "canDo": "Can ask for and state clothing sizes (Größe 38, S/M/L/XL), request to try garments on, and describe fit accurately (passt gut, zu eng, zu weit).",
+                  "teacherNote": "Notice how the verb 'passen' works: 'Die Hose passt mir gut' (The pants fit me well). Here 'mir' is in the Dative case! If an item looks great on someone aesthetically, Germans use 'stehen': 'Das Kleid steht dir ausgezeichnet!' (The dress looks magnificent on you!).",
                   "sections": [
                     {
-                      "title": "1. Eine Einladung verstehen (Authentic Invitation from Netzwerk A1)",
-                      "description": "Read the authentic email from Netzwerk Kapitel 6:",
+                      "title": "1. Größen & Anprobe (Sizes & Fitting)",
+                      "description": "Essential terms for trying on clothes:",
                       "table": {
                         "headers": [
-                          "Abschnitt",
-                          "Originaltext aus Netzwerk A1 (Kapitel 6)",
-                          "Bedeutung"
+                          "Deutscher Begriff",
+                          "Bedeutung",
+                          "Typischer Beispielsatz"
                         ],
                         "rows": [
                           [
-                            "Betreff",
-                            "Psst – eine Überraschung für Sofia!",
-                            "Psst – a surprise for Sofia!"
+                            "die Umkleidekabine (-n)",
+                            "fitting room / changing cubicle",
+                            "Wo sind die Umkleidekabinen bitte?"
                           ],
                           [
-                            "Anrede",
-                            "Hallo liebe Freunde von Sofia,",
-                            "Hello dear friends of Sofia,"
+                            "anprobieren (trennbar!)",
+                            "to try on (clothes)",
+                            "Kann ich diese Jacke anprobieren?"
                           ],
                           [
-                            "Anlass (Occasion)",
-                            "Sofia hat Geburtstag und wir möchten ihr ein Geschenk machen!",
-                            "Sofia has a birthday and we want to give her a gift!"
+                            "die Konfektionsgröße (-n)",
+                            "clothing size",
+                            "Welche Größe tragen Sie? — Größe 40."
                           ],
                           [
-                            "Treffpunkt & Zeit",
-                            "Am Samstag, den 18.07. um 10 Uhr am Bahnhof.",
-                            "On Saturday, July 18th at 10 AM at the station."
+                            "die Schuhgröße (-n)",
+                            "shoe size",
+                            "Ich habe Schuhgröße 42."
                           ],
                           [
-                            "Plan (Activity)",
-                            "Wir machen einen Ausflug mit dem Fahrrad und ein Picknick.",
-                            "We are doing a bike excursion and a picnic."
-                          ],
-                          [
-                            "Mitbringen (Bring)",
-                            "Wir bringen Essen und Getränke mit. Bitte gebt Bescheid!",
-                            "We bring food and drinks along. Please let us know!"
+                            "die Nummer / Größe kleiner/größer",
+                            "a size smaller / larger",
+                            "Haben Sie das eine Nummer größer?"
                           ]
                         ]
                       }
                     },
                     {
-                      "title": "2. Zusagen und Absagen (Accepting & Declining)",
-                      "description": "How to respond to invitations:",
-                      "items": [
-                        {
-                          "term": "Zusagen (Accepting enthusiastically)",
-                          "meaning": "Ich komme sehr gern! / Ich bin auf jeden Fall dabei!",
-                          "example": "Vielen Dank für die Einladung, ich komme gern!"
-                        },
-                        {
-                          "term": "Absagen (Declining politely)",
-                          "meaning": "Leider kann ich nicht kommen. / Das geht leider nicht.",
-                          "example": "Es tut mir leid, aber am Samstag muss ich arbeiten."
-                        },
-                        {
-                          "term": "Bescheid geben",
-                          "meaning": "To let someone know / give notice",
-                          "example": "Ich gebe dir bis Freitag Bescheid!"
-                        }
-                      ]
+                      "title": "2. Passform beurteilen: 'passen' vs. 'stehen'",
+                      "description": "Distinguishing physical fit from aesthetic suitability:",
+                      "table": {
+                        "headers": [
+                          "Ausdruck",
+                          "Bedeutung",
+                          "Verwendung",
+                          "Beispiel"
+                        ],
+                        "rows": [
+                          [
+                            "passen (+ Dativ)",
+                            "to fit (size / dimensions)",
+                            "Physical size matches",
+                            "Die Schuhe passen mir perfekt."
+                          ],
+                          [
+                            "stehen (+ Dativ)",
+                            "to suit / look good on",
+                            "Appearance / style matches",
+                            "Blau steht dir wirklich gut!"
+                          ],
+                          [
+                            "zu eng / zu weit",
+                            "too tight / too loose (baggy)",
+                            "Fit issue",
+                            "Die Hose ist leider etwas zu eng."
+                          ],
+                          [
+                            "zu kurz / zu lang",
+                            "too short / too long",
+                            "Length issue",
+                            "Die Ärmel sind mir zu lang."
+                          ]
+                        ]
+                      }
                     }
                   ],
                   "dialogue": {
-                    "context": "Antwort auf die Einladung per WhatsApp (Netzwerk A1 Kapitel 6):",
+                    "context": "Im Modegeschäft vor den Umkleidekabinen (Netzwerk A1):",
                     "lines": [
                       {
-                        "speaker": "Gregor",
-                        "german": "Hallo Christian! Hast du die Mail über Sofias Überraschungstag gelesen?",
-                        "english": "Hello Christian! Did you read the email about Sofia's surprise day?"
+                        "speaker": "Verkäufer",
+                        "german": "Kann ich Ihnen behilflich sein?",
+                        "english": "May I help you?"
                       },
                       {
-                        "speaker": "Christian",
-                        "german": "Ja, tolle Idee! Ich bin auf jeden Fall dabei. Ich bringe einen Kuchen und Musik mit.",
-                        "english": "Yes, great idea! I am definitely in. I'll bring a cake and music."
+                        "speaker": "Kundin",
+                        "german": "Ja, gern. Ich möchte diesen dunkelgrünen Mantel anprobieren. Wo ist die Umkleidekabine?",
+                        "english": "Yes, please. I'd like to try on this dark green coat. Where is the fitting room?"
                       },
                       {
-                        "speaker": "Gregor",
-                        "german": "Perfekt! Und weißt du, ob Julia auch mitkommt?",
-                        "english": "Perfect! And do you know if Julia is coming along too?"
+                        "speaker": "Verkäufer",
+                        "german": "Dort drüben auf der linken Seite. Welche Größe haben Sie?",
+                        "english": "Over there on the left side. What size do you take?"
                       },
                       {
-                        "speaker": "Christian",
-                        "german": "Julia hat leider keine Zeit, weil sie ihre Großeltern besucht. Aber sie gibt Bescheid!",
-                        "english": "Julia unfortunately has no time because she is visiting her grandparents. But she will let us know!"
+                        "speaker": "Kundin",
+                        "german": "Normalerweise Größe 38. Ich probiere ihn gleich an.",
+                        "english": "Usually size 38. I'll try it on right away."
+                      },
+                      {
+                        "speaker": "Verkäufer",
+                        "german": "Und? Wie passt der Mantel?",
+                        "english": "And? How does the coat fit?"
+                      },
+                      {
+                        "speaker": "Kundin",
+                        "german": "An den Schultern passt er perfekt, aber die Farbe gefällt mir besonders gut!",
+                        "english": "At the shoulders it fits perfectly, but I especially love the color!"
+                      },
+                      {
+                        "speaker": "Verkäufer",
+                        "german": "Grün steht Ihnen wirklich hervorragend!",
+                        "english": "Green really suits you wonderfully!"
+                      },
+                      {
+                        "speaker": "Kundin",
+                        "german": "Vielen Dank! Den nehme ich.",
+                        "english": "Thank you very much! I'll take it."
                       }
                     ]
                   },
                   "funFact": {
-                    "title": "'Bescheid sagen / Bescheid geben'",
-                    "content": "You will hear 'Bescheid geben' or 'Bescheid sagen' in almost every single German conversation! It simply means 'to let someone know / keep someone posted': 'Gib mir bitte Bescheid!' (Please let me know!)."
+                    "title": "European Clothing Sizes Explained",
+                    "content": "German women's clothing sizes typically run from 34 (XS) to 46+ (XXL), while men's suit sizes run from 46 to 58. For shoes, standard German sizing uses the Paris point system: size 38 is roughly a US women's 7.5, and size 43 is roughly a US men's 9.5."
                   },
                   "practice": [
                     {
-                      "question": "How do you accept an invitation with enthusiasm?",
+                      "question": "How do you ask: 'Can I try this on?' in German?",
                       "options": [
-                        "Ich habe keine Lust.",
-                        "Ich bin auf jeden Fall dabei!",
-                        "Vielleicht später."
+                        "Kann ich das anprobieren?",
+                        "Kann ich das essen?",
+                        "Darf ich das verkaufen?",
+                        "Muss ich das tragen?"
                       ],
-                      "answer": "Ich bin auf jeden Fall dabei!",
-                      "explanation": "'Ich bin auf jeden Fall dabei!' means 'I am definitely joining / count me in!'."
+                      "answer": "Kann ich das anprobieren?",
+                      "explanation": "'anprobieren' specifically means to try on garments to check the fit."
                     },
                     {
-                      "question": "What does the expression 'Gib mir Bescheid' mean?",
+                      "question": "What is the difference between 'Die Jacke passt mir' and 'Die Jacke steht mir'?",
                       "options": [
-                        "Give me a ticket",
-                        "Let me know / keep me posted",
-                        "Pay the bill"
+                        "'passen' refers to physical size/fit, while 'stehen' means it looks flattering/suits you.",
+                        "'stehen' refers to size, while 'passen' means color.",
+                        "There is no difference; they are exact synonyms.",
+                        "'passen' is only used for shoes."
                       ],
-                      "answer": "Let me know / keep me posted",
-                      "explanation": "'Bescheid geben' means to notify or let someone know."
+                      "answer": "'passen' refers to physical size/fit, while 'stehen' means it looks flattering/suits you.",
+                      "explanation": "'passen' measures physical dimensions (too tight/loose), whereas 'stehen' describes visual aesthetic harmony ('That color suits you!')."
+                    },
+                    {
+                      "question": "How would you tell the shop assistant: 'The trousers are too tight'?",
+                      "options": [
+                        "Die Hose ist zu eng.",
+                        "Die Hose ist zu weit.",
+                        "Die Hose ist zu billig.",
+                        "Die Hose ist zu hell."
+                      ],
+                      "answer": "Die Hose ist zu eng.",
+                      "explanation": "'zu eng' means too tight. ('zu weit' means too loose/baggy)."
                     }
                   ]
                 }
               },
               {
                 "id": "a1-ch10-l47",
-                "title": "Lesson 47: A1 Final Comprehensive Review & Exam Preparation",
-                "description": "Full review of all 10 chapters; format walkthrough of Goethe-Zertifikat / TELC A1 (Hören, Lesen, Schreiben, Sprechen).",
+                "title": "Lesson 47: Question Words & Demonstratives: 'Welch-?' and 'Dies-?'",
+                "description": "Targeted shopping queries using 'Welcher / Welche / Welches / Welchen' and pointing out items with 'Dieser / Diese / Dieses / Diesen'.",
                 "content": {
-                  "overview": "Congratulations on completing the German A1 curriculum! In this final milestone lesson, you will review the complete architecture of the official Goethe-Zertifikat A1 (Start Deutsch 1) exam, understand scoring across the 4 modules (Hören, Lesen, Schreiben, Sprechen), and learn expert exam strategies to pass with confidence.",
-                  "canDo": "Understand the exact structure and time limits of the Goethe-Zertifikat A1 exam, know how to approach multiple-choice audio, short reading texts, email writing, and the group speaking test.",
-                  "teacherNote": "To pass the Goethe-Zertifikat A1, you need at least 60 points out of 100 (60%). Each of the 4 sections is weighted equally at 25%! Even if one section is challenging, strong performance in the other three will easily carry you over the passing line!",
+                  "overview": "When pointing out specific items while shopping ('Which coat do you want? — This coat here!'), German uses the interrogative pronoun 'welch-' (which) and demonstrative pronouns 'dies-' (this/these). In this lesson from Netzwerk A1 Kapitel 10, you will master their case endings in both Nominative and Accusative.",
+                  "canDo": "Can ask which item someone prefers using 'Welcher / Welche / Welches / Welchen' and point to specific items using 'Dieser / Diese / Dieses / Diesen'.",
+                  "teacherNote": "Good news: The endings for 'welch-' and 'dies-' follow the EXACT same endings as the definite article 'der, die, das, den'! For example: der -> welch-er / dies-er; das -> welch-es / dies-es; die -> welch-e / dies-e; and in Akkusativ: den -> welch-en / dies-en!",
                   "sections": [
                     {
-                      "title": "1. Die 4 Module der Goethe-Zertifikat A1 Prüfung",
-                      "description": "Exam structure, timing, and point distribution:",
+                      "title": "1. Endungen im Nominativ (Subject)",
+                      "description": "Pointing out items as the sentence subject:",
                       "table": {
                         "headers": [
-                          "Modul",
-                          "Dauer (Time)",
-                          "Aufgaben (Tasks)",
-                          "Punkte (Points)"
+                          "Genus",
+                          "Frageartikel (Which?)",
+                          "Demonstrativartikel (This)",
+                          "Beispielsatz"
                         ],
                         "rows": [
                           [
-                            "1. Hören (Listening)",
-                            "ca. 20 Minuten",
-                            "3 Teile: kurze Alltagsgespräche, Durchsagen am Bahnhof, Anrufbeantworter",
-                            "25 Punkte (25%)"
+                            "Maskulin (der)",
+                            "Welch-er?",
+                            "dies-er",
+                            "Welcher Pullover ist wärmer? — Dieser Pullover."
                           ],
                           [
-                            "2. Lesen (Reading)",
-                            "ca. 25 Minuten",
-                            "3 Teile: E-Mails, Kleinanzeigen, Schilder & Hinweise im Kaufhaus",
-                            "25 Punkte (25%)"
+                            "Feminin (die)",
+                            "Welch-e?",
+                            "dies-e",
+                            "Welche Jacke gefällt dir? — Diese Jacke."
                           ],
                           [
-                            "3. Schreiben (Writing)",
-                            "ca. 20 Minuten",
-                            "Teil 1: Ein Formular ausfüllen (5 Lücken). Teil 2: Eine kurze E-Mail (ca. 30 Wörter).",
-                            "25 Punkte (25%)"
+                            "Neutral (das)",
+                            "Welch-es?",
+                            "dies-es",
+                            "Welches Kleid ist schöner? — Dieses Kleid."
                           ],
                           [
-                            "4. Sprechen (Speaking)",
-                            "ca. 15 Minuten",
-                            "Gruppe (3-4 Personen): Teil 1: Sich vorstellen & buchstabieren. Teil 2: Um Informationen bitten. Teil 3: Bitten formulieren.",
-                            "25 Punkte (25%)"
+                            "Plural (die)",
+                            "Welch-e?",
+                            "dies-e",
+                            "Welche Schuhe sind bequemer? — Diese Schuhe."
                           ]
                         ]
                       }
                     },
                     {
-                      "title": "2. Erfolgsstrategien für das Modul 'Sprechen'",
-                      "description": "Tips for the group speaking exam from Netzwerk A1:",
+                      "title": "2. Endungen im Akkusativ (Direct Object)",
+                      "description": "Remember: only the masculine form changes to -en!",
+                      "table": {
+                        "headers": [
+                          "Genus",
+                          "Frageartikel im Akkusativ",
+                          "Demonstrativartikel im Akkusativ",
+                          "Beispielsatz"
+                        ],
+                        "rows": [
+                          [
+                            "Maskulin (den)",
+                            "Welch-en?",
+                            "dies-en",
+                            "Welchen Mantel kaufst du? — Diesen Mantel hier."
+                          ],
+                          [
+                            "Feminin (die)",
+                            "Welch-e?",
+                            "dies-e",
+                            "Welche Hose probierst du an? — Diese Hose."
+                          ],
+                          [
+                            "Neutral (das)",
+                            "Welch-es?",
+                            "dies-es",
+                            "Welches T-Shirt nimmst du? — Dieses T-Shirt."
+                          ],
+                          [
+                            "Plural (die)",
+                            "Welch-e?",
+                            "dies-e",
+                            "Welche Stiefel möchtest du? — Diese Stiefel."
+                          ]
+                        ]
+                      }
+                    }
+                  ],
+                  "dialogue": {
+                    "context": "Entscheidungshilfe beim Einkaufen (Netzwerk A1):",
+                    "lines": [
+                      {
+                        "speaker": "Marco",
+                        "german": "Schau mal, Laura! Welcher Mantel gefällt dir besser?",
+                        "english": "Look, Laura! Which coat do you like better?"
+                      },
+                      {
+                        "speaker": "Laura",
+                        "german": "Dieser schwarze Mantel hier ist sehr schick, aber jener graue ist moderner.",
+                        "english": "This black coat here is very chic, but that grey one is more modern."
+                      },
+                      {
+                        "speaker": "Marco",
+                        "german": "Und welchen Pullover soll ich dazu nehmen?",
+                        "english": "And which sweater should I take with it?"
+                      },
+                      {
+                        "speaker": "Laura",
+                        "german": "Diesen dunkelblauen Wollpullover! Der passt farblich perfekt zum Mantel.",
+                        "english": "This dark blue wool sweater! It matches the coat color perfectly."
+                      },
+                      {
+                        "speaker": "Marco",
+                        "german": "Gut! Dann nehme ich diesen Mantel und diesen Pullover.",
+                        "english": "Good! Then I'll take this coat and this sweater."
+                      }
+                    ]
+                  },
+                  "funFact": {
+                    "title": "Pointing Fingers with 'der da' & 'die hier'",
+                    "content": "In casual everyday spoken German, native speakers often replace 'dieser / diese / dieses' with the definite article plus 'da' or 'hier': 'Welchen willst du? — Den hier!' (This one here!) or 'Die da!' (That one there!). It is quick, punchy, and heard constantly in shops."
+                  },
+                  "practice": [
+                    {
+                      "question": "Complete the sentence in the Accusative case: '___ Rock möchten Sie kaufen?' (der Rock)",
+                      "options": [
+                        "Welcher",
+                        "Welchen",
+                        "Welches",
+                        "Welchem"
+                      ],
+                      "answer": "Welchen",
+                      "explanation": "'der Rock' is masculine. In the Accusative (direct object of 'kaufen'), masculine takes '-en': 'Welchen Rock...'."
+                    },
+                    {
+                      "question": "Complete the response: 'Welches T-Shirt gefällt dir? — ___ T-Shirt hier.'",
+                      "options": [
+                        "Dieser",
+                        "Dieses",
+                        "Diesen",
+                        "Diese"
+                      ],
+                      "answer": "Dieses",
+                      "explanation": "'das T-Shirt' is neuter. In the Nominative, neuter takes '-es': 'Dieses T-Shirt hier'."
+                    },
+                    {
+                      "question": "Which question asks which shoes (plural) someone is trying on?",
+                      "options": [
+                        "Welche Schuhe probierst du an?",
+                        "Welcher Schuhe probierst du an?",
+                        "Welchen Schuhe probierst du an?",
+                        "Welches Schuhe probierst du an?"
+                      ],
+                      "answer": "Welche Schuhe probierst du an?",
+                      "explanation": "'die Schuhe' is plural, so both Nominative and Accusative take 'Welche Schuhe'."
+                    }
+                  ]
+                }
+              }
+            ]
+          },
+          {
+            "id": "a1-ch11",
+            "title": "Chapter 11: Gesund und munter (Health, Body Parts & Doctor Visits)",
+            "lessons": [
+              {
+                "id": "a1-ch11-l48",
+                "title": "Lesson 48: Body Parts & Anatomy (Körperteile)",
+                "description": "Anatomy with articles and plurals, and expressing physical pain using 'tut weh' (singular) and 'tun weh' (plural).",
+                "content": {
+                  "overview": "Knowing the names of body parts (Körperteile) in German is essential for describing physical fitness, visiting the doctor, and explaining where it hurts. In this lesson from Netzwerk A1 Kapitel 11 ('Gesund und munter'), you will learn human anatomy with articles, plural forms, and the core pain expressions 'tut weh' (singular) and 'tun weh' (plural).",
+                  "canDo": "Can name human body parts with correct grammatical genders and plurals, and state which body part hurts using 'Mein Kopf tut weh' or 'Meine Beine tun weh'.",
+                  "teacherNote": "Pay attention to the difference between singular and plural pain: For ONE body part, use singular: 'Mein Kopf tut weh' (My head hurts). For MULTIPLE body parts (e.g., eyes, ears, legs), use plural: 'Meine Augen tun weh' (My eyes hurt). 'wehtun' is a separable verb: 'tut ... weh'!",
+                  "sections": [
+                    {
+                      "title": "1. Die Körperteile (Human Body Parts & Plurals)",
+                      "description": "Standard body parts categorized by gender with plural forms:",
+                      "table": {
+                        "headers": [
+                          "Artikel & Nomen",
+                          "Pluralform",
+                          "Englische Bedeutung",
+                          "Beispielsatz mit Schmerzen"
+                        ],
+                        "rows": [
+                          [
+                            "der Kopf",
+                            "die Köpfe",
+                            "head",
+                            "Mein Kopf tut weh."
+                          ],
+                          [
+                            "das Auge",
+                            "die Augen",
+                            "eye",
+                            "Meine Augen tun weh."
+                          ],
+                          [
+                            "das Ohr",
+                            "die Ohren",
+                            "ear",
+                            "Mein linkes Ohr tut weh."
+                          ],
+                          [
+                            "die Nase",
+                            "die Nasen",
+                            "nose",
+                            "Meine Nase läuft."
+                          ],
+                          [
+                            "der Mund / die Zähne",
+                            "der Zahn / die Zähne",
+                            "mouth / teeth",
+                            "Mein Zahn tut weh."
+                          ],
+                          [
+                            "der Hals",
+                            "die Hälse",
+                            "throat / neck",
+                            "Mein Hals ist rot und tut weh."
+                          ],
+                          [
+                            "der Rücken",
+                            "die Rücken",
+                            "back",
+                            "Mein Rücken tut vom Sitzen weh."
+                          ],
+                          [
+                            "der Bauch",
+                            "die Bäuche",
+                            "stomach / belly",
+                            "Er hat starke Bauchschmerzen."
+                          ],
+                          [
+                            "der Arm / die Hand",
+                            "die Arme / die Hände",
+                            "arm / hand",
+                            "Mein rechter Arm tut weh."
+                          ],
+                          [
+                            "das Bein / der Fuß",
+                            "die Beine / die Füße",
+                            "leg / foot",
+                            "Meine Füße tun nach dem Wandern weh."
+                          ]
+                        ]
+                      }
+                    },
+                    {
+                      "title": "2. Schmerzen ausdrücken: 'tut weh' vs. 'tun weh'",
+                      "description": "Expressing physical pain accurately:",
                       "items": [
                         {
-                          "term": "Teil 1: Sich vorstellen",
-                          "meaning": "Be prepared to state: Name, Alter, Land, Wohnort, Sprachen, Beruf, Hobby. Plus spell your name and say your phone number!",
-                          "example": "Ich heiße Paco Garcia. Ich bin 25 Jahre alt..."
+                          "term": "tut weh (Singular)",
+                          "meaning": "hurts / aches (one body part)",
+                          "example": "Mein Knie tut weh."
                         },
                         {
-                          "term": "Teil 2: Thema & Wortkarte",
-                          "meaning": "You draw a card with a theme (e.g. Essen & Trinken) and a word (z.B. Kaffee). Formulate a question: 'Trinken Sie gern Kaffee?'.",
-                          "example": "Antwort: 'Ja, sehr gern mit Milch!'"
+                          "term": "tun weh (Plural)",
+                          "meaning": "hurt / ache (multiple body parts)",
+                          "example": "Meine Ohren tun weh."
                         },
                         {
-                          "term": "Teil 3: Bildkarte & Bitte formulieren",
-                          "meaning": "You draw a picture card (e.g. an apple or a pencil) and make a polite request with imperative or 'Können Sie...?'",
-                          "example": "'Geben Sie mir bitte den Stift!' -> 'Hier, bitte sehr!'"
+                          "term": "Schmerzen haben (+ Akkusativ)",
+                          "meaning": "to have aches/pains",
+                          "example": "Ich habe Rückenschmerzen. / Hast du Kopfschmerzen?"
                         }
                       ]
                     }
                   ],
                   "dialogue": {
-                    "context": "Simulierte Sprechprüfung A1 – Teil 2: Thema 'Essen und Trinken' (Netzwerk A1):",
+                    "context": "Nach dem intensiven Training im Fitnessstudio:",
                     "lines": [
                       {
-                        "speaker": "Prüfer",
-                        "german": "So, meine Damen und Herren, wir kommen zu Teil 2. Paco, ziehen Sie bitte eine Karte und stellen Sie Ihrem Nachbarn eine Frage!",
-                        "english": "So, ladies and gentlemen, we come to part 2. Paco, please draw a card and ask your neighbor a question!"
+                        "speaker": "Trainer",
+                        "german": "Hallo Jan! Wie war dein Workout heute?",
+                        "english": "Hello Jan! How was your workout today?"
                       },
                       {
-                        "speaker": "Paco (Karte: Frühstück)",
-                        "german": "Gregor, was isst du normalerweise zum Frühstück?",
-                        "english": "Gregor, what do you normally eat for breakfast?"
+                        "speaker": "Jan",
+                        "german": "Puh, ziemlich anstrengend! Meine Beine und meine Füße tun echt weh.",
+                        "english": "Phew, quite exhausting! My legs and feet really hurt."
                       },
                       {
-                        "speaker": "Gregor",
-                        "german": "Ich esse meistens ein Müsli mit Joghurt und trinke einen schwarzen Kaffee. Und du?",
-                        "english": "I mostly eat muesli with yogurt and drink a black coffee. And you?"
+                        "speaker": "Trainer",
+                        "german": "Hast du dich vor dem Laufen gut aufgewärmt?",
+                        "english": "Did you warm up well before running?"
                       },
                       {
-                        "speaker": "Prüfer",
-                        "german": "Sehr gut! Danke schön. Jetzt ist Gregor an der Reihe.",
-                        "english": "Very good! Thank you. Now it is Gregor's turn."
+                        "speaker": "Jan",
+                        "german": "Nicht so lange, fürchte ich. Jetzt tut auch noch mein Rücken weh.",
+                        "english": "Not very long, I'm afraid. Now my back is hurting as well."
+                      },
+                      {
+                        "speaker": "Trainer",
+                        "german": "Dann mach jetzt lieber eine Pause und dehne deinen Körper sanft.",
+                        "english": "Then you'd better take a break now and stretch your body gently."
                       }
                     ]
                   },
                   "funFact": {
-                    "title": "The Global Power of the Goethe-Zertifikat A1",
-                    "content": "The Goethe-Zertifikat A1 is legally recognized worldwide as proof of basic German proficiency. It fulfills the visa requirement for spouse reunification in Germany (Ehegattennachzug), working holiday visas, and au pair placements across the DACH region!"
+                    "title": "German Compound Words for Pain: '-schmerzen'",
+                    "content": "German has a wonderfully logical way of naming ailments: simply attach '-schmerzen' (pains) directly to the body part! Kopf + Schmerzen = Kopfschmerzen (headache); Hals + Schmerzen = Halsschmerzen (sore throat); Bauch + Schmerzen = Bauchschmerzen (stomachache); Zahn + Schmerzen = Zahnschmerzen (toothache)."
                   },
                   "practice": [
                     {
-                      "question": "What is the minimum passing score for the Goethe-Zertifikat A1?",
+                      "question": "Which form correctly completes: 'Meine Augen ___ weh'?",
                       "options": [
-                        "50% (50 points)",
-                        "60% (60 points)",
-                        "75% (75 points)"
+                        "tut",
+                        "tun",
+                        "macht",
+                        "haben"
                       ],
-                      "answer": "60% (60 points)",
-                      "explanation": "You need at least 60% (60 out of 100 points) to pass the official exam."
+                      "answer": "tun",
+                      "explanation": "'Meine Augen' is plural, so it requires the plural verb form: 'tun weh'. (Singular would be 'Mein Auge tut weh')."
                     },
                     {
-                      "question": "In the A1 speaking test (Teil 1), what additional task will the examiner ask after you introduce yourself?",
+                      "question": "What is the German word for 'back'?",
                       "options": [
-                        "Sing a song in German",
-                        "Spell a word/name and dictate a number",
-                        "Translate an English text"
+                        "der Bauch",
+                        "der Rücken",
+                        "die Brust",
+                        "das Bein"
                       ],
-                      "answer": "Spell a word/name and dictate a number",
-                      "explanation": "The examiner always asks candidates to spell a name or word (Buchstabieren) and recite a number (phone number or postal code)."
+                      "answer": "der Rücken",
+                      "explanation": "'der Rücken' means back. 'der Bauch' is stomach, and 'das Bein' is leg."
+                    },
+                    {
+                      "question": "How do you say 'I have a sore throat' using compound nouns?",
+                      "options": [
+                        "Ich habe Halsschmerzen.",
+                        "Ich habe Halswehschmerz.",
+                        "Mein Hals tut nicht weh.",
+                        "Ich bin Halsschmerz."
+                      ],
+                      "answer": "Ich habe Halsschmerzen.",
+                      "explanation": "'Halsschmerzen' (Hals + Schmerzen) is the standard German word for sore throat."
+                    }
+                  ]
+                }
+              },
+              {
+                "id": "a1-ch11-l49",
+                "title": "Lesson 49: Expressing Ailments, Symptoms & Pain",
+                "description": "Describing illnesses (Fieber, Husten, Schnupfen, Erkältung), stating duration with 'seit + Dativ', and wishing 'Gute Besserung!'.",
+                "content": {
+                  "overview": "When you catch a cold or feel sick, you must be able to describe your symptoms clearly. In this lesson, you will master vocabulary for fever, coughing, chills, and common ailments, and learn how to ask someone with concern: 'Was ist los?' or 'Geht es dir nicht gut?'.",
+                  "canDo": "Can explain common symptoms of illness (fever, cough, cold, fatigue), state how long you have been sick using 'seit', and express sympathy with 'Gute Besserung!'.",
+                  "teacherNote": "To express how long you have had an illness, German uses the preposition 'seit' (+ Dative) with the PRESENT tense, because the illness is still ongoing! 'Ich habe seit zwei Tagen Fieber' (I have had a fever for two days). Never use the past tense here!",
+                  "sections": [
+                    {
+                      "title": "1. Häufige Krankheiten & Symptome (Ailments & Symptoms)",
+                      "description": "Key medical terms for describing illnesses:",
+                      "table": {
+                        "headers": [
+                          "Symptom / Krankheit",
+                          "Englische Bedeutung",
+                          "Beispielsatz"
+                        ],
+                        "rows": [
+                          [
+                            "das Fieber (hohes Fieber)",
+                            "fever (high fever)",
+                            "Ich habe 39 Grad Fieber."
+                          ],
+                          [
+                            "der Husten",
+                            "cough",
+                            "Er hat starken Husten."
+                          ],
+                          [
+                            "der Schnupfen",
+                            "runny nose / head cold",
+                            "Sie hat Schnupfen und niest oft."
+                          ],
+                          [
+                            "die Erkältung (erkältet sein)",
+                            "common cold (to have a cold)",
+                            "Ich habe eine schlimme Erkältung."
+                          ],
+                          [
+                            "die Grippe (Influenza)",
+                            "the flu",
+                            "Mein Kollege liegt mit Grippe im Bett."
+                          ],
+                          [
+                            "die Müdigkeit / erschöpft sein",
+                            "fatigue / to be exhausted",
+                            "Ich fühle mich schwach und müde."
+                          ],
+                          [
+                            "schlecht / übel sein (+ Dativ)",
+                            "to feel nauseous / sick",
+                            "Mir ist übel / Mir ist schlecht."
+                          ]
+                        ]
+                      }
+                    },
+                    {
+                      "title": "2. Zeitangaben mit 'seit' + Dativ (Duration of Illness)",
+                      "description": "Expressing how long symptoms have persisted:",
+                      "table": {
+                        "headers": [
+                          "Ausdruck",
+                          "Grammatik",
+                          "Bedeutung",
+                          "Beispiel"
+                        ],
+                        "rows": [
+                          [
+                            "seit einem Tag",
+                            "seit + Dativ Maskulin",
+                            "for a day / since yesterday",
+                            "Ich habe seit einem Tag Halsschmerzen."
+                          ],
+                          [
+                            "seit einer Woche",
+                            "seit + Dativ Feminin",
+                            "for a week",
+                            "Sie hustet schon seit einer Woche."
+                          ],
+                          [
+                            "seit drei Tagen",
+                            "seit + Dativ Plural (+n)",
+                            "for three days",
+                            "Er liegt seit drei Tagen mit Fieber im Bett."
+                          ],
+                          [
+                            "Gute Besserung!",
+                            "Idiom",
+                            "Get well soon!",
+                            "Erhol dich gut und gute Besserung!"
+                          ]
+                        ]
+                      }
+                    }
+                  ],
+                  "dialogue": {
+                    "context": "Ein Telefonat zwischen zwei Arbeitskolleginnen:",
+                    "lines": [
+                      {
+                        "speaker": "Monika",
+                        "german": "Hallo Sarah! Du bist heute gar nicht im Büro. Ist etwas passiert?",
+                        "english": "Hello Sarah! You're not in the office today. Did something happen?"
+                      },
+                      {
+                        "speaker": "Sarah",
+                        "german": "Hallo Monika. Leider ja, ich bin ziemlich krank. Ich habe seit gestern hohes Fieber und Halsschmerzen.",
+                        "english": "Hello Monika. Unfortunately yes, I'm quite sick. I've had a high fever and a sore throat since yesterday."
+                      },
+                      {
+                        "speaker": "Monika",
+                        "german": "Oh je, das tut mir leid! Warst du schon beim Arzt?",
+                        "english": "Oh dear, I'm sorry to hear that! Have you seen a doctor yet?"
+                      },
+                      {
+                        "speaker": "Sarah",
+                        "german": "Ich habe heute um 11:30 Uhr einen Termin in der Praxis.",
+                        "english": "I have an appointment at the doctor's office at 11:30."
+                      },
+                      {
+                        "speaker": "Monika",
+                        "german": "Sehr vernünftig. Ruh dich gut aus und melde dich danach. Gute Besserung!",
+                        "english": "Very sensible. Rest up well and check in afterwards. Get well soon!"
+                      },
+                      {
+                        "speaker": "Sarah",
+                        "german": "Vielen Dank, Monika! Bis bald.",
+                        "english": "Thank you very much, Monika! See you soon."
+                      }
+                    ]
+                  },
+                  "funFact": {
+                    "title": "'Mir ist schlecht' vs. 'Ich bin schlecht'",
+                    "content": "Be careful with this famous false friend! If you feel sick to your stomach, you must use the dative pronoun: 'Mir ist schlecht' (literally: 'To me it is bad'). If you say 'Ich bin schlecht', native speakers will laugh because that means 'I am a bad person / evil'!"
+                  },
+                  "practice": [
+                    {
+                      "question": "How do you correctly say 'Get well soon!' in German?",
+                      "options": [
+                        "Guten Appetit!",
+                        "Gute Besserung!",
+                        "Herzlichen Glückwunsch!",
+                        "Viel Vergnügen!"
+                      ],
+                      "answer": "Gute Besserung!",
+                      "explanation": "'Gute Besserung!' is the universal German expression for 'Get well soon!'."
+                    },
+                    {
+                      "question": "Which sentence correctly says: 'I have had a fever for two days'?",
+                      "options": [
+                        "Ich habe seit zwei Tagen Fieber.",
+                        "Ich habe vor zwei Tagen Fieber gehabt.",
+                        "Ich bin seit zwei Tage Fieber.",
+                        "Fieber hat mich seit zwei Tag."
+                      ],
+                      "answer": "Ich habe seit zwei Tagen Fieber.",
+                      "explanation": "'seit' takes the Dative case and the present tense for ongoing situations: seit + zwei Tag-en = 'seit zwei Tagen'."
+                    },
+                    {
+                      "question": "How do you tell someone you feel nauseous/sick?",
+                      "options": [
+                        "Ich bin schlecht.",
+                        "Mir ist schlecht.",
+                        "Ich habe schlecht.",
+                        "Mich ist krank."
+                      ],
+                      "answer": "Mir ist schlecht.",
+                      "explanation": "'Mir ist schlecht' (Dative 'mir') means 'I feel sick/nauseous'. 'Ich bin schlecht' would mean 'I am a bad person'."
+                    }
+                  ]
+                }
+              },
+              {
+                "id": "a1-ch11-l50",
+                "title": "Lesson 50: At the Doctor's Office (Beim Arzt & in der Apotheke)",
+                "description": "Doctor consultation dialogues ('Was fehlt Ihnen?'), prescriptions (Rezept), sick leave notes (Krankschreibung), and pharmacy visits.",
+                "content": {
+                  "overview": "Visiting a doctor's office (die Arztpraxis) in Germany requires scheduling an appointment, presenting your health insurance card ('die Versichertenkarte'), describing symptoms to the doctor, and picking up medication at a pharmacy ('die Apotheke'). In this lesson, you will practice authentic medical dialogues from Netzwerk A1 Kapitel 11.",
+                  "canDo": "Can book an appointment at a medical clinic, answer the doctor's questions ('Was fehlt Ihnen?'), understand medication instructions, and pick up a prescription at the pharmacy.",
+                  "teacherNote": "In Germany, medicines (even basic painkillers like ibuprofen or paracetamol) are sold exclusively at pharmacies (die Apotheke, marked with a giant red 'A'), NOT at general supermarkets! The doctor will hand you a prescription called 'das Rezept', and an official sick leave certificate called 'die Krankschreibung' (or 'das Attest').",
+                  "sections": [
+                    {
+                      "title": "1. In der Arztpraxis (At the Medical Clinic)",
+                      "description": "Key terms and steps during a doctor visit:",
+                      "table": {
+                        "headers": [
+                          "Deutscher Begriff",
+                          "Bedeutung",
+                          "Bedeutung im Alltag"
+                        ],
+                        "rows": [
+                          [
+                            "die Praxis / die Arztpraxis",
+                            "doctor's office / clinic",
+                            "Dr. med. Weber — Allgemeinmedizin"
+                          ],
+                          [
+                            "die Versichertenkarte (-n)",
+                            "health insurance smartcard",
+                            "Haben Sie Ihre Versichertenkarte dabei?"
+                          ],
+                          [
+                            "das Wartezimmer (-)",
+                            "waiting room",
+                            "Nehmen Sie bitte im Wartezimmer Platz."
+                          ],
+                          [
+                            "Was fehlt Ihnen?",
+                            "What seems to be the problem? (Doctor's prompt)",
+                            "Standard question from German physicians"
+                          ],
+                          [
+                            "untersuchen",
+                            "to examine (physically)",
+                            "Ich untersuche jetzt Ihren Hals und Ihre Lunge."
+                          ],
+                          [
+                            "das Rezept (-e)",
+                            "medical prescription",
+                            "Hier ist Ihr Rezept für die Apotheke."
+                          ],
+                          [
+                            "die Krankschreibung / das Attest",
+                            "sick note for the employer",
+                            "Ich schreibe Sie für drei Tage krank."
+                          ],
+                          [
+                            "die Apotheke (-n)",
+                            "pharmacy / chemist's shop",
+                            "Die Medikamente bekommen Sie in der Apotheke."
+                          ]
+                        ]
+                      }
+                    },
+                    {
+                      "title": "2. Medikamente einnehmen (Taking Medication)",
+                      "description": "How to read dosage instructions on prescriptions:",
+                      "items": [
+                        {
+                          "term": "dreimal täglich vor/nach dem Essen",
+                          "meaning": "three times daily before/after meals",
+                          "example": "Nehmen Sie die Tabletten dreimal täglich nach dem Essen."
+                        },
+                        {
+                          "term": "eine Tablette morgens und abends",
+                          "meaning": "one pill in the morning and evening",
+                          "example": "Morgens und abends je eine Tablette mit Wasser einnehmen."
+                        },
+                        {
+                          "term": "der Hustensaft / die Tropfen",
+                          "meaning": "cough syrup / drops",
+                          "example": "Nehmen Sie 20 Tropfen vor dem Schlafen."
+                        }
+                      ]
+                    }
+                  ],
+                  "dialogue": {
+                    "context": "Das Arztgespräch in der Praxis von Dr. Schneider (Netzwerk A1):",
+                    "lines": [
+                      {
+                        "speaker": "Dr. Schneider",
+                        "german": "Guten Tag, Herr Fischer. Nehmen Sie bitte Platz. Was fehlt Ihnen denn?",
+                        "english": "Good day, Mr. Fischer. Please take a seat. What seems to be the problem?"
+                      },
+                      {
+                        "speaker": "Herr Fischer",
+                        "german": "Guten Tag, Herr Doktor. Ich fühle mich seit vorgestern elend. Mein Hals tut weh und ich habe Reizhusten.",
+                        "english": "Good day, Doctor. I've been feeling miserable since the day before yesterday. My throat hurts and I have a dry cough."
+                      },
+                      {
+                        "speaker": "Dr. Schneider",
+                        "german": "Haben Sie auch Fieber gemessen?",
+                        "english": "Have you measured your fever as well?"
+                      },
+                      {
+                        "speaker": "Herr Fischer",
+                        "german": "Ja, heute früh hatte ich 38,4 Grad.",
+                        "english": "Yes, this morning I had 38.4 degrees."
+                      },
+                      {
+                        "speaker": "Dr. Schneider",
+                        "german": "Machen Sie bitte den Mund weit auf und sagen Sie 'Aah'... Ja, Ihr Rachen ist stark entzündet. Sie haben eine akute Mandelentzündung.",
+                        "english": "Please open your mouth wide and say 'Aah'... Yes, your throat is heavily inflamed. You have acute tonsillitis."
+                      },
+                      {
+                        "speaker": "Herr Fischer",
+                        "german": "Brauche ich Antibiotika?",
+                        "english": "Do I need antibiotics?"
+                      },
+                      {
+                        "speaker": "Dr. Schneider",
+                        "german": "Ja. Hier ist das Rezept für die Apotheke. Und hier ist Ihre Krankschreibung für den Arbeitgeber bis Freitag.",
+                        "english": "Yes. Here is the prescription for the pharmacy. And here is your sick leave note for your employer until Friday."
+                      }
+                    ]
+                  },
+                  "funFact": {
+                    "title": "The Big Red 'A' of German Pharmacies",
+                    "content": "Every certified pharmacy in Germany, Austria, and Switzerland displays a prominent red Gothic letter 'A' (Apotheke) with the staff of Asclepius and a goblet. By law, there must always be a designated 'Notdienst-Apotheke' (emergency night pharmacy) open 24/7 in every district!"
+                  },
+                  "practice": [
+                    {
+                      "question": "What does a German doctor typically ask at the start of a consultation?",
+                      "options": [
+                        "Wie viel Geld haben Sie?",
+                        "Was fehlt Ihnen?",
+                        "Wohin fahren Sie?",
+                        "Wer kocht heute?"
+                      ],
+                      "answer": "Was fehlt Ihnen?",
+                      "explanation": "'Was fehlt Ihnen?' (literally: 'What is missing for you?') is the classic, empathetic German medical inquiry meaning 'What seems to be the problem?'."
+                    },
+                    {
+                      "question": "Where do you pick up prescription medication in Germany?",
+                      "options": [
+                        "Im Supermarkt",
+                        "In der Drogerie",
+                        "In der Apotheke",
+                        "Im Kaufhaus"
+                      ],
+                      "answer": "In der Apotheke",
+                      "explanation": "Prescriptions (Rezepte) can only be redeemed at licensed pharmacies ('in der Apotheke')."
+                    },
+                    {
+                      "question": "What is an official sick note for an employer called?",
+                      "options": [
+                        "die Krankschreibung / das Attest",
+                        "die Speisekarte",
+                        "der Fahrplan",
+                        "die Quittung"
+                      ],
+                      "answer": "die Krankschreibung / das Attest",
+                      "explanation": "'die Krankschreibung' (or 'das ärztliche Attest') is the official medical certificate confirming an employee is unfit to work."
+                    }
+                  ]
+                }
+              },
+              {
+                "id": "a1-ch11-l51",
+                "title": "Lesson 51: Giving Health Advice: Modal Verb 'sollen' & Imperative",
+                "description": "Conveying medical instructions and doctor's orders with 'sollen' ('Du sollst im Bett bleiben') and helpful imperatives.",
+                "content": {
+                  "overview": "When giving health recommendations or passing on a doctor's orders ('The doctor says you should stay in bed!'), German uses the modal verb 'sollen' (should / supposed to) along with the imperative mood for direct friendly advice ('Drink plenty of herbal tea!').",
+                  "canDo": "Can give and understand health advice using the modal verb 'sollen' (e.g., 'Du sollst viel Wasser trinken') and form helpful imperative suggestions.",
+                  "teacherNote": "Understand the key difference between 'müssen' (must/obligation) and 'sollen' (should / conveying someone else's order): When a doctor recommends something, native speakers say: 'Der Arzt sagt, ich SOLL viel schlafen' (The doctor says I should / am supposed to sleep a lot).",
+                  "sections": [
+                    {
+                      "title": "1. Das Modalverb 'sollen' (Conjugation & Bracket Structure)",
+                      "description": "Notice that 1st and 3rd person singular have no ending (soll):",
+                      "table": {
+                        "headers": [
+                          "Pronomen",
+                          "sollen Konjugation",
+                          "Beispielsatz",
+                          "Bedeutung"
+                        ],
+                        "rows": [
+                          [
+                            "ich",
+                            "soll",
+                            "Ich soll im Bett bleiben.",
+                            "I should / am supposed to stay in bed."
+                          ],
+                          [
+                            "du",
+                            "sollst",
+                            "Du sollst viel Kamillentee trinken.",
+                            "You should drink plenty of chamomile tea."
+                          ],
+                          [
+                            "er / sie / es",
+                            "soll",
+                            "Er soll drei Tabletten täglich nehmen.",
+                            "He is supposed to take three pills daily."
+                          ],
+                          [
+                            "wir",
+                            "sollen",
+                            "Wir sollen an die frische Luft gehen.",
+                            "We should go get some fresh air."
+                          ],
+                          [
+                            "ihr",
+                            "sollt",
+                            "Ihr sollt euch warm anziehen.",
+                            "You all should dress warmly."
+                          ],
+                          [
+                            "sie / Sie",
+                            "sollen",
+                            "Sie sollen sich schonen, Herr Meyer.",
+                            "You should take it easy, Mr. Meyer."
+                          ]
+                        ]
+                      }
+                    },
+                    {
+                      "title": "2. Ratschläge mit dem Imperativ (Direct Health Advice)",
+                      "description": "Friendly commands and suggestions for du, ihr, and Sie:",
+                      "table": {
+                        "headers": [
+                          "Form",
+                          "Verbform (Imperativ)",
+                          "Beispiel",
+                          "Englische Übersetzung"
+                        ],
+                        "rows": [
+                          [
+                            "du (informal sg.)",
+                            "Stamm ohne -st",
+                            "Trink viel Wasser! Ruh dich aus!",
+                            "Drink plenty of water! Rest!"
+                          ],
+                          [
+                            "ihr (informal pl.)",
+                            "normale ihr-Form",
+                            "Nehmt die Vitamine regelmäßig!",
+                            "Take the vitamins regularly!"
+                          ],
+                          [
+                            "Sie (formal)",
+                            "Infinitiv + Sie",
+                            "Bleiben Sie bitte im Bett!",
+                            "Please stay in bed!"
+                          ]
+                        ]
+                      }
+                    }
+                  ],
+                  "dialogue": {
+                    "context": "Gute Ratschläge unter Freunden bei einer Erkältung (Netzwerk A1):",
+                    "lines": [
+                      {
+                        "speaker": "Tim",
+                        "german": "Hatschi! Entschuldigung...",
+                        "english": "Achoo! Excuse me..."
+                      },
+                      {
+                        "speaker": "Laura",
+                        "german": "Gesundheit, Tim! Du siehst wirklich blass aus.",
+                        "english": "Bless you, Tim! You really look pale."
+                      },
+                      {
+                        "speaker": "Tim",
+                        "german": "Ich fühle mich auch elend. Mein Kopf hämmert und der Hals kratzt.",
+                        "english": "I feel miserable too. My head is pounding and my throat is scratchy."
+                      },
+                      {
+                        "speaker": "Laura",
+                        "german": "Was hat die Ärztin heute Morgen gesagt?",
+                        "english": "What did the doctor say this morning?"
+                      },
+                      {
+                        "speaker": "Tim",
+                        "german": "Sie hat gesagt, ich soll drei Tage im Bett bleiben und mich schonen.",
+                        "english": "She said I should stay in bed for three days and rest."
+                      },
+                      {
+                        "speaker": "Laura",
+                        "german": "Dann geh sofort nach Hause! Trink heißen Tee mit Zitrone und schlaf viel. Gute Besserung!",
+                        "english": "Then go home immediately! Drink hot tea with lemon and sleep a lot. Get well soon!"
+                      }
+                    ]
+                  },
+                  "funFact": {
+                    "title": "'Gesundheit!' — The Universal Sneeze Response",
+                    "content": "When someone sneezes in Germany, Austria, or Switzerland, the immediate courteous response is always: 'Gesundheit!' (literally: 'Health!'). The person who sneezed politely replies: 'Danke!' (Thank you!). In fact, English speakers frequently borrow this exact German word!"
+                  },
+                  "practice": [
+                    {
+                      "question": "Which form of 'sollen' completes: 'Der Arzt sagt, du ___ viel schlafen'?",
+                      "options": [
+                        "sollst",
+                        "sollt",
+                        "sollen",
+                        "soll"
+                      ],
+                      "answer": "sollst",
+                      "explanation": "For 'du', the conjugation of 'sollen' is 'sollst': 'du sollst viel schlafen'."
+                    },
+                    {
+                      "question": "What is the polite formal imperative of 'im Bett bleiben' for 'Sie'?",
+                      "options": [
+                        "Bleib im Bett!",
+                        "Bleibt im Bett!",
+                        "Bleiben Sie im Bett!",
+                        "Sie bleiben im Bett?"
+                      ],
+                      "answer": "Bleiben Sie im Bett!",
+                      "explanation": "The formal imperative inverts the infinitive and the pronoun 'Sie': 'Bleiben Sie im Bett!'."
+                    },
+                    {
+                      "question": "What is the customary response when someone sneezes in German?",
+                      "options": [
+                        "Guten Tag!",
+                        "Gesundheit!",
+                        "Auf Wiedersehen!",
+                        "Prost!"
+                      ],
+                      "answer": "Gesundheit!",
+                      "explanation": "'Gesundheit!' is said immediately when someone sneezes."
+                    }
+                  ]
+                }
+              }
+            ]
+          },
+          {
+            "id": "a1-ch12",
+            "title": "Chapter 12: Ab in den Urlaub & A1 Finale (Travel, Hotel & Exam Prep)",
+            "lessons": [
+              {
+                "id": "a1-ch12-l52",
+                "title": "Lesson 52: Vacation Planning, Transport & Travel Destinations",
+                "description": "Travel prepositions (nach Wien, ans Meer, in die Berge, in die Schweiz), booking train tickets, and station announcements.",
+                "content": {
+                  "overview": "Vacations (Urlaub und Reisen) are a favorite topic of conversation across German-speaking countries. In this lesson inspired by Netzwerk A1 Kapitel 12 ('Ab in den Urlaub!'), you will learn to talk about holiday destinations (sea, mountains, cities), modes of travel, and booking train and plane journeys.",
+                  "canDo": "Can discuss vacation destinations using accurate prepositions ('an die Ostsee', 'in die Berge', 'nach Wien'), describe transport choices, and buy tickets.",
+                  "teacherNote": "German travel prepositions depend on the destination: For cities and countries without articles, use 'nach' ('nach Berlin', 'nach Deutschland'). For bodies of water, use 'an' + Akkusativ ('ans Meer', 'an die Nordsee'). For mountain ranges, use 'in' + Akkusativ ('in die Berge', 'in die Alpen')!",
+                  "sections": [
+                    {
+                      "title": "1. Wohin fährst du in den Urlaub? (Travel Destinations)",
+                      "description": "Prepositions for direction of travel (Wohin? + Akkusativ):",
+                      "table": {
+                        "headers": [
+                          "Ziel (Destination)",
+                          "Präpositionalphrase",
+                          "Bedeutung",
+                          "Beispielsatz"
+                        ],
+                        "rows": [
+                          [
+                            "Länder & Städte (ohne Artikel)",
+                            "nach + Stadt / Land",
+                            "to [city/country]",
+                            "Wir fahren im Sommer nach Österreich."
+                          ],
+                          [
+                            "Gewässer (Meer / See / Küste)",
+                            "ans Meer / an den See / an die Ostsee",
+                            "to the sea / to the lake / to the Baltic",
+                            "Familie Müller fährt ans Meer."
+                          ],
+                          [
+                            "Gebirge (Berge / Alpen)",
+                            "in die Berge / in die Alpen / in den Wald",
+                            "to the mountains / Alps / forest",
+                            "Wir wandern gern in den Bergen."
+                          ],
+                          [
+                            "Länder mit femininem Artikel",
+                            "in die Schweiz / in die Türkei",
+                            "to Switzerland / to Turkey",
+                            "Fliegst du dieses Jahr in die Schweiz?"
+                          ],
+                          [
+                            "Zu Hause bleiben",
+                            "zu Hause (Ort) / nach Hause (Richtung)",
+                            "at home / (heading) home",
+                            "Ich bleibe dieses Jahr zu Hause."
+                          ]
+                        ]
+                      }
+                    },
+                    {
+                      "title": "2. Verkehrsmittel & Fahrkarten (Transportation & Tickets)",
+                      "description": "How to travel and buy train tickets:",
+                      "items": [
+                        {
+                          "term": "mit dem Zug / mit der Bahn (mit + Dativ)",
+                          "meaning": "by train / by railway",
+                          "example": "Ich fahre am liebsten mit dem ICE-Zug."
+                        },
+                        {
+                          "term": "mit dem Flugzeug / mit dem Auto",
+                          "meaning": "by plane / by car",
+                          "example": "Sie reisen mit dem Flugzeug nach Mallorca."
+                        },
+                        {
+                          "term": "die einfache Fahrt / hin und zurück",
+                          "meaning": "one-way / round trip (return ticket)",
+                          "example": "Einmal Berlin hin und zurück, bitte."
+                        },
+                        {
+                          "term": "das Gleis (-e) / der Bahnsteig",
+                          "meaning": "track / platform",
+                          "example": "Der Zug nach München fährt von Gleis 7 ab."
+                        }
+                      ]
+                    }
+                  ],
+                  "dialogue": {
+                    "context": "Reiseplanung am Schalter der Deutschen Bahn (Netzwerk A1):",
+                    "lines": [
+                      {
+                        "speaker": "Bahnbeamter",
+                        "german": "Guten Tag! Wie kann ich Ihnen helfen?",
+                        "english": "Good day! How can I help you?"
+                      },
+                      {
+                        "speaker": "Reisender",
+                        "german": "Guten Tag! Ich möchte eine Fahrkarte nach Salzburg für kommenden Freitag.",
+                        "english": "Good day! I would like a train ticket to Salzburg for next Friday."
+                      },
+                      {
+                        "speaker": "Bahnbeamter",
+                        "german": "Einfache Fahrt oder hin und zurück?",
+                        "english": "One-way or round trip?"
+                      },
+                      {
+                        "speaker": "Reisender",
+                        "german": "Hin und zurück bitte. Ich fahre am Sonntagabend zurück.",
+                        "english": "Round trip please. I will return on Sunday evening."
+                      },
+                      {
+                        "speaker": "Bahnbeamter",
+                        "german": "Möchten Sie eine Sitzplatzreservierung im Großraumwagen oder im Abteil?",
+                        "english": "Would you like a seat reservation in the open coach or in a compartment?"
+                      },
+                      {
+                        "speaker": "Reisender",
+                        "german": "Im Großraumwagen am Fenster, bitte. Haben Sie eine Direktverbindung?",
+                        "english": "In the open coach by the window, please. Do you have a direct connection?"
+                      },
+                      {
+                        "speaker": "Bahnbeamter",
+                        "german": "Ja, der ICE um 09:18 Uhr fährt ohne Umsteigen durch. Das macht 89 Euro.",
+                        "english": "Yes, the ICE at 9:18 AM travels straight through without transfers. That comes to 89 euros."
+                      }
+                    ]
+                  },
+                  "funFact": {
+                    "title": "Germany's Iconic 'Wanderlust'",
+                    "content": "Did you know that the English word 'wanderlust' is taken directly from German? Germans are statistically among the world's most avid travelers (der Reiseweltmeister). Hiking through the Alps or vacationing on the beaches of the Baltic Sea (die Ostsee) is a cherished national tradition."
+                  },
+                  "practice": [
+                    {
+                      "question": "Which preposition correctly completes: 'Im August fliegen wir ___ die Schweiz'?",
+                      "options": [
+                        "nach",
+                        "in",
+                        "an",
+                        "zu"
+                      ],
+                      "answer": "in",
+                      "explanation": "'die Schweiz' has a feminine article, so direction of travel uses 'in die Schweiz' ('nach' is only for countries without an article)."
+                    },
+                    {
+                      "question": "How do you ask for a round-trip train ticket at a German ticket counter?",
+                      "options": [
+                        "Eine einfache Fahrt, bitte.",
+                        "Hin und zurück, bitte.",
+                        "Nur hin, bitte.",
+                        "Ein Gleis, bitte."
+                      ],
+                      "answer": "Hin und zurück, bitte.",
+                      "explanation": "'hin und zurück' means round-trip / return ticket."
+                    },
+                    {
+                      "question": "What is the German term for the train track/platform number?",
+                      "options": [
+                        "die Tür",
+                        "das Gleis",
+                        "der Fahrstuhl",
+                        "der Koffer"
+                      ],
+                      "answer": "das Gleis",
+                      "explanation": "'das Gleis' (plural: die Gleise) is the train track indicated on ticket timetables and station announcements (e.g. 'Gleis 4')."
+                    }
+                  ]
+                }
+              },
+              {
+                "id": "a1-ch12-l53",
+                "title": "Lesson 53: Weather Forecasts & Writing a Holiday Postcard",
+                "description": "Describing weather conditions (Es regnet, sonnig, bewölkt, warm/kalt) and writing a 4-part German holiday postcard.",
+                "content": {
+                  "overview": "Describing the weather (Das Wetter) and writing cheerful holiday postcards or short vacation messages to friends are classic A1 communication tasks. In this lesson, you will master weather terminology, temperatures, and the standard format for writing a handwritten vacation postcard.",
+                  "canDo": "Can understand and describe weather conditions (rain, sun, snow, wind, clouds), state the temperature, and write a standard German holiday postcard.",
+                  "teacherNote": "Notice how German weather uses the impersonal subject 'es' (it): 'Es regnet' (It rains), 'Es schneit' (It snows), 'Es ist sonnig' (It is sunny), 'Es ist kalt/warm' (It is cold/warm). When stating how you personally feel temperature, use the dative: 'Mir ist kalt' (I am cold), NOT 'Ich bin kalt'!",
+                  "sections": [
+                    {
+                      "title": "1. Das Wetter & Die Temperaturen (Weather & Temperatures)",
+                      "description": "Everyday weather phrases across the seasons:",
+                      "table": {
+                        "headers": [
+                          "Deutscher Ausdruck",
+                          "Wortart",
+                          "Englische Bedeutung",
+                          "Beispiel"
+                        ],
+                        "rows": [
+                          [
+                            "Es ist sonnig.",
+                            "Adjektiv",
+                            "It is sunny.",
+                            "Heute ist es den ganzen Tag sonnig."
+                          ],
+                          [
+                            "Es regnet.",
+                            "Verb (regnen)",
+                            "It is raining.",
+                            "Nimm einen Schirm mit, es regnet!"
+                          ],
+                          [
+                            "Es schneit.",
+                            "Verb (schneien)",
+                            "It is snowing.",
+                            "In den Bergen schneit es seit gestern."
+                          ],
+                          [
+                            "Es ist bewölkt / wolkig.",
+                            "Adjektiv",
+                            "It is cloudy / overcast.",
+                            "Der Himmel ist komplett bewölkt."
+                          ],
+                          [
+                            "Es ist windig / stürmisch.",
+                            "Adjektiv",
+                            "It is windy / stormy.",
+                            "An der Nordsee ist es oft sehr windig."
+                          ],
+                          [
+                            "Es ist warm / heiß.",
+                            "Adjektiv",
+                            "It is warm / hot.",
+                            "Im Sommer ist es hier bis zu 32 Grad heiß."
+                          ],
+                          [
+                            "Es ist kühl / kalt.",
+                            "Adjektiv",
+                            "It is chilly / cold.",
+                            "Zieh eine Jacke an, es ist kühl draußen."
+                          ]
+                        ]
+                      }
+                    },
+                    {
+                      "title": "2. Eine Urlaubspostkarte schreiben (Writing a Postcard)",
+                      "description": "The 4-part structure of a German holiday greeting:",
+                      "items": [
+                        {
+                          "term": "1. Anrede (Greeting)",
+                          "meaning": "Liebe Anna, / Lieber Lukas, (Dear...)",
+                          "example": "Liebe Familie Schmidt,"
+                        },
+                        {
+                          "term": "2. Ort & Wetter (Location & Weather)",
+                          "meaning": "State where you are and how the weather is",
+                          "example": "Viele Grüße aus Wien! Das Wetter ist traumhaft und die Sonne scheint."
+                        },
+                        {
+                          "term": "3. Aktivitäten (Activities)",
+                          "meaning": "What you have done or are doing",
+                          "example": "Wir haben das Schloss Schönbrunn besucht und köstliche Sachertorte gegessen."
+                        },
+                        {
+                          "term": "4. Grußformel (Sign-off)",
+                          "meaning": "Herzliche Grüße / Bis bald, dein(e)...",
+                          "example": "Herzliche Grüße und bis nächste Woche, deine Sandra"
+                        }
+                      ]
+                    }
+                  ],
+                  "dialogue": {
+                    "context": "Wetterbericht und Postkarte aus den österreichischen Alpen:",
+                    "lines": [
+                      {
+                        "speaker": "Postkarte Text",
+                        "german": "Lieber David,",
+                        "english": "Dear David,"
+                      },
+                      {
+                        "speaker": "Postkarte Text",
+                        "german": "viele sonnige Grüße aus Tirol! Das Wetter hier in den Bergen ist fantastisch. Es ist warm, der Himmel ist blau und wir haben gestern eine fünfstündige Bergtour gemacht.",
+                        "english": "warm sunny greetings from Tyrol! The weather here in the mountains is fantastic. It is warm, the sky is blue and yesterday we did a five-hour alpine hike."
+                      },
+                      {
+                        "speaker": "Postkarte Text",
+                        "german": "Das Essen auf der Almhütte war köstlich. Morgen fahren wir an den Achensee zum Schwimmen.",
+                        "english": "The food at the alpine hut was delicious. Tomorrow we are driving to Lake Achen for swimming."
+                      },
+                      {
+                        "speaker": "Postkarte Text",
+                        "german": "Wie ist das Wetter in Hamburg? Ich hoffe, dir geht es gut. Bis bald!",
+                        "english": "How is the weather in Hamburg? I hope you are doing well. See you soon!"
+                      },
+                      {
+                        "speaker": "Postkarte Text",
+                        "german": "Herzliche Grüße, dein Philipp",
+                        "english": "Warm regards, your Philipp"
+                      }
+                    ]
+                  },
+                  "funFact": {
+                    "title": "'Kaiserwetter' (Emperor's Weather)",
+                    "content": "In Austria and Southern Germany, a cloudless, sparkling sunny day is called 'Kaiserwetter' (Emperor's weather). The phrase originates from Austrian Emperor Franz Joseph I (1830–1916), because on his birthdays and public appearances, the sun famously shone brightly without a single cloud!"
+                  },
+                  "practice": [
+                    {
+                      "question": "How do you tell someone 'I am cold' in correct natural German?",
+                      "options": [
+                        "Ich bin kalt.",
+                        "Mir ist kalt.",
+                        "Ich habe kalt.",
+                        "Mich ist Kälte."
+                      ],
+                      "answer": "Mir ist kalt.",
+                      "explanation": "'Mir ist kalt' (Dative 'mir') is the correct expression for feeling cold. 'Ich bin kalt' means you are cold-hearted or physically cold to the touch like a statue."
+                    },
+                    {
+                      "question": "Which German word means 'It is raining'?",
+                      "options": [
+                        "Es schneit.",
+                        "Es regnet.",
+                        "Es scheint.",
+                        "Es weht."
+                      ],
+                      "answer": "Es regnet.",
+                      "explanation": "'Es regnet' (from the verb regnen) means 'It is raining'."
+                    },
+                    {
+                      "question": "What is the standard informal salutation when writing a postcard to a female friend named Maria?",
+                      "options": [
+                        "Lieber Maria,",
+                        "Liebe Maria,",
+                        "Sehr geehrte Maria,",
+                        "Guten Tag Maria!"
+                      ],
+                      "answer": "Liebe Maria,",
+                      "explanation": "'Liebe [Name]' is the feminine informal salutation ('Lieber [Name]' is used for males)."
+                    }
+                  ]
+                }
+              },
+              {
+                "id": "a1-ch12-l54",
+                "title": "Lesson 54: Hotel Check-In & Handling Room Problems",
+                "description": "Front desk check-in (Einzel-/Doppelzimmer), breakfast times, and politely reporting room complaints ('Die Heizung geht nicht').",
+                "content": {
+                  "overview": "Arriving at a hotel, checking in at the front desk (die Rezeption), requesting amenities, and politely reporting problems in your room ('Die Heizung geht nicht', 'Es gibt kein warmes Wasser') are essential practical skills covered in Netzwerk A1 Kapitel 12.",
+                  "canDo": "Can check in at a hotel, confirm room features and breakfast times, report maintenance issues or room problems politely, and ask for assistance.",
+                  "teacherNote": "When complaining politely in German, use the modal construction 'funktioniert nicht' (doesn't work) or 'geht nicht': 'Die Klimaanlage funktioniert leider nicht' (Unfortunately the air conditioning doesn't work). Add 'leider' (unfortunately) to soften complaints and keep conversations pleasant.",
+                  "sections": [
+                    {
+                      "title": "1. An der Rezeption: Einchecken & Auschecken (Hotel Front Desk)",
+                      "description": "Standard interactions upon arriving at accommodation:",
+                      "table": {
+                        "headers": [
+                          "Deutscher Begriff",
+                          "Bedeutung",
+                          "Typischer Beispielsatz"
+                        ],
+                        "rows": [
+                          [
+                            "die Rezeption / der Empfang",
+                            "front desk / reception",
+                            "Guten Tag! Ich habe eine Reservierung auf den Namen Weber."
+                          ],
+                          [
+                            "das Einzelzimmer (EZ)",
+                            "single room (one guest)",
+                            "Ein Einzelzimmer mit Dusche und WC."
+                          ],
+                          [
+                            "das Doppelzimmer (DZ)",
+                            "double room (two guests)",
+                            "Wir haben ein Doppelzimmer mit Doppelbett gebucht."
+                          ],
+                          [
+                            "das Frühstücksbuffet",
+                            "breakfast buffet",
+                            "Frühstück gibt es von 7:00 bis 10:30 Uhr im Erdgeschoss."
+                          ],
+                          [
+                            "der Zimmerschlüssel / die Schlüsselkarte",
+                            "room key / keycard",
+                            "Hier ist Ihre Schlüsselkarte für Zimmer 304."
+                          ],
+                          [
+                            "das WLAN-Passwort",
+                            "Wi-Fi password",
+                            "Das WLAN-Passwort steht auf der Schlüsselkarte."
+                          ]
+                        ]
+                      }
+                    },
+                    {
+                      "title": "2. Reklamationen & Probleme im Hotel (Hotel Room Issues)",
+                      "description": "How to report issues politely to hotel staff:",
+                      "table": {
+                        "headers": [
+                          "Problem",
+                          "Deutscher Ausdruck",
+                          "Englische Bedeutung",
+                          "Antwort der Rezeption"
+                        ],
+                        "rows": [
+                          [
+                            "Heizung",
+                            "Die Heizung funktioniert leider nicht.",
+                            "The heating unfortunately doesn't work.",
+                            "Wir schicken sofort den Hausmeister."
+                          ],
+                          [
+                            "Warmwasser",
+                            "Es gibt kein warmes Wasser in der Dusche.",
+                            "There is no hot water in the shower.",
+                            "Oh, Entschuldigung! Wir prüfen das gleich."
+                          ],
+                          [
+                            "Handtücher",
+                            "Es fehlen Handtücher im Badezimmer.",
+                            "Towels are missing in the bathroom.",
+                            "Der Zimmerservice bringt Ihnen sofort frische Handtücher."
+                          ],
+                          [
+                            "Lärm",
+                            "Das Zimmer zur Straße ist sehr laut.",
+                            "The street-facing room is very noisy.",
+                            "Können wir Ihnen ein ruhiges Zimmer zum Hof geben?"
+                          ]
+                        ]
+                      }
+                    }
+                  ],
+                  "dialogue": {
+                    "context": "Problemlösung an der Rezeption des Hotels 'Stadt München' (Netzwerk A1):",
+                    "lines": [
+                      {
+                        "speaker": "Gast",
+                        "german": "Guten Abend! Entschuldigen Sie bitte die Störung.",
+                        "english": "Good evening! Please excuse the disturbance."
+                      },
+                      {
+                        "speaker": "Rezeptionistin",
+                        "german": "Guten Abend! Was kann ich für Sie tun, Herr Meier?",
+                        "english": "Good evening! What can I do for you, Mr. Meier?"
+                      },
+                      {
+                        "speaker": "Gast",
+                        "german": "Ich bin in Zimmer 214. Die Fernbedienung vom Fernseher geht nicht und die Heizung bleibt kalt.",
+                        "english": "I'm in room 214. The TV remote doesn't work and the heating remains cold."
+                      },
+                      {
+                        "speaker": "Rezeptionistin",
+                        "german": "Das tut mir sehr leid! Hier sind sofort neue Batterien für die Fernbedienung. Und wegen der Heizung rufe ich gleich unseren Haustechniker.",
+                        "english": "I'm very sorry about that! Here are fresh batteries right away for the remote. And regarding the heating, I'll call our maintenance technician immediately."
+                      },
+                      {
+                        "speaker": "Gast",
+                        "german": "Vielen Dank! Wie lange wird das ungefähr dauern?",
+                        "english": "Thank you very much! Approximately how long will that take?"
+                      },
+                      {
+                        "speaker": "Rezeptionistin",
+                        "german": "In etwa zehn Minuten klopft er bei Ihnen. Falls es nicht klappt, geben wir Ihnen selbstverständlich ein anderes Zimmer.",
+                        "english": "He'll knock at your door in about ten minutes. If it cannot be resolved, we will of course give you another room."
+                      }
+                    ]
+                  },
+                  "funFact": {
+                    "title": "German 'Kurtaxe' (Tourist Tax)",
+                    "content": "When staying in German spa towns ('Kurorte', like Baden-Baden) or resort destinations, your hotel bill will usually include a small daily fee called 'die Kurtaxe' (€ 1.50 to € 3.50). This tax funds the maintenance of local parks, beach promenades, and clean trails!"
+                  },
+                  "practice": [
+                    {
+                      "question": "How do you politely tell the receptionist that the shower in your room is not working?",
+                      "options": [
+                        "Die Dusche ist sehr schön.",
+                        "Die Dusche funktioniert leider nicht.",
+                        "Ich brauche keine Dusche.",
+                        "Wo ist die Dusche?"
+                      ],
+                      "answer": "Die Dusche funktioniert leider nicht.",
+                      "explanation": "'... funktioniert leider nicht' (unfortunately doesn't work) is the standard polite phrase to report a technical defect."
+                    },
+                    {
+                      "question": "What is the German abbreviation for a double room in hotel listings?",
+                      "options": [
+                        "EZ",
+                        "DZ",
+                        "WZ",
+                        "KZ"
+                      ],
+                      "answer": "DZ",
+                      "explanation": "'DZ' stands for 'das Doppelzimmer' (double room). 'EZ' stands for 'das Einzelzimmer' (single room)."
+                    },
+                    {
+                      "question": "What does 'Es gibt kein warmes Wasser' mean?",
+                      "options": [
+                        "There is no cold water.",
+                        "There is no hot water.",
+                        "The water is very delicious.",
+                        "Water is included in the price."
+                      ],
+                      "answer": "There is no hot water.",
+                      "explanation": "'Es gibt kein warmes Wasser' means 'There is no hot/warm water'."
+                    }
+                  ]
+                }
+              },
+              {
+                "id": "a1-ch12-l55",
+                "title": "Lesson 55: Comprehensive A1 Exam Mastery: Goethe & TELC A1",
+                "description": "Full walkthrough of Goethe-Zertifikat A1 (Start Deutsch 1) & telc Deutsch A1: Hören, Lesen, Schreiben, and Sprechen simulations.",
+                "content": {
+                  "overview": "Congratulations on reaching the final lesson of German A1! In this comprehensive capstone lesson, you will review the complete architecture of the international Goethe-Zertifikat A1 ('Start Deutsch 1') and telc Deutsch A1 exams, master strategies for all four modules (Hören, Lesen, Schreiben, Sprechen), and celebrate your breakthrough into German proficiency.",
+                  "canDo": "Can demonstrate full CEFR A1 proficiency across listening, reading, writing, and speaking, introduce yourself fluently, formulate requests with picture cards, and pass the Goethe / TELC A1 exam.",
+                  "teacherNote": "The Goethe-Zertifikat A1 exam has a maximum of 100 points (25 points for each of the 4 parts: Hören, Lesen, Schreiben, Sprechen). You only need 60 points (60%) to pass! Stay calm, speak clearly, remember Verb Position 2, and use polite phrases like 'Bitte' and 'Entschuldigung'. You are ready!",
+                  "sections": [
+                    {
+                      "title": "1. Das Prüfungsformat: Goethe-Zertifikat A1 (Start Deutsch 1)",
+                      "description": "The 4 test modules and their point breakdown:",
+                      "table": {
+                        "headers": [
+                          "Modul (Section)",
+                          "Dauer",
+                          "Aufgaben & Format",
+                          "Max. Punkte"
+                        ],
+                        "rows": [
+                          [
+                            "1. Hören (Listening)",
+                            "ca. 20 Minuten",
+                            "Teil 1: Kurze Alltagsdialoge; Teil 2: Ansagen am Bahnhof/Kaufhaus; Teil 3: Telefonansagen",
+                            "25 Punkte"
+                          ],
+                          [
+                            "2. Lesen (Reading)",
+                            "ca. 25 Minuten",
+                            "Teil 1: Kurze E-Mails/Briefe; Teil 2: Anzeigen & Websites vergleichen; Teil 3: Schilder & Hinweise",
+                            "25 Punkte"
+                          ],
+                          [
+                            "3. Schreiben (Writing)",
+                            "ca. 20 Minuten",
+                            "Teil 1: Ein Formular mit 5 Feldern ausfüllen; Teil 2: Eine kurze E-Mail schreiben (ca. 30 Wörter)",
+                            "25 Punkte"
+                          ],
+                          [
+                            "4. Sprechen (Speaking)",
+                            "ca. 15 Minuten",
+                            "Teil 1: Sich vorstellen & buchstabieren; Teil 2: Fragen mit Wortkarten; Teil 3: Bitten mit Bildkarten",
+                            "25 Punkte"
+                          ]
+                        ]
+                      }
+                    },
+                    {
+                      "title": "2. Sprechen Teil 1: Die perfekte Selbstvorstellung",
+                      "description": "The 7 required prompt items for the speaking self-presentation:",
+                      "table": {
+                        "headers": [
+                          "Stichwort (Prompt)",
+                          "Musterantwort auf Deutsch",
+                          "Englische Übersetzung"
+                        ],
+                        "rows": [
+                          [
+                            "Name",
+                            "Mein Name ist Marco Rossi. / Ich heiße Marco.",
+                            "My name is Marco Rossi."
+                          ],
+                          [
+                            "Alter",
+                            "Ich bin 28 Jahre alt.",
+                            "I am 28 years old."
+                          ],
+                          [
+                            "Land (Herkunft)",
+                            "Ich komme aus Italien.",
+                            "I come from Italy."
+                          ],
+                          [
+                            "Wohnort",
+                            "Ich wohne jetzt in Frankfurt am Main.",
+                            "I live in Frankfurt now."
+                          ],
+                          [
+                            "Sprachen",
+                            "Ich spreche Italienisch, Englisch und ein bisschen Deutsch.",
+                            "I speak Italian, English, and a little German."
+                          ],
+                          [
+                            "Beruf",
+                            "Von Beruf bin ich Software-Entwickler.",
+                            "By profession I am a software developer."
+                          ],
+                          [
+                            "Hobby",
+                            "Meine Hobbys sind Fußball spielen und Musik hören.",
+                            "My hobbies are playing football and listening to music."
+                          ]
+                        ]
+                      },
+                      "notes": [
+                        "Be prepared for the examiner's follow-up questions: 'Können Sie bitte Ihren Nachnamen buchstabieren?' (Can you spell your last name?) and 'Wie ist Ihre Telefonnummer / Postleitzahl?' (What is your phone number / postal code?)."
+                      ]
+                    }
+                  ],
+                  "dialogue": {
+                    "context": "Simulation: Goethe-Zertifikat A1 Mündliche Prüfung (Sprechen Teil 1 & 3):",
+                    "lines": [
+                      {
+                        "speaker": "Prüferin",
+                        "german": "Guten Tag! Herzlich willkommen zur Prüfung Start Deutsch 1. Bitte stellen Sie sich kurz vor.",
+                        "english": "Good day! Welcome to the Start Deutsch 1 exam. Please introduce yourself briefly."
+                      },
+                      {
+                        "speaker": "Kandidat",
+                        "german": "Guten Tag! Mein Name ist Elena Ramos. Ich bin 26 Jahre alt und komme aus Spanien. Ich wohne in Berlin und arbeite als Grafikdesignerin. Meine Hobbys sind Kochen und Fotografieren.",
+                        "english": "Good day! My name is Elena Ramos. I am 26 years old and come from Spain. I live in Berlin and work as a graphic designer. My hobbies are cooking and photography."
+                      },
+                      {
+                        "speaker": "Prüferin",
+                        "german": "Sehr schön, danke Frau Ramos. Können Sie bitte Ihren Familiennamen buchstabieren?",
+                        "english": "Very nice, thank you Ms. Ramos. Could you please spell your family name?"
+                      },
+                      {
+                        "speaker": "Kandidat",
+                        "german": "Ja, gern: R - A - M - O - S.",
+                        "english": "Yes, gladly: R - A - M - O - S."
+                      },
+                      {
+                        "speaker": "Prüferin",
+                        "german": "Vielen Dank. Nun zu Teil 3: Hier ist eine Bildkarte mit einem Glas Wasser. Formulieren Sie bitte eine Bitte an Ihren Partner.",
+                        "english": "Thank you very much. Now to Part 3: Here is a picture card showing a glass of water. Please formulate a request to your partner."
+                      },
+                      {
+                        "speaker": "Kandidat",
+                        "german": "Könnten Sie mir bitte ein Glas Wasser bringen? Ich habe großen Durst.",
+                        "english": "Could you please bring me a glass of water? I am very thirsty."
+                      },
+                      {
+                        "speaker": "Partner",
+                        "german": "Ja natürlich, sehr gern! Hier bitte schön.",
+                        "english": "Yes of course, gladly! Here you are."
+                      }
+                    ]
+                  },
+                  "funFact": {
+                    "title": "Herzlichen Glückwunsch! (Congratulations!)",
+                    "content": "Reaching the end of CEFR A1 is a tremendous milestone! You can now understand and use familiar everyday expressions, introduce yourself and others, ask and answer personal questions, order food, navigate cities, talk about past experiences in Das Perfekt, and interact with native speakers when they speak slowly and clearly. You are officially ready for German A2!"
+                  },
+                  "practice": [
+                    {
+                      "question": "What minimum overall percentage is required to pass the Goethe-Zertifikat A1 exam?",
+                      "options": [
+                        "50%",
+                        "60%",
+                        "75%",
+                        "85%"
+                      ],
+                      "answer": "60%",
+                      "explanation": "To pass the Goethe Start Deutsch 1 exam, you need at least 60 points out of 100 (60%)."
+                    },
+                    {
+                      "question": "In the Speaking exam (Sprechen Teil 1), what two questions do examiners almost always ask after your self-introduction?",
+                      "options": [
+                        "Spelling your name and reciting your phone number or postal code",
+                        "Translating a novel and singing a German song",
+                        "Explaining the German tax system and political history",
+                        "Solving a math equation and drawing a map"
+                      ],
+                      "answer": "Spelling your name and reciting your phone number or postal code",
+                      "explanation": "Examiners routinely ask candidates to spell their last name ('Buchstabieren Sie bitte...') and state numbers like their phone number or postal code."
+                    },
+                    {
+                      "question": "How do you politely formulate a request when shown a picture of a pen in Sprechen Teil 3?",
+                      "options": [
+                        "Das ist ein Stift.",
+                        "Geben Sie mir bitte den Stift!",
+                        "Stift ist blau.",
+                        "Ich mag keinen Stift."
+                      ],
+                      "answer": "Geben Sie mir bitte den Stift!",
+                      "explanation": "Part 3 tests formulating polite requests using imperatives with 'bitte' or polite modal phrasing ('Könnten Sie mir bitte den Stift geben?')."
                     }
                   ]
                 }

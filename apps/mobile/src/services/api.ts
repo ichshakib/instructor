@@ -111,8 +111,8 @@ const FALLBACK_COURSES: CourseItem[] = [
     description:
       "Comprehensive German language learning from absolute beginner to advanced fluency, with interactive chapters, practical dialogues, audio pronunciation, and real-world examples.",
     featured: true,
-    totalChapters: 19,
-    totalLessons: 65,
+    totalChapters: 21,
+    totalLessons: 73,
     progressStatus: {
       type: "status",
       statusText: "Enrolled",

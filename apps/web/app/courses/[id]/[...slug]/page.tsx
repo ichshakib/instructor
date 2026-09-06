@@ -32,7 +32,6 @@ import {
   Play,
   Square,
 } from "lucide-react";
-import { getLessonContent } from "../../../../lib/lesson-contents";
 import { AudioButton } from "../../../../components/AudioButton";
 import { speechService } from "../../../../lib/speech";
 
@@ -395,10 +394,10 @@ export default function CourseDetailPage() {
     return null;
   }, [isLessonsOnlyCourse, directLessons, activeChapters, activeLessonId]);
 
-  // Resolve rich lesson content from API or fallback local library
+  // Resolve rich lesson content directly from API course data
   const currentLessonContent = useMemo(() => {
     if (!activeLessonInfo) return undefined;
-    return activeLessonInfo.lesson.content || getLessonContent(activeLessonInfo.lesson.id);
+    return activeLessonInfo.lesson.content;
   }, [activeLessonInfo]);
 
   // When active level changes (e.g. clicking A1, A2, B1, B2, C1, C2), update URL, select first lesson, and expand ONLY its chapter

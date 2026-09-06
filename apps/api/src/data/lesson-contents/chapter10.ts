@@ -2,477 +2,657 @@ import { LessonContent } from "../../types/course.types";
 
 export const CHAPTER_10_LESSONS: Record<string, LessonContent> = {
   "a1-ch10-l44": {
-    "overview": "Speaking on the telephone and exchanging short digital messages requires specialized conversational etiquette. In this lesson, you will master introducing yourself on the phone ('Hier spricht...'), asking to speak with someone, leaving messages, and common German text abbreviations.",
-    "canDo": "Can answer and conduct simple telephone calls, ask for people politely, leave brief messages, and understand short SMS and chat messages.",
-    "teacherNote": "On the phone, Germans never say 'Ich bin Gregor'. They state their name directly as: 'Hier spricht Gregor Schubert' (Here speaks Gregor Schubert) or simply 'Schubert, guten Tag!'.",
-    "sections": [
+    overview:
+      "Describing what you wear, favorite outfits, colors, and seasonal clothing is a frequent everyday conversation topic. In this lesson from Netzwerk A1 Kapitel 10 ('Kleidung und Mode'), you will learn essential clothing items, articles, colors, and adjectives to describe personal style.",
+    canDo:
+      "Can name everyday clothing items with their correct genders, describe garments by color and pattern, and state what someone is wearing using the verb 'tragen' (trägt).",
+    teacherNote:
+      "Remember that 'tragen' (to wear/carry) is a stem-changing verb: 'ich trage', but 'du trägst' and 'er/sie/es trägt'! Also pay attention to noun genders: 'der Pullover' (m), 'die Jacke' (f), 'das Hemd' (n), 'die Schuhe' (pl).",
+    sections: [
       {
-        "title": "1. Redemittel am Telefon (Telephone Phrase Bank)",
-        "description": "Standard telephone expressions from Netzwerk Kapitel 7:",
-        "table": {
-          "headers": [
+        title: "1. Kleidung & Accessoires (Wardrobe Essentials)",
+        description: "Standard clothing items categorized by grammatical gender:",
+        table: {
+          headers: [
+            "Artikel & Nomen",
+            "Pluralform",
+            "Englische Bedeutung",
+            "Beispielsatz",
+          ],
+          rows: [
+            [
+              "der Pullover / Pulli",
+              "die Pullover",
+              "sweater / jumper",
+              "Der Pullover ist warm.",
+            ],
+            [
+              "der Mantel",
+              "die Mäntel",
+              "overcoat / coat",
+              "Im Winter brauche ich einen Mantel.",
+            ],
+            [
+              "der Anzug",
+              "die Anzüge",
+              "man's suit",
+              "Er trägt einen schwarzen Anzug.",
+            ],
+            [
+              "die Hose",
+              "die Hosen",
+              "trousers / pants",
+              "Die blaue Hose gefällt mir.",
+            ],
+            [
+              "die Jacke",
+              "die Jacken",
+              "jacket",
+              "Zieh deine Jacke an!",
+            ],
+            [
+              "das Hemd",
+              "die Hemden",
+              "collared shirt",
+              "Das weiße Hemd passt gut.",
+            ],
+            [
+              "das T-Shirt",
+              "die T-Shirts",
+              "T-shirt",
+              "Ich kaufe ein neues T-Shirt.",
+            ],
+            [
+              "das Kleid",
+              "die Kleider",
+              "dress",
+              "Sie trägt ein rotes Kleid.",
+            ],
+            [
+              "die Schuhe (Pl.)",
+              "der Schuh",
+              "shoes",
+              "Die Schuhe sind sehr bequem.",
+            ],
+          ],
+        },
+      },
+      {
+        title: "2. Farben & Muster (Colors & Patterns)",
+        description: "Describing shades and styles:",
+        items: [
+          {
+            term: "Farben (Colors)",
+            meaning: "blau (blue), rot (red), gelb (yellow), grün (green), schwarz (black), weiß (white), grau (grey), braun (brown)",
+            example: "Der Pullover ist dunkelblau.",
+          },
+          {
+            term: "hell- / dunkel-",
+            meaning: "light / dark prefixes for colors",
+            example: "hellgrün (light green), dunkelgrau (dark grey)",
+          },
+          {
+            term: "gestreift / kariert",
+            meaning: "striped / checkered",
+            example: "ein gestreiftes Hemd / eine karierte Hose",
+          },
+          {
+            term: "einfarbig / bunt",
+            meaning: "monochrome / colorful",
+            example: "Das Kleid ist bunt und modern.",
+          },
+        ],
+      },
+    ],
+    dialogue: {
+      context: "Zwei Freundinnen verabreden sich vor der Party:",
+      lines: [
+        {
+          speaker: "Hannah",
+          german: "Sophia, was ziehst du heute Abend zur Party an?",
+          english: "Sophia, what are you wearing to the party tonight?",
+        },
+        {
+          speaker: "Sophia",
+          german: "Ich weiß noch nicht genau. Vielleicht meine schwarze Hose und die rote Seidenbluse.",
+          english: "I'm not sure yet. Maybe my black trousers and the red silk blouse.",
+        },
+        {
+          speaker: "Hannah",
+          german: "Das sieht bestimmt elegant aus! Und welche Schuhe nimmst du?",
+          english: "That will definitely look elegant! And which shoes are you taking?",
+        },
+        {
+          speaker: "Sophia",
+          german: "Meine bequemen Lederstiefel. Und du? Was trägst du?",
+          english: "My comfortable leather boots. And you? What are you wearing?",
+        },
+        {
+          speaker: "Hannah",
+          german: "Ich ziehe mein neues blaues Kleid und eine warme Wollstrickjacke an.",
+          english: "I'm putting on my new blue dress and a warm woolen cardigan.",
+        },
+      ],
+    },
+    funFact: {
+      title: "German Singular 'Die Hose' vs. English 'Pants'",
+      content:
+        "In English, pants/trousers are always plural ('these pants are great'). In German, a pair of trousers is singular: 'Die Hose ist schön' (literally: 'The pant is pretty'). Only when talking about multiple pairs of pants do you use the plural 'die Hosen'!",
+    },
+    practice: [
+      {
+        question: "How do you correctly conjugate 'tragen' for 'er' (he)?",
+        options: ["er tragt", "er trägte", "er trägt", "er trugen"],
+        answer: "er trägt",
+        explanation:
+          "'tragen' has an a -> ä vowel change in the 2nd and 3rd person singular: du trägst, er/sie/es trägt.",
+      },
+      {
+        question: "What is the German word for a collared dress shirt?",
+        options: ["die Bluse", "das Hemd", "der Rock", "die Hose"],
+        answer: "das Hemd",
+        explanation:
+          "'das Hemd' is a man's collared shirt (plural: die Hemden). 'die Bluse' is a woman's blouse.",
+      },
+      {
+        question: "How do you say 'light blue' in German?",
+        options: ["hellblau", "dunkelblau", "weißblau", "lichtblau"],
+        answer: "hellblau",
+        explanation:
+          "The prefix 'hell-' means light/bright, so 'hellblau' is light blue ('dunkelblau' is dark blue).",
+      },
+    ],
+  },
+
+  "a1-ch10-l45": {
+    overview:
+      "Navigating large German department stores (Kaufhäuser) like KaDeWe in Berlin or Galeria requires knowing store floor layouts, asking sales clerks for assistance, and knowing how to return or exchange an item with a receipt (Kassenbon).",
+    canDo:
+      "Can find departments in a department store using floor indicators (EG, 1. OG, UG), ask store assistants for help, and request an exchange (Umtausch) using a receipt.",
+    teacherNote:
+      "Floor numbering in German-speaking countries follows European standards: The street level is 'das Erdgeschoss' (EG). The floor above is 'der 1. Stock / das 1. Obergeschoss' (1. OG = 2nd floor in US English!). The basement floor is 'das Untergeschoss' (UG).",
+    sections: [
+      {
+        title: "1. Etagen & Abteilungen im Kaufhaus (Department Store Layout)",
+        description: "Floor directory abbreviations and departments:",
+        table: {
+          headers: [
+            "Etage (Abkürzung)",
+            "Bezeichnung",
+            "Abteilungen & Waren",
+            "Englisch",
+          ],
+          rows: [
+            [
+              "3. OG",
+              "3. Obergeschoss",
+              "Kinderkleidung & Spielwaren",
+              "3rd floor: Children's wear & toys",
+            ],
+            [
+              "2. OG",
+              "2. Obergeschoss",
+              "Herrenmode & Sportabteilung",
+              "2nd floor: Men's wear & sports",
+            ],
+            [
+              "1. OG",
+              "1. Obergeschoss",
+              "Damenmode & Schuhe",
+              "1st floor: Women's wear & shoes",
+            ],
+            [
+              "EG",
+              "Erdgeschoss",
+              "Kosmetik, Parfümerie, Schmuck",
+              "Ground floor: Cosmetics & jewelry",
+            ],
+            [
+              "UG",
+              "Untergeschoss",
+              "Haushaltswaren & Feinkost",
+              "Basement: Home goods & gourmet food",
+            ],
+          ],
+        },
+      },
+      {
+        title: "2. Redemittel für Beratung & Umtausch (Phrases for Shopping & Returns)",
+        description: "Essential phrases when talking to sales clerks:",
+        table: {
+          headers: [
             "Situation",
             "Deutscher Ausdruck",
             "Bedeutung",
-            "Antwort"
+            "Antwort der Verkäuferin",
           ],
-          "rows": [
+          rows: [
             [
-              "Melden (Answering)",
-              "Firma Müller, Meier am Apparat, guten Tag!",
-              "Company Müller, Meier on the line, hello!",
-              "Guten Tag, hier spricht..."
+              "Hilfe suchen",
+              "Entschuldigung, wo finde ich Herrenjacken?",
+              "Excuse me, where do I find men's jackets?",
+              "In der 2. Etage, gleich neben den Rolltreppen.",
             ],
             [
-              "Verbinden fragen",
-              "Ich möchte bitte Herrn Schmidt sprechen.",
-              "I would like to speak to Mr. Schmidt.",
-              "Einen Moment, ich verbinde Sie."
+              "Nur schauen",
+              "Danke, ich möchte mich nur umsehen.",
+              "Thanks, I'm just browsing / looking around.",
+              "Gern, sagen Sie Bescheid, wenn Sie Hilfe brauchen.",
             ],
             [
-              "Nicht da",
-              "Herr Schmidt ist leider nicht am Platz.",
-              "Mr. Schmidt is unfortunately not at his desk.",
-              "Kann ich eine Nachricht hinterlassen?"
+              "Umtausch (Exchange)",
+              "Ich möchte diese Bluse umtauschen.",
+              "I would like to exchange this blouse.",
+              "Haben Sie den Kassenbon dabei?",
             ],
             [
-              "Rückruf",
-              "Können Sie mich bitte zurückrufen?",
-              "Could you please call me back?",
-              "Ja, wie ist Ihre Nummer?"
+              "Defekt reklamieren",
+              "Der Reißverschluss ist leider kaputt.",
+              "The zipper is unfortunately broken.",
+              "Wir tauschen die Jacke natürlich sofort um.",
             ],
             [
-              "Verabschiedung",
-              "Auf Wiederhören, Frau Weber!",
-              "Goodbye (on the phone), Ms. Weber!",
-              "Auf Wiederhören!"
-            ]
-          ]
-        }
-      },
-      {
-        "title": "2. Abkürzungen im Chat & SMS (Texting Shorthand)",
-        "description": "Common informal abbreviations in German texting:",
-        "items": [
-          {
-            "term": "VG / LG (Viele Grüße / Liebe Grüße)",
-            "meaning": "Best regards / warm regards (standard friendly sign-off)",
-            "example": "Bis morgen! LG, Nina"
-          },
-          {
-            "term": "WE (Wochenende)",
-            "meaning": "Weekend",
-            "example": "Was machst du am WE?"
-          },
-          {
-            "term": "hdl (hab dich lieb)",
-            "meaning": "Love you / fond of you (used between close friends and couples)",
-            "example": "Danke für alles, hdl!"
-          }
-        ]
-      }
-    ],
-    "dialogue": {
-      "context": "Telefonanruf im Büro (Netzwerk A1 Kapitel 7):",
-      "lines": [
-        {
-          "speaker": "Sekretärin",
-          "german": "Klett Verlag, Rezeption, guten Tag! Was kann ich für Sie tun?",
-          "english": "Klett Publishing, reception, good day! What can I do for you?"
-        },
-        {
-          "speaker": "Gregor",
-          "german": "Guten Tag, mein Name ist Gregor Schubert. Ich möchte gern Frau Kilimann sprechen.",
-          "english": "Good day, my name is Gregor Schubert. I would like to speak to Ms. Kilimann."
-        },
-        {
-          "speaker": "Sekretärin",
-          "german": "Einen kleinen Moment bitte, ich verbinde Sie... Tut mir leid, sie ist gerade in einer Besprechung.",
-          "english": "One moment please, I am connecting you... I am sorry, she is currently in a meeting."
-        },
-        {
-          "speaker": "Gregor",
-          "german": "Kann ich ihr eine kurze Nachricht hinterlassen? Sie soll mich bitte unter 0172-88492 zurückrufen.",
-          "english": "Can I leave her a short message? Could she please call me back at 0172-88492."
-        },
-        {
-          "speaker": "Sekretärin",
-          "german": "Sehr gern, Herr Schubert. Ich gebe ihr die Nachricht weiter. Auf Wiederhören!",
-          "english": "Very gladly, Mr. Schubert. I will pass the message along to her. Goodbye!"
-        }
-      ]
-    },
-    "funFact": {
-      "title": "State Your Last Name First When Answering",
-      "content": "When private landline phones or business phones ring in Germany, people almost never answer with a generic 'Hallo?'. Instead, they state their family name directly: 'Schubert!' or 'Schubert, guten Tag!'. It confirms immediately to the caller that they have reached the right household."
-    },
-    "practice": [
-      {
-        "question": "How do you correctly say: 'This is Gregor Schubert speaking' on the phone?",
-        "options": [
-          "Ich bin Gregor Schubert.",
-          "Hier spricht Gregor Schubert.",
-          "Das ist Gregor Schubert."
-        ],
-        "answer": "Hier spricht Gregor Schubert.",
-        "explanation": "'Hier spricht [Name]' is the standard, professional phone introduction in German."
-      },
-      {
-        "question": "What does the text abbreviation 'LG' stand for?",
-        "options": [
-          "Lange Grüße",
-          "Liebe Grüße",
-          "Letzter Gruß"
-        ],
-        "answer": "Liebe Grüße",
-        "explanation": "'LG' stands for 'Liebe Grüße' (warm regards / best wishes)."
-      }
-    ]
-  },
-  "a1-ch10-l45": {
-    "overview": "Writing simple letters and emails is tested directly in the Goethe-Zertifikat A1 exam (Writing Part 2). In this lesson, you will master the formal structure (Sehr geehrte Damen und Herren / Mit freundlichen Grüßen) and the informal structure (Liebe... / Viele Grüße).",
-    "canDo": "Can write simple formal inquiries, registrations, and informal personal emails using correct salutations and closing formulas.",
-    "teacherNote": "Punctuation alert: After a German email salutation, put a COMMA, and then start the next line with a LOWERCASE letter! For example: 'Liebe Julia, / ich danke dir für deine Einladung...'.",
-    "sections": [
-      {
-        "title": "1. Formelle vs. Informelle E-Mail-Struktur",
-        "description": "Standard letter layout required in the Goethe-Zertifikat A1 exam:",
-        "table": {
-          "headers": [
-            "Baustein (Element)",
-            "Formell (Ämter, Vermieter, Chefs)",
-            "Informell (Freunde, Familie)"
+              "Zahlung",
+              "Kann ich mit Kreditkarte / kontaktlos zahlen?",
+              "Can I pay by credit card / contactless?",
+              "Ja natürlich, bitte hier auflegen.",
+            ],
           ],
-          "rows": [
-            [
-              "Betreffzeile (Subject)",
-              "Anmeldung zum Deutschkurs A1",
-              "Party am Samstag!"
-            ],
-            [
-              "Anrede (Salutation)",
-              "Sehr geehrte Damen und Herren, / Sehr geehrte Frau...",
-              "Liebe Julia, (f) / Lieber Paco, (m)"
-            ],
-            [
-              "Erster Satz (First sentence)",
-              "Beginnt KLEIN nach dem Komma!",
-              "Beginnt KLEIN nach dem Komma!"
-            ],
-            [
-              "Hauptteil (Body)",
-              "Ich schreibe Ihnen, weil ich...",
-              "Wie geht es dir? Ich möchte dich fragen..."
-            ],
-            [
-              "Grußformel (Closing)",
-              "Mit freundlichen Grüßen",
-              "Viele Grüße / Liebe Grüße"
-            ],
-            [
-              "Unterschrift (Signature)",
-              "Vorname + Nachname",
-              "Nur Vorname"
-            ]
-          ]
-        }
+        },
       },
-      {
-        "title": "2. Typische Textbausteine (Email Building Blocks)",
-        "description": "Phrases you can copy directly into your emails from Netzwerk A1:",
-        "items": [
-          {
-            "term": "Ich schreibe Ihnen, weil...",
-            "meaning": "I am writing to you because... (states the purpose of the email)",
-            "example": "Ich schreibe Ihnen, weil ich mich für den Kurs anmelden möchte."
-          },
-          {
-            "term": "Können Sie mir bitte mitteilen, ob...",
-            "meaning": "Could you please let me know whether...",
-            "example": "Können Sie mir bitte mitteilen, wann der Kurs beginnt?"
-          },
-          {
-            "term": "Vielen Dank im Voraus für Ihre Antwort.",
-            "meaning": "Thank you in advance for your reply.",
-            "example": "Über eine baldige Antwort würde ich mich freuen."
-          }
-        ]
-      }
     ],
-    "dialogue": {
-      "context": "Eine formelle Anfrage an das Goethe-Institut (Netzwerk A1 Kapitel 7):",
-      "lines": [
+    dialogue: {
+      context: "Kundenservice im Kaufhaus am Alexanderplatz in Berlin:",
+      lines: [
         {
-          "speaker": "E-Mail Text",
-          "german": "Betreff: Anfrage Deutschkurs A1 im Juli\n\nSehr geehrte Damen und Herren,\n\nich heiße Paco Garcia und möchte im Juli einen Intensivkurs A1 besuchen. Gibt es noch freie Plätze? Und wie viel kostet der Kurs inklusive Lehrbuch?\n\nVielen Dank im Voraus für Ihre Auskunft.\n\nMit freundlichen Grüßen\nPaco Garcia",
-          "english": "Subject: Inquiry German Course A1 in July\n\nDear Sir or Madam,\n\nMy name is Paco Garcia and I would like to attend an intensive A1 course in July. Are there still free spots available? And how much does the course cost including the textbook?\n\nThank you in advance for your information.\n\nSincerely yours,\nPaco Garcia"
-        }
-      ]
+          speaker: "Kunde",
+          german: "Guten Tag! Ich habe gestern diesen Pullover gekauft, aber er ist zu klein.",
+          english: "Good day! I bought this sweater yesterday, but it is too small.",
+        },
+        {
+          speaker: "Verkäuferin",
+          german: "Guten Tag! Möchten Sie den Pullover in einer größeren Größe oder suchen Sie ein anderes Modell?",
+          english: "Good day! Would you like the sweater in a larger size or are you looking for another model?",
+        },
+        {
+          speaker: "Kunde",
+          german: "Ich hätte ihn gern in Größe L, wenn Sie ihn noch vorrätig haben.",
+          english: "I would like it in size L, if you still have it in stock.",
+        },
+        {
+          speaker: "Verkäuferin",
+          german: "Ja, in Dunkelblau haben wir noch ein Stück in L. Haben Sie den Kassenbon?",
+          english: "Yes, in dark blue we still have one piece in L. Do you have the receipt?",
+        },
+        {
+          speaker: "Kunde",
+          german: "Ja, hier ist der Beleg. Vielen Dank für Ihre schnelle Hilfe!",
+          english: "Yes, here is the receipt. Thank you very much for your prompt help!",
+        },
+        {
+          speaker: "Verkäuferin",
+          german: "Sehr gern geschehen. Hier ist Ihr neuer Pullover. Schönen Tag noch!",
+          english: "You're very welcome. Here is your new sweater. Have a nice day!",
+        },
+      ],
     },
-    "funFact": {
-      "title": "Lower-Case First Word After Salutation",
-      "content": "One of the most noticeable differences between English and German letter writing is that in German, the line immediately following the salutation begins with a lowercase letter! In English: 'Dear John, I am writing...'. In German: 'Lieber John, ich schreibe...'."
+    funFact: {
+      title: "Germany's Legendary KaDeWe",
+      content:
+        "Berlin's 'Kaufhaus des Westens' (KaDeWe), founded in 1907, is the largest department store in continental Europe, spanning over 60,000 square meters. Its 6th floor is world-famous as the 'Feinschmeckeretage' (Gourmet Floor), featuring over 30 culinary bars and 35,000 delicacies.",
     },
-    "practice": [
+    practice: [
       {
-        "question": "What is the standard formal sign-off for business emails in German?",
-        "options": [
-          "Viele Grüße",
-          "Mit freundlichen Grüßen",
-          "Tschüs!"
-        ],
-        "answer": "Mit freundlichen Grüßen",
-        "explanation": "'Mit freundlichen Grüßen' (With kind regards) is the universal formal closing."
+        question: "What does 'EG' stand for on an elevator panel in a German department store?",
+        options: ["Einkaufsgruppe", "Erdgeschoss", "Erste Gerade", "Endstation"],
+        answer: "Erdgeschoss",
+        explanation:
+          "'EG' stands for 'das Erdgeschoss' (ground / street floor).",
       },
       {
-        "question": "How do you address a female teacher or manager formally?",
-        "options": [
-          "Lieber Frau Müller,",
-          "Sehr geehrte Frau Müller,",
-          "Hallo Frau Müller!"
+        question: "What document is typically required when you want to exchange (umtauschen) an item?",
+        options: ["der Reisepass", "der Kassenbon", "der Führerschein", "das Zeugnis"],
+        answer: "der Kassenbon",
+        explanation:
+          "'der Kassenbon' (or 'der Beleg' / 'die Quittung') is the purchase receipt required for store returns and exchanges.",
+      },
+      {
+        question: "What is the polite phrase to say when you are just browsing in a store?",
+        options: [
+          "Ich habe kein Geld.",
+          "Ich möchte mich nur umsehen, danke.",
+          "Verlassen Sie das Geschäft!",
+          "Geben Sie mir Rabatt!",
         ],
-        "answer": "Sehr geehrte Frau Müller,",
-        "explanation": "'Sehr geehrte Frau [Nachname]' is the polite formal salutation for a woman."
-      }
-    ]
+        answer: "Ich möchte mich nur umsehen, danke.",
+        explanation:
+          "'Ich möchte mich nur umsehen, danke' politely informs the sales assistant that you are just looking around.",
+      },
+    ],
   },
+
   "a1-ch10-l46": {
-    "overview": "Inviting friends to parties, accepting or declining invitations politely, and suggesting alternative dates are key social skills. In this lesson, you will work with an authentic party invitation from Netzwerk Kapitel 6 ('Psst - eine Überraschung für Sofia!') and practice social coordination.",
-    "canDo": "Can understand party invitations, accept with enthusiasm, decline with polite justification, and propose alternative meeting times.",
-    "teacherNote": "When declining an invitation in German, always follow the 'polite sandwich': 1. Thank them ('Danke für die Einladung'), 2. Give a brief reason ('Leider kann ich nicht, weil ich arbeiten muss'), 3. Propose another time ('Können wir uns nächste Woche treffen?').",
-    "sections": [
+    overview:
+      "Trying on clothes and evaluating how they fit is a practical communicative scenario. In this lesson, you will learn to ask for clothing sizes, locate the fitting room ('die Umkleidekabine'), and express whether clothes fit well, are too tight, too loose, too short, or too long.",
+    canDo:
+      "Can ask for and state clothing sizes (Größe 38, S/M/L/XL), request to try garments on, and describe fit accurately (passt gut, zu eng, zu weit).",
+    teacherNote:
+      "Notice how the verb 'passen' works: 'Die Hose passt mir gut' (The pants fit me well). Here 'mir' is in the Dative case! If an item looks great on someone aesthetically, Germans use 'stehen': 'Das Kleid steht dir ausgezeichnet!' (The dress looks magnificent on you!).",
+    sections: [
       {
-        "title": "1. Eine Einladung verstehen (Authentic Invitation from Netzwerk A1)",
-        "description": "Read the authentic email from Netzwerk Kapitel 6:",
-        "table": {
-          "headers": [
-            "Abschnitt",
-            "Originaltext aus Netzwerk A1 (Kapitel 6)",
-            "Bedeutung"
+        title: "1. Größen & Anprobe (Sizes & Fitting)",
+        description: "Essential terms for trying on clothes:",
+        table: {
+          headers: [
+            "Deutscher Begriff",
+            "Bedeutung",
+            "Typischer Beispielsatz",
           ],
-          "rows": [
+          rows: [
             [
-              "Betreff",
-              "Psst – eine Überraschung für Sofia!",
-              "Psst – a surprise for Sofia!"
+              "die Umkleidekabine (-n)",
+              "fitting room / changing cubicle",
+              "Wo sind die Umkleidekabinen bitte?",
             ],
             [
-              "Anrede",
-              "Hallo liebe Freunde von Sofia,",
-              "Hello dear friends of Sofia,"
+              "anprobieren (trennbar!)",
+              "to try on (clothes)",
+              "Kann ich diese Jacke anprobieren?",
             ],
             [
-              "Anlass (Occasion)",
-              "Sofia hat Geburtstag und wir möchten ihr ein Geschenk machen!",
-              "Sofia has a birthday and we want to give her a gift!"
+              "die Konfektionsgröße (-n)",
+              "clothing size",
+              "Welche Größe tragen Sie? — Größe 40.",
             ],
             [
-              "Treffpunkt & Zeit",
-              "Am Samstag, den 18.07. um 10 Uhr am Bahnhof.",
-              "On Saturday, July 18th at 10 AM at the station."
+              "die Schuhgröße (-n)",
+              "shoe size",
+              "Ich habe Schuhgröße 42.",
             ],
             [
-              "Plan (Activity)",
-              "Wir machen einen Ausflug mit dem Fahrrad und ein Picknick.",
-              "We are doing a bike excursion and a picnic."
+              "die Nummer / Größe kleiner/größer",
+              "a size smaller / larger",
+              "Haben Sie das eine Nummer größer?",
             ],
-            [
-              "Mitbringen (Bring)",
-              "Wir bringen Essen und Getränke mit. Bitte gebt Bescheid!",
-              "We bring food and drinks along. Please let us know!"
-            ]
-          ]
-        }
+          ],
+        },
       },
       {
-        "title": "2. Zusagen und Absagen (Accepting & Declining)",
-        "description": "How to respond to invitations:",
-        "items": [
-          {
-            "term": "Zusagen (Accepting enthusiastically)",
-            "meaning": "Ich komme sehr gern! / Ich bin auf jeden Fall dabei!",
-            "example": "Vielen Dank für die Einladung, ich komme gern!"
-          },
-          {
-            "term": "Absagen (Declining politely)",
-            "meaning": "Leider kann ich nicht kommen. / Das geht leider nicht.",
-            "example": "Es tut mir leid, aber am Samstag muss ich arbeiten."
-          },
-          {
-            "term": "Bescheid geben",
-            "meaning": "To let someone know / give notice",
-            "example": "Ich gebe dir bis Freitag Bescheid!"
-          }
-        ]
-      }
+        title: "2. Passform beurteilen: 'passen' vs. 'stehen'",
+        description: "Distinguishing physical fit from aesthetic suitability:",
+        table: {
+          headers: [
+            "Ausdruck",
+            "Bedeutung",
+            "Verwendung",
+            "Beispiel",
+          ],
+          rows: [
+            [
+              "passen (+ Dativ)",
+              "to fit (size / dimensions)",
+              "Physical size matches",
+              "Die Schuhe passen mir perfekt.",
+            ],
+            [
+              "stehen (+ Dativ)",
+              "to suit / look good on",
+              "Appearance / style matches",
+              "Blau steht dir wirklich gut!",
+            ],
+            [
+              "zu eng / zu weit",
+              "too tight / too loose (baggy)",
+              "Fit issue",
+              "Die Hose ist leider etwas zu eng.",
+            ],
+            [
+              "zu kurz / zu lang",
+              "too short / too long",
+              "Length issue",
+              "Die Ärmel sind mir zu lang.",
+            ],
+          ],
+        },
+      },
     ],
-    "dialogue": {
-      "context": "Antwort auf die Einladung per WhatsApp (Netzwerk A1 Kapitel 6):",
-      "lines": [
+    dialogue: {
+      context: "Im Modegeschäft vor den Umkleidekabinen (Netzwerk A1):",
+      lines: [
         {
-          "speaker": "Gregor",
-          "german": "Hallo Christian! Hast du die Mail über Sofias Überraschungstag gelesen?",
-          "english": "Hello Christian! Did you read the email about Sofia's surprise day?"
+          speaker: "Verkäufer",
+          german: "Kann ich Ihnen behilflich sein?",
+          english: "May I help you?",
         },
         {
-          "speaker": "Christian",
-          "german": "Ja, tolle Idee! Ich bin auf jeden Fall dabei. Ich bringe einen Kuchen und Musik mit.",
-          "english": "Yes, great idea! I am definitely in. I'll bring a cake and music."
+          speaker: "Kundin",
+          german: "Ja, gern. Ich möchte diesen dunkelgrünen Mantel anprobieren. Wo ist die Umkleidekabine?",
+          english: "Yes, please. I'd like to try on this dark green coat. Where is the fitting room?",
         },
         {
-          "speaker": "Gregor",
-          "german": "Perfekt! Und weißt du, ob Julia auch mitkommt?",
-          "english": "Perfect! And do you know if Julia is coming along too?"
+          speaker: "Verkäufer",
+          german: "Dort drüben auf der linken Seite. Welche Größe haben Sie?",
+          english: "Over there on the left side. What size do you take?",
         },
         {
-          "speaker": "Christian",
-          "german": "Julia hat leider keine Zeit, weil sie ihre Großeltern besucht. Aber sie gibt Bescheid!",
-          "english": "Julia unfortunately has no time because she is visiting her grandparents. But she will let us know!"
-        }
-      ]
+          speaker: "Kundin",
+          german: "Normalerweise Größe 38. Ich probiere ihn gleich an.",
+          english: "Usually size 38. I'll try it on right away.",
+        },
+        {
+          speaker: "Verkäufer",
+          german: "Und? Wie passt der Mantel?",
+          english: "And? How does the coat fit?",
+        },
+        {
+          speaker: "Kundin",
+          german: "An den Schultern passt er perfekt, aber die Farbe gefällt mir besonders gut!",
+          english: "At the shoulders it fits perfectly, but I especially love the color!",
+        },
+        {
+          speaker: "Verkäufer",
+          german: "Grün steht Ihnen wirklich hervorragend!",
+          english: "Green really suits you wonderfully!",
+        },
+        {
+          speaker: "Kundin",
+          german: "Vielen Dank! Den nehme ich.",
+          english: "Thank you very much! I'll take it.",
+        },
+      ],
     },
-    "funFact": {
-      "title": "'Bescheid sagen / Bescheid geben'",
-      "content": "You will hear 'Bescheid geben' or 'Bescheid sagen' in almost every single German conversation! It simply means 'to let someone know / keep someone posted': 'Gib mir bitte Bescheid!' (Please let me know!)."
+    funFact: {
+      title: "European Clothing Sizes Explained",
+      content:
+        "German women's clothing sizes typically run from 34 (XS) to 46+ (XXL), while men's suit sizes run from 46 to 58. For shoes, standard German sizing uses the Paris point system: size 38 is roughly a US women's 7.5, and size 43 is roughly a US men's 9.5.",
     },
-    "practice": [
+    practice: [
       {
-        "question": "How do you accept an invitation with enthusiasm?",
-        "options": [
-          "Ich habe keine Lust.",
-          "Ich bin auf jeden Fall dabei!",
-          "Vielleicht später."
+        question: "How do you ask: 'Can I try this on?' in German?",
+        options: [
+          "Kann ich das anprobieren?",
+          "Kann ich das essen?",
+          "Darf ich das verkaufen?",
+          "Muss ich das tragen?",
         ],
-        "answer": "Ich bin auf jeden Fall dabei!",
-        "explanation": "'Ich bin auf jeden Fall dabei!' means 'I am definitely joining / count me in!'."
+        answer: "Kann ich das anprobieren?",
+        explanation:
+          "'anprobieren' specifically means to try on garments to check the fit.",
       },
       {
-        "question": "What does the expression 'Gib mir Bescheid' mean?",
-        "options": [
-          "Give me a ticket",
-          "Let me know / keep me posted",
-          "Pay the bill"
+        question: "What is the difference between 'Die Jacke passt mir' and 'Die Jacke steht mir'?",
+        options: [
+          "'passen' refers to physical size/fit, while 'stehen' means it looks flattering/suits you.",
+          "'stehen' refers to size, while 'passen' means color.",
+          "There is no difference; they are exact synonyms.",
+          "'passen' is only used for shoes.",
         ],
-        "answer": "Let me know / keep me posted",
-        "explanation": "'Bescheid geben' means to notify or let someone know."
-      }
-    ]
+        answer: "'passen' refers to physical size/fit, while 'stehen' means it looks flattering/suits you.",
+        explanation:
+          "'passen' measures physical dimensions (too tight/loose), whereas 'stehen' describes visual aesthetic harmony ('That color suits you!').",
+      },
+      {
+        question: "How would you tell the shop assistant: 'The trousers are too tight'?",
+        options: [
+          "Die Hose ist zu eng.",
+          "Die Hose ist zu weit.",
+          "Die Hose ist zu billig.",
+          "Die Hose ist zu hell.",
+        ],
+        answer: "Die Hose ist zu eng.",
+        explanation:
+          "'zu eng' means too tight. ('zu weit' means too loose/baggy).",
+      },
+    ],
   },
+
   "a1-ch10-l47": {
-    "overview": "Congratulations on completing the German A1 curriculum! In this final milestone lesson, you will review the complete architecture of the official Goethe-Zertifikat A1 (Start Deutsch 1) exam, understand scoring across the 4 modules (Hören, Lesen, Schreiben, Sprechen), and learn expert exam strategies to pass with confidence.",
-    "canDo": "Understand the exact structure and time limits of the Goethe-Zertifikat A1 exam, know how to approach multiple-choice audio, short reading texts, email writing, and the group speaking test.",
-    "teacherNote": "To pass the Goethe-Zertifikat A1, you need at least 60 points out of 100 (60%). Each of the 4 sections is weighted equally at 25%! Even if one section is challenging, strong performance in the other three will easily carry you over the passing line!",
-    "sections": [
+    overview:
+      "When pointing out specific items while shopping ('Which coat do you want? — This coat here!'), German uses the interrogative pronoun 'welch-' (which) and demonstrative pronouns 'dies-' (this/these). In this lesson from Netzwerk A1 Kapitel 10, you will master their case endings in both Nominative and Accusative.",
+    canDo:
+      "Can ask which item someone prefers using 'Welcher / Welche / Welches / Welchen' and point to specific items using 'Dieser / Diese / Dieses / Diesen'.",
+    teacherNote:
+      "Good news: The endings for 'welch-' and 'dies-' follow the EXACT same endings as the definite article 'der, die, das, den'! For example: der -> welch-er / dies-er; das -> welch-es / dies-es; die -> welch-e / dies-e; and in Akkusativ: den -> welch-en / dies-en!",
+    sections: [
       {
-        "title": "1. Die 4 Module der Goethe-Zertifikat A1 Prüfung",
-        "description": "Exam structure, timing, and point distribution:",
-        "table": {
-          "headers": [
-            "Modul",
-            "Dauer (Time)",
-            "Aufgaben (Tasks)",
-            "Punkte (Points)"
+        title: "1. Endungen im Nominativ (Subject)",
+        description: "Pointing out items as the sentence subject:",
+        table: {
+          headers: [
+            "Genus",
+            "Frageartikel (Which?)",
+            "Demonstrativartikel (This)",
+            "Beispielsatz",
           ],
-          "rows": [
+          rows: [
             [
-              "1. Hören (Listening)",
-              "ca. 20 Minuten",
-              "3 Teile: kurze Alltagsgespräche, Durchsagen am Bahnhof, Anrufbeantworter",
-              "25 Punkte (25%)"
+              "Maskulin (der)",
+              "Welch-er?",
+              "dies-er",
+              "Welcher Pullover ist wärmer? — Dieser Pullover.",
             ],
             [
-              "2. Lesen (Reading)",
-              "ca. 25 Minuten",
-              "3 Teile: E-Mails, Kleinanzeigen, Schilder & Hinweise im Kaufhaus",
-              "25 Punkte (25%)"
+              "Feminin (die)",
+              "Welch-e?",
+              "dies-e",
+              "Welche Jacke gefällt dir? — Diese Jacke.",
             ],
             [
-              "3. Schreiben (Writing)",
-              "ca. 20 Minuten",
-              "Teil 1: Ein Formular ausfüllen (5 Lücken). Teil 2: Eine kurze E-Mail (ca. 30 Wörter).",
-              "25 Punkte (25%)"
+              "Neutral (das)",
+              "Welch-es?",
+              "dies-es",
+              "Welches Kleid ist schöner? — Dieses Kleid.",
             ],
             [
-              "4. Sprechen (Speaking)",
-              "ca. 15 Minuten",
-              "Gruppe (3-4 Personen): Teil 1: Sich vorstellen & buchstabieren. Teil 2: Um Informationen bitten. Teil 3: Bitten formulieren.",
-              "25 Punkte (25%)"
-            ]
-          ]
-        }
+              "Plural (die)",
+              "Welch-e?",
+              "dies-e",
+              "Welche Schuhe sind bequemer? — Diese Schuhe.",
+            ],
+          ],
+        },
       },
       {
-        "title": "2. Erfolgsstrategien für das Modul 'Sprechen'",
-        "description": "Tips for the group speaking exam from Netzwerk A1:",
-        "items": [
-          {
-            "term": "Teil 1: Sich vorstellen",
-            "meaning": "Be prepared to state: Name, Alter, Land, Wohnort, Sprachen, Beruf, Hobby. Plus spell your name and say your phone number!",
-            "example": "Ich heiße Paco Garcia. Ich bin 25 Jahre alt..."
-          },
-          {
-            "term": "Teil 2: Thema & Wortkarte",
-            "meaning": "You draw a card with a theme (e.g. Essen & Trinken) and a word (z.B. Kaffee). Formulate a question: 'Trinken Sie gern Kaffee?'.",
-            "example": "Antwort: 'Ja, sehr gern mit Milch!'"
-          },
-          {
-            "term": "Teil 3: Bildkarte & Bitte formulieren",
-            "meaning": "You draw a picture card (e.g. an apple or a pencil) and make a polite request with imperative or 'Können Sie...?'",
-            "example": "'Geben Sie mir bitte den Stift!' -> 'Hier, bitte sehr!'"
-          }
-        ]
-      }
+        title: "2. Endungen im Akkusativ (Direct Object)",
+        description: "Remember: only the masculine form changes to -en!",
+        table: {
+          headers: [
+            "Genus",
+            "Frageartikel im Akkusativ",
+            "Demonstrativartikel im Akkusativ",
+            "Beispielsatz",
+          ],
+          rows: [
+            [
+              "Maskulin (den)",
+              "Welch-en?",
+              "dies-en",
+              "Welchen Mantel kaufst du? — Diesen Mantel hier.",
+            ],
+            [
+              "Feminin (die)",
+              "Welch-e?",
+              "dies-e",
+              "Welche Hose probierst du an? — Diese Hose.",
+            ],
+            [
+              "Neutral (das)",
+              "Welch-es?",
+              "dies-es",
+              "Welches T-Shirt nimmst du? — Dieses T-Shirt.",
+            ],
+            [
+              "Plural (die)",
+              "Welch-e?",
+              "dies-e",
+              "Welche Stiefel möchtest du? — Diese Stiefel.",
+            ],
+          ],
+        },
+      },
     ],
-    "dialogue": {
-      "context": "Simulierte Sprechprüfung A1 – Teil 2: Thema 'Essen und Trinken' (Netzwerk A1):",
-      "lines": [
+    dialogue: {
+      context: "Entscheidungshilfe beim Einkaufen (Netzwerk A1):",
+      lines: [
         {
-          "speaker": "Prüfer",
-          "german": "So, meine Damen und Herren, wir kommen zu Teil 2. Paco, ziehen Sie bitte eine Karte und stellen Sie Ihrem Nachbarn eine Frage!",
-          "english": "So, ladies and gentlemen, we come to part 2. Paco, please draw a card and ask your neighbor a question!"
+          speaker: "Marco",
+          german: "Schau mal, Laura! Welcher Mantel gefällt dir besser?",
+          english: "Look, Laura! Which coat do you like better?",
         },
         {
-          "speaker": "Paco (Karte: Frühstück)",
-          "german": "Gregor, was isst du normalerweise zum Frühstück?",
-          "english": "Gregor, what do you normally eat for breakfast?"
+          speaker: "Laura",
+          german: "Dieser schwarze Mantel hier ist sehr schick, aber jener graue ist moderner.",
+          english: "This black coat here is very chic, but that grey one is more modern.",
         },
         {
-          "speaker": "Gregor",
-          "german": "Ich esse meistens ein Müsli mit Joghurt und trinke einen schwarzen Kaffee. Und du?",
-          "english": "I mostly eat muesli with yogurt and drink a black coffee. And you?"
+          speaker: "Marco",
+          german: "Und welchen Pullover soll ich dazu nehmen?",
+          english: "And which sweater should I take with it?",
         },
         {
-          "speaker": "Prüfer",
-          "german": "Sehr gut! Danke schön. Jetzt ist Gregor an der Reihe.",
-          "english": "Very good! Thank you. Now it is Gregor's turn."
-        }
-      ]
+          speaker: "Laura",
+          german: "Diesen dunkelblauen Wollpullover! Der passt farblich perfekt zum Mantel.",
+          english: "This dark blue wool sweater! It matches the coat color perfectly.",
+        },
+        {
+          speaker: "Marco",
+          german: "Gut! Dann nehme ich diesen Mantel und diesen Pullover.",
+          english: "Good! Then I'll take this coat and this sweater.",
+        },
+      ],
     },
-    "funFact": {
-      "title": "The Global Power of the Goethe-Zertifikat A1",
-      "content": "The Goethe-Zertifikat A1 is legally recognized worldwide as proof of basic German proficiency. It fulfills the visa requirement for spouse reunification in Germany (Ehegattennachzug), working holiday visas, and au pair placements across the DACH region!"
+    funFact: {
+      title: "Pointing Fingers with 'der da' & 'die hier'",
+      content:
+        "In casual everyday spoken German, native speakers often replace 'dieser / diese / dieses' with the definite article plus 'da' or 'hier': 'Welchen willst du? — Den hier!' (This one here!) or 'Die da!' (That one there!). It is quick, punchy, and heard constantly in shops.",
     },
-    "practice": [
+    practice: [
       {
-        "question": "What is the minimum passing score for the Goethe-Zertifikat A1?",
-        "options": [
-          "50% (50 points)",
-          "60% (60 points)",
-          "75% (75 points)"
-        ],
-        "answer": "60% (60 points)",
-        "explanation": "You need at least 60% (60 out of 100 points) to pass the official exam."
+        question: "Complete the sentence in the Accusative case: '___ Rock möchten Sie kaufen?' (der Rock)",
+        options: ["Welcher", "Welchen", "Welches", "Welchem"],
+        answer: "Welchen",
+        explanation:
+          "'der Rock' is masculine. In the Accusative (direct object of 'kaufen'), masculine takes '-en': 'Welchen Rock...'.",
       },
       {
-        "question": "In the A1 speaking test (Teil 1), what additional task will the examiner ask after you introduce yourself?",
-        "options": [
-          "Sing a song in German",
-          "Spell a word/name and dictate a number",
-          "Translate an English text"
+        question: "Complete the response: 'Welches T-Shirt gefällt dir? — ___ T-Shirt hier.'",
+        options: ["Dieser", "Dieses", "Diesen", "Diese"],
+        answer: "Dieses",
+        explanation:
+          "'das T-Shirt' is neuter. In the Nominative, neuter takes '-es': 'Dieses T-Shirt hier'.",
+      },
+      {
+        question: "Which question asks which shoes (plural) someone is trying on?",
+        options: [
+          "Welche Schuhe probierst du an?",
+          "Welcher Schuhe probierst du an?",
+          "Welchen Schuhe probierst du an?",
+          "Welches Schuhe probierst du an?",
         ],
-        "answer": "Spell a word/name and dictate a number",
-        "explanation": "The examiner always asks candidates to spell a name or word (Buchstabieren) and recite a number (phone number or postal code)."
-      }
-    ]
-  }
+        answer: "Welche Schuhe probierst du an?",
+        explanation:
+          "'die Schuhe' is plural, so both Nominative and Accusative take 'Welche Schuhe'.",
+      },
+    ],
+  },
 };
