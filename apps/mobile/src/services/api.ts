@@ -130,31 +130,26 @@ const FALLBACK_COURSES: CourseItem[] = [
               {
                 id: "a1-ch1-l1",
                 title: "Lesson 1: Das Deutsche Alphabet & German Phonetics",
-                duration: "15 mins",
                 description: "Alphabet letters A–Z, letter-by-letter phonetic reading, letters with German-specific sounds.",
               },
               {
                 id: "a1-ch1-l2",
                 title: "Lesson 2: The Umlauts (ä, ö, ü), Diphthongs & Special Consonants (ß, ch, sch)",
-                duration: "20 mins",
                 description: "Pronouncing umlauts, diphthongs, Eszett, and hard vs soft ch.",
               },
               {
                 id: "a1-ch1-l3",
                 title: "Lesson 3: Personal Pronouns & Formality (du vs. Sie)",
-                duration: "18 mins",
                 description: "Subject pronouns and formal vs informal etiquette.",
               },
               {
                 id: "a1-ch1-l4",
                 title: "Lesson 4: The Pillar Verb 'sein' (to be)",
-                duration: "20 mins",
                 description: "Full present tense conjugation of sein and identity statements.",
               },
               {
                 id: "a1-ch1-l5",
                 title: "Lesson 5: The Pillar Verb 'haben' (to have)",
-                duration: "20 mins",
                 description: "Full conjugation of haben and expressing possession.",
               },
             ],
@@ -166,19 +161,16 @@ const FALLBACK_COURSES: CourseItem[] = [
               {
                 id: "a1-ch2-l6",
                 title: "Lesson 6: Regular Verb Conjugation in Präsens",
-                duration: "22 mins",
                 description: "Standard personal endings with regular verbs.",
               },
               {
                 id: "a1-ch2-l7",
                 title: "Lesson 7: Essential Stem-Changing / Irregular Verbs",
-                duration: "25 mins",
                 description: "Vowel shifts in 2nd and 3rd person singular.",
               },
               {
                 id: "a1-ch2-l8",
                 title: "Lesson 8: German Word Order & Verb Position",
-                duration: "20 mins",
                 description: "The golden rule: Verb always in Position 2.",
               },
             ],
