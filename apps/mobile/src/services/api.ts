@@ -486,6 +486,69 @@ const FALLBACK_COURSES: CourseItem[] = [
   },
 ];
 
+// Fast In-Memory Course & Lesson Cache for 0ms Instant Page Transitions
+const COURSE_CACHE = new Map<string, CourseItem>();
+
+// Seed immediately with fallback courses so curriculum is available on frame 1
+FALLBACK_COURSES.forEach((c) => {
+  if (c.id) {
+    COURSE_CACHE.set(c.id, c);
+  }
+});
+
+export function getCachedCourse(id: string): CourseItem | null {
+  return COURSE_CACHE.get(id) || FALLBACK_COURSES.find((c) => c.id === id) || null;
+}
+
+export function setCachedCourse(course: CourseItem) {
+  if (course && course.id) {
+    COURSE_CACHE.set(course.id, course);
+  }
+}
+
+export function getCachedLesson(
+  courseId: string,
+  lessonId: string
+): { lesson: Lesson; chapter?: Chapter; course?: CourseItem } | null {
+  const course = getCachedCourse(courseId);
+  if (!course) return null;
+
+  let foundLesson: Lesson | null = null;
+  let foundChapter: Chapter | undefined;
+
+  if (Array.isArray(course.curriculum)) {
+    for (const level of course.curriculum) {
+      if (Array.isArray(level.chapters)) {
+        for (const chapter of level.chapters) {
+          const match = chapter.lessons?.find((l) => l.id === lessonId);
+          if (match) {
+            foundLesson = match;
+            foundChapter = chapter;
+            break;
+          }
+        }
+      }
+      if (foundLesson) break;
+    }
+  }
+
+  if (!foundLesson && Array.isArray(course.chapters)) {
+    for (const chapter of course.chapters) {
+      const match = chapter.lessons?.find((l) => l.id === lessonId);
+      if (match) {
+        foundLesson = match;
+        foundChapter = chapter;
+        break;
+      }
+    }
+  }
+
+  if (foundLesson) {
+    return { lesson: foundLesson, chapter: foundChapter, course };
+  }
+  return null;
+}
+
 export async function fetchCourses(options?: {
   category?: string;
   featured?: boolean;
@@ -507,7 +570,7 @@ export async function fetchCourses(options?: {
     const url = `${API_BASE_URL}/courses${queryString ? `?${queryString}` : ""}`;
 
     const controller = new AbortController();
-    const timeoutId = setTimeout(() => controller.abort(), 4000);
+    const timeoutId = setTimeout(() => controller.abort(), 3000);
 
     const res = await fetch(url, {
       signal: controller.signal,
@@ -522,19 +585,29 @@ export async function fetchCourses(options?: {
     }
 
     const json = await res.json();
-    return json.data || json;
+    const courses: CourseItem[] = json.data || json;
+    if (Array.isArray(courses)) {
+      courses.forEach((c) => setCachedCourse(c));
+    }
+    return courses;
   } catch (error) {
     console.warn("Could not fetch courses from backend API at", API_BASE_URL, error);
-    return FALLBACK_COURSES;
+    return Array.from(COURSE_CACHE.values());
   }
 }
 
 export async function fetchCourseById(id: string): Promise<CourseItem | null> {
+  // Check instant memory cache first (0ms latency!)
+  const cached = getCachedCourse(id);
+  if (cached && (cached.curriculum?.length || cached.chapters?.length)) {
+    return cached;
+  }
+
   try {
     const url = `${API_BASE_URL}/courses/${id}`;
 
     const controller = new AbortController();
-    const timeoutId = setTimeout(() => controller.abort(), 4000);
+    const timeoutId = setTimeout(() => controller.abort(), 2500);
 
     const res = await fetch(url, {
       signal: controller.signal,
@@ -549,59 +622,37 @@ export async function fetchCourseById(id: string): Promise<CourseItem | null> {
     }
 
     const json = await res.json();
-    return json.data || json;
+    const course: CourseItem = json.data || json;
+    if (course && course.id) {
+      setCachedCourse(course);
+      return course;
+    }
   } catch (error) {
     console.warn("Could not fetch course details from backend API at", API_BASE_URL, error);
-    const found = FALLBACK_COURSES.find((c) => c.id === id);
-    return found || FALLBACK_COURSES[0] || null;
   }
+
+  return cached || FALLBACK_COURSES.find((c) => c.id === id) || FALLBACK_COURSES[0] || null;
 }
 
 export async function fetchLessonById(
   courseId: string,
   lessonId: string
 ): Promise<{ lesson: Lesson; chapter?: Chapter; course?: CourseItem } | null> {
+  // 1. Instant check from in-memory cache (0ms!)
+  const cached = getCachedLesson(courseId, lessonId);
+  if (cached && cached.lesson?.content) {
+    return cached;
+  }
+
+  // 2. If not yet fully in cache, load course and extract
   try {
     const course = await fetchCourseById(courseId);
-    if (!course) return null;
-
-    let foundLesson: Lesson | null = null;
-    let foundChapter: Chapter | undefined;
-
-    if (Array.isArray(course.curriculum)) {
-      for (const level of course.curriculum) {
-        if (Array.isArray(level.chapters)) {
-          for (const chapter of level.chapters) {
-            const match = chapter.lessons?.find((l) => l.id === lessonId);
-            if (match) {
-              foundLesson = match;
-              foundChapter = chapter;
-              break;
-            }
-          }
-        }
-        if (foundLesson) break;
-      }
-    }
-
-    if (!foundLesson && Array.isArray(course.chapters)) {
-      for (const chapter of course.chapters) {
-        const match = chapter.lessons?.find((l) => l.id === lessonId);
-        if (match) {
-          foundLesson = match;
-          foundChapter = chapter;
-          break;
-        }
-      }
-    }
-
-    if (foundLesson) {
-      return { lesson: foundLesson, chapter: foundChapter, course };
-    }
-    return null;
+    if (!course) return cached;
+    return getCachedLesson(courseId, lessonId) || cached;
   } catch (error) {
     console.warn("Could not fetch lesson details:", error);
-    return null;
+    return cached;
   }
 }
+
 

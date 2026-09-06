@@ -15,7 +15,7 @@ import {
 import { SafeAreaView } from 'react-native-safe-area-context';
 
 import { useLearning } from '@/context/learning-context';
-import { API_BASE_URL, Chapter, CourseItem, fetchCourseById } from '@/services/api';
+import { API_BASE_URL, Chapter, CourseItem, fetchCourseById, getCachedCourse, setCachedCourse } from '@/services/api';
 
 export default function CourseDetailsScreen() {
   const router = useRouter();
@@ -27,10 +27,14 @@ export default function CourseDetailsScreen() {
   const courseId = (params.id as string) || 'german-language-course';
   const saved = isSaved(courseId);
 
-  const [course, setCourse] = useState<CourseItem | null>(null);
-  const [isLoading, setIsLoading] = useState(true);
+  const initialCached = getCachedCourse(courseId);
+  const [course, setCourse] = useState<CourseItem | null>(initialCached);
+  const [isLoading, setIsLoading] = useState(!initialCached);
   const [activeLevelIndex, setActiveLevelIndex] = useState(0);
-  const [expandedChapters, setExpandedChapters] = useState<Record<string, boolean>>({});
+  const [expandedChapters, setExpandedChapters] = useState<Record<string, boolean>>(() => {
+    const firstId = initialCached?.curriculum?.[0]?.chapters?.[0]?.id || initialCached?.chapters?.[0]?.id;
+    return firstId ? { [firstId]: true } : {};
+  });
 
   // Pure monochromatic black and white styling (Zero blue)
   const bgColor = isDark ? '#09090B' : '#FFFFFF';
@@ -44,14 +48,22 @@ export default function CourseDetailsScreen() {
 
   useEffect(() => {
     let isMounted = true;
+    const current = getCachedCourse(courseId);
+    if (current && !course) {
+      setCourse(current);
+      setIsLoading(false);
+    }
+
     fetchCourseById(courseId)
       .then((data) => {
         if (!isMounted) return;
-        setCourse(data);
-        if (data?.curriculum?.[0]?.chapters?.[0]?.id) {
-          setExpandedChapters({ [data.curriculum[0].chapters[0].id]: true });
-        } else if (data?.chapters?.[0]?.id) {
-          setExpandedChapters({ [data.chapters[0].id]: true });
+        if (data) {
+          setCourse(data);
+          setExpandedChapters((prev) => {
+            if (Object.keys(prev).length > 0) return prev;
+            const firstId = data.curriculum?.[0]?.chapters?.[0]?.id || data.chapters?.[0]?.id;
+            return firstId ? { [firstId]: true } : prev;
+          });
         }
         setIsLoading(false);
       })
@@ -169,6 +181,7 @@ export default function CourseDetailsScreen() {
           style={styles.scrollView}
           contentContainerStyle={styles.scrollContent}
           showsVerticalScrollIndicator={false}
+          keyboardShouldPersistTaps="handled"
         >
           {/* Top Course Cover Image */}
           {resolvedImageUrl ? (
@@ -340,6 +353,9 @@ export default function CourseDetailsScreen() {
                         <Pressable
                           key={lesson.id}
                           onPress={() => {
+                            if (course) {
+                              setCachedCourse(course);
+                            }
                             router.push({
                               pathname: '/lesson-details' as any,
                               params: {
@@ -357,6 +373,7 @@ export default function CourseDetailsScreen() {
                             styles.lessonRow,
                             pressed && styles.pressed,
                           ]}
+                          hitSlop={6}
                         >
                           <View style={styles.lessonLeft}>
                             <View

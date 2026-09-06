@@ -21,6 +21,7 @@ import {
   Chapter,
   CourseItem,
   fetchLessonById,
+  getCachedLesson,
   Lesson,
 } from '@/services/api';
 
@@ -109,15 +110,32 @@ export default function LessonDetailsScreen() {
   const initialLessonTitle = (params.lessonTitle as string) || 'Lesson Details';
   const initialDescription = (params.description as string) || '';
 
+  // Synchronous instant retrieval from shared memory cache (0ms instant frame!)
+  const initialCached = courseId && initialLessonId ? getCachedLesson(courseId, initialLessonId) : null;
+
   const [currentLessonId, setCurrentLessonId] = useState(initialLessonId);
-  const [lesson, setLesson] = useState<Lesson | null>(null);
-  const [chapter, setChapter] = useState<Chapter | null>(null);
-  const [course, setCourse] = useState<CourseItem | null>(null);
-  const [isLoading, setIsLoading] = useState(Boolean(courseId && initialLessonId));
+  const [lesson, setLesson] = useState<Lesson | null>(initialCached?.lesson || null);
+  const [chapter, setChapter] = useState<Chapter | null>(initialCached?.chapter || null);
+  const [course, setCourse] = useState<CourseItem | null>(initialCached?.course || null);
+  const [isLoading, setIsLoading] = useState(!initialCached);
   const [isCompleted, setIsCompleted] = useState(false);
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
 
   const mainScrollRef = useRef<ScrollView>(null);
+
+  // Synchronize when route params change (e.g. Navigating to another lesson)
+  useEffect(() => {
+    if (initialLessonId && initialLessonId !== currentLessonId) {
+      setCurrentLessonId(initialLessonId);
+      const cached = getCachedLesson(courseId, initialLessonId);
+      if (cached) {
+        setLesson(cached.lesson);
+        if (cached.chapter) setChapter(cached.chapter);
+        if (cached.course) setCourse(cached.course);
+        setIsLoading(false);
+      }
+    }
+  }, [initialLessonId, courseId]);
 
   // Interactive German Lesson 1 states
   const [alphabetFilter, setAlphabetFilter] = useState<'all' | 'shifts' | 'vowels' | 'consonants'>('all');
@@ -125,10 +143,6 @@ export default function LessonDetailsScreen() {
   const [playingAudioId, setPlayingAudioId] = useState<string | null>(null);
   const [customSpellingInput, setCustomSpellingInput] = useState<string>('GREGOR');
   const [showDialogueTranslations, setShowDialogueTranslations] = useState(true);
-
-  // Practice state
-  const [selectedAnswers, setSelectedAnswers] = useState<Record<number, number>>({});
-  const [revealedAnswers, setRevealedAnswers] = useState<Record<number, boolean>>({});
 
   // Stop speech when switching lessons or unmounting
   useEffect(() => {
@@ -161,7 +175,17 @@ export default function LessonDetailsScreen() {
       return;
     }
 
-    setIsLoading(true);
+    const cached = getCachedLesson(courseId, currentLessonId);
+    if (cached) {
+      setLesson(cached.lesson);
+      if (cached.chapter) setChapter(cached.chapter);
+      if (cached.course) setCourse(cached.course);
+      setIsLoading(false);
+      if (cached.lesson?.content) {
+        return;
+      }
+    }
+
     fetchLessonById(courseId, currentLessonId)
       .then((res) => {
         if (!isMounted) return;
@@ -207,7 +231,7 @@ export default function LessonDetailsScreen() {
       ? allLessonsFlat[currentIndex + 1]
       : null;
 
-  const handleSelectLesson = (chId: string, lId: string) => {
+  const handleSelectLesson = useCallback((chId: string, lId: string) => {
     try {
       Speech.stop();
     } catch {}
@@ -215,14 +239,21 @@ export default function LessonDetailsScreen() {
     if (lId === currentLessonId) return;
 
     setCurrentLessonId(lId);
-    setSelectedAnswers({});
-    setRevealedAnswers({});
     setIsCompleted(false);
+
+    // Instant local state update from memory cache (0ms instant!)
+    const cached = getCachedLesson(courseId, lId);
+    if (cached) {
+      setLesson(cached.lesson);
+      if (cached.chapter) setChapter(cached.chapter);
+      if (cached.course) setCourse(cached.course);
+      setIsLoading(false);
+    }
 
     if (mainScrollRef.current) {
       mainScrollRef.current.scrollTo({ y: 0, animated: false });
     }
-  };
+  }, [currentLessonId, courseId]);
 
   const handleShare = async () => {
     try {
@@ -255,20 +286,7 @@ export default function LessonDetailsScreen() {
     }
   }, []);
 
-  // Snappy, Instant Knowledge Check Handlers (0ms lag, no layout freezing)
-  const toggleAnswerReveal = (qIndex: number) => {
-    setRevealedAnswers((prev) => ({
-      ...prev,
-      [qIndex]: !prev[qIndex],
-    }));
-  };
 
-  const handleSelectOption = (qIndex: number, optIndex: number) => {
-    setSelectedAnswers((prev) => ({
-      ...prev,
-      [qIndex]: optIndex,
-    }));
-  };
 
   const currentLessonTitle = lesson?.title || initialLessonTitle;
   const currentDescription = lesson?.description || initialDescription;
@@ -305,7 +323,7 @@ export default function LessonDetailsScreen() {
   }, [customSpellingInput]);
 
   // Drawer Content: Table of contents listing all chapters and lessons
-  const renderDrawerContent = () => (
+  const renderDrawerContent = useCallback(() => (
     <SafeAreaView style={[styles.drawerContainer, { backgroundColor: bgColor }]} edges={['top', 'bottom']}>
       {/* Drawer Header */}
       <View style={[styles.drawerHeader, { borderBottomColor: borderColor }]}>
@@ -388,7 +406,7 @@ export default function LessonDetailsScreen() {
         })}
       </ScrollView>
     </SafeAreaView>
-  );
+  ), [allChapters, currentLessonId, handleSelectLesson, bgColor, borderColor, mutedText, textColor, course?.title, innerCardBg, activeColor, activeTextColor]);
 
   const activeLetterItem = GERMAN_ALPHABET.find((l) => l.char === selectedLetter) || GERMAN_ALPHABET[0];
 
@@ -481,6 +499,7 @@ export default function LessonDetailsScreen() {
             style={styles.scrollView}
             contentContainerStyle={styles.scrollContent}
             showsVerticalScrollIndicator={false}
+            keyboardShouldPersistTaps="handled"
           >
             {/* 1. LESSON TITLE & EDITORIAL HEADER (NO PER-PARAGRAPH BOXED CARDS) */}
             <View style={styles.editorialHeader}>
@@ -1339,111 +1358,20 @@ export default function LessonDetailsScreen() {
                   </View>
                 </View>
 
-                {content.practice.map((q, qIndex) => {
-                  const isRevealed = revealedAnswers[qIndex];
-                  const selectedOpt = selectedAnswers[qIndex];
-
-                  return (
-                    <View
-                      key={qIndex}
-                      style={[styles.practiceCard, { backgroundColor: innerCardBg, borderColor }]}
-                    >
-                      <View style={styles.practiceQuestionHeader}>
-                        <View style={[styles.qNumBadge, { backgroundColor: cardBg, borderColor }]}>
-                          <Text style={[styles.qNumText, { color: textColor }]}>
-                            Q{qIndex + 1}
-                          </Text>
-                        </View>
-                        <Text style={[styles.questionPrompt, { color: textColor }]}>
-                          {q.question}
-                        </Text>
-                      </View>
-
-                      {q.options && q.options.length > 0 ? (
-                        <View style={styles.optionsList}>
-                          {q.options.map((opt, optIndex) => {
-                            const isChosen = selectedOpt === optIndex;
-                            return (
-                              <Pressable
-                                key={optIndex}
-                                onPress={() => handleSelectOption(qIndex, optIndex)}
-                                style={({ pressed }) => [
-                                  styles.optionBtn,
-                                  {
-                                    backgroundColor: isChosen ? activeColor : cardBg,
-                                    borderColor: isChosen ? activeColor : borderColor,
-                                  },
-                                  pressed && styles.pressed,
-                                ]}
-                              >
-                                <Ionicons
-                                  name={
-                                    isChosen
-                                      ? 'radio-button-on-outline'
-                                      : 'radio-button-off-outline'
-                                  }
-                                  size={16}
-                                  color={isChosen ? activeTextColor : mutedText}
-                                />
-                                <Text
-                                  style={[
-                                    styles.optionText,
-                                    {
-                                      color: isChosen ? activeTextColor : textColor,
-                                      fontWeight: isChosen ? '700' : '500',
-                                    },
-                                  ]}
-                                >
-                                  {opt}
-                                </Text>
-                              </Pressable>
-                            );
-                          })}
-                        </View>
-                      ) : null}
-
-                      <Pressable
-                        onPress={() => toggleAnswerReveal(qIndex)}
-                        style={({ pressed }) => [
-                          styles.revealBtn,
-                          { backgroundColor: cardBg, borderColor },
-                          pressed && styles.pressed,
-                        ]}
-                      >
-                        <Ionicons
-                          name={isRevealed ? 'eye-off-outline' : 'eye-outline'}
-                          size={16}
-                          color={textColor}
-                        />
-                        <Text style={[styles.revealBtnText, { color: textColor }]}>
-                          {isRevealed ? 'Hide Explanation' : 'Verify Answer'}
-                        </Text>
-                      </Pressable>
-
-                      {isRevealed ? (
-                        <View
-                          style={[
-                            styles.answerContainer,
-                            { backgroundColor: cardBg, borderColor },
-                          ]}
-                        >
-                          <View style={styles.answerHeaderRow}>
-                            <Ionicons name="checkmark-circle" size={16} color="#10B981" />
-                            <Text style={[styles.answerLabel, { color: mutedText }]}>Correct:</Text>
-                            <Text style={[styles.answerValue, { color: textColor }]}>
-                              {q.answer}
-                            </Text>
-                          </View>
-                          {q.explanation ? (
-                            <Text style={[styles.answerExplanation, { color: mutedText }]}>
-                              {q.explanation}
-                            </Text>
-                          ) : null}
-                        </View>
-                      ) : null}
-                    </View>
-                  );
-                })}
+                {content.practice.map((q, qIndex) => (
+                  <KnowledgeCheckCard
+                    key={`${currentLessonId}-q-${qIndex}`}
+                    q={q}
+                    qIndex={qIndex}
+                    textColor={textColor}
+                    mutedText={mutedText}
+                    cardBg={cardBg}
+                    innerCardBg={innerCardBg}
+                    borderColor={borderColor}
+                    activeColor={activeColor}
+                    activeTextColor={activeTextColor}
+                  />
+                ))}
               </View>
             ) : null}
 
@@ -2345,3 +2273,136 @@ const styles = StyleSheet.create({
     opacity: 0.8,
   },
 });
+
+interface KnowledgeCheckCardProps {
+  q: {
+    question: string;
+    options?: string[];
+    answer: string;
+    explanation?: string;
+  };
+  qIndex: number;
+  textColor: string;
+  mutedText: string;
+  cardBg: string;
+  innerCardBg: string;
+  borderColor: string;
+  activeColor: string;
+  activeTextColor: string;
+}
+
+const KnowledgeCheckCard = React.memo(function KnowledgeCheckCard({
+  q,
+  qIndex,
+  textColor,
+  mutedText,
+  cardBg,
+  innerCardBg,
+  borderColor,
+  activeColor,
+  activeTextColor,
+}: KnowledgeCheckCardProps) {
+  const [selectedOpt, setSelectedOpt] = useState<number | null>(null);
+  const [isRevealed, setIsRevealed] = useState<boolean>(false);
+
+  return (
+    <View style={[styles.practiceCard, { backgroundColor: innerCardBg, borderColor }]}>
+      <View style={styles.practiceQuestionHeader}>
+        <View style={[styles.qNumBadge, { backgroundColor: cardBg, borderColor }]}>
+          <Text style={[styles.qNumText, { color: textColor }]}>
+            Q{qIndex + 1}
+          </Text>
+        </View>
+        <Text style={[styles.questionPrompt, { color: textColor }]}>
+          {q.question}
+        </Text>
+      </View>
+
+      {q.options && q.options.length > 0 ? (
+        <View style={styles.optionsList}>
+          {q.options.map((opt, optIndex) => {
+            const isChosen = selectedOpt === optIndex;
+            return (
+              <Pressable
+                key={optIndex}
+                onPress={() => setSelectedOpt(optIndex)}
+                style={({ pressed }) => [
+                  styles.optionBtn,
+                  {
+                    backgroundColor: isChosen ? activeColor : cardBg,
+                    borderColor: isChosen ? activeColor : borderColor,
+                  },
+                  pressed && styles.pressed,
+                ]}
+                hitSlop={4}
+              >
+                <Ionicons
+                  name={
+                    isChosen
+                      ? 'radio-button-on-outline'
+                      : 'radio-button-off-outline'
+                  }
+                  size={16}
+                  color={isChosen ? activeTextColor : mutedText}
+                />
+                <Text
+                  style={[
+                    styles.optionText,
+                    {
+                      color: isChosen ? activeTextColor : textColor,
+                      fontWeight: isChosen ? '700' : '500',
+                    },
+                  ]}
+                >
+                  {opt}
+                </Text>
+              </Pressable>
+            );
+          })}
+        </View>
+      ) : null}
+
+      <Pressable
+        onPress={() => setIsRevealed((prev) => !prev)}
+        style={({ pressed }) => [
+          styles.revealBtn,
+          { backgroundColor: cardBg, borderColor },
+          pressed && styles.pressed,
+        ]}
+        hitSlop={6}
+      >
+        <Ionicons
+          name={isRevealed ? 'eye-off-outline' : 'eye-outline'}
+          size={16}
+          color={textColor}
+        />
+        <Text style={[styles.revealBtnText, { color: textColor }]}>
+          {isRevealed ? 'Hide Explanation' : 'Verify Answer'}
+        </Text>
+      </Pressable>
+
+      {isRevealed ? (
+        <View
+          style={[
+            styles.answerContainer,
+            { backgroundColor: cardBg, borderColor },
+          ]}
+        >
+          <View style={styles.answerHeaderRow}>
+            <Ionicons name="checkmark-circle" size={16} color="#10B981" />
+            <Text style={[styles.answerLabel, { color: mutedText }]}>Correct:</Text>
+            <Text style={[styles.answerValue, { color: textColor }]}>
+              {q.answer}
+            </Text>
+          </View>
+          {q.explanation ? (
+            <Text style={[styles.answerExplanation, { color: mutedText }]}>
+              {q.explanation}
+            </Text>
+          ) : null}
+        </View>
+      ) : null}
+    </View>
+  );
+});
+
