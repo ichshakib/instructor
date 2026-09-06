@@ -5,6 +5,7 @@ import { useParams } from "next/navigation";
 import Link from "next/link";
 import {
   fetchCourseById,
+  resolveCourseImageUrl,
   CourseDetail,
   CEFRLevel,
   LevelCurriculum,
@@ -25,15 +26,12 @@ import {
   GraduationCap,
   Sparkles,
   CheckCircle2,
-  MessageSquare,
   Eye,
   EyeOff,
-  Volume2,
   Play,
-  Square,
+  Check,
 } from "lucide-react";
-import { AudioButton } from "../../../../components/AudioButton";
-import { speechService } from "../../../../lib/speech";
+import { GermanLessonExplorer } from "../../../../components/GermanLessonExplorer";
 
 const CEFR_LEVELS: CEFRLevel[] = ["A1", "A2", "B1", "B2", "C1", "C2"];
 
@@ -57,6 +55,9 @@ export default function CourseDetailPage() {
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
 
+  // View mode: either "overview" (Course Details) or "lesson" (Lesson Details & Contents)
+  const [viewMode, setViewMode] = useState<"overview" | "lesson">("overview");
+
   // Active CEFR Level
   const [activeLevel, setActiveLevel] = useState<CEFRLevel>("A1");
 
@@ -66,55 +67,40 @@ export default function CourseDetailPage() {
   // Active Lesson ID
   const [activeLessonId, setActiveLessonId] = useState<string | null>(null);
 
-  // Quick practice answer reveal state
+  // Quick practice answer reveal state for standard lessons
   const [revealedAnswers, setRevealedAnswers] = useState<Record<number, boolean>>({});
-
-  // Full dialogue playback state
-  const [isPlayingDialogue, setIsPlayingDialogue] = useState<boolean>(false);
+  const [selectedAnswers, setSelectedAnswers] = useState<Record<number, number>>({});
 
   useEffect(() => {
-    speechService.stop();
-    setIsPlayingDialogue(false);
     setRevealedAnswers({});
+    setSelectedAnswers({});
   }, [activeLessonId]);
-
-  const handlePlayDialogue = async (lines: { german: string }[]) => {
-    if (isPlayingDialogue) {
-      speechService.stop();
-      setIsPlayingDialogue(false);
-      return;
-    }
-    setIsPlayingDialogue(true);
-    for (const line of lines) {
-      await new Promise<void>((resolve) => {
-        speechService.speak(line.german, {
-          onEnd: () => setTimeout(resolve, 500),
-          onError: () => resolve(),
-        });
-      });
-    }
-    setIsPlayingDialogue(false);
-  };
 
   // Track whether initial level and lesson have been loaded from URL
   const isInitializedRef = useRef<boolean>(false);
 
   // Function to sync the browser URL without full-page reload
   const syncUrl = useCallback(
-    (lvl?: CEFRLevel, chId?: string, lId?: string) => {
+    (mode: "overview" | "lesson", lvl?: CEFRLevel, chId?: string, lId?: string) => {
       if (typeof window === "undefined") return;
       let targetPath = `/courses/${courseId}`;
-      if (lvl) {
-        targetPath = `/courses/${courseId}/${lvl}`;
-        if (chId && lId) {
-          targetPath = `/courses/${courseId}/${lvl}/${chId}/${lId}`;
-        } else if (lId) {
-          targetPath = `/courses/${courseId}/${lvl}/${lId}`;
+      if (mode === "overview") {
+        if (lvl) {
+          targetPath = `/courses/${courseId}/${lvl}`;
         }
-      } else if (chId && lId) {
-        targetPath = `/courses/${courseId}/${chId}/${lId}`;
-      } else if (lId) {
-        targetPath = `/courses/${courseId}/${lId}`;
+      } else {
+        if (lvl) {
+          targetPath = `/courses/${courseId}/${lvl}`;
+          if (chId && lId) {
+            targetPath = `/courses/${courseId}/${lvl}/${chId}/${lId}`;
+          } else if (lId) {
+            targetPath = `/courses/${courseId}/${lvl}/${lId}`;
+          }
+        } else if (chId && lId) {
+          targetPath = `/courses/${courseId}/${chId}/${lId}`;
+        } else if (lId) {
+          targetPath = `/courses/${courseId}/${lId}`;
+        }
       }
       if (window.location.pathname !== targetPath) {
         window.history.pushState(null, "", targetPath);
@@ -122,6 +108,13 @@ export default function CourseDetailPage() {
     },
     [courseId]
   );
+
+  // Guard: ONLY German language course has audio speech enabled
+  const isGermanCourse = useMemo(() => {
+    const id = (courseId || course?.id || "").toLowerCase();
+    const title = (course?.title || "").toLowerCase();
+    return id.includes("german") || title.includes("german");
+  }, [courseId, course]);
 
   // Fetch course details from API and initialize from URL slug if provided
   const loadCourse = useCallback(async () => {
@@ -135,11 +128,9 @@ export default function CourseDetailPage() {
       }
       setCourse(data);
 
-      // Only initialize activeLevel & activeLesson from URL on initial load
       if (!isInitializedRef.current) {
         isInitializedRef.current = true;
 
-        // Determine path parts directly from window.location.pathname if available, or fallback to slug
         let parts: string[] = [];
         if (typeof window !== "undefined") {
           const prefix = `/courses/${courseId}/`;
@@ -163,95 +154,64 @@ export default function CourseDetailPage() {
 
         let targetLessonId: string | null = null;
         let targetChapterId: string | null = null;
+        let targetLevel: CEFRLevel = "A1";
 
-        if (isLeveled) {
-          let targetLevel: CEFRLevel = "A1";
-          if (parts.length > 0 && parts[0]) {
-            const rawLevel = parts[0].toUpperCase();
+        // If specific lesson parts exist in the URL, open lesson view
+        if (parts.length > 0) {
+          if (isLeveled) {
+            const rawLevel = parts[0]?.toUpperCase();
             if (CEFR_LEVELS.includes(rawLevel as CEFRLevel)) {
               targetLevel = rawLevel as CEFRLevel;
             }
-          }
 
-          const levelData = data.curriculum?.find((c) => c.level === targetLevel);
-          if (levelData && levelData.chapters.length > 0) {
-            if (parts.length >= 3 && parts[1] && parts[2]) {
-              targetChapterId = parts[1];
-              targetLessonId = parts[2];
-            } else if (parts.length === 2 && parts[1]) {
-              const part = parts[1].toLowerCase();
-              const matchCh = levelData.chapters.find((ch) => ch.id.toLowerCase() === part);
-              if (matchCh) {
-                targetChapterId = matchCh.id;
-                targetLessonId = matchCh.lessons[0]?.id ?? null;
-              } else {
-                for (const ch of levelData.chapters) {
-                  const matchL = ch.lessons.find((l) => l.id.toLowerCase() === part);
-                  if (matchL) {
-                    targetLessonId = matchL.id;
-                    targetChapterId = ch.id;
-                    break;
+            const levelData = data.curriculum?.find((c) => c.level === targetLevel);
+            if (levelData && levelData.chapters.length > 0) {
+              if (parts.length >= 3 && parts[1] && parts[2]) {
+                targetChapterId = parts[1];
+                targetLessonId = parts[2];
+              } else if (parts.length === 2 && parts[1]) {
+                const part = parts[1].toLowerCase();
+                const matchCh = levelData.chapters.find((ch) => ch.id.toLowerCase() === part);
+                if (matchCh) {
+                  targetChapterId = matchCh.id;
+                  targetLessonId = matchCh.lessons[0]?.id ?? null;
+                } else {
+                  for (const ch of levelData.chapters) {
+                    const matchL = ch.lessons.find((l) => l.id.toLowerCase() === part);
+                    if (matchL) {
+                      targetLessonId = matchL.id;
+                      targetChapterId = ch.id;
+                      break;
+                    }
                   }
                 }
               }
-            }
 
-            if (!targetLessonId) {
-              const firstChapter = levelData.chapters[0];
-              if (firstChapter && firstChapter.lessons.length > 0) {
-                const firstLesson = firstChapter.lessons[0];
-                if (firstLesson) {
-                  targetLessonId = firstLesson.id;
-                  targetChapterId = firstChapter.id;
+              if (targetLessonId) {
+                setViewMode("lesson");
+                setActiveLevel(targetLevel);
+                setActiveLessonId(targetLessonId);
+                if (targetChapterId) {
+                  setExpandedChapters({ [targetChapterId]: true });
                 }
+              } else {
+                setViewMode("overview");
+                setActiveLevel(targetLevel);
               }
             }
-
-            if (targetLessonId && !targetChapterId) {
-              for (const ch of levelData.chapters) {
-                if (ch.lessons.some((l) => l.id.toLowerCase() === targetLessonId?.toLowerCase())) {
-                  targetChapterId = ch.id;
-                  break;
-                }
-              }
-            }
-
-            setActiveLevel(targetLevel);
-            if (targetChapterId) {
-              setExpandedChapters({ [targetChapterId]: true });
-            }
-            if (targetLessonId) {
-              setActiveLessonId(targetLessonId);
-              if (targetChapterId) {
-                syncUrl(targetLevel, targetChapterId, targetLessonId);
-              }
-            }
-          }
-        } else if (isLessonsOnly) {
-          // Direct lessons-only format (e.g. daily idioms, crash courses)
-          const rawLessons: Lesson[] = data.lessons || [];
-          if (rawLessons.length > 0) {
+          } else if (isLessonsOnly) {
+            const rawLessons: Lesson[] = data.lessons || [];
             if (parts.length >= 1 && parts[0]) {
               const part = parts[0].toLowerCase();
               const matchL = rawLessons.find((l) => l.id.toLowerCase() === part);
               if (matchL) {
                 targetLessonId = matchL.id;
+                setViewMode("lesson");
+                setActiveLessonId(targetLessonId);
               }
             }
-
-            if (!targetLessonId) {
-              targetLessonId = rawLessons[0]?.id ?? null;
-            }
-
-            if (targetLessonId) {
-              setActiveLessonId(targetLessonId);
-              syncUrl(undefined, undefined, targetLessonId);
-            }
-          }
-        } else {
-          // Chapters and lessons format
-          const rawChapters: Chapter[] = data.chapters || data.curriculum?.[0]?.chapters || [];
-          if (rawChapters.length > 0) {
+          } else {
+            const rawChapters: Chapter[] = data.chapters || [];
             if (parts.length >= 2 && parts[0] && parts[1]) {
               targetChapterId = parts[0];
               targetLessonId = parts[1];
@@ -261,47 +221,26 @@ export default function CourseDetailPage() {
               if (matchCh) {
                 targetChapterId = matchCh.id;
                 targetLessonId = matchCh.lessons[0]?.id ?? null;
-              } else {
-                for (const ch of rawChapters) {
-                  const matchL = ch.lessons.find((l) => l.id.toLowerCase() === part);
-                  if (matchL) {
-                    targetLessonId = matchL.id;
-                    targetChapterId = ch.id;
-                    break;
-                  }
-                }
               }
             }
 
-            if (!targetLessonId) {
-              const firstChapter = rawChapters[0];
-              if (firstChapter && firstChapter.lessons.length > 0) {
-                const firstLesson = firstChapter.lessons[0];
-                if (firstLesson) {
-                  targetLessonId = firstLesson.id;
-                  targetChapterId = firstChapter.id;
-                }
-              }
-            }
-
-            if (targetLessonId && !targetChapterId) {
-              for (const ch of rawChapters) {
-                if (ch.lessons.some((l) => l.id.toLowerCase() === targetLessonId?.toLowerCase())) {
-                  targetChapterId = ch.id;
-                  break;
-                }
-              }
-            }
-
-            if (targetChapterId) {
-              setExpandedChapters({ [targetChapterId]: true });
-            }
             if (targetLessonId) {
+              setViewMode("lesson");
               setActiveLessonId(targetLessonId);
               if (targetChapterId) {
-                syncUrl(undefined, targetChapterId, targetLessonId);
+                setExpandedChapters({ [targetChapterId]: true });
               }
+            } else {
+              setViewMode("overview");
             }
+          }
+        } else {
+          // No lesson in URL -> start on clean Course Details Overview page
+          setViewMode("overview");
+          if (isLeveled && data.curriculum?.[0]?.chapters?.[0]?.id) {
+            setExpandedChapters({ [data.curriculum[0].chapters[0].id]: true });
+          } else if (data.chapters?.[0]?.id) {
+            setExpandedChapters({ [data.chapters[0].id]: true });
           }
         }
       }
@@ -311,15 +250,14 @@ export default function CourseDetailPage() {
     } finally {
       setIsLoading(false);
     }
-  }, [courseId, slug, syncUrl]);
+  }, [courseId, slug]);
 
   useEffect(() => {
     isInitializedRef.current = false;
     loadCourse();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [courseId]);
+  }, [courseId, loadCourse]);
 
-  // Determine if this course uses the European CEFR leveled format or direct chapters
+  // Determine course structure type
   const isLeveledCourse = useMemo(() => {
     if (!course) return true;
     if (
@@ -335,7 +273,6 @@ export default function CourseDetailPage() {
     return Boolean(course.curriculum && course.curriculum.length > 0);
   }, [course]);
 
-  // Determine if this course is lessons-only (no CEFR levels, no chapter accordions)
   const isLessonsOnlyCourse = useMemo(() => {
     if (!course) return false;
     if (course.structureType === "lessons-only") return true;
@@ -346,18 +283,15 @@ export default function CourseDetailPage() {
     );
   }, [course, isLeveledCourse]);
 
-  // Direct lessons for lessons-only structure
   const directLessons: Lesson[] = useMemo(() => {
     return course?.lessons || [];
   }, [course]);
 
-  // Current Level curriculum (for European leveled format)
   const currentLevelCurriculum: LevelCurriculum | undefined = useMemo(() => {
     if (!isLeveledCourse) return undefined;
     return course?.curriculum?.find((c) => c.level === activeLevel);
   }, [course, activeLevel, isLeveledCourse]);
 
-  // Unified chapters list (either from active CEFR level, or direct chapters)
   const activeChapters: Chapter[] = useMemo(() => {
     if (isLessonsOnlyCourse) return [];
     if (isLeveledCourse) {
@@ -394,109 +328,45 @@ export default function CourseDetailPage() {
     return null;
   }, [isLessonsOnlyCourse, directLessons, activeChapters, activeLessonId]);
 
-  // Resolve rich lesson content directly from API course data
   const currentLessonContent = useMemo(() => {
     if (!activeLessonInfo) return undefined;
     return activeLessonInfo.lesson.content;
   }, [activeLessonInfo]);
 
-  // When active level changes (e.g. clicking A1, A2, B1, B2, C1, C2), update URL, select first lesson, and expand ONLY its chapter
   const handleLevelChange = (lvl: CEFRLevel) => {
     setActiveLevel(lvl);
     const targetLevel = course?.curriculum?.find((c) => c.level === lvl);
     if (targetLevel && targetLevel.chapters.length > 0) {
       const firstChapter = targetLevel.chapters[0];
-      if (firstChapter && firstChapter.lessons.length > 0) {
-        const firstLesson = firstChapter.lessons[0];
-        if (firstLesson) {
-          setActiveLessonId(firstLesson.id);
-          // Only expand the chapter containing the newly activated lesson
-          setExpandedChapters({ [firstChapter.id]: true });
-          syncUrl(lvl, firstChapter.id, firstLesson.id);
-        }
-      } else {
-        setExpandedChapters({});
-        syncUrl(lvl);
+      if (firstChapter) {
+        setExpandedChapters({ [firstChapter.id]: true });
       }
-    } else {
-      setExpandedChapters({});
-      syncUrl(lvl);
     }
+    syncUrl(viewMode, lvl);
   };
 
-  // When a lesson is clicked, activate that lesson, expand ONLY its chapter (if exists), and sync URL
   const handleSelectLesson = (chapterId?: string, lessonId?: string) => {
     if (!lessonId) return;
     setActiveLessonId(lessonId);
+    setViewMode("lesson");
     if (chapterId) {
-      setExpandedChapters({ [chapterId]: true });
+      setExpandedChapters((prev) => ({ ...prev, [chapterId]: true }));
     }
     if (isLeveledCourse && chapterId) {
-      syncUrl(activeLevel, chapterId, lessonId);
+      syncUrl("lesson", activeLevel, chapterId, lessonId);
     } else if (chapterId) {
-      syncUrl(undefined, chapterId, lessonId);
+      syncUrl("lesson", undefined, chapterId, lessonId);
     } else {
-      syncUrl(undefined, undefined, lessonId);
+      syncUrl("lesson", undefined, undefined, lessonId);
     }
   };
 
-  // Toggle chapter collapse/expand when clicking chapter heading
   const toggleChapter = (chapterId: string) => {
     setExpandedChapters((prev) => ({
       ...prev,
       [chapterId]: !prev[chapterId],
     }));
   };
-
-  // Listen to browser Back / Forward (popstate)
-  useEffect(() => {
-    const handlePopState = () => {
-      const parts = window.location.pathname.split("/").filter(Boolean);
-      // Example: ["courses", "german-language-course", "A2", "a2-ch1", "a2-ch1-l1"]
-      let newLevel: CEFRLevel | null = null;
-      if (parts.length >= 3) {
-        const lvlPart = parts[2]?.toUpperCase();
-        if (CEFR_LEVELS.includes(lvlPart as CEFRLevel)) {
-          newLevel = lvlPart as CEFRLevel;
-          setActiveLevel(newLevel);
-        }
-      }
-
-      const activeCurriculum = course?.curriculum?.find(
-        (c) => c.level === (newLevel || activeLevel)
-      );
-
-      let targetLId: string | null = null;
-      let targetCId: string | null = null;
-
-      if (parts.length >= 5 && parts[4]) {
-        targetCId = parts[3] ?? null;
-        targetLId = parts[4] ?? null;
-      } else if (parts.length === 4 && parts[3]) {
-        const part = parts[3].toLowerCase();
-        if (activeCurriculum) {
-          for (const ch of activeCurriculum.chapters) {
-            const m = ch.lessons.find((l) => l.id.toLowerCase() === part);
-            if (m) {
-              targetLId = m.id;
-              targetCId = ch.id;
-              break;
-            }
-          }
-        }
-      }
-
-      if (targetLId) {
-        setActiveLessonId(targetLId);
-        if (targetCId) {
-          setExpandedChapters({ [targetCId]: true });
-        }
-      }
-    };
-
-    window.addEventListener("popstate", handlePopState);
-    return () => window.removeEventListener("popstate", handlePopState);
-  }, [course, activeLevel]);
 
   // Flattened list of lessons for Next/Previous navigation
   const allLessonsInLevel: { lesson: Lesson; chapterId?: string }[] = useMemo(() => {
@@ -541,24 +411,54 @@ export default function CourseDetailPage() {
     }
   };
 
+  const totalChapters = useMemo(() => {
+    if (course?.totalChapters) return course.totalChapters;
+    if (Array.isArray(course?.curriculum)) {
+      return course.curriculum.reduce(
+        (acc, lvl) => acc + (Array.isArray(lvl.chapters) ? lvl.chapters.length : 0),
+        0
+      );
+    }
+    return activeChapters.length;
+  }, [course, activeChapters]);
+
+  const totalLessons = useMemo(() => {
+    if (course?.totalLessons) return course.totalLessons;
+    if (Array.isArray(course?.curriculum)) {
+      return course.curriculum.reduce(
+        (acc, lvl) =>
+          acc +
+          (Array.isArray(lvl.chapters)
+            ? lvl.chapters.reduce(
+                (cAcc, ch) => cAcc + (Array.isArray(ch.lessons) ? ch.lessons.length : 0),
+                0
+              )
+            : 0),
+        0
+      );
+    }
+    return allLessonsInLevel.length;
+  }, [course, allLessonsInLevel]);
+
+  const resolvedImageUrl = useMemo(() => {
+    return resolveCourseImageUrl(course?.imageUrl);
+  }, [course]);
+
   if (isLoading) {
     return (
-      <div className="h-screen w-full flex flex-col md:flex-row bg-neutral-50 text-[#18191E] overflow-hidden animate-pulse">
-        {/* Left Side Skeleton */}
+      <div className="h-screen w-full flex flex-col md:flex-row bg-white text-[#18191E] overflow-hidden animate-pulse">
         <div className="w-full md:w-80 lg:w-96 border-r border-neutral-200/80 bg-white p-5 flex flex-col gap-4">
-          <div className="h-8 w-3/4 bg-neutral-200/80 rounded-xl" />
-          <div className="h-10 w-full bg-neutral-200/60 rounded-xl" />
+          <div className="h-8 w-3/4 bg-neutral-100 rounded-xl" />
+          <div className="h-10 w-full bg-neutral-100 rounded-xl" />
           <div className="flex-1 space-y-3 pt-4">
-            <div className="h-12 bg-neutral-200/70 rounded-xl" />
-            <div className="h-12 bg-neutral-200/50 rounded-xl" />
-            <div className="h-12 bg-neutral-200/50 rounded-xl" />
-            <div className="h-12 bg-neutral-200/50 rounded-xl" />
+            <div className="h-12 bg-neutral-100 rounded-xl" />
+            <div className="h-12 bg-neutral-100 rounded-xl" />
+            <div className="h-12 bg-neutral-100 rounded-xl" />
           </div>
         </div>
-        {/* Right Side Skeleton */}
         <div className="flex-1 p-8 flex flex-col gap-6">
-          <div className="h-16 w-full bg-white border border-neutral-200/80 rounded-2xl" />
-          <div className="flex-1 bg-white border border-neutral-200/80 rounded-3xl" />
+          <div className="h-16 w-full bg-white border border-neutral-200 rounded-2xl" />
+          <div className="flex-1 bg-white border border-neutral-200 rounded-3xl" />
         </div>
       </div>
     );
@@ -566,11 +466,11 @@ export default function CourseDetailPage() {
 
   if (error || !course) {
     return (
-      <div className="h-screen w-full flex items-center justify-center bg-neutral-50 p-6">
-        <div className="p-8 sm:p-10 rounded-3xl bg-white border border-rose-200 shadow-sm text-center max-w-md">
-          <AlertCircle className="w-12 h-12 text-rose-500 mx-auto mb-4" />
+      <div className="h-screen w-full flex items-center justify-center bg-white p-6">
+        <div className="p-8 sm:p-10 rounded-3xl bg-white border border-neutral-200 shadow-sm text-center max-w-md">
+          <AlertCircle className="w-12 h-12 text-neutral-400 mx-auto mb-4" />
           <h2 className="text-xl font-bold text-[#18191E]">Course Not Found</h2>
-          <p className="text-xs text-[#706E66] mt-2 leading-relaxed">
+          <p className="text-xs text-neutral-500 mt-2 leading-relaxed">
             {error || "Could not retrieve the requested course details."}
           </p>
           <div className="mt-6 flex items-center justify-center gap-3">
@@ -597,54 +497,77 @@ export default function CourseDetailPage() {
   }
 
   return (
-    <div className="h-screen w-full flex flex-col md:flex-row bg-neutral-50 text-[#18191E] font-sans selection:bg-[#18191E] selection:text-white overflow-hidden">
+    <div className="h-screen w-full flex flex-col md:flex-row bg-white text-[#18191E] font-sans selection:bg-[#18191E] selection:text-white overflow-hidden">
       {/* ========================================================================= */}
-      {/* LEFT SIDE: Less Space (Course Title at top, A1-C2, Course Outline)        */}
+      {/* LEFT SIDEBAR: Minimal, structured course outline                          */}
       {/* ========================================================================= */}
-      <aside className="w-full md:w-80 lg:w-[380px] xl:w-[410px] shrink-0 h-full bg-white border-r border-neutral-200/90 flex flex-col z-20 shadow-xs">
-        {/* 1. TOP: COURSE TITLE WITH BACK BUTTON */}
-        <div className="p-3.5 sm:p-4 border-b border-neutral-200/80 bg-white flex items-center gap-3 min-h-[61px]">
+      <aside className="w-full md:w-80 lg:w-[360px] xl:w-[390px] shrink-0 h-full bg-white border-r border-neutral-200 flex flex-col z-20 shadow-2xs">
+        {/* 1. Top Header with Back to Courses Link & Title */}
+        <div className="p-3.5 sm:p-4 border-b border-neutral-200 bg-white flex items-center gap-2.5 min-h-[61px]">
           <Link
             href="/courses"
-            className="w-8 h-8 rounded-xl border border-neutral-200/90 bg-neutral-50/80 hover:bg-neutral-100 flex items-center justify-center text-neutral-600 hover:text-[#18191E] transition-all shrink-0 cursor-pointer shadow-2xs group"
+            className="text-neutral-500 hover:text-[#18191E] transition-colors shrink-0 cursor-pointer flex items-center justify-center group p-0.5"
             title="Return to courses directory"
           >
-            <ChevronLeft className="w-4 h-4 transition-transform group-hover:-translate-x-0.5" />
+            <ChevronLeft className="w-5 h-5 transition-transform group-hover:-translate-x-0.5" />
           </Link>
 
           <h1
-            className="text-sm sm:text-base font-extrabold text-[#18191E] tracking-tight leading-snug line-clamp-2"
+            className="text-sm font-bold text-[#18191E] tracking-tight leading-snug line-clamp-1"
             title={course.title}
           >
             {course.title}
           </h1>
         </div>
 
-        {/* 2. A1, A2, B1, B2, C1, C2 LEVEL SELECTOR (Rendered ONLY if isLeveledCourse is true) */}
+        {/* 2. COURSE DETAILS & OVERVIEW BUTTON */}
+        <div className="p-2 border-b border-neutral-100 bg-neutral-50/50">
+          <button
+            type="button"
+            onClick={() => {
+              setViewMode("overview");
+              syncUrl("overview", isLeveledCourse ? activeLevel : undefined);
+            }}
+            className={`w-full text-left px-3 py-2.5 rounded-xl flex items-center justify-between gap-2 text-xs font-bold transition-all cursor-pointer ${
+              viewMode === "overview"
+                ? "bg-[#18191E] text-white shadow-xs"
+                : "text-neutral-700 hover:bg-neutral-200/70"
+            }`}
+          >
+            <span className="flex items-center gap-2">
+              <Layers className="w-4 h-4" />
+              <span>Course Details &amp; Overview</span>
+            </span>
+            <span className="text-[10px] font-semibold opacity-70">
+              {isLessonsOnlyCourse ? `${directLessons.length} lessons` : `${activeChapters.length} chapters`}
+            </span>
+          </button>
+        </div>
+
+        {/* 3. CEFR Level Selector (Rendered ONLY if leveled course, e.g. German A1-C2) */}
         {isLeveledCourse && (
-          <div className="p-3 sm:p-4 border-b border-neutral-200/80 bg-neutral-50/60">
+          <div className="p-3 sm:p-3.5 border-b border-neutral-200 bg-neutral-50/60">
             <div className="flex items-center justify-between mb-2 px-1">
-              <span className="text-[11px] font-bold text-[#7A776D] uppercase tracking-wider flex items-center gap-1.5">
-                <GraduationCap className="w-3.5 h-3.5 text-amber-600" />
+              <span className="text-[11px] font-bold text-neutral-600 uppercase tracking-wider flex items-center gap-1.5">
+                <GraduationCap className="w-3.5 h-3.5" />
                 CEFR Level
               </span>
-              <span className="text-[10px] font-semibold text-neutral-500">
+              <span className="text-[10px] font-semibold text-neutral-500 truncate max-w-[170px]">
                 {currentLevelCurriculum?.title.split("•")[1]?.trim() || "Beginner"}
               </span>
             </div>
 
-            {/* Level Tabs: A1, A2, B1, B2, C1, C2 */}
-            <div className="grid grid-cols-6 gap-1.5 p-1 rounded-xl bg-neutral-200/60 border border-neutral-300/60">
+            <div className="grid grid-cols-6 gap-1 p-1 rounded-xl bg-neutral-200/60 border border-neutral-200">
               {CEFR_LEVELS.map((lvl) => {
                 const isActive = activeLevel === lvl;
                 return (
                   <button
                     key={lvl}
                     onClick={() => handleLevelChange(lvl)}
-                    className={`py-1.5 rounded-lg text-xs font-black transition-all duration-200 cursor-pointer text-center ${
+                    className={`py-1 rounded-lg text-xs font-black transition-all cursor-pointer text-center ${
                       isActive
-                        ? "bg-[#18191E] text-white shadow-sm scale-[1.04]"
-                        : "text-[#5F5D54] hover:text-[#18191E] hover:bg-white/70"
+                        ? "bg-[#18191E] text-white shadow-xs scale-[1.03]"
+                        : "text-neutral-600 hover:text-[#18191E] hover:bg-white"
                     }`}
                   >
                     {lvl}
@@ -655,68 +578,43 @@ export default function CourseDetailPage() {
           </div>
         )}
 
-        {/* 3. COURSE OUTLINE / LESSONS (SCROLLABLE LIST) */}
+        {/* 4. Scrollable Chapters & Lessons Outline */}
         <div className="p-3 border-b border-neutral-100 flex items-center justify-between bg-white text-xs font-bold text-[#18191E]">
-          <span className="flex items-center gap-1.5">
-            {isLessonsOnlyCourse ? (
-              <BookOpen className="w-3.5 h-3.5 text-amber-600" />
-            ) : (
-              <Layers className="w-3.5 h-3.5 text-amber-600" />
-            )}
-            {isLessonsOnlyCourse ? "Course Lessons" : "Course Outline"}
+          <span className="flex items-center gap-1.5 text-neutral-600">
+            <BookOpen className="w-3.5 h-3.5" />
+            <span>Curriculum Outline</span>
           </span>
           <span className="text-[11px] font-medium text-neutral-400">
-            {isLessonsOnlyCourse
-              ? `${directLessons.length} Lessons`
-              : `${activeChapters.length} Chapters`}
+            {isLessonsOnlyCourse ? `${directLessons.length} Lessons` : `${activeChapters.length} Chapters`}
           </span>
         </div>
 
         <div className="flex-1 overflow-y-auto divide-y divide-neutral-100">
           {isLessonsOnlyCourse ? (
-            directLessons.length === 0 ? (
-              <div className="p-6 text-center text-xs text-neutral-400">
-                No lessons available for this course.
-              </div>
-            ) : (
-              <div className="py-1">
-                {directLessons.map((lesson, lIdx) => {
-                  const isLessonActive = activeLessonId === lesson.id;
-                  const lessonNumber = lIdx + 1;
+            <div className="py-1">
+              {directLessons.map((lesson, lIdx) => {
+                const isLessonActive = viewMode === "lesson" && activeLessonId === lesson.id;
+                const lessonNumber = lIdx + 1;
 
-                  return (
-                    <button
-                      key={lesson.id}
-                      onClick={() => handleSelectLesson(undefined, lesson.id)}
-                      className={`w-full text-left px-4 py-3 flex items-start gap-3 transition-all duration-150 cursor-pointer ${
-                        isLessonActive
-                          ? "bg-amber-50 text-[#18191E] border-l-4 border-amber-500 font-semibold shadow-xs"
-                          : "hover:bg-neutral-100/90 text-[#5F5D54] border-l-4 border-transparent"
-                      }`}
-                    >
-                      <div className="pt-0.5 shrink-0">
-                        {isLessonActive ? (
-                          <BookOpen className="w-4 h-4 text-amber-600" />
-                        ) : (
-                          <div className="min-w-4 h-4 px-1 rounded-full border border-neutral-300 flex items-center justify-center text-[9px] font-semibold text-neutral-500">
-                            {lessonNumber}
-                          </div>
-                        )}
-                      </div>
-
-                      <div className="flex-1 min-w-0">
-                        <p className="text-xs leading-snug line-clamp-2">
-                          {formatLessonTitle(lesson.title, lessonNumber)}
-                        </p>
-                      </div>
-                    </button>
-                  );
-                })}
-              </div>
-            )
-          ) : activeChapters.length === 0 ? (
-            <div className="p-6 text-center text-xs text-neutral-400">
-              No outline available for this course.
+                return (
+                  <button
+                    key={lesson.id}
+                    onClick={() => handleSelectLesson(undefined, lesson.id)}
+                    className={`w-full text-left px-4 py-3 flex items-start gap-3 transition-all cursor-pointer ${
+                      isLessonActive
+                        ? "bg-neutral-100 text-[#18191E] border-l-4 border-[#18191E] font-bold"
+                        : "hover:bg-neutral-50 text-neutral-700 border-l-4 border-transparent"
+                    }`}
+                  >
+                    <span className="min-w-4 h-4 px-1 rounded border border-neutral-300 flex items-center justify-center text-[9px] font-bold text-neutral-600 shrink-0 mt-0.5">
+                      {lessonNumber}
+                    </span>
+                    <p className="text-xs leading-snug line-clamp-2">
+                      {formatLessonTitle(lesson.title, lessonNumber)}
+                    </p>
+                  </button>
+                );
+              })}
             </div>
           ) : (
             activeChapters.map((chapter, chIdx) => {
@@ -724,16 +622,15 @@ export default function CourseDetailPage() {
 
               return (
                 <div key={chapter.id} className="transition-colors">
-                  {/* Chapter Header Toggle Button */}
                   <button
                     onClick={() => toggleChapter(chapter.id)}
-                    className="w-full text-left px-4 py-3 flex items-center justify-between gap-2.5 hover:bg-neutral-50 transition-colors group cursor-pointer"
+                    className="w-full text-left px-4 py-3 flex items-center justify-between gap-2.5 hover:bg-neutral-50 transition-colors cursor-pointer"
                   >
                     <div className="flex items-center gap-2 min-w-0">
-                      <span className="w-5 h-5 rounded bg-[#18191E] text-white text-[10px] font-bold flex items-center justify-center shrink-0">
+                      <span className="w-5 h-5 rounded bg-neutral-100 text-neutral-800 text-[10px] font-bold flex items-center justify-center shrink-0 border border-neutral-200">
                         {chIdx + 1}
                       </span>
-                      <span className="text-xs font-bold text-[#18191E] group-hover:text-black leading-snug truncate">
+                      <span className="text-xs font-bold text-[#18191E] truncate">
                         {chapter.title}
                       </span>
                     </div>
@@ -750,7 +647,6 @@ export default function CourseDetailPage() {
                     </div>
                   </button>
 
-                  {/* Lessons Under this Chapter */}
                   {isExpanded && (
                     <div className="bg-neutral-50/60 pb-1">
                       {(() => {
@@ -759,34 +655,25 @@ export default function CourseDetailPage() {
                           .reduce((sum, ch) => sum + ch.lessons.length, 0);
 
                         return chapter.lessons.map((lesson, lIdx) => {
-                          const isLessonActive = activeLessonId === lesson.id;
+                          const isLessonActive = viewMode === "lesson" && activeLessonId === lesson.id;
                           const continuousLessonNumber = previousLessonsCount + lIdx + 1;
 
                           return (
                             <button
                               key={lesson.id}
                               onClick={() => handleSelectLesson(chapter.id, lesson.id)}
-                              className={`w-full text-left px-4 py-2.5 flex items-start gap-2.5 transition-all duration-150 cursor-pointer ${
+                              className={`w-full text-left px-4 py-2.5 flex items-start gap-2.5 transition-all cursor-pointer ${
                                 isLessonActive
-                                  ? "bg-amber-50 text-[#18191E] border-l-4 border-amber-500 font-semibold shadow-xs"
-                                  : "hover:bg-neutral-100/90 text-[#5F5D54] border-l-4 border-transparent"
+                                  ? "bg-neutral-200/80 text-[#18191E] border-l-4 border-[#18191E] font-bold"
+                                  : "hover:bg-neutral-100/90 text-neutral-600 border-l-4 border-transparent"
                               }`}
                             >
-                              <div className="pt-0.5 shrink-0">
-                                {isLessonActive ? (
-                                  <BookOpen className="w-3.5 h-3.5 text-amber-600" />
-                                ) : (
-                                  <div className="min-w-4 h-4 px-1 rounded-full border border-neutral-300 flex items-center justify-center text-[9px] font-semibold text-neutral-500">
-                                    {continuousLessonNumber}
-                                  </div>
-                                )}
-                              </div>
-
-                              <div className="flex-1 min-w-0">
-                                <p className="text-xs leading-snug line-clamp-2">
-                                  {formatLessonTitle(lesson.title, continuousLessonNumber)}
-                                </p>
-                              </div>
+                              <span className="min-w-4 h-4 px-1 rounded border border-neutral-300 flex items-center justify-center text-[9px] font-semibold text-neutral-500 shrink-0 mt-0.5">
+                                {continuousLessonNumber}
+                              </span>
+                              <p className="text-xs leading-snug line-clamp-2">
+                                {formatLessonTitle(lesson.title, continuousLessonNumber)}
+                              </p>
                             </button>
                           );
                         });
@@ -801,338 +688,405 @@ export default function CourseDetailPage() {
       </aside>
 
       {/* ========================================================================= */}
-      {/* RIGHT SIDE: More Space (Lesson Name at Top, Main Contents Area)           */}
+      {/* MAIN CONTENT AREA: Course Overview OR Lesson Details                      */}
       {/* ========================================================================= */}
-      <main className="flex-1 h-full flex flex-col overflow-hidden bg-neutral-50">
-        {activeLessonInfo ? (
-          <>
-            {/* 1. TOP HEADER: SHOWING LEVEL (if leveled), CHAPTER (if exists), AND LESSON NAME */}
-            <header className="px-6 sm:px-8 py-3.5 sm:py-4 bg-white border-b border-neutral-200/80 shrink-0 flex items-center justify-between gap-4 min-h-[61px] shadow-xs">
-              <div className="min-w-0 flex-1 flex items-center gap-2.5">
-                {/* Level Card (ONLY if European leveled format) */}
-                {isLeveledCourse && (
-                  <span className="px-2.5 py-1 rounded-lg bg-[#18191E] text-white text-xs font-bold shrink-0 shadow-2xs">
-                    {activeLevel}
-                  </span>
-                )}
-
-                {/* Chapter Card (only if chapter exists) */}
-                {activeLessonInfo?.chapter && (
-                  <span
-                    className="px-2.5 py-1 rounded-lg bg-neutral-100 border border-neutral-200/90 text-neutral-800 text-xs font-semibold shrink-0 shadow-2xs"
-                    title={activeLessonInfo.chapter.title}
-                  >
-                    Ch {currentChapterNumber}
-                  </span>
-                )}
-
-                {/* Lesson Badge (for lessons-only courses) */}
-                {!activeLessonInfo?.chapter && currentLessonIndex >= 0 && (
-                  <span className="px-2.5 py-1 rounded-lg bg-neutral-100 border border-neutral-200/90 text-neutral-800 text-xs font-semibold shrink-0 shadow-2xs">
-                    Lesson {currentLessonIndex + 1}
-                  </span>
-                )}
-
-                {/* Lesson Name */}
-                <h2
-                  className="text-sm sm:text-base font-bold text-[#18191E] tracking-tight truncate"
-                  title={
-                    currentLessonIndex >= 0
-                      ? formatLessonTitle(activeLessonInfo.lesson.title, currentLessonIndex + 1)
-                      : activeLessonInfo.lesson.title
-                  }
-                >
-                  {currentLessonIndex >= 0
-                    ? formatLessonTitle(activeLessonInfo.lesson.title, currentLessonIndex + 1)
-                    : activeLessonInfo.lesson.title}
-                </h2>
+      <main className="flex-1 h-full flex flex-col overflow-hidden bg-white">
+        {viewMode === "overview" ? (
+          /* ===================================================================== */
+          /* 1. MINIMAL, CLEAN COURSE DETAILS & OVERVIEW PAGE                      */
+          /* ===================================================================== */
+          <div className="flex-1 overflow-y-auto p-6 sm:p-10">
+            <div className="max-w-4xl mx-auto space-y-8 pb-16">
+              {/* Breadcrumb */}
+              <div className="flex items-center gap-2 text-xs text-neutral-500 font-semibold">
+                <Link href="/courses" className="hover:text-black hover:underline">
+                  Courses
+                </Link>
+                <span>/</span>
+                <span>{course.category}</span>
+                <span>/</span>
+                <span className="text-[#18191E] font-bold truncate max-w-xs">{course.title}</span>
               </div>
-            </header>
 
-            {/* 2. MAIN CONTENTS AREA */}
-            <div className="flex-1 overflow-y-auto p-6 sm:p-10 flex flex-col justify-between">
-              {/* If currentLessonContent exists, render the comprehensive, humanized module */}
-              {currentLessonContent ? (
-                <div className="max-w-4xl w-full mx-auto space-y-8 py-2 pb-10">
-                  {/* 1. Clean Lesson Overview & Goals (Clear, Welcoming, No Jargon) */}
-                  <div className="p-6 sm:p-7 rounded-3xl bg-white border border-neutral-200/90 shadow-xs space-y-4">
-                    <div className="flex flex-wrap items-center justify-between gap-3 border-b border-neutral-100 pb-3.5">
-                      <div className="flex items-center gap-2">
-                        <div className="w-6 h-6 rounded-lg bg-amber-500/10 text-amber-800 flex items-center justify-center font-bold text-xs">
-                          <BookOpen className="w-3.5 h-3.5" />
-                        </div>
-                        <span className="text-xs font-black uppercase tracking-wider text-amber-900">
-                          Lesson Overview
-                        </span>
-                      </div>
-
-                      <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-xl bg-amber-50/80 border border-amber-200 text-amber-900 text-xs font-semibold shadow-2xs">
-                        <Volume2 className="w-4 h-4 text-amber-700 shrink-0 animate-pulse" />
-                        <span>Audio Enabled: Click any speaker to listen</span>
-                      </div>
-                    </div>
-
-                    <p className="text-sm sm:text-base text-neutral-700 leading-relaxed font-normal">
-                      {currentLessonContent.overview}
-                    </p>
-
-                    <div className="p-3.5 sm:p-4 rounded-2xl bg-neutral-50/90 border border-neutral-200/80 flex items-start gap-3">
-                      <div className="w-5 h-5 rounded-full bg-amber-600 text-white flex items-center justify-center shrink-0 mt-0.5 text-[10px] font-bold">
-                        ✓
-                      </div>
-                      <div>
-                        <span className="font-extrabold text-[#18191E] text-xs uppercase tracking-wider block">
-                          What you will learn
-                        </span>
-                        <p className="text-xs sm:text-sm text-neutral-800 mt-0.5 font-medium">
-                          {currentLessonContent.canDo.replace(/^Can\s+/i, "Learn to ")}
-                        </p>
-                      </div>
-                    </div>
-                  </div>
-
-                  {/* 2. Key Concept & Practical Tip */}
-                  {currentLessonContent.teacherNote && (
-                    <div className="p-5 sm:p-6 rounded-2xl bg-[#FFFDF5] border border-amber-200/90 shadow-2xs flex items-start gap-3.5">
-                      <div className="w-9 h-9 rounded-xl bg-amber-100/90 border border-amber-200 text-amber-800 flex items-center justify-center shrink-0 mt-0.5">
-                        <Sparkles className="w-4 h-4 text-amber-700" />
-                      </div>
-                      <div className="space-y-1 flex-1">
-                        <span className="text-[11px] font-black uppercase tracking-wider text-amber-900 block">
-                          Key Concept &amp; Memory Tip
-                        </span>
-                        <p className="text-xs sm:text-sm text-neutral-800 leading-relaxed font-medium">
-                          {currentLessonContent.teacherNote}
-                        </p>
-                      </div>
+              {/* Course Hero Banner Card */}
+              <div className="p-6 sm:p-8 rounded-3xl bg-neutral-50 border border-neutral-200 shadow-2xs space-y-6">
+                <div className="flex flex-col md:flex-row gap-6 items-start">
+                  {resolvedImageUrl && (
+                    <div className="w-full md:w-56 lg:w-64 h-44 rounded-2xl overflow-hidden border border-neutral-200 shrink-0 bg-neutral-100">
+                      <img
+                        src={resolvedImageUrl}
+                        alt={course.title}
+                        className="w-full h-full object-cover"
+                      />
                     </div>
                   )}
 
-                  {/* 3. Core Lesson Sections (Rules, Tables & Vocabulary with Audio) */}
-                  {currentLessonContent.sections.map((section, sIdx) => (
-                    <div
-                      key={sIdx}
-                      className="p-6 sm:p-7 rounded-3xl bg-white border border-neutral-200/90 shadow-xs space-y-5"
-                    >
-                      <div className="border-b border-neutral-100 pb-3.5">
-                        <div className="text-[10px] font-bold text-amber-700 uppercase tracking-wider mb-1">
-                          Part {sIdx + 1}
-                        </div>
-                        <h4 className="text-base sm:text-lg font-extrabold text-[#18191E] tracking-tight">
-                          {section.title}
-                        </h4>
-                        {section.description && (
-                          <p className="text-xs sm:text-sm text-[#706E66] mt-1.5 leading-relaxed">
-                            {section.description}
-                          </p>
-                        )}
-                      </div>
-
-                      {/* Section Table with Audio Buttons */}
-                      {section.table && (
-                        <div className="overflow-x-auto rounded-2xl border border-neutral-200/80 shadow-2xs">
-                          <table className="w-full text-left border-collapse text-xs sm:text-sm">
-                            <thead>
-                              <tr className="bg-neutral-50/90 border-b border-neutral-200/80 text-neutral-600 font-bold">
-                                <th className="py-3 px-3 w-10 text-center text-xs text-neutral-400">Audio</th>
-                                {section.table.headers.map((h, hIdx) => (
-                                  <th key={hIdx} className="py-3 px-4 font-extrabold">
-                                    {h}
-                                  </th>
-                                ))}
-                              </tr>
-                            </thead>
-                            <tbody className="divide-y divide-neutral-100">
-                              {section.table.rows.map((row, rIdx) => {
-                                const primaryWord = row[0] || "";
-                                return (
-                                  <tr
-                                    key={rIdx}
-                                    className="hover:bg-amber-50/30 transition-colors group"
-                                  >
-                                    <td className="py-2.5 px-3 text-center">
-                                      <AudioButton text={primaryWord} />
-                                    </td>
-                                    {row.map((cell, cIdx) => (
-                                      <td
-                                        key={cIdx}
-                                        className={`py-3 px-4 ${
-                                          cIdx === 0
-                                            ? "font-extrabold text-[#18191E]"
-                                            : "font-normal text-[#5F5D54]"
-                                        }`}
-                                      >
-                                        <div className="flex items-center justify-between gap-2">
-                                          <span>{cell}</span>
-                                          {cIdx > 0 && (cell.includes("(") || cell.includes("/") || cell.includes(",")) && (
-                                            <AudioButton
-                                              text={(cell.split("(")[0] || "").trim()}
-                                              className="shrink-0"
-                                            />
-                                          )}
-                                        </div>
-                                      </td>
-                                    ))}
-                                  </tr>
-                                );
-                              })}
-                            </tbody>
-                          </table>
-                        </div>
+                  <div className="flex-1 space-y-3">
+                    <div className="flex flex-wrap items-center gap-2">
+                      <span className="px-2.5 py-0.5 rounded-full bg-neutral-200 text-[#18191E] text-xs font-bold">
+                        {course.category}
+                      </span>
+                      {course.tag1 && (
+                        <span className="px-2.5 py-0.5 rounded-full bg-white border border-neutral-200 text-neutral-700 text-xs font-medium">
+                          {course.tag1}
+                        </span>
                       )}
+                      {course.tag2 && (
+                        <span className="px-2.5 py-0.5 rounded-full bg-white border border-neutral-200 text-neutral-700 text-xs font-medium">
+                          {course.tag2}
+                        </span>
+                      )}
+                    </div>
 
-                      {/* Section Items / Vocabulary with Audio */}
-                      {section.items && section.items.length > 0 && (
-                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5 pt-1">
-                          {section.items.map((item, iIdx) => (
+                    <h1 className="text-2xl sm:text-3xl font-extrabold text-[#18191E] tracking-tight leading-tight">
+                      {course.title}
+                    </h1>
+
+                    {course.description && (
+                      <p className="text-sm text-neutral-600 leading-relaxed font-normal">
+                        {course.description}
+                      </p>
+                    )}
+
+                    {/* Quick Metrics Bar */}
+                    <div className="flex flex-wrap items-center gap-4 pt-2 border-t border-neutral-200/80 text-xs text-neutral-600">
+                      <div className="flex items-center gap-1.5 font-bold text-[#18191E]">
+                        <Layers className="w-4 h-4 text-neutral-400" />
+                        <span>{totalChapters} Chapters</span>
+                      </div>
+                      <div className="flex items-center gap-1.5 font-bold text-[#18191E]">
+                        <BookOpen className="w-4 h-4 text-neutral-400" />
+                        <span>{totalLessons} Lessons</span>
+                      </div>
+                      <div className="flex items-center gap-1.5 font-medium text-neutral-500">
+                        <GraduationCap className="w-4 h-4 text-neutral-400" />
+                        <span>{isLeveledCourse ? "CEFR A1–C2 Levels" : course.type}</span>
+                      </div>
+                    </div>
+
+                    {/* Primary Action Button */}
+                    <div className="pt-2">
+                      <button
+                        type="button"
+                        onClick={() => {
+                          const firstLesson = allLessonsInLevel[0];
+                          if (firstLesson) {
+                            handleSelectLesson(firstLesson.chapterId, firstLesson.lesson.id);
+                          }
+                        }}
+                        className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-[#18191E] hover:bg-neutral-800 text-white font-bold text-xs sm:text-sm shadow-xs transition-all cursor-pointer"
+                      >
+                        <Play className="w-4 h-4 fill-current" />
+                        <span>Start Learning ({allLessonsInLevel[0]?.lesson.title ? "Lesson 1" : "Start Course"})</span>
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              {/* Curriculum Overview Section */}
+              <div className="p-6 sm:p-8 rounded-3xl bg-white border border-neutral-200 shadow-2xs space-y-4">
+                <div className="flex items-center justify-between border-b border-neutral-100 pb-3">
+                  <div>
+                    <h2 className="text-base sm:text-lg font-bold text-[#18191E]">
+                      Course Curriculum
+                    </h2>
+                    <p className="text-xs text-neutral-500 mt-0.5">
+                      {isLeveledCourse ? `Level ${activeLevel} • ` : ""}{activeChapters.length} Chapters • {allLessonsInLevel.length} Lessons
+                    </p>
+                  </div>
+                </div>
+
+                <div className="space-y-3 pt-2">
+                  {activeChapters.map((chapter, chIdx) => (
+                    <div key={chapter.id} className="rounded-2xl border border-neutral-200 overflow-hidden">
+                      <button
+                        type="button"
+                        onClick={() => toggleChapter(chapter.id)}
+                        className="w-full p-4 bg-neutral-50 hover:bg-neutral-100 flex items-center justify-between gap-3 text-left transition-colors cursor-pointer"
+                      >
+                        <div className="flex items-center gap-3">
+                          <span className="w-6 h-6 rounded-lg bg-[#18191E] text-white text-xs font-bold flex items-center justify-center">
+                            {chIdx + 1}
+                          </span>
+                          <span className="font-bold text-sm text-[#18191E]">
+                            {chapter.title}
+                          </span>
+                        </div>
+                        <div className="flex items-center gap-2 text-xs text-neutral-500 font-medium">
+                          <span>{chapter.lessons.length} {chapter.lessons.length === 1 ? "lesson" : "lessons"}</span>
+                          {expandedChapters[chapter.id] ? (
+                            <ChevronUp className="w-4 h-4" />
+                          ) : (
+                            <ChevronDown className="w-4 h-4" />
+                          )}
+                        </div>
+                      </button>
+
+                      {expandedChapters[chapter.id] && (
+                        <div className="divide-y divide-neutral-100 bg-white">
+                          {chapter.lessons.map((lesson) => (
                             <div
-                              key={iIdx}
-                              className="p-4 rounded-2xl bg-neutral-50/90 border border-neutral-200/70 hover:border-amber-300 transition-all space-y-2 group"
+                              key={lesson.id}
+                              className="p-3.5 sm:p-4 flex items-center justify-between gap-4 hover:bg-neutral-50 transition-colors"
                             >
-                              <div className="flex items-center justify-between gap-2">
-                                <div className="flex items-center gap-2">
-                                  <AudioButton text={item.term.includes("=") ? (item.term.split("=")[0] || "").trim() : item.term} />
-                                  <span className="font-extrabold text-sm text-[#18191E]">
-                                    {item.term}
-                                  </span>
+                              <div className="flex items-start gap-3 min-w-0">
+                                <div className="pt-0.5">
+                                  <BookOpen className="w-4 h-4 text-neutral-400 shrink-0" />
                                 </div>
-                                {item.pronunciation && (
-                                  <span className="text-[10px] font-mono font-bold text-amber-800 bg-amber-100/70 px-2 py-0.5 rounded border border-amber-200/60">
-                                    [{item.pronunciation}]
-                                  </span>
-                                )}
+                                <div className="min-w-0">
+                                  <h3 className="text-xs sm:text-sm font-bold text-[#18191E]">
+                                    {lesson.title}
+                                  </h3>
+                                  {lesson.description && (
+                                    <p className="text-xs text-neutral-500 mt-0.5 line-clamp-1">
+                                      {lesson.description}
+                                    </p>
+                                  )}
+                                </div>
                               </div>
-                              <p className="text-xs text-[#5F5D54] leading-relaxed">
-                                {item.meaning}
-                              </p>
-                              {item.example && (
-                                <div className="flex items-center justify-between gap-2 pt-1 border-t border-neutral-200/50">
-                                  <p className="text-xs italic text-neutral-600">
-                                    &ldquo;{item.example}&rdquo;
-                                  </p>
-                                  <AudioButton text={item.example} className="shrink-0" />
-                                </div>
-                              )}
+
+                              <button
+                                type="button"
+                                onClick={() => handleSelectLesson(chapter.id, lesson.id)}
+                                className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-neutral-100 hover:bg-[#18191E] text-neutral-800 hover:text-white text-xs font-bold transition-all shrink-0 cursor-pointer"
+                              >
+                                <span>Open Lesson</span>
+                                <ArrowRight className="w-3 h-3" />
+                              </button>
                             </div>
                           ))}
                         </div>
-                      )}
-
-                      {/* Section Notes */}
-                      {section.notes && section.notes.length > 0 && (
-                        <ul className="space-y-1.5 text-xs text-[#706E66] list-disc list-inside pt-1">
-                          {section.notes.map((n, nIdx) => (
-                            <li key={nIdx}>{n}</li>
-                          ))}
-                        </ul>
                       )}
                     </div>
                   ))}
+                </div>
+              </div>
+            </div>
+          </div>
+        ) : (
+          /* ===================================================================== */
+          /* 2. MINIMAL, CLEAN LESSON DETAILS & CONTENTS PAGE                      */
+          /* ===================================================================== */
+          activeLessonInfo ? (
+            <>
+              {/* Header Bar */}
+              <header className="px-6 sm:px-8 py-3.5 sm:py-4 bg-white border-b border-neutral-200 shrink-0 flex items-center justify-between gap-4 min-h-[61px] shadow-2xs">
+                <div className="min-w-0 flex-1 flex items-center">
+                  <h2
+                    className="text-base sm:text-lg font-bold text-[#18191E] tracking-tight truncate"
+                    title={activeLessonInfo.lesson.title}
+                  >
+                    {activeLessonInfo.lesson.title}
+                  </h2>
+                </div>
 
-                  {/* 4. Authentic German Dialogue (Praxis-Dialog with Full Audio) */}
-                  {currentLessonContent.dialogue && (
-                    <div className="p-6 sm:p-7 rounded-3xl bg-white border border-neutral-200/90 shadow-xs space-y-4">
-                      <div className="flex flex-wrap items-center justify-between gap-3 border-b border-neutral-100 pb-3.5">
-                        <div className="flex items-center gap-2">
-                          <MessageSquare className="w-4 h-4 text-amber-600 shrink-0" />
-                          <h4 className="text-base font-extrabold text-[#18191E]">
-                            Praxis-Dialog (Real-World Conversation)
-                          </h4>
-                        </div>
+                {/* Next / Prev Shortcuts */}
+                <div className="flex items-center gap-1.5 shrink-0">
+                  <button
+                    type="button"
+                    onClick={goToPrevLesson}
+                    disabled={currentLessonIndex <= 0}
+                    className="p-1.5 rounded-lg border border-neutral-200 text-neutral-700 disabled:opacity-30 disabled:cursor-not-allowed hover:bg-neutral-100 transition-colors"
+                    title="Previous Lesson"
+                  >
+                    <ChevronLeft className="w-4 h-4" />
+                  </button>
+                  <button
+                    type="button"
+                    onClick={goToNextLesson}
+                    disabled={currentLessonIndex >= allLessonsInLevel.length - 1}
+                    className="p-1.5 rounded-lg border border-neutral-200 text-neutral-700 disabled:opacity-30 disabled:cursor-not-allowed hover:bg-neutral-100 transition-colors"
+                    title="Next Lesson"
+                  >
+                    <ArrowRight className="w-4 h-4" />
+                  </button>
+                </div>
+              </header>
 
-                        <button
-                          type="button"
-                          onClick={() => handlePlayDialogue(currentLessonContent.dialogue!.lines)}
-                          className={`inline-flex items-center gap-2 px-3 py-1.5 rounded-xl text-xs font-bold transition-all cursor-pointer ${
-                            isPlayingDialogue
-                              ? "bg-amber-600 text-white shadow-xs"
-                              : "bg-neutral-100 hover:bg-amber-100 text-neutral-800 hover:text-amber-950"
-                          }`}
-                        >
-                          {isPlayingDialogue ? (
-                            <>
-                              <Square className="w-3.5 h-3.5 fill-current" />
-                              <span>Stop Audio</span>
-                            </>
-                          ) : (
-                            <>
-                              <Play className="w-3.5 h-3.5 fill-current text-amber-700" />
-                              <span>Listen to Full Dialogue</span>
-                            </>
-                          )}
-                        </button>
-                      </div>
-
-                      <p className="text-xs text-[#706E66] italic">
-                        📍 {currentLessonContent.dialogue.context}
-                      </p>
-
-                      <div className="space-y-3 pt-2">
-                        {currentLessonContent.dialogue.lines.map((line, lIdx) => (
-                          <div
-                            key={lIdx}
-                            className={`p-4 rounded-2xl border transition-all ${
-                              lIdx % 2 === 0
-                                ? "bg-neutral-50 border-neutral-200/80"
-                                : "bg-amber-50/40 border-amber-200/70 ml-3 sm:ml-8"
-                            }`}
-                          >
-                            <div className="flex items-center justify-between gap-2 mb-1">
-                              <span className="text-[10px] font-bold text-[#7A776D] uppercase tracking-wider">
-                                {line.speaker}
-                              </span>
-                              <AudioButton text={line.german} label="Listen" />
-                            </div>
-                            <div className="text-sm font-bold text-[#18191E]">
-                              {line.german}
-                            </div>
-                            <div className="text-xs text-[#706E66] mt-1">
-                              {line.english}
-                            </div>
-                          </div>
-                        ))}
-                      </div>
-                    </div>
-                  )}
-
-                  {/* 5. Kultur-Spotlight & Fun Fact (Did You Know?) */}
-                  {currentLessonContent.funFact && (
-                    <div className="p-6 sm:p-7 rounded-3xl bg-gradient-to-br from-[#FFFBF0] via-[#FFF6E5] to-[#FFECD1] border border-amber-300/90 shadow-xs space-y-3">
-                      <div className="flex items-center gap-2">
-                        <span className="text-lg">🇩🇪</span>
-                        <span className="text-xs font-black uppercase tracking-wider text-amber-900">
-                          Did You Know? • Culture &amp; Daily Life
+              {/* Main Content Area */}
+              <div className="flex-1 overflow-y-auto p-6 sm:p-10 flex flex-col justify-between bg-white">
+                {/* 1. If German Lesson 1 -> Render GermanLessonExplorer with speech & interactive studio */}
+                {isGermanCourse &&
+                (activeLessonInfo.lesson.id === "a1-ch1-l1" || activeLessonInfo.lesson.id.includes("l1")) ? (
+                  <GermanLessonExplorer />
+                ) : currentLessonContent ? (
+                  /* 2. For all OTHER lessons & other technical courses (Python, JS, Java, React, etc.) -> Clean minimal content with ZERO AUDIO */
+                  <div className="max-w-4xl w-full mx-auto space-y-8 py-2 pb-16">
+                    {/* Lesson Overview & Objectives */}
+                    <div className="p-6 sm:p-7 rounded-2xl bg-neutral-50 border border-neutral-200 space-y-4">
+                      <div className="border-b border-neutral-200 pb-3">
+                        <span className="text-[11px] font-bold text-neutral-500 uppercase tracking-wider block mb-1">
+                          Lesson Overview
                         </span>
+                        <h2 className="text-xl sm:text-2xl font-bold text-[#18191E]">
+                          {activeLessonInfo.lesson.title}
+                        </h2>
                       </div>
-                      <h4 className="text-base font-extrabold text-amber-950">
-                        {currentLessonContent.funFact.title}
-                      </h4>
-                      <p className="text-xs sm:text-sm text-amber-950/90 leading-relaxed">
-                        {currentLessonContent.funFact.content}
-                      </p>
-                    </div>
-                  )}
 
-                  {/* 6. Quick Practice / Selbsttest & Übung */}
-                  {currentLessonContent.practice &&
-                    currentLessonContent.practice.length > 0 && (
-                      <div className="p-6 sm:p-7 rounded-3xl bg-white border border-neutral-200/90 shadow-xs space-y-5">
-                        <div className="flex items-center gap-2 border-b border-neutral-100 pb-3.5">
-                          <CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0" />
-                          <h4 className="text-base font-extrabold text-[#18191E]">
-                            Selbsttest & Übung (Quick Self-Check)
-                          </h4>
+                      <p className="text-sm sm:text-base text-neutral-700 leading-relaxed font-normal">
+                        {currentLessonContent.overview}
+                      </p>
+
+                      <div className="p-3.5 sm:p-4 rounded-xl bg-white border border-neutral-200 flex items-start gap-3">
+                        <div className="w-5 h-5 rounded-full bg-[#18191E] text-white flex items-center justify-center shrink-0 mt-0.5 text-[10px] font-bold">
+                          ✓
                         </div>
+                        <div>
+                          <span className="font-bold text-[#18191E] text-xs uppercase tracking-wider block">
+                            Learning Objective
+                          </span>
+                          <p className="text-xs sm:text-sm text-neutral-700 mt-0.5 font-medium">
+                            {currentLessonContent.canDo.replace(/^Can\s+/i, "Learn to ")}
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+
+                    {/* Teacher / Key Concept Note (if present) */}
+                    {currentLessonContent.teacherNote && (
+                      <div className="p-5 sm:p-6 rounded-2xl bg-white border border-neutral-200 flex items-start gap-3.5">
+                        <div className="w-8 h-8 rounded-xl bg-neutral-100 text-neutral-800 flex items-center justify-center shrink-0 mt-0.5">
+                          <Sparkles className="w-4 h-4" />
+                        </div>
+                        <div className="space-y-1 flex-1">
+                          <span className="text-[11px] font-bold uppercase tracking-wider text-neutral-500 block">
+                            Key Concept &amp; Strategy
+                          </span>
+                          <p className="text-xs sm:text-sm text-neutral-800 leading-relaxed font-medium">
+                            {currentLessonContent.teacherNote}
+                          </p>
+                        </div>
+                      </div>
+                    )}
+
+                    {/* Core Lesson Sections (Clean Tables WITHOUT Audio Columns) */}
+                    {currentLessonContent.sections.map((section, sIdx) => (
+                      <div
+                        key={sIdx}
+                        className="p-6 sm:p-7 rounded-2xl bg-white border border-neutral-200 shadow-2xs space-y-4"
+                      >
+                        <div className="border-b border-neutral-100 pb-3">
+                          <div className="text-[10px] font-bold text-neutral-500 uppercase tracking-wider mb-1">
+                            Section {sIdx + 1}
+                          </div>
+                          <h3 className="text-base sm:text-lg font-bold text-[#18191E]">
+                            {section.title}
+                          </h3>
+                          {section.description && (
+                            <p className="text-xs sm:text-sm text-neutral-600 mt-1 leading-relaxed">
+                              {section.description}
+                            </p>
+                          )}
+                        </div>
+
+                        {/* Clean Table with Standard Headers - ZERO AUDIO COLUMNS */}
+                        {section.table && (
+                          <div className="overflow-x-auto rounded-xl border border-neutral-200">
+                            <table className="w-full text-left border-collapse text-xs sm:text-sm">
+                              <thead>
+                                <tr className="bg-neutral-50 border-b border-neutral-200 text-neutral-700 font-bold">
+                                  {section.table.headers.map((h, hIdx) => (
+                                    <th key={hIdx} className="py-2.5 px-3.5 font-bold">
+                                      {h}
+                                    </th>
+                                  ))}
+                                </tr>
+                              </thead>
+                              <tbody className="divide-y divide-neutral-100">
+                                {section.table.rows.map((row, rIdx) => (
+                                  <tr key={rIdx} className="hover:bg-neutral-50 transition-colors">
+                                    {row.map((cell, cIdx) => (
+                                      <td
+                                        key={cIdx}
+                                        className={`py-2.5 px-3.5 ${
+                                          cIdx === 0
+                                            ? "font-bold text-[#18191E]"
+                                            : "font-normal text-neutral-600"
+                                        }`}
+                                      >
+                                        {cell}
+                                      </td>
+                                    ))}
+                                  </tr>
+                                ))}
+                              </tbody>
+                            </table>
+                          </div>
+                        )}
+
+                        {/* Section Items (Code or Concept Items - ZERO AUDIO BUTTONS) */}
+                        {section.items && section.items.length > 0 && (
+                          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-1">
+                            {section.items.map((item, iIdx) => (
+                              <div
+                                key={iIdx}
+                                className="p-4 rounded-xl bg-neutral-50 border border-neutral-200 space-y-1.5"
+                              >
+                                <span className="font-bold text-xs sm:text-sm text-[#18191E] block">
+                                  {item.term}
+                                </span>
+                                <p className="text-xs text-neutral-600 leading-relaxed">
+                                  {item.meaning}
+                                </p>
+                                {item.example && (
+                                  <p className="text-xs italic text-neutral-500 pt-1 border-t border-neutral-200/60 font-mono">
+                                    {item.example}
+                                  </p>
+                                )}
+                              </div>
+                            ))}
+                          </div>
+                        )}
+
+                        {/* Section Notes */}
+                        {section.notes && section.notes.length > 0 && (
+                          <ul className="space-y-1 text-xs text-neutral-600 list-disc list-inside pt-1">
+                            {section.notes.map((n, nIdx) => (
+                              <li key={nIdx}>{n}</li>
+                            ))}
+                          </ul>
+                        )}
+                      </div>
+                    ))}
+
+                    {/* Fun Fact / Cultural Spotlight */}
+                    {currentLessonContent.funFact && (
+                      <div className="p-5 sm:p-6 rounded-2xl bg-neutral-50 border border-neutral-200 space-y-2">
+                        <span className="text-[11px] font-bold uppercase tracking-wider text-neutral-500 block">
+                          Insight &amp; Context
+                        </span>
+                        <h3 className="text-sm sm:text-base font-bold text-[#18191E]">
+                          {currentLessonContent.funFact.title}
+                        </h3>
+                        <p className="text-xs sm:text-sm text-neutral-600 leading-relaxed">
+                          {currentLessonContent.funFact.content}
+                        </p>
+                      </div>
+                    )}
+
+                    {/* Quick Practice & Self-Check */}
+                    {currentLessonContent.practice && currentLessonContent.practice.length > 0 && (
+                      <div className="p-6 sm:p-7 rounded-2xl bg-white border border-neutral-200 shadow-2xs space-y-5">
+                        <div className="flex items-center gap-2 border-b border-neutral-100 pb-3">
+                          <CheckCircle2 className="w-4 h-4 text-[#18191E] shrink-0" />
+                          <h3 className="text-sm font-bold uppercase tracking-wider text-[#18191E]">
+                            Knowledge Check &amp; Practice
+                          </h3>
+                        </div>
+
                         <div className="space-y-4">
                           {currentLessonContent.practice.map((item, qIdx) => {
                             const isRevealed = Boolean(revealedAnswers[qIdx]);
+                            const selectedOpt = selectedAnswers[qIdx];
+
                             return (
                               <div
                                 key={qIdx}
-                                className="p-4 sm:p-5 rounded-2xl bg-neutral-50 border border-neutral-200/80 space-y-3"
+                                className="p-4 sm:p-5 rounded-xl bg-neutral-50 border border-neutral-200 space-y-3"
                               >
                                 <div className="flex items-start gap-2.5">
-                                  <span className="w-5 h-5 rounded-full bg-[#18191E] text-white text-[10px] font-bold flex items-center justify-center shrink-0 mt-0.5">
+                                  <span className="w-5 h-5 rounded-md bg-[#18191E] text-white text-[10px] font-bold flex items-center justify-center shrink-0 mt-0.5">
                                     {qIdx + 1}
                                   </span>
                                   <p className="text-xs sm:text-sm font-bold text-[#18191E] leading-relaxed">
@@ -1143,25 +1097,32 @@ export default function CourseDetailPage() {
                                 {item.options && (
                                   <div className="grid grid-cols-1 sm:grid-cols-3 gap-2 pl-7">
                                     {item.options.map((opt, oIdx) => (
-                                      <div
+                                      <button
                                         key={oIdx}
-                                        className="px-3 py-2 rounded-xl bg-white border border-neutral-200 text-xs font-medium text-neutral-700"
+                                        type="button"
+                                        onClick={() => setSelectedAnswers((prev) => ({ ...prev, [qIdx]: oIdx }))}
+                                        className={`px-3 py-2 rounded-lg border text-xs font-medium text-left transition-all cursor-pointer ${
+                                          selectedOpt === oIdx
+                                            ? "bg-[#18191E] text-white border-[#18191E]"
+                                            : "bg-white hover:bg-neutral-100 text-neutral-800 border-neutral-200"
+                                        }`}
                                       >
                                         {opt}
-                                      </div>
+                                      </button>
                                     ))}
                                   </div>
                                 )}
 
                                 <div className="pl-7 pt-1">
                                   <button
+                                    type="button"
                                     onClick={() =>
                                       setRevealedAnswers((prev) => ({
                                         ...prev,
                                         [qIdx]: !prev[qIdx],
                                       }))
                                     }
-                                    className="inline-flex items-center gap-1.5 text-xs font-bold text-amber-700 hover:text-amber-800 transition-colors cursor-pointer"
+                                    className="inline-flex items-center gap-1.5 text-xs font-bold text-neutral-800 hover:text-black cursor-pointer"
                                   >
                                     {isRevealed ? (
                                       <>
@@ -1171,19 +1132,20 @@ export default function CourseDetailPage() {
                                     ) : (
                                       <>
                                         <Eye className="w-3.5 h-3.5" />
-                                        <span>Show Solution &amp; Explanation</span>
+                                        <span>Verify Answer &amp; Explanation</span>
                                       </>
                                     )}
                                   </button>
 
                                   {isRevealed && (
-                                    <div className="mt-3 p-3.5 rounded-xl bg-emerald-50 border border-emerald-200 text-xs space-y-1">
-                                      <div className="font-bold text-emerald-900">
-                                        ✓ Correct Answer: {item.answer}
+                                    <div className="mt-3 p-3 rounded-xl bg-white border border-neutral-200 text-xs space-y-1">
+                                      <div className="font-bold text-emerald-800 flex items-center gap-1.5">
+                                        <Check className="w-3.5 h-3.5 text-emerald-600" />
+                                        <span>Correct Answer: {item.answer}</span>
                                       </div>
-                                      <div className="text-emerald-800 leading-relaxed">
+                                      <p className="text-neutral-600 leading-relaxed pl-5">
                                         {item.explanation}
-                                      </div>
+                                      </p>
                                     </div>
                                   )}
                                 </div>
@@ -1193,80 +1155,50 @@ export default function CourseDetailPage() {
                         </div>
                       </div>
                     )}
-                </div>
-              ) : (
-                <div className="max-w-3xl w-full mx-auto my-auto py-12 flex flex-col items-center justify-center text-center">
-                  <div className="w-16 h-16 sm:w-20 sm:h-20 rounded-2xl bg-neutral-100 border border-neutral-200 flex items-center justify-center text-neutral-600 shadow-xs mb-6">
-                    <FileQuestion className="w-8 h-8 sm:w-10 sm:h-10 stroke-[1.8]" />
                   </div>
-
-                  <h3 className="text-2xl sm:text-3xl font-extrabold text-[#18191E] tracking-tight">
-                    No contents available
-                  </h3>
-
-                  <p className="text-sm text-[#706E66] mt-3 max-w-lg leading-relaxed">
-                    The lesson materials, vocabulary lists, and practice exercises for this module are currently being prepared. Check back soon or select another lesson from the outline on the left.
-                  </p>
-
-                  {activeLessonInfo.lesson.description && (
-                    <div className="mt-6 p-4 rounded-2xl bg-white border border-neutral-200/90 max-w-lg text-left shadow-xs">
-                      <span className="text-[11px] font-bold uppercase tracking-wider text-neutral-400 block mb-1">
-                        Lesson Focus
-                      </span>
-                      <p className="text-xs text-[#18191E] leading-relaxed">
-                        {activeLessonInfo.lesson.description}
-                      </p>
+                ) : (
+                  /* Empty state if content is being prepared */
+                  <div className="max-w-md w-full mx-auto my-auto py-12 flex flex-col items-center justify-center text-center">
+                    <div className="w-16 h-16 rounded-2xl bg-neutral-100 border border-neutral-200 flex items-center justify-center text-neutral-500 mb-4">
+                      <FileQuestion className="w-8 h-8" />
                     </div>
-                  )}
+                    <h2 className="text-xl font-bold text-[#18191E]">
+                      Lesson Content in Preparation
+                    </h2>
+                    <p className="text-xs text-neutral-500 mt-2 leading-relaxed">
+                      {activeLessonInfo.lesson.description ||
+                        "This lesson is part of the curriculum and the study materials are being structured."}
+                    </p>
+                  </div>
+                )}
+
+                {/* Bottom Lesson Navigation */}
+                <div className="max-w-4xl w-full mx-auto pt-6 border-t border-neutral-200 flex items-center justify-between gap-4">
+                  <button
+                    onClick={goToPrevLesson}
+                    disabled={currentLessonIndex <= 0}
+                    className="inline-flex items-center gap-2 px-4 py-2 rounded-xl text-xs font-bold transition-all border border-neutral-200 bg-white text-neutral-800 hover:bg-neutral-50 disabled:opacity-30 disabled:cursor-not-allowed cursor-pointer"
+                  >
+                    <ArrowLeft className="w-3.5 h-3.5" />
+                    <span>Previous Lesson</span>
+                  </button>
+
+                  <span className="text-xs text-neutral-500 font-medium hidden sm:inline-block">
+                    Lesson {currentLessonIndex + 1} of {allLessonsInLevel.length}
+                  </span>
+
+                  <button
+                    onClick={goToNextLesson}
+                    disabled={currentLessonIndex >= allLessonsInLevel.length - 1}
+                    className="inline-flex items-center gap-2 px-4 py-2 rounded-xl text-xs font-bold transition-all bg-[#18191E] text-white hover:bg-neutral-800 disabled:opacity-30 disabled:cursor-not-allowed cursor-pointer"
+                  >
+                    <span>Next Lesson</span>
+                    <ArrowRight className="w-3.5 h-3.5" />
+                  </button>
                 </div>
-              )}
-
-              {/* Bottom Lesson Navigation */}
-              <div className="max-w-3xl w-full mx-auto pt-6 border-t border-neutral-200/80 flex items-center justify-between gap-4">
-                <button
-                  onClick={goToPrevLesson}
-                  disabled={currentLessonIndex <= 0}
-                  className={`inline-flex items-center gap-2 px-4 py-2.5 rounded-xl text-xs font-bold transition-all ${
-                    currentLessonIndex <= 0
-                      ? "bg-neutral-100 text-neutral-400 cursor-not-allowed"
-                      : "bg-white border border-neutral-300 text-[#18191E] hover:bg-neutral-50 hover:border-neutral-400 active:scale-95 shadow-xs cursor-pointer"
-                  }`}
-                >
-                  <ArrowLeft className="w-3.5 h-3.5" />
-                  <span>Previous Lesson</span>
-                </button>
-
-                <span className="text-xs text-[#706E66] font-medium hidden sm:inline-block">
-                  {isLeveledCourse
-                    ? `Lesson ${currentLessonIndex + 1} of ${allLessonsInLevel.length} in Level ${activeLevel}`
-                    : `Lesson ${currentLessonIndex + 1} of ${allLessonsInLevel.length}`}
-                </span>
-
-                <button
-                  onClick={goToNextLesson}
-                  disabled={currentLessonIndex >= allLessonsInLevel.length - 1}
-                  className={`inline-flex items-center gap-2 px-4 py-2.5 rounded-xl text-xs font-bold transition-all ${
-                    currentLessonIndex >= allLessonsInLevel.length - 1
-                      ? "bg-neutral-100 text-neutral-400 cursor-not-allowed"
-                      : "bg-[#18191E] text-white hover:bg-neutral-800 active:scale-95 shadow-xs cursor-pointer"
-                  }`}
-                >
-                  <span>Next Lesson</span>
-                  <ArrowRight className="w-3.5 h-3.5" />
-                </button>
               </div>
-            </div>
-          </>
-        ) : (
-          <div className="flex-1 flex items-center justify-center p-8 text-center">
-            <div className="max-w-sm">
-              <BookOpen className="w-12 h-12 text-neutral-300 mx-auto mb-3" />
-              <h3 className="text-base font-bold text-[#18191E]">Select a lesson</h3>
-              <p className="text-xs text-neutral-500 mt-1">
-                Choose a chapter and lesson from the left side outline to start learning.
-              </p>
-            </div>
-          </div>
+            </>
+          ) : null
         )}
       </main>
     </div>
