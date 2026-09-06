@@ -1,18 +1,15 @@
 import { Ionicons } from '@expo/vector-icons';
 import * as Speech from 'expo-speech';
 import { useLocalSearchParams, useRouter } from 'expo-router';
-import React, { useEffect, useState, useMemo, useRef } from 'react';
+import React, { useEffect, useState, useMemo, useRef, useCallback } from 'react';
 import {
   ActivityIndicator,
-  LayoutAnimation,
-  Platform,
   Pressable,
   ScrollView,
   Share,
   StyleSheet,
   Text,
   TextInput,
-  UIManager,
   useColorScheme,
   View,
 } from 'react-native';
@@ -26,10 +23,6 @@ import {
   fetchLessonById,
   Lesson,
 } from '@/services/api';
-
-if (Platform.OS === 'android' && UIManager.setLayoutAnimationEnabledExperimental) {
-  UIManager.setLayoutAnimationEnabledExperimental(true);
-}
 
 interface AlphabetLetter {
   char: string;
@@ -84,7 +77,7 @@ const GERMAN_CONSONANT_SHIFTS = [
   {
     equation: 'V = [F]',
     germanName: 'fau',
-    rule: "In native German words, 'V' is pronounced like English 'F' as in father. (Only in foreign loanwords like 'Vase' does it sound like 'V').",
+    rule: "In native German words, 'V' sounds like English 'F' as in father. (In loanwords like 'Vase', it sounds like 'V').",
     examples: ['der Vater', 'vier', 'viel', 'voll', 'von'],
     translation: 'father, four, much/many, full, of/from',
   },
@@ -128,13 +121,14 @@ export default function LessonDetailsScreen() {
 
   // Interactive German Lesson 1 states
   const [alphabetFilter, setAlphabetFilter] = useState<'all' | 'shifts' | 'vowels' | 'consonants'>('all');
-  const [selectedLetter, setSelectedLetter] = useState<string | null>('W');
-  const [playingLetterAudio, setPlayingLetterAudio] = useState<string | null>(null);
-  const [playingShift, setPlayingShift] = useState<string | null>(null);
-  const [isSpeakingSpelling, setIsSpeakingSpelling] = useState(false);
-  const [playingDialogueIdx, setPlayingDialogueIdx] = useState<number | null>(null);
+  const [selectedLetter, setSelectedLetter] = useState<string>('W');
+  const [playingAudioId, setPlayingAudioId] = useState<string | null>(null);
   const [customSpellingInput, setCustomSpellingInput] = useState<string>('GREGOR');
   const [showDialogueTranslations, setShowDialogueTranslations] = useState(true);
+
+  // Practice state
+  const [selectedAnswers, setSelectedAnswers] = useState<Record<number, number>>({});
+  const [revealedAnswers, setRevealedAnswers] = useState<Record<number, boolean>>({});
 
   // Stop speech when switching lessons or unmounting
   useEffect(() => {
@@ -145,15 +139,10 @@ export default function LessonDetailsScreen() {
     };
   }, [currentLessonId]);
 
-  // Practice state
-  const [selectedAnswers, setSelectedAnswers] = useState<Record<number, number>>({});
-  const [revealedAnswers, setRevealedAnswers] = useState<Record<number, boolean>>({});
-
   // Monochromatic black and white styling
   const bgColor = isDark ? '#09090B' : '#FFFFFF';
   const cardBg = isDark ? '#121214' : '#FFFFFF';
   const innerCardBg = isDark ? '#18181B' : '#F4F4F5';
-  const tableHeaderBg = isDark ? '#27272A' : '#E4E4E7';
   const textColor = isDark ? '#FFFFFF' : '#09090B';
   const mutedText = isDark ? '#A1A1AA' : '#71717A';
   const borderColor = isDark ? '#27272A' : '#E4E4E7';
@@ -219,6 +208,9 @@ export default function LessonDetailsScreen() {
       : null;
 
   const handleSelectLesson = (chId: string, lId: string) => {
+    try {
+      Speech.stop();
+    } catch {}
     setIsDrawerOpen(false);
     if (lId === currentLessonId) return;
 
@@ -228,7 +220,7 @@ export default function LessonDetailsScreen() {
     setIsCompleted(false);
 
     if (mainScrollRef.current) {
-      mainScrollRef.current.scrollTo({ y: 0, animated: true });
+      mainScrollRef.current.scrollTo({ y: 0, animated: false });
     }
   };
 
@@ -242,67 +234,29 @@ export default function LessonDetailsScreen() {
     }
   };
 
-  const speakGerman = (text: string, onFinish?: () => void) => {
+  // Dedicated Granular German Audio Synthesizer (Instant, Targeted, Zero Lag)
+  const speakAudio = useCallback((text: string, id?: string) => {
     try {
       Speech.stop();
+      if (id) {
+        setPlayingAudioId(id);
+      }
       Speech.speak(text, {
         language: 'de-DE',
         pitch: 1.0,
         rate: 0.85,
-        onDone: () => onFinish?.(),
-        onError: () => onFinish?.(),
-        onStopped: () => onFinish?.(),
+        onDone: () => setPlayingAudioId(null),
+        onError: () => setPlayingAudioId(null),
+        onStopped: () => setPlayingAudioId(null),
       });
     } catch (err) {
       console.warn('Speech error:', err);
-      onFinish?.();
+      setPlayingAudioId(null);
     }
-  };
+  }, []);
 
-  const handlePlayLetterAudio = (char: string) => {
-    LayoutAnimation.configureNext(LayoutAnimation.Presets.easeInEaseOut);
-    setPlayingLetterAudio(char);
-    setSelectedLetter(char);
-
-    const letterItem = GERMAN_ALPHABET.find((l) => l.char === char);
-    const textToSpeak = letterItem
-      ? `${letterItem.char}. ${letterItem.name}. ${letterItem.example}.`
-      : char;
-
-    speakGerman(textToSpeak, () => {
-      setPlayingLetterAudio(null);
-    });
-  };
-
-  const handleSpeakShift = (shift: typeof GERMAN_CONSONANT_SHIFTS[0]) => {
-    LayoutAnimation.configureNext(LayoutAnimation.Presets.easeInEaseOut);
-    setPlayingShift(shift.equation);
-    const textToSpeak = `${shift.equation.replace('=', 'ist')}. ${shift.examples.join(', ')}`;
-    speakGerman(textToSpeak, () => {
-      setPlayingShift(null);
-    });
-  };
-
-  const handleSpeakSpelling = () => {
-    if (!spelledTokens.length) return;
-    LayoutAnimation.configureNext(LayoutAnimation.Presets.easeInEaseOut);
-    setIsSpeakingSpelling(true);
-    const textToSpeak = spelledTokens.map((t) => `${t.char} wie ${t.dinName}`).join('. ');
-    speakGerman(textToSpeak, () => {
-      setIsSpeakingSpelling(false);
-    });
-  };
-
-  const handleSpeakDialogue = (germanText: string, index: number) => {
-    LayoutAnimation.configureNext(LayoutAnimation.Presets.easeInEaseOut);
-    setPlayingDialogueIdx(index);
-    speakGerman(germanText, () => {
-      setPlayingDialogueIdx(null);
-    });
-  };
-
+  // Snappy, Instant Knowledge Check Handlers (0ms lag, no layout freezing)
   const toggleAnswerReveal = (qIndex: number) => {
-    LayoutAnimation.configureNext(LayoutAnimation.Presets.easeInEaseOut);
     setRevealedAnswers((prev) => ({
       ...prev,
       [qIndex]: !prev[qIndex],
@@ -345,7 +299,7 @@ export default function LessonDetailsScreen() {
       if (char === 'Ä') return { char, dinName: 'Ärger', phrase: 'Ä wie Ärger' };
       if (char === 'Ö') return { char, dinName: 'Ökonom', phrase: 'Ö wie Ökonom' };
       if (char === 'Ü') return { char, dinName: 'Übermut', phrase: 'Ü wie Übermut' };
-      if (char === 'ß') return { char, dinName: 'Eszett', phrase: 'scharfes S (Eszett)' };
+      if (char === 'ß') return { char, dinName: 'Eszett', phrase: 'scharfes S' };
       return { char, dinName: char, phrase: char };
     });
   }, [customSpellingInput]);
@@ -436,6 +390,8 @@ export default function LessonDetailsScreen() {
     </SafeAreaView>
   );
 
+  const activeLetterItem = GERMAN_ALPHABET.find((l) => l.char === selectedLetter) || GERMAN_ALPHABET[0];
+
   return (
     <Drawer
       open={isDrawerOpen}
@@ -462,7 +418,7 @@ export default function LessonDetailsScreen() {
               <Ionicons name="arrow-back" size={24} color={textColor} />
             </Pressable>
 
-            {/* Lesson Title right next to left arrow (no chapter name clutter) */}
+            {/* Lesson Title right next to left arrow */}
             <Text style={[styles.headerLessonTitle, { color: textColor }]} numberOfLines={1}>
               {currentLessonTitle}
             </Text>
@@ -526,7 +482,7 @@ export default function LessonDetailsScreen() {
             contentContainerStyle={styles.scrollContent}
             showsVerticalScrollIndicator={false}
           >
-            {/* 1. LESSON TITLE & EDITORIAL HEADER (NO PER-PARAGRAPH CARDS) */}
+            {/* 1. LESSON TITLE & EDITORIAL HEADER (NO PER-PARAGRAPH BOXED CARDS) */}
             <View style={styles.editorialHeader}>
               <View style={styles.metaRow}>
                 <View style={[styles.metaBadge, { backgroundColor: innerCardBg }]}>
@@ -551,7 +507,7 @@ export default function LessonDetailsScreen() {
               ) : null}
             </View>
 
-            {/* 2. "WHAT YOU WILL ACHIEVE" AS A CLEAN LIST (PER USER REQUEST) */}
+            {/* 2. "WHAT YOU WILL ACHIEVE" AS A CLEAN LIST */}
             <View style={[styles.achieveSection, { borderTopColor: borderColor }]}>
               <View style={styles.sectionHeaderRow}>
                 <View style={[styles.sectionIconCircle, { backgroundColor: innerCardBg }]}>
@@ -601,7 +557,7 @@ export default function LessonDetailsScreen() {
               </View>
             </View>
 
-            {/* 3. CORE CONCEPT & HISTORICAL FOUNDATION ("HOW IT HAS COME, THAT'S THE MAIN CONCEPT") */}
+            {/* 3. CORE CONCEPT & HISTORICAL FOUNDATION */}
             <View style={[styles.conceptSection, { borderTopColor: borderColor }]}>
               <View style={styles.sectionHeaderRow}>
                 <View style={[styles.sectionIconCircle, { backgroundColor: innerCardBg }]}>
@@ -613,11 +569,11 @@ export default function LessonDetailsScreen() {
               </View>
 
               <Text style={[styles.paragraphText, { color: textColor }]}>
-                Welcome to German! German pronunciation is remarkably logical and phonetic. Unlike English, where vowels and consonants shift unpredictably (consider how &quot;though&quot;, &quot;through&quot;, and &quot;tough&quot; share similar letters but entirely different sounds), German letters correspond reliably to consistent, predetermined phonetic rules.
+                Welcome to German! German pronunciation is remarkably logical and phonetic. Unlike English, where vowels and consonants shift unpredictably (such as &quot;though&quot;, &quot;through&quot;, and &quot;tough&quot;), German letters correspond reliably to predetermined phonetic rules.
               </Text>
 
               <Text style={[styles.paragraphText, { color: textColor }]}>
-                <Text style={{ fontWeight: '700' }}>How it came to be:</Text> Modern Standard German (<Text style={{ fontStyle: 'italic' }}>Hochdeutsch</Text>) was systematically codified through 19th-century orthographic conferences and Konrad Duden&apos;s linguistic works. The governing rule was straightforward: if a letter is written, it has a distinct sound, and that sound rarely changes regardless of word context.
+                <Text style={{ fontWeight: '700' }}>How it came to be:</Text> Modern Standard German (<Text style={{ fontStyle: 'italic' }}>Hochdeutsch</Text>) was systematically codified through 19th-century orthographic conferences and Konrad Duden&apos;s linguistic works to unite diverse regional dialects under uniform spelling and pronunciation rules.
               </Text>
 
               {/* Editorial Blockquote for Teacher Note */}
@@ -629,7 +585,7 @@ export default function LessonDetailsScreen() {
               </View>
             </View>
 
-            {/* 4. INTERACTIVE ALPHABET SOUND EXPLORER (NO TABLES!) */}
+            {/* 4. INTERACTIVE ALPHABET SOUND EXPLORER (GRANULAR SOUND CONTROLS) */}
             {isGermanLesson1 ? (
               <View style={[styles.interactiveSection, { borderTopColor: borderColor }]}>
                 <View style={styles.sectionHeaderRow}>
@@ -641,7 +597,7 @@ export default function LessonDetailsScreen() {
                       1. Das Deutsche Alphabet (A bis Z)
                     </Text>
                     <Text style={[styles.sectionSubDesc, { color: mutedText }]}>
-                      Tap any letter to hear the sound, explore phonetic notes, and see real words.
+                      Tap any letter, sound name, or example word to hear only that specific audio.
                     </Text>
                   </View>
                 </View>
@@ -689,11 +645,14 @@ export default function LessonDetailsScreen() {
                 >
                   {filteredAlphabet.map((l) => {
                     const isSelected = selectedLetter === l.char;
-                    const isPlaying = playingLetterAudio === l.char;
+                    const isPlaying = playingAudioId === `ribbon-${l.char}`;
                     return (
                       <Pressable
                         key={l.char}
-                        onPress={() => handlePlayLetterAudio(l.char)}
+                        onPress={() => {
+                          setSelectedLetter(l.char);
+                          speakAudio(l.char, `ribbon-${l.char}`);
+                        }}
                         style={({ pressed }) => [
                           styles.ribbonLetterBtn,
                           {
@@ -716,143 +675,285 @@ export default function LessonDetailsScreen() {
                   })}
                 </ScrollView>
 
-                {/* Active Letter Inspector Tile (Full Detail on Selected Letter) */}
-                {selectedLetter ? (() => {
-                  const activeItem = GERMAN_ALPHABET.find((l) => l.char === selectedLetter);
-                  if (!activeItem) return null;
-                  const isPlaying = playingLetterAudio === activeItem.char;
-
-                  return (
-                    <View style={[styles.activeInspectorCard, { backgroundColor: innerCardBg, borderColor }]}>
-                      <View style={styles.inspectorTopRow}>
-                        <View style={[styles.inspectorLetterBadge, { backgroundColor: cardBg, borderColor }]}>
-                          <Text style={[styles.inspectorLetterBig, { color: textColor }]}>
-                            {activeItem.letter}
-                          </Text>
-                          <Text style={[styles.inspectorSoundPill, { color: mutedText }]}>
-                            [{activeItem.name}]
-                          </Text>
-                        </View>
-
-                        <View style={styles.inspectorInfoCol}>
-                          <View style={styles.audioSimulationRow}>
-                            <Pressable
-                              onPress={() => handlePlayLetterAudio(activeItem.char)}
-                              style={({ pressed }) => [
-                                styles.audioPlayBtn,
-                                { backgroundColor: activeColor },
-                                pressed && styles.pressed,
-                              ]}
-                            >
-                              <Ionicons
-                                name={isPlaying ? 'volume-high' : 'volume-medium-outline'}
-                                size={18}
-                                color={activeTextColor}
-                              />
-                              <Text style={[styles.audioPlayBtnText, { color: activeTextColor }]}>
-                                {isPlaying ? 'Playing...' : 'Pronounce'}
-                              </Text>
-                            </Pressable>
-
-                            {activeItem.isShift ? (
-                              <View style={[styles.shiftTagBadge, { backgroundColor: cardBg, borderColor }]}>
-                                <Ionicons name="warning-outline" size={13} color={textColor} />
-                                <Text style={[styles.shiftTagText, { color: textColor }]}>
-                                  Key Shift
-                                </Text>
-                              </View>
-                            ) : null}
-                          </View>
-
-                          <Text style={[styles.inspectorSoundRule, { color: textColor }]}>
-                            {activeItem.sound}
-                          </Text>
-                        </View>
-                      </View>
-
-                      {/* Example & Mouth tip breakdown */}
-                      <View style={[styles.inspectorDetailsRow, { borderTopColor: borderColor }]}>
-                        <View style={styles.inspectorDetailItem}>
-                          <Text style={[styles.detailLabel, { color: mutedText }]}>VOCABULARY EXAMPLE</Text>
-                          <Text style={[styles.detailValueBold, { color: textColor }]}>
-                            {activeItem.example}
-                          </Text>
-                          <Text style={[styles.detailValueMuted, { color: mutedText }]}>
-                            ({activeItem.meaning})
-                          </Text>
-                        </View>
-
-                        <View style={styles.inspectorDetailItem}>
-                          <Text style={[styles.detailLabel, { color: mutedText }]}>DIN 5009 CODE</Text>
-                          <Text style={[styles.detailValueBold, { color: textColor }]}>
-                            {activeItem.char} wie {activeItem.dinName}
-                          </Text>
-                          <Text style={[styles.detailValueMuted, { color: mutedText }]}>
-                            {activeItem.mouthTip}
-                          </Text>
-                        </View>
-                      </View>
-                    </View>
-                  );
-                })() : null}
-
-                {/* Interactive Letter Grid (2-column interactive sound tiles) */}
-                <View style={styles.letterTilesGrid}>
-                  {filteredAlphabet.map((item) => {
-                    const isSelected = selectedLetter === item.char;
-                    const isPlaying = playingLetterAudio === item.char;
-
-                    return (
+                {/* Targeted Active Letter Inspector Card */}
+                {activeLetterItem ? (
+                  <View style={[styles.activeInspectorCard, { backgroundColor: innerCardBg, borderColor }]}>
+                    <View style={styles.inspectorTopRow}>
                       <Pressable
-                        key={item.char}
-                        onPress={() => handlePlayLetterAudio(item.char)}
+                        onPress={() => speakAudio(activeLetterItem.char, `inspect-letter-${activeLetterItem.char}`)}
                         style={({ pressed }) => [
-                          styles.letterTile,
+                          styles.inspectorLetterBadge,
                           {
-                            backgroundColor: isSelected ? innerCardBg : cardBg,
-                            borderColor: isPlaying ? '#10B981' : isSelected ? activeColor : borderColor,
+                            backgroundColor: playingAudioId === `inspect-letter-${activeLetterItem.char}` ? activeColor : cardBg,
+                            borderColor,
                           },
                           pressed && styles.pressed,
                         ]}
                       >
+                        <Text
+                          style={[
+                            styles.inspectorLetterBig,
+                            { color: playingAudioId === `inspect-letter-${activeLetterItem.char}` ? activeTextColor : textColor },
+                          ]}
+                        >
+                          {activeLetterItem.letter}
+                        </Text>
+                        <Text
+                          style={[
+                            styles.inspectorSoundPill,
+                            { color: playingAudioId === `inspect-letter-${activeLetterItem.char}` ? activeTextColor : mutedText },
+                          ]}
+                        >
+                          [{activeLetterItem.name}]
+                        </Text>
+                      </Pressable>
+
+                      <View style={styles.inspectorInfoCol}>
+                        <Text style={[styles.inspectorSoundRule, { color: textColor }]}>
+                          {activeLetterItem.sound}
+                        </Text>
+                        <Text style={[styles.inspectorMouthTip, { color: mutedText }]}>
+                          💡 {activeLetterItem.mouthTip}
+                        </Text>
+                      </View>
+                    </View>
+
+                    {/* Targeted Sound Buttons: Hear EXACTLY what you want! */}
+                    <View style={[styles.inspectorActionsWrap, { borderTopColor: borderColor }]}>
+                      <Text style={[styles.inspectorActionsHeader, { color: mutedText }]}>
+                        TAP TO HEAR INDIVIDUAL SOUND:
+                      </Text>
+
+                      <View style={styles.audioTargetPillsRow}>
+                        {/* 1. Only the Letter */}
+                        <Pressable
+                          onPress={() => speakAudio(activeLetterItem.char, `target-char-${activeLetterItem.char}`)}
+                          style={({ pressed }) => [
+                            styles.audioTargetPill,
+                            {
+                              backgroundColor: playingAudioId === `target-char-${activeLetterItem.char}` ? activeColor : cardBg,
+                              borderColor: playingAudioId === `target-char-${activeLetterItem.char}` ? activeColor : borderColor,
+                            },
+                            pressed && styles.pressed,
+                          ]}
+                        >
+                          <Ionicons
+                            name="volume-medium-outline"
+                            size={14}
+                            color={playingAudioId === `target-char-${activeLetterItem.char}` ? activeTextColor : textColor}
+                          />
+                          <Text
+                            style={[
+                              styles.audioTargetText,
+                              { color: playingAudioId === `target-char-${activeLetterItem.char}` ? activeTextColor : textColor },
+                            ]}
+                          >
+                            Letter &quot;{activeLetterItem.char}&quot;
+                          </Text>
+                        </Pressable>
+
+                        {/* 2. Only the German Sound Name */}
+                        <Pressable
+                          onPress={() => speakAudio(activeLetterItem.name, `target-name-${activeLetterItem.char}`)}
+                          style={({ pressed }) => [
+                            styles.audioTargetPill,
+                            {
+                              backgroundColor: playingAudioId === `target-name-${activeLetterItem.char}` ? activeColor : cardBg,
+                              borderColor: playingAudioId === `target-name-${activeLetterItem.char}` ? activeColor : borderColor,
+                            },
+                            pressed && styles.pressed,
+                          ]}
+                        >
+                          <Ionicons
+                            name="volume-medium-outline"
+                            size={14}
+                            color={playingAudioId === `target-name-${activeLetterItem.char}` ? activeTextColor : textColor}
+                          />
+                          <Text
+                            style={[
+                              styles.audioTargetText,
+                              { color: playingAudioId === `target-name-${activeLetterItem.char}` ? activeTextColor : textColor },
+                            ]}
+                          >
+                            Sound [{activeLetterItem.name}]
+                          </Text>
+                        </Pressable>
+
+                        {/* 3. Only the Vocabulary Example Word */}
+                        <Pressable
+                          onPress={() => speakAudio(activeLetterItem.example, `target-example-${activeLetterItem.char}`)}
+                          style={({ pressed }) => [
+                            styles.audioTargetPill,
+                            {
+                              backgroundColor: playingAudioId === `target-example-${activeLetterItem.char}` ? activeColor : cardBg,
+                              borderColor: playingAudioId === `target-example-${activeLetterItem.char}` ? activeColor : borderColor,
+                            },
+                            pressed && styles.pressed,
+                          ]}
+                        >
+                          <Ionicons
+                            name="volume-medium-outline"
+                            size={14}
+                            color={playingAudioId === `target-example-${activeLetterItem.char}` ? activeTextColor : textColor}
+                          />
+                          <Text
+                            style={[
+                              styles.audioTargetText,
+                              { color: playingAudioId === `target-example-${activeLetterItem.char}` ? activeTextColor : textColor },
+                            ]}
+                          >
+                            Word &quot;{activeLetterItem.example}&quot;
+                          </Text>
+                        </Pressable>
+
+                        {/* 4. Only the DIN Spelling Code Name */}
+                        <Pressable
+                          onPress={() => speakAudio(activeLetterItem.dinName, `target-din-${activeLetterItem.char}`)}
+                          style={({ pressed }) => [
+                            styles.audioTargetPill,
+                            {
+                              backgroundColor: playingAudioId === `target-din-${activeLetterItem.char}` ? activeColor : cardBg,
+                              borderColor: playingAudioId === `target-din-${activeLetterItem.char}` ? activeColor : borderColor,
+                            },
+                            pressed && styles.pressed,
+                          ]}
+                        >
+                          <Ionicons
+                            name="volume-medium-outline"
+                            size={14}
+                            color={playingAudioId === `target-din-${activeLetterItem.char}` ? activeTextColor : textColor}
+                          />
+                          <Text
+                            style={[
+                              styles.audioTargetText,
+                              { color: playingAudioId === `target-din-${activeLetterItem.char}` ? activeTextColor : textColor },
+                            ]}
+                          >
+                            DIN &quot;{activeLetterItem.dinName}&quot;
+                          </Text>
+                        </Pressable>
+                      </View>
+                    </View>
+                  </View>
+                ) : null}
+
+                {/* Interactive Letter Grid (2-column touchable sound tiles) */}
+                <View style={styles.letterTilesGrid}>
+                  {filteredAlphabet.map((item) => {
+                    const isSelected = selectedLetter === item.char;
+                    const isPlayingLetter = playingAudioId === `grid-char-${item.char}`;
+                    const isPlayingExample = playingAudioId === `grid-word-${item.char}`;
+
+                    return (
+                      <View
+                        key={item.char}
+                        style={[
+                          styles.letterTile,
+                          {
+                            backgroundColor: isSelected ? innerCardBg : cardBg,
+                            borderColor: isSelected ? activeColor : borderColor,
+                          },
+                        ]}
+                      >
+                        {/* Tile Header: Tap Letter Badge to hear ONLY letter */}
                         <View style={styles.tileHeaderRow}>
-                          <View style={[styles.tileBadge, { backgroundColor: isSelected ? activeColor : innerCardBg }]}>
-                            <Text style={[styles.tileLetter, { color: isSelected ? activeTextColor : textColor }]}>
+                          <Pressable
+                            onPress={() => {
+                              setSelectedLetter(item.char);
+                              speakAudio(item.char, `grid-char-${item.char}`);
+                            }}
+                            style={({ pressed }) => [
+                              styles.tileBadge,
+                              {
+                                backgroundColor: isPlayingLetter ? '#10B981' : isSelected ? activeColor : innerCardBg,
+                              },
+                              pressed && styles.pressed,
+                            ]}
+                          >
+                            <Text
+                              style={[
+                                styles.tileLetter,
+                                { color: isPlayingLetter ? '#FFFFFF' : isSelected ? activeTextColor : textColor },
+                              ]}
+                            >
                               {item.char}
                             </Text>
-                          </View>
-                          <View style={styles.tilePhoneticWrap}>
+                          </Pressable>
+
+                          {/* Sound Name pill: Tap to hear ONLY sound name */}
+                          <Pressable
+                            onPress={() => {
+                              setSelectedLetter(item.char);
+                              speakAudio(item.name, `grid-name-${item.char}`);
+                            }}
+                            style={styles.tilePhoneticWrap}
+                          >
                             <Text style={[styles.tileName, { color: textColor }]}>
                               [{item.name}]
                             </Text>
                             <Text style={[styles.tileDin, { color: mutedText }]}>
                               wie {item.dinName}
                             </Text>
-                          </View>
-                          <Ionicons
-                            name={isPlaying ? 'volume-high' : 'volume-mute-outline'}
-                            size={16}
-                            color={isPlaying ? '#10B981' : mutedText}
-                          />
+                          </Pressable>
+
+                          <Pressable
+                            onPress={() => {
+                              setSelectedLetter(item.char);
+                              speakAudio(item.char, `grid-char-${item.char}`);
+                            }}
+                            hitSlop={8}
+                          >
+                            <Ionicons
+                              name={isPlayingLetter ? 'volume-high' : 'volume-medium-outline'}
+                              size={16}
+                              color={isPlayingLetter ? '#10B981' : mutedText}
+                            />
+                          </Pressable>
                         </View>
 
                         <Text style={[styles.tileSound, { color: textColor }]} numberOfLines={2}>
                           {item.sound}
                         </Text>
 
-                        <View style={[styles.tileExamplePill, { backgroundColor: innerCardBg }]}>
-                          <Text style={[styles.tileExampleText, { color: textColor }]} numberOfLines={1}>
+                        {/* Example Word Pill: Tap to hear ONLY this word! */}
+                        <Pressable
+                          onPress={() => {
+                            setSelectedLetter(item.char);
+                            speakAudio(item.example, `grid-word-${item.char}`);
+                          }}
+                          style={({ pressed }) => [
+                            styles.tileExamplePill,
+                            {
+                              backgroundColor: isPlayingExample ? activeColor : innerCardBg,
+                              borderColor: isPlayingExample ? activeColor : borderColor,
+                            },
+                            pressed && styles.pressed,
+                          ]}
+                        >
+                          <Ionicons
+                            name="volume-medium-outline"
+                            size={12}
+                            color={isPlayingExample ? activeTextColor : mutedText}
+                            style={{ marginRight: 4 }}
+                          />
+                          <Text
+                            style={[
+                              styles.tileExampleText,
+                              { color: isPlayingExample ? activeTextColor : textColor },
+                            ]}
+                            numberOfLines={1}
+                          >
                             <Text style={{ fontWeight: '700' }}>{item.example}</Text> ({item.meaning})
                           </Text>
-                        </View>
-                      </Pressable>
+                        </Pressable>
+                      </View>
                     );
                   })}
                 </View>
               </View>
             ) : null}
 
-            {/* 5. THE 4 ESSENTIAL CONSONANT SHIFTS (SPOTLIGHT COMPARISON) */}
+            {/* 5. THE 4 ESSENTIAL CONSONANT SHIFTS (INDIVIDUAL WORD SOUND PILLS) */}
             {isGermanLesson1 ? (
               <View style={[styles.interactiveSection, { borderTopColor: borderColor }]}>
                 <View style={styles.sectionHeaderRow}>
@@ -864,7 +965,7 @@ export default function LessonDetailsScreen() {
                       2. The 4 Essential Consonant Shifts
                     </Text>
                     <Text style={[styles.sectionSubDesc, { color: mutedText }]}>
-                      These four mental anchors prevent 90% of beginner pronunciation errors.
+                      Tap any individual word pill to hear only that word pronounced.
                     </Text>
                   </View>
                 </View>
@@ -876,51 +977,69 @@ export default function LessonDetailsScreen() {
                       style={[styles.shiftCard, { backgroundColor: innerCardBg, borderColor }]}
                     >
                       <View style={styles.shiftCardHeader}>
-                        <View style={[styles.shiftEquationPill, { backgroundColor: cardBg, borderColor }]}>
+                        <Pressable
+                          onPress={() => speakAudio(shift.equation.split('=')[0].trim(), `shift-letter-${idx}`)}
+                          style={({ pressed }) => [
+                            styles.shiftEquationPill,
+                            { backgroundColor: cardBg, borderColor },
+                            pressed && styles.pressed,
+                          ]}
+                        >
+                          <Ionicons name="volume-medium-outline" size={14} color={textColor} style={{ marginRight: 4 }} />
                           <Text style={[styles.shiftEquationText, { color: textColor }]}>
                             {shift.equation}
                           </Text>
-                        </View>
-
-                        <Pressable
-                          onPress={() => handleSpeakShift(shift)}
-                          style={({ pressed }) => [
-                            styles.shiftAudioBtn,
-                            {
-                              backgroundColor: playingShift === shift.equation ? activeColor : cardBg,
-                              borderColor: playingShift === shift.equation ? activeColor : borderColor,
-                            },
-                            pressed && styles.pressed,
-                          ]}
-                          hitSlop={8}
-                        >
-                          <Ionicons
-                            name={playingShift === shift.equation ? 'volume-high' : 'volume-medium-outline'}
-                            size={14}
-                            color={playingShift === shift.equation ? activeTextColor : textColor}
-                          />
-                          <Text
-                            style={[
-                              styles.shiftAudioBtnText,
-                              { color: playingShift === shift.equation ? activeTextColor : textColor },
-                            ]}
-                          >
-                            {playingShift === shift.equation ? 'Speaking...' : 'Listen Words'}
-                          </Text>
                         </Pressable>
+
+                        <Text style={[styles.shiftNamePill, { color: mutedText }]}>
+                          German: [{shift.germanName}]
+                        </Text>
                       </View>
 
                       <Text style={[styles.shiftRuleText, { color: textColor }]}>
                         {shift.rule}
                       </Text>
 
+                      {/* Individual Interactive Word Sound Pills */}
                       <View style={[styles.shiftExamplesBox, { backgroundColor: cardBg, borderColor }]}>
-                        <Text style={[styles.shiftExamplesLabel, { color: mutedText }]}>PRACTICE WORDS:</Text>
-                        <Text style={[styles.shiftExamplesWords, { color: textColor }]}>
-                          {shift.examples.join(', ')}
+                        <Text style={[styles.shiftExamplesLabel, { color: mutedText }]}>
+                          TAP ANY WORD TO HEAR IT:
                         </Text>
+                        <View style={styles.shiftWordsRow}>
+                          {shift.examples.map((word) => {
+                            const isPlayingWord = playingAudioId === `shift-word-${word}`;
+                            return (
+                              <Pressable
+                                key={word}
+                                onPress={() => speakAudio(word, `shift-word-${word}`)}
+                                style={({ pressed }) => [
+                                  styles.shiftWordChip,
+                                  {
+                                    backgroundColor: isPlayingWord ? activeColor : innerCardBg,
+                                    borderColor: isPlayingWord ? activeColor : borderColor,
+                                  },
+                                  pressed && styles.pressed,
+                                ]}
+                              >
+                                <Ionicons
+                                  name={isPlayingWord ? 'volume-high' : 'volume-medium-outline'}
+                                  size={13}
+                                  color={isPlayingWord ? activeTextColor : textColor}
+                                />
+                                <Text
+                                  style={[
+                                    styles.shiftWordChipText,
+                                    { color: isPlayingWord ? activeTextColor : textColor },
+                                  ]}
+                                >
+                                  {word}
+                                </Text>
+                              </Pressable>
+                            );
+                          })}
+                        </View>
                         <Text style={[styles.shiftExamplesTranslation, { color: mutedText }]}>
-                          ({shift.translation})
+                          Meaning: {shift.translation}
                         </Text>
                       </View>
                     </View>
@@ -929,7 +1048,7 @@ export default function LessonDetailsScreen() {
               </View>
             ) : null}
 
-            {/* 6. INTERACTIVE BUCHSTABIER-SIMULATOR (REPLACING DIN 5009 TABLE) */}
+            {/* 6. INTERACTIVE BUCHSTABIER-SIMULATOR (DIN 5009) */}
             {isGermanLesson1 ? (
               <View style={[styles.interactiveSection, { borderTopColor: borderColor }]}>
                 <View style={styles.sectionHeaderRow}>
@@ -941,18 +1060,18 @@ export default function LessonDetailsScreen() {
                       3. Buchstabieren (Spelling Names Aloud)
                     </Text>
                     <Text style={[styles.sectionSubDesc, { color: mutedText }]}>
-                      In hotel check-ins & phone calls: &quot;Wie schreibt man das?&quot; (DIN 5009 standard).
+                      Official DIN 5009 standard for phone calls & registrations.
                     </Text>
                   </View>
                 </View>
 
-                {/* Interactive Simulator Input Studio */}
+                {/* Interactive Simulator Studio */}
                 <View style={[styles.simulatorCard, { backgroundColor: innerCardBg, borderColor }]}>
                   <Text style={[styles.simulatorTitle, { color: textColor }]}>
                     Interactive &quot;Spell Your Name&quot; Studio
                   </Text>
                   <Text style={[styles.simulatorDesc, { color: mutedText }]}>
-                    Type your name or select a preset to see its authentic German DIN 5009 spelling:
+                    Type your name or select a preset. Tap any letter or code word to hear it spoken:
                   </Text>
 
                   {/* Input Box */}
@@ -1001,64 +1120,78 @@ export default function LessonDetailsScreen() {
                     ))}
                   </View>
 
-                  {/* Listen Aloud Button for full spelling sequence */}
+                  {/* Optional Full Spelling Sequence Audio Button */}
                   {spelledTokens.length > 0 ? (
                     <Pressable
-                      onPress={handleSpeakSpelling}
+                      onPress={() => {
+                        const fullText = spelledTokens.map((t) => `${t.char} wie ${t.dinName}`).join('. ');
+                        speakAudio(fullText, 'full-spelling');
+                      }}
                       style={({ pressed }) => [
                         styles.speakSpellingBtn,
                         {
-                          backgroundColor: isSpeakingSpelling ? activeColor : cardBg,
-                          borderColor: isSpeakingSpelling ? activeColor : borderColor,
+                          backgroundColor: playingAudioId === 'full-spelling' ? activeColor : cardBg,
+                          borderColor: playingAudioId === 'full-spelling' ? activeColor : borderColor,
                         },
                         pressed && styles.pressed,
                       ]}
                     >
                       <Ionicons
-                        name={isSpeakingSpelling ? 'volume-high' : 'volume-medium-outline'}
-                        size={17}
-                        color={isSpeakingSpelling ? activeTextColor : textColor}
+                        name={playingAudioId === 'full-spelling' ? 'volume-high' : 'volume-medium-outline'}
+                        size={16}
+                        color={playingAudioId === 'full-spelling' ? activeTextColor : textColor}
                       />
                       <Text
                         style={[
                           styles.speakSpellingBtnText,
-                          { color: isSpeakingSpelling ? activeTextColor : textColor },
+                          { color: playingAudioId === 'full-spelling' ? activeTextColor : textColor },
                         ]}
                       >
-                        {isSpeakingSpelling ? 'Speaking Spelling...' : 'Listen to Full Spelling Aloud (DIN 5009)'}
+                        {playingAudioId === 'full-spelling' ? 'Speaking...' : 'Listen to Full Sequence (DIN 5009)'}
                       </Text>
                     </Pressable>
                   ) : null}
 
-                  {/* Dynamic Spelled Tokens Output */}
+                  {/* Dynamic Spelled Tokens: Tap individual letters or names */}
                   <View style={styles.spelledCardsWrap}>
                     {spelledTokens.length > 0 ? (
-                      spelledTokens.map((token, idx) => (
-                        <Pressable
-                          key={`${token.char}-${idx}`}
-                          onPress={() => speakGerman(token.phrase)}
-                          style={({ pressed }) => [
-                            styles.spelledTokenBadge,
-                            { backgroundColor: cardBg, borderColor },
-                            pressed && styles.pressed,
-                          ]}
-                        >
-                          <View style={[styles.spelledCharCircle, { backgroundColor: activeColor }]}>
-                            <Text style={[styles.spelledCharText, { color: activeTextColor }]}>
-                              {token.char}
-                            </Text>
-                          </View>
-                          <View style={styles.spelledTokenInfo}>
-                            <Text style={[styles.spelledNameBold, { color: textColor }]}>
-                              wie {token.dinName}
-                            </Text>
-                            <Text style={[styles.spelledFullPhrase, { color: mutedText }]}>
-                              &quot;{token.phrase}&quot;
-                            </Text>
-                          </View>
-                          <Ionicons name="volume-medium-outline" size={14} color={mutedText} style={{ marginLeft: 2 }} />
-                        </Pressable>
-                      ))
+                      spelledTokens.map((token, idx) => {
+                        const isPlayingToken = playingAudioId === `token-${idx}`;
+                        return (
+                          <Pressable
+                            key={`${token.char}-${idx}`}
+                            onPress={() => speakAudio(token.phrase, `token-${idx}`)}
+                            style={({ pressed }) => [
+                              styles.spelledTokenBadge,
+                              {
+                                backgroundColor: isPlayingToken ? innerCardBg : cardBg,
+                                borderColor: isPlayingToken ? activeColor : borderColor,
+                              },
+                              pressed && styles.pressed,
+                            ]}
+                          >
+                            <View style={[styles.spelledCharCircle, { backgroundColor: activeColor }]}>
+                              <Text style={[styles.spelledCharText, { color: activeTextColor }]}>
+                                {token.char}
+                              </Text>
+                            </View>
+                            <View style={styles.spelledTokenInfo}>
+                              <Text style={[styles.spelledNameBold, { color: textColor }]}>
+                                wie {token.dinName}
+                              </Text>
+                              <Text style={[styles.spelledFullPhrase, { color: mutedText }]}>
+                                &quot;{token.phrase}&quot;
+                              </Text>
+                            </View>
+                            <Ionicons
+                              name="volume-medium-outline"
+                              size={14}
+                              color={isPlayingToken ? '#10B981' : mutedText}
+                              style={{ marginLeft: 2 }}
+                            />
+                          </Pressable>
+                        );
+                      })
                     ) : (
                       <Text style={[styles.emptyPromptText, { color: mutedText }]}>
                         Enter any letter or name above to see the DIN 5009 spelling breakdown.
@@ -1069,7 +1202,7 @@ export default function LessonDetailsScreen() {
               </View>
             ) : null}
 
-            {/* 7. REAL-LIFE DIALOGUE (CHAT MESSAGING FORMAT) */}
+            {/* 7. REAL-LIFE DIALOGUE (TARGETED SENTENCE SPEECH) */}
             {content?.dialogue ? (
               <View style={[styles.interactiveSection, { borderTopColor: borderColor }]}>
                 <View style={styles.sectionHeaderRow}>
@@ -1081,7 +1214,7 @@ export default function LessonDetailsScreen() {
                       4. Real-World Practical Dialogue
                     </Text>
                     <Text style={[styles.sectionSubDesc, { color: mutedText }]}>
-                      {content.dialogue.context || 'At the Language School Reception'}
+                      Tap the speaker icon to hear that specific dialogue sentence.
                     </Text>
                   </View>
                 </View>
@@ -1111,6 +1244,8 @@ export default function LessonDetailsScreen() {
                 <View style={styles.dialogueChatList}>
                   {content.dialogue.lines.map((line, dIdx) => {
                     const isReceptionist = line.speaker.includes('Weber') || line.speaker.includes('Nina');
+                    const isPlayingLine = playingAudioId === `dialogue-${dIdx}`;
+
                     return (
                       <View
                         key={dIdx}
@@ -1130,7 +1265,7 @@ export default function LessonDetailsScreen() {
                             styles.chatBubbleBody,
                             {
                               backgroundColor: isReceptionist ? innerCardBg : cardBg,
-                              borderColor,
+                              borderColor: isPlayingLine ? activeColor : borderColor,
                             },
                           ]}
                         >
@@ -1139,18 +1274,18 @@ export default function LessonDetailsScreen() {
                               {line.speaker}
                             </Text>
                             <Pressable
-                              onPress={() => handleSpeakDialogue(line.german, dIdx)}
+                              onPress={() => speakAudio(line.german, `dialogue-${dIdx}`)}
                               style={({ pressed }) => [
                                 styles.dialogueAudioBtn,
                                 pressed && styles.pressed,
                               ]}
                               hitSlop={8}
-                              accessibilityLabel="Listen Dialogue"
+                              accessibilityLabel="Listen Dialogue Line"
                             >
                               <Ionicons
-                                name={playingDialogueIdx === dIdx ? 'volume-high' : 'volume-medium-outline'}
+                                name={isPlayingLine ? 'volume-high' : 'volume-medium-outline'}
                                 size={16}
-                                color={playingDialogueIdx === dIdx ? '#10B981' : mutedText}
+                                color={isPlayingLine ? '#10B981' : mutedText}
                               />
                             </Pressable>
                           </View>
@@ -1170,7 +1305,7 @@ export default function LessonDetailsScreen() {
               </View>
             ) : null}
 
-            {/* 8. CULTURAL & LINGUISTIC INSIGHT (EDITORIAL HIGHLIGHT) */}
+            {/* 8. CULTURAL & LINGUISTIC INSIGHT */}
             {content?.funFact ? (
               <View style={[styles.interactiveSection, { borderTopColor: borderColor }]}>
                 <View style={[styles.culturalInsightCard, { backgroundColor: innerCardBg, borderColor }]}>
@@ -1187,7 +1322,7 @@ export default function LessonDetailsScreen() {
               </View>
             ) : null}
 
-            {/* 9. INTERACTIVE PRACTICE & KNOWLEDGE CHECK */}
+            {/* 9. KNOWLEDGE CHECK & PRACTICE (FAST, SNAPPY, 0ms DELAY) */}
             {content?.practice && content.practice.length > 0 ? (
               <View style={[styles.interactiveSection, { borderTopColor: borderColor }]}>
                 <View style={styles.sectionHeaderRow}>
@@ -1199,7 +1334,7 @@ export default function LessonDetailsScreen() {
                       Knowledge Check & Practice
                     </Text>
                     <Text style={[styles.sectionSubDesc, { color: mutedText }]}>
-                      Test your understanding of German pronunciation and spelling rules.
+                      Instant selection without lag. Test your German phonetics knowledge.
                     </Text>
                   </View>
                 </View>
@@ -1689,6 +1824,8 @@ const styles = StyleSheet.create({
     fontSize: 14,
     fontWeight: '700',
   },
+
+  // Inspector Card
   activeInspectorCard: {
     borderRadius: 14,
     borderWidth: 1,
@@ -1718,65 +1855,44 @@ const styles = StyleSheet.create({
   },
   inspectorInfoCol: {
     flex: 1,
-    gap: 6,
-  },
-  audioSimulationRow: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    gap: 8,
-  },
-  audioPlayBtn: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    gap: 6,
-    paddingHorizontal: 12,
-    paddingVertical: 6,
-    borderRadius: 16,
-  },
-  audioPlayBtnText: {
-    fontSize: 12,
-    fontWeight: '700',
-  },
-  shiftTagBadge: {
-    flexDirection: 'row',
-    alignItems: 'center',
     gap: 4,
-    paddingHorizontal: 8,
-    paddingVertical: 4,
-    borderRadius: 6,
-    borderWidth: 1,
-  },
-  shiftTagText: {
-    fontSize: 11,
-    fontWeight: '700',
   },
   inspectorSoundRule: {
     fontSize: 13,
     lineHeight: 18,
-    fontWeight: '500',
+    fontWeight: '600',
   },
-  inspectorDetailsRow: {
+  inspectorMouthTip: {
+    fontSize: 12,
+    lineHeight: 16,
+  },
+  inspectorActionsWrap: {
     borderTopWidth: 1,
     paddingTop: 12,
-    flexDirection: 'row',
-    gap: 12,
+    gap: 8,
   },
-  inspectorDetailItem: {
-    flex: 1,
-    gap: 2,
-  },
-  detailLabel: {
+  inspectorActionsHeader: {
     fontSize: 10,
     fontWeight: '700',
-    letterSpacing: 0.5,
+    letterSpacing: 0.6,
   },
-  detailValueBold: {
-    fontSize: 13,
-    fontWeight: '700',
+  audioTargetPillsRow: {
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+    gap: 8,
   },
-  detailValueMuted: {
-    fontSize: 11,
-    lineHeight: 15,
+  audioTargetPill: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 5,
+    paddingHorizontal: 10,
+    paddingVertical: 6,
+    borderRadius: 8,
+    borderWidth: 1,
+  },
+  audioTargetText: {
+    fontSize: 11.5,
+    fontWeight: '600',
   },
 
   // 2-Column Letter Tiles Grid
@@ -1824,12 +1940,16 @@ const styles = StyleSheet.create({
     lineHeight: 16,
   },
   tileExamplePill: {
+    flexDirection: 'row',
+    alignItems: 'center',
     paddingHorizontal: 8,
-    paddingVertical: 4,
+    paddingVertical: 5,
     borderRadius: 6,
+    borderWidth: 1,
   },
   tileExampleText: {
     fontSize: 11,
+    flex: 1,
   },
 
   // 5. Consonant Shifts Section
@@ -1840,7 +1960,7 @@ const styles = StyleSheet.create({
     borderRadius: 12,
     borderWidth: 1,
     padding: 14,
-    gap: 8,
+    gap: 10,
   },
   shiftCardHeader: {
     flexDirection: 'row',
@@ -1848,8 +1968,10 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
   },
   shiftEquationPill: {
+    flexDirection: 'row',
+    alignItems: 'center',
     paddingHorizontal: 10,
-    paddingVertical: 4,
+    paddingVertical: 5,
     borderRadius: 8,
     borderWidth: 1,
   },
@@ -1857,19 +1979,6 @@ const styles = StyleSheet.create({
     fontSize: 13,
     fontWeight: '800',
     letterSpacing: 0.5,
-  },
-  shiftAudioBtn: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    gap: 5,
-    paddingHorizontal: 10,
-    paddingVertical: 5,
-    borderRadius: 8,
-    borderWidth: 1,
-  },
-  shiftAudioBtnText: {
-    fontSize: 11,
-    fontWeight: '700',
   },
   shiftNamePill: {
     fontSize: 12,
@@ -1883,14 +1992,28 @@ const styles = StyleSheet.create({
     padding: 10,
     borderRadius: 8,
     borderWidth: 1,
-    gap: 2,
+    gap: 8,
   },
   shiftExamplesLabel: {
     fontSize: 10,
     fontWeight: '700',
     letterSpacing: 0.5,
   },
-  shiftExamplesWords: {
+  shiftWordsRow: {
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+    gap: 6,
+  },
+  shiftWordChip: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 5,
+    paddingHorizontal: 9,
+    paddingVertical: 5,
+    borderRadius: 7,
+    borderWidth: 1,
+  },
+  shiftWordChipText: {
     fontSize: 12,
     fontWeight: '700',
   },

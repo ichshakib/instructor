@@ -4,14 +4,11 @@ import React, { useEffect, useState } from 'react';
 import {
   ActivityIndicator,
   Image,
-  LayoutAnimation,
-  Platform,
   Pressable,
   ScrollView,
   Share,
   StyleSheet,
   Text,
-  UIManager,
   useColorScheme,
   View,
 } from 'react-native';
@@ -19,10 +16,6 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 
 import { useLearning } from '@/context/learning-context';
 import { API_BASE_URL, Chapter, CourseItem, fetchCourseById } from '@/services/api';
-
-if (Platform.OS === 'android' && UIManager.setLayoutAnimationEnabledExperimental) {
-  UIManager.setLayoutAnimationEnabledExperimental(true);
-}
 
 export default function CourseDetailsScreen() {
   const router = useRouter();
@@ -73,7 +66,6 @@ export default function CourseDetailsScreen() {
   }, [courseId]);
 
   const toggleChapter = (chapterId: string) => {
-    LayoutAnimation.configureNext(LayoutAnimation.Presets.easeInEaseOut);
     setExpandedChapters((prev) => ({
       ...prev,
       [chapterId]: !prev[chapterId],
