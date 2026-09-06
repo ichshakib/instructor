@@ -105,18 +105,37 @@ export default function HomeScreen() {
     });
   }, [courses, selectedCategory, searchQuery]);
 
-  // Horizontal row courses (featured or first slice of courses)
-  const horizontalCourses = useMemo(() => {
-    if (filteredCourses.length <= 3) {
-      return filteredCourses;
+  // Partition courses without ANY duplication between Featured Tracks and Popular Courses
+  const { horizontalCourses, popularCourses } = useMemo(() => {
+    if (filteredCourses.length === 0) {
+      return { horizontalCourses: [], popularCourses: [] };
     }
-    const featured = filteredCourses.filter((c) => c.featured);
-    return featured.length >= 2 ? featured : filteredCourses.slice(0, 5);
-  }, [filteredCourses]);
 
-  // Popular courses (vertical list)
-  const popularCourses = useMemo(() => {
-    return filteredCourses;
+    // If only 1 or 2 courses match, show them in horizontal tracks and keep popular empty
+    if (filteredCourses.length <= 2) {
+      return {
+        horizontalCourses: filteredCourses,
+        popularCourses: [],
+      };
+    }
+
+    // Partition cleanly by featured status
+    const featuredList = filteredCourses.filter((c) => c.featured);
+    const nonFeaturedList = filteredCourses.filter((c) => !c.featured);
+
+    if (featuredList.length > 0 && nonFeaturedList.length > 0) {
+      return {
+        horizontalCourses: featuredList,
+        popularCourses: nonFeaturedList,
+      };
+    }
+
+    // If all courses have featured=true or all have featured=false, split evenly without overlap
+    const splitIndex = Math.max(1, Math.ceil(filteredCourses.length / 2));
+    return {
+      horizontalCourses: filteredCourses.slice(0, splitIndex),
+      popularCourses: filteredCourses.slice(splitIndex),
+    };
   }, [filteredCourses]);
 
   const handleViewAll = () => {
@@ -263,57 +282,58 @@ export default function HomeScreen() {
           /* DUAL LAYOUT: 1) HORIZONTAL SCROLL ROW + 2) POPULAR COURSES VERTICAL AREA */
           <>
             {/* 1. FIRST ROW: HORIZONTAL SCROLLABLE COURSES */}
-            <View style={styles.horizontalSection}>
-              <View style={styles.horizontalHeaderRow}>
-                <Text style={[styles.sectionHeading, { color: textColor }]}>
-                  {selectedCategory === 'All Courses' ? 'Featured Tracks' : `${selectedCategory} Tracks`}
-                </Text>
-                <Text style={[styles.countBadge, { color: mutedText }]}>
-                  Swipe to browse
-                </Text>
-              </View>
+            {horizontalCourses.length > 0 && (
+              <View style={styles.horizontalSection}>
+                <View style={styles.horizontalHeaderRow}>
+                  <Text style={[styles.sectionHeading, { color: textColor }]}>
+                    {selectedCategory === 'All Courses' ? 'Featured Tracks' : `${selectedCategory} Tracks`}
+                  </Text>
+                </View>
 
-              <ScrollView
-                horizontal
-                showsHorizontalScrollIndicator={false}
-                contentContainerStyle={styles.horizontalScrollContent}
-              >
-                {horizontalCourses.map((course) => (
-                  <MobileCourseCard
-                    key={`carousel-${course.id}`}
-                    course={course}
-                    variant="carousel"
-                  />
-                ))}
-              </ScrollView>
-            </View>
+                <ScrollView
+                  horizontal
+                  showsHorizontalScrollIndicator={false}
+                  contentContainerStyle={styles.horizontalScrollContent}
+                >
+                  {horizontalCourses.map((course) => (
+                    <MobileCourseCard
+                      key={`carousel-${course.id}`}
+                      course={course}
+                      variant="carousel"
+                    />
+                  ))}
+                </ScrollView>
+              </View>
+            )}
 
             {/* 2. SECOND SECTION: POPULAR COURSES VERTICAL AREA */}
-            <View style={styles.popularSection}>
-              <View style={styles.sectionHeaderRow}>
-                <Text style={[styles.sectionHeading, { color: textColor }]}>
-                  Popular Courses
-                </Text>
-                <Pressable
-                  onPress={handleViewAll}
-                  hitSlop={8}
-                  style={({ pressed }) => [pressed && styles.pressed]}
-                >
-                  <Text style={[styles.viewAllText, { color: textColor }]}>
-                    View All
+            {popularCourses.length > 0 && (
+              <View style={styles.popularSection}>
+                <View style={styles.sectionHeaderRow}>
+                  <Text style={[styles.sectionHeading, { color: textColor }]}>
+                    Popular Courses
                   </Text>
-                </Pressable>
-              </View>
+                  <Pressable
+                    onPress={handleViewAll}
+                    hitSlop={8}
+                    style={({ pressed }) => [pressed && styles.pressed]}
+                  >
+                    <Text style={[styles.viewAllText, { color: textColor }]}>
+                      View All
+                    </Text>
+                  </Pressable>
+                </View>
 
-              {/* Vertical list using compact side-by-side cards */}
-              {popularCourses.map((course) => (
-                <MobileCourseCard
-                  key={`pop-${course.id}`}
-                  course={course}
-                  variant="compact"
-                />
-              ))}
-            </View>
+                {/* Vertical list using compact side-by-side cards */}
+                {popularCourses.map((course) => (
+                  <MobileCourseCard
+                    key={`pop-${course.id}`}
+                    course={course}
+                    variant="compact"
+                  />
+                ))}
+              </View>
+            )}
           </>
         )}
 
