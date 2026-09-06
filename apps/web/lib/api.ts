@@ -102,8 +102,6 @@ interface ApiResponse<T> {
   success: boolean;
 }
 
-import { FALLBACK_COURSES } from "./courses-fallback";
-
 /**
  * Resolves a course imageUrl into an absolute URL hosted on the backend API.
  */
@@ -117,99 +115,68 @@ export function resolveCourseImageUrl(imageUrl?: string | null): string | undefi
 }
 
 /**
- * Fetches all courses or filtered courses from the backend API, falling back to local dataset if offline.
+ * Fetches all courses or filtered courses from the backend API.
  */
 export async function fetchCourses(
   options?: FetchCoursesOptions
 ): Promise<CourseDetail[]> {
-  try {
-    const url = new URL("/api/v1/courses", API_BASE_URL);
+  const url = new URL("/api/v1/courses", API_BASE_URL);
 
-    if (options?.category && options.category !== "All Courses") {
-      url.searchParams.append("category", options.category);
-    }
-    if (options?.featured !== undefined) {
-      url.searchParams.append("featured", String(options.featured));
-    }
-    if (options?.search && options.search.trim()) {
-      url.searchParams.append("search", options.search.trim());
-    }
-
-    const response = await fetch(url.toString(), {
-      method: "GET",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      cache: "no-store",
-    });
-
-    if (!response.ok) {
-      throw new Error(`API error: ${response.status} ${response.statusText}`);
-    }
-
-    const json: ApiResponse<CourseDetail[]> = await response.json();
-    const courses = json.data || [];
-    return courses.map((c) => ({
-      ...c,
-      imageUrl: resolveCourseImageUrl(c.imageUrl),
-    }));
-  } catch (error) {
-    console.warn("API unavailable, using local fallback courses dataset:", error);
-    let list = [...FALLBACK_COURSES];
-    if (options?.category && options.category !== "All Courses" && options.category !== "All") {
-      list = list.filter((c) => c.category.toLowerCase() === options.category!.trim().toLowerCase());
-    }
-    if (options?.featured !== undefined) {
-      list = list.filter((c) => Boolean(c.featured) === options.featured);
-    }
-    if (options?.search && options.search.trim()) {
-      const term = options.search.trim().toLowerCase();
-      list = list.filter(
-        (c) =>
-          c.title.toLowerCase().includes(term) ||
-          c.description?.toLowerCase().includes(term) ||
-          c.tag1.toLowerCase().includes(term) ||
-          c.tag2.toLowerCase().includes(term)
-      );
-    }
-    return list.map((c) => ({
-      ...c,
-      imageUrl: resolveCourseImageUrl(c.imageUrl),
-    }));
+  if (options?.category && options.category !== "All Courses") {
+    url.searchParams.append("category", options.category);
   }
+  if (options?.featured !== undefined) {
+    url.searchParams.append("featured", String(options.featured));
+  }
+  if (options?.search && options.search.trim()) {
+    url.searchParams.append("search", options.search.trim());
+  }
+
+  const response = await fetch(url.toString(), {
+    method: "GET",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    cache: "no-store",
+  });
+
+  if (!response.ok) {
+    throw new Error(`API error: ${response.status} ${response.statusText}`);
+  }
+
+  const json: ApiResponse<CourseDetail[]> = await response.json();
+  const courses = json.data || [];
+  return courses.map((c) => ({
+    ...c,
+    imageUrl: resolveCourseImageUrl(c.imageUrl),
+  }));
 }
 
 /**
- * Fetches a single course by ID from the backend API, falling back to local dataset if offline.
+ * Fetches a single course by ID from the backend API.
  */
 export async function fetchCourseById(id: string): Promise<CourseDetail | null> {
-  try {
-    const url = new URL(`/api/v1/courses/${id}`, API_BASE_URL);
+  const url = new URL(`/api/v1/courses/${id}`, API_BASE_URL);
 
-    const response = await fetch(url.toString(), {
-      method: "GET",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      cache: "no-store",
-    });
+  const response = await fetch(url.toString(), {
+    method: "GET",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    cache: "no-store",
+  });
 
-    if (response.status === 404) {
-      return null;
-    }
-
-    if (!response.ok) {
-      throw new Error(`API error: ${response.status} ${response.statusText}`);
-    }
-
-    const json: ApiResponse<CourseDetail> = await response.json();
-    const course = json.data || null;
-    return course ? { ...course, imageUrl: resolveCourseImageUrl(course.imageUrl) } : null;
-  } catch (error) {
-    console.warn(`API unavailable, using local fallback for course '${id}':`, error);
-    const fallback = FALLBACK_COURSES.find((c) => c.id === id);
-    return fallback ? { ...fallback, imageUrl: resolveCourseImageUrl(fallback.imageUrl) } : null;
+  if (response.status === 404) {
+    return null;
   }
+
+  if (!response.ok) {
+    throw new Error(`API error: ${response.status} ${response.statusText}`);
+  }
+
+  const json: ApiResponse<CourseDetail> = await response.json();
+  const course = json.data || null;
+  return course ? { ...course, imageUrl: resolveCourseImageUrl(course.imageUrl) } : null;
 }
 
 export type {
