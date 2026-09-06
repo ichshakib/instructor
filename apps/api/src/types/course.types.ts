@@ -98,12 +98,19 @@ export interface LevelCurriculum {
   chapters: Chapter[];
 }
 
+export type CourseStructureType =
+  | "cefr-levels"
+  | "chapters-and-lessons"
+  | "lessons-only"
+  | "chapters-only";
+
 export interface Course {
   id: string;
   title: string;
   category: CourseCategory;
   type: string;
   typeIcon: CourseTypeIcon;
+  structureType?: CourseStructureType;
   tag1: string;
   tag2: string;
   badgeCount: string;
@@ -116,4 +123,6 @@ export interface Course {
   progressStatus?: CourseProgressStatus;
   imageUrl?: string;
   curriculum?: LevelCurriculum[];
+  chapters?: Chapter[];
+  lessons?: Lesson[];
 }

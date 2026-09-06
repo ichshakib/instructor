@@ -76,8 +76,17 @@ export interface LevelCurriculum {
   chapters: Chapter[];
 }
 
+export type CourseStructureType =
+  | "cefr-levels"
+  | "chapters-and-lessons"
+  | "lessons-only"
+  | "chapters-only";
+
 export interface CourseDetail extends CourseItem {
+  structureType?: CourseStructureType;
   curriculum?: LevelCurriculum[];
+  chapters?: Chapter[];
+  lessons?: Lesson[];
 }
 
 interface FetchCoursesOptions {

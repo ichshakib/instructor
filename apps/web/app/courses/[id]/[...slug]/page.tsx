@@ -8,6 +8,7 @@ import {
   CourseDetail,
   CEFRLevel,
   LevelCurriculum,
+  Chapter,
   Lesson,
 } from "../../../../lib/api";
 import {
@@ -101,13 +102,20 @@ export default function CourseDetailPage() {
 
   // Function to sync the browser URL without full-page reload
   const syncUrl = useCallback(
-    (lvl: CEFRLevel, chId?: string, lId?: string) => {
+    (lvl?: CEFRLevel, chId?: string, lId?: string) => {
       if (typeof window === "undefined") return;
-      let targetPath = `/courses/${courseId}/${lvl}`;
-      if (chId && lId) {
-        targetPath = `/courses/${courseId}/${lvl}/${chId}/${lId}`;
+      let targetPath = `/courses/${courseId}`;
+      if (lvl) {
+        targetPath = `/courses/${courseId}/${lvl}`;
+        if (chId && lId) {
+          targetPath = `/courses/${courseId}/${lvl}/${chId}/${lId}`;
+        } else if (lId) {
+          targetPath = `/courses/${courseId}/${lvl}/${lId}`;
+        }
+      } else if (chId && lId) {
+        targetPath = `/courses/${courseId}/${chId}/${lId}`;
       } else if (lId) {
-        targetPath = `/courses/${courseId}/${lvl}/${lId}`;
+        targetPath = `/courses/${courseId}/${lId}`;
       }
       if (window.location.pathname !== targetPath) {
         window.history.pushState(null, "", targetPath);
@@ -145,76 +153,155 @@ export default function CourseDetailPage() {
           parts = slug;
         }
 
-        // Determine initial level and lesson from parts or fallback to A1
-        let targetLevel: CEFRLevel = "A1";
+        const isLeveled =
+          data.structureType === "cefr-levels" ||
+          (data.structureType as any) === "european-levels" ||
+          (!data.structureType && Boolean(data.curriculum && data.curriculum.length > 0));
+
+        const isLessonsOnly =
+          data.structureType === "lessons-only" ||
+          (!isLeveled && (!data.chapters || data.chapters.length === 0) && Boolean(data.lessons && data.lessons.length > 0));
+
         let targetLessonId: string | null = null;
         let targetChapterId: string | null = null;
 
-        if (parts.length > 0 && parts[0]) {
-          const rawLevel = parts[0].toUpperCase();
-          if (CEFR_LEVELS.includes(rawLevel as CEFRLevel)) {
-            targetLevel = rawLevel as CEFRLevel;
+        if (isLeveled) {
+          let targetLevel: CEFRLevel = "A1";
+          if (parts.length > 0 && parts[0]) {
+            const rawLevel = parts[0].toUpperCase();
+            if (CEFR_LEVELS.includes(rawLevel as CEFRLevel)) {
+              targetLevel = rawLevel as CEFRLevel;
+            }
           }
-        }
 
-        const levelData = data.curriculum?.find((c) => c.level === targetLevel);
-        if (levelData && levelData.chapters.length > 0) {
-          if (parts.length >= 3 && parts[1] && parts[2]) {
-            targetChapterId = parts[1];
-            targetLessonId = parts[2];
-          } else if (parts.length === 2 && parts[1]) {
-            const part = parts[1].toLowerCase();
-            // Check if matching chapter
-            const matchCh = levelData.chapters.find((ch) => ch.id.toLowerCase() === part);
-            if (matchCh) {
-              targetChapterId = matchCh.id;
-              targetLessonId = matchCh.lessons[0]?.id ?? null;
-            } else {
-              // Check if matching lesson
+          const levelData = data.curriculum?.find((c) => c.level === targetLevel);
+          if (levelData && levelData.chapters.length > 0) {
+            if (parts.length >= 3 && parts[1] && parts[2]) {
+              targetChapterId = parts[1];
+              targetLessonId = parts[2];
+            } else if (parts.length === 2 && parts[1]) {
+              const part = parts[1].toLowerCase();
+              const matchCh = levelData.chapters.find((ch) => ch.id.toLowerCase() === part);
+              if (matchCh) {
+                targetChapterId = matchCh.id;
+                targetLessonId = matchCh.lessons[0]?.id ?? null;
+              } else {
+                for (const ch of levelData.chapters) {
+                  const matchL = ch.lessons.find((l) => l.id.toLowerCase() === part);
+                  if (matchL) {
+                    targetLessonId = matchL.id;
+                    targetChapterId = ch.id;
+                    break;
+                  }
+                }
+              }
+            }
+
+            if (!targetLessonId) {
+              const firstChapter = levelData.chapters[0];
+              if (firstChapter && firstChapter.lessons.length > 0) {
+                const firstLesson = firstChapter.lessons[0];
+                if (firstLesson) {
+                  targetLessonId = firstLesson.id;
+                  targetChapterId = firstChapter.id;
+                }
+              }
+            }
+
+            if (targetLessonId && !targetChapterId) {
               for (const ch of levelData.chapters) {
-                const matchL = ch.lessons.find((l) => l.id.toLowerCase() === part);
-                if (matchL) {
-                  targetLessonId = matchL.id;
+                if (ch.lessons.some((l) => l.id.toLowerCase() === targetLessonId?.toLowerCase())) {
                   targetChapterId = ch.id;
                   break;
                 }
               }
             }
-          }
 
-          // If no specific lesson was targeted from slug, default to first lesson
-          if (!targetLessonId) {
-            const firstChapter = levelData.chapters[0];
-            if (firstChapter && firstChapter.lessons.length > 0) {
-              const firstLesson = firstChapter.lessons[0];
-              if (firstLesson) {
-                targetLessonId = firstLesson.id;
-                targetChapterId = firstChapter.id;
-              }
-            }
-          }
-
-          // If targetLessonId is identified but targetChapterId was not in slug, find which chapter it belongs to
-          if (targetLessonId && !targetChapterId) {
-            for (const ch of levelData.chapters) {
-              if (ch.lessons.some((l) => l.id.toLowerCase() === targetLessonId?.toLowerCase())) {
-                targetChapterId = ch.id;
-                break;
-              }
-            }
-          }
-
-          setActiveLevel(targetLevel);
-
-          // ONLY expand the chapter containing the active lesson; all other chapters remain collapsed
-          if (targetChapterId) {
-            setExpandedChapters({ [targetChapterId]: true });
-          }
-
-          if (targetLessonId) {
-            setActiveLessonId(targetLessonId);
+            setActiveLevel(targetLevel);
             if (targetChapterId) {
-              syncUrl(targetLevel, targetChapterId, targetLessonId);
+              setExpandedChapters({ [targetChapterId]: true });
+            }
+            if (targetLessonId) {
+              setActiveLessonId(targetLessonId);
+              if (targetChapterId) {
+                syncUrl(targetLevel, targetChapterId, targetLessonId);
+              }
+            }
+          }
+        } else if (isLessonsOnly) {
+          // Direct lessons-only format (e.g. daily idioms, crash courses)
+          const rawLessons: Lesson[] = data.lessons || [];
+          if (rawLessons.length > 0) {
+            if (parts.length >= 1 && parts[0]) {
+              const part = parts[0].toLowerCase();
+              const matchL = rawLessons.find((l) => l.id.toLowerCase() === part);
+              if (matchL) {
+                targetLessonId = matchL.id;
+              }
+            }
+
+            if (!targetLessonId) {
+              targetLessonId = rawLessons[0]?.id ?? null;
+            }
+
+            if (targetLessonId) {
+              setActiveLessonId(targetLessonId);
+              syncUrl(undefined, undefined, targetLessonId);
+            }
+          }
+        } else {
+          // Chapters and lessons format
+          const rawChapters: Chapter[] = data.chapters || data.curriculum?.[0]?.chapters || [];
+          if (rawChapters.length > 0) {
+            if (parts.length >= 2 && parts[0] && parts[1]) {
+              targetChapterId = parts[0];
+              targetLessonId = parts[1];
+            } else if (parts.length === 1 && parts[0]) {
+              const part = parts[0].toLowerCase();
+              const matchCh = rawChapters.find((ch) => ch.id.toLowerCase() === part);
+              if (matchCh) {
+                targetChapterId = matchCh.id;
+                targetLessonId = matchCh.lessons[0]?.id ?? null;
+              } else {
+                for (const ch of rawChapters) {
+                  const matchL = ch.lessons.find((l) => l.id.toLowerCase() === part);
+                  if (matchL) {
+                    targetLessonId = matchL.id;
+                    targetChapterId = ch.id;
+                    break;
+                  }
+                }
+              }
+            }
+
+            if (!targetLessonId) {
+              const firstChapter = rawChapters[0];
+              if (firstChapter && firstChapter.lessons.length > 0) {
+                const firstLesson = firstChapter.lessons[0];
+                if (firstLesson) {
+                  targetLessonId = firstLesson.id;
+                  targetChapterId = firstChapter.id;
+                }
+              }
+            }
+
+            if (targetLessonId && !targetChapterId) {
+              for (const ch of rawChapters) {
+                if (ch.lessons.some((l) => l.id.toLowerCase() === targetLessonId?.toLowerCase())) {
+                  targetChapterId = ch.id;
+                  break;
+                }
+              }
+            }
+
+            if (targetChapterId) {
+              setExpandedChapters({ [targetChapterId]: true });
+            }
+            if (targetLessonId) {
+              setActiveLessonId(targetLessonId);
+              if (targetChapterId) {
+                syncUrl(undefined, targetChapterId, targetLessonId);
+              }
             }
           }
         }
@@ -233,22 +320,72 @@ export default function CourseDetailPage() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [courseId]);
 
-  // Current Level curriculum
+  // Determine if this course uses the European CEFR leveled format or direct chapters
+  const isLeveledCourse = useMemo(() => {
+    if (!course) return true;
+    if (
+      course.structureType === "lessons-only" ||
+      course.structureType === "chapters-and-lessons" ||
+      course.structureType === "chapters-only"
+    ) {
+      return false;
+    }
+    if (course.structureType === "cefr-levels" || (course.structureType as any) === "european-levels") {
+      return true;
+    }
+    return Boolean(course.curriculum && course.curriculum.length > 0);
+  }, [course]);
+
+  // Determine if this course is lessons-only (no CEFR levels, no chapter accordions)
+  const isLessonsOnlyCourse = useMemo(() => {
+    if (!course) return false;
+    if (course.structureType === "lessons-only") return true;
+    return (
+      !isLeveledCourse &&
+      (!course.chapters || course.chapters.length === 0) &&
+      Boolean(course.lessons && course.lessons.length > 0)
+    );
+  }, [course, isLeveledCourse]);
+
+  // Direct lessons for lessons-only structure
+  const directLessons: Lesson[] = useMemo(() => {
+    return course?.lessons || [];
+  }, [course]);
+
+  // Current Level curriculum (for European leveled format)
   const currentLevelCurriculum: LevelCurriculum | undefined = useMemo(() => {
+    if (!isLeveledCourse) return undefined;
     return course?.curriculum?.find((c) => c.level === activeLevel);
-  }, [course, activeLevel]);
+  }, [course, activeLevel, isLeveledCourse]);
+
+  // Unified chapters list (either from active CEFR level, or direct chapters)
+  const activeChapters: Chapter[] = useMemo(() => {
+    if (isLessonsOnlyCourse) return [];
+    if (isLeveledCourse) {
+      return currentLevelCurriculum?.chapters || [];
+    }
+    return course?.chapters || course?.curriculum?.[0]?.chapters || [];
+  }, [isLessonsOnlyCourse, isLeveledCourse, currentLevelCurriculum, course]);
 
   // Find currently active lesson and its parent chapter
-  const activeLessonInfo = useMemo(() => {
-    if (!currentLevelCurriculum) return null;
-    for (const chapter of currentLevelCurriculum.chapters) {
+  const activeLessonInfo: { lesson: Lesson; chapter: Chapter | null } | null = useMemo(() => {
+    if (isLessonsOnlyCourse) {
+      if (directLessons.length === 0) return null;
+      const match = directLessons.find((l) => l.id === activeLessonId);
+      if (match) return { lesson: match, chapter: null };
+      const first = directLessons[0];
+      return first ? { lesson: first, chapter: null } : null;
+    }
+
+    if (activeChapters.length === 0) return null;
+    for (const chapter of activeChapters) {
       const lesson = chapter.lessons.find((l) => l.id === activeLessonId);
       if (lesson) {
         return { lesson, chapter };
       }
     }
     // Fallback to first lesson
-    const firstChapter = currentLevelCurriculum.chapters[0];
+    const firstChapter = activeChapters[0];
     if (firstChapter && firstChapter.lessons.length > 0) {
       const firstLesson = firstChapter.lessons[0];
       if (firstLesson) {
@@ -256,7 +393,7 @@ export default function CourseDetailPage() {
       }
     }
     return null;
-  }, [currentLevelCurriculum, activeLessonId]);
+  }, [isLessonsOnlyCourse, directLessons, activeChapters, activeLessonId]);
 
   // Resolve rich lesson content from API or fallback local library
   const currentLessonContent = useMemo(() => {
@@ -288,11 +425,20 @@ export default function CourseDetailPage() {
     }
   };
 
-  // When a lesson is clicked, activate that lesson, expand ONLY its chapter, and sync URL
-  const handleSelectLesson = (chapterId: string, lessonId: string) => {
+  // When a lesson is clicked, activate that lesson, expand ONLY its chapter (if exists), and sync URL
+  const handleSelectLesson = (chapterId?: string, lessonId?: string) => {
+    if (!lessonId) return;
     setActiveLessonId(lessonId);
-    setExpandedChapters({ [chapterId]: true });
-    syncUrl(activeLevel, chapterId, lessonId);
+    if (chapterId) {
+      setExpandedChapters({ [chapterId]: true });
+    }
+    if (isLeveledCourse && chapterId) {
+      syncUrl(activeLevel, chapterId, lessonId);
+    } else if (chapterId) {
+      syncUrl(undefined, chapterId, lessonId);
+    } else {
+      syncUrl(undefined, undefined, lessonId);
+    }
   };
 
   // Toggle chapter collapse/expand when clicking chapter heading
@@ -353,13 +499,15 @@ export default function CourseDetailPage() {
     return () => window.removeEventListener("popstate", handlePopState);
   }, [course, activeLevel]);
 
-  // Flattened list of lessons in current level for Next/Previous navigation
-  const allLessonsInLevel: { lesson: Lesson; chapterId: string }[] = useMemo(() => {
-    if (!currentLevelCurriculum) return [];
-    return currentLevelCurriculum.chapters.flatMap((ch) =>
+  // Flattened list of lessons for Next/Previous navigation
+  const allLessonsInLevel: { lesson: Lesson; chapterId?: string }[] = useMemo(() => {
+    if (isLessonsOnlyCourse) {
+      return directLessons.map((l) => ({ lesson: l }));
+    }
+    return activeChapters.flatMap((ch) =>
       ch.lessons.map((l) => ({ lesson: l, chapterId: ch.id }))
     );
-  }, [currentLevelCurriculum]);
+  }, [isLessonsOnlyCourse, directLessons, activeChapters]);
 
   const currentLessonIndex = useMemo(() => {
     if (!activeLessonInfo?.lesson) return -1;
@@ -367,17 +515,14 @@ export default function CourseDetailPage() {
   }, [allLessonsInLevel, activeLessonInfo]);
 
   const currentChapterNumber = useMemo(() => {
-    if (!activeLessonInfo?.chapter) return 1;
-    const match = activeLessonInfo.chapter.title.match(/Chapter\s+(\d+)/i);
+    const chapter = activeLessonInfo?.chapter;
+    if (!chapter) return 1;
+    const match = chapter.title.match(/Chapter\s+(\d+)/i);
     if (match) return match[1];
-    if (currentLevelCurriculum?.chapters) {
-      const idx = currentLevelCurriculum.chapters.findIndex(
-        (c) => c.id === activeLessonInfo.chapter.id
-      );
-      if (idx >= 0) return idx + 1;
-    }
+    const idx = activeChapters.findIndex((c) => c.id === chapter.id);
+    if (idx >= 0) return idx + 1;
     return 1;
-  }, [activeLessonInfo, currentLevelCurriculum]);
+  }, [activeLessonInfo, activeChapters]);
 
   const goToNextLesson = () => {
     if (currentLessonIndex >= 0 && currentLessonIndex < allLessonsInLevel.length - 1) {
@@ -476,57 +621,106 @@ export default function CourseDetailPage() {
           </h1>
         </div>
 
-        {/* 2. A1, A2, B1, B2, C1, C2 LEVEL SELECTOR */}
-        <div className="p-3 sm:p-4 border-b border-neutral-200/80 bg-neutral-50/60">
-          <div className="flex items-center justify-between mb-2 px-1">
-            <span className="text-[11px] font-bold text-[#7A776D] uppercase tracking-wider flex items-center gap-1.5">
-              <GraduationCap className="w-3.5 h-3.5 text-amber-600" />
-              CEFR Level
-            </span>
-            <span className="text-[10px] font-semibold text-neutral-500">
-              {currentLevelCurriculum?.title.split("•")[1]?.trim() || "Beginner"}
-            </span>
-          </div>
+        {/* 2. A1, A2, B1, B2, C1, C2 LEVEL SELECTOR (Rendered ONLY if isLeveledCourse is true) */}
+        {isLeveledCourse && (
+          <div className="p-3 sm:p-4 border-b border-neutral-200/80 bg-neutral-50/60">
+            <div className="flex items-center justify-between mb-2 px-1">
+              <span className="text-[11px] font-bold text-[#7A776D] uppercase tracking-wider flex items-center gap-1.5">
+                <GraduationCap className="w-3.5 h-3.5 text-amber-600" />
+                CEFR Level
+              </span>
+              <span className="text-[10px] font-semibold text-neutral-500">
+                {currentLevelCurriculum?.title.split("•")[1]?.trim() || "Beginner"}
+              </span>
+            </div>
 
-          {/* Level Tabs: A1, A2, B1, B2, C1, C2 */}
-          <div className="grid grid-cols-6 gap-1.5 p-1 rounded-xl bg-neutral-200/60 border border-neutral-300/60">
-            {CEFR_LEVELS.map((lvl) => {
-              const isActive = activeLevel === lvl;
-              return (
-                <button
-                  key={lvl}
-                  onClick={() => handleLevelChange(lvl)}
-                  className={`py-1.5 rounded-lg text-xs font-black transition-all duration-200 cursor-pointer text-center ${
-                    isActive
-                      ? "bg-[#18191E] text-white shadow-sm scale-[1.04]"
-                      : "text-[#5F5D54] hover:text-[#18191E] hover:bg-white/70"
-                  }`}
-                >
-                  {lvl}
-                </button>
-              );
-            })}
+            {/* Level Tabs: A1, A2, B1, B2, C1, C2 */}
+            <div className="grid grid-cols-6 gap-1.5 p-1 rounded-xl bg-neutral-200/60 border border-neutral-300/60">
+              {CEFR_LEVELS.map((lvl) => {
+                const isActive = activeLevel === lvl;
+                return (
+                  <button
+                    key={lvl}
+                    onClick={() => handleLevelChange(lvl)}
+                    className={`py-1.5 rounded-lg text-xs font-black transition-all duration-200 cursor-pointer text-center ${
+                      isActive
+                        ? "bg-[#18191E] text-white shadow-sm scale-[1.04]"
+                        : "text-[#5F5D54] hover:text-[#18191E] hover:bg-white/70"
+                    }`}
+                  >
+                    {lvl}
+                  </button>
+                );
+              })}
+            </div>
           </div>
-        </div>
+        )}
 
-        {/* 3. COURSE OUTLINE: CHAPTERS & LESSONS (SCROLLABLE LIST) */}
+        {/* 3. COURSE OUTLINE / LESSONS (SCROLLABLE LIST) */}
         <div className="p-3 border-b border-neutral-100 flex items-center justify-between bg-white text-xs font-bold text-[#18191E]">
           <span className="flex items-center gap-1.5">
-            <Layers className="w-3.5 h-3.5 text-amber-600" />
-            Course Outline
+            {isLessonsOnlyCourse ? (
+              <BookOpen className="w-3.5 h-3.5 text-amber-600" />
+            ) : (
+              <Layers className="w-3.5 h-3.5 text-amber-600" />
+            )}
+            {isLessonsOnlyCourse ? "Course Lessons" : "Course Outline"}
           </span>
           <span className="text-[11px] font-medium text-neutral-400">
-            {currentLevelCurriculum?.chapters.length || 0} Chapters
+            {isLessonsOnlyCourse
+              ? `${directLessons.length} Lessons`
+              : `${activeChapters.length} Chapters`}
           </span>
         </div>
 
         <div className="flex-1 overflow-y-auto divide-y divide-neutral-100">
-          {!currentLevelCurriculum || currentLevelCurriculum.chapters.length === 0 ? (
+          {isLessonsOnlyCourse ? (
+            directLessons.length === 0 ? (
+              <div className="p-6 text-center text-xs text-neutral-400">
+                No lessons available for this course.
+              </div>
+            ) : (
+              <div className="py-1">
+                {directLessons.map((lesson, lIdx) => {
+                  const isLessonActive = activeLessonId === lesson.id;
+                  const lessonNumber = lIdx + 1;
+
+                  return (
+                    <button
+                      key={lesson.id}
+                      onClick={() => handleSelectLesson(undefined, lesson.id)}
+                      className={`w-full text-left px-4 py-3 flex items-start gap-3 transition-all duration-150 cursor-pointer ${
+                        isLessonActive
+                          ? "bg-amber-50 text-[#18191E] border-l-4 border-amber-500 font-semibold shadow-xs"
+                          : "hover:bg-neutral-100/90 text-[#5F5D54] border-l-4 border-transparent"
+                      }`}
+                    >
+                      <div className="pt-0.5 shrink-0">
+                        {isLessonActive ? (
+                          <BookOpen className="w-4 h-4 text-amber-600" />
+                        ) : (
+                          <div className="min-w-4 h-4 px-1 rounded-full border border-neutral-300 flex items-center justify-center text-[9px] font-semibold text-neutral-500">
+                            {lessonNumber}
+                          </div>
+                        )}
+                      </div>
+
+                      <div className="flex-1 min-w-0">
+                        <p className="text-xs leading-snug line-clamp-2">
+                          {formatLessonTitle(lesson.title, lessonNumber)}
+                        </p>
+                      </div>
+                    </button>
+                  );
+                })}
+              </div>
+            )
+          ) : activeChapters.length === 0 ? (
             <div className="p-6 text-center text-xs text-neutral-400">
-              No outline available for this level.
+              No outline available for this course.
             </div>
           ) : (
-            currentLevelCurriculum.chapters.map((chapter, chIdx) => {
+            activeChapters.map((chapter, chIdx) => {
               const isExpanded = Boolean(expandedChapters[chapter.id]);
 
               return (
@@ -561,7 +755,7 @@ export default function CourseDetailPage() {
                   {isExpanded && (
                     <div className="bg-neutral-50/60 pb-1">
                       {(() => {
-                        const previousLessonsCount = currentLevelCurriculum.chapters
+                        const previousLessonsCount = activeChapters
                           .slice(0, chIdx)
                           .reduce((sum, ch) => sum + ch.lessons.length, 0);
 
@@ -613,21 +807,32 @@ export default function CourseDetailPage() {
       <main className="flex-1 h-full flex flex-col overflow-hidden bg-[#FAF9F5]">
         {activeLessonInfo ? (
           <>
-            {/* 1. TOP HEADER: SHOWING LEVEL, CHAPTER, AND LESSON NAME IN ONE LINE */}
+            {/* 1. TOP HEADER: SHOWING LEVEL (if leveled), CHAPTER (if exists), AND LESSON NAME */}
             <header className="px-6 sm:px-8 py-3.5 sm:py-4 bg-white border-b border-neutral-200/80 shrink-0 flex items-center justify-between gap-4 min-h-[61px] shadow-xs">
               <div className="min-w-0 flex-1 flex items-center gap-2.5">
-                {/* Level Card */}
-                <span className="px-2.5 py-1 rounded-lg bg-[#18191E] text-white text-xs font-bold shrink-0 shadow-2xs">
-                  {activeLevel}
-                </span>
+                {/* Level Card (ONLY if European leveled format) */}
+                {isLeveledCourse && (
+                  <span className="px-2.5 py-1 rounded-lg bg-[#18191E] text-white text-xs font-bold shrink-0 shadow-2xs">
+                    {activeLevel}
+                  </span>
+                )}
 
-                {/* Chapter Card */}
-                <span
-                  className="px-2.5 py-1 rounded-lg bg-neutral-100 border border-neutral-200/90 text-neutral-800 text-xs font-semibold shrink-0 shadow-2xs"
-                  title={activeLessonInfo.chapter.title}
-                >
-                  Ch {currentChapterNumber}
-                </span>
+                {/* Chapter Card (only if chapter exists) */}
+                {activeLessonInfo?.chapter && (
+                  <span
+                    className="px-2.5 py-1 rounded-lg bg-neutral-100 border border-neutral-200/90 text-neutral-800 text-xs font-semibold shrink-0 shadow-2xs"
+                    title={activeLessonInfo.chapter.title}
+                  >
+                    Ch {currentChapterNumber}
+                  </span>
+                )}
+
+                {/* Lesson Badge (for lessons-only courses) */}
+                {!activeLessonInfo?.chapter && currentLessonIndex >= 0 && (
+                  <span className="px-2.5 py-1 rounded-lg bg-neutral-100 border border-neutral-200/90 text-neutral-800 text-xs font-semibold shrink-0 shadow-2xs">
+                    Lesson {currentLessonIndex + 1}
+                  </span>
+                )}
 
                 {/* Lesson Name */}
                 <h2
@@ -1033,7 +1238,9 @@ export default function CourseDetailPage() {
                 </button>
 
                 <span className="text-xs text-[#706E66] font-medium hidden sm:inline-block">
-                  Lesson {currentLessonIndex + 1} of {allLessonsInLevel.length} in Level {activeLevel}
+                  {isLeveledCourse
+                    ? `Lesson ${currentLessonIndex + 1} of ${allLessonsInLevel.length} in Level ${activeLevel}`
+                    : `Lesson ${currentLessonIndex + 1} of ${allLessonsInLevel.length}`}
                 </span>
 
                 <button

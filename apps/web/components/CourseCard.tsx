@@ -28,9 +28,12 @@ export interface CourseItem {
   description?: string;
   imageUrl?: string;
   featured?: boolean;
+  structureType?: "cefr-levels" | "chapters-and-lessons" | "lessons-only" | "chapters-only";
   totalChapters?: number;
   totalLessons?: number;
   curriculum?: any[];
+  chapters?: any[];
+  lessons?: any[];
   progressStatus?: {
     type: "points" | "progress" | "status";
     points?: number;
@@ -42,7 +45,6 @@ export interface CourseItem {
 
 interface CourseCardProps {
   course: CourseItem;
-  onActionClick?: (course: CourseItem) => void;
 }
 
 export default function CourseCard({ course }: CourseCardProps) {
@@ -96,13 +98,6 @@ export default function CourseCard({ course }: CourseCardProps) {
             {/* Floating Vocabulary Dialogue Card */}
             <g transform="translate(210, 20) rotate(5)">
               <rect x="0" y="0" width="140" height="135" rx="14" fill="#FFFFFF" filter="drop-shadow(0 12px 20px rgba(0,0,0,0.12))" stroke="#FEF3C7" strokeWidth="1.5" />
-              <circle cx="25" cy="25" r="14" fill="#EF4444" fillOpacity="0.12" />
-              <text x="18" y="29" fontSize="13" fontWeight="800" fill="#DC2626">
-                Hallo!
-              </text>
-              <rect x="48" y="16" width="75" height="6" rx="3" fill="#E5E7EB" />
-              <rect x="48" y="28" width="55" height="5" rx="2.5" fill="#F3F4F6" />
-
               <rect x="12" y="50" width="116" height="34" rx="8" fill="#F9FAFB" />
               <text x="20" y="65" fontSize="10" fontWeight="700" fill="#18191E">
                 Wie geht&apos;s?
@@ -376,13 +371,17 @@ export default function CourseCard({ course }: CourseCardProps) {
   };
 
   const totalChapters =
-    course.totalChapters ??
-    (Array.isArray(course.curriculum)
-      ? course.curriculum.reduce(
-          (acc: number, lvl: any) => acc + (Array.isArray(lvl.chapters) ? lvl.chapters.length : 0),
-          0
-        )
-      : undefined);
+    course.structureType === "lessons-only"
+      ? undefined
+      : course.totalChapters ??
+        (Array.isArray(course.curriculum)
+          ? course.curriculum.reduce(
+              (acc: number, lvl: any) => acc + (Array.isArray(lvl.chapters) ? lvl.chapters.length : 0),
+              0
+            )
+          : Array.isArray(course.chapters)
+          ? course.chapters.length
+          : undefined);
 
   const totalLessons =
     course.totalLessons ??
@@ -399,6 +398,14 @@ export default function CourseCard({ course }: CourseCardProps) {
               : 0),
           0
         )
+      : Array.isArray(course.chapters)
+      ? course.chapters.reduce(
+          (acc: number, ch: any) =>
+            acc + (Array.isArray(ch.lessons) ? ch.lessons.length : 0),
+          0
+        )
+      : Array.isArray(course.lessons)
+      ? course.lessons.length
       : undefined);
 
   return (
